@@ -1,0 +1,40 @@
+Writing Style Library
+Copyright 2026 Jonathan Prisant
+
+---
+
+## Code License
+
+All source code in this repository - including schemas (schemas/**), skill code
+(skills/**), validation tools (tools/**), package source (packages/**), and
+test code (tests/**) - is licensed under the Apache License, Version 2.0.
+
+You may obtain a copy of the License at:
+  http://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+## Content License
+
+All taxonomy entries (taxonomy/**), example files (examples/**), recipe files
+(recipes/**), and documentation source (docs/**) are licensed under the
+Creative Commons Attribution 4.0 International License (CC-BY-4.0).
+
+You may obtain a copy of the License at:
+  https://creativecommons.org/licenses/by/4.0/
+
+### Attribution for LLM-Generated Content
+
+Some example files and taxonomy entries contain content that was generated with
+the assistance of a large language model (LLM). These files carry attribution
+metadata in their frontmatter, specifically the `llm_model` and
+`llm_prompt_file` fields. Human review and editorial judgment was applied to
+all LLM-assisted content before inclusion in this repository.
+
+---
+
+## Third-Party Components
+
+This project does not currently bundle third-party libraries directly. Runtime
+dependencies are declared in package.json (Node.js) and requirements.txt
+(Python) and are subject to their own respective licenses.

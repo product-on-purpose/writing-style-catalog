@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+.venv/
+venv/
+env/
+.Python
+
+# Node
+node_modules/
+dist/
+.next/
+.nuxt/
+.output/
+coverage/
+*.tsbuildinfo
+
+# MkDocs build output
+site/
+
+# Environment variables
+.env
+*.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor and OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Local research and drafts (repo-specific)
+.memsearch/
+
+# Test outputs (not committed)
+tests/golden-outputs/*.actual.*

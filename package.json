@@ -1,0 +1,11 @@
+{
+  "name": "@product-on-purpose/writing-style-library",
+  "version": "0.1.0",
+  "description": "A composable catalog of writing instructions organized along three axes",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "validate": "python tools/validate.py",
+    "build-site": "mkdocs build"
+  }
+}

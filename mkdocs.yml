@@ -1,0 +1,58 @@
+site_name: Writing Style Library
+site_description: A composable catalog of writing instructions organized along three orthogonal axes
+repo_url: https://github.com/product-on-purpose/writing-style-library
+repo_name: product-on-purpose/writing-style-library
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Concepts:
+    - Three-Axis Model: concepts/three-axis-model.md
+    - Composition: concepts/composition.md
+    - Glossary: concepts/glossary.md
+  - How-to:
+    - Compose an Instruction: how-to/compose-instruction.md
+    - Pick a Voice: how-to/pick-voice.md
+    - Add an Entry: how-to/add-entry.md
+  - Reference: reference/
+  - Design Standards:
+    - Voice and Tone: design-standards/voice-and-tone.md
+    - Naming Conventions: design-standards/naming-conventions.md
+    - Style Tells: design-standards/style-tells.md
+  - Governance:
+    - Contribution Process: governance/contribution-process.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
