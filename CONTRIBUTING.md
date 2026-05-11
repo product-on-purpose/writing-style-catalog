@@ -8,7 +8,12 @@ Thank you for contributing. This guide covers the two main contribution paths: a
 
 ### Path 1 - New Taxonomy Entry
 
-A taxonomy entry is a single Markdown file under `taxonomy/voices/`, `taxonomy/tones/`, `taxonomy/styles/`, or `taxonomy/formats/`. Each entry defines one reusable writing instruction component.
+A taxonomy entry is a directory under `taxonomy/voices/`, `taxonomy/tones/`, `taxonomy/styles/`, or `taxonomy/formats/`. Each entry directory is named with a kebab-case ID and contains:
+
+- `ENTRY.md` - the entry body and frontmatter
+- `examples/` - at least one worked example file
+
+For example: `taxonomy/voices/pragmatic-architect/ENTRY.md`. Each entry defines one reusable writing instruction component.
 
 ### Path 2 - New Example
 

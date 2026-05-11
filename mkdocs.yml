@@ -3,6 +3,9 @@ site_description: A composable catalog of writing instructions organized along t
 repo_url: https://github.com/product-on-purpose/writing-style-library
 repo_name: product-on-purpose/writing-style-library
 
+exclude_docs: |
+  internal/
+
 theme:
   name: material
   palette:

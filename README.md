@@ -22,6 +22,8 @@ The compose-instruction skill assembles a structured prompt prefix that you can 
 
 ### Axis 1 - Voice & Tone
 
+Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound). Tone captures situational register (how you sound right now). They are kept as separate catalog directories (`taxonomy/voices/` and `taxonomy/tones/`) because they have different frontmatter and entry counts, but conceptually they belong to the same axis. When using the `compose-instruction` skill, you pass both `voice=` and `tone=` as separate parameters because each is a distinct catalog lookup within Axis 1.
+
 **Voice** is the persistent identity of the writer: their worldview, characteristic concerns, and the professional archetype they embody. Voice is stable across contexts. The `pragmatic-architect` voice, for example, always reasons from constraints and trade-offs, regardless of whether it is writing a slack message or a technical RFC.
 
 **Tone** is situational coloring layered on top of voice. The same pragmatic-architect voice can deliver a message with a `candid` tone (direct, no softening) or a `mentoring` tone (patient, explanatory). Tone entries are orthogonal to voice entries, so any combination is valid.

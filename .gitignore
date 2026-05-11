@@ -47,5 +47,8 @@ Thumbs.db
 # Local research and drafts (repo-specific)
 .memsearch/
 
+# Research source material - not for publication
+_LOCAL/
+
 # Test outputs (not committed)
 tests/golden-outputs/*.actual.*

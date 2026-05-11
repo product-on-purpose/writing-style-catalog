@@ -6,16 +6,19 @@ Most writing guidance collapses "who is writing" and "how they are writing" into
 
 The three-axis model separates writing instruction into components that vary independently:
 
-1. **Who is writing** (Voice): stable across all contexts for a given identity
-2. **How they feel about the audience right now** (Tone): situational, changes with context
-3. **How they structure reasoning** (Style): independent of both identity and mood
-4. **How they present output** (Format): purely structural, applies to any voice/tone/style
+1. **Who is writing and how they feel about the audience** (Voice & Tone): Voice is stable across all contexts for a given identity; Tone is situational and changes with context. Together they form the first axis.
+2. **How they structure reasoning** (Style): independent of both identity and mood
+3. **How they present output** (Format): purely structural, applies to any voice/tone/style combination
 
-Because these four dimensions are independent, you can compose any combination. A `pragmatic-architect` voice with a `mentoring` tone writing in a `problem-solution` style formatted as a `daily-standup` is a fully specified, reproducible writing instruction.
+Because these three axes are independent, you can compose any combination. A `pragmatic-architect` voice with a `mentoring` tone writing in a `problem-solution` style formatted as a `daily-standup` is a fully specified, reproducible writing instruction.
 
 ---
 
-## Axis 1 - Voice
+## Axis 1 - Voice & Tone
+
+Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound). Tone captures situational register (how you sound right now). They are kept as separate catalog directories because they have different frontmatter and different entry counts, but they belong to the same conceptual axis.
+
+### Voice
 
 Voice is the persistent identity of the writer. It captures:
 
@@ -38,7 +41,7 @@ Voice is **stable across contexts**. A `pragmatic-architect` voice behaves the s
 
 ---
 
-## Axis 2 - Tone
+### Tone
 
 Tone is situational coloring applied on top of voice. It reflects how the writer wants the reader to feel, and what relational stance the writer is taking in this particular message.
 
@@ -64,7 +67,7 @@ Separating tone from voice means you do not need a different voice entry for eve
 
 ---
 
-## Axis 3 - Style / Mode / Genre
+## Axis 2 - Style / Mode / Genre
 
 Style describes the cognitive and rhetorical pattern of the writing: how ideas are organized and sequenced. It is independent of who is writing and how they feel.
 
@@ -80,7 +83,7 @@ Style describes the cognitive and rhetorical pattern of the writing: how ideas a
 
 ---
 
-## Axis 4 - Format / Output Structure
+## Axis 3 - Format / Output Structure
 
 Format entries define the visual and structural container. They specify headings, bullet depth, table layouts, section templates, and field ordering. Format is purely presentational and can be applied to any voice/tone/style combination.
 
@@ -98,7 +101,7 @@ Format entries define the visual and structural container. They specify headings
 
 ## How Composition Works
 
-The `compose-instruction` skill reads one entry from each axis and assembles them into a single structured prompt prefix. The prefix has four sections, one per axis, concatenated in a defined order: Voice, Tone, Style, Format.
+The `compose-instruction` skill reads one entry from each axis and assembles them into a single structured prompt prefix. The prefix has up to four sections - Voice, Tone (both from Axis 1), Style (Axis 2), and Format (Axis 3) - concatenated in that order.
 
 Any axis can be omitted. If you only specify a voice and a format, the skill generates a two-section prefix. The composed instruction is designed to be prepended to any writing task without modification.
 

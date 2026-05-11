@@ -8,10 +8,9 @@ A composable catalog of writing instructions organized along three orthogonal ax
 
 | Axis | Description | Seed Entries |
 |------|-------------|-------------|
-| Voice | Persistent writer identity: worldview, concerns, professional archetype | pragmatic-architect, product-thinker, ops-realist, technical-educator, skeptical-analyst |
-| Tone | Situational register layered on top of voice | candid, mentoring, optimistic-realist, cautious, energizing |
-| Style | Cognitive and rhetorical pattern: how ideas are sequenced | problem-solution, layered-disclosure, decision-log, narrative-arc, step-by-step |
-| Format | Visual and structural container: headings, sections, layout | adr, daily-standup, slack-thread, technical-rfc, bullet-brief |
+| Voice & Tone (Axis 1) | Voice: persistent writer identity (worldview, archetype). Tone: situational register layered on top of voice. Two catalog dimensions, one axis. | voices: pragmatic-architect, product-thinker, ops-realist, technical-educator, skeptical-analyst. tones: candid, mentoring, optimistic-realist, cautious, energizing. |
+| Style / Mode / Genre (Axis 2) | Cognitive and rhetorical pattern: how ideas are sequenced | problem-solution, layered-disclosure, decision-log, narrative-arc, step-by-step |
+| Format / Output Structure (Axis 3) | Visual and structural container: headings, sections, layout | adr, daily-standup, slack-thread, technical-rfc, bullet-brief |
 
 ---
 
