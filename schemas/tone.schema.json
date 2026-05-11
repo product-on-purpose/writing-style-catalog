@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/tone.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/tone.schema.json",
   "title": "Tone Entry Schema",
-  "description": "Schema for Axis 1 tone entries. Tone is the situational register - how the voice feels right now.",
+  "description": "Schema for tone taxonomy entries (Axis 1, situational-register dimension). Tone and Voice are both part of Axis 1 (Voice and Tone), but Tone captures situational register - how the voice feels in a given context - while Voice captures persistent identity - who is speaking.",
   "allOf": [
     { "$ref": "entry.universal.schema.json" }
   ],

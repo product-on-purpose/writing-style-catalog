@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/example.schema.json",
   "title": "Example File Schema",
   "description": "Schema for the YAML frontmatter of example files in the examples/ directory",
   "type": "object",
@@ -33,7 +33,8 @@
     },
     "author_type": {
       "type": "string",
-      "enum": ["human", "llm", "hybrid"]
+      "enum": ["human", "llm", "hybrid"],
+      "description": "Who produced the example content. human = written by a person; llm = fully AI-generated; hybrid = AI-generated and then edited by a human."
     },
     "review_status": {
       "type": "string",

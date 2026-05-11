@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/entry.universal.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/entry.universal.schema.json",
   "title": "Universal Entry Base",
   "description": "Shared base schema for all taxonomy entry types",
   "type": "object",
@@ -31,7 +31,8 @@
     },
     "axis": {
       "type": "string",
-      "enum": ["voice", "tone", "style", "format"]
+      "enum": ["voice", "tone", "style", "format"],
+      "description": "The taxonomy axis this entry belongs to. voice and tone are both Axis 1 (Voice and Tone); style is Axis 2; format is Axis 3."
     },
     "one_liner": {
       "type": "string",
@@ -81,7 +82,8 @@
     },
     "review_status": {
       "type": "string",
-      "enum": ["draft", "reviewed", "stable", "reference-quality", "deprecated"]
+      "enum": ["draft", "reviewed", "stable", "reference-quality", "deprecated"],
+      "description": "Lifecycle state of this entry. draft = initial content; reviewed = editorially checked; stable = in active use; reference-quality = exemplary; deprecated = superseded."
     },
     "deprecated_in_favor_of": {
       "type": "string",
