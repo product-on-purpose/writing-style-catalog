@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/entry.universal.schema.json",
+  "title": "Universal Entry Base",
+  "description": "Shared base schema for all taxonomy entry types",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "axis",
+    "one_liner",
+    "description",
+    "pairs_well_with",
+    "avoid_with",
+    "confusable_with",
+    "when_to_use",
+    "when_not_to_use",
+    "llm_instruction_phrasing",
+    "tags",
+    "review_status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug identifier, unique within axis"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable display name"
+    },
+    "axis": {
+      "type": "string",
+      "enum": ["voice", "tone", "style", "format"]
+    },
+    "one_liner": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "1-2 sentence standalone description"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full prose description, 100-500 words"
+    },
+    "pairs_well_with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "List of entry IDs that compose well with this entry"
+    },
+    "avoid_with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of entry IDs that conflict or produce poor results"
+    },
+    "confusable_with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Entry IDs that are commonly confused with this one"
+    },
+    "when_to_use": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Situations where this entry is appropriate"
+    },
+    "when_not_to_use": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Situations where this entry is inappropriate"
+    },
+    "llm_instruction_phrasing": {
+      "type": "string",
+      "description": "Ready-to-use instruction paragraph for an LLM"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Searchable tags"
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "stable", "reference-quality", "deprecated"]
+    },
+    "deprecated_in_favor_of": {
+      "type": "string",
+      "description": "If deprecated, the entry ID that replaces this one"
+    },
+    "examples_index": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Relative paths to example files"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/format.schema.json",
+  "title": "Format Entry Schema",
+  "description": "Schema for Axis 3 format entries. Format is the structural container or output type.",
+  "allOf": [
+    { "$ref": "entry.universal.schema.json" }
+  ],
+  "properties": {
+    "axis": {
+      "const": "format"
+    },
+    "typical_length": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "integer",
+          "description": "Minimum typical length in words"
+        },
+        "max": {
+          "type": "integer",
+          "description": "Maximum typical length in words"
+        },
+        "unit": {
+          "type": "string",
+          "const": "words"
+        }
+      },
+      "required": ["min", "max", "unit"],
+      "description": "Typical word-count range for this format"
+    },
+    "canonical_template": {
+      "type": "string",
+      "description": "The structural template (e.g., Context/Decision/Consequences for ADR)"
+    },
+    "typical_voices": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Voice IDs that frequently use this format"
+    },
+    "typical_tones": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tone IDs that frequently use this format"
+    },
+    "digital_or_print": {
+      "type": "string",
+      "enum": ["digital", "print", "both", "neither"],
+      "description": "Primary medium for this format"
+    }
+  }
+}

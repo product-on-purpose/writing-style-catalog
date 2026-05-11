@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/voice.schema.json",
+  "title": "Voice Entry Schema",
+  "description": "Schema for Axis 1 voice entries. Voice is the persistent identity of who is speaking.",
+  "allOf": [
+    { "$ref": "entry.universal.schema.json" }
+  ],
+  "properties": {
+    "axis": {
+      "const": "voice"
+    },
+    "language_patterns": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "description": "Observable language patterns: sentence structures, word choices, rhythms"
+    },
+    "diction": {
+      "type": "string",
+      "description": "Vocabulary register: formal, casual, technical, vernacular, etc."
+    },
+    "sentence_style": {
+      "type": "string",
+      "description": "Characteristic sentence construction"
+    },
+    "default_pov": {
+      "type": "string",
+      "enum": ["first-person", "second-person", "third-person", "variable"],
+      "description": "Default grammatical person"
+    },
+    "typical_tones": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tone IDs that frequently pair with this voice"
+    }
+  },
+  "required": ["language_patterns"]
+}

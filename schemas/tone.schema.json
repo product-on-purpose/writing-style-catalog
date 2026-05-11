@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/tone.schema.json",
+  "title": "Tone Entry Schema",
+  "description": "Schema for Axis 1 tone entries. Tone is the situational register - how the voice feels right now.",
+  "allOf": [
+    { "$ref": "entry.universal.schema.json" }
+  ],
+  "properties": {
+    "axis": {
+      "const": "tone"
+    },
+    "spectrum": {
+      "type": "string",
+      "description": "Which emotional or rhetorical spectrum this tone lives on (e.g., warmth, confidence, formality)"
+    },
+    "spectrum_position": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Position on the spectrum (0 = one extreme, 1 = the other extreme)"
+    },
+    "nn_g_profile": {
+      "type": "string",
+      "enum": ["funny", "neutral", "serious"],
+      "description": "Nielsen-Norman Group tone profile classification"
+    },
+    "markers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 3,
+      "description": "Observable textual markers that signal this tone"
+    }
+  },
+  "required": ["markers"]
+}

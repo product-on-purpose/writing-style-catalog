@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/product-on-purpose/writing-style-library/schemas/example.schema.json",
+  "title": "Example File Schema",
+  "description": "Schema for the YAML frontmatter of example files in the examples/ directory",
+  "type": "object",
+  "required": [
+    "entry_id",
+    "axis",
+    "topic_slug",
+    "topic_label",
+    "author_type",
+    "review_status"
+  ],
+  "properties": {
+    "entry_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug of the taxonomy entry this example demonstrates"
+    },
+    "axis": {
+      "type": "string",
+      "enum": ["voice", "tone", "style", "format"]
+    },
+    "topic_slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug of the anchor topic (e.g., async-standups)"
+    },
+    "topic_label": {
+      "type": "string",
+      "description": "Human-readable topic name"
+    },
+    "author_type": {
+      "type": "string",
+      "enum": ["human", "llm", "hybrid"]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "stable", "reference-quality"]
+    },
+    "llm_model": {
+      "type": "string",
+      "description": "Model identifier (required when author_type is llm or hybrid)"
+    },
+    "llm_prompt_file": {
+      "type": "string",
+      "description": "Relative path to the prompt file used to generate this example"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date when the example was generated"
+    },
+    "edited_by": {
+      "type": "string",
+      "description": "Human editor name (applicable when author_type is hybrid)"
+    },
+    "voice_id": {
+      "type": "string",
+      "description": "Voice entry ID if this example demonstrates a voice combination"
+    },
+    "tone_id": {
+      "type": "string",
+      "description": "Tone entry ID if this example demonstrates a tone combination"
+    },
+    "style_id": {
+      "type": "string",
+      "description": "Style entry ID if this example demonstrates a style combination"
+    },
+    "format_id": {
+      "type": "string",
+      "description": "Format entry ID if this example demonstrates a format combination"
+    },
+    "audience": {
+      "type": "string",
+      "description": "Intended audience for the example content"
+    },
+    "word_count": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Word count of the example body"
+    }
+  },
+  "if": {
+    "properties": {
+      "author_type": {
+        "enum": ["llm", "hybrid"]
+      }
+    }
+  },
+  "then": {
+    "required": ["llm_model"]
+  }
+}
