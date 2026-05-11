@@ -1,0 +1,22 @@
+{
+  "name": "writing-style-library",
+  "version": "0.1.0",
+  "description": "A composable catalog of writing instructions organized along three axes: Voice and Tone, Style/Mode/Genre, and Format/Output Structure.",
+  "author": "Jonathan Prisant",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/product-on-purpose/writing-style-library",
+  "skills": [
+    {
+      "name": "compose-instruction",
+      "path": "skills/writing-instruction-builder",
+      "description": "Compose a writing instruction from voice, tone, style, and format axis entries"
+    }
+  ],
+  "resources": [
+    {
+      "name": "taxonomy",
+      "path": "skills/writing-instruction-builder/resources/taxonomy.json",
+      "description": "Full taxonomy catalog as a build artifact"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "plugin_id": "product-on-purpose/writing-style-library",
+  "display_name": "Writing Style Library",
+  "short_description": "Composable writing instructions organized along Voice and Tone, Style, and Format axes.",
+  "long_description": "Compose precise writing instructions for any LLM by selecting from a curated catalog of voice, tone, style, and format entries. Ship v0.1.0 - 5 entries per axis, async-standups anchor topic, compose-instruction skill.",
+  "categories": ["writing", "productivity", "content"],
+  "keywords": ["writing", "style", "voice", "tone", "format", "composition", "taxonomy", "prompts"],
+  "status": "experimental",
+  "author": {
+    "name": "Jonathan Prisant",
+    "github": "product-on-purpose"
+  },
+  "license": "Apache-2.0",
+  "content_license": "CC-BY-4.0",
+  "repository": "https://github.com/product-on-purpose/writing-style-library",
+  "min_claude_code_version": "2.0.0"
+}
