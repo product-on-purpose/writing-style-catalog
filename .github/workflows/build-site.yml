@@ -1,0 +1,36 @@
+name: Build Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Build MkDocs site
+        run: mkdocs build --strict
+
+      # Optional: deploy to GitHub Pages.
+      # Requires a GH_TOKEN secret and GitHub Pages configured for the repo.
+      # Uncomment and adjust the branch name if you want automatic deployment.
+      #
+      # - name: Deploy to GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./site
+      #     publish_branch: gh-pages

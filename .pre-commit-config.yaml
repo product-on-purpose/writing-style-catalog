@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  - repo: local
+    hooks:
+      - id: validate-taxonomy
+        name: Validate taxonomy entries
+        entry: python tools/validate.py
+        language: python
+        additional_dependencies: [jsonschema]
+        pass_filenames: false
+        always_run: false
+        files: ^taxonomy/
+
+      - id: no-em-dashes
+        name: No em-dashes or en-dashes
+        entry: python -c "import sys,re; [print(f'{f}: found em/en-dash') or sys.exit(1) for f in sys.argv[1:] if re.search('[–—]', open(f, encoding='utf-8').read())]"
+        language: python
+        types: [markdown]
