@@ -44,46 +44,82 @@ def load_entry(axis: str, entry_id: str) -> dict | None:
 
 
 def _parse_simple_yaml(text: str) -> dict:
-    """Parse simple YAML frontmatter (key: value pairs, no nested objects needed here)."""
+    """Parse simple YAML frontmatter sufficient for taxonomy entry files.
+
+    Handles: scalar key-value, multi-line lists (  - item), and YAML
+    block scalars (> folded and | literal) for multi-line string fields.
+    """
     result = {}
     current_key = None
     current_list = None
+    block_key = None
+    block_lines = []
+    block_style = None  # ">" or "|"
+
+    def flush_block():
+        nonlocal block_key, block_lines, block_style
+        if block_key is None:
+            return
+        if block_style == "|":
+            result[block_key] = "\n".join(block_lines).strip()
+        else:  # ">" folded: join with space, collapse newlines
+            result[block_key] = " ".join(line for line in block_lines if line).strip()
+        block_key = None
+        block_lines = []
+        block_style = None
+
+    def flush_list():
+        nonlocal current_key, current_list
+        if current_list is not None and current_key is not None:
+            result[current_key] = current_list
+        current_key = None
+        current_list = None
 
     for line in text.split("\n"):
-        if not line.strip():
-            if current_list is not None:
-                result[current_key] = current_list
-                current_key = None
-                current_list = None
-            continue
+        # Inside a block scalar: collect indented lines
+        if block_key is not None:
+            if line.startswith("  ") or (line.strip() == "" and block_lines):
+                block_lines.append(line.strip())
+                continue
+            else:
+                # Block ended
+                flush_block()
+                # Fall through to process this line normally
 
-        if line.startswith("  - ") and current_list is not None:
+        # Inside a list: collect list items
+        if current_list is not None and line.startswith("  - "):
             current_list.append(line[4:].strip())
             continue
 
-        if ":" in line and not line.startswith(" "):
+        # Blank line: flush pending state
+        if not line.strip():
             if current_list is not None:
-                result[current_key] = current_list
-                current_list = None
+                flush_list()
+            continue
 
+        # Top-level key
+        if ":" in line and not line.startswith(" "):
+            flush_list()
             key, _, value = line.partition(":")
             key = key.strip()
             value = value.strip()
 
-            if value == "":
+            if value in (">", "|"):
+                block_key = key
+                block_style = value
+                block_lines = []
+            elif value == "":
                 current_key = key
                 current_list = []
             elif value.startswith("["):
-                # Inline array
                 items = value.strip("[]").split(",")
                 result[key] = [i.strip().strip('"').strip("'") for i in items if i.strip()]
-                current_key = None
             else:
                 result[key] = value.strip('"').strip("'")
-                current_key = None
 
-    if current_list is not None and current_key:
-        result[current_key] = current_list
+    # Flush any pending state at end
+    flush_block()
+    flush_list()
 
     return result
 
