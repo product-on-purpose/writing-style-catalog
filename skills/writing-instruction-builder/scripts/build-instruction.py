@@ -115,7 +115,14 @@ def _parse_simple_yaml(text: str) -> dict:
                 items = value.strip("[]").split(",")
                 result[key] = [i.strip().strip('"').strip("'") for i in items if i.strip()]
             else:
-                result[key] = value.strip('"').strip("'")
+                str_val = value.strip('"').strip("'")
+                # Coerce to numeric types if applicable
+                if str_val.lstrip('-').isdigit():
+                    result[key] = int(str_val)
+                elif str_val.replace('.', '', 1).lstrip('-').isdigit() and str_val.count('.') == 1:
+                    result[key] = float(str_val)
+                else:
+                    result[key] = str_val
 
     # Flush any pending state at end
     flush_block()
