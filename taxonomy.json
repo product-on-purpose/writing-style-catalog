@@ -1,11 +1,32 @@
 {
-  "generated": "2026-05-14T05:25:08.372716+00:00",
+  "generated": "2026-05-14T05:44:41.200575+00:00",
   "entries": [
+    {
+      "id": "coach",
+      "name": "Coach",
+      "axis": "voice",
+      "one_liner": "A facilitative voice that builds capacity through questions and reflection, acknowledges complexity before offering direction, and creates space without abandoning the reader.",
+      "review_status": "stable"
+    },
     {
       "id": "columnist",
       "name": "Columnist",
       "axis": "voice",
       "one_liner": "An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.",
+      "review_status": "stable"
+    },
+    {
+      "id": "direct-communicator",
+      "name": "Direct Communicator",
+      "axis": "voice",
+      "one_liner": "A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.",
+      "review_status": "stable"
+    },
+    {
+      "id": "executive",
+      "name": "Executive",
+      "axis": "voice",
+      "one_liner": "A senior business leader's voice that leads with outcomes and decisions, names uncertainty explicitly, and uses \"we\" to signal shared accountability.",
       "review_status": "stable"
     },
     {
@@ -37,10 +58,38 @@
       "review_status": "stable"
     },
     {
+      "id": "product-thinker",
+      "name": "Product Thinker",
+      "axis": "voice",
+      "one_liner": "A product manager's voice that leads with \"why\" before \"what,\" centers user outcomes over implementation, and asks what job the reader is trying to do.",
+      "review_status": "stable"
+    },
+    {
+      "id": "technical-writer",
+      "name": "Technical Writer",
+      "axis": "voice",
+      "one_liner": "A precise, reader-centered voice optimized for task completion - writes to the reader's goal, not the writer's knowledge, using plain language and imperative mood.",
+      "review_status": "stable"
+    },
+    {
       "id": "candid",
       "name": "Candid",
       "axis": "tone",
       "one_liner": "Names the uncomfortable truth directly - not harsh, but unwilling to pretend the hard thing is not there.",
+      "review_status": "stable"
+    },
+    {
+      "id": "celebratory",
+      "name": "Celebratory",
+      "axis": "tone",
+      "one_liner": "Marks genuine achievement by naming the specific thing, why it mattered, and inviting the reader to feel its weight - not hollow praise, not a list of everything at once.",
+      "review_status": "stable"
+    },
+    {
+      "id": "empathetic",
+      "name": "Empathetic",
+      "axis": "tone",
+      "one_liner": "Acknowledges the reader's specific experience before asking anything of them - earns the right to continue by naming the difficulty accurately.",
       "review_status": "stable"
     },
     {
@@ -51,6 +100,13 @@
       "review_status": "stable"
     },
     {
+      "id": "instructional",
+      "name": "Instructional",
+      "axis": "tone",
+      "one_liner": "Patient, structured teaching that measures its own success by whether the reader can do the thing - not by how much it explains.",
+      "review_status": "stable"
+    },
+    {
       "id": "matter-of-fact",
       "name": "Matter of Fact",
       "axis": "tone",
@@ -58,10 +114,24 @@
       "review_status": "stable"
     },
     {
+      "id": "playful",
+      "name": "Playful",
+      "axis": "tone",
+      "one_liner": "Light, witty, and inviting - makes the pleasure of reading part of the point without sacrificing substance or becoming a performance.",
+      "review_status": "stable"
+    },
+    {
       "id": "reverent",
       "name": "Reverent",
       "axis": "tone",
       "one_liner": "Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.",
+      "review_status": "stable"
+    },
+    {
+      "id": "urgent",
+      "name": "Urgent",
+      "axis": "tone",
+      "one_liner": "Clarity under real pressure - the first sentence is the most important thing, and every word after it earns its place by not slowing the reader down.",
       "review_status": "stable"
     },
     {
@@ -86,6 +156,13 @@
       "review_status": "stable"
     },
     {
+      "id": "decision-log",
+      "name": "Decision Log",
+      "axis": "style",
+      "one_liner": "A real-time record of context, options considered, criteria used, and reasoning - capturing how a decision was reached, not justifying it after the fact.",
+      "review_status": "stable"
+    },
+    {
       "id": "devotional-reflection",
       "name": "Devotional Reflection",
       "axis": "style",
@@ -97,6 +174,34 @@
       "name": "Diataxis Explanation",
       "axis": "style",
       "one_liner": "The Diataxis \"Explanation\" mode - oriented toward understanding rather than action, building a conceptual model for the reader.",
+      "review_status": "stable"
+    },
+    {
+      "id": "executive-summary",
+      "name": "Executive Summary",
+      "axis": "style",
+      "one_liner": "Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.",
+      "review_status": "stable"
+    },
+    {
+      "id": "how-to-tutorial",
+      "name": "How-To Tutorial",
+      "axis": "style",
+      "one_liner": "Task-first writing that takes a reader from \"I don't know how\" to \"I did it\" by organizing every decision around user goals, not system features.",
+      "review_status": "stable"
+    },
+    {
+      "id": "layered-disclosure",
+      "name": "Layered Disclosure",
+      "axis": "style",
+      "one_liner": "Progressively reveals depth - the first paragraph serves the casual reader completely, and each subsequent section adds detail for those who want it.",
+      "review_status": "stable"
+    },
+    {
+      "id": "narrative-case-study",
+      "name": "Narrative Case Study",
+      "axis": "style",
+      "one_liner": "A story with a before, a turning point, and an after - using one specific real situation to make a general principle concrete and trustworthy.",
       "review_status": "stable"
     },
     {
@@ -121,10 +226,38 @@
       "review_status": "stable"
     },
     {
+      "id": "daily-standup",
+      "name": "Daily Standup",
+      "axis": "format",
+      "one_liner": "A brief daily status communication with three fixed sections - done, next, blockers. Surfaces information and flags what needs action. Not a progress report; a coordination tool.",
+      "review_status": "stable"
+    },
+    {
       "id": "devotional-entry",
       "name": "Devotional Entry",
       "axis": "format",
       "one_liner": "A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.",
+      "review_status": "stable"
+    },
+    {
+      "id": "email",
+      "name": "Email",
+      "axis": "format",
+      "one_liner": "A business message designed for the inbox scan - subject line doubles as summary, body leads with action, and the reader never needs to re-read to know what is being asked.",
+      "review_status": "stable"
+    },
+    {
+      "id": "meeting-notes",
+      "name": "Meeting Notes",
+      "axis": "format",
+      "one_liner": "A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.",
+      "review_status": "stable"
+    },
+    {
+      "id": "one-pager",
+      "name": "One-Pager",
+      "axis": "format",
+      "one_liner": "A single-page document that makes one argument or presents one situation. The page constraint is the discipline - everything that does not fit does not belong.",
       "review_status": "stable"
     },
     {
@@ -139,6 +272,13 @@
       "name": "Slack Message",
       "axis": "format",
       "one_liner": "A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.",
+      "review_status": "stable"
+    },
+    {
+      "id": "technical-reference",
+      "name": "Technical Reference",
+      "axis": "format",
+      "one_liner": "A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.",
       "review_status": "stable"
     }
   ]

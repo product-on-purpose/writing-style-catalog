@@ -33,7 +33,8 @@ def load_entry(axis: str, entry_id: str) -> dict | None:
     if not content.startswith("---"):
         return None
 
-    parts = content.split("---", 2)
+    import re
+    parts = re.split(r"(?m)^---[ \t]*$", content, maxsplit=2)
     if len(parts) < 3:
         return None
 

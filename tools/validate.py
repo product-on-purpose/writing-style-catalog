@@ -151,7 +151,10 @@ def _extract_frontmatter(entry_md_path: Path) -> dict | None:
     content = entry_md_path.read_text(encoding="utf-8")
     if not content.startswith("---"):
         return None
-    parts = content.split("---", 2)
+    # Split on "---" only when it appears alone on a line (YAML delimiter).
+    # Plain str.split("---") would match "---" inside table separators like
+    # "|------|" inside canonical_template block scalars.
+    parts = re.split(r"(?m)^---[ \t]*$", content, maxsplit=2)
     if len(parts) < 3:
         return None
     frontmatter_text = parts[1].strip()
