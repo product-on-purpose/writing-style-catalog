@@ -65,7 +65,7 @@ This checks frontmatter completeness, schema conformance, no em-dash/en-dash cha
 
 ## Schema Safety
 
-Do not modify any file in `schemas/` without also updating every existing taxonomy entry that references that schema version. Schema changes require a version bump and an ADR entry in `adr/`. If you are unsure whether a schema change is safe, open a draft PR and ask for review rather than committing directly.
+Do not modify any file in `schemas/` without also updating every existing taxonomy entry that references that schema version. Schema changes require a version bump and an ADR entry in `docs/internal/adr/`. If you are unsure whether a schema change is safe, open a draft PR and ask for review rather than committing directly.
 
 ---
 
@@ -79,7 +79,7 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `skills/writing-instruction-builder/` | Claude Code plugin skill code |
 | `tools/validate.py` | Validation script |
 | `docs/` | MkDocs site source |
-| `adr/` | Architecture Decision Records |
+| `docs/internal/adr/` | Architecture Decision Records |
 | `recipes/` | Curated axis combinations for common use cases |
 | `_LOCAL/` | Source research - read-only, do not modify |
 | `docs/internal/` | Internal strategy docs - read-only, do not modify |

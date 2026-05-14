@@ -77,7 +77,7 @@ Requires Claude Code. The plugin adds the `writing-style-library:compose-instruc
 | `docs/` | Docs | MkDocs site source |
 | `tools/` | Code | Validation and generation scripts |
 | `tests/` | Code | Pytest tests and golden-output fixtures |
-| `adr/` | Docs | Architecture Decision Records |
+| `docs/internal/adr/` | Docs | Architecture Decision Records |
 | `recipes/` | Content | Curated axis combinations for common use cases |
 | `packages/ts-sdk/` | Code | TypeScript SDK (Phase 2) |
 | `packages/py-sdk/` | Code | Python SDK (Phase 2) |
