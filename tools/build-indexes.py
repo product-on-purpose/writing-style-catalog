@@ -64,8 +64,19 @@ def collect_entries() -> list[dict]:
 
 
 def build_taxonomy_json(entries: list[dict]) -> None:
+    # Preserve the existing timestamp if entries are unchanged so that CI
+    # staleness checks (git diff --exit-code) don't fail on every run.
+    preserved_ts = None
+    if TAXONOMY_JSON.exists():
+        try:
+            existing = json.loads(TAXONOMY_JSON.read_text(encoding="utf-8"))
+            if existing.get("entries") == entries:
+                preserved_ts = existing.get("generated")
+        except Exception:
+            pass
+
     payload = {
-        "generated": datetime.now(timezone.utc).isoformat(),
+        "generated": preserved_ts or datetime.now(timezone.utc).isoformat(),
         "entries": entries,
     }
     TAXONOMY_JSON.write_text(
