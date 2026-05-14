@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice DNA Test / Find your writing voice in five minutes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700;12..96,900&family=Sora:wght@400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fff5d3;
+    --pink: #ff4d8c;
+    --lime: #d4ff3a;
+    --coral: #ff7a4d;
+    --navy: #0a1854;
+    --cyan: #4ad4ff;
+    --eggplant: #6b3aa0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    line-height: 1.45;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(10,24,84,0.12) 1px, transparent 0);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* SHAPES */
+  .shapes { position: fixed; inset: 0; pointer-events: none; z-index: 2; }
+  .shape { position: absolute; }
+
+  .shape.s1 { top: 60px; left: 80px; width: 110px; height: 110px; background: var(--pink); border-radius: 50%; }
+  .shape.s2 { top: 90px; right: 140px; width: 80px; height: 80px; background: var(--lime); transform: rotate(15deg); }
+  .shape.s3 { bottom: 80px; left: 120px; width: 140px; height: 28px; background: var(--coral); border-radius: 14px; transform: rotate(-22deg); }
+  .shape.s4 { bottom: 120px; right: 80px; width: 90px; height: 90px; background: var(--cyan); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .shape.s5 { top: 320px; right: 40px; width: 60px; height: 60px; border: 5px solid var(--eggplant); border-radius: 50%; }
+  .shape.s6 { bottom: 280px; left: 30px; width: 70px; height: 70px; border: 5px solid var(--navy); transform: rotate(35deg); }
+
+  /* Squiggle */
+  .squiggle {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    width: 60px;
+    height: 200px;
+    transform: translateY(-50%);
+  }
+
+  /* Animated drift */
+  .shape.s1 { animation: drift1 9s ease-in-out infinite; }
+  .shape.s2 { animation: drift2 11s ease-in-out infinite; }
+  .shape.s3 { animation: drift3 13s ease-in-out infinite; }
+  .shape.s4 { animation: drift4 10s ease-in-out infinite; }
+  .shape.s5 { animation: spin 18s linear infinite; }
+  .shape.s6 { animation: spin 22s linear infinite reverse; }
+
+  @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px, 30px); } }
+  @keyframes drift2 { 0%,100% { transform: rotate(15deg) translate(0,0); } 50% { transform: rotate(15deg) translate(-25px, 20px); } }
+  @keyframes drift3 { 0%,100% { transform: rotate(-22deg) translate(0,0); } 50% { transform: rotate(-22deg) translate(15px, -20px); } }
+  @keyframes drift4 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-15px, -25px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* FRAME */
+  .frame {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 56px 32px 80px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+  .logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 12, "wght" 900;
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 6px 14px;
+    transform: rotate(-2deg);
+  }
+  .progress-dots { display: flex; gap: 8px; align-items: center; }
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2.5px solid var(--navy);
+    background: transparent;
+    transition: all 0.25s;
+  }
+  .dot.done { background: var(--lime); }
+  .dot.active { background: var(--pink); transform: scale(1.4); }
+  .progress-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-left: 12px;
+  }
+
+  /* HERO (intro screen) */
+  .hero {
+    text-align: center;
+    padding: 40px 0 60px;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .hero.gone { opacity: 0; transform: translateY(-20px); pointer-events: none; height: 0; padding: 0; overflow: hidden; }
+
+  .hero-kicker {
+    display: inline-block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--lime);
+    color: var(--navy);
+    padding: 6px 16px;
+    transform: rotate(-1deg);
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 96, "wght" 900;
+    font-size: clamp(72px, 12vw, 180px);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    margin-bottom: 28px;
+  }
+  .hero-title .word2 {
+    color: var(--pink);
+    font-style: italic;
+    font-variation-settings: "opsz" 96, "wght" 700;
+  }
+  .hero-title .word3 {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 0 24px;
+    display: inline-block;
+    transform: rotate(-2deg) translateY(-8px);
+  }
+
+  .hero-sub {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.3;
+    max-width: 620px;
+    margin: 0 auto 40px;
+  }
+  .hero-sub em {
+    background: var(--cyan);
+    font-style: normal;
+    padding: 1px 10px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 22px 38px;
+    border: none;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 8px 8px 0 var(--pink);
+  }
+  .hero-cta:hover { transform: translate(-2px, -2px); box-shadow: 12px 12px 0 var(--pink); }
+  .hero-cta:active { transform: translate(2px, 2px); box-shadow: 4px 4px 0 var(--pink); }
+  .hero-cta .arrow { font-size: 28px; transition: transform 0.2s; }
+  .hero-cta:hover .arrow { transform: translateX(6px); }
+
+  .hero-meta {
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--navy);
+    opacity: 0.7;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .hero-meta span { color: var(--eggplant); }
+
+  /* QUIZ */
+  .quiz {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.4s, transform 0.4s;
+    height: 0;
+    overflow: hidden;
+  }
+  .quiz.live {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .question-num {
+    display: inline-block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    background: var(--coral);
+    color: var(--navy);
+    padding: 5px 12px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    transform: rotate(-1.5deg);
+  }
+  .question-text {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-variation-settings: "opsz" 96, "wght" 800;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin-bottom: 48px;
+    max-width: 880px;
+  }
+  .question-text em {
+    color: var(--pink);
+    font-style: italic;
+    font-variation-settings: "opsz" 96, "wght" 600;
+  }
+
+  .answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .answers.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .answer {
+    background: var(--cream);
+    border: 4px solid var(--navy);
+    padding: 28px 26px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    text-align: left;
+    font-family: 'Sora', sans-serif;
+    color: var(--navy);
+    position: relative;
+  }
+  .answer:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--lime); background: #fffbe5; }
+  .answer:nth-child(2):hover { box-shadow: 8px 8px 0 var(--cyan); }
+  .answer:nth-child(3):hover { box-shadow: 8px 8px 0 var(--coral); }
+
+  .answer-letter {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--pink);
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+  .answer-quote {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.3;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .answer-quote::before { content: '"'; color: var(--coral); }
+  .answer-quote::after { content: '"'; color: var(--coral); }
+  .answer-label {
+    font-family: 'Caveat', cursive;
+    font-size: 19px;
+    color: var(--eggplant);
+    line-height: 1.2;
+  }
+
+  /* RESULT */
+  .result {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.5s, transform 0.5s;
+    text-align: center;
+    padding: 40px 0;
+    height: 0;
+    overflow: hidden;
+  }
+  .result.live { opacity: 1; transform: scale(1); pointer-events: auto; height: auto; overflow: visible; }
+
+  .result-kicker {
+    display: inline-block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    background: var(--cyan);
+    color: var(--navy);
+    padding: 6px 16px;
+    transform: rotate(1deg);
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .result-name {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 900;
+    font-variation-settings: "opsz" 96, "wght" 900;
+    font-size: clamp(64px, 11vw, 168px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+  .result-name span { color: var(--pink); font-style: italic; }
+  .result-tagline {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    max-width: 700px;
+    margin: 0 auto 32px;
+    line-height: 1.3;
+  }
+  .result-traits {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  .trait {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 10px 18px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    transform: rotate(-1deg);
+  }
+  .trait:nth-child(2) { background: var(--pink); transform: rotate(1.2deg); }
+  .trait:nth-child(3) { background: var(--eggplant); transform: rotate(-2deg); }
+  .trait:nth-child(4) { background: var(--coral); transform: rotate(0.6deg); color: var(--navy); }
+  .trait:nth-child(5) { background: var(--lime); color: var(--navy); transform: rotate(-1.4deg); }
+
+  .result-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .result-btn {
+    background: var(--pink);
+    color: var(--cream);
+    padding: 18px 32px;
+    border: 3px solid var(--navy);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+    box-shadow: 5px 5px 0 var(--navy);
+  }
+  .result-btn.alt { background: var(--cream); color: var(--navy); }
+  .result-btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--navy); }
+  .result-btn:active { transform: translate(1px, 1px); box-shadow: 3px 3px 0 var(--navy); }
+
+  .restart {
+    margin-top: 32px;
+    background: none;
+    border: none;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--eggplant);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+  .restart:hover { color: var(--pink); }
+
+  .footer-meta {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.6;
+  }
+  .footer-meta a { color: var(--eggplant); text-decoration: none; }
+
+  @media (max-width: 720px) {
+    .frame { padding: 24px 18px; }
+    .answers, .answers.three { grid-template-columns: 1fr; }
+    .shape.s1, .shape.s2, .shape.s5 { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shapes" aria-hidden="true">
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
+  <div class="shape s4"></div>
+  <div class="shape s5"></div>
+  <div class="shape s6"></div>
+  <svg class="squiggle" viewBox="0 0 60 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 0 Q60 30 30 60 T30 120 T30 200" stroke="#6b3aa0" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<div class="frame">
+
+  <nav class="nav">
+    <div class="logo">VOICE DNA</div>
+    <div class="progress-dots" id="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="progress-text" id="progress-text">01 / 05</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <span class="hero-kicker">A 5-minute writing diagnostic</span>
+    <h1 class="hero-title">Find<br>your <span class="word2">writing</span><br><span class="word3">VOICE</span></h1>
+    <p class="hero-sub">Five questions. Five sample comparisons. One <em>shareable result</em> that names the kind of writer you actually are.</p>
+    <button class="hero-cta" onclick="startQuiz()">
+      Start the test <span class="arrow">&rarr;</span>
+    </button>
+    <div class="hero-meta">FREE FOREVER &middot; NO LOGIN &middot; <span>~5 MIN</span></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="quiz" id="quiz">
+    <div class="question-num" id="q-num">QUESTION 01 / 05</div>
+    <h2 class="question-text" id="q-text"></h2>
+    <div class="answers" id="answers"></div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="result" id="result">
+    <div class="result-kicker">YOUR WRITING VOICE IS</div>
+    <h2 class="result-name">The <span id="result-name">Columnist</span></h2>
+    <p class="result-tagline" id="result-tagline">Voice-forward, opinionated, recurring perspective. You write like someone the reader has come to read on purpose.</p>
+    <div class="result-traits" id="result-traits"></div>
+    <div class="result-cta-row">
+      <button class="result-btn">Get my full fingerprint</button>
+      <button class="result-btn alt">Share my voice</button>
+    </div>
+    <button class="restart" onclick="restart()">retake the test &darr;</button>
+  </section>
+
+  <div class="footer-meta">
+    POWERED BY THE WRITING-STYLE-LIBRARY &middot; <a href="#">VIEW THE FULL CATALOG</a>
+  </div>
+
+</div>
+
+<script>
+  const questions = [
+    {
+      q: 'Which opener sounds <em>more like you</em>?',
+      a: [
+        { quote: "It was 2:14 AM and the deploy was still red.", label: "scene-first, concrete", v: 'columnist' },
+        { quote: "There are three things to consider when scaling deployments.", label: "framework-first, structured", v: 'architect' }
+      ]
+    },
+    {
+      q: 'Someone asks for advice. What do you <em>actually</em> do?',
+      a: [
+        { quote: "Tell them about the time it happened to me, badly.", label: "story is the answer", v: 'memoirist' },
+        { quote: "Hand them a 4-step framework with the tradeoffs.", label: "structure is the answer", v: 'architect' },
+        { quote: "Ask them what they've already tried.", label: "the question is the answer", v: 'mentor' }
+      ]
+    },
+    {
+      q: 'Pick the <em>closing line</em> that feels like yours.',
+      a: [
+        { quote: "And so we left the lights on, just in case.", label: "concrete image, ambiguous", v: 'columnist' },
+        { quote: "The takeaways: ship early, ship small, ship often.", label: "summary, decisive", v: 'operator' }
+      ]
+    },
+    {
+      q: 'You are <em>most uncomfortable</em> writing...',
+      a: [
+        { quote: "A press release.", label: "marketing voice", v: 'columnist' },
+        { quote: "A grief letter.", label: "emotional voice", v: 'architect' },
+        { quote: "A children's book.", label: "child-facing voice", v: 'columnist' }
+      ]
+    },
+    {
+      q: 'Pick the word you <em>actually</em> use.',
+      a: [
+        { quote: "Plain.", label: "love a one-word truth", v: 'columnist' },
+        { quote: "Robust.", label: "you would never", v: 'architect' },
+        { quote: "Quietly.", label: "the small adverb", v: 'memoirist' }
+      ]
+    }
+  ];
+
+  const voiceProfiles = {
+    columnist: {
+      name: 'Columnist',
+      tagline: 'Voice-forward, opinionated, recurring perspective. You write like someone the reader has come to read on purpose.',
+      traits: ['voice-forward', 'opinionated', 'scene-led', 'closes on image', 'avoids hype']
+    },
+    architect: {
+      name: 'Architect',
+      tagline: 'Tradeoff-led, calmly opinionated, builder. You name what we lose to gain what we get.',
+      traits: ['tradeoff-aware', 'concrete', 'no-hedge', 'design-level', 'cites prior systems']
+    },
+    memoirist: {
+      name: 'Memoirist',
+      tagline: 'First-person reflective. You mine personal experience for universal truth.',
+      traits: ['first-person', 'reflective', 'image-rich', 'slow pace', 'truth-seeking']
+    },
+    mentor: {
+      name: 'Friendly Mentor',
+      tagline: 'Warm, growth-oriented. You ask before you tell, every time.',
+      traits: ['question-led', 'patient', 'scaffolding', 'warm', 'low-ego']
+    },
+    operator: {
+      name: 'Operator',
+      tagline: 'Hands-on, accountability-driven. You speak in metrics, runbooks, and what is broken.',
+      traits: ['action-biased', 'metric-anchored', 'tactical', 'no-fluff', 'next-step focused']
+    }
+  };
+
+  let qIndex = 0;
+  let scores = { columnist: 0, architect: 0, memoirist: 0, mentor: 0, operator: 0 };
+
+  const dots = document.querySelectorAll('.dot');
+
+  function startQuiz() {
+    document.getElementById('hero').classList.add('gone');
+    document.getElementById('quiz').classList.add('live');
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[qIndex];
+    document.getElementById('q-num').textContent = `QUESTION ${String(qIndex + 1).padStart(2, '0')} / 05`;
+    document.getElementById('q-text').innerHTML = q.q;
+    document.getElementById('progress-text').textContent = `${String(qIndex + 1).padStart(2, '0')} / 05`;
+
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i < qIndex) d.classList.add('done');
+      if (i === qIndex) d.classList.add('active');
+    });
+
+    const ans = document.getElementById('answers');
+    ans.innerHTML = '';
+    ans.classList.toggle('three', q.a.length === 3);
+    q.a.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer';
+      btn.innerHTML = `
+        <span class="answer-letter">${String.fromCharCode(65 + i)}</span>
+        <div class="answer-quote">${opt.quote}</div>
+        <div class="answer-label">${opt.label}</div>
+      `;
+      btn.onclick = () => answer(opt.v);
+      ans.appendChild(btn);
+    });
+  }
+
+  function answer(voice) {
+    scores[voice] = (scores[voice] || 0) + 1;
+    qIndex++;
+    if (qIndex >= questions.length) {
+      showResult();
+    } else {
+      const quiz = document.getElementById('quiz');
+      quiz.style.opacity = '0';
+      quiz.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        renderQuestion();
+        quiz.style.opacity = '1';
+        quiz.style.transform = 'translateY(0)';
+      }, 250);
+    }
+  }
+
+  function showResult() {
+    const top = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+    const profile = voiceProfiles[top];
+    document.getElementById('result-name').textContent = profile.name;
+    document.getElementById('result-tagline').textContent = profile.tagline;
+    const traitsEl = document.getElementById('result-traits');
+    traitsEl.innerHTML = '';
+    profile.traits.forEach(t => {
+      const span = document.createElement('span');
+      span.className = 'trait';
+      span.textContent = t;
+      traitsEl.appendChild(span);
+    });
+    document.getElementById('quiz').classList.remove('live');
+    document.getElementById('result').classList.add('live');
+    dots.forEach(d => { d.classList.remove('active'); d.classList.add('done'); });
+    document.getElementById('progress-text').textContent = 'COMPLETE';
+  }
+
+  function restart() {
+    qIndex = 0;
+    scores = { columnist: 0, architect: 0, memoirist: 0, mentor: 0, operator: 0 };
+    document.getElementById('result').classList.remove('live');
+    document.getElementById('hero').classList.remove('gone');
+    document.getElementById('progress-text').textContent = '01 / 05';
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i === 0) d.classList.add('active');
+    });
+  }
+</script>
+</body>
+</html>

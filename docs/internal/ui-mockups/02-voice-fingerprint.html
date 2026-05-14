@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Fingerprint / Report 0042</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600;6..72,800&family=IBM+Plex+Mono:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ece8de;
+    --paper-deep: #e3dfd2;
+    --ink: #1c1b16;
+    --grid: rgba(28, 27, 22, 0.08);
+    --grid-strong: rgba(28, 27, 22, 0.16);
+    --marker-red: #b8362c;
+    --marker-blue: #355d8a;
+    --pencil: #6b6962;
+    --sage: #6b7a52;
+    --highlight: rgba(245, 214, 90, 0.45);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  /* Graph paper background */
+  body {
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      linear-gradient(var(--grid-strong) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px);
+    background-size: 22px 22px, 22px 22px, 110px 110px, 110px 110px;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .frame {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 44px 56px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* HEADER FORM */
+  .form-header {
+    border: 1.5px solid var(--ink);
+    background: rgba(236, 232, 222, 0.7);
+    padding: 0;
+    margin-bottom: 56px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+  .field {
+    padding: 14px 18px;
+    border-right: 1px solid var(--ink);
+    position: relative;
+  }
+  .field:last-child { border-right: none; }
+  .field-label {
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    margin-bottom: 4px;
+  }
+  .field-value {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .stamp {
+    position: absolute;
+    top: 14px;
+    right: -38px;
+    transform: rotate(-8deg);
+    border: 2.5px solid var(--marker-red);
+    color: var(--marker-red);
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--paper);
+    box-shadow: 0 0 0 4px var(--paper);
+    z-index: 3;
+  }
+
+  /* TITLE */
+  .title-row {
+    display: grid;
+    grid-template-columns: 2.4fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+    align-items: end;
+  }
+  .title-main {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: clamp(56px, 8vw, 108px);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+  }
+  .title-main em {
+    font-style: italic;
+    color: var(--marker-red);
+    font-weight: 400;
+  }
+  .title-meta {
+    border-left: 2px solid var(--ink);
+    padding-left: 22px;
+  }
+  .title-meta-kicker {
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--marker-red);
+    margin-bottom: 12px;
+  }
+  .title-meta-text {
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  /* SECTIONS */
+  .section { margin-bottom: 72px; position: relative; }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'Newsreader', serif;
+    font-size: 56px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--marker-red);
+  }
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .section-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+
+  /* DOMINANT VOICES BAR */
+  .composition-bar {
+    height: 84px;
+    display: flex;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .seg {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px 14px;
+    color: var(--paper);
+    border-right: 1.5px solid var(--ink);
+    transition: opacity 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .seg:last-child { border-right: none; }
+  .seg:hover { opacity: 0.85; }
+  .seg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.06) 4px, rgba(255,255,255,0.06) 8px);
+  }
+  .seg-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  .seg-pct {
+    font-family: 'Newsreader', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .seg.s1 { background: var(--ink); }
+  .seg.s2 { background: var(--marker-red); }
+  .seg.s3 { background: var(--sage); }
+  .seg.s4 { background: var(--marker-blue); }
+  .seg.s5 { background: var(--pencil); }
+
+  .composition-legend {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .legend-item {
+    border-top: 1px solid var(--ink);
+    padding-top: 10px;
+  }
+  .legend-name {
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .legend-name em { font-style: italic; color: var(--marker-red); }
+  .legend-detail {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    color: var(--pencil);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* TONE SPECTRUMS */
+  .spectrum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 56px;
+  }
+  .spectrum {
+    padding-bottom: 8px;
+  }
+  .spectrum-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pencil);
+    margin-bottom: 8px;
+  }
+  .spectrum-label strong { color: var(--ink); font-weight: 500; }
+  .spectrum-track {
+    height: 4px;
+    background: var(--paper-deep);
+    border: 1px solid var(--ink);
+    position: relative;
+  }
+  .spectrum-tick {
+    position: absolute;
+    top: -4px;
+    width: 2px;
+    height: 12px;
+    background: var(--ink);
+  }
+  .spectrum-marker {
+    position: absolute;
+    top: -8px;
+    width: 16px;
+    height: 20px;
+    background: var(--marker-red);
+    border: 1.5px solid var(--ink);
+    transform: translateX(-50%);
+    transition: left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .spectrum-marker::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid var(--marker-red);
+  }
+  .spectrum-readout {
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    margin-top: 14px;
+    color: var(--ink);
+  }
+  .spectrum-readout em { color: var(--marker-red); font-style: italic; }
+
+  /* SIGNATURE PATTERNS */
+  .patterns {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 56px;
+  }
+  .pattern-list {
+    list-style: none;
+    counter-reset: p;
+  }
+  .pattern-list li {
+    counter-increment: p;
+    padding: 14px 0 14px 56px;
+    border-bottom: 1px dotted var(--pencil);
+    position: relative;
+    font-family: 'Newsreader', serif;
+    font-size: 18px;
+    line-height: 1.45;
+  }
+  .pattern-list li::before {
+    content: counter(p, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--marker-red);
+    font-weight: 500;
+  }
+  .pattern-list li mark {
+    background: var(--highlight);
+    padding: 0 3px;
+    color: var(--ink);
+  }
+  .pattern-list li .quote {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--pencil);
+    font-style: italic;
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .pattern-aside {
+    border: 1.5px solid var(--ink);
+    padding: 24px 22px;
+    background: var(--paper-deep);
+    align-self: start;
+    position: relative;
+  }
+  .pattern-aside::before {
+    content: "AVOIDS";
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    color: var(--marker-red);
+    font-weight: 500;
+  }
+  .avoid-list { list-style: none; }
+  .avoid-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--grid-strong);
+    font-family: 'Newsreader', serif;
+    font-size: 15.5px;
+    color: var(--ink);
+    text-decoration: line-through;
+    text-decoration-color: var(--marker-red);
+    text-decoration-thickness: 1.5px;
+  }
+  .avoid-list li:last-child { border-bottom: none; }
+
+  /* LEXICAL SIGNATURES */
+  .lex-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1.5px solid var(--ink);
+  }
+  .lex-cell {
+    padding: 22px 24px;
+    border-right: 1.5px solid var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    background: var(--paper-deep);
+  }
+  .lex-cell:nth-child(3n) { border-right: none; }
+  .lex-cell:nth-last-child(-n+3) { border-bottom: none; }
+  .lex-word {
+    font-family: 'Newsreader', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .lex-word em { font-style: italic; }
+  .lex-stat {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pencil);
+  }
+  .lex-bar {
+    height: 3px;
+    background: var(--ink);
+    margin-top: 10px;
+  }
+
+  /* PROMPT EXPORT */
+  .prompt-card {
+    border: 2px solid var(--ink);
+    padding: 0;
+    background: var(--ink);
+    color: var(--paper);
+    position: relative;
+    margin-top: 48px;
+  }
+  .prompt-card::before {
+    content: "// SYSTEM PROMPT // READY TO PASTE";
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--paper);
+    color: var(--ink);
+    padding: 0 12px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+  }
+  .prompt-body {
+    padding: 32px 36px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+  .prompt-body span.tk {
+    background: var(--marker-red);
+    padding: 1px 6px;
+    margin: 0 1px;
+    color: var(--paper);
+  }
+  .prompt-actions {
+    border-top: 1px solid var(--paper);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .prompt-meta {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(236, 232, 222, 0.6);
+  }
+  .btn {
+    background: var(--paper);
+    color: var(--ink);
+    border: none;
+    padding: 9px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: var(--marker-red); color: var(--paper); }
+
+  /* CAVEAT ANNOTATIONS */
+  .annotate {
+    position: absolute;
+    font-family: 'Caveat', cursive;
+    color: var(--marker-red);
+    font-size: 22px;
+    line-height: 1.1;
+    transform: rotate(-3deg);
+    z-index: 4;
+    pointer-events: none;
+  }
+  .ann-1 { top: 250px; right: 8px; }
+  .ann-2 { top: 720px; right: -10px; transform: rotate(4deg); }
+  .ann-3 { top: 1180px; left: -20px; transform: rotate(-5deg); }
+
+  .arrow { display: inline-block; transform: translateY(2px); }
+
+  @media (max-width: 880px) {
+    .frame { padding: 24px 20px; }
+    .form-header { grid-template-columns: 1fr 1fr; }
+    .field { border-bottom: 1px solid var(--ink); }
+    .field:nth-child(2) { border-right: none; }
+    .title-row { grid-template-columns: 1fr; gap: 28px; }
+    .composition-bar { height: 70px; }
+    .composition-legend { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .spectrum-grid { grid-template-columns: 1fr; gap: 20px; }
+    .patterns { grid-template-columns: 1fr; gap: 32px; }
+    .lex-grid { grid-template-columns: 1fr; }
+    .lex-cell { border-right: none; border-bottom: 1.5px solid var(--ink); }
+    .annotate { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+
+    <div class="form-header">
+      <div class="field">
+        <div class="field-label">Subject</div>
+        <div class="field-value">J. PRISANT &middot; product-on-purpose.com</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Report no.</div>
+        <div class="field-value">FP-0042-A</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Sample size</div>
+        <div class="field-value">12 documents / 38,400 words</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Date</div>
+        <div class="field-value">2026.05.09</div>
+        <div class="stamp">REVIEWED</div>
+      </div>
+    </div>
+
+    <div class="title-row">
+      <h1 class="title-main">Voice<br><em>Fingerprint.</em></h1>
+      <div class="title-meta">
+        <div class="title-meta-kicker">A diagnostic of how you actually write</div>
+        <div class="title-meta-text">Twelve samples were analyzed against 290 catalog entries. Five voices, four tones, six signature patterns, and a working system prompt follow.</div>
+      </div>
+    </div>
+
+    <span class="annotate ann-1">your dominant<br>3 cover 90%! &darr;</span>
+
+    <section class="section">
+      <header class="section-header">
+        <div class="section-num">01</div>
+        <div class="section-title">Voice composition</div>
+        <div class="section-tag">five-voice blend</div>
+      </header>
+
+      <div class="composition-bar">
+        <div class="seg s1" style="width: 42%"><div class="seg-name">Columnist</div><div class="seg-pct">42%</div></div>
+        <div class="seg s2" style="width: 24%"><div class="seg-name">Mentor</div><div class="seg-pct">24%</div></div>
+        <div class="seg s3" style="width: 18%"><div class="seg-name">Essayist</div><div class="seg-pct">18%</div></div>
+        <div class="seg s4" style="width: 10%"><div class="seg-name">Architect</div><div class="seg-pct">10%</div></div>
+        <div class="seg s5" style="width: 6%"><div class="seg-name">Confidant</div><div class="seg-pct">6%</div></div>
+      </div>
+
+      <div class="composition-legend">
+        <div class="legend-item"><div class="legend-name">Columnist</div><div class="legend-detail">Voice-forward, opinionated, recurring perspective.</div></div>
+        <div class="legend-item"><div class="legend-name">Friendly <em>Mentor</em></div><div class="legend-detail">Warm, growth-oriented, asks before tells.</div></div>
+        <div class="legend-item"><div class="legend-name">Essayist</div><div class="legend-detail">Voice-led inquiry, personal-and-intellectual.</div></div>
+        <div class="legend-item"><div class="legend-name">Architect</div><div class="legend-detail">Tradeoff-led, calmly opinionated, builder.</div></div>
+        <div class="legend-item"><div class="legend-name">Confidant</div><div class="legend-detail">Quiet, listening, draws out reflection.</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <header class="section-header">
+        <div class="section-num">02</div>
+        <div class="section-title">Tonal range</div>
+        <div class="section-tag">eight dimensions</div>
+      </header>
+
+      <div class="spectrum-grid">
+        <div class="spectrum">
+          <div class="spectrum-label"><span>FORMAL</span><strong>FORMALITY</strong><span>CASUAL</span></div>
+          <div class="spectrum-track">
+            <div class="spectrum-tick" style="left: 50%"></div>
+            <div class="spectrum-marker" style="left: 68%"></div>
+          </div>
+          <div class="spectrum-readout">Lands at <em>conversational</em>, with rare formal lapses for legal or technical material.</div>
+        </div>
+        <div class="spectrum">
+          <div class="spectrum-label"><span>SERIOUS</span><strong>HUMOR</strong><span>FUNNY</span></div>
+          <div class="spectrum-track">
+            <div class="spectrum-tick" style="left: 50%"></div>
+            <div class="spectrum-marker" style="left: 38%"></div>
+          </div>
+          <div class="spectrum-readout">Mostly <em>serious</em>, with dry asides; rarely commits to comedy.</div>
+        </div>
+        <div class="spectrum">
+          <div class="spectrum-label"><span>RESPECTFUL</span><strong>POSTURE</strong><span>IRREVERENT</span></div>
+          <div class="spectrum-track">
+            <div class="spectrum-tick" style="left: 50%"></div>
+            <div class="spectrum-marker" style="left: 56%"></div>
+          </div>
+          <div class="spectrum-readout">Slightly <em>irreverent</em>; willing to question authority or convention.</div>
+        </div>
+        <div class="spectrum">
+          <div class="spectrum-label"><span>MATTER-OF-FACT</span><strong>ENTHUSIASM</strong><span>ENTHUSIASTIC</span></div>
+          <div class="spectrum-track">
+            <div class="spectrum-tick" style="left: 50%"></div>
+            <div class="spectrum-marker" style="left: 30%"></div>
+          </div>
+          <div class="spectrum-readout">Strongly <em>matter-of-fact</em>. No hype. Allergic to marketing-voice.</div>
+        </div>
+      </div>
+    </section>
+
+    <span class="annotate ann-2">these are the <br>tells. own them.</span>
+
+    <section class="section">
+      <header class="section-header">
+        <div class="section-num">03</div>
+        <div class="section-title">Signature patterns</div>
+        <div class="section-tag">what a reader notices</div>
+      </header>
+
+      <div class="patterns">
+        <ol class="pattern-list">
+          <li>Opens with a <mark>specific scene or quote</mark>, never with "in today's world."<span class="quote">"It was 2:14 AM and the deploy was still red."</span></li>
+          <li>Single-sentence paragraphs as <mark>rhetorical pauses</mark>, deployed twice per essay maximum.<span class="quote">"That was the part nobody had warned me about."</span></li>
+          <li>Long parenthetical asides that <mark>do real work</mark> (and sometimes carry the actual argument).</li>
+          <li>"You" address used <mark>conversationally</mark>, never instructionally; treats the reader as a peer.</li>
+          <li>Closes with a small <mark>concrete image</mark> rather than a summary.</li>
+          <li>Replaces em-dashes with " - " consistently. (See dedicated linter.)</li>
+        </ol>
+
+        <aside class="pattern-aside">
+          <ul class="avoid-list">
+            <li>Exclamation marks (except in dialogue)</li>
+            <li>"In today's fast-paced world..."</li>
+            <li>"It's not just X, it's Y" formula</li>
+            <li>Trifold structures as default</li>
+            <li>"Leverage" as a verb</li>
+            <li>"Robust," "seamless," "powerful"</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <span class="annotate ann-3">your tells.<br>everyone has them.</span>
+
+    <section class="section">
+      <header class="section-header">
+        <div class="section-num">04</div>
+        <div class="section-title">Lexical signatures</div>
+        <div class="section-tag">words you reach for</div>
+      </header>
+
+      <div class="lex-grid">
+        <div class="lex-cell"><div class="lex-word">"actually"</div><div class="lex-stat">1.4 / 1,000 words &middot; 3.2x baseline</div><div class="lex-bar" style="width: 80%"></div></div>
+        <div class="lex-cell"><div class="lex-word">"and so"</div><div class="lex-stat">0.9 / 1,000 words &middot; 2.1x baseline</div><div class="lex-bar" style="width: 62%"></div></div>
+        <div class="lex-cell"><div class="lex-word"><em>"plain"</em></div><div class="lex-stat">0.6 / 1,000 words &middot; 1.8x baseline</div><div class="lex-bar" style="width: 50%"></div></div>
+        <div class="lex-cell"><div class="lex-word">"on purpose"</div><div class="lex-stat">0.5 / 1,000 words &middot; 4.6x baseline</div><div class="lex-bar" style="width: 92%"></div></div>
+        <div class="lex-cell"><div class="lex-word">"the small"</div><div class="lex-stat">0.4 / 1,000 words &middot; 2.4x baseline</div><div class="lex-bar" style="width: 68%"></div></div>
+        <div class="lex-cell"><div class="lex-word"><em>"quiet"</em></div><div class="lex-stat">0.3 / 1,000 words &middot; 2.0x baseline</div><div class="lex-bar" style="width: 56%"></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <header class="section-header">
+        <div class="section-num">05</div>
+        <div class="section-title">Drop-in system prompt</div>
+        <div class="section-tag">paste into any LLM</div>
+      </header>
+
+      <div class="prompt-card">
+        <div class="prompt-body">You are writing for J. Prisant. Adopt a <span class="tk">columnist</span> voice as the dominant register, with secondary notes of <span class="tk">friendly mentor</span> and <span class="tk">essayist</span>. Tone is <span class="tk">candid</span>, <span class="tk">matter-of-fact</span>, <span class="tk">conversational</span>; never enthusiastic, never marketing-flavored.
+
+Open with a <span class="tk">specific scene or quote</span>; never with abstract framing. Use <span class="tk">single-sentence paragraphs</span> as rhetorical pauses, sparingly (twice per piece maximum). Allow <span class="tk">long parentheticals</span> that carry real argument. Address the reader as a peer.
+
+Avoid <span class="tk">exclamation marks</span>, <span class="tk">trifold structures</span>, the <span class="tk">"not just X, it's Y"</span> formula, and the words <span class="tk">leverage</span>, <span class="tk">robust</span>, <span class="tk">seamless</span>, <span class="tk">powerful</span>. Use " - " in place of em-dashes; never use en-dashes.
+
+Close with a <span class="tk">concrete small image</span>, not a summary.</div>
+        <div class="prompt-actions">
+          <div class="prompt-meta">FP-0042-A &middot; v1 &middot; refresh quarterly</div>
+          <div>
+            <button class="btn" onclick="copyPrompt()">Copy</button>
+            <button class="btn">Download .md</button>
+            <button class="btn">Send to Claude</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  function copyPrompt() {
+    const txt = document.querySelector('.prompt-body').innerText;
+    navigator.clipboard?.writeText(txt);
+  }
+
+  // Animate spectrum markers in
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.spectrum-marker').forEach(m => {
+      const target = m.style.left;
+      m.style.left = '50%';
+      requestAnimationFrame(() => {
+        setTimeout(() => { m.style.left = target; }, 200);
+      });
+    });
+  });
+</script>
+</body>
+</html>

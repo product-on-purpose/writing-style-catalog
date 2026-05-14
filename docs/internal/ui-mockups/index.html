@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Mockups / Writing Style Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,700,100&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ece8de;
+    --ink: #16140f;
+    --rule: rgba(22, 20, 15, 0.18);
+    --accent: #c8392c;
+    --muted: #6f6a5e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  .frame { max-width: 1100px; margin: 0 auto; padding: 56px 32px 80px; }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 56px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "SOFT" 100, "opsz" 144, "wght" 700;
+    font-size: clamp(56px, 9vw, 124px);
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "opsz" 144, "wght" 400; }
+
+  .deck {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.45;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .card {
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 32px 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.18s;
+    display: flex;
+    flex-direction: column;
+    min-height: 280px;
+  }
+  .card:hover { background: rgba(200, 57, 44, 0.05); }
+  .card-num {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 700;
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144, "wght" 700;
+    font-size: 32px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .card-title em { font-style: italic; color: var(--accent); font-variation-settings: "opsz" 144, "wght" 400; }
+  .card-aesthetic {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .card-desc {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 14, "wght" 400;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px dotted var(--muted);
+    padding-top: 12px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .card-meta strong { color: var(--accent); font-weight: 500; }
+
+  .colophon {
+    margin-top: 80px;
+    padding-top: 16px;
+    border-top: 1.5px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="frame">
+
+    <div class="top">
+      <span>UI MOCKUPS / 04 SURFACES</span>
+      <span>2026.05.09 / DRAFT v1</span>
+    </div>
+
+    <h1>Four mock<em>ups</em>,<br>four <em>aesthetics</em>.</h1>
+    <p class="deck">Each delivery surface from the value-delivery doc gets its own visual language, on purpose. Picking aesthetic direction by intent rather than convergence is the whole game. Click in.</p>
+
+    <div class="grid">
+
+      <a class="card" href="01-composer.html">
+        <div class="card-num">01</div>
+        <div class="card-title">The <em>Composer</em></div>
+        <div class="card-aesthetic">Editorial / Swiss magazine</div>
+        <p class="card-desc">A composition surface in three movements: voice, tone, format. Live preview as a manuscript draft, with a vermilion spot color and a Fraunces masthead.</p>
+        <div class="card-meta"><span>Cream &middot; Vermilion &middot; Ink</span><strong>Open &rarr;</strong></div>
+      </a>
+
+      <a class="card" href="02-voice-fingerprint.html">
+        <div class="card-num">02</div>
+        <div class="card-title">Voice <em>Fingerprint</em></div>
+        <div class="card-aesthetic">Diagnostic / lab report</div>
+        <p class="card-desc">A scientific report on how someone actually writes. Graph paper, marker stamps, hand-annotated charts, and a drop-in system prompt at the bottom.</p>
+        <div class="card-meta"><span>Stone &middot; Marker red &middot; Sage</span><strong>Open &rarr;</strong></div>
+      </a>
+
+      <a class="card" href="03-voice-dna-test.html">
+        <div class="card-num">03</div>
+        <div class="card-title">Voice <em>DNA</em> Test</div>
+        <div class="card-aesthetic">Maximalist pop / Memphis</div>
+        <p class="card-desc">A five-question quiz with bouncy shapes, hot pink accents, lime tags, and a result reveal that names your dominant voice with a shareable card.</p>
+        <div class="card-meta"><span>Cream &middot; Pink &middot; Lime &middot; Navy</span><strong>Open &rarr;</strong></div>
+      </a>
+
+      <a class="card" href="04-brand-voice-builder.html">
+        <div class="card-num">04</div>
+        <div class="card-title">Brand <em>Voice</em> Builder</div>
+        <div class="card-aesthetic">Studio / refined dark</div>
+        <p class="card-desc">A workshop interface for any team or solo creator to compose a complete brand voice guide. Live preview pinned to the side as the form fills in.</p>
+        <div class="card-meta"><span>Deep ink &middot; Warm gold</span><strong>Open &rarr;</strong></div>
+      </a>
+
+    </div>
+
+    <div class="colophon">
+      <span>SET IN FRAUNCES &amp; JETBRAINS MONO</span>
+      <span>WRITING STYLE LIBRARY / PRODUCT-ON-PURPOSE</span>
+      <span>CC-BY-4.0</span>
+    </div>
+
+  </div>
+</body>
+</html>

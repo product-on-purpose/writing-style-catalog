@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Voice Builder / Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0b08;
+    --bg-deep: #08070500;
+    --surface: #15130f;
+    --surface-2: #1f1c17;
+    --surface-3: #2a261f;
+    --border: #36312a;
+    --border-soft: #221f1a;
+    --text: #f0e9d8;
+    --text-muted: #908878;
+    --text-faint: #5e5749;
+    --gold: #d4a574;
+    --gold-deep: #b8895d;
+    --copper: #c87850;
+    --pure: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(212, 165, 116, 0.06), transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(200, 120, 80, 0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.88 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.7;
+  }
+
+  /* TOP NAV */
+  .topbar {
+    border-bottom: 1px solid var(--border-soft);
+    background: rgba(12, 11, 8, 0.85);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topbar-inner {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 18px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-glyph {
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    position: relative;
+  }
+  .brand-glyph::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -3px;
+    right: -3px;
+    height: 1.5px;
+    background: var(--gold);
+    transform: rotate(-30deg) translateY(-50%);
+  }
+  .brand-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+  .brand-name em { color: var(--gold); font-style: italic; }
+  .topbar-meta {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .topbar-meta-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.55;} 50%{opacity:1;} }
+
+  /* HEADER */
+  .header {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 64px 36px 48px;
+    position: relative;
+  }
+  .header-kicker {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .header-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(56px, 8vw, 124px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 1100px;
+  }
+  .header-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .header-deck {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--text-muted);
+    max-width: 640px;
+    font-style: italic;
+  }
+  .header-progress {
+    margin-top: 40px;
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 18px;
+  }
+  .step-pip {
+    flex: 1;
+    padding: 0 0 14px;
+    border-bottom: 1.5px solid var(--border-soft);
+    margin-right: 24px;
+    transition: border-color 0.3s;
+  }
+  .step-pip:last-child { margin-right: 0; }
+  .step-pip.active { border-bottom-color: var(--gold); }
+  .step-pip.done { border-bottom-color: var(--text-muted); }
+  .step-pip-num {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+  .step-pip.active .step-pip-num { color: var(--gold); }
+  .step-pip.done .step-pip-num { color: var(--text-muted); }
+  .step-pip-label {
+    font-family: 'Instrument Serif', serif;
+    font-size: 17px;
+    color: var(--text);
+    font-style: italic;
+  }
+  .step-pip:not(.active):not(.done) .step-pip-label { color: var(--text-faint); }
+
+  /* WORKSPACE */
+  .workspace {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 0 36px 80px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  /* FORM PANEL */
+  .form-panel { padding-bottom: 60px; }
+  .form-section {
+    border-top: 1px solid var(--border-soft);
+    padding: 56px 0;
+  }
+  .form-section:first-child { border-top: none; padding-top: 16px; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 44px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .section-info {}
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.55;
+    max-width: 560px;
+  }
+
+  /* INPUTS */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  .field-row.full { grid-template-columns: 1fr; }
+
+  .field {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    padding: 14px 16px;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .field:focus-within {
+    border-color: var(--gold);
+    background: var(--surface-2);
+  }
+  .field-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Geist', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    resize: vertical;
+  }
+  .field input::placeholder, .field textarea::placeholder { color: var(--text-faint); }
+  .field textarea { min-height: 60px; }
+
+  /* CHIP SELECTOR */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Geist', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .chip:hover { border-color: var(--text-muted); color: var(--text); }
+  .chip.on {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212, 165, 116, 0.08);
+  }
+  .chip.on::before {
+    content: "+";
+    color: var(--gold);
+    font-family: 'Geist Mono', monospace;
+    font-weight: 500;
+    transform: rotate(45deg);
+    display: inline-block;
+  }
+  .chip-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+  }
+  .chip.on .chip-tag { color: var(--gold-deep); }
+
+  .chips-helper {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* SLIDERS */
+  .slider-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 40px;
+    margin-top: 8px;
+  }
+  .slider {
+    padding-bottom: 4px;
+  }
+  .slider-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+  .slider-label .center {
+    color: var(--text);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+  .slider-track {
+    position: relative;
+    height: 32px;
+    cursor: pointer;
+  }
+  .slider-track::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+    transform: translateY(-50%);
+  }
+  .slider-track::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 8px;
+    background: var(--text-faint);
+    transform: translate(-50%, -50%);
+  }
+  .slider-thumb {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.18);
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* RIGHT PREVIEW PANEL */
+  .preview {
+    position: sticky;
+    top: 80px;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0;
+    overflow: hidden;
+  }
+  .preview-band {
+    background: linear-gradient(90deg, var(--gold), var(--copper));
+    color: var(--bg);
+    padding: 12px 24px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .preview-body { padding: 32px 28px 28px; }
+
+  .preview-eyebrow {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .preview-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .preview-mission {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.45;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .preview-block {
+    margin-bottom: 24px;
+  }
+  .preview-block-label {
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .preview-voice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .preview-voice-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-family: 'Instrument Serif', serif;
+    font-size: 16px;
+  }
+  .preview-voice-item:last-child { border-bottom: none; }
+  .preview-voice-item em { font-style: italic; color: var(--gold); }
+  .preview-voice-pct {
+    font-family: 'Geist Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .preview-tone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+    font-size: 13px;
+  }
+  .preview-tone-cell {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .preview-tone-cell-key { color: var(--text-muted); font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .preview-tone-cell-val { color: var(--text); font-family: 'Instrument Serif', serif; font-style: italic; font-size: 14px; }
+
+  .preview-rules {
+    background: var(--bg);
+    border: 1px solid var(--border-soft);
+    padding: 14px 16px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+  .preview-rules .rule { display: block; }
+  .preview-rules .y { color: var(--gold); }
+  .preview-rules .n { color: var(--copper); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+  .preview-foot {
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .preview-foot strong { color: var(--gold); font-weight: 500; }
+
+  /* CTA */
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .btn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 14px 24px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.16s;
+  }
+  .btn:hover { border-color: var(--text-muted); background: var(--surface-2); }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+    font-weight: 600;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+  .btn-primary .arrow { transition: transform 0.18s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  /* Section quote callout */
+  .section-quote {
+    margin: 0 0 32px;
+    padding: 20px 0 0 0;
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .section-quote::before {
+    content: "Reference: ";
+    font-family: 'Geist Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  @media (max-width: 1100px) {
+    .workspace { grid-template-columns: 1fr; gap: 36px; }
+    .preview { position: static; }
+  }
+  @media (max-width: 720px) {
+    .header { padding: 40px 20px 28px; }
+    .topbar-inner { padding: 16px 20px; }
+    .workspace { padding: 0 20px 60px; }
+    .field-row { grid-template-columns: 1fr; }
+    .slider-grid { grid-template-columns: 1fr; }
+    .header-progress { flex-direction: column; gap: 12px; }
+    .step-pip { margin-right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-mark">
+      <div class="brand-glyph"></div>
+      <div class="brand-name">Brand <em>Voice</em> Builder</div>
+    </div>
+    <div class="topbar-meta">
+      <span><span class="topbar-meta-status"><span class="status-dot"></span>DRAFT &middot; AUTOSAVED 2S AGO</span></span>
+      <span>STUDIO &middot; v1.4</span>
+    </div>
+  </div>
+</header>
+
+<!-- HEADER -->
+<section class="header">
+  <div class="header-kicker">A guided workshop / 18 minutes</div>
+  <h1 class="header-title">Build a brand voice your <em>writers and your AI</em> can both keep.</h1>
+  <p class="header-deck">Four small choices and one paste of sample writing produces a complete style guide, a reusable system prompt, and a one-page reference card. All grounded in 290 catalog entries, none of them generic.</p>
+
+  <div class="header-progress">
+    <div class="step-pip done">
+      <div class="step-pip-num">01</div>
+      <div class="step-pip-label">The basics</div>
+    </div>
+    <div class="step-pip done">
+      <div class="step-pip-num">02</div>
+      <div class="step-pip-label">Voice anchors</div>
+    </div>
+    <div class="step-pip active">
+      <div class="step-pip-num">03</div>
+      <div class="step-pip-label">Tone direction</div>
+    </div>
+    <div class="step-pip">
+      <div class="step-pip-num">04</div>
+      <div class="step-pip-label">Sample writing</div>
+    </div>
+    <div class="step-pip">
+      <div class="step-pip-num">05</div>
+      <div class="step-pip-label">Generate</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSPACE -->
+<div class="workspace">
+
+  <!-- FORM PANEL -->
+  <main class="form-panel">
+
+    <section class="form-section">
+      <header class="section-head">
+        <div class="section-num"><em>I.</em></div>
+        <div class="section-info">
+          <h2 class="section-title">The basics</h2>
+          <p class="section-desc">Tell us who you are. The more specific, the better the result. Generic answers produce generic guides.</p>
+        </div>
+      </header>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Brand name</label>
+          <input type="text" id="b-name" placeholder="e.g. Lantern &amp; Mark" value="Lantern &amp; Mark">
+        </div>
+        <div class="field">
+          <label class="field-label">Industry</label>
+          <input type="text" placeholder="e.g. financial coaching" value="independent financial coaching">
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label class="field-label">Mission, in one sentence</label>
+          <input type="text" id="b-mission" placeholder="What you exist to do" value="We help working parents make money decisions they will be proud of in twenty years.">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Audience</label>
+          <input type="text" placeholder="e.g. parents 30-45" value="working parents, 30-45, mid-career">
+        </div>
+        <div class="field">
+          <label class="field-label">Tonal anchor (1 line)</label>
+          <input type="text" placeholder="e.g. plainspoken" value="plainspoken, allergic to hype">
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <header class="section-head">
+        <div class="section-num"><em>II.</em></div>
+        <div class="section-info">
+          <h2 class="section-title">Voice anchors</h2>
+          <p class="section-desc">Pick three to five voices that should set the gravitational pull. The wizard will weight, balance, and combine them in the generated guide.</p>
+        </div>
+      </header>
+
+      <p class="section-quote">Voice is the persistent personality of the speaker. Tone is the situational register. Anchor your voice; let your tone shift by channel.</p>
+
+      <div class="chips-helper">3 / 5 selected &middot; reorder by drag</div>
+
+      <div class="chips" id="voice-chips">
+        <span class="chip on" data-id="friendly-mentor"><span>Friendly Mentor</span><span class="chip-tag">primary</span></span>
+        <span class="chip on" data-id="essayist"><span>Essayist</span><span class="chip-tag">secondary</span></span>
+        <span class="chip on" data-id="pragmatic-architect"><span>Pragmatic Architect</span><span class="chip-tag">tertiary</span></span>
+        <span class="chip" data-id="columnist"><span>Columnist</span></span>
+        <span class="chip" data-id="confidant"><span>Confidant</span></span>
+        <span class="chip" data-id="patient-teacher"><span>Patient Teacher</span></span>
+        <span class="chip" data-id="memoirist"><span>Memoirist</span></span>
+        <span class="chip" data-id="popular-science"><span>Popular Science Explainer</span></span>
+        <span class="chip" data-id="financial-analyst"><span>Financial Analyst</span></span>
+        <span class="chip" data-id="parent-to-parent"><span>Parent-to-Parent</span></span>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <header class="section-head">
+        <div class="section-num"><em>III.</em></div>
+        <div class="section-info">
+          <h2 class="section-title">Tone direction</h2>
+          <p class="section-desc">Position your tone on the four core dimensions. The sliders generate prose constraints in the final guide.</p>
+        </div>
+      </header>
+
+      <div class="slider-grid">
+        <div class="slider">
+          <div class="slider-label"><span>FORMAL</span><span class="center">Conversational</span><span>CASUAL</span></div>
+          <div class="slider-track" data-key="formality"><div class="slider-thumb" style="left: 64%"></div></div>
+        </div>
+        <div class="slider">
+          <div class="slider-label"><span>SERIOUS</span><span class="center">Lightly warm</span><span>FUNNY</span></div>
+          <div class="slider-track" data-key="humor"><div class="slider-thumb" style="left: 42%"></div></div>
+        </div>
+        <div class="slider">
+          <div class="slider-label"><span>RESPECTFUL</span><span class="center">Respectful</span><span>IRREVERENT</span></div>
+          <div class="slider-track" data-key="respect"><div class="slider-thumb" style="left: 28%"></div></div>
+        </div>
+        <div class="slider">
+          <div class="slider-label"><span>MATTER-OF-FACT</span><span class="center">Matter-of-fact</span><span>ENTHUSIASTIC</span></div>
+          <div class="slider-track" data-key="enthusiasm"><div class="slider-thumb" style="left: 22%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <header class="section-head">
+        <div class="section-num"><em>IV.</em></div>
+        <div class="section-info">
+          <h2 class="section-title">Sample writing</h2>
+          <p class="section-desc">Paste 2-3 short pieces of writing that exemplify your brand. The auditor will calibrate the guide against them.</p>
+        </div>
+      </header>
+
+      <div class="field-row full">
+        <div class="field">
+          <label class="field-label">Sample 01 / blog post intro</label>
+          <textarea rows="3" placeholder="Paste sample writing here">There is no magic budgeting app. There is only the boring discipline of looking at the same number every Sunday until it stops scaring you. We will sit with you while you do that.</textarea>
+        </div>
+      </div>
+      <div class="field-row full">
+        <div class="field">
+          <label class="field-label">Sample 02 / customer email</label>
+          <textarea rows="3" placeholder="Paste sample writing here">Quick note before the weekend. We moved your March transfer to Tuesday so it lands after payroll. No action on your end. The fee waiver carries.</textarea>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta-row">
+      <button class="btn">&larr; Back</button>
+      <button class="btn">Save &amp; exit</button>
+      <button class="btn-primary">Generate package <span class="arrow">&rarr;</span></button>
+    </div>
+
+  </main>
+
+  <!-- PREVIEW -->
+  <aside class="preview">
+    <div class="preview-band">
+      <span>LIVE PREVIEW</span>
+      <span>v1 / 18 min</span>
+    </div>
+    <div class="preview-body">
+      <div class="preview-eyebrow">BRAND VOICE GUIDE</div>
+      <div class="preview-name" id="preview-name">Lantern &amp; Mark</div>
+      <p class="preview-mission" id="preview-mission">"We help working parents make money decisions they will be proud of in twenty years."</p>
+
+      <div class="preview-block">
+        <div class="preview-block-label">VOICE COMPOSITION</div>
+        <div class="preview-voice-list" id="preview-voices">
+          <div class="preview-voice-item"><span><em>Friendly Mentor</em></span><span class="preview-voice-pct">primary &middot; 50%</span></div>
+          <div class="preview-voice-item"><span>Essayist</span><span class="preview-voice-pct">secondary &middot; 30%</span></div>
+          <div class="preview-voice-item"><span>Pragmatic Architect</span><span class="preview-voice-pct">tertiary &middot; 20%</span></div>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <div class="preview-block-label">TONE PROFILE</div>
+        <div class="preview-tone-grid" id="preview-tones">
+          <div class="preview-tone-cell"><span class="preview-tone-cell-key">FORM.</span><span class="preview-tone-cell-val">conversational</span></div>
+          <div class="preview-tone-cell"><span class="preview-tone-cell-key">HUMOR</span><span class="preview-tone-cell-val">lightly warm</span></div>
+          <div class="preview-tone-cell"><span class="preview-tone-cell-key">POSTURE</span><span class="preview-tone-cell-val">respectful</span></div>
+          <div class="preview-tone-cell"><span class="preview-tone-cell-key">ENERGY</span><span class="preview-tone-cell-val">matter-of-fact</span></div>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <div class="preview-block-label">RULES (DERIVED)</div>
+        <div class="preview-rules">
+          <span class="rule"><span class="y">+</span> use plain words; explain numbers in everyday metaphors</span>
+          <span class="rule"><span class="y">+</span> open replies with a one-line orientation, then the ask</span>
+          <span class="rule"><span class="y">+</span> close with a small concrete next step</span>
+          <span class="rule"><span class="n">no marketing exclamations</span></span>
+          <span class="rule"><span class="n">no "leverage" as a verb</span></span>
+          <span class="rule"><span class="n">no em-dashes; use " - " instead</span></span>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <div class="preview-block-label">DELIVERABLES (5)</div>
+        <div class="preview-rules">
+          <span class="rule">style-guide.md (12 pp)</span>
+          <span class="rule">system-prompt.txt</span>
+          <span class="rule">reference-card.pdf</span>
+          <span class="rule">claude-project.json</span>
+          <span class="rule">notion-template.zip</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-foot">
+      <span>READY TO GENERATE</span>
+      <span><strong>$0</strong> &middot; OPEN PACKAGE</span>
+    </div>
+  </aside>
+
+</div>
+
+<script>
+  // Chip selection
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(c => {
+    c.addEventListener('click', () => {
+      const wasOn = c.classList.contains('on');
+      const onCount = document.querySelectorAll('.chip.on').length;
+      if (wasOn) {
+        c.classList.remove('on');
+        c.querySelector('.chip-tag')?.remove();
+      } else if (onCount < 5) {
+        c.classList.add('on');
+      }
+      updatePreviewVoices();
+      updateHelper();
+    });
+  });
+
+  function updateHelper() {
+    const onCount = document.querySelectorAll('.chip.on').length;
+    document.querySelector('.chips-helper').innerHTML = `${onCount} / 5 selected &middot; reorder by drag`;
+  }
+
+  function updatePreviewVoices() {
+    const on = document.querySelectorAll('.chip.on');
+    const list = document.getElementById('preview-voices');
+    list.innerHTML = '';
+    const tags = ['primary', 'secondary', 'tertiary', 'fourth', 'fifth'];
+    const pcts = on.length === 3 ? [50, 30, 20] : on.length === 4 ? [40, 25, 20, 15] : on.length === 5 ? [35, 22, 18, 15, 10] : on.length === 2 ? [65, 35] : [100];
+    on.forEach((c, i) => {
+      const name = c.querySelector('span:first-child').textContent;
+      const item = document.createElement('div');
+      item.className = 'preview-voice-item';
+      item.innerHTML = `<span>${i === 0 ? '<em>'+name+'</em>' : name}</span><span class="preview-voice-pct">${tags[i]} &middot; ${pcts[i] || '—'}%</span>`;
+      list.appendChild(item);
+    });
+  }
+
+  // Sliders: click to position
+  document.querySelectorAll('.slider-track').forEach(track => {
+    track.addEventListener('click', e => {
+      const r = track.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100));
+      track.querySelector('.slider-thumb').style.left = pct + '%';
+      updatePreviewTones();
+    });
+  });
+
+  function updatePreviewTones() {
+    const map = {
+      formality: ['formal', 'standard', 'conversational', 'casual', 'slangy'],
+      humor: ['serious', 'mostly serious', 'lightly warm', 'witty', 'funny'],
+      respect: ['respectful', 'mostly respectful', 'balanced', 'edged', 'irreverent'],
+      enthusiasm: ['matter-of-fact', 'measured', 'engaged', 'enthusiastic', 'urgent']
+    };
+    const cells = document.querySelectorAll('.preview-tone-cell-val');
+    document.querySelectorAll('.slider-track').forEach((track, i) => {
+      const pct = parseFloat(track.querySelector('.slider-thumb').style.left);
+      const idx = Math.min(4, Math.floor(pct / 20));
+      cells[i].textContent = map[track.dataset.key][idx];
+    });
+  }
+
+  // Brand name update
+  document.getElementById('b-name')?.addEventListener('input', e => {
+    document.getElementById('preview-name').textContent = e.target.value || '—';
+  });
+  document.getElementById('b-mission')?.addEventListener('input', e => {
+    document.getElementById('preview-mission').textContent = '"' + (e.target.value || '') + '"';
+  });
+</script>
+</body>
+</html>
