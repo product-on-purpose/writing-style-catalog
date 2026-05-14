@@ -1,0 +1,145 @@
+{
+  "generated": "2026-05-14T05:25:08.372716+00:00",
+  "entries": [
+    {
+      "id": "columnist",
+      "name": "Columnist",
+      "axis": "voice",
+      "one_liner": "An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.",
+      "review_status": "stable"
+    },
+    {
+      "id": "friendly-mentor",
+      "name": "Friendly Mentor",
+      "axis": "voice",
+      "one_liner": "A warm, patient voice that assumes the reader is capable but new, explaining concepts by building from what they already know.",
+      "review_status": "stable"
+    },
+    {
+      "id": "operator",
+      "name": "Operator",
+      "axis": "voice",
+      "one_liner": "An accountability-driven, hands-on voice that cares about what actually happens at 2am when something breaks - not the design, but the execution.",
+      "review_status": "stable"
+    },
+    {
+      "id": "pastoral",
+      "name": "Pastoral",
+      "axis": "voice",
+      "one_liner": "A voice of care, scripture, and application - speaking from a shepherd's heart to a flock navigating real life with faith.",
+      "review_status": "stable"
+    },
+    {
+      "id": "pragmatic-architect",
+      "name": "Pragmatic Architect",
+      "axis": "voice",
+      "one_liner": "A senior technical voice that leads with tradeoffs, names constraints explicitly, and treats every design decision as a bet with known odds.",
+      "review_status": "stable"
+    },
+    {
+      "id": "candid",
+      "name": "Candid",
+      "axis": "tone",
+      "one_liner": "Names the uncomfortable truth directly - not harsh, but unwilling to pretend the hard thing is not there.",
+      "review_status": "stable"
+    },
+    {
+      "id": "encouraging",
+      "name": "Encouraging",
+      "axis": "tone",
+      "one_liner": "Speaks to capability and forward motion - not false praise, but genuine belief that the person can do the hard thing.",
+      "review_status": "stable"
+    },
+    {
+      "id": "matter-of-fact",
+      "name": "Matter of Fact",
+      "axis": "tone",
+      "one_liner": "States what is true without editorial coloring - neither cold nor warm, just accurate.",
+      "review_status": "stable"
+    },
+    {
+      "id": "reverent",
+      "name": "Reverent",
+      "axis": "tone",
+      "one_liner": "Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.",
+      "review_status": "stable"
+    },
+    {
+      "id": "warm",
+      "name": "Warm",
+      "axis": "tone",
+      "one_liner": "Communicates genuine care and personal regard for the reader - not flattery, but authentic human warmth.",
+      "review_status": "stable"
+    },
+    {
+      "id": "classical-argument",
+      "name": "Classical Argument",
+      "axis": "style",
+      "one_liner": "The Toulmin structure of claim, grounds, warrant, and rebuttal - making a position defensible through explicit reasoning.",
+      "review_status": "stable"
+    },
+    {
+      "id": "comparison-contrast",
+      "name": "Comparison-Contrast",
+      "axis": "style",
+      "one_liner": "Places two or more options, ideas, or states side by side to illuminate the differences that matter.",
+      "review_status": "stable"
+    },
+    {
+      "id": "devotional-reflection",
+      "name": "Devotional Reflection",
+      "axis": "style",
+      "one_liner": "A slow, inward-turning movement that takes a scriptural or spiritual observation and follows it into personal and communal life.",
+      "review_status": "stable"
+    },
+    {
+      "id": "diataxis-explanation",
+      "name": "Diataxis Explanation",
+      "axis": "style",
+      "one_liner": "The Diataxis \"Explanation\" mode - oriented toward understanding rather than action, building a conceptual model for the reader.",
+      "review_status": "stable"
+    },
+    {
+      "id": "problem-solution",
+      "name": "Problem-Solution",
+      "axis": "style",
+      "one_liner": "Frames the piece as a diagnosis followed by a remedy - establishes the pain before the cure.",
+      "review_status": "stable"
+    },
+    {
+      "id": "adr",
+      "name": "Architecture Decision Record",
+      "axis": "format",
+      "one_liner": "A short structured document that captures a significant architectural decision, its context, and its consequences.",
+      "review_status": "stable"
+    },
+    {
+      "id": "blog-post-long-form",
+      "name": "Blog Post (Long Form)",
+      "axis": "format",
+      "one_liner": "A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.",
+      "review_status": "stable"
+    },
+    {
+      "id": "devotional-entry",
+      "name": "Devotional Entry",
+      "axis": "format",
+      "one_liner": "A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.",
+      "review_status": "stable"
+    },
+    {
+      "id": "prd",
+      "name": "Product Requirements Document",
+      "axis": "format",
+      "one_liner": "A structured document that defines what a product or feature should do, for whom, and why - without specifying how to build it.",
+      "review_status": "stable"
+    },
+    {
+      "id": "slack-message",
+      "name": "Slack Message",
+      "axis": "format",
+      "one_liner": "A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.",
+      "review_status": "stable"
+    }
+  ]
+}

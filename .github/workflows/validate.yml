@@ -35,6 +35,12 @@ jobs:
       - name: Run taxonomy validation
         run: python tools/validate.py
 
+      - name: Build indexes
+        run: python tools/build-indexes.py
+
+      - name: Check indexes are up to date
+        run: git diff --exit-code taxonomy.json docs/reference/index.md
+
       - name: Run markdownlint
         run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore _LOCAL --ignore docs/internal
         continue-on-error: true

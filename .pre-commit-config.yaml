@@ -21,6 +21,14 @@ repos:
         always_run: false
         files: ^taxonomy/
 
+      - id: build-indexes
+        name: Rebuild taxonomy.json and docs/reference/index.md
+        entry: python tools/build-indexes.py
+        language: python
+        pass_filenames: false
+        always_run: false
+        files: ^taxonomy/
+
       - id: no-em-dashes
         name: No em-dashes or en-dashes
         entry: python -c "import sys,re; [print(f'{f}: found em/en-dash') or sys.exit(1) for f in sys.argv[1:] if re.search('[–—]', open(f, encoding='utf-8').read())]"
