@@ -1,6 +1,13 @@
 {
-  "generated": "2026-05-14T05:44:41.200575+00:00",
+  "generated": "2026-05-15T05:51:21.947984+00:00",
   "entries": [
+    {
+      "id": "caregiver",
+      "name": "Caregiver",
+      "axis": "voice",
+      "one_liner": "A voice of practical compassion that names the difficulty before any reassurance and stays close to bodies, routines, and immediate next steps.",
+      "review_status": "stable"
+    },
     {
       "id": "coach",
       "name": "Coach",
@@ -37,6 +44,13 @@
       "review_status": "stable"
     },
     {
+      "id": "journalist",
+      "name": "Journalist",
+      "axis": "voice",
+      "one_liner": "A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.",
+      "review_status": "stable"
+    },
+    {
       "id": "operator",
       "name": "Operator",
       "axis": "voice",
@@ -65,6 +79,27 @@
       "review_status": "stable"
     },
     {
+      "id": "researcher",
+      "name": "Researcher",
+      "axis": "voice",
+      "one_liner": "A disciplined voice that treats writing as the presentation of evidence, hedging where the data is thin and committing where it is strong.",
+      "review_status": "stable"
+    },
+    {
+      "id": "senior-consultant",
+      "name": "Senior Consultant",
+      "axis": "voice",
+      "one_liner": "A polished advisory voice that diagnoses a situation against a named framework before recommending action, comfortable with hedged confidence.",
+      "review_status": "stable"
+    },
+    {
+      "id": "storyteller",
+      "name": "Storyteller",
+      "axis": "voice",
+      "one_liner": "A voice that carries meaning through character, scene, and concrete moment, trusting the reader to extract the principle from the specifics.",
+      "review_status": "stable"
+    },
+    {
       "id": "technical-writer",
       "name": "Technical Writer",
       "axis": "voice",
@@ -83,6 +118,27 @@
       "name": "Celebratory",
       "axis": "tone",
       "one_liner": "Marks genuine achievement by naming the specific thing, why it mattered, and inviting the reader to feel its weight - not hollow praise, not a list of everything at once.",
+      "review_status": "stable"
+    },
+    {
+      "id": "confessional",
+      "name": "Confessional",
+      "axis": "tone",
+      "one_liner": "The writer admits something about themselves - a specific failure, doubt, or learning, owned without performance.",
+      "review_status": "stable"
+    },
+    {
+      "id": "confident",
+      "name": "Confident",
+      "axis": "tone",
+      "one_liner": "The affect of someone who has thought about this and is ready to say so, without hedging or padding the claim.",
+      "review_status": "stable"
+    },
+    {
+      "id": "diplomatic",
+      "name": "Diplomatic",
+      "axis": "tone",
+      "one_liner": "Careful, face-saving communication that is soft on people and firm on positions, especially across power differentials.",
       "review_status": "stable"
     },
     {
@@ -121,10 +177,24 @@
       "review_status": "stable"
     },
     {
+      "id": "resolute",
+      "name": "Resolute",
+      "axis": "tone",
+      "one_liner": "The tone of having stopped deliberating - the decision is made and the writing is now about acting on it.",
+      "review_status": "stable"
+    },
+    {
       "id": "reverent",
       "name": "Reverent",
       "axis": "tone",
       "one_liner": "Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.",
+      "review_status": "stable"
+    },
+    {
+      "id": "skeptical",
+      "name": "Skeptical",
+      "axis": "tone",
+      "one_liner": "Measured doubt that refuses to commit ahead of the evidence and asks what would actually change the picture.",
       "review_status": "stable"
     },
     {
@@ -139,6 +209,13 @@
       "name": "Warm",
       "axis": "tone",
       "one_liner": "Communicates genuine care and personal regard for the reader - not flattery, but authentic human warmth.",
+      "review_status": "stable"
+    },
+    {
+      "id": "chronological-narrative",
+      "name": "Chronological Narrative",
+      "axis": "style",
+      "one_liner": "Time order is the primary organizing principle - first this, then that, then what came after - with no thematic restructuring.",
       "review_status": "stable"
     },
     {
@@ -163,10 +240,24 @@
       "review_status": "stable"
     },
     {
+      "id": "definitional",
+      "name": "Definitional",
+      "axis": "style",
+      "one_liner": "Leads with a definition and elaborates through its facets, edge cases, and what-it-is-not - the definition is the load-bearing first move.",
+      "review_status": "stable"
+    },
+    {
       "id": "devotional-reflection",
       "name": "Devotional Reflection",
       "axis": "style",
       "one_liner": "A slow, inward-turning movement that takes a scriptural or spiritual observation and follows it into personal and communal life.",
+      "review_status": "stable"
+    },
+    {
+      "id": "dialectic",
+      "name": "Dialectic",
+      "axis": "style",
+      "one_liner": "Thesis, antithesis, synthesis - states the position, states the strongest opposing position, and moves to a synthesis that takes both seriously.",
       "review_status": "stable"
     },
     {
@@ -181,6 +272,13 @@
       "name": "Executive Summary",
       "axis": "style",
       "one_liner": "Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.",
+      "review_status": "stable"
+    },
+    {
+      "id": "frequently-asked-questions",
+      "name": "Frequently Asked Questions",
+      "axis": "style",
+      "one_liner": "Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.",
       "review_status": "stable"
     },
     {
@@ -212,6 +310,13 @@
       "review_status": "stable"
     },
     {
+      "id": "socratic-inquiry",
+      "name": "Socratic Inquiry",
+      "axis": "style",
+      "one_liner": "Advances by asking questions the reader answers in their own head - the conclusions are inferences, not assertions.",
+      "review_status": "stable"
+    },
+    {
       "id": "adr",
       "name": "Architecture Decision Record",
       "axis": "format",
@@ -223,6 +328,13 @@
       "name": "Blog Post (Long Form)",
       "axis": "format",
       "one_liner": "A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.",
+      "review_status": "stable"
+    },
+    {
+      "id": "changelog-entry",
+      "name": "Changelog Entry",
+      "axis": "format",
+      "one_liner": "A structured release entry naming what was added, changed, fixed, or removed in a given version - grouped by impact class under a version heading.",
       "review_status": "stable"
     },
     {
@@ -268,6 +380,13 @@
       "review_status": "stable"
     },
     {
+      "id": "readme",
+      "name": "README",
+      "axis": "format",
+      "one_liner": "The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.",
+      "review_status": "stable"
+    },
+    {
       "id": "slack-message",
       "name": "Slack Message",
       "axis": "format",
@@ -275,10 +394,31 @@
       "review_status": "stable"
     },
     {
+      "id": "status-report",
+      "name": "Status Report",
+      "axis": "format",
+      "one_liner": "A periodic async update covering progress since the last report, what is next, and what is blocked - the working unit of distributed-team visibility.",
+      "review_status": "stable"
+    },
+    {
       "id": "technical-reference",
       "name": "Technical Reference",
       "axis": "format",
       "one_liner": "A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.",
+      "review_status": "stable"
+    },
+    {
+      "id": "tweet-thread",
+      "name": "Tweet Thread",
+      "axis": "format",
+      "one_liner": "A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.",
+      "review_status": "stable"
+    },
+    {
+      "id": "whitepaper",
+      "name": "Whitepaper",
+      "axis": "format",
+      "one_liner": "A long-form authoritative document presenting a position, framework, or analysis - the format for setting position-of-record on a substantive topic.",
       "review_status": "stable"
     }
   ]
