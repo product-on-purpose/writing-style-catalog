@@ -383,6 +383,10 @@ def check_examples(id_map: dict[str, tuple[str, dict]]) -> list[str]:
         # are documentation, not examples. Skip them here.
         if md_file.name == "README.md":
             continue
+        # Diff-pair files have their own frontmatter shape (entry_a / entry_b,
+        # not entry_id) and are validated separately if at all.
+        if "diff-pairs" in md_file.parts:
+            continue
         rel = md_file.relative_to(REPO_ROOT)
         try:
             fm = _extract_frontmatter(md_file)
