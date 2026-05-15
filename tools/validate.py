@@ -379,6 +379,10 @@ def check_examples(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 
     example_count = 0
     for md_file in sorted(EXAMPLES_DIR.rglob("*.md")):
+        # Recipe definition files live alongside horizontal-slice examples but
+        # are documentation, not examples. Skip them here.
+        if md_file.name == "README.md":
+            continue
         rel = md_file.relative_to(REPO_ROOT)
         try:
             fm = _extract_frontmatter(md_file)
