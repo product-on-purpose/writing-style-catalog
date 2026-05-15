@@ -1,5 +1,5 @@
 ---
-entry_id: tone-encouraging
+entry_id: encouraging
 axis: tone
 topic_slug: morning-routine
 topic_label: How to start a morning routine

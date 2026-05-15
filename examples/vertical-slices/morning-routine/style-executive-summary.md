@@ -1,5 +1,5 @@
 ---
-entry_id: style-executive-summary
+entry_id: executive-summary
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

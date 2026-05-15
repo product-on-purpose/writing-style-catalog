@@ -1,5 +1,5 @@
 ---
-entry_id: style-narrative-case-study
+entry_id: narrative-case-study
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

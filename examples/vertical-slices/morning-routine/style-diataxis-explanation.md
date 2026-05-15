@@ -1,5 +1,5 @@
 ---
-entry_id: style-diataxis-explanation
+entry_id: diataxis-explanation
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

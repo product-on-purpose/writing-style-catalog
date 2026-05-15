@@ -1,5 +1,5 @@
 ---
-entry_id: style-problem-solution
+entry_id: problem-solution
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

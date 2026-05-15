@@ -1,5 +1,5 @@
 ---
-entry_id: style-classical-argument
+entry_id: classical-argument
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

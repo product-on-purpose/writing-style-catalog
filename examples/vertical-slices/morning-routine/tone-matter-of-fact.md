@@ -1,5 +1,5 @@
 ---
-entry_id: tone-matter-of-fact
+entry_id: matter-of-fact
 axis: tone
 topic_slug: morning-routine
 topic_label: How to start a morning routine

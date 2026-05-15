@@ -1,5 +1,5 @@
 ---
-entry_id: style-decision-log
+entry_id: decision-log
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

@@ -1,5 +1,5 @@
 ---
-entry_id: style-comparison-contrast
+entry_id: comparison-contrast
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

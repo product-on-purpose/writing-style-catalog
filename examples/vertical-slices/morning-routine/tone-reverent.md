@@ -1,5 +1,5 @@
 ---
-entry_id: tone-reverent
+entry_id: reverent
 axis: tone
 topic_slug: morning-routine
 topic_label: How to start a morning routine

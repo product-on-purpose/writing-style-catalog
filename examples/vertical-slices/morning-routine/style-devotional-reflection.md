@@ -1,5 +1,5 @@
 ---
-entry_id: style-devotional-reflection
+entry_id: devotional-reflection
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

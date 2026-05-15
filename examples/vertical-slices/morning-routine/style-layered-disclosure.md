@@ -1,5 +1,5 @@
 ---
-entry_id: style-layered-disclosure
+entry_id: layered-disclosure
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

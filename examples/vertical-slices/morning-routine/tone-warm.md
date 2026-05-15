@@ -1,5 +1,5 @@
 ---
-entry_id: tone-warm
+entry_id: warm
 axis: tone
 topic_slug: morning-routine
 topic_label: How to start a morning routine

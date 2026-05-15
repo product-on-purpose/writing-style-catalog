@@ -1,5 +1,5 @@
 ---
-entry_id: style-how-to-tutorial
+entry_id: how-to-tutorial
 axis: style
 topic_slug: morning-routine
 topic_label: How to start a morning routine

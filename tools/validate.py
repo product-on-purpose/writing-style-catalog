@@ -359,6 +359,66 @@ def check_no_em_dashes() -> list[str]:
     return errors
 
 
+def check_examples(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Validate example files: frontmatter parses, matches example schema,
+    and entry_id resolves to a known entry in the catalog."""
+    print("[CHECK] Example file validation...")
+    errors = []
+
+    example_schema_path = SCHEMAS_DIR / "example.schema.json"
+    if not example_schema_path.exists():
+        errors.append("[ERROR] schemas/example.schema.json: schema file not found")
+        return errors
+
+    example_schema = _load_schema(example_schema_path)
+    known_ids = set(id_map.keys())
+
+    if not EXAMPLES_DIR.exists():
+        print("[PASS] Example file validation: 0 errors (no examples directory)")
+        return errors
+
+    example_count = 0
+    for md_file in sorted(EXAMPLES_DIR.rglob("*.md")):
+        rel = md_file.relative_to(REPO_ROOT)
+        try:
+            fm = _extract_frontmatter(md_file)
+        except Exception as exc:
+            errors.append(f"[ERROR] {rel}: frontmatter parse error: {exc}")
+            continue
+        if fm is None:
+            errors.append(f"[ERROR] {rel}: missing or unparseable frontmatter")
+            continue
+
+        example_count += 1
+
+        try:
+            jsonschema.validate(instance=fm, schema=example_schema)
+        except ValidationError as exc:
+            errors.append(f"[ERROR] {rel}: example schema validation failed: {exc.message}")
+            continue
+
+        entry_id = fm.get("entry_id")
+        if entry_id and entry_id not in known_ids:
+            errors.append(
+                f"[ERROR] {rel}: entry_id '{entry_id}' does not match any entry in the catalog"
+            )
+
+        fm_axis = fm.get("axis")
+        if entry_id in known_ids:
+            actual_axis, _ = id_map[entry_id]
+            if fm_axis and fm_axis != actual_axis:
+                errors.append(
+                    f"[ERROR] {rel}: axis '{fm_axis}' does not match entry's actual axis '{actual_axis}'"
+                )
+
+    count = len(errors)
+    if count == 0:
+        print(f"[PASS] Example file validation: 0 errors ({example_count} examples checked)")
+    for e in errors:
+        print(e)
+    return errors
+
+
 def check_review_status(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Entries with review_status 'draft' produce a warning (not an error)."""
     print("[CHECK] Review status warnings...")
@@ -397,6 +457,12 @@ def run_all_checks() -> list[str]:
         print("[INFO] No entries found - skipping schema and cross-reference checks")
 
     all_errors += check_no_em_dashes()
+
+    if id_map:
+        all_errors += check_examples(id_map)
+    else:
+        print("[INFO] No entries found - skipping example validation")
+
     check_review_status(id_map)
 
     print()
