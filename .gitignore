@@ -43,6 +43,7 @@ Thumbs.db
 .vscode/
 *.sublime-project
 *.sublime-workspace
+.favorites.json
 
 # Local research and drafts (repo-specific)
 .memsearch/
