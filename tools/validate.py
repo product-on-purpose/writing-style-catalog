@@ -20,8 +20,11 @@ from pathlib import Path
 try:
     import jsonschema
     from jsonschema import validate as jschema_validate, ValidationError
+    from jsonschema import Draft202012Validator
+    from referencing import Registry, Resource
+    from referencing.jsonschema import DRAFT202012
 except ImportError:
-    print("[ERROR] jsonschema is not installed. Run: pip install jsonschema")
+    print("[ERROR] jsonschema and referencing are required. Run: pip install jsonschema referencing")
     sys.exit(1)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -166,14 +169,20 @@ def _load_schema(schema_path: Path) -> dict:
     return json.loads(schema_path.read_text(encoding="utf-8"))
 
 
-def _resolve_ref(schema: dict, schemas_dir: Path) -> dict:
-    """Inline $ref to entry.universal.schema.json so jsonschema can resolve it."""
-    # jsonschema needs a resolver or inlined refs; we build a store
-    store = {}
-    for f in schemas_dir.glob("*.schema.json"):
+def _build_schema_registry() -> Registry:
+    """Build a referencing.Registry containing every local schema file.
+
+    Each schema's $id is the canonical https://... URI used in $ref references.
+    The registry maps that URI to the schema content, so Draft202012Validator
+    can resolve cross-schema refs without network calls.
+    """
+    registry = Registry()
+    for f in SCHEMAS_DIR.glob("*.schema.json"):
+        schema_dict = json.loads(f.read_text(encoding="utf-8"))
         uri = f"https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/{f.name}"
-        store[uri] = json.loads(f.read_text(encoding="utf-8"))
-    return store
+        resource = Resource(contents=schema_dict, specification=DRAFT202012)
+        registry = registry.with_resource(uri=uri, resource=resource)
+    return registry
 
 
 def _iter_entries():
@@ -264,11 +273,7 @@ def check_schema_validation(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     print("[CHECK] JSON Schema validation...")
     errors = []
 
-    # Build jsonschema resolver store
-    schema_store = {}
-    for f in SCHEMAS_DIR.glob("*.schema.json"):
-        uri = f"https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/{f.name}"
-        schema_store[uri] = json.loads(f.read_text(encoding="utf-8"))
+    registry = _build_schema_registry()
 
     for entry_id, (axis, fm) in id_map.items():
         schema_path = AXIS_SCHEMAS.get(axis)
@@ -277,16 +282,11 @@ def check_schema_validation(id_map: dict[str, tuple[str, dict]]) -> list[str]:
             continue
 
         schema = _load_schema(schema_path)
-        resolver = jsonschema.RefResolver(
-            base_uri=f"https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/{schema_path.name}",
-            referrer=schema,
-            store=schema_store,
-        )
+        validator = Draft202012Validator(schema=schema, registry=registry)
 
-        entry_path = AXES[axis] / entry_id / "ENTRY.md"
         rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
         try:
-            jsonschema.validate(instance=fm, schema=schema, resolver=resolver)
+            validator.validate(fm)
         except ValidationError as exc:
             errors.append(f"[ERROR] {rel}: schema validation failed: {exc.message}")
 
