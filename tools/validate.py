@@ -427,6 +427,87 @@ def check_examples(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     return errors
 
 
+def check_diff_pairs(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Validate diff-pair files: frontmatter parses, matches diff-pair schema,
+    entry_a and entry_b resolve to known entries, both are on the declared axis,
+    and the two entries differ."""
+    print("[CHECK] Diff-pair file validation...")
+    errors = []
+
+    diff_pair_schema_path = SCHEMAS_DIR / "diff-pair.schema.json"
+    if not diff_pair_schema_path.exists():
+        errors.append("[ERROR] schemas/diff-pair.schema.json: schema file not found")
+        return errors
+
+    diff_pair_schema = _load_schema(diff_pair_schema_path)
+    known_ids = set(id_map.keys())
+
+    diff_pairs_dir = EXAMPLES_DIR / "diff-pairs"
+    if not diff_pairs_dir.exists():
+        print("[PASS] Diff-pair file validation: 0 errors (no diff-pairs directory)")
+        return errors
+
+    diff_pair_count = 0
+    for md_file in sorted(diff_pairs_dir.rglob("*.md")):
+        if md_file.name == "README.md":
+            continue
+        rel = md_file.relative_to(REPO_ROOT)
+        try:
+            fm = _extract_frontmatter(md_file)
+        except Exception as exc:
+            errors.append(f"[ERROR] {rel}: frontmatter parse error: {exc}")
+            continue
+        if fm is None:
+            errors.append(f"[ERROR] {rel}: missing or unparseable frontmatter")
+            continue
+
+        diff_pair_count += 1
+
+        try:
+            jsonschema.validate(instance=fm, schema=diff_pair_schema)
+        except ValidationError as exc:
+            errors.append(f"[ERROR] {rel}: diff-pair schema validation failed: {exc.message}")
+            continue
+
+        entry_a = fm.get("entry_a")
+        entry_b = fm.get("entry_b")
+        axis_varied = fm.get("axis_varied")
+
+        if entry_a and entry_a not in known_ids:
+            errors.append(
+                f"[ERROR] {rel}: entry_a '{entry_a}' does not match any entry in the catalog"
+            )
+        if entry_b and entry_b not in known_ids:
+            errors.append(
+                f"[ERROR] {rel}: entry_b '{entry_b}' does not match any entry in the catalog"
+            )
+
+        if entry_a and entry_b and entry_a == entry_b:
+            errors.append(
+                f"[ERROR] {rel}: entry_a and entry_b are identical ('{entry_a}'); a diff-pair must contrast two distinct entries"
+            )
+
+        if entry_a in known_ids and axis_varied:
+            actual_axis_a, _ = id_map[entry_a]
+            if actual_axis_a != axis_varied:
+                errors.append(
+                    f"[ERROR] {rel}: entry_a '{entry_a}' is on axis '{actual_axis_a}' but axis_varied is '{axis_varied}'"
+                )
+        if entry_b in known_ids and axis_varied:
+            actual_axis_b, _ = id_map[entry_b]
+            if actual_axis_b != axis_varied:
+                errors.append(
+                    f"[ERROR] {rel}: entry_b '{entry_b}' is on axis '{actual_axis_b}' but axis_varied is '{axis_varied}'"
+                )
+
+    count = len(errors)
+    if count == 0:
+        print(f"[PASS] Diff-pair file validation: 0 errors ({diff_pair_count} diff-pairs checked)")
+    for e in errors:
+        print(e)
+    return errors
+
+
 def check_review_status(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Entries with review_status 'draft' produce a warning (not an error)."""
     print("[CHECK] Review status warnings...")
@@ -468,8 +549,9 @@ def run_all_checks() -> list[str]:
 
     if id_map:
         all_errors += check_examples(id_map)
+        all_errors += check_diff_pairs(id_map)
     else:
-        print("[INFO] No entries found - skipping example validation")
+        print("[INFO] No entries found - skipping example and diff-pair validation")
 
     check_review_status(id_map)
 

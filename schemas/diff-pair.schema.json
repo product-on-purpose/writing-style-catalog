@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/diff-pair.schema.json",
+  "title": "Diff Pair File Schema",
+  "description": "Schema for the YAML frontmatter of diff-pair files in examples/diff-pairs/. A diff-pair contrasts two taxonomy entries on the same axis applied to the same topic, with every other axis held constant.",
+  "type": "object",
+  "required": [
+    "diff_pair_id",
+    "topic_slug",
+    "topic_label",
+    "axis_varied",
+    "entry_a",
+    "entry_b",
+    "review_status"
+  ],
+  "properties": {
+    "diff_pair_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug uniquely identifying this diff pair. Convention: <axis>-<entry_a>-vs-<entry_b>-<topic_slug>."
+    },
+    "topic_slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug of the anchor topic the pair is rendered on (e.g., async-standups)."
+    },
+    "topic_label": {
+      "type": "string",
+      "description": "Human-readable topic name."
+    },
+    "axis_varied": {
+      "type": "string",
+      "enum": ["voice", "tone", "style", "format"],
+      "description": "The axis whose value differs between entry_a and entry_b. All other axes are held constant."
+    },
+    "entry_a": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug of the first taxonomy entry being contrasted."
+    },
+    "entry_b": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Slug of the second taxonomy entry being contrasted."
+    },
+    "generator": {
+      "type": "string",
+      "description": "Path to the script or process that produced this file, if applicable."
+    },
+    "review_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "stable", "reference-quality"]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date when the diff-pair was generated."
+    },
+    "author_type": {
+      "type": "string",
+      "enum": ["human", "llm", "hybrid"],
+      "description": "Who produced the diff-pair body. human = written by a person; llm = fully AI-generated; hybrid = AI-generated and then edited by a human."
+    },
+    "llm_model": {
+      "type": "string",
+      "description": "Model identifier (relevant when author_type is llm or hybrid)."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional curator notes about why this pair was chosen or what it teaches."
+    }
+  }
+}
