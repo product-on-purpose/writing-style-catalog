@@ -31,6 +31,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
 SCHEMAS_DIR = REPO_ROOT / "schemas"
 EXAMPLES_DIR = REPO_ROOT / "examples"
+DOCS_DIR = REPO_ROOT / "docs"
 
 AXES = {
     "voice": TAXONOMY_ROOT / "voices",
@@ -326,18 +327,26 @@ def check_cross_references(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 
 
 def check_no_em_dashes() -> list[str]:
-    """Scan all .md files in taxonomy/ and examples/ for em-dashes and en-dashes."""
+    """Scan .md and .html files in taxonomy/, examples/, and docs/ for em/en-dashes."""
     print("[CHECK] No em-dash / en-dash linting...")
     errors = []
-    search_roots = [TAXONOMY_ROOT, EXAMPLES_DIR]
+    # (search_root, file_glob_patterns)
+    search_targets = [
+        (TAXONOMY_ROOT, ("*.md",)),
+        (EXAMPLES_DIR, ("*.md",)),
+        (DOCS_DIR, ("*.md", "*.html")),
+    ]
 
-    for root in search_roots:
+    for root, patterns in search_targets:
         if not root.exists():
             continue
-        for md_file in sorted(root.rglob("*.md")):
-            rel = md_file.relative_to(REPO_ROOT)
+        files = []
+        for pattern in patterns:
+            files.extend(root.rglob(pattern))
+        for src_file in sorted(set(files)):
+            rel = src_file.relative_to(REPO_ROOT)
             try:
-                lines = md_file.read_text(encoding="utf-8").splitlines()
+                lines = src_file.read_text(encoding="utf-8").splitlines()
             except Exception as exc:
                 errors.append(f"[ERROR] {rel}: could not read file: {exc}")
                 continue

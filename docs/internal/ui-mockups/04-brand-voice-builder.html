@@ -878,7 +878,7 @@
       const name = c.querySelector('span:first-child').textContent;
       const item = document.createElement('div');
       item.className = 'preview-voice-item';
-      item.innerHTML = `<span>${i === 0 ? '<em>'+name+'</em>' : name}</span><span class="preview-voice-pct">${tags[i]} &middot; ${pcts[i] || '—'}%</span>`;
+      item.innerHTML = `<span>${i === 0 ? '<em>'+name+'</em>' : name}</span><span class="preview-voice-pct">${tags[i]} &middot; ${pcts[i] || '-'}%</span>`;
       list.appendChild(item);
     });
   }
@@ -910,7 +910,7 @@
 
   // Brand name update
   document.getElementById('b-name')?.addEventListener('input', e => {
-    document.getElementById('preview-name').textContent = e.target.value || '—';
+    document.getElementById('preview-name').textContent = e.target.value || '-';
   });
   document.getElementById('b-mission')?.addEventListener('input', e => {
     document.getElementById('preview-mission').textContent = '"' + (e.target.value || '') + '"';
