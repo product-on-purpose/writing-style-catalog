@@ -6,11 +6,16 @@ A composable catalog of writing instructions organized along three orthogonal ax
 
 ## Quick Start
 
-```bash
-# Install the plugin
-claude plugin install product-on-purpose/writing-style-library
+Install through the Product on Purpose marketplace, then compose. Run these inside Claude Code:
 
-# Compose a writing instruction from multiple axes
+```
+/plugin marketplace add product-on-purpose/agent-plugins
+/plugin install writing-style-library@product-on-purpose
+```
+
+Then compose a writing instruction from any combination of axes:
+
+```
 /writing-style-library:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
@@ -40,21 +45,24 @@ Format entries define the visual and structural container: headings, bullet dept
 
 ## Current Status
 
-**Phase 0 / Milestone 1 - Foundation**
+**v0.1.0 - initial catalog release**
 
-- Repository scaffold and root documentation files
-- Five seed entries per axis (in progress)
-- Async-standups anchor topic for vertical-slice examples
-- `compose-instruction` skill (in progress)
+- 60 taxonomy entries (15 each across Voice, Tone, Style, Format)
+- 195 worked examples across three anchor topics, plus 12 diff-pairs and 5 horizontal-slice recipes
+- Working `compose-instruction` skill
+- Validation suite (`tools/validate.py`) wired into CI
 
-See [ROADMAP.md](ROADMAP.md) for upcoming phases.
+Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 
 ---
 
 ## Installation
 
-```bash
-claude plugin install product-on-purpose/writing-style-library
+Inside Claude Code:
+
+```
+/plugin marketplace add product-on-purpose/agent-plugins
+/plugin install writing-style-library@product-on-purpose
 ```
 
 Requires Claude Code. The plugin adds the `writing-style-library:compose-instruction` skill to your session.

@@ -1,17 +1,23 @@
 {
-  "plugin_id": "product-on-purpose/writing-style-library",
-  "display_name": "Writing Style Library",
-  "short_description": "Composable writing instructions organized along Voice and Tone, Style, and Format axes.",
-  "long_description": "Compose precise writing instructions for any LLM by selecting from a curated catalog of voice, tone, style, and format entries. Ship v0.1.0 - 5 entries per axis, async-standups anchor topic, compose-instruction skill.",
-  "categories": ["writing", "productivity", "content"],
-  "keywords": ["writing", "style", "voice", "tone", "format", "composition", "taxonomy", "prompts"],
-  "status": "experimental",
-  "author": {
-    "name": "Jonathan Prisant",
-    "github": "product-on-purpose"
+  "name": "writing-style-library-marketplace",
+  "owner": {
+    "name": "product-on-purpose",
+    "url": "https://github.com/product-on-purpose"
   },
-  "license": "Apache-2.0",
-  "content_license": "CC-BY-4.0",
-  "repository": "https://github.com/product-on-purpose/writing-style-library",
-  "min_claude_code_version": "2.0.0"
+  "description": "Composable writing instructions for AI agents, organized on four orthogonal axes (Voice, Tone, Style, Format).",
+  "plugins": [
+    {
+      "name": "writing-style-library",
+      "description": "Composable writing instructions on four orthogonal axes: Voice, Tone, Style, and Format. Select one entry per axis and the compose-instruction skill assembles a ready-to-paste prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. v0.1.0 ships 60 curated entries (15 per axis), 195 worked examples across three anchor topics, 12 diff-pairs, and 5 horizontal-slice recipes. Follows the agentskills.io specification.",
+      "version": "0.1.0",
+      "source": { "source": "url", "url": "https://github.com/product-on-purpose/writing-style-library.git", "ref": "main" },
+      "author": {
+        "name": "product-on-purpose",
+        "url": "https://github.com/product-on-purpose"
+      },
+      "homepage": "https://github.com/product-on-purpose/writing-style-library",
+      "license": "Apache-2.0",
+      "keywords": ["writing", "style", "voice", "tone", "format", "composition", "taxonomy", "agent-skills", "agentskills-io"]
+    }
+  ]
 }

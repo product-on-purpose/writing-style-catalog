@@ -7,20 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added - Milestone 1: Foundation
+## [0.1.0] - 2026-05-31
 
-- Repository directory scaffold with all top-level directories and .gitkeep placeholders
-- README.md with project overview, three-axis model description, quick start, project structure table, and license information
-- CONTRIBUTING.md with two contribution paths, dev loop, entry authoring checklist, PR requirements, and license agreement
-- AGENTS.md with LLM-specific instructions for working in this repo
-- LICENSE file (Apache-2.0 for code)
-- NOTICE file with dual-license attribution (Apache-2.0 for code, CC-BY-4.0 for content)
-- ROADMAP.md with four-phase plan
-- CHANGELOG.md (this file)
-- .gitignore for Python, Node, MkDocs, and environment files
-- .editorconfig for consistent formatting across editors
-- mkdocs.yml with Material theme and full navigation structure
-- package.json stub with validate and build-site scripts
-- docs/index.md MkDocs home page
-- docs/concepts/three-axis-model.md concepts page
-- docs/how-to/compose-instruction.md how-to guide
+First catalog release, distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`).
+
+### Added
+
+- Three-axis composable model (Voice and Tone, Style, Format) with four catalog directories under `taxonomy/`
+- 60 taxonomy entries, 15 per axis, each with frontmatter, language patterns, cross-references (`pairs_well_with`, `avoid_with`, `confusable_with`), `when_to_use` / `when_not_to_use`, and an `llm_instruction_phrasing` block
+- `compose-instruction` skill (`skills/writing-instruction-builder/`) that assembles a prompt prefix from selected axis entries
+- 195 worked examples across three anchor topics (async-standups, morning-routine, service-database-choice), 12 diff-pairs, and 5 horizontal-slice recipes
+- JSON Schemas for all entry types and a 9-check validation suite (`tools/validate.py`) plus an index builder (`tools/build-indexes.py`), both wired into CI
+- Dual license: Apache-2.0 for code, CC-BY-4.0 for content (see `NOTICE`)
+- Repository scaffold, root documentation, contribution guide, and eight Architecture Decision Records
+
+### Notes
+
+- Distributed via the Product on Purpose marketplace registry and a self-hosted single-plugin marketplace in `.claude-plugin/marketplace.json`
+- This is an early catalog release; see `ROADMAP.md` for what is planned next

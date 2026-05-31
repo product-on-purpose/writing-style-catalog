@@ -1,22 +1,24 @@
 {
   "name": "writing-style-library",
   "version": "0.1.0",
-  "description": "A composable catalog of writing instructions organized along three axes: Voice and Tone, Style/Mode/Genre, and Format/Output Structure.",
-  "author": "Jonathan Prisant",
-  "license": "Apache-2.0",
+  "description": "Composable writing instructions on four orthogonal axes: Voice (persistent writer identity), Tone (situational register), Style (rhetorical and cognitive pattern), and Format (output structure). Select one entry per axis and the compose-instruction skill assembles a ready-to-paste prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. v0.1.0 ships 60 curated entries (15 per axis), 195 worked examples across three anchor topics, 12 diff-pairs, and 5 horizontal-slice recipes. Follows the agentskills.io specification.",
   "homepage": "https://github.com/product-on-purpose/writing-style-library",
-  "skills": [
-    {
-      "name": "compose-instruction",
-      "path": "skills/writing-instruction-builder",
-      "description": "Compose a writing instruction from voice, tone, style, and format axis entries"
-    }
-  ],
-  "resources": [
-    {
-      "name": "taxonomy",
-      "path": "skills/writing-instruction-builder/resources/taxonomy.json",
-      "description": "Full taxonomy catalog as a build artifact"
-    }
+  "repository": "https://github.com/product-on-purpose/writing-style-library",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Jonathan Prisant",
+    "url": "https://github.com/product-on-purpose"
+  },
+  "keywords": [
+    "writing",
+    "style",
+    "voice",
+    "tone",
+    "format",
+    "composition",
+    "taxonomy",
+    "prompts",
+    "agent-skills",
+    "agentskills-io"
   ]
 }
