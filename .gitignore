@@ -56,3 +56,6 @@ tests/golden-outputs/*.actual.*
 
 # Astro
 .astro/
+
+# Agent working context - session logs are local-only
+_agent-context/session-log/
