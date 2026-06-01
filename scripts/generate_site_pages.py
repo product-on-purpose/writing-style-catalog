@@ -437,3 +437,64 @@ def render_examples_topic_index(catalog: dict, topic: str) -> str:
     parts = [f"Vertical-slice examples for this topic, one per entry. "
              f"Each is also embedded on its entry's reference page.", ""]
     return _page(topic, f"Examples for the {topic} anchor topic.", "\n".join(parts))
+
+
+def _write(out_root: Path, rel: str, content: str) -> None:
+    path = out_root / rel
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
+def generate(out_root: Path) -> int:
+    catalog = load_catalog()
+    pairs = load_diff_pairs()
+    n = 0
+
+    # Entry pages (.mdx because they import components / use <Tabs>)
+    for axis in AXES:
+        for entry in catalog["by_axis"][axis]:
+            rel = f"reference/{AXIS_DIR[axis]}/{entry['id']}.mdx"
+            _write(out_root, rel, render_entry_page(catalog, pairs, entry))
+            n += 1
+    _write(out_root, "reference/index.md", render_reference_index(catalog))
+
+    # Diff-pair pages (.mdx, import DiffPair)
+    for dp in pairs:
+        _write(out_root, f"examples/diff-pairs/{dp['diff_pair_id']}.mdx",
+               render_diff_pair_page(catalog, dp))
+        n += 1
+    _write(out_root, "examples/diff-pairs/index.md", render_diff_pair_index(pairs))
+
+    # Example topic index pages
+    for topic in TOPICS:
+        _write(out_root, f"examples/{topic}/index.md",
+               render_examples_topic_index(catalog, topic))
+
+    # Recipes
+    for slug in list_recipes():
+        _write(out_root, f"recipes/{slug}.md", render_recipe_page(catalog, slug))
+        n += 1
+    _write(out_root, "recipes/index.md", render_recipe_index(catalog))
+
+    # Templates
+    for e in catalog["by_axis"]["format"]:
+        if e.get("canonical_template"):
+            _write(out_root, f"templates/{e['id']}.md", render_template_page(e))
+            n += 1
+    _write(out_root, "templates/index.md", render_template_index(catalog))
+
+    return n
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(DOCS), help="output docs root")
+    args = ap.parse_args()
+    out_root = Path(args.out)
+    count = generate(out_root)
+    print(f"[OK] generated {count} catalog pages into {out_root}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
