@@ -5,7 +5,9 @@
   "private": true,
   "type": "module",
   "license": "Apache-2.0",
-  "engines": { "node": ">=22.12.0" },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "validate": "python tools/validate.py",
     "generate": "python scripts/generate_site_pages.py",
@@ -15,9 +17,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
     "@astrojs/starlight": "~0.39.0",
     "astro": "^6.3.0",
     "astro-mermaid": "~2.0.1",
+    "remark-gfm": "^4.0.1",
     "sharp": "^0.34.5"
   },
   "overrides": {
