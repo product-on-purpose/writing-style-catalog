@@ -1,5 +1,5 @@
-mkdocs>=1.5.0
-mkdocs-material>=9.5.0
-pymdown-extensions>=10.0
+pyyaml>=6.0
+jsonschema>=4.18.0
+referencing>=0.30.0
+pytest>=8.0.0
 pre-commit>=3.0.0
-jsonschema>=4.0.0
