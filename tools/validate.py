@@ -15,6 +15,7 @@ Usage:
 import json
 import re
 import sys
+import yaml
 from pathlib import Path
 
 try:
@@ -54,99 +55,6 @@ EN_DASH = "–"
 
 
 # ---------------------------------------------------------------------------
-# YAML frontmatter parser (adapted from skills/writing-instruction-builder/
-# scripts/build-instruction.py)
-# ---------------------------------------------------------------------------
-
-def _parse_simple_yaml(text: str) -> dict:
-    """Parse simple YAML frontmatter sufficient for taxonomy entry files.
-
-    Handles: scalar key-value, multi-line lists (  - item), and YAML
-    block scalars (> folded and | literal) for multi-line string fields.
-    """
-    result = {}
-    current_key = None
-    current_list = None
-    block_key = None
-    block_lines = []
-    block_style = None  # ">" or "|"
-
-    def flush_block():
-        nonlocal block_key, block_lines, block_style
-        if block_key is None:
-            return
-        if block_style == "|":
-            result[block_key] = "\n".join(block_lines).strip()
-        else:  # ">" folded: join with space, collapse newlines
-            result[block_key] = " ".join(line for line in block_lines if line).strip()
-        block_key = None
-        block_lines = []
-        block_style = None
-
-    def flush_list():
-        nonlocal current_key, current_list
-        if current_list is not None and current_key is not None:
-            result[current_key] = current_list
-        current_key = None
-        current_list = None
-
-    for line in text.split("\n"):
-        # Inside a block scalar: collect indented lines
-        if block_key is not None:
-            if line.startswith("  ") or (line.strip() == "" and block_lines):
-                block_lines.append(line.strip())
-                continue
-            else:
-                # Block ended
-                flush_block()
-                # Fall through to process this line normally
-
-        # Inside a list: collect list items
-        if current_list is not None and line.startswith("  - "):
-            current_list.append(line[4:].strip())
-            continue
-
-        # Blank line: flush pending state
-        if not line.strip():
-            if current_list is not None:
-                flush_list()
-            continue
-
-        # Top-level key
-        if ":" in line and not line.startswith(" "):
-            flush_list()
-            key, _, value = line.partition(":")
-            key = key.strip()
-            value = value.strip()
-
-            if value in (">", "|"):
-                block_key = key
-                block_style = value
-                block_lines = []
-            elif value == "":
-                current_key = key
-                current_list = []
-            elif value.startswith("["):
-                items = value.strip("[]").split(",")
-                result[key] = [i.strip().strip('"').strip("'") for i in items if i.strip()]
-            else:
-                str_val = value.strip('"').strip("'")
-                # Coerce to numeric types if applicable
-                if str_val.lstrip('-').isdigit():
-                    result[key] = int(str_val)
-                elif str_val.replace('.', '', 1).lstrip('-').isdigit() and str_val.count('.') == 1:
-                    result[key] = float(str_val)
-                else:
-                    result[key] = str_val
-
-    # Flush any pending state at end
-    flush_block()
-    flush_list()
-
-    return result
-
-
-# ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 
@@ -162,7 +70,11 @@ def _extract_frontmatter(entry_md_path: Path) -> dict | None:
     if len(parts) < 3:
         return None
     frontmatter_text = parts[1].strip()
-    return _parse_simple_yaml(frontmatter_text)
+    try:
+        data = yaml.safe_load(frontmatter_text.replace("\r\n", "\n").replace("\r", "\n"))
+    except yaml.YAMLError:
+        return None
+    return data if isinstance(data, dict) else None
 
 
 def _load_schema(schema_path: Path) -> dict:
