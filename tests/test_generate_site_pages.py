@@ -117,6 +117,27 @@ def test_parse_diff_pair_keeps_nested_h2_in_passages():
     assert "History." in dp["passage_b"]
 
 
+def test_mdx_escape_prose_escapes_outside_code():
+    src = "Email <a@b.com> and a brace {x}.\n\n`<code>` stays.\n\n```\n<raw> {kept}\n```\n"
+    out = gsp.mdx_escape_prose(src)
+    assert "&lt;a@b.com&gt;" not in out  # we only escape < and {, not >
+    assert "&lt;a@b.com>" in out         # the < is escaped, > left as-is
+    assert "&lbrace;x}" in out           # the { is escaped
+    assert "`<code>`" in out             # inline code span untouched
+    assert "<raw> {kept}" in out         # fenced code untouched
+
+
+def test_render_entry_page_is_mdx_safe_banner_and_examples():
+    cat = gsp.load_catalog()
+    pairs = gsp.load_diff_pairs()
+    md = gsp.render_entry_page(cat, pairs, cat["by_id"]["email"])
+    # MDX comment form, not HTML comment
+    assert "{/* GENERATED" in md
+    assert "<!--" not in md
+    # the email angle-address is escaped in the embedded example
+    assert "&lt;" in md
+
+
 def test_render_entry_page_has_examples_and_links():
     cat = gsp.load_catalog()
     pairs = gsp.load_diff_pairs()
