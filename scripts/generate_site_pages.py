@@ -102,25 +102,37 @@ def examples_for_entry(entry_id: str) -> dict:
     return out
 
 
-# Diff-pair body has H2s in the order: "What to notice", "A: `id`", "B: `id`".
+# Diff-pair bodies have three top-level boundary headers, in this order:
+# "## What to notice", "## A: `id`", "## B: `id`". Passages may contain their
+# own nested ## headers, so split ONLY on the boundary headers (matched by
+# header text), not on every ## line.
 _H2 = re.compile(r"(?m)^##\s+(.*?)\s*$")
+
+
+def _section_key(header: str) -> str | None:
+    h = header.lower()
+    if h.startswith("what to notice"):
+        return "what_to_notice"
+    if h.startswith("a:"):
+        return "passage_a"
+    if h.startswith("b:"):
+        return "passage_b"
+    return None
 
 
 def parse_diff_pair(raw: str) -> dict:
     fm, body = load_markdown(raw)
+    # Keep only the top-level boundary headers as split points.
+    boundaries = [m for m in _H2.finditer(body) if _section_key(m.group(1)) is not None]
     sections: dict[str, str] = {}
-    matches = list(_H2.finditer(body))
-    for i, mt in enumerate(matches):
+    for i, mt in enumerate(boundaries):
+        key = _section_key(mt.group(1))
         start = mt.end()
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
-        header = mt.group(1).lower()
-        text = body[start:end].strip()
-        if header.startswith("what to notice"):
-            sections["what_to_notice"] = text
-        elif header.startswith("a:"):
-            sections["passage_a"] = text
-        elif header.startswith("b:"):
-            sections["passage_b"] = text
+        end = boundaries[i + 1].start() if i + 1 < len(boundaries) else len(body)
+        text = body[start:end]
+        # Drop a trailing horizontal rule separator and surrounding whitespace.
+        text = re.sub(r"\n+---\s*$", "", text.strip()).strip()
+        sections[key] = text
     return {
         "entry_a": fm.get("entry_a"),
         "entry_b": fm.get("entry_b"),

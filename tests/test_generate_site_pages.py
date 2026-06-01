@@ -87,3 +87,31 @@ def test_diff_pairs_for_entry():
     pairs = gsp.diff_pairs_for_entry(gsp.load_diff_pairs(), "candid")
     assert len(pairs) >= 1
     assert all("candid" in (p["entry_a"], p["entry_b"]) for p in pairs)
+
+
+def test_parse_diff_pair_keeps_nested_h2_in_passages():
+    # Real diff-pairs (e.g. adr vs whitepaper) have passages whose bodies
+    # contain their own ## headers; those must stay inside the passage, not
+    # truncate it.
+    raw = (
+        "---\nentry_a: adr\nentry_b: whitepaper\naxis_varied: format\n"
+        "topic_label: T\n---\n"
+        "## What to notice\nNotice prose.\n\n---\n\n"
+        "## A: `adr`\nIntro A.\n\n## Status\nProposed.\n\n## Context\nForces.\n\n---\n\n"
+        "## B: `whitepaper`\nIntro B.\n\n## Executive summary\nSummary.\n\n## Background\nHistory.\n"
+    )
+    dp = gsp.parse_diff_pair(raw)
+    # passage_a must include its nested ## Status / ## Context content
+    assert "Intro A." in dp["passage_a"]
+    assert "## Status" in dp["passage_a"]
+    assert "Proposed." in dp["passage_a"]
+    assert "## Context" in dp["passage_a"]
+    assert "Forces." in dp["passage_a"]
+    # passage_a must NOT bleed into passage B
+    assert "Intro B." not in dp["passage_a"]
+    assert "Executive summary" not in dp["passage_a"]
+    # passage_b must include its nested headers
+    assert "Intro B." in dp["passage_b"]
+    assert "## Executive summary" in dp["passage_b"]
+    assert "## Background" in dp["passage_b"]
+    assert "History." in dp["passage_b"]
