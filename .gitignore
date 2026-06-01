@@ -56,3 +56,6 @@ tests/golden-outputs/*.actual.*
 
 # Git worktrees (local isolation)
 .worktrees/
+
+# Astro
+.astro/

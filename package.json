@@ -3,9 +3,24 @@
   "version": "0.1.0",
   "description": "A composable catalog of writing instructions organized along three axes",
   "private": true,
+  "type": "module",
   "license": "Apache-2.0",
+  "engines": { "node": ">=22.12.0" },
   "scripts": {
     "validate": "python tools/validate.py",
-    "build-site": "mkdocs build"
+    "generate": "python scripts/generate_site_pages.py",
+    "dev": "npm run generate && astro dev",
+    "build": "npm run generate && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "~0.39.0",
+    "astro": "^6.3.0",
+    "astro-mermaid": "~2.0.1",
+    "sharp": "^0.34.5"
+  },
+  "overrides": {
+    "mermaid": "^11.15.0"
   }
 }
