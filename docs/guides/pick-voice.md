@@ -1,4 +1,7 @@
-# How to Pick a Voice
+---
+title: Pick a Voice
+description: A three-step method for choosing the voice that fits your reader.
+---
 
 Voice is the most consequential choice in a composed instruction. Tone, style, and format adjust how a piece reads; voice determines who is reading it back to you. Get the voice wrong and no amount of tone or format polish will save the artifact.
 

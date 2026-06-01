@@ -1,4 +1,7 @@
-# How to Add an Entry
+---
+title: Add an Entry
+description: The step-by-step process for adding a new taxonomy entry, from axis choice to PR.
+---
 
 This is the step-by-step process for adding a new taxonomy entry. It assumes you have already cloned the repo and installed dev dependencies (see [CONTRIBUTING.md](https://github.com/product-on-purpose/writing-style-library/blob/main/CONTRIBUTING.md)).
 

@@ -1,8 +1,11 @@
-# Contribution Process
+---
+title: Contribution Process
+description: The end-to-end process for contributing, from before-PR checks to the review lifecycle.
+---
 
 This is the end-to-end process for contributing to the Writing Style Library. It covers what to do before opening a PR, what happens during review, and how entries move through the review status lifecycle after they land.
 
-For the authoring mechanics, see [How to Add an Entry](../how-to/add-entry.md). This page is about the process around the authoring.
+For the authoring mechanics, see [How to Add an Entry](../guides/add-entry.md). This page is about the process around the authoring.
 
 ---
 

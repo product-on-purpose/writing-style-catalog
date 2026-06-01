@@ -1,4 +1,7 @@
-# How to Compose a Writing Instruction
+---
+title: Compose an Instruction
+description: Install the plugin, run compose-instruction, read the output, and use it in a prompt.
+---
 
 This guide walks through installing the plugin, running the `compose-instruction` skill, reading the output, and using it in a prompt.
 

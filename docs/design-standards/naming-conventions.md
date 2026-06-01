@@ -1,4 +1,7 @@
-# Naming Conventions
+---
+title: Naming Conventions
+description: Every naming rule that has to hold across the repo, from entry IDs to commit messages.
+---
 
 Consistent naming is what makes the catalog navigable. This page collects every rule that has to hold across the repo.
 
