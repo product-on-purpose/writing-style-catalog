@@ -1,17 +1,36 @@
 # Roadmap
 
-## Phase 0 - Foundation (Current)
+The Writing Style Library is a composable catalog of writing instructions on four orthogonal axes: Voice, Tone, Style, and Format. As of v0.1.0 the catalog is public, the documentation site is live, and the core mechanism is proven. A blind adherence test attributed 8 of 8 confusable composition pairs correctly (chance is roughly 0.4 percent), which means the per-entry instruction phrasings genuinely steer model output.
 
-The current phase establishes the repository structure, authoring conventions, and schema definitions. Deliverables include the directory scaffold, root documentation files, five seed entries per axis (voices, tones, styles, formats), the async-standups vertical-slice anchor topic, and the `compose-instruction` skill stub. The goal is a working, validatable repo that contributors can build on before any UI or SDK work begins.
+That result sets the direction. The catalog works, so the roadmap is about making it sharper and easier to find: depth and instructional leverage over raw breadth. We are deliberately not building a multi-surface product (SDKs, a composer app) that a catalog of this size does not need and a small team cannot maintain well.
 
-## Phase 1 - Composer SPA and Catalog Expansion
+## Now - surface and sharpen
 
-Phase 1 adds the browser-based Composer application (`packages/composer-app/`) that lets users browse taxonomy entries, select values on each axis, preview the composed instruction, and copy it to the clipboard. The catalog grows to 15 entries per axis, with vertical-slice examples covering three anchor topics. Documentation site goes live on GitHub Pages.
+- **Sharpen the two "subtle" confusable pairs.** The adherence test rated two pairs only "subtle": `pragmatic-architect` vs `senior-consultant`, and `narrative-case-study` vs `chronological-narrative`. These are the weakest seams in the one result the whole library rests on, so tightening their `confusable_with` distinctions from both sides is worth more than ten new entries.
+- **Add diff-pairs to the `service-database-choice` anchor topic.** It currently has none, despite being the best-isolated topic. Diff-pairs are the catalog's sharpest teaching tool.
+- **Deepen existing entries toward the pedagogical bar.** Add tells, anti-patterns, failure modes, and before/after micro-examples to the entries that carry the most weight, rather than adding new entries to chase coverage.
 
-## Phase 2 - SDK and MCP Server
+## Next - make composition real
 
-Phase 2 publishes a TypeScript SDK (`packages/ts-sdk/`) and Python SDK (`packages/py-sdk/`) for programmatic composition, and launches an MCP server (`packages/mcp-server/`) so the library can be used as a tool by any MCP-compatible agent. API surface is stabilized with a v1.0 schema freeze and migration guide.
+- **Make composition conflict-aware.** Read each entry's `pairs_well_with` and `avoid_with` relationships, flag incompatible selections, and apply a clear precedence order (voice, then tone, then style, then format), instead of concatenating strings. The relationship data already lives in the catalog; this turns "composable" from a claim into a guarantee.
+- **Repository legibility.** A generated repository map, per-folder READMEs on the source directories, and a documentation convention adopted from the family standard. See ADR 0013.
 
-## Phase 3 - Community and Quality
+## Later - reach, not commitment
 
-Phase 3 opens contribution pathways to the broader community with a formal review process, entry sponsorship program, and automated quality scoring. The catalog targets 50+ entries per axis. Integration recipes cover common developer and product workflows.
+- **An MCP server** that exposes composition to any MCP-compatible agent. This is the one piece of new machinery worth considering, and only after composition is conflict-aware. It would reuse the proven pattern from the sibling `pm-skills-mcp` rather than start fresh.
+
+## Hygiene (continuous)
+
+- Keep CI runtimes current (Node 24).
+- Resolve the `review_status` governance question: new entries should start at `draft`, not `stable`.
+- Reconcile the "three axes vs four directories" framing so the model is described consistently in the README, the taxonomy, and the contributor docs.
+
+## Deliberately deferred
+
+The first roadmap imagined a Composer single-page app, a TypeScript SDK, a Python SDK, and a community quality-scoring program. These are deferred indefinitely, for concrete reasons:
+
+- The documentation site already lets people browse and compose from the catalog, so a separate composer app duplicates it.
+- The SDK surfaces have no consumer yet. The empty `packages/` stubs that implied them are being removed (recoverable from git if a real need appears).
+- Generic skill-quality scoring and authoring machinery is already provided by sibling projects in the same family. This project should consume those rather than rebuild them.
+
+What stays unique to this project is the catalog itself: a proven, conflict-aware, composable set of writing instructions that no sibling and no external tool provides.
