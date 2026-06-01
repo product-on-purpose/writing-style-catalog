@@ -43,3 +43,17 @@ def test_load_markdown_handles_crlf():
     assert fm["id"] == "coach"
     assert fm["name"] == "Coach"
     assert body.strip() == "Body text here."
+
+
+def test_entry_url_is_base_relative_slug():
+    assert gsp.entry_url("voice", "coach") == "/writing-style-library/reference/voices/coach/"
+    assert gsp.entry_url("format", "adr") == "/writing-style-library/reference/formats/adr/"
+
+
+def test_load_catalog_indexes_all_entries():
+    cat = gsp.load_catalog()
+    assert len(cat["by_id"]) == 60
+    assert cat["by_id"]["coach"]["_axis"] == "voice"
+    # axis buckets
+    assert len(cat["by_axis"]["voice"]) == 15
+    assert len(cat["by_axis"]["format"]) == 15

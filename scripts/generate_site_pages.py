@@ -55,3 +55,33 @@ def read_entry(axis: str, entry_dir: Path) -> dict:
     fm["_axis"] = axis
     fm["_body"] = body
     return fm
+
+
+BASE = "/writing-style-library"
+
+
+def entry_url(axis: str, entry_id: str) -> str:
+    """Starlight slug URL for an entry's reference page (trailing slash)."""
+    return f"{BASE}/reference/{AXIS_DIR[axis]}/{entry_id}/"
+
+
+def entry_link(catalog: dict, entry_id: str) -> str:
+    """Markdown link to an entry by id, using its display name. Falls back to the id."""
+    entry = catalog["by_id"].get(entry_id)
+    if not entry:
+        return f"`{entry_id}`"
+    return f"[{entry['name']}]({entry_url(entry['_axis'], entry_id)})"
+
+
+def load_catalog() -> dict:
+    by_id: dict[str, dict] = {}
+    by_axis: dict[str, list[dict]] = {a: [] for a in AXES}
+    for axis in AXES:
+        axis_path = TAXONOMY / AXIS_DIR[axis]
+        for entry_dir in sorted(axis_path.iterdir()):
+            if not entry_dir.is_dir():
+                continue
+            entry = read_entry(axis, entry_dir)
+            by_id[entry["id"]] = entry
+            by_axis[axis].append(entry)
+    return {"by_id": by_id, "by_axis": by_axis}
