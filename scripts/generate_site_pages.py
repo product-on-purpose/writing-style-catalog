@@ -292,7 +292,7 @@ def render_diff_pair_page(catalog: dict, dp: dict) -> str:
         "",
         GENERATED_BANNER_MDX,
         "",
-        "import DiffPair from '../../../components/DiffPair.astro';",
+        "import DiffPair from '../../../src/components/DiffPair.astro';",
         "",
         f"**Topic:** {dp['topic_label']}  ",
         f"**Axis varied:** {dp['axis_varied']}  ",

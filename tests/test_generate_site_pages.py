@@ -160,7 +160,7 @@ def test_render_entry_page_has_examples_and_links():
 def test_render_diff_pair_page_uses_component_and_is_mdx_safe():
     pairs = gsp.load_diff_pairs()
     md = gsp.render_diff_pair_page(gsp.load_catalog(), pairs[0])
-    assert "import DiffPair" in md
+    assert "import DiffPair from '../../../src/components/DiffPair.astro'" in md
     assert "<DiffPair" in md
     assert 'slot="a"' in md and 'slot="b"' in md
     assert "What to notice" in md
