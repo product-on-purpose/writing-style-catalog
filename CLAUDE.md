@@ -18,8 +18,14 @@ Each entry lives in its own folder with an `ENTRY.md` file (atomic-folder patter
 # Validate all entries (run before every commit)
 python tools/validate.py
 
-# Rebuild taxonomy.json and docs/reference/index.md (run after adding/editing entries)
+# Rebuild taxonomy.json (run after adding/editing entries)
 python tools/build-indexes.py
+
+# Generate the docs site pages from the catalog (after editing taxonomy/ or examples/)
+python scripts/generate_site_pages.py
+
+# Build the site locally
+npm run build
 ```
 
 ## Hard rules

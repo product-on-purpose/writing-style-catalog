@@ -34,3 +34,9 @@ repos:
         entry: python -c "import sys,re; [print(f'{f}: found em/en-dash') or sys.exit(1) for f in sys.argv[1:] if re.search('[–—]', open(f, encoding='utf-8').read())]"
         language: python
         types: [markdown]
+
+      - id: generated-docs-fresh
+        name: generated docs fresh
+        entry: python scripts/check_generated_fresh.py
+        language: system
+        pass_filenames: false

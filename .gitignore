@@ -23,9 +23,6 @@ dist/
 coverage/
 *.tsbuildinfo
 
-# MkDocs build output
-site/
-
 # Environment variables
 .env
 *.env.local

@@ -78,7 +78,7 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `schemas/` | JSON Schema definitions for entry types |
 | `skills/writing-instruction-builder/` | Claude Code plugin skill code |
 | `tools/validate.py` | Validation script |
-| `docs/` | MkDocs site source |
+| `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
 | `docs/internal/adr/` | Architecture Decision Records |
 | `recipes/` | Curated axis combinations for common use cases |
 | `_LOCAL/` | Source research - read-only, do not modify |

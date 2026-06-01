@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation site migrated from MkDocs Material to Astro Starlight. Catalog pages (entries, examples, diff-pairs, recipes, templates) are generated from taxonomy/ and examples/ by scripts/generate_site_pages.py and committed; every entry page now embeds its examples and cross-reference links. A freshness guard keeps generated pages in sync. The validator's YAML parsing moved to PyYAML (see ADR 0012). The site deploys to GitHub Pages.
+
 ## [0.1.0] - 2026-05-31
 
 First catalog release, distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`).
