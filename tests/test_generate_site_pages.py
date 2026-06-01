@@ -57,3 +57,33 @@ def test_load_catalog_indexes_all_entries():
     # axis buckets
     assert len(cat["by_axis"]["voice"]) == 15
     assert len(cat["by_axis"]["format"]) == 15
+
+
+def test_examples_for_entry_returns_three_topics():
+    ex = gsp.examples_for_entry("pragmatic-architect")
+    assert set(ex.keys()) == {"async-standups", "morning-routine", "service-database-choice"}
+    for topic, rec in ex.items():
+        assert rec["body"].strip()
+        assert rec["topic_label"]
+
+
+def test_parse_diff_pair_splits_three_sections():
+    raw = (
+        "---\nentry_a: candid\nentry_b: warm\naxis_varied: tone\n"
+        "topic_label: T\n---\n"
+        "## What to notice\nNotice prose.\n\n"
+        "## A: `candid`\nText A.\n\n"
+        "## B: `warm`\nText B.\n"
+    )
+    dp = gsp.parse_diff_pair(raw)
+    assert dp["entry_a"] == "candid"
+    assert dp["entry_b"] == "warm"
+    assert "Notice prose." in dp["what_to_notice"]
+    assert dp["passage_a"].strip() == "Text A."
+    assert dp["passage_b"].strip() == "Text B."
+
+
+def test_diff_pairs_for_entry():
+    pairs = gsp.diff_pairs_for_entry(gsp.load_diff_pairs(), "candid")
+    assert len(pairs) >= 1
+    assert all("candid" in (p["entry_a"], p["entry_b"]) for p in pairs)

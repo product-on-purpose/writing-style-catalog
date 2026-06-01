@@ -85,3 +85,65 @@ def load_catalog() -> dict:
             by_id[entry["id"]] = entry
             by_axis[axis].append(entry)
     return {"by_id": by_id, "by_axis": by_axis}
+
+
+def examples_for_entry(entry_id: str) -> dict:
+    """Map topic-slug -> {body, topic_label} for an entry's vertical slices."""
+    out: dict[str, dict] = {}
+    for topic in TOPICS:
+        topic_dir = EXAMPLES / "vertical-slices" / topic
+        if not topic_dir.exists():
+            continue
+        for md in sorted(topic_dir.glob("*.md")):
+            fm, body = load_markdown(md.read_text(encoding="utf-8"))
+            if fm.get("entry_id") == entry_id:
+                out[topic] = {"body": body, "topic_label": fm.get("topic_label", topic)}
+                break
+    return out
+
+
+# Diff-pair body has H2s in the order: "What to notice", "A: `id`", "B: `id`".
+_H2 = re.compile(r"(?m)^##\s+(.*?)\s*$")
+
+
+def parse_diff_pair(raw: str) -> dict:
+    fm, body = load_markdown(raw)
+    sections: dict[str, str] = {}
+    matches = list(_H2.finditer(body))
+    for i, mt in enumerate(matches):
+        start = mt.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
+        header = mt.group(1).lower()
+        text = body[start:end].strip()
+        if header.startswith("what to notice"):
+            sections["what_to_notice"] = text
+        elif header.startswith("a:"):
+            sections["passage_a"] = text
+        elif header.startswith("b:"):
+            sections["passage_b"] = text
+    return {
+        "entry_a": fm.get("entry_a"),
+        "entry_b": fm.get("entry_b"),
+        "axis_varied": fm.get("axis_varied"),
+        "topic_label": fm.get("topic_label", ""),
+        "diff_pair_id": fm.get("diff_pair_id", ""),
+        "what_to_notice": sections.get("what_to_notice", ""),
+        "passage_a": sections.get("passage_a", ""),
+        "passage_b": sections.get("passage_b", ""),
+    }
+
+
+def load_diff_pairs() -> list[dict]:
+    out = []
+    base = EXAMPLES / "diff-pairs"
+    if not base.exists():
+        return out
+    for md in sorted(base.rglob("*.md")):
+        if md.name == "README.md":
+            continue
+        out.append(parse_diff_pair(md.read_text(encoding="utf-8")))
+    return out
+
+
+def diff_pairs_for_entry(pairs: list[dict], entry_id: str) -> list[dict]:
+    return [p for p in pairs if entry_id in (p["entry_a"], p["entry_b"])]
