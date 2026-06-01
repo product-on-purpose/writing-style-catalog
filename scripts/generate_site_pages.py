@@ -37,7 +37,12 @@ _FM_SPLIT = re.compile(r"(?ms)\A---[ \t]*\n(.*?)\n---[ \t]*\n?(.*)\Z")
 
 
 def load_markdown(raw: str) -> tuple[dict, str]:
-    """Split a frontmatter markdown string into (frontmatter dict, body)."""
+    """Split a frontmatter markdown string into (frontmatter dict, body).
+
+    Normalizes CRLF/CR to LF first so the result does not depend on how the
+    caller obtained the string (the repo ships CRLF files).
+    """
+    raw = raw.replace("\r\n", "\n").replace("\r", "\n")
     m = _FM_SPLIT.match(raw)
     if not m:
         raise ValueError("no frontmatter block found")

@@ -33,3 +33,13 @@ def test_load_markdown_no_frontmatter_raises():
     import pytest
     with pytest.raises(ValueError):
         gsp.load_markdown("no frontmatter here\n")
+
+
+def test_load_markdown_handles_crlf():
+    # Repo ships CRLF files; load_markdown must not depend on the caller
+    # having stripped CR first.
+    raw = "---\r\nid: coach\r\nname: Coach\r\n---\r\n\r\nBody text here.\r\n"
+    fm, body = gsp.load_markdown(raw)
+    assert fm["id"] == "coach"
+    assert fm["name"] == "Coach"
+    assert body.strip() == "Body text here."
