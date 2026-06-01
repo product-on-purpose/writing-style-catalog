@@ -209,3 +209,12 @@ def test_fidelity_lint_flags_orphan_period():
 
 def test_fidelity_lint_clean_text_no_warnings():
     assert gsp.fidelity_warnings("A normal clean sentence. Another one.") == []
+
+
+def test_fidelity_lint_still_flags_true_doubled_period():
+    assert any("doubled period" in h for h in gsp.fidelity_warnings("the end.. next"))
+
+
+def test_fidelity_lint_ignores_ellipsis():
+    assert gsp.fidelity_warnings("One way to think about this is...") == []
+    assert gsp.fidelity_warnings("Wait... really? And more....") == []

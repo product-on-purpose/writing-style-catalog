@@ -175,7 +175,7 @@ def _yaml_title(text: str) -> str:
 # Source-prose defect patterns that would render verbatim on the live site.
 _FIDELITY_PATTERNS = [
     (re.compile(r"\s\."), "space before period (orphan period, e.g. stray em-dash sweep)"),
-    (re.compile(r"\.\.(?!\.)"), "doubled period"),
+    (re.compile(r"(?<!\.)\.\.(?!\.)"), "doubled period"),
     (re.compile(r",,"), "doubled comma"),
     (re.compile(r"\bTODO\b|\bTKTK\b"), "unfinished marker"),
 ]
