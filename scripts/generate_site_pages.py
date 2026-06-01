@@ -370,3 +370,70 @@ def list_recipes() -> list[str]:
     if not RECIPES_DIR.exists():
         return []
     return sorted(d.name for d in RECIPES_DIR.iterdir() if d.is_dir() and (d / "README.md").exists())
+
+
+AXIS_LABEL = {"voice": "Voices", "tone": "Tones", "style": "Styles", "format": "Formats"}
+
+
+def _page(title: str, description: str, body: str) -> str:
+    out = [
+        "---",
+        f"title: {_yaml_title(title)}",
+        f"description: {_yaml_title(description)}",
+        "---",
+        "",
+        GENERATED_BANNER,
+        "",
+        body.strip(),
+        "",
+    ]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def render_reference_index(catalog: dict) -> str:
+    parts = []
+    for axis in AXES:
+        parts.append(f"## {AXIS_LABEL[axis]}")
+        parts.append("")
+        for e in catalog["by_axis"][axis]:
+            parts.append(f"- [{e['name']}]({entry_url(axis, e['id'])}) - {e.get('one_liner', '')}")
+        parts.append("")
+    return _page("Reference", "Every entry across the four axes.", "\n".join(parts))
+
+
+def render_diff_pair_index(pairs: list[dict]) -> str:
+    by_axis: dict[str, list[dict]] = {}
+    for p in pairs:
+        by_axis.setdefault(p["axis_varied"], []).append(p)
+    parts = []
+    for axis in sorted(by_axis):
+        parts.append(f"## Varying {axis}")
+        parts.append("")
+        for p in by_axis[axis]:
+            parts.append(
+                f"- [{p['entry_a']} vs {p['entry_b']}]"
+                f"({BASE}/examples/diff-pairs/{p['diff_pair_id']}/) - {p['topic_label']}"
+            )
+        parts.append("")
+    return _page("Diff-pairs", "Side-by-side single-axis contrasts.", "\n".join(parts))
+
+
+def render_recipe_index(catalog: dict) -> str:
+    parts = []
+    for slug in list_recipes():
+        parts.append(f"- [{slug}]({BASE}/recipes/{slug}/)")
+    return _page("Recipes", "Curated four-axis compositions.", "\n".join(parts))
+
+
+def render_template_index(catalog: dict) -> str:
+    parts = []
+    for e in catalog["by_axis"]["format"]:
+        if e.get("canonical_template"):
+            parts.append(f"- [{e['name']}]({BASE}/templates/{e['id']}/)")
+    return _page("Templates", "Canonical format templates.", "\n".join(parts))
+
+
+def render_examples_topic_index(catalog: dict, topic: str) -> str:
+    parts = [f"Vertical-slice examples for this topic, one per entry. "
+             f"Each is also embedded on its entry's reference page.", ""]
+    return _page(topic, f"Examples for the {topic} anchor topic.", "\n".join(parts))

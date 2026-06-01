@@ -186,3 +186,16 @@ def test_render_recipe_page_renders_readme():
 def test_list_recipes_finds_all_five():
     assert len(gsp.list_recipes()) == 5
     assert "architect-candid-adr" in gsp.list_recipes()
+
+
+def test_render_reference_index_lists_axes():
+    cat = gsp.load_catalog()
+    md = gsp.render_reference_index(cat)
+    assert "## Voices" in md and "## Formats" in md
+    assert "/writing-style-library/reference/voices/coach/" in md
+
+
+def test_render_diff_pair_index_groups_by_axis():
+    md = gsp.render_diff_pair_index(gsp.load_diff_pairs())
+    assert "tone" in md.lower()
+    assert "/writing-style-library/examples/diff-pairs/" in md
