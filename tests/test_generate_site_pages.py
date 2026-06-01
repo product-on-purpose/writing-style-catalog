@@ -199,3 +199,13 @@ def test_render_diff_pair_index_groups_by_axis():
     md = gsp.render_diff_pair_index(gsp.load_diff_pairs())
     assert "tone" in md.lower()
     assert "/writing-style-library/examples/diff-pairs/" in md
+
+
+def test_fidelity_lint_flags_orphan_period():
+    bad = "This sentence ends oddly . Then continues."
+    hits = gsp.fidelity_warnings(bad)
+    assert any("orphan" in h.lower() or "space before period" in h.lower() for h in hits)
+
+
+def test_fidelity_lint_clean_text_no_warnings():
+    assert gsp.fidelity_warnings("A normal clean sentence. Another one.") == []

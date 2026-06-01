@@ -172,6 +172,23 @@ def _yaml_title(text: str) -> str:
     return '"' + text.replace('"', "'") + '"'
 
 
+# Source-prose defect patterns that would render verbatim on the live site.
+_FIDELITY_PATTERNS = [
+    (re.compile(r"\s\."), "space before period (orphan period, e.g. stray em-dash sweep)"),
+    (re.compile(r"\.\.(?!\.)"), "doubled period"),
+    (re.compile(r",,"), "doubled comma"),
+    (re.compile(r"\bTODO\b|\bTKTK\b"), "unfinished marker"),
+]
+
+
+def fidelity_warnings(text: str) -> list[str]:
+    hits = []
+    for rx, msg in _FIDELITY_PATTERNS:
+        if rx.search(text):
+            hits.append(msg)
+    return hits
+
+
 # Escape MDX-significant characters in markdown prose that will be embedded
 # inside an .mdx page (e.g. an example body inside <TabItem>). Only `<` and `{`
 # trigger JSX parsing. We must NOT escape inside fenced code blocks or inline
@@ -489,7 +506,23 @@ def generate(out_root: Path) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=str(DOCS), help="output docs root")
+    ap.add_argument("--lint", action="store_true", help="report source-prose fidelity warnings and exit")
     args = ap.parse_args()
+    if args.lint:
+        catalog = load_catalog()
+        total = 0
+        for axis in AXES:
+            for e in catalog["by_axis"][axis]:
+                for w in fidelity_warnings(e.get("_body", "")):
+                    print(f"taxonomy/{AXIS_DIR[axis]}/{e['id']}/ENTRY.md: {w}")
+                    total += 1
+        for md in sorted((EXAMPLES / "vertical-slices").rglob("*.md")):
+            _, body = load_markdown(md.read_text(encoding="utf-8"))
+            for w in fidelity_warnings(body):
+                print(f"{md.relative_to(REPO_ROOT)}: {w}")
+                total += 1
+        print(f"[lint] {total} fidelity warning(s)")
+        return 0
     out_root = Path(args.out)
     count = generate(out_root)
     print(f"[OK] generated {count} catalog pages into {out_root}")
