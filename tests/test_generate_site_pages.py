@@ -155,3 +155,34 @@ def test_render_entry_page_has_examples_and_links():
     # cross-reference links are base-relative slugs, not GitHub-relative
     assert "/writing-style-library/reference/" in md
     assert "ENTRY.md" not in md  # never emit source-file links
+
+
+def test_render_diff_pair_page_uses_component_and_is_mdx_safe():
+    pairs = gsp.load_diff_pairs()
+    md = gsp.render_diff_pair_page(gsp.load_catalog(), pairs[0])
+    assert "import DiffPair" in md
+    assert "<DiffPair" in md
+    assert 'slot="a"' in md and 'slot="b"' in md
+    assert "What to notice" in md
+    assert "{/* GENERATED" in md   # MDX comment form
+    assert "<!--" not in md         # no HTML comment in an MDX file
+
+
+def test_render_template_page_has_code_block():
+    cat = gsp.load_catalog()
+    fmt = cat["by_id"]["adr"]
+    md = gsp.render_template_page(fmt)
+    assert "```" in md
+    assert "## Status" in md  # adr canonical_template content
+    assert "<!-- GENERATED" in md  # plain .md uses HTML-comment banner
+
+
+def test_render_recipe_page_renders_readme():
+    md = gsp.render_recipe_page(gsp.load_catalog(), "architect-candid-adr")
+    assert "Composition" in md
+    assert "/writing-style-library/reference/" in md  # entry names linked
+
+
+def test_list_recipes_finds_all_five():
+    assert len(gsp.list_recipes()) == 5
+    assert "architect-candid-adr" in gsp.list_recipes()

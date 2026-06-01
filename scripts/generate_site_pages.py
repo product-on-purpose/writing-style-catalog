@@ -23,6 +23,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY = REPO_ROOT / "taxonomy"
 EXAMPLES = REPO_ROOT / "examples"
 DOCS = REPO_ROOT / "docs"
+RECIPES_DIR = EXAMPLES / "horizontal-slices"
 
 AXES = ["voice", "tone", "style", "format"]
 AXIS_DIR = {"voice": "voices", "tone": "tones", "style": "styles", "format": "formats"}
@@ -275,3 +276,97 @@ def render_entry_page(catalog: dict, pairs: list[dict], entry: dict) -> str:
         out.append("")
 
     return "\n".join(out).rstrip() + "\n"
+
+
+def render_diff_pair_page(catalog: dict, dp: dict) -> str:
+    a_link = entry_link(catalog, dp["entry_a"])
+    b_link = entry_link(catalog, dp["entry_b"])
+    ea = dp["entry_a"]
+    eb = dp["entry_b"]
+    title = f"{ea} vs {eb}"
+    out = [
+        "---",
+        f"title: {_yaml_title(title)}",
+        f"description: {_yaml_title(dp['topic_label'])}",
+        "---",
+        "",
+        GENERATED_BANNER_MDX,
+        "",
+        "import DiffPair from '../../../components/DiffPair.astro';",
+        "",
+        f"**Topic:** {dp['topic_label']}  ",
+        f"**Axis varied:** {dp['axis_varied']}  ",
+        f"**A:** {a_link}  **B:** {b_link}",
+        "",
+        "## What to notice",
+        "",
+        mdx_escape_prose(dp["what_to_notice"]),
+        "",
+        f'<DiffPair labelA="A: {ea}" labelB="B: {eb}">',
+        '<div slot="a">',
+        "",
+        mdx_escape_prose(dp["passage_a"]),
+        "",
+        "</div>",
+        '<div slot="b">',
+        "",
+        mdx_escape_prose(dp["passage_b"]),
+        "",
+        "</div>",
+        "</DiffPair>",
+        "",
+    ]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def render_template_page(fmt: dict) -> str:
+    template = (fmt.get("canonical_template") or "").rstrip()
+    out = [
+        "---",
+        f"title: {_yaml_title(fmt['name'] + ' template')}",
+        f"description: {_yaml_title('Canonical template for the ' + fmt['name'] + ' format.')}",
+        "---",
+        "",
+        GENERATED_BANNER,
+        "",
+        f"Canonical template for the [{fmt['name']}]({entry_url('format', fmt['id'])}) format.",
+        "",
+        "```markdown",
+        template,
+        "```",
+        "",
+    ]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def _link_entry_names_in_table(catalog: dict, text: str) -> str:
+    """Replace `id` backtick tokens in a recipe README with entry links."""
+    def repl(m):
+        token = m.group(1)
+        return entry_link(catalog, token) if token in catalog["by_id"] else m.group(0)
+    return re.sub(r"`([a-z][a-z0-9-]*)`", repl, text)
+
+
+def render_recipe_page(catalog: dict, recipe_slug: str) -> str:
+    readme = (RECIPES_DIR / recipe_slug / "README.md").read_text(encoding="utf-8")
+    lines = readme.splitlines()
+    heading = lines[0].lstrip("# ").strip() if lines else recipe_slug
+    body = "\n".join(lines[1:]).strip()
+    body = _link_entry_names_in_table(catalog, body)
+    out = [
+        "---",
+        f"title: {_yaml_title(heading)}",
+        "---",
+        "",
+        GENERATED_BANNER,
+        "",
+        body,
+        "",
+    ]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def list_recipes() -> list[str]:
+    if not RECIPES_DIR.exists():
+        return []
+    return sorted(d.name for d in RECIPES_DIR.iterdir() if d.is_dir() and (d / "README.md").exists())
