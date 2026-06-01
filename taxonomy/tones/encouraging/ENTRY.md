@@ -19,12 +19,12 @@ description: |
   need more encouragement than they do. The antidote is specificity: encourage the particular
   effort, the particular capability, the particular result, not generic "you."
 markers:
-  - Specific acknowledgment of the effort or capability: "You have done the hard part by..."
-  - Future-orientation: "Here is what you can do with that"
-  - Naming the difficulty and the person's relationship to it: "This is hard, and you are handling it"
-  - Active belief: "I think you can" not "hopefully you can"
+  - 'Specific acknowledgment of the effort or capability: "You have done the hard part by..."'
+  - 'Future-orientation: "Here is what you can do with that"'
+  - 'Naming the difficulty and the person''s relationship to it: "This is hard, and you are handling it"'
+  - 'Active belief: "I think you can" not "hopefully you can"'
   - No false reassurance - if something is hard, say it and then encourage
-  - Progress markers: "You are further along than you think because..."
+  - 'Progress markers: "You are further along than you think because..."'
 spectrum: motivation
 nn_g_profile: neutral
 pairs_well_with:

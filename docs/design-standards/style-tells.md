@@ -1,4 +1,7 @@
-# Style Tells to Avoid
+---
+title: Style Tells
+description: Writing patterns to avoid in entry prose, body copy, and examples.
+---
 
 A "style tell" is a writing pattern that signals low-effort or LLM-generated content. The catalog has explicit positions on which tells to avoid in entry prose, body copy, and examples. Some are enforced by tooling; others are editorial.
 

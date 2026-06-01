@@ -1,4 +1,7 @@
-# Composing Instructions
+---
+title: Composition
+description: How picking one entry per axis assembles into a structured prompt prefix.
+---
 
 Composition is the move that turns the catalog from a collection of entries into a working tool. You pick one entry from each axis and assemble them into a structured prompt prefix that shapes LLM output.
 
@@ -68,7 +71,7 @@ The composed output is a structured prompt prefix that looks roughly like this:
 
 Each section is drawn directly from the entry's `llm_instruction_phrasing` field, which is authored to be immediately usable as a prompt fragment.
 
-The full assembled instruction is designed to be prepended to any writing task without modification. See [Compose an Instruction](../how-to/compose-instruction.md) for a worked example.
+The full assembled instruction is designed to be prepended to any writing task without modification. See [Compose an Instruction](../guides/compose-instruction.md) for a worked example.
 
 ---
 
@@ -86,4 +89,4 @@ The composition is a control surface, not a checklist.
 
 ## Common combinations
 
-See the [How-To: Compose an Instruction](../how-to/compose-instruction.md) page for a table of curated combinations, and the `recipes/` directory in the repo for full worked examples with example output.
+See the [How-To: Compose an Instruction](../guides/compose-instruction.md) page for a table of curated combinations, and the `recipes/` directory in the repo for full worked examples with example output.

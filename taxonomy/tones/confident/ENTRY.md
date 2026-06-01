@@ -21,12 +21,12 @@ description: |
   decision memos, strategic recommendations, executive communication, and any context where
   hedging would obscure the actual position.
 markers:
-  - Declarative sentences for the core claim: "This is the right approach"
+  - 'Declarative sentences for the core claim: "This is the right approach"'
   - Hedges removed when they are not earning their place
-  - First-person assertions without ritual qualification: "I recommend X" rather than "I would tentatively suggest X"
+  - 'First-person assertions without ritual qualification: "I recommend X" rather than "I would tentatively suggest X"'
   - The reasoning follows the claim rather than burying it
-  - Specific commitments: "we should do X" rather than "we might want to consider potentially exploring X"
-  - No performative humility: avoids "this is just my take, but" framing
+  - 'Specific commitments: "we should do X" rather than "we might want to consider potentially exploring X"'
+  - 'No performative humility: avoids "this is just my take, but" framing'
 spectrum: certainty
 nn_g_profile: neutral
 pairs_well_with:

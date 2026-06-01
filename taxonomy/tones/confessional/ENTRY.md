@@ -24,10 +24,10 @@ description: |
 markers:
   - First-person ownership of a specific failure, doubt, or learning
   - Concrete detail about what the writer did, believed, or felt - not abstractions
-  - No deflection language: "mistakes were made" is replaced with "I made this mistake"
-  - The cost of the admission is visible in the prose: the writer is risking something
+  - 'No deflection language: "mistakes were made" is replaced with "I made this mistake"'
+  - 'The cost of the admission is visible in the prose: the writer is risking something'
   - Learning or change tied to the admission, not just the admission alone
-  - Absence of fishing for reassurance: the writer is not asking the reader to soften the blow
+  - 'Absence of fishing for reassurance: the writer is not asking the reader to soften the blow'
 spectrum: self-disclosure
 nn_g_profile: serious
 pairs_well_with:

@@ -1,4 +1,7 @@
-# Glossary
+---
+title: Glossary
+description: Definitions for terms used throughout the Writing Style Library.
+---
 
 Definitions for terms used throughout the Writing Style Library. Terms are grouped by category; cross-references link to fuller explanations elsewhere in the docs.
 
@@ -16,7 +19,7 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 **Format** - The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Lives in `taxonomy/formats/`.
 
-**Entry** - A single unit in the catalog. Lives in its own folder with an `ENTRY.md` file containing frontmatter and a Markdown body. See [How to Add an Entry](../how-to/add-entry.md).
+**Entry** - A single unit in the catalog. Lives in its own folder with an `ENTRY.md` file containing frontmatter and a Markdown body. See [How to Add an Entry](../guides/add-entry.md).
 
 ---
 

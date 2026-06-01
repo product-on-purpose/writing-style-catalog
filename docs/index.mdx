@@ -1,0 +1,64 @@
+---
+title: Writing Style Library
+description: Composable writing instructions on four orthogonal axes - Voice, Tone, Style, Format.
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+A composable catalog of writing instructions. Pick one value from each axis - Voice, Tone, Style, Format - and the `compose-instruction` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Mix and match to get exactly the writing you need.
+
+The catalog ships 60 curated entries (15 per axis), each with worked examples on three anchor topics, side-by-side diff-pairs that isolate a single axis, recipes that bundle common combinations, and copyable format templates.
+
+## The four axes
+
+Voice and Tone are distinct dimensions of one conceptual axis: Voice is who is speaking (persistent identity), Tone is how they sound right now (situational register). Style and Format are independent. Any value from any axis composes with any other.
+
+| Axis | What it controls | Example entries |
+|------|------------------|-----------------|
+| **Voice** | Persistent writer identity: worldview, characteristic concerns, professional archetype | [pragmatic-architect](reference/voices/pragmatic-architect/), [pastoral](reference/voices/pastoral/), [journalist](reference/voices/journalist/), [coach](reference/voices/coach/) |
+| **Tone** | Situational register layered on top of voice | [candid](reference/tones/candid/), [warm](reference/tones/warm/), [reverent](reference/tones/reverent/), [urgent](reference/tones/urgent/) |
+| **Style** | Cognitive and rhetorical pattern: how ideas are sequenced | [problem-solution](reference/styles/problem-solution/), [layered-disclosure](reference/styles/layered-disclosure/), [socratic-inquiry](reference/styles/socratic-inquiry/), [dialectic](reference/styles/dialectic/) |
+| **Format** | Visual and structural container: headings, sections, layout | [adr](reference/formats/adr/), [daily-standup](reference/formats/daily-standup/), [slack-message](reference/formats/slack-message/), [devotional-entry](reference/formats/devotional-entry/) |
+
+## Quick start
+
+The library is packaged as a Claude Code plugin. Once it is published to the Product on Purpose marketplace, install it from inside Claude Code:
+
+```
+/plugin marketplace add product-on-purpose/agent-plugins
+/plugin install writing-style-library@product-on-purpose
+```
+
+Then compose an instruction from any combination of axes:
+
+```
+/writing-style-library:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+```
+
+The skill outputs a structured prompt prefix. Copy it into your system prompt or prepend it to your writing task.
+
+## How to read this site
+
+<CardGrid>
+  <Card title="Browse the catalog" icon="open-book">
+    Every [entry](reference/) has its own page with language patterns, when-to-use guidance, cross-references to compatible and confusable neighbors, and worked examples across three anchor topics.
+  </Card>
+  <Card title="See the difference" icon="random">
+    [Diff-pairs](examples/diff-pairs/) put two near-neighbor entries side by side on the same topic, varying one axis, so you can see exactly what each value changes.
+  </Card>
+  <Card title="Start from a recipe" icon="rocket">
+    [Recipes](recipes/) are named four-axis combinations for common writing tasks, so you do not have to compose from scratch.
+  </Card>
+  <Card title="Grab a template" icon="document">
+    [Templates](templates/) give you the canonical structure for each format, ready to copy.
+  </Card>
+</CardGrid>
+
+## Learn the model
+
+- [Three-Axis Model](concepts/three-axis-model/) - the design behind the catalog
+- [Composition](concepts/composition/) - how axis values combine
+- [Compose an Instruction](guides/compose-instruction/) - step-by-step guide
+- [Add an Entry](guides/add-entry/) - contribute to the catalog
+
+> This project is early and experimental. The catalog, schema, and skill interface may change. See the repository README for current status.

@@ -1,9 +1,9 @@
 # Writing Style Library
 
 > [!WARNING]
-> **Early and experimental (v0.1.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned site, Composer, and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+> **Early and experimental (v0.1.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned Composer and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
 
-A composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. Packaged as a Claude Code plugin, with a documentation site, Composer web app, and SDK planned for later phases.
+A composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. Packaged as a Claude Code plugin and an Astro Starlight documentation site, with a Composer web app and SDK planned for later phases.
 
 ---
 
@@ -56,8 +56,9 @@ What exists today:
 - 195 worked examples across three anchor topics, plus 12 diff-pairs and 5 horizontal-slice recipes
 - Working `compose-instruction` skill
 - Validation suite (`tools/validate.py`) wired into CI
+- An Astro Starlight documentation site whose catalog pages are generated from `taxonomy/` and `examples/`. It deploys to GitHub Pages at https://product-on-purpose.github.io/writing-style-library (live on merge to `main`, once Pages is enabled).
 
-Planned but not built yet: a documentation site, a Composer web app, an MCP server, and SDKs.
+Planned but not built yet: a Composer web app, an MCP server, and SDKs.
 
 Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 
@@ -89,7 +90,7 @@ Requires Claude Code. The plugin adds the `writing-style-library:compose-instruc
 | `examples/diff-pairs/` | Content | Side-by-side pairs showing the effect of changing one axis |
 | `schemas/` | Code | JSON Schema files for all entry types |
 | `skills/writing-instruction-builder/` | Code | Claude Code plugin skill (compose-instruction) |
-| `docs/` | Docs | MkDocs site source |
+| `docs/` | Docs | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`; narrative pages authored) |
 | `tools/` | Code | Validation and generation scripts |
 | `tests/` | Code | Pytest tests and golden-output fixtures |
 | `docs/internal/adr/` | Docs | Architecture Decision Records |

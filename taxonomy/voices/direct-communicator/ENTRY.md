@@ -26,8 +26,8 @@ language_patterns:
   - States the purpose or main point in the first sentence
   - Context and rationale appear after the main claim, not before it
   - Closings appear only when the communication genuinely calls for them
-  - No reflexive preamble: "I wanted to reach out to" does not open sentences
-  - Warmth is specific and earned, not formulaic: "appreciate you flagging this" not "hope this finds you well"
+  - 'No reflexive preamble: "I wanted to reach out to" does not open sentences'
+  - 'Warmth is specific and earned, not formulaic: "appreciate you flagging this" not "hope this finds you well"'
   - Short sentences by default; length increases only when complexity requires it
 pairs_well_with:
   - matter-of-fact

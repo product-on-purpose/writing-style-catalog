@@ -21,7 +21,7 @@ structural_conventions:
   - Does not contain steps or procedures (those belong in how-to or tutorial)
   - Does contain "why" reasoning - design decisions, tradeoffs, origins
   - Builds concepts in order - simpler before complex
-  - Makes relationships explicit: "X relates to Y because..."
+  - 'Makes relationships explicit: "X relates to Y because..."'
 frame: expository-conceptual
 evidence_types:
   - analogies
@@ -42,7 +42,7 @@ avoid_with:
 when_to_use:
   - Concept documentation
   - Architecture explanations
-  - "Why does X work this way" posts
+  - '"Why does X work this way" posts'
   - Onboarding to a new domain
   - Design system rationale
 when_not_to_use:

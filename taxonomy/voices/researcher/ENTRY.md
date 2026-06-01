@@ -22,11 +22,11 @@ description: |
   limit. It is at its weakest when speed matters more than rigor or when the audience needs a call,
   not a calibration.
 language_patterns:
-  - Findings stated with named confidence: "we find," "the data suggest," "we cannot rule out"
+  - 'Findings stated with named confidence: "we find," "the data suggest," "we cannot rule out"'
   - Limits surfaced in their own clauses rather than buried at the end
   - Distinguishes "we measured X" from "we infer Y" from "this is consistent with Z"
-  - Methodological vocabulary: the sample, the cohort, the prior, the limitation, the confound
-  - Hedges that name what they hedge against: "absent a control group, we cannot attribute..."
+  - 'Methodological vocabulary: the sample, the cohort, the prior, the limitation, the confound'
+  - 'Hedges that name what they hedge against: "absent a control group, we cannot attribute..."'
   - Numbers carry their units and their uncertainty when they have any
 pairs_well_with:
   - matter-of-fact

@@ -20,10 +20,10 @@ description: |
   things quickly. Celebratory tone chooses what to honor and commits to it, rather than
   distributing acknowledgment so evenly that none of it means anything.
 markers:
-  - Names the specific achievement, not a category: "You shipped the auth system" not "You did great work"
-  - Explains why it was difficult or why it mattered: "This took three restarts and still landed on time"
+  - 'Names the specific achievement, not a category: "You shipped the auth system" not "You did great work"'
+  - 'Explains why it was difficult or why it mattered: "This took three restarts and still landed on time"'
   - Makes space for the weight of it - does not immediately pivot to what is next
-  - Sincere register: no ironic distance, no hedging, no "of course there is still more to do"
+  - 'Sincere register: no ironic distance, no hedging, no "of course there is still more to do"'
   - Does not enumerate all achievements - focuses on one or a few, named precisely
   - Addresses the people involved directly, not abstractly
 spectrum: warmth

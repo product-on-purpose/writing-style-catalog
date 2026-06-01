@@ -21,7 +21,7 @@ structural_conventions:
   - Opens with a specific moment, image, or text - not a generalization
   - Turns inward before turning toward the reader
   - Does not rush to application - the insight earns its arrival
-  - Closes with an opening, not a conclusion: a question, an invitation, or an image that lingers
+  - 'Closes with an opening, not a conclusion: a question, an invitation, or an image that lingers'
 frame: reflective-personal
 evidence_types:
   - personal observation

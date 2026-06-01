@@ -24,10 +24,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22.12.0"
 
       - name: Install Python dependencies
-        run: pip install jsonschema
+        run: pip install -r requirements-dev.txt
 
       - name: Install markdownlint-cli2
         run: npm install -g markdownlint-cli2
@@ -38,8 +38,11 @@ jobs:
       - name: Build indexes
         run: python tools/build-indexes.py
 
-      - name: Check indexes are up to date
-        run: git diff --exit-code taxonomy.json docs/reference/index.md
+      - name: Check taxonomy.json is up to date
+        run: git diff --exit-code taxonomy.json
+
+      - name: Check generated docs are fresh
+        run: python scripts/check_generated_fresh.py
 
       - name: Run markdownlint
         run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore _LOCAL --ignore docs/internal

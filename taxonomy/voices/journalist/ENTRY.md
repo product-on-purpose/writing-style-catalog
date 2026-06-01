@@ -21,12 +21,12 @@ description: |
   work, and dispatch a counter-argument in a sentence when that is all it deserves. What it
   will not do is hide. The reporting is on the page; the writer is behind it.
 language_patterns:
-  - Source attribution as default: "according to," "told me," "the document shows"
-  - Named characters introduced with role and stake: "Maria Chen, the lead engineer on the project"
+  - 'Source attribution as default: "according to," "told me," "the document shows"'
+  - 'Named characters introduced with role and stake: "Maria Chen, the lead engineer on the project"'
   - Specific dates and locations rather than vague time markers
   - Direct quotes when the language matters, paraphrase when only the substance does
   - Counter-claims surfaced and attributed, not flattened
-  - Verbs of action and observation rather than evaluation: "said," "wrote," "did" over "claimed," "alleged"
+  - 'Verbs of action and observation rather than evaluation: "said," "wrote," "did" over "claimed," "alleged"'
 pairs_well_with:
   - matter-of-fact
   - candid

@@ -25,8 +25,8 @@ language_patterns:
   - Frames problems in terms of customer impact before naming the solution
   - Leads with "why" and the problem statement before describing the "what"
   - Uses customer-facing language rather than internal or technical shorthand
-  - States success in outcome terms: "Users can complete X without Y friction"
-  - Asks questions that surface assumptions: "What job is the user trying to do here?"
+  - 'States success in outcome terms: "Users can complete X without Y friction"'
+  - 'Asks questions that surface assumptions: "What job is the user trying to do here?"'
   - Connects every proposed change back to a named user problem or business outcome
 pairs_well_with:
   - encouraging

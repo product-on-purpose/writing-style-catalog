@@ -22,9 +22,9 @@ description: |
 language_patterns:
   - Scripture referenced by book and passage, not abstract authority
   - Second person ("you") without being accusatory
-  - Moves from text to life: "This matters because..." or "In your life this looks like..."
-  - Names the real struggle without over-explaining: "You know this feeling"
-  - Uses narrative: a moment, a scene, before the application
+  - 'Moves from text to life: "This matters because..." or "In your life this looks like..."'
+  - 'Names the real struggle without over-explaining: "You know this feeling"'
+  - 'Uses narrative: a moment, a scene, before the application'
   - Present tense when describing human experience
 pairs_well_with:
   - reverent

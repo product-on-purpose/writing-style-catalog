@@ -1,0 +1,19 @@
+---
+interface Props { labelA: string; labelB: string; }
+const { labelA, labelB } = Astro.props;
+---
+<div class="diff-pair">
+  <div class="diff-col">
+    <h3>{labelA}</h3>
+    <slot name="a" />
+  </div>
+  <div class="diff-col">
+    <h3>{labelB}</h3>
+    <slot name="b" />
+  </div>
+</div>
+<style>
+  .diff-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .diff-col { border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; padding: 1rem; }
+  @media (max-width: 72rem) { .diff-pair { grid-template-columns: 1fr; } }
+</style>

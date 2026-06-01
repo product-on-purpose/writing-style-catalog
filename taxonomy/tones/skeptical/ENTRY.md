@@ -20,12 +20,12 @@ description: |
   error than acknowledged uncertainty. It signals epistemic humility without performing
   helplessness. The writer is engaged with the question, not refusing to engage.
 markers:
-  - Explicit gaps named: "we do not yet have evidence for X" or "this has not been established"
-  - Falsification framing: "what would we need to see to believe this?"
-  - Hedges tied to specific evidence, not generic softening: "given only N=12, this is suggestive at best"
+  - 'Explicit gaps named: "we do not yet have evidence for X" or "this has not been established"'
+  - 'Falsification framing: "what would we need to see to believe this?"'
+  - 'Hedges tied to specific evidence, not generic softening: "given only N=12, this is suggestive at best"'
   - Distinction between absence of evidence and evidence of absence
   - Counter-hypotheses surfaced rather than dismissed
-  - Conditional claims: "if X holds, then Y - but we have not verified X"
+  - 'Conditional claims: "if X holds, then Y - but we have not verified X"'
 spectrum: certainty
 nn_g_profile: serious
 pairs_well_with:

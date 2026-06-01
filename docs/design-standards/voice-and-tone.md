@@ -1,4 +1,7 @@
-# Voice and Tone Standards
+---
+title: Voice and Tone
+description: Authoring standards for voice and tone entries, with the tests a strong entry passes.
+---
 
 This page collects the authoring standards for voice and tone entries - what makes an entry useful, what makes one weak, and how to test a draft before promoting it past `draft` status.
 

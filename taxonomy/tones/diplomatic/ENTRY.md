@@ -25,11 +25,11 @@ description: |
   matters, cross-cultural negotiation, and customer escalations.
 markers:
   - Reader's position summarized accurately before the writer's position is introduced
-  - Strategic passive voice for criticism: "concerns have been raised" rather than "I think you are wrong"
-  - "While" and "we appreciate" constructions that frame disagreement as additional consideration
-  - Specific, formal acknowledgments before pivots: "Thank you for the thorough proposal"
+  - 'Strategic passive voice for criticism: "concerns have been raised" rather than "I think you are wrong"'
+  - '"While" and "we appreciate" constructions that frame disagreement as additional consideration'
+  - 'Specific, formal acknowledgments before pivots: "Thank you for the thorough proposal"'
   - Disagreement framed as additional considerations rather than refutation
-  - Face-saving exit ramps offered: paths the reader can take without conceding error
+  - 'Face-saving exit ramps offered: paths the reader can take without conceding error'
 spectrum: directness
 nn_g_profile: serious
 pairs_well_with:

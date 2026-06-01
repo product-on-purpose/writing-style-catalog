@@ -23,11 +23,11 @@ description: |
   when it comes, is specific and actionable, and the reader knows what would have to change for
   the recommendation to change.
 language_patterns:
-  - Named frameworks and analytical models: "viewed through the X lens," "this maps to the Y framework"
-  - Structured findings: numbered or labeled, each with evidence and implication
-  - Hedged confidence: "the strongest read suggests," "the data are consistent with," "on balance"
-  - Options surfaced before recommendation: "we see three paths," "Option A...Option B..."
-  - Explicit tradeoffs and named assumptions: "this assumes X holds; if it does not, the call changes"
+  - 'Named frameworks and analytical models: "viewed through the X lens," "this maps to the Y framework"'
+  - 'Structured findings: numbered or labeled, each with evidence and implication'
+  - 'Hedged confidence: "the strongest read suggests," "the data are consistent with," "on balance"'
+  - 'Options surfaced before recommendation: "we see three paths," "Option A...Option B..."'
+  - 'Explicit tradeoffs and named assumptions: "this assumes X holds; if it does not, the call changes"'
   - Recommendation paragraphs that lead with the call and follow with the reasoning
 pairs_well_with:
   - diplomatic
