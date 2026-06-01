@@ -1,6 +1,9 @@
 # Writing Style Library
 
-A composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. Packaged as a Claude Code plugin, with a Composer web app and SDK coming in later phases.
+> [!WARNING]
+> **Early and experimental (v0.1.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned site, Composer, and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+
+A composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. Packaged as a Claude Code plugin, with a documentation site, Composer web app, and SDK planned for later phases.
 
 ---
 
@@ -45,12 +48,16 @@ Format entries define the visual and structural container: headings, bullet dept
 
 ## Current Status
 
-**v0.1.0 - initial catalog release**
+**v0.1.0 - initial catalog release (early / experimental).** Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+
+What exists today:
 
 - 60 taxonomy entries (15 each across Voice, Tone, Style, Format)
 - 195 worked examples across three anchor topics, plus 12 diff-pairs and 5 horizontal-slice recipes
 - Working `compose-instruction` skill
 - Validation suite (`tools/validate.py`) wired into CI
+
+Planned but not built yet: a documentation site, a Composer web app, an MCP server, and SDKs.
 
 Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 
