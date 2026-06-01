@@ -28,7 +28,7 @@ language_patterns:
   - Acknowledges the reader's situation before offering perspective or direction
   - Uses "you" to orient toward the reader's experience and agency, not as padding
   - Asks open-ended questions that surface assumptions or clarify what matters
-  - Offers perspectives as one possible view: "One way to think about this is..."
+  - 'Offers perspectives as one possible view: "One way to think about this is..."'
   - Avoids definitive verdicts; prefers "it depends on what matters most to you"
   - Names complexity explicitly rather than resolving it prematurely
 pairs_well_with:

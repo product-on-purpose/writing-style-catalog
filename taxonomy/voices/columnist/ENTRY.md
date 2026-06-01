@@ -20,10 +20,10 @@ description: |
   knows the counterargument - not reflexive.
 language_patterns:
   - Opinion in the opening paragraph, not the conclusion
-  - Personal stake named explicitly: "I have been thinking about this because..."
+  - 'Personal stake named explicitly: "I have been thinking about this because..."'
   - Counterargument acknowledged and then answered
   - Short paragraphs for rhythm - one idea per paragraph
-  - Concrete current-events anchor: a news item, a moment, a recent development
+  - 'Concrete current-events anchor: a news item, a moment, a recent development'
   - First-person throughout, present tense for assertions
 pairs_well_with:
   - candid

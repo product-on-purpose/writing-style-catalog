@@ -21,10 +21,10 @@ description: |
 markers:
   - Numbered steps, each expressing exactly one action
   - Terms defined in the same sentence or clause where they first appear
-  - Explicit orientation before transitions: "Before you do X, make sure Y is complete"
+  - 'Explicit orientation before transitions: "Before you do X, make sure Y is complete"'
   - No reassurances or motivational asides - only forward movement
   - Second person used to assign action to the reader, not to the writer
-  - Anticipated failure points named and addressed inline: "If you see [error], it means..."
+  - 'Anticipated failure points named and addressed inline: "If you see [error], it means..."'
 spectrum: clarity
 spectrum_position: 0.85
 nn_g_profile: neutral

@@ -19,10 +19,10 @@ description: |
   a straight account with no spin.
 markers:
   - Declarative sentences without hedging
-  - No intensifiers: not "very important" but "important"
-  - No mood markers: not "unfortunately" or "excitingly" - just the fact
+  - 'No intensifiers: not "very important" but "important"'
+  - 'No mood markers: not "unfortunately" or "excitingly" - just the fact'
   - Active voice stating what is
-  - No meta-commentary on the communication: not "I want to be clear" but just the clear statement
+  - 'No meta-commentary on the communication: not "I want to be clear" but just the clear statement'
   - Neutral sentence endings - statements close, not questions or emphatics
 spectrum: neutral-expressive
 nn_g_profile: neutral

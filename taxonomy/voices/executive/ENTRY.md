@@ -24,7 +24,7 @@ language_patterns:
   - Leads with the conclusion or decision before the supporting rationale
   - States uncertainty in explicit terms rather than softening with hedges
   - Uses "we" at moments of shared accountability, not as a filler for "I"
-  - Business-strategic vocabulary: priorities, outcomes, tradeoffs, bets, signals
+  - 'Business-strategic vocabulary: priorities, outcomes, tradeoffs, bets, signals'
   - Short declarative sentences when stating direction; longer sentences for rationale
   - Names the next decision point rather than trailing off into open-ended possibilities
 pairs_well_with:

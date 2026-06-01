@@ -23,9 +23,9 @@ description: |
   makes the reader want to keep reading. That is the only valid measure.
 markers:
   - Unexpected comparisons that are precise enough to be true, not just amusing
-  - Sentence-level rhythm varied to create surprise: the short sentence after the long one
+  - 'Sentence-level rhythm varied to create surprise: the short sentence after the long one'
   - Wordplay used sparingly, where the double meaning earns its place
-  - Jokes that do not announce themselves: no "just kidding" or "(pun intended)"
+  - 'Jokes that do not announce themselves: no "just kidding" or "(pun intended)"'
   - Lightness of touch - the point is made with less effort than the reader expected
   - Humor that sharpens rather than softens the argument
 spectrum: levity

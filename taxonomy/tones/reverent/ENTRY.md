@@ -19,7 +19,7 @@ description: |
   shortening or simplifying the sentence change what the piece communicates about the subject?
   If yes, it is reverence. If no, it is pomposity.
 markers:
-  - Slowed pace: longer sentences, more deliberate rhythm
+  - 'Slowed pace: longer sentences, more deliberate rhythm'
   - Word selection feels considered - nothing casual, nothing flippant
   - Active attention to what is being described - nothing dismissed or passed over
   - Moments of silence or pause - space in the writing

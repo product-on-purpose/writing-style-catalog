@@ -20,8 +20,8 @@ description: |
   right moments, it is one of the most powerful tools for building the trust that makes hard
   communication possible.
 markers:
-  - Specific naming of the difficulty before any ask: "You are being asked to change something that has worked for you"
-  - Absence of generic comfort phrases: no "I understand this may be challenging"
+  - 'Specific naming of the difficulty before any ask: "You are being asked to change something that has worked for you"'
+  - 'Absence of generic comfort phrases: no "I understand this may be challenging"'
   - Acknowledgment includes the source of the difficulty, not just its existence
   - The ask or next step comes after, not before, the acknowledgment
   - Does not minimize or resolve the difficulty prematurely

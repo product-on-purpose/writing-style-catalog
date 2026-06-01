@@ -5,7 +5,7 @@ topic_slug: service-database-choice
 topic_label: How to choose between Postgres and DynamoDB for a new service
 author_type: llm
 llm_model: claude-opus-4-7
-generated_at: 2026-05-16
+generated_at: "2026-05-16"
 review_status: reviewed
 ---
 
