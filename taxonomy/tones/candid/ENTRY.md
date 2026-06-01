@@ -19,9 +19,9 @@ description: |
   that you are not managing their feelings at the expense of the truth.
 markers:
   - Names the hard thing directly and early, not buried in paragraph four
-  - Explicit signaling: "I want to be direct about this" or "Here is the honest picture"
-  - Acknowledgment before the hard truth: "I know this is not what you hoped for"
-  - Path forward after the truth: "Here is what we can do"
+  - 'Explicit signaling: "I want to be direct about this" or "Here is the honest picture"'
+  - 'Acknowledgment before the hard truth: "I know this is not what you hoped for"'
+  - 'Path forward after the truth: "Here is what we can do"'
   - Active voice for the difficult claims
   - No euphemisms for negative outcomes
 spectrum: transparency

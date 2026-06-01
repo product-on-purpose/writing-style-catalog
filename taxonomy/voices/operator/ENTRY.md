@@ -17,11 +17,11 @@ description: |
   name the actual failure, the actual humans who made the calls, and the actual process changes
   that will prevent recurrence. The passive voice ("mistakes were made") is not an option.
 language_patterns:
-  - Concrete specifics: service names, thresholds, flag values, process names
-  - Active voice and named actors: "When X happens, engineer Y does Z"
-  - Imperative constructions for instructions: "Run this command. Check this log."
+  - 'Concrete specifics: service names, thresholds, flag values, process names'
+  - 'Active voice and named actors: "When X happens, engineer Y does Z"'
+  - 'Imperative constructions for instructions: "Run this command. Check this log."'
   - Short sentences when giving instructions
-  - Numerical precision: "under 200ms" not "fast enough"
+  - 'Numerical precision: "under 200ms" not "fast enough"'
   - Present tense for states of the world, past tense for what happened
 pairs_well_with:
   - matter-of-fact

@@ -20,11 +20,11 @@ description: |
   tiebreaker rather than declining to decide.
 language_patterns:
   - Leads with the decision, then the reasoning
-  - Names constraints by type: latency, cost, operational complexity, team skill
+  - 'Names constraints by type: latency, cost, operational complexity, team skill'
   - Uses "we" when discussing team decisions, "I" when expressing personal judgment
-  - Concrete failure modes: "this will hurt when traffic spikes" not "this may have scaling issues"
-  - Direct comparatives: "this is faster than X because Y" not "this has better performance characteristics"
-  - Questions answered as assertions: not "one option would be to..." but "use X"
+  - 'Concrete failure modes: "this will hurt when traffic spikes" not "this may have scaling issues"'
+  - 'Direct comparatives: "this is faster than X because Y" not "this has better performance characteristics"'
+  - 'Questions answered as assertions: not "one option would be to..." but "use X"'
 pairs_well_with:
   - matter-of-fact
   - candid

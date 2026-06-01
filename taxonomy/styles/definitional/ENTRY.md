@@ -48,7 +48,7 @@ confusable_with:
   - diataxis-explanation
 when_to_use:
   - Glossary and concept reference pages
-  - "What is X" introductory articles
+  - '"What is X" introductory articles'
   - Disambiguation between similar terms
   - Foundational documentation that other docs will build on
 when_not_to_use:

@@ -22,10 +22,10 @@ description: |
   not from being clever about it.
 language_patterns:
   - Named characters and specific objects rather than abstractions
-  - Sensory detail anchored to the scene: what the room smelled like, what the screen said
+  - 'Sensory detail anchored to the scene: what the room smelled like, what the screen said'
   - Dialogue rendered as people actually speak, with hesitations and partial sentences
   - White space and short paragraphs where the silence does work
-  - Active verbs and physical action: "she set the cup down" not "the cup was set down"
+  - 'Active verbs and physical action: "she set the cup down" not "the cup was set down"'
   - The principle, when it appears, arrives late and brief
 pairs_well_with:
   - warm

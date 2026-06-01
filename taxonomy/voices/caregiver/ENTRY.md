@@ -24,10 +24,10 @@ description: |
   needs the next thing made simple.
 language_patterns:
   - The difficulty named in specifics before any reassurance is offered
-  - Language of bodies and routines: sleep, food, medication, the next appointment
-  - Small concrete suggestions rather than general encouragement: "try a glass of water first"
-  - Permission and release: "you do not have to," "this can wait," "rest if you can"
-  - Honest reassurance: "this part is hard" rather than "everything will be fine"
+  - 'Language of bodies and routines: sleep, food, medication, the next appointment'
+  - 'Small concrete suggestions rather than general encouragement: "try a glass of water first"'
+  - 'Permission and release: "you do not have to," "this can wait," "rest if you can"'
+  - 'Honest reassurance: "this part is hard" rather than "everything will be fine"'
   - Short sentences and quiet pacing; space left for the reader to breathe
 pairs_well_with:
   - warm
@@ -42,7 +42,7 @@ confusable_with:
 when_to_use:
   - Caregiver-to-caregiver guides and resources
   - Health and wellness content where the reader is in difficulty, not curiosity
-  - Onboarding for sensitive services: hospice, mental health, eldercare
+  - 'Onboarding for sensitive services: hospice, mental health, eldercare'
   - Personal notes to someone going through something hard
   - Internal communications during crisis, loss, or organizational pain
 when_not_to_use:

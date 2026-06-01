@@ -23,9 +23,9 @@ description: |
 markers:
   - First sentence states the most critical fact or required action, not context or background
   - Short sentences - average sentence length visibly lower than in other tones
-  - No hedging: "You need to" not "You may want to consider"
-  - Absence of preamble: no "I wanted to reach out because" or "As you may be aware"
-  - Action assigned explicitly: "Do X now" not "X should probably happen"
+  - 'No hedging: "You need to" not "You may want to consider"'
+  - 'Absence of preamble: no "I wanted to reach out because" or "As you may be aware"'
+  - 'Action assigned explicitly: "Do X now" not "X should probably happen"'
   - Any context provided comes after the action, not before it
 spectrum: urgency
 spectrum_position: 0.95

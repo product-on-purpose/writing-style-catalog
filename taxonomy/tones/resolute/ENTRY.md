@@ -24,12 +24,12 @@ description: |
   when the deliberation has not actually closed: performative resoluteness without a real
   decision underneath reads as bluster.
 markers:
-  - Future-action sentences: "we are doing X" rather than "we should do X"
+  - 'Future-action sentences: "we are doing X" rather than "we should do X"'
   - Specific commitments with owners and timing
   - The reasoning is referenced briefly or not at all - it is settled, not relitigated
-  - Loop-closing language: "the question is decided," "this is the path we are taking"
-  - Energy oriented toward execution: next steps, milestones, how we will know
-  - No reopening of alternatives: the off-ramps are no longer named
+  - 'Loop-closing language: "the question is decided," "this is the path we are taking"'
+  - 'Energy oriented toward execution: next steps, milestones, how we will know'
+  - 'No reopening of alternatives: the off-ramps are no longer named'
 spectrum: commitment
 nn_g_profile: serious
 pairs_well_with:

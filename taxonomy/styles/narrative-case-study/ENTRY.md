@@ -23,9 +23,9 @@ description: |
   that emerges from the story is a discovery.
 structural_conventions:
   - Opens in the specific situation, not with a general statement of the principle
-  - "Before" section names specific conditions, not vague problems
-  - "Turning point" identifies the specific intervention and who made it
-  - "After" section names specific outcomes with enough detail to be falsifiable
+  - '"Before" section names specific conditions, not vague problems'
+  - '"Turning point" identifies the specific intervention and who made it'
+  - '"After" section names specific outcomes with enough detail to be falsifiable'
   - Principle or takeaway appears at the end, after the story has made it credible
   - Uses real names, real numbers, or real context wherever possible
 frame: narrative

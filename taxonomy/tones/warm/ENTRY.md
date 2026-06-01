@@ -19,12 +19,12 @@ description: |
   incongruent with highly technical or legal contexts where the personal register would feel
   inappropriate or even manipulative.
 markers:
-  - Direct address: "you," often early
+  - 'Direct address: "you," often early'
   - Acknowledgment of the reader's situation or effort
-  - Personal investment: "I want you to get this right"
-  - Second-person possessives: "your work," "your situation"
+  - 'Personal investment: "I want you to get this right"'
+  - 'Second-person possessives: "your work," "your situation"'
   - Short, human sentences alongside longer explanations
-  - Inclusive language: "we" when speaking of shared effort
+  - 'Inclusive language: "we" when speaking of shared effort'
 spectrum: warmth
 nn_g_profile: neutral
 pairs_well_with:

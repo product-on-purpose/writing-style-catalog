@@ -24,11 +24,11 @@ description: |
   writer uses structural emphasis - a note, a warning, a separate heading - not
   adjectives.
 language_patterns:
-  - Imperative mood for instructions: "Click Save" not "You should click Save"
-  - Active voice with named subject: "The system sends a confirmation email" not "A confirmation email is sent"
-  - Concrete nouns over nominalizations: "configure" not "configuration of"
-  - No editorializing adjectives: "powerful," "intuitive," "seamless" do not appear
-  - Structure for scanning: numbered steps for sequence, bullets for parallel items, headers for navigation
+  - 'Imperative mood for instructions: "Click Save" not "You should click Save"'
+  - 'Active voice with named subject: "The system sends a confirmation email" not "A confirmation email is sent"'
+  - 'Concrete nouns over nominalizations: "configure" not "configuration of"'
+  - 'No editorializing adjectives: "powerful," "intuitive," "seamless" do not appear'
+  - 'Structure for scanning: numbered steps for sequence, bullets for parallel items, headers for navigation'
   - Every sentence advances the reader toward their goal or explains why information matters for that goal
 pairs_well_with:
   - matter-of-fact
@@ -48,7 +48,7 @@ when_to_use:
   - API reference and developer guides
   - Onboarding flows and setup instructions
   - Any writing where the reader's primary goal is task completion
-  - Internal procedural documentation: processes, runbooks, SOPs
+  - 'Internal procedural documentation: processes, runbooks, SOPs'
 when_not_to_use:
   - Persuasive writing where emotional engagement matters
   - Narrative content meant to be read rather than used

@@ -22,7 +22,7 @@ structural_conventions:
   - Problem stated before solution, never after
   - Problem section must be specific enough that the reader can confirm "yes, this is my situation"
   - Solution section addresses the specific problem named, not a generalized one
-  - Optional: "before/after" contrast to show the delta
+  - 'Optional: "before/after" contrast to show the delta'
 frame: expository-argumentative
 evidence_types:
   - concrete examples

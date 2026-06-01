@@ -22,10 +22,10 @@ description: |
 language_patterns:
   - Addresses the reader directly as "you"
   - Uses concrete analogies drawn from everyday experience
-  - Paces explanations: "First X, then Y, and finally Z"
-  - Names the sticking points: "The tricky part is..." or "What usually trips people up is..."
-  - Affirms progress without false praise: "Now that you have got X, Y follows naturally"
-  - Questions as transitions: "So why does this matter? Because..."
+  - 'Paces explanations: "First X, then Y, and finally Z"'
+  - 'Names the sticking points: "The tricky part is..." or "What usually trips people up is..."'
+  - 'Affirms progress without false praise: "Now that you have got X, Y follows naturally"'
+  - 'Questions as transitions: "So why does this matter? Because..."'
 pairs_well_with:
   - encouraging
   - warm
