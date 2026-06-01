@@ -159,3 +159,91 @@ def load_diff_pairs() -> list[dict]:
 
 def diff_pairs_for_entry(pairs: list[dict], entry_id: str) -> list[dict]:
     return [p for p in pairs if entry_id in (p["entry_a"], p["entry_b"])]
+
+
+def _yaml_title(text: str) -> str:
+    """Safe single-line YAML scalar for a frontmatter title/description."""
+    return '"' + text.replace('"', "'") + '"'
+
+
+def _xref_block(catalog: dict, entry: dict, field: str, heading: str) -> str:
+    ids = entry.get(field) or []
+    if not ids:
+        return ""
+    links = ", ".join(entry_link(catalog, i) for i in ids)
+    return f"### {heading}\n\n{links}\n\n"
+
+
+def render_entry_page(catalog: dict, pairs: list[dict], entry: dict) -> str:
+    axis = entry["_axis"]
+    out = []
+    out.append("---")
+    out.append(f"title: {_yaml_title(entry['name'])}")
+    out.append(f"description: {_yaml_title(entry.get('one_liner', ''))}")
+    out.append("---")
+    out.append("")
+    out.append(GENERATED_BANNER)
+    out.append("")
+    out.append("import { Tabs, TabItem } from '@astrojs/starlight/components';")
+    out.append("")
+    out.append(f"> {entry.get('one_liner', '')}")
+    out.append("")
+    out.append(entry.get("_body", "").strip())
+    out.append("")
+
+    phrasing = entry.get("llm_instruction_phrasing", "").strip()
+    if phrasing:
+        out.append("## Instruction")
+        out.append("")
+        out.append("```text")
+        out.append(phrasing)
+        out.append("```")
+        out.append("")
+
+    if axis == "format" and entry.get("canonical_template"):
+        out.append("## Template")
+        out.append("")
+        out.append(f"See the [{entry['name']} template]({BASE}/templates/{entry['id']}/).")
+        out.append("")
+
+    xref = ""
+    xref += _xref_block(catalog, entry, "pairs_well_with", "Pairs well with")
+    xref += _xref_block(catalog, entry, "avoid_with", "Avoid with")
+    xref += _xref_block(catalog, entry, "confusable_with", "Often confused with")
+    if xref:
+        out.append("## Related")
+        out.append("")
+        out.append(xref.rstrip())
+        out.append("")
+
+    examples = examples_for_entry(entry["id"])
+    if examples:
+        out.append("## Examples")
+        out.append("")
+        out.append("<Tabs>")
+        for topic in TOPICS:
+            rec = examples.get(topic)
+            if not rec:
+                continue
+            out.append(f'<TabItem label="{rec["topic_label"]}">')
+            out.append("")
+            out.append(rec["body"].strip())
+            out.append("")
+            out.append("</TabItem>")
+        out.append("</Tabs>")
+        out.append("")
+
+    appears = diff_pairs_for_entry(pairs, entry["id"])
+    if appears:
+        out.append("## Appears in diff-pairs")
+        out.append("")
+        for p in appears:
+            other = p["entry_b"] if p["entry_a"] == entry["id"] else p["entry_a"]
+            out.append(
+                f"- [{entry['id']} vs {other}]"
+                f"({BASE}/examples/diff-pairs/{p['diff_pair_id']}/) "
+                f"(varies {p['axis_varied']})"
+            )
+        out.append("")
+
+    return "\n".join(out).rstrip() + "\n"
