@@ -364,11 +364,26 @@ def _link_entry_names_in_table(catalog: dict, text: str) -> str:
     return re.sub(r"`([a-z][a-z0-9-]*)`", repl, text)
 
 
+def _strip_local_md_links(text: str) -> str:
+    """Convert relative links to local .md files into plain text (their targets
+    are not generated into the site, so the links would 404). Leaves http(s)
+    and site-absolute links intact."""
+    def repl(m):
+        label, target = m.group(1), m.group(2)
+        if target.startswith("http") or target.startswith("/"):
+            return m.group(0)
+        if target.split("#")[0].endswith(".md"):
+            return label
+        return m.group(0)
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", repl, text)
+
+
 def render_recipe_page(catalog: dict, recipe_slug: str) -> str:
     readme = (RECIPES_DIR / recipe_slug / "README.md").read_text(encoding="utf-8")
     lines = readme.splitlines()
     heading = lines[0].lstrip("# ").strip() if lines else recipe_slug
     body = "\n".join(lines[1:]).strip()
+    body = _strip_local_md_links(body)
     body = _link_entry_names_in_table(catalog, body)
     out = [
         "---",

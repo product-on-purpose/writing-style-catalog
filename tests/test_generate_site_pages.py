@@ -183,6 +183,23 @@ def test_render_recipe_page_renders_readme():
     assert "/writing-style-library/reference/" in md  # entry names linked
 
 
+def test_strip_local_md_links_neutralizes_relative_md():
+    assert gsp._strip_local_md_links("see [REST to GraphQL](rest-to-graphql.md)") == "see REST to GraphQL"
+    assert gsp._strip_local_md_links("see [x](./foo.md)") == "see x"
+    # leaves http and site-absolute links intact
+    assert gsp._strip_local_md_links("[e](https://x.com/y.md)") == "[e](https://x.com/y.md)"
+    assert gsp._strip_local_md_links("[c](/writing-style-library/reference/voices/coach/)") == "[c](/writing-style-library/reference/voices/coach/)"
+
+
+def test_recipe_page_has_no_dangling_md_links():
+    md = gsp.render_recipe_page(gsp.load_catalog(), "architect-candid-adr")
+    import re as _re
+    # no remaining relative .md links (markdown link whose target ends in .md and is not http/site-absolute)
+    dangling = [m.group(0) for m in _re.finditer(r"\[[^\]]+\]\(([^)]+)\)", md)
+                if not m.group(1).startswith("http") and not m.group(1).startswith("/") and m.group(1).split("#")[0].endswith(".md")]
+    assert dangling == [], f"dangling md links: {dangling}"
+
+
 def test_list_recipes_finds_all_five():
     assert len(gsp.list_recipes()) == 5
     assert "architect-candid-adr" in gsp.list_recipes()

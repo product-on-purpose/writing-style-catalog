@@ -25,6 +25,6 @@ If the audience is gathered for worship and the piece will be read aloud, swap [
 
 ## Worked examples on this recipe
 
-- [The discipline of rest](discipline-of-rest.md)
-- [Forgiveness as a daily practice](forgiveness-daily-practice.md)
-- [Hearing God in the silence](hearing-god-in-silence.md)
+- The discipline of rest
+- Forgiveness as a daily practice
+- Hearing God in the silence

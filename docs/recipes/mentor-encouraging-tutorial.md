@@ -25,6 +25,6 @@ If the audience is an experienced engineer who wants the canonical procedure wit
 
 ## Worked examples on this recipe
 
-- [Your first pull request](first-pull-request.md)
-- [Setting up your development environment](development-environment-setup.md)
-- [Writing your first test](writing-your-first-test.md)
+- Your first pull request
+- Setting up your development environment
+- Writing your first test

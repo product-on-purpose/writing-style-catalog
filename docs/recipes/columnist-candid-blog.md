@@ -25,6 +25,6 @@ If the goal is to explain how something works rather than to argue for a positio
 
 ## Worked examples on this recipe
 
-- [Why I stopped using 1:1 meeting agendas](one-on-one-agendas.md)
-- [The case against quarterly OKRs](against-quarterly-okrs.md)
-- [Engineering managers should write code](managers-should-code.md)
+- Why I stopped using 1:1 meeting agendas
+- The case against quarterly OKRs
+- Engineering managers should write code

@@ -25,6 +25,6 @@ If the audience is a new hire learning the platform for orientation, swap [Opera
 
 ## Worked examples on this recipe
 
-- [Restart the auth service](restart-auth-service.md)
-- [Investigate elevated p99 latency](investigate-p99-latency.md)
-- [Fail over the primary database](database-failover.md)
+- Restart the auth service
+- Investigate elevated p99 latency
+- Fail over the primary database

@@ -25,6 +25,6 @@ If the decision has already been made and you are communicating it to a broader 
 
 ## Worked examples on this recipe
 
-- [Migrate from REST to GraphQL](rest-to-graphql.md)
-- [Adopt Kubernetes for staging deployments](kubernetes-staging.md)
-- [Sunset the legacy auth service](sunset-legacy-auth.md)
+- Migrate from REST to GraphQL
+- Adopt Kubernetes for staging deployments
+- Sunset the legacy auth service

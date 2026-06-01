@@ -16,7 +16,7 @@ repos:
         name: Validate taxonomy entries
         entry: python tools/validate.py
         language: python
-        additional_dependencies: [jsonschema]
+        additional_dependencies: [jsonschema, referencing, pyyaml]
         pass_filenames: false
         always_run: false
         files: ^taxonomy/
@@ -25,6 +25,7 @@ repos:
         name: Rebuild taxonomy.json
         entry: python tools/build-indexes.py
         language: python
+        additional_dependencies: [jsonschema, referencing, pyyaml]
         pass_filenames: false
         always_run: false
         files: ^taxonomy/
