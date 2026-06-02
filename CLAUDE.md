@@ -4,7 +4,7 @@ See `AGENTS.md` for the full multi-agent reference. This file adds Claude Code-s
 
 ## Quick orientation
 
-This repo is a composable catalog of writing instructions organized along three axes:
+This repo is a composable catalog of writing instructions organized into four directories (Voice, Tone, Style, Format):
 - **Voice** (`taxonomy/voices/`) - persistent writer identity
 - **Tone** (`taxonomy/tones/`) - situational register
 - **Style** (`taxonomy/styles/`) - rhetorical and cognitive pattern
@@ -32,7 +32,7 @@ npm run build
 
 - **No em-dashes (U+2014) or en-dashes (U+2013)** anywhere - not in prose, code comments, commit messages, or doc files. Use " - " (space-hyphen-space). This is enforced by a pre-commit hook.
 - **Never modify `docs/internal/`** or `_LOCAL/` - these are read-only reference artifacts.
-- **Never set `review_status` to `stable` or `reference-quality`** without maintainer review. New entries start at `draft`.
+- **Never set `review_status` to `stable` or `reference-quality`** without maintainer review. New entries start at `draft`. (The 60-entry v0.1.0 seed catalog was reviewed and set to `stable` as the baseline; this rule governs new entries.)
 - **Conventional Commits** format for all commits: `feat(taxonomy): add <entry-id> <axis> entry`.
 
 ## When adding an entry

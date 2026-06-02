@@ -37,6 +37,8 @@ This is a hard rule with no exceptions. Do not use U+2014 (em-dash) or U+2013 (e
 
 New entries must start at `draft`. The progression is: `draft` -> `reviewed` -> `stable` -> `reference-quality`. Do not set a new entry to `stable` or `reference-quality` without maintainer approval.
 
+The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were reviewed and set to `stable` as the initial baseline, which is why the catalog currently shows no `draft` entries. This rule governs new contributions from here forward.
+
 ---
 
 ## How to Add an Entry
@@ -80,6 +82,5 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `tools/validate.py` | Validation script |
 | `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
 | `docs/internal/adr/` | Architecture Decision Records |
-| `recipes/` | Curated axis combinations for common use cases |
 | `_LOCAL/` | Source research - read-only, do not modify |
 | `docs/internal/` | Internal strategy docs - read-only, do not modify |

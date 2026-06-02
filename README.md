@@ -195,8 +195,6 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | `scripts/` | Code | Site page generator and freshness guard |
 | `tests/` | Code | Pytest tests for the generator |
 | `docs/internal/adr/` | Docs | Architecture Decision Records |
-| `recipes/` | Content | Curated axis combinations for common use cases |
-| `packages/` | Code | Planned SDK / MCP / Composer surfaces (not built yet) |
 | `.claude-plugin/` | Config | Claude Code plugin manifest and config |
 | `.github/` | Config | CI workflows and issue templates |
 
@@ -244,7 +242,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full entry-authoring checklist, s
 
 This project is dual-licensed:
 
-- **Code** (schemas, skills, tools, scripts, packages, tests): [Apache-2.0](LICENSE)
+- **Code** (schemas, skills, tools, scripts, tests): [Apache-2.0](LICENSE)
 - **Content** (taxonomy entries, examples, docs): [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)
 
 See [NOTICE](NOTICE) for full attribution details, including the provenance of LLM-generated example content.
