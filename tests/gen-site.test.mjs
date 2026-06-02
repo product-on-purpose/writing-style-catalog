@@ -141,3 +141,24 @@ test('the generator source contains no hardcoded base literal', () => {
   const src = fs.readFileSync(SCRIPT, 'utf8');
   assert.equal(src.includes('/writing-style-catalog'), false);
 });
+
+test('parseFrontmatter parses inline (flow) lists', () => {
+  assert.deepEqual(parseFrontmatter('pairs_well_with: [warm, candid]').pairs_well_with, ['warm', 'candid']);
+  assert.deepEqual(parseFrontmatter('xs: []').xs, []);
+});
+
+test('parseFrontmatter folds > scalars (newlines to spaces, blank line breaks)', () => {
+  assert.equal(parseFrontmatter('o: >\n  line one\n  line two').o, 'line one line two');
+  assert.equal(parseFrontmatter('o: >\n  para one\n\n  para two').o, 'para one\n\npara two');
+});
+
+test('generate clears stale generated files before writing', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gen-clean-'));
+  const stale = path.join(tmp, 'reference', 'voices', 'zzz-stale.mdx');
+  fs.mkdirSync(path.dirname(stale), { recursive: true });
+  fs.writeFileSync(stale, 'stale', 'utf8');
+  generate(tmp);
+  assert.equal(fs.existsSync(stale), false, 'stale generated file should be removed');
+  assert.equal(fs.existsSync(path.join(tmp, 'reference', 'voices', 'coach.mdx')), true);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});

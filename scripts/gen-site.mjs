@@ -97,7 +97,24 @@ function parseFrontmatter(fmText) {
       const indents = block.filter((l) => l.trim() !== '').map((l) => l.length - l.trimStart().length);
       const minIndent = indents.length ? Math.min(...indents) : 0;
       const dedented = block.map((l) => (l === '' ? '' : l.slice(minIndent)));
-      obj[key] = dedented.join('\n');
+      if (restTrim.startsWith('>')) {
+        // Folded scalar: join consecutive non-blank lines with a space; blank
+        // lines become paragraph breaks. Matches PyYAML for prose.
+        const parts = [];
+        let para = [];
+        for (const l of dedented) {
+          if (l === '') {
+            if (para.length) { parts.push(para.join(' ')); para = []; }
+            parts.push('');
+          } else {
+            para.push(l);
+          }
+        }
+        if (para.length) parts.push(para.join(' '));
+        obj[key] = parts.join('\n');
+      } else {
+        obj[key] = dedented.join('\n');
+      }
       continue;
     }
 
@@ -128,7 +145,13 @@ function parseFrontmatter(fmText) {
       continue;
     }
 
-    obj[key] = stripQuotes(restTrim);
+    if (restTrim.startsWith('[') && restTrim.endsWith(']')) {
+      // Inline (flow) list, e.g. pairs_well_with: [warm, candid].
+      const inner = restTrim.slice(1, -1).trim();
+      obj[key] = inner === '' ? [] : inner.split(',').map((s) => stripQuotes(s.trim()));
+    } else {
+      obj[key] = stripQuotes(restTrim);
+    }
     i++;
   }
   return obj;
@@ -646,6 +669,14 @@ function generate(outRoot) {
   const catalog = loadCatalog();
   const pairs = loadDiffPairs();
   let n = 0;
+
+  // Clear previously generated subtrees first, so an in-place rebuild (the
+  // catalog is gitignored and not drift-guarded) cannot leave a stale page
+  // whose source was removed. Only generated dirs are cleared; the hand-authored
+  // narrative under the same content root is untouched.
+  for (const sub of ['reference', 'examples', 'recipes', 'templates']) {
+    fs.rmSync(path.join(outRoot, sub), { recursive: true, force: true });
+  }
 
   // Entry pages (.mdx because they import components / use <Tabs>).
   for (const axis of AXES) {
