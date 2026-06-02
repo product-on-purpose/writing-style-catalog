@@ -14,7 +14,7 @@ import remarkGfm from 'remark-gfm';
 //    tables instead of literal text.
 export default defineConfig({
   site: 'https://product-on-purpose.github.io',
-  base: '/writing-style-library',
+  base: '/writing-style-catalog',
   // Apply GFM (tables, strikethrough, autolinks) explicitly. .mdx files inherit
   // this via @astrojs/mdx's extendMarkdownConfig (on by default). Without an
   // explicit remark-gfm here, GFM tables in .mdx pages render as literal text
@@ -29,7 +29,7 @@ export default defineConfig({
     starlight({
       title: 'Writing Style Library',
       description: 'Composable writing instructions on four orthogonal axes: Voice, Tone, Style, Format.',
-      editLink: { baseUrl: 'https://github.com/product-on-purpose/writing-style-library/edit/main/' },
+      editLink: { baseUrl: 'https://github.com/product-on-purpose/writing-style-catalog/edit/main/' },
       customCss: ['./src/styles/custom.css'],
       // Starlight 0.39: autogenerate must be wrapped in items: [].
       // The directory must be prefixed with 'docs/' because the custom glob

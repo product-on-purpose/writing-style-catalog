@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/entry.universal.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/entry.universal.schema.json",
   "title": "Universal Entry Base",
   "description": "Shared base schema for all taxonomy entry types",
   "type": "object",

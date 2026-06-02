@@ -55,7 +55,7 @@ Every recommendation from the planning pass, in one place. Status is one of: Don
 | **Cross-repo and naming** | | | |
 | R19 | Add the legibility clause to `STANDARD.md` (land from that repo) | Drafted (X.1) | `_LOCAL/proposed-standard-legibility-clause.md` |
 | R21 | Add the `site/` layout convention to `STANDARD.md` Section 10.1 (land from that repo) | Drafted (X.2) | `_LOCAL/proposed-standard-site-layout-clause.md` |
-| R20 | Naming: keep `writing-style-library` or move to `writing-style-catalog`; not `-skills` or `-toolkit` | Your decision | ADR 0014 |
+| R20 | Naming: renamed slug to `writing-style-catalog` (display title kept); not `-skills`/`-toolkit` | Done (ADR 0014 Accepted) | ADR 0014 |
 
 ## What this PR delivers
 
@@ -110,7 +110,7 @@ Gate to Phase 2: 1.1 and 1.2 merged and the live site verified against rendered 
 | # | Initiative | State |
 |---|---|---|
 | L.1 | MCP server (reuse `pm-skills-mcp` pattern) | Deferred until 3.5 ships and the plugin installs |
-| L.2 | Repository rename | ADR 0014 Proposed - your decision (Option A keep `writing-style-library` / B `writing-style-catalog`); cheapest to do now if at all |
+| L.2 | Repository rename | Done 2026-06-02: renamed to `writing-style-catalog` (ADR 0014 Accepted). Local-folder + Claude-history migration is a separate manual step. |
 | L.3 | Marketplace listing | Deferred per prior maintainer call until plugin value is proven |
 
 ### Cross-repo (separate effort)

@@ -25,8 +25,8 @@ An example is a worked output file under `examples/vertical-slices/`, `examples/
 
 ```bash
 # Clone the repo
-git clone https://github.com/product-on-purpose/writing-style-library.git
-cd writing-style-library
+git clone https://github.com/product-on-purpose/writing-style-catalog.git
+cd writing-style-catalog
 
 # Install Python dev dependencies (includes pre-commit and validation tools)
 pip install -r requirements-dev.txt

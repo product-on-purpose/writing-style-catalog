@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/format.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/format.schema.json",
   "title": "Format Entry Schema",
   "description": "Schema for Axis 3 format entries. Format is the structural container or output type.",
   "allOf": [

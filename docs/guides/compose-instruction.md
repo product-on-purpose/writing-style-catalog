@@ -10,13 +10,13 @@ This guide walks through installing the plugin, running the `compose-instruction
 ## Step 1 - Install the Plugin
 
 ```bash
-claude plugin install product-on-purpose/writing-style-library
+claude plugin install product-on-purpose/writing-style-catalog
 ```
 
-After installation, the `writing-style-library:compose-instruction` skill is available in your Claude Code session. Confirm it loaded:
+After installation, the `writing-style-catalog:compose-instruction` skill is available in your Claude Code session. Confirm it loaded:
 
 ```bash
-/writing-style-library:compose-instruction --help
+/writing-style-catalog:compose-instruction --help
 ```
 
 ---
@@ -28,19 +28,19 @@ The skill accepts keyword arguments for each axis. All arguments are optional.
 ### Basic example - voice and format only
 
 ```
-/writing-style-library:compose-instruction voice=pragmatic-architect format=adr
+/writing-style-catalog:compose-instruction voice=pragmatic-architect format=adr
 ```
 
 ### Full four-axis example
 
 ```
-/writing-style-library:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
 ### Using a different combination
 
 ```
-/writing-style-library:compose-instruction voice=product-thinker tone=optimistic-realist style=layered-disclosure format=daily-standup
+/writing-style-catalog:compose-instruction voice=product-thinker tone=optimistic-realist style=layered-disclosure format=daily-standup
 ```
 
 ---
@@ -105,10 +105,10 @@ Save the output to a file (for example `.writing-context.md`) and include it in 
 To see all available entries for a given axis:
 
 ```
-/writing-style-library:compose-instruction --list voices
-/writing-style-library:compose-instruction --list tones
-/writing-style-library:compose-instruction --list styles
-/writing-style-library:compose-instruction --list formats
+/writing-style-catalog:compose-instruction --list voices
+/writing-style-catalog:compose-instruction --list tones
+/writing-style-catalog:compose-instruction --list styles
+/writing-style-catalog:compose-instruction --list formats
 ```
 
 ---

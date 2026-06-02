@@ -128,6 +128,6 @@ Becoming a maintainer is by invitation, typically after sustained high-quality c
 
 ## Code of conduct
 
-All contributors and maintainers follow the [Contributor Covenant](https://www.contributor-covenant.org) Code of Conduct, as documented in [CODE_OF_CONDUCT.md](https://github.com/product-on-purpose/writing-style-library/blob/main/CODE_OF_CONDUCT.md).
+All contributors and maintainers follow the [Contributor Covenant](https://www.contributor-covenant.org) Code of Conduct, as documented in [CODE_OF_CONDUCT.md](https://github.com/product-on-purpose/writing-style-catalog/blob/main/CODE_OF_CONDUCT.md).
 
 Disagreements about entries (which voice should exist, how a style is defined) are normal. Disagreements about people are not.

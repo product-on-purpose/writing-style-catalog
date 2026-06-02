@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Documentation site migrated from MkDocs Material to Astro Starlight. Catalog pages (entries, examples, diff-pairs, recipes, templates) are generated from taxonomy/ and examples/ by scripts/generate_site_pages.py and committed; every entry page now embeds its examples and cross-reference links. A freshness guard keeps generated pages in sync. The validator's YAML parsing moved to PyYAML (see ADR 0012). The site deploys to GitHub Pages.
+- Repository renamed from `writing-style-library` to `writing-style-catalog` (see ADR 0014). The slug, GitHub Pages base path, package/plugin/marketplace identifiers, and the `compose-instruction` skill namespace change accordingly; the display title "Writing Style Library" is retained. The old GitHub URL auto-redirects; the published install path becomes `writing-style-catalog@product-on-purpose`.
 
 ## [0.1.0] - 2026-05-31
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate Starlight docs pages from the writing-style-library catalog.
+"""Generate Starlight docs pages from the writing-style-catalog catalog.
 
 Reads taxonomy/ and examples/ (with PyYAML, NOT the repo's hand-rolled parser)
 and writes committed Markdown/MDX into docs/ where Starlight's autogenerate
@@ -63,7 +63,7 @@ def read_entry(axis: str, entry_dir: Path) -> dict:
     return fm
 
 
-BASE = "/writing-style-library"
+BASE = "/writing-style-catalog"
 
 
 def entry_url(axis: str, entry_id: str) -> str:

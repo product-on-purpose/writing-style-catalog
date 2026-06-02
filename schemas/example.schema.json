@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/example.schema.json",
   "title": "Example File Schema",
   "description": "Schema for the YAML frontmatter of example files in the examples/ directory",
   "type": "object",

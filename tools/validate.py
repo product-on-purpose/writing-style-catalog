@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation script for the writing-style-library taxonomy.
+Validation script for the writing-style-catalog taxonomy.
 
 Runs all CI checks locally and exits with code 0 if no errors,
 code 1 if any errors are found (warnings do not affect exit code).
@@ -92,7 +92,7 @@ def _build_schema_registry() -> Registry:
     registry = Registry()
     for f in SCHEMAS_DIR.glob("*.schema.json"):
         schema_dict = json.loads(f.read_text(encoding="utf-8"))
-        uri = f"https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/{f.name}"
+        uri = f"https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/{f.name}"
         resource = Resource(contents=schema_dict, specification=DRAFT202012)
         registry = registry.with_resource(uri=uri, resource=resource)
     return registry

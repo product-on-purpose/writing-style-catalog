@@ -1,6 +1,6 @@
 # writing-instruction-builder
 
-Core skill for the writing-style-library plugin.
+Core skill for the writing-style-catalog plugin.
 
 ## Skills
 

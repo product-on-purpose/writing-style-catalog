@@ -7,72 +7,72 @@ description: "Every entry across the four axes."
 
 ## Voices
 
-- [Caregiver](/writing-style-library/reference/voices/caregiver/) - A voice of practical compassion that names the difficulty before any reassurance and stays close to bodies, routines, and immediate next steps.
-- [Coach](/writing-style-library/reference/voices/coach/) - A facilitative voice that builds capacity through questions and reflection, acknowledges complexity before offering direction, and creates space without abandoning the reader.
-- [Columnist](/writing-style-library/reference/voices/columnist/) - An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.
-- [Direct Communicator](/writing-style-library/reference/voices/direct-communicator/) - A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.
-- [Executive](/writing-style-library/reference/voices/executive/) - A senior business leader's voice that leads with outcomes and decisions, names uncertainty explicitly, and uses "we" to signal shared accountability.
-- [Friendly Mentor](/writing-style-library/reference/voices/friendly-mentor/) - A warm, patient voice that assumes the reader is capable but new, explaining concepts by building from what they already know.
-- [Journalist](/writing-style-library/reference/voices/journalist/) - A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.
-- [Operator](/writing-style-library/reference/voices/operator/) - An accountability-driven, hands-on voice that cares about what actually happens at 2am when something breaks - not the design, but the execution.
-- [Pastoral](/writing-style-library/reference/voices/pastoral/) - A voice of care, scripture, and application - speaking from a shepherd's heart to a flock navigating real life with faith.
-- [Pragmatic Architect](/writing-style-library/reference/voices/pragmatic-architect/) - A senior technical voice that leads with tradeoffs, names constraints explicitly, and treats every design decision as a bet with known odds.
-- [Product Thinker](/writing-style-library/reference/voices/product-thinker/) - A product manager's voice that leads with "why" before "what," centers user outcomes over implementation, and asks what job the reader is trying to do.
-- [Researcher](/writing-style-library/reference/voices/researcher/) - A disciplined voice that treats writing as the presentation of evidence, hedging where the data is thin and committing where it is strong.
-- [Senior Consultant](/writing-style-library/reference/voices/senior-consultant/) - A polished advisory voice that diagnoses a situation against a named framework before recommending action, comfortable with hedged confidence.
-- [Storyteller](/writing-style-library/reference/voices/storyteller/) - A voice that carries meaning through character, scene, and concrete moment, trusting the reader to extract the principle from the specifics.
-- [Technical Writer](/writing-style-library/reference/voices/technical-writer/) - A precise, reader-centered voice optimized for task completion - writes to the reader's goal, not the writer's knowledge, using plain language and imperative mood.
+- [Caregiver](/writing-style-catalog/reference/voices/caregiver/) - A voice of practical compassion that names the difficulty before any reassurance and stays close to bodies, routines, and immediate next steps.
+- [Coach](/writing-style-catalog/reference/voices/coach/) - A facilitative voice that builds capacity through questions and reflection, acknowledges complexity before offering direction, and creates space without abandoning the reader.
+- [Columnist](/writing-style-catalog/reference/voices/columnist/) - An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.
+- [Direct Communicator](/writing-style-catalog/reference/voices/direct-communicator/) - A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.
+- [Executive](/writing-style-catalog/reference/voices/executive/) - A senior business leader's voice that leads with outcomes and decisions, names uncertainty explicitly, and uses "we" to signal shared accountability.
+- [Friendly Mentor](/writing-style-catalog/reference/voices/friendly-mentor/) - A warm, patient voice that assumes the reader is capable but new, explaining concepts by building from what they already know.
+- [Journalist](/writing-style-catalog/reference/voices/journalist/) - A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.
+- [Operator](/writing-style-catalog/reference/voices/operator/) - An accountability-driven, hands-on voice that cares about what actually happens at 2am when something breaks - not the design, but the execution.
+- [Pastoral](/writing-style-catalog/reference/voices/pastoral/) - A voice of care, scripture, and application - speaking from a shepherd's heart to a flock navigating real life with faith.
+- [Pragmatic Architect](/writing-style-catalog/reference/voices/pragmatic-architect/) - A senior technical voice that leads with tradeoffs, names constraints explicitly, and treats every design decision as a bet with known odds.
+- [Product Thinker](/writing-style-catalog/reference/voices/product-thinker/) - A product manager's voice that leads with "why" before "what," centers user outcomes over implementation, and asks what job the reader is trying to do.
+- [Researcher](/writing-style-catalog/reference/voices/researcher/) - A disciplined voice that treats writing as the presentation of evidence, hedging where the data is thin and committing where it is strong.
+- [Senior Consultant](/writing-style-catalog/reference/voices/senior-consultant/) - A polished advisory voice that diagnoses a situation against a named framework before recommending action, comfortable with hedged confidence.
+- [Storyteller](/writing-style-catalog/reference/voices/storyteller/) - A voice that carries meaning through character, scene, and concrete moment, trusting the reader to extract the principle from the specifics.
+- [Technical Writer](/writing-style-catalog/reference/voices/technical-writer/) - A precise, reader-centered voice optimized for task completion - writes to the reader's goal, not the writer's knowledge, using plain language and imperative mood.
 
 ## Tones
 
-- [Candid](/writing-style-library/reference/tones/candid/) - Names the uncomfortable truth directly - not harsh, but unwilling to pretend the hard thing is not there.
-- [Celebratory](/writing-style-library/reference/tones/celebratory/) - Marks genuine achievement by naming the specific thing, why it mattered, and inviting the reader to feel its weight - not hollow praise, not a list of everything at once.
-- [Confessional](/writing-style-library/reference/tones/confessional/) - The writer admits something about themselves - a specific failure, doubt, or learning, owned without performance.
-- [Confident](/writing-style-library/reference/tones/confident/) - The affect of someone who has thought about this and is ready to say so, without hedging or padding the claim.
-- [Diplomatic](/writing-style-library/reference/tones/diplomatic/) - Careful, face-saving communication that is soft on people and firm on positions, especially across power differentials.
-- [Empathetic](/writing-style-library/reference/tones/empathetic/) - Acknowledges the reader's specific experience before asking anything of them - earns the right to continue by naming the difficulty accurately.
-- [Encouraging](/writing-style-library/reference/tones/encouraging/) - Speaks to capability and forward motion - not false praise, but genuine belief that the person can do the hard thing.
-- [Instructional](/writing-style-library/reference/tones/instructional/) - Patient, structured teaching that measures its own success by whether the reader can do the thing - not by how much it explains.
-- [Matter of Fact](/writing-style-library/reference/tones/matter-of-fact/) - States what is true without editorial coloring - neither cold nor warm, just accurate.
-- [Playful](/writing-style-library/reference/tones/playful/) - Light, witty, and inviting - makes the pleasure of reading part of the point without sacrificing substance or becoming a performance.
-- [Resolute](/writing-style-library/reference/tones/resolute/) - The tone of having stopped deliberating - the decision is made and the writing is now about acting on it.
-- [Reverent](/writing-style-library/reference/tones/reverent/) - Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.
-- [Skeptical](/writing-style-library/reference/tones/skeptical/) - Measured doubt that refuses to commit ahead of the evidence and asks what would actually change the picture.
-- [Urgent](/writing-style-library/reference/tones/urgent/) - Clarity under real pressure - the first sentence is the most important thing, and every word after it earns its place by not slowing the reader down.
-- [Warm](/writing-style-library/reference/tones/warm/) - Communicates genuine care and personal regard for the reader - not flattery, but authentic human warmth.
+- [Candid](/writing-style-catalog/reference/tones/candid/) - Names the uncomfortable truth directly - not harsh, but unwilling to pretend the hard thing is not there.
+- [Celebratory](/writing-style-catalog/reference/tones/celebratory/) - Marks genuine achievement by naming the specific thing, why it mattered, and inviting the reader to feel its weight - not hollow praise, not a list of everything at once.
+- [Confessional](/writing-style-catalog/reference/tones/confessional/) - The writer admits something about themselves - a specific failure, doubt, or learning, owned without performance.
+- [Confident](/writing-style-catalog/reference/tones/confident/) - The affect of someone who has thought about this and is ready to say so, without hedging or padding the claim.
+- [Diplomatic](/writing-style-catalog/reference/tones/diplomatic/) - Careful, face-saving communication that is soft on people and firm on positions, especially across power differentials.
+- [Empathetic](/writing-style-catalog/reference/tones/empathetic/) - Acknowledges the reader's specific experience before asking anything of them - earns the right to continue by naming the difficulty accurately.
+- [Encouraging](/writing-style-catalog/reference/tones/encouraging/) - Speaks to capability and forward motion - not false praise, but genuine belief that the person can do the hard thing.
+- [Instructional](/writing-style-catalog/reference/tones/instructional/) - Patient, structured teaching that measures its own success by whether the reader can do the thing - not by how much it explains.
+- [Matter of Fact](/writing-style-catalog/reference/tones/matter-of-fact/) - States what is true without editorial coloring - neither cold nor warm, just accurate.
+- [Playful](/writing-style-catalog/reference/tones/playful/) - Light, witty, and inviting - makes the pleasure of reading part of the point without sacrificing substance or becoming a performance.
+- [Resolute](/writing-style-catalog/reference/tones/resolute/) - The tone of having stopped deliberating - the decision is made and the writing is now about acting on it.
+- [Reverent](/writing-style-catalog/reference/tones/reverent/) - Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.
+- [Skeptical](/writing-style-catalog/reference/tones/skeptical/) - Measured doubt that refuses to commit ahead of the evidence and asks what would actually change the picture.
+- [Urgent](/writing-style-catalog/reference/tones/urgent/) - Clarity under real pressure - the first sentence is the most important thing, and every word after it earns its place by not slowing the reader down.
+- [Warm](/writing-style-catalog/reference/tones/warm/) - Communicates genuine care and personal regard for the reader - not flattery, but authentic human warmth.
 
 ## Styles
 
-- [Chronological Narrative](/writing-style-library/reference/styles/chronological-narrative/) - Time order is the primary organizing principle - first this, then that, then what came after - with no thematic restructuring.
-- [Classical Argument](/writing-style-library/reference/styles/classical-argument/) - The Toulmin structure of claim, grounds, warrant, and rebuttal - making a position defensible through explicit reasoning.
-- [Comparison-Contrast](/writing-style-library/reference/styles/comparison-contrast/) - Places two or more options, ideas, or states side by side to illuminate the differences that matter.
-- [Decision Log](/writing-style-library/reference/styles/decision-log/) - A real-time record of context, options considered, criteria used, and reasoning - capturing how a decision was reached, not justifying it after the fact.
-- [Definitional](/writing-style-library/reference/styles/definitional/) - Leads with a definition and elaborates through its facets, edge cases, and what-it-is-not - the definition is the load-bearing first move.
-- [Devotional Reflection](/writing-style-library/reference/styles/devotional-reflection/) - A slow, inward-turning movement that takes a scriptural or spiritual observation and follows it into personal and communal life.
-- [Dialectic](/writing-style-library/reference/styles/dialectic/) - Thesis, antithesis, synthesis - states the position, states the strongest opposing position, and moves to a synthesis that takes both seriously.
-- [Diataxis Explanation](/writing-style-library/reference/styles/diataxis-explanation/) - The Diataxis "Explanation" mode - oriented toward understanding rather than action, building a conceptual model for the reader.
-- [Executive Summary](/writing-style-library/reference/styles/executive-summary/) - Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.
-- [Frequently Asked Questions](/writing-style-library/reference/styles/frequently-asked-questions/) - Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.
-- [How-To Tutorial](/writing-style-library/reference/styles/how-to-tutorial/) - Task-first writing that takes a reader from "I don't know how" to "I did it" by organizing every decision around user goals, not system features.
-- [Layered Disclosure](/writing-style-library/reference/styles/layered-disclosure/) - Progressively reveals depth - the first paragraph serves the casual reader completely, and each subsequent section adds detail for those who want it.
-- [Narrative Case Study](/writing-style-library/reference/styles/narrative-case-study/) - A story with a before, a turning point, and an after - using one specific real situation to make a general principle concrete and trustworthy.
-- [Problem-Solution](/writing-style-library/reference/styles/problem-solution/) - Frames the piece as a diagnosis followed by a remedy - establishes the pain before the cure.
-- [Socratic Inquiry](/writing-style-library/reference/styles/socratic-inquiry/) - Advances by asking questions the reader answers in their own head - the conclusions are inferences, not assertions.
+- [Chronological Narrative](/writing-style-catalog/reference/styles/chronological-narrative/) - Time order is the primary organizing principle - first this, then that, then what came after - with no thematic restructuring.
+- [Classical Argument](/writing-style-catalog/reference/styles/classical-argument/) - The Toulmin structure of claim, grounds, warrant, and rebuttal - making a position defensible through explicit reasoning.
+- [Comparison-Contrast](/writing-style-catalog/reference/styles/comparison-contrast/) - Places two or more options, ideas, or states side by side to illuminate the differences that matter.
+- [Decision Log](/writing-style-catalog/reference/styles/decision-log/) - A real-time record of context, options considered, criteria used, and reasoning - capturing how a decision was reached, not justifying it after the fact.
+- [Definitional](/writing-style-catalog/reference/styles/definitional/) - Leads with a definition and elaborates through its facets, edge cases, and what-it-is-not - the definition is the load-bearing first move.
+- [Devotional Reflection](/writing-style-catalog/reference/styles/devotional-reflection/) - A slow, inward-turning movement that takes a scriptural or spiritual observation and follows it into personal and communal life.
+- [Dialectic](/writing-style-catalog/reference/styles/dialectic/) - Thesis, antithesis, synthesis - states the position, states the strongest opposing position, and moves to a synthesis that takes both seriously.
+- [Diataxis Explanation](/writing-style-catalog/reference/styles/diataxis-explanation/) - The Diataxis "Explanation" mode - oriented toward understanding rather than action, building a conceptual model for the reader.
+- [Executive Summary](/writing-style-catalog/reference/styles/executive-summary/) - Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.
+- [Frequently Asked Questions](/writing-style-catalog/reference/styles/frequently-asked-questions/) - Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.
+- [How-To Tutorial](/writing-style-catalog/reference/styles/how-to-tutorial/) - Task-first writing that takes a reader from "I don't know how" to "I did it" by organizing every decision around user goals, not system features.
+- [Layered Disclosure](/writing-style-catalog/reference/styles/layered-disclosure/) - Progressively reveals depth - the first paragraph serves the casual reader completely, and each subsequent section adds detail for those who want it.
+- [Narrative Case Study](/writing-style-catalog/reference/styles/narrative-case-study/) - A story with a before, a turning point, and an after - using one specific real situation to make a general principle concrete and trustworthy.
+- [Problem-Solution](/writing-style-catalog/reference/styles/problem-solution/) - Frames the piece as a diagnosis followed by a remedy - establishes the pain before the cure.
+- [Socratic Inquiry](/writing-style-catalog/reference/styles/socratic-inquiry/) - Advances by asking questions the reader answers in their own head - the conclusions are inferences, not assertions.
 
 ## Formats
 
-- [Architecture Decision Record](/writing-style-library/reference/formats/adr/) - A short structured document that captures a significant architectural decision, its context, and its consequences.
-- [Blog Post (Long Form)](/writing-style-library/reference/formats/blog-post-long-form/) - A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.
-- [Changelog Entry](/writing-style-library/reference/formats/changelog-entry/) - A structured release entry naming what was added, changed, fixed, or removed in a given version - grouped by impact class under a version heading.
-- [Daily Standup](/writing-style-library/reference/formats/daily-standup/) - A brief daily status communication with three fixed sections - done, next, blockers. Surfaces information and flags what needs action. Not a progress report; a coordination tool.
-- [Devotional Entry](/writing-style-library/reference/formats/devotional-entry/) - A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.
-- [Email](/writing-style-library/reference/formats/email/) - A business message designed for the inbox scan - subject line doubles as summary, body leads with action, and the reader never needs to re-read to know what is being asked.
-- [Meeting Notes](/writing-style-library/reference/formats/meeting-notes/) - A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.
-- [One-Pager](/writing-style-library/reference/formats/one-pager/) - A single-page document that makes one argument or presents one situation. The page constraint is the discipline - everything that does not fit does not belong.
-- [Product Requirements Document](/writing-style-library/reference/formats/prd/) - A structured document that defines what a product or feature should do, for whom, and why - without specifying how to build it.
-- [README](/writing-style-library/reference/formats/readme/) - The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.
-- [Slack Message](/writing-style-library/reference/formats/slack-message/) - A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.
-- [Status Report](/writing-style-library/reference/formats/status-report/) - A periodic async update covering progress since the last report, what is next, and what is blocked - the working unit of distributed-team visibility.
-- [Technical Reference](/writing-style-library/reference/formats/technical-reference/) - A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.
-- [Tweet Thread](/writing-style-library/reference/formats/tweet-thread/) - A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.
-- [Whitepaper](/writing-style-library/reference/formats/whitepaper/) - A long-form authoritative document presenting a position, framework, or analysis - the format for setting position-of-record on a substantive topic.
+- [Architecture Decision Record](/writing-style-catalog/reference/formats/adr/) - A short structured document that captures a significant architectural decision, its context, and its consequences.
+- [Blog Post (Long Form)](/writing-style-catalog/reference/formats/blog-post-long-form/) - A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.
+- [Changelog Entry](/writing-style-catalog/reference/formats/changelog-entry/) - A structured release entry naming what was added, changed, fixed, or removed in a given version - grouped by impact class under a version heading.
+- [Daily Standup](/writing-style-catalog/reference/formats/daily-standup/) - A brief daily status communication with three fixed sections - done, next, blockers. Surfaces information and flags what needs action. Not a progress report; a coordination tool.
+- [Devotional Entry](/writing-style-catalog/reference/formats/devotional-entry/) - A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.
+- [Email](/writing-style-catalog/reference/formats/email/) - A business message designed for the inbox scan - subject line doubles as summary, body leads with action, and the reader never needs to re-read to know what is being asked.
+- [Meeting Notes](/writing-style-catalog/reference/formats/meeting-notes/) - A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.
+- [One-Pager](/writing-style-catalog/reference/formats/one-pager/) - A single-page document that makes one argument or presents one situation. The page constraint is the discipline - everything that does not fit does not belong.
+- [Product Requirements Document](/writing-style-catalog/reference/formats/prd/) - A structured document that defines what a product or feature should do, for whom, and why - without specifying how to build it.
+- [README](/writing-style-catalog/reference/formats/readme/) - The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.
+- [Slack Message](/writing-style-catalog/reference/formats/slack-message/) - A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.
+- [Status Report](/writing-style-catalog/reference/formats/status-report/) - A periodic async update covering progress since the last report, what is next, and what is blocked - the working unit of distributed-team visibility.
+- [Technical Reference](/writing-style-catalog/reference/formats/technical-reference/) - A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.
+- [Tweet Thread](/writing-style-catalog/reference/formats/tweet-thread/) - A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.
+- [Whitepaper](/writing-style-catalog/reference/formats/whitepaper/) - A long-form authoritative document presenting a position, framework, or analysis - the format for setting position-of-record on a substantive topic.

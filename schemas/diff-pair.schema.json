@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-library/main/schemas/diff-pair.schema.json",
+  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/diff-pair.schema.json",
   "title": "Diff Pair File Schema",
   "description": "Schema for the YAML frontmatter of diff-pair files in examples/diff-pairs/. A diff-pair contrasts two taxonomy entries on the same axis applied to the same topic, with every other axis held constant.",
   "type": "object",

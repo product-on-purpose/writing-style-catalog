@@ -10,7 +10,7 @@ Compose a writing instruction by combining taxonomy entries from the Voice and T
 ## Usage
 
 ```
-/writing-style-library:compose-instruction [voice=<id>] [tone=<id>] [style=<id>] [format=<id>] [topic=<text>] [audience=<text>]
+/writing-style-catalog:compose-instruction [voice=<id>] [tone=<id>] [style=<id>] [format=<id>] [topic=<text>] [audience=<text>]
 ```
 
 All parameters are optional. If omitted, the skill picks sensible defaults.
@@ -35,12 +35,12 @@ All parameters are optional. If omitted, the skill picks sensible defaults.
 
 Compose an ADR in pragmatic-architect voice with candid tone:
 ```
-/writing-style-library:compose-instruction voice=pragmatic-architect tone=candid format=adr
+/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid format=adr
 ```
 
 Compose a pastoral devotional:
 ```
-/writing-style-library:compose-instruction voice=pastoral tone=reverent style=devotional-reflection format=devotional-entry topic="The discipline of rest"
+/writing-style-catalog:compose-instruction voice=pastoral tone=reverent style=devotional-reflection format=devotional-entry topic="The discipline of rest"
 ```
 
 ## Available Entries
