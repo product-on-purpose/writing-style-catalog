@@ -1,3 +1,10 @@
+"""Tests for scripts/generate_site_pages.py.
+
+Covers frontmatter parsing, catalog loading, example rendering, MDX escaping,
+Starlight slug-link generation, and the source-prose fidelity lint. Run with
+pytest; CI invokes it through the npm test script.
+"""
+
 import sys
 from pathlib import Path
 
