@@ -22,10 +22,10 @@ python tools/validate.py
 python tools/build-indexes.py
 
 # Generate the docs site pages from the catalog (after editing taxonomy/ or examples/)
-python scripts/generate_site_pages.py
+node scripts/gen-site.mjs
 
-# Build the site locally
-npm run build
+# Build the site locally (runs the generator, then astro build)
+cd site && npm run build
 ```
 
 ## Hard rules

@@ -1,0 +1,6 @@
+/* Brand accent. Family standard accent #5C7CFA (blue-violet); kept minimal. */
+:root {
+  --sl-color-accent-low: #2a3a6b;
+  --sl-color-accent: #5c7cfa;
+  --sl-color-accent-high: #b9c6fb;
+}

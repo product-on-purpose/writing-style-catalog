@@ -3,8 +3,8 @@
 Build taxonomy.json from all ENTRY.md files.
 
 taxonomy.json is the machine-readable index consumed by skills and the Composer.
-The human-readable reference index (docs/reference/index.md) is owned by the
-Starlight generator (scripts/generate_site_pages.py); this tool no longer writes it.
+The human-readable reference index (site/src/content/docs/reference/index.md) is
+owned by the Starlight generator (scripts/gen-site.mjs); this tool no longer writes it.
 
 Requirements: none beyond stdlib (shares validate.py's _extract_frontmatter).
 
