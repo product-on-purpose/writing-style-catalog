@@ -41,9 +41,6 @@ jobs:
       - name: Check taxonomy.json is up to date
         run: git diff --exit-code taxonomy.json
 
-      - name: Check generated docs are fresh
-        run: python scripts/check_generated_fresh.py
-
       - name: Run markdownlint
         run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore _LOCAL --ignore docs/internal
         continue-on-error: true

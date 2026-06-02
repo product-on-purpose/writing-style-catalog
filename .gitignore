@@ -57,5 +57,11 @@ tests/golden-outputs/*.actual.*
 # Astro
 .astro/
 
+# Generated site catalog (Pattern S: rebuilt each build, never committed)
+site/src/content/docs/reference/
+site/src/content/docs/examples/
+site/src/content/docs/recipes/
+site/src/content/docs/templates/
+
 # Agent working context - session logs are local-only
 _agent-context/session-log/

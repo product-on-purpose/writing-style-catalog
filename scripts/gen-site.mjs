@@ -368,6 +368,7 @@ function renderEntryPage(catalog, pairs, entry) {
   out.push('---');
   out.push(`title: ${yamlTitle(entry.name)}`);
   out.push(`description: ${yamlTitle(entry.one_liner || '')}`);
+  out.push('editUrl: false');
   out.push('---');
   out.push('');
   out.push(GENERATED_BANNER_MDX);
@@ -453,6 +454,7 @@ function renderDiffPairPage(catalog, dp) {
     '---',
     `title: ${yamlTitle(`${ea} vs ${eb}`)}`,
     `description: ${yamlTitle(dp.topic_label)}`,
+    'editUrl: false',
     '---',
     '',
     GENERATED_BANNER_MDX,
@@ -491,6 +493,7 @@ function renderTemplatePage(fmt) {
     '---',
     `title: ${yamlTitle(`${fmt.name} template`)}`,
     `description: ${yamlTitle(`Canonical template for the ${fmt.name} format.`)}`,
+    'editUrl: false',
     '---',
     '',
     GENERATED_BANNER,
@@ -533,6 +536,7 @@ function renderRecipePage(catalog, recipeSlug) {
   const out = [
     '---',
     `title: ${yamlTitle(heading)}`,
+    'editUrl: false',
     '---',
     '',
     GENERATED_BANNER,
@@ -559,6 +563,7 @@ function page(title, description, body) {
     '---',
     `title: ${yamlTitle(title)}`,
     `description: ${yamlTitle(description)}`,
+    'editUrl: false',
     '---',
     '',
     GENERATED_BANNER,

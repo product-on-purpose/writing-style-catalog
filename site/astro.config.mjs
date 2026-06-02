@@ -29,25 +29,26 @@ export default defineConfig({
     starlight({
       title: 'Writing Style Library',
       description: 'Composable writing instructions on four orthogonal axes: Voice, Tone, Style, Format.',
-      editLink: { baseUrl: 'https://github.com/product-on-purpose/writing-style-catalog/edit/main/' },
+      // Pattern S: the Astro app lives in site/, so the source path Starlight
+      // appends is relative to site/ - the baseUrl carries the site/ prefix.
+      // Generated pages set editUrl:false (their source is gitignored), so this
+      // only applies to the committed hand-authored narrative pages.
+      editLink: { baseUrl: 'https://github.com/product-on-purpose/writing-style-catalog/edit/main/site/' },
       customCss: ['./src/styles/custom.css'],
       // Starlight 0.39: autogenerate must be wrapped in items: [].
-      // The directory must be prefixed with 'docs/' because the custom glob
-      // loader (src/content.config.ts) mounts ./docs in place with base '.',
-      // so each entry's filePath retains the 'docs/' prefix. Starlight's
-      // autogenerate matches on filePath, so it must be 'docs/<section>', not
-      // '<section>'. (generateId strips 'docs/' for clean URLs, but that does
-      // not change the filePath the nav logic reads.)
+      // Pattern S: content lives in src/content/docs/ read by the stock
+      // docsLoader(), so autogenerate directories are bare section names (no
+      // 'docs/' prefix).
       sidebar: [
         { label: 'Home', link: '/' },
-        { label: 'Concepts', items: [{ autogenerate: { directory: 'docs/concepts' } }] },
-        { label: 'Guides', items: [{ autogenerate: { directory: 'docs/guides' } }] },
-        { label: 'Reference', items: [{ autogenerate: { directory: 'docs/reference' } }] },
-        { label: 'Examples', items: [{ autogenerate: { directory: 'docs/examples' } }] },
-        { label: 'Recipes', items: [{ autogenerate: { directory: 'docs/recipes' } }] },
-        { label: 'Templates', items: [{ autogenerate: { directory: 'docs/templates' } }] },
-        { label: 'Design Standards', items: [{ autogenerate: { directory: 'docs/design-standards' } }] },
-        { label: 'Contributing', items: [{ autogenerate: { directory: 'docs/governance' } }] },
+        { label: 'Concepts', items: [{ autogenerate: { directory: 'concepts' } }] },
+        { label: 'Guides', items: [{ autogenerate: { directory: 'guides' } }] },
+        { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
+        { label: 'Examples', items: [{ autogenerate: { directory: 'examples' } }] },
+        { label: 'Recipes', items: [{ autogenerate: { directory: 'recipes' } }] },
+        { label: 'Templates', items: [{ autogenerate: { directory: 'templates' } }] },
+        { label: 'Design Standards', items: [{ autogenerate: { directory: 'design-standards' } }] },
+        { label: 'Contributing', items: [{ autogenerate: { directory: 'governance' } }] },
       ],
     }),
     // After starlight (see integration-order note above).
