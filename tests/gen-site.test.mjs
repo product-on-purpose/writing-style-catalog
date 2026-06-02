@@ -18,6 +18,7 @@ import {
   loadMarkdown,
   mdxEscapeProse,
   parseDiffPair,
+  assertSafeOutRoot,
   generate,
 } from '../scripts/gen-site.mjs';
 
@@ -150,6 +151,19 @@ test('parseFrontmatter parses inline (flow) lists', () => {
 test('parseFrontmatter folds > scalars (newlines to spaces, blank line breaks)', () => {
   assert.equal(parseFrontmatter('o: >\n  line one\n  line two').o, 'line one line two');
   assert.equal(parseFrontmatter('o: >\n  para one\n\n  para two').o, 'para one\n\npara two');
+});
+
+test('assertSafeOutRoot refuses output roots that would delete source', () => {
+  const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  // The repo root, a source dir, and clearing-collides-with-source all refused.
+  assert.throws(() => assertSafeOutRoot(repoRoot), /refusing to generate/i);
+  assert.throws(() => assertSafeOutRoot(path.join(repoRoot, 'examples')), /refusing to generate/i);
+  assert.throws(() => assertSafeOutRoot(path.join(repoRoot, 'taxonomy')), /refusing to generate/i);
+  // The default site content root and a throwaway temp dir are allowed.
+  assert.doesNotThrow(() => assertSafeOutRoot(path.join(repoRoot, 'site', 'src', 'content', 'docs')));
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gen-safe-'));
+  assert.doesNotThrow(() => assertSafeOutRoot(tmp));
+  fs.rmSync(tmp, { recursive: true, force: true });
 });
 
 test('generate clears stale generated files before writing', () => {

@@ -15,7 +15,9 @@
 //
 // Usage:
 //   node scripts/gen-site.mjs                 # write into site/src/content/docs
-//   node scripts/gen-site.mjs --out DIR       # write into DIR
+//   node scripts/gen-site.mjs --out DIR       # write into DIR (must be the site
+//                                             # content root or a throwaway dir;
+//                                             # source dirs are refused)
 //   node scripts/gen-site.mjs --lint          # report source-prose fidelity warnings and exit
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,6 +29,7 @@ const TAXONOMY = path.join(REPO_ROOT, 'taxonomy');
 const EXAMPLES = path.join(REPO_ROOT, 'examples');
 const DEFAULT_OUT = path.join(REPO_ROOT, 'site', 'src', 'content', 'docs');
 const RECIPES_DIR = path.join(EXAMPLES, 'horizontal-slices');
+const GENERATED_SUBDIRS = ['reference', 'examples', 'recipes', 'templates'];
 
 const AXES = ['voice', 'tone', 'style', 'format'];
 const AXIS_DIR = { voice: 'voices', tone: 'tones', style: 'styles', format: 'formats' };
@@ -665,7 +668,36 @@ function write(outRoot, rel, content) {
   fs.writeFileSync(p, content, 'utf8');
 }
 
+// Guard the destructive cleanup below. The output root must be a throwaway or
+// the site content directory, never a repo source tree: without this,
+// `gen-site.mjs --out .` from the repo root would clear outRoot/examples, which
+// is the real examples/ source tree (data loss). Refuses outRoot when it is, is
+// an ancestor of, or sits inside a protected source directory, or when clearing
+// any generated subtree would hit one.
+function assertSafeOutRoot(outRoot) {
+  const abs = path.resolve(outRoot);
+  const root = path.resolve(REPO_ROOT);
+  const sourceDirs = ['taxonomy', 'examples', 'docs', 'schemas', 'scripts', 'tools', 'tests', 'skills'].map((d) =>
+    path.join(root, d)
+  );
+  const insideOrEqual = (p, r) => p === r || p.startsWith(r + path.sep);
+  const cleared = GENERATED_SUBDIRS.map((s) => path.join(abs, s));
+  const unsafe =
+    abs === root ||
+    root.startsWith(abs + path.sep) ||
+    sourceDirs.some((r) => insideOrEqual(abs, r)) ||
+    cleared.some((c) => sourceDirs.some((r) => insideOrEqual(c, r)));
+  if (unsafe) {
+    throw new Error(
+      `gen-site: refusing to generate into '${abs}'. It is, contains, or sits inside a protected ` +
+        'source directory, so clearing the generated subtrees could delete real source. Use the ' +
+        'default output (site/src/content/docs) or a throwaway directory.'
+    );
+  }
+}
+
 function generate(outRoot) {
+  assertSafeOutRoot(outRoot);
   const catalog = loadCatalog();
   const pairs = loadDiffPairs();
   let n = 0;
@@ -674,7 +706,7 @@ function generate(outRoot) {
   // catalog is gitignored and not drift-guarded) cannot leave a stale page
   // whose source was removed. Only generated dirs are cleared; the hand-authored
   // narrative under the same content root is untouched.
-  for (const sub of ['reference', 'examples', 'recipes', 'templates']) {
+  for (const sub of GENERATED_SUBDIRS) {
     fs.rmSync(path.join(outRoot, sub), { recursive: true, force: true });
   }
 
@@ -762,6 +794,7 @@ export {
   parseDiffPair,
   loadCatalog,
   loadDiffPairs,
+  assertSafeOutRoot,
   generate,
 };
 
