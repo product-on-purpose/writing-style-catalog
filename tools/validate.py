@@ -33,6 +33,7 @@ TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
 SCHEMAS_DIR = REPO_ROOT / "schemas"
 EXAMPLES_DIR = REPO_ROOT / "examples"
 DOCS_DIR = REPO_ROOT / "docs"
+SITE_DOCS_DIR = REPO_ROOT / "site" / "src" / "content" / "docs"
 
 AXES = {
     "voice": TAXONOMY_ROOT / "voices",
@@ -239,7 +240,8 @@ def check_cross_references(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 
 
 def check_no_em_dashes() -> list[str]:
-    """Scan .md and .html files in taxonomy/, examples/, and docs/ for em/en-dashes."""
+    """Scan .md/.mdx/.html files in taxonomy/, examples/, docs/, and the site
+    content root (site/src/content/docs/) for em/en-dashes."""
     print("[CHECK] No em-dash / en-dash linting...")
     errors = []
     # (search_root, file_glob_patterns)
@@ -247,6 +249,7 @@ def check_no_em_dashes() -> list[str]:
         (TAXONOMY_ROOT, ("*.md",)),
         (EXAMPLES_DIR, ("*.md",)),
         (DOCS_DIR, ("*.md", "*.html")),
+        (SITE_DOCS_DIR, ("*.md", "*.mdx")),
     ]
 
     for root, patterns in search_targets:

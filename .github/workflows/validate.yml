@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: "22.12.0"
+          node-version-file: .nvmrc
 
       - name: Install Python dependencies
         run: pip install -r requirements-dev.txt
@@ -42,5 +42,23 @@ jobs:
         run: git diff --exit-code taxonomy.json
 
       - name: Run markdownlint
-        run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore _LOCAL --ignore docs/internal
+        run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore site/node_modules --ignore _LOCAL --ignore docs/internal
         continue-on-error: true
+
+  # PR-time non-deploying site build: closes the build gap (the deploy workflow
+  # only runs on push to main). Builds the Astro site (generator + astro build)
+  # without uploading or deploying, so a build-breaking change cannot merge.
+  build-site:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+      - name: Install site deps
+        working-directory: site
+        run: npm ci
+      - name: Build site (no deploy)
+        working-directory: site
+        run: npm run build
