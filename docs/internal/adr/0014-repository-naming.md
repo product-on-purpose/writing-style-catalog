@@ -2,14 +2,14 @@
 adr_id: "0014"
 title: Repository name vs the family grade-word "library"
 date: 2026-06-01
-status: Proposed
+status: Accepted
 ---
 
 # 0014 - Repository name vs the family grade-word "library"
 
 ## Status
 
-Proposed (awaiting maintainer decision)
+Accepted - the repository slug is renamed to `writing-style-catalog` (2026-06-02).
 
 ## Context
 
@@ -42,7 +42,7 @@ The options:
 
 Timing: the repository was just made public, the marketplace listing is deferred, and the install path is still aspirational, so a rename is at its cheapest right now. GitHub auto-redirects the old URL; only the Astro `base` path, the package and plugin identifiers, and internal references change. The cost rises once the listing is broadcast and external users install.
 
-Recommendation: keep `writing-style-library` (Option A) and clarify the grade-word in the standard, unless eliminating the collision outright is preferred, in which case `writing-style-catalog` (Option B) is the one rename worth making while it is cheap. Do not adopt `-skills` or `-toolkit`.
+Outcome (2026-06-02): the maintainer chose Option B. The repository slug is renamed to `writing-style-catalog`, executed while the cost was lowest (marketplace listing still deferred). Only the slug and identifiers change; the human display title "Writing Style Library" is retained, because the maintainer values the plain-English "library" (a curated, growing collection) connotation. `-skills` and `-toolkit` were rejected as above.
 
 A rename, if accepted, MUST be executed as a sequenced migration, not a side effect. At minimum: rename the GitHub repo (GitHub auto-redirects the old URL), update the Astro site `base` and redeploy, update the package, plugin, and marketplace identifiers, sweep internal references, and note the change in `CHANGELOG.md` and the release notes.
 
@@ -58,4 +58,4 @@ A rename, if accepted, MUST be executed as a sequenced migration, not a side eff
 
 ### Neutral
 
-- This ADR records the decision space; it does not itself rename anything. No action is taken until the maintainer accepts an option.
+- The rename was executed in the PR that finalized this ADR: the slug, base path, package/plugin/marketplace identifiers, skill namespace, and internal references were swept and the catalog pages regenerated. The local working-folder rename and the Claude session/memory migration are a separate manual step the maintainer runs with Claude Code closed.

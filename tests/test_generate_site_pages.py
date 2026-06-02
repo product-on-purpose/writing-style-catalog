@@ -53,8 +53,8 @@ def test_load_markdown_handles_crlf():
 
 
 def test_entry_url_is_base_relative_slug():
-    assert gsp.entry_url("voice", "coach") == "/writing-style-library/reference/voices/coach/"
-    assert gsp.entry_url("format", "adr") == "/writing-style-library/reference/formats/adr/"
+    assert gsp.entry_url("voice", "coach") == "/writing-style-catalog/reference/voices/coach/"
+    assert gsp.entry_url("format", "adr") == "/writing-style-catalog/reference/formats/adr/"
 
 
 def test_load_catalog_indexes_all_entries():
@@ -160,7 +160,7 @@ def test_render_entry_page_has_examples_and_links():
     assert "<Tabs>" in md and "import { Tabs, TabItem }" in md
     assert "async-standups" in md
     # cross-reference links are base-relative slugs, not GitHub-relative
-    assert "/writing-style-library/reference/" in md
+    assert "/writing-style-catalog/reference/" in md
     assert "ENTRY.md" not in md  # never emit source-file links
 
 
@@ -187,7 +187,7 @@ def test_render_template_page_has_code_block():
 def test_render_recipe_page_renders_readme():
     md = gsp.render_recipe_page(gsp.load_catalog(), "architect-candid-adr")
     assert "Composition" in md
-    assert "/writing-style-library/reference/" in md  # entry names linked
+    assert "/writing-style-catalog/reference/" in md  # entry names linked
 
 
 def test_strip_local_md_links_neutralizes_relative_md():
@@ -195,7 +195,7 @@ def test_strip_local_md_links_neutralizes_relative_md():
     assert gsp._strip_local_md_links("see [x](./foo.md)") == "see x"
     # leaves http and site-absolute links intact
     assert gsp._strip_local_md_links("[e](https://x.com/y.md)") == "[e](https://x.com/y.md)"
-    assert gsp._strip_local_md_links("[c](/writing-style-library/reference/voices/coach/)") == "[c](/writing-style-library/reference/voices/coach/)"
+    assert gsp._strip_local_md_links("[c](/writing-style-catalog/reference/voices/coach/)") == "[c](/writing-style-catalog/reference/voices/coach/)"
 
 
 def test_recipe_page_has_no_dangling_md_links():
@@ -216,13 +216,13 @@ def test_render_reference_index_lists_axes():
     cat = gsp.load_catalog()
     md = gsp.render_reference_index(cat)
     assert "## Voices" in md and "## Formats" in md
-    assert "/writing-style-library/reference/voices/coach/" in md
+    assert "/writing-style-catalog/reference/voices/coach/" in md
 
 
 def test_render_diff_pair_index_groups_by_axis():
     md = gsp.render_diff_pair_index(gsp.load_diff_pairs())
     assert "tone" in md.lower()
-    assert "/writing-style-library/examples/diff-pairs/" in md
+    assert "/writing-style-catalog/examples/diff-pairs/" in md
 
 
 def test_fidelity_lint_flags_orphan_period():

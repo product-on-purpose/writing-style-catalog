@@ -1,5 +1,5 @@
 {
-  "name": "@product-on-purpose/writing-style-library",
+  "name": "@product-on-purpose/writing-style-catalog",
   "version": "0.1.0",
   "description": "A composable catalog of writing instructions organized along three axes",
   "private": true,

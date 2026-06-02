@@ -1,22 +1,22 @@
 <a id="readme-top"></a>
 
 <h1 align="center">
-  <a href="https://github.com/product-on-purpose/writing-style-library">Writing Style Library</a>
+  <a href="https://github.com/product-on-purpose/writing-style-catalog">Writing Style Library</a>
 </h1>
 
 <h4 align="center">A composable catalog of writing instructions organized along orthogonal axes - Voice, Tone, Style, and Format - so you can compose precise, reusable writing instructions for any LLM instead of retyping vibes.</h4>
 
 <p align="center">
-  <a href="https://github.com/product-on-purpose/writing-style-library/issues/new?labels=bug">Report a Bug</a>
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=bug">Report a Bug</a>
   &nbsp;·&nbsp;
-  <a href="https://github.com/product-on-purpose/writing-style-library/issues/new?labels=enhancement">Request a Feature</a>
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=enhancement">Request a Feature</a>
   &nbsp;·&nbsp;
-  <a href="https://product-on-purpose.github.io/writing-style-library/">Read the Docs</a>
+  <a href="https://product-on-purpose.github.io/writing-style-catalog/">Read the Docs</a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Experimental-orange?style=flat-square" alt="Project Status: Experimental">
-  <a href="https://github.com/product-on-purpose/writing-style-library/blob/main/LICENSE">
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
   <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?style=flat-square" alt="Version">
@@ -32,19 +32,19 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/product-on-purpose/writing-style-library/stargazers">
-    <img src="https://img.shields.io/github/stars/product-on-purpose/writing-style-library?style=flat-square" alt="Stars">
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/stargazers">
+    <img src="https://img.shields.io/github/stars/product-on-purpose/writing-style-catalog?style=flat-square" alt="Stars">
   </a>
-  <a href="https://github.com/product-on-purpose/writing-style-library/network/members">
-    <img src="https://img.shields.io/github/forks/product-on-purpose/writing-style-library?style=flat-square" alt="Forks">
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/network/members">
+    <img src="https://img.shields.io/github/forks/product-on-purpose/writing-style-catalog?style=flat-square" alt="Forks">
   </a>
-  <a href="https://github.com/product-on-purpose/writing-style-library/issues">
-    <img src="https://img.shields.io/github/issues/product-on-purpose/writing-style-library?style=flat-square" alt="Issues">
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/issues">
+    <img src="https://img.shields.io/github/issues/product-on-purpose/writing-style-catalog?style=flat-square" alt="Issues">
   </a>
-  <a href="https://github.com/product-on-purpose/writing-style-library/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/product-on-purpose/writing-style-library?style=flat-square" alt="Contributors">
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/product-on-purpose/writing-style-catalog?style=flat-square" alt="Contributors">
   </a>
-  <img src="https://img.shields.io/github/last-commit/product-on-purpose/writing-style-library?style=flat-square" alt="Last Commit">
+  <img src="https://img.shields.io/github/last-commit/product-on-purpose/writing-style-catalog?style=flat-square" alt="Last Commit">
 </p>
 
 <p align="center">
@@ -90,18 +90,18 @@ Install through the Product on Purpose marketplace, then compose. Run these insi
 
 ```bash
 /plugin marketplace add product-on-purpose/agent-plugins
-/plugin install writing-style-library@product-on-purpose
+/plugin install writing-style-catalog@product-on-purpose
 ```
 
 Then compose a writing instruction from any combination of axes:
 
 ```bash
-/writing-style-library:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
 The `compose-instruction` skill assembles a structured prompt prefix that you can prepend to any writing task. Mix and match entries across axes to get exactly the register, reasoning pattern, and layout you need.
 
-> Browse the full catalog, worked examples, and side-by-side diff-pairs on the [documentation site](https://product-on-purpose.github.io/writing-style-library/).
+> Browse the full catalog, worked examples, and side-by-side diff-pairs on the [documentation site](https://product-on-purpose.github.io/writing-style-catalog/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,15 +163,15 @@ Plus the assets that make the catalog teachable:
 
 ## Documentation Site
 
-The full catalog is browsable as an [Astro Starlight site](https://product-on-purpose.github.io/writing-style-library/). Every entry has its own page with language patterns, when-to-use guidance, cross-references to compatible and confusable neighbors, and its worked examples embedded inline. The catalog pages are generated from `taxonomy/` and `examples/`, so the site never drifts from the source.
+The full catalog is browsable as an [Astro Starlight site](https://product-on-purpose.github.io/writing-style-catalog/). Every entry has its own page with language patterns, when-to-use guidance, cross-references to compatible and confusable neighbors, and its worked examples embedded inline. The catalog pages are generated from `taxonomy/` and `examples/`, so the site never drifts from the source.
 
 | If you want to... | Go to |
 |---|---|
-| Browse every entry by axis | [Reference](https://product-on-purpose.github.io/writing-style-library/reference/) |
-| See one axis swapped on a fixed topic | [Diff-pairs](https://product-on-purpose.github.io/writing-style-library/examples/diff-pairs/) |
-| Start from a ready-made combination | [Recipes](https://product-on-purpose.github.io/writing-style-library/recipes/) |
-| Grab a canonical format structure | [Templates](https://product-on-purpose.github.io/writing-style-library/templates/) |
-| Understand the design | [Concepts](https://product-on-purpose.github.io/writing-style-library/concepts/three-axis-model/) |
+| Browse every entry by axis | [Reference](https://product-on-purpose.github.io/writing-style-catalog/reference/) |
+| See one axis swapped on a fixed topic | [Diff-pairs](https://product-on-purpose.github.io/writing-style-catalog/examples/diff-pairs/) |
+| Start from a ready-made combination | [Recipes](https://product-on-purpose.github.io/writing-style-catalog/recipes/) |
+| Grab a canonical format structure | [Templates](https://product-on-purpose.github.io/writing-style-catalog/templates/) |
+| Understand the design | [Concepts](https://product-on-purpose.github.io/writing-style-catalog/concepts/three-axis-model/) |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -211,7 +211,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 - 60 taxonomy entries (15 each across Voice, Tone, Style, Format)
 - 195 worked examples across three anchor topics, plus 12 diff-pairs and 5 horizontal-slice recipes
 - Working `compose-instruction` skill
-- An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-library/)
+- An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI
 
 **Planned but not built yet:** a Composer web app, an MCP server, and TypeScript/Python SDKs.

@@ -1,9 +1,9 @@
 {
-  "name": "writing-style-library",
+  "name": "writing-style-catalog",
   "version": "0.1.0",
   "description": "Composable writing instructions on four orthogonal axes: Voice (persistent writer identity), Tone (situational register), Style (rhetorical and cognitive pattern), and Format (output structure). Select one entry per axis and the compose-instruction skill assembles a ready-to-paste prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. v0.1.0 ships 60 curated entries (15 per axis), 195 worked examples across three anchor topics, 12 diff-pairs, and 5 horizontal-slice recipes. Follows the agentskills.io specification.",
-  "homepage": "https://github.com/product-on-purpose/writing-style-library",
-  "repository": "https://github.com/product-on-purpose/writing-style-library",
+  "homepage": "https://github.com/product-on-purpose/writing-style-catalog",
+  "repository": "https://github.com/product-on-purpose/writing-style-catalog",
   "license": "Apache-2.0",
   "author": {
     "name": "Jonathan Prisant",

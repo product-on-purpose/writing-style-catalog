@@ -7,24 +7,24 @@ description: "Side-by-side single-axis contrasts."
 
 ## Varying format
 
-- [adr vs whitepaper](/writing-style-library/examples/diff-pairs/format-adr-vs-whitepaper-async-standups/) - Should we adopt async-first standups?
-- [devotional-entry vs technical-reference](/writing-style-library/examples/diff-pairs/format-devotional-entry-vs-technical-reference-morning-routine/) - How to start a morning routine
-- [readme vs technical-reference](/writing-style-library/examples/diff-pairs/format-readme-vs-technical-reference-morning-routine/) - How to start a morning routine
+- [adr vs whitepaper](/writing-style-catalog/examples/diff-pairs/format-adr-vs-whitepaper-async-standups/) - Should we adopt async-first standups?
+- [devotional-entry vs technical-reference](/writing-style-catalog/examples/diff-pairs/format-devotional-entry-vs-technical-reference-morning-routine/) - How to start a morning routine
+- [readme vs technical-reference](/writing-style-catalog/examples/diff-pairs/format-readme-vs-technical-reference-morning-routine/) - How to start a morning routine
 
 ## Varying style
 
-- [narrative-case-study vs chronological-narrative](/writing-style-library/examples/diff-pairs/style-narrative-case-study-vs-chronological-narrative-async-standups/) - Should we adopt async-first standups?
-- [how-to-tutorial vs narrative-case-study](/writing-style-library/examples/diff-pairs/style-how-to-tutorial-vs-narrative-case-study-morning-routine/) - How to start a morning routine
-- [socratic-inquiry vs dialectic](/writing-style-library/examples/diff-pairs/style-socratic-inquiry-vs-dialectic-morning-routine/) - How to start a morning routine
+- [narrative-case-study vs chronological-narrative](/writing-style-catalog/examples/diff-pairs/style-narrative-case-study-vs-chronological-narrative-async-standups/) - Should we adopt async-first standups?
+- [how-to-tutorial vs narrative-case-study](/writing-style-catalog/examples/diff-pairs/style-how-to-tutorial-vs-narrative-case-study-morning-routine/) - How to start a morning routine
+- [socratic-inquiry vs dialectic](/writing-style-catalog/examples/diff-pairs/style-socratic-inquiry-vs-dialectic-morning-routine/) - How to start a morning routine
 
 ## Varying tone
 
-- [candid vs confident](/writing-style-library/examples/diff-pairs/tone-candid-vs-confident-async-standups/) - Should we adopt async-first standups?
-- [candid vs warm](/writing-style-library/examples/diff-pairs/tone-candid-vs-warm-async-standups/) - Should we adopt async-first standups?
-- [warm vs empathetic](/writing-style-library/examples/diff-pairs/tone-warm-vs-empathetic-morning-routine/) - How to start a morning routine
+- [candid vs confident](/writing-style-catalog/examples/diff-pairs/tone-candid-vs-confident-async-standups/) - Should we adopt async-first standups?
+- [candid vs warm](/writing-style-catalog/examples/diff-pairs/tone-candid-vs-warm-async-standups/) - Should we adopt async-first standups?
+- [warm vs empathetic](/writing-style-catalog/examples/diff-pairs/tone-warm-vs-empathetic-morning-routine/) - How to start a morning routine
 
 ## Varying voice
 
-- [pragmatic-architect vs pastoral](/writing-style-library/examples/diff-pairs/voice-pragmatic-architect-vs-pastoral-async-standups/) - Should we adopt async-first standups?
-- [pragmatic-architect vs senior-consultant](/writing-style-library/examples/diff-pairs/voice-pragmatic-architect-vs-senior-consultant-async-standups/) - Should we adopt async-first standups?
-- [coach vs friendly-mentor](/writing-style-library/examples/diff-pairs/voice-coach-vs-friendly-mentor-morning-routine/) - How to start a morning routine
+- [pragmatic-architect vs pastoral](/writing-style-catalog/examples/diff-pairs/voice-pragmatic-architect-vs-pastoral-async-standups/) - Should we adopt async-first standups?
+- [pragmatic-architect vs senior-consultant](/writing-style-catalog/examples/diff-pairs/voice-pragmatic-architect-vs-senior-consultant-async-standups/) - Should we adopt async-first standups?
+- [coach vs friendly-mentor](/writing-style-catalog/examples/diff-pairs/voice-coach-vs-friendly-mentor-morning-routine/) - How to start a morning routine
