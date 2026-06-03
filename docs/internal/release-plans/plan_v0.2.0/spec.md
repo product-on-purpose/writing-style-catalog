@@ -5,7 +5,7 @@
 > Reference precedent: pm-skills v2.21.0 (`pm-skills/docs/internal/release-plans/v2.21.0/`),
 > the marketplace launch this mirrors.
 
-**Status:** APPROVED - executing.
+**Status:** SHIPPED 2026-06-02. `writing-style-catalog@product-on-purpose` is installable.
 **Type:** MINOR (0.1.0 -> 0.2.0).
 **Theme:** Make `writing-style-catalog` genuinely installable through the `product-on-purpose`
 marketplace, make every install/getting-started surface tell the truth, and add the
