@@ -25,8 +25,26 @@ export default defineConfig({
     remarkPlugins: [remarkGfm],
   },
   integrations: [
-    mermaid({ theme: 'default', autoTheme: true }),
+    mermaid({
+      theme: 'default',
+      autoTheme: true,
+      // Family branding (SITE-STANDARD 14.2): accent #5C7CFA, system-ui, 14px.
+      // Mirrors the pm-skills / thinking-framework-skills mermaid theme.
+      mermaidConfig: {
+        themeVariables: {
+          lineColor: '#5C7CFA',
+          fontFamily:
+            'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+          fontSize: '14px',
+        },
+      },
+    }),
     starlight({
+      // Display title is deliberately "Writing Style Library" per ADR 0014: the
+      // 2026-06-02 rename changed only the slug/identifiers to writing-style-catalog
+      // and retained the human display name. (The astro-sites conformance packet's
+      // "fix the stale title" item was based on the rename alone and did not account
+      // for ADR 0014; the title is intentional, not stale.)
       title: 'Writing Style Library',
       description: 'Composable writing instructions on four orthogonal axes: Voice, Tone, Style, Format.',
       // Pattern S: the Astro app lives in site/, so the source path Starlight

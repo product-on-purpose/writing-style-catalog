@@ -9,7 +9,7 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 ## Core taxonomy terms
 
-**Axis** - One of the three orthogonal dimensions of a writing instruction. The catalog has three axes: Voice & Tone (a paired axis covering identity and register), Style, and Format. See [The Three-Axis Model](three-axis-model.md).
+**Axis** - One of the three orthogonal dimensions of a writing instruction. The catalog has three axes: Voice & Tone (a paired axis covering identity and register), Style, and Format. See [The Three-Axis Model](../three-axis-model/).
 
 **Voice** - The persistent identity of the writer. Stable across contexts. Captures professional archetype, characteristic concerns, and assumed reader. Lives in `taxonomy/voices/`.
 
@@ -19,13 +19,13 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 **Format** - The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Lives in `taxonomy/formats/`.
 
-**Entry** - A single unit in the catalog. Lives in its own folder with an `ENTRY.md` file containing frontmatter and a Markdown body. See [How to Add an Entry](../guides/add-entry.md).
+**Entry** - A single unit in the catalog. Lives in its own folder with an `ENTRY.md` file containing frontmatter and a Markdown body. See [How to Add an Entry](../../guides/add-entry/).
 
 ---
 
 ## Composition terms
 
-**Composition** - The act of combining one entry from each axis into a single structured prompt prefix. See [Composing Instructions](composition.md).
+**Composition** - The act of combining one entry from each axis into a single structured prompt prefix. See [Composing Instructions](../composition/).
 
 **Composed instruction** - The output of composition: a multi-section prompt prefix that can be prepended to any writing task. Each section is drawn from the matching entry's `llm_instruction_phrasing` field.
 
@@ -63,7 +63,7 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 **Frontmatter** - The YAML block at the top of every `ENTRY.md` file, delimited by `---` lines. Contains the entry's metadata and is validated against an axis-specific JSON Schema.
 
-**Review status** - The lifecycle state of an entry. Progression: `draft` -> `reviewed` -> `stable` -> `reference-quality`. New entries start at `draft`. Promotion requires maintainer review. A separate `deprecated` state marks superseded entries. See [Contribution Process](../governance/contribution-process.md).
+**Review status** - The lifecycle state of an entry. Progression: `draft` -> `reviewed` -> `stable` -> `reference-quality`. New entries start at `draft`. Promotion requires maintainer review. A separate `deprecated` state marks superseded entries. See [Contribution Process](../../governance/contribution-process/).
 
 ---
 

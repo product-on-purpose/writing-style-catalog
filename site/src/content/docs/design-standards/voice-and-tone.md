@@ -78,4 +78,4 @@ Each axis is independent. Mixing across axes weakens composability.
 
 An entry moves from `draft` to `reviewed` after one maintainer reviews and accepts it. From `reviewed` to `stable` requires two of: (1) at least one worked example exists, (2) the entry has been used in at least one composed instruction in the wild, (3) two months have passed without revision. From `stable` to `reference-quality` is rare and requires explicit maintainer judgment - reference-quality entries are the ones that get shown in onboarding material.
 
-See [Contribution Process](../governance/contribution-process.md) for the full review flow.
+See [Contribution Process](../../governance/contribution-process/) for the full review flow.

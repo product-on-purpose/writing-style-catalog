@@ -5,7 +5,7 @@ description: The end-to-end process for contributing, from before-PR checks to t
 
 This is the end-to-end process for contributing to the Writing Style Library. It covers what to do before opening a PR, what happens during review, and how entries move through the review status lifecycle after they land.
 
-For the authoring mechanics, see [How to Add an Entry](../guides/add-entry.md). This page is about the process around the authoring.
+For the authoring mechanics, see [How to Add an Entry](../../guides/add-entry/). This page is about the process around the authoring.
 
 ---
 
@@ -40,7 +40,7 @@ The pre-commit hook runs the validator and indexer automatically if you installe
 
 Work on a feature branch off `main`. Branch names should describe the work in short form: `feat/voice-coach`, `fix/yaml-parser-tables`, `docs/composition-page`.
 
-Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/). See [Naming Conventions](../design-standards/naming-conventions.md) for the types in use.
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/). See [Naming Conventions](../../design-standards/naming-conventions/) for the types in use.
 
 ### What the PR description should include
 
@@ -59,10 +59,10 @@ PRs that change the schema or the validator must also link to a draft ADR explai
 
 For a new taxonomy entry, a reviewer will check:
 
-1. The entry passes the [distinctness test](../design-standards/voice-and-tone.md) against its `confusable_with` entries.
+1. The entry passes the [distinctness test](../../design-standards/voice-and-tone/) against its `confusable_with` entries.
 2. The `llm_instruction_phrasing` field would actually shape an LLM's output if used as a prompt prefix.
 3. The cross-references are reciprocal where appropriate.
-4. The `description` and body do not contain style tells (see [Style Tells to Avoid](../design-standards/style-tells.md)).
+4. The `description` and body do not contain style tells (see [Style Tells to Avoid](../../design-standards/style-tells/)).
 5. At least one worked example exists and is recognizable as the entry rendering its topic.
 
 For a new example, a reviewer will check:

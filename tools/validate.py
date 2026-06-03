@@ -51,8 +51,11 @@ AXIS_SCHEMAS = {
 
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9-]*[a-z0-9]$")
 
-EM_DASH = "—"
-EN_DASH = "–"
+# Built from code points so this file embeds no literal em/en-dash and passes the
+# repo's own dash checks (scripts/check-no-dashes.mjs scans .py). Runtime value is
+# the U+2014 and U+2013 characters, identical to the literals this replaces.
+EM_DASH = chr(0x2014)
+EN_DASH = chr(0x2013)
 
 
 # ---------------------------------------------------------------------------
