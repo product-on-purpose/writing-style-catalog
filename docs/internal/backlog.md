@@ -5,8 +5,9 @@
 > that justifies each item, the editable surface to change, and a rough effort. Living doc -
 > update the snapshot date and check items off as they ship.
 
-**Last updated:** 2026-06-02 (after the v0.2.0 marketplace launch; expanded with the
-comprehensive-catalog vision and its sequencing).
+**Last updated:** 2026-06-03 (after the v0.2.0 marketplace launch and the comprehensive-catalog
+vision; the foundation - taxonomy, adherence gate, anchor topics, conflict-aware composition -
+is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md)).
 **Priority key:** P1 = highest leverage, do next; P2 = valuable, after P1; P3 = hygiene / opportunistic.
 
 This doc holds two horizons: the **near-term, evidence-led work** (sharpen the proven core,
@@ -204,6 +205,13 @@ server exposes the guaranteed behavior, not the naive concatenation.
 > The scale phase. Do **not** start the breadth/depth tracks (E2, E3) until the gate and
 > generation machinery (E1) exist and the near-term P1 foundation has landed; otherwise this
 > reintroduces the exact "120 mixed-quality entries" risk the ROADMAP named. E1 is the unlock.
+
+> **Foundation designed (2026-06-03).** The machinery below is specified in the v0.3.0
+> release plan: ADR [`0010`](adr/0010-domain-and-family-organization.md) (the frozen taxonomy
+> for E2), [`adherence-gate-spec.md`](release-plans/plan_v0.3.0/adherence-gate-spec.md) (E1),
+> [`anchor-topics.md`](release-plans/plan_v0.3.0/anchor-topics.md) (the 12-topic substrate for
+> E3), and S1 conflict-aware composition. v0.3.0 builds the machinery on the proven 60; E2/E3
+> content scale follow in v0.4.0+. See [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md).
 
 ### E1 (P1 for scale) - The quality gate + generation machinery
 Comprehensiveness is rate-limited by tooling, not appetite. Build this first; everything else
