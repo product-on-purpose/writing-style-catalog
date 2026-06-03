@@ -34,7 +34,7 @@ taxonomy/<axis>/<your-kebab-case-id>/ENTRY.md
 
 For example: `taxonomy/styles/timeline-narrative/ENTRY.md`. Do not put the axis name in the ID itself - the folder structure already tells you the axis.
 
-See [Naming Conventions](../design-standards/naming-conventions.md) for the full rule set.
+See [Naming Conventions](../../design-standards/naming-conventions/) for the full rule set.
 
 ---
 
@@ -60,7 +60,7 @@ Required fields for every entry (universal schema):
 
 Each axis has additional required fields - see `schemas/voice.schema.json`, `tone.schema.json`, `style.schema.json`, `format.schema.json`.
 
-The fastest way to get the frontmatter right is to copy an existing entry from the same axis and edit it. See [Voice and Tone Standards](../design-standards/voice-and-tone.md) for authoring guidance.
+The fastest way to get the frontmatter right is to copy an existing entry from the same axis and edit it. See [Voice and Tone Standards](../../design-standards/voice-and-tone/) for authoring guidance.
 
 ---
 
@@ -125,4 +125,4 @@ Use Conventional Commits format for the commit message:
 feat(taxonomy): add <entry-id> <axis> entry
 ```
 
-Open a PR against `main`. See the [Contribution Process](../governance/contribution-process.md) for what happens next.
+Open a PR against `main`. See the [Contribution Process](../../governance/contribution-process/) for what happens next.

@@ -108,4 +108,4 @@ The `compose-instruction` skill reads one entry from each axis and assembles the
 
 Any axis can be omitted. If you only specify a voice and a format, the skill generates a two-section prefix. The composed instruction is designed to be prepended to any writing task without modification.
 
-See [Compose an Instruction](../guides/compose-instruction.md) for a worked example.
+See [Compose an Instruction](../../guides/compose-instruction/) for a worked example.

@@ -41,6 +41,9 @@ jobs:
       - name: Check taxonomy.json is up to date
         run: git diff --exit-code taxonomy.json
 
+      - name: Check for em/en-dashes (house style; CI enforcement of the pre-commit hook)
+        run: node scripts/check-no-dashes.mjs
+
       - name: Run markdownlint
         run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore site/node_modules --ignore _LOCAL --ignore docs/internal
         continue-on-error: true
@@ -62,3 +65,16 @@ jobs:
       - name: Build site (no deploy)
         working-directory: site
         run: npm run build
+
+      # Link/route integrity (SITE-STANDARD 14.11). Run from the repo root against
+      # the built dist. The rendered-link check walks dist/*.html, so it covers the
+      # .mdx-derived catalog pages too (it reads rendered HTML, not the source
+      # pipeline). The base is derived from site/astro.config.mjs (scripts/site-base.mjs),
+      # so no second base literal is introduced (14.7).
+      - name: Check rendered link resolution + anchors (enforcing)
+        env:
+          STRICT_ANCHORS: '1'
+        run: node scripts/check-rendered-links.mjs site/dist
+
+      - name: Check route parity (no published route removed without a redirect)
+        run: node scripts/check-route-parity.mjs site/dist

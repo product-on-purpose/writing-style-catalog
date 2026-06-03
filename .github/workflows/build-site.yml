@@ -32,6 +32,16 @@ jobs:
       - name: Build site
         working-directory: site
         run: npm run build
+      # Link/route integrity (SITE-STANDARD 14.11), same guards the PR build runs,
+      # so the artifact that actually deploys is checked too (a direct push to main
+      # or a workflow_dispatch deploy does not go through the PR build). Run from the
+      # repo root against the built dist.
+      - name: Check rendered link resolution + anchors (enforcing)
+        env:
+          STRICT_ANCHORS: '1'
+        run: node scripts/check-rendered-links.mjs site/dist
+      - name: Check route parity (no published route removed without a redirect)
+        run: node scripts/check-route-parity.mjs site/dist
       - uses: actions/upload-pages-artifact@v5
         with: { path: ./site/dist }
 

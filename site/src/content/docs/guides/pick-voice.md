@@ -71,6 +71,6 @@ If both answers are yes, you have your voice. If either is no, look at the candi
 If you find yourself wishing for a voice the catalog does not have, two things to try:
 
 1. **Re-read the closest candidate's `pairs_well_with` field.** Sometimes the gap is not the voice itself - it is the tone or style pairing.
-2. **Propose a new entry.** See [How to Add an Entry](add-entry.md). The catalog is designed to grow.
+2. **Propose a new entry.** See [How to Add an Entry](../add-entry/). The catalog is designed to grow.
 
 The Phase 1 target is fifteen voice entries; current count is ten. Real gaps in the catalog become future entries.
