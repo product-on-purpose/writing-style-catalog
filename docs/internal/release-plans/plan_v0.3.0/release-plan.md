@@ -17,10 +17,11 @@
       internally consistent.
   - Acceptance: all three present, dash-clean, cross-referenced; reflect the v2 taxonomy (not
     the stale v1) and the scaling decision matrix.
-- [ ] Maintainer answers the six decisions in `spec.md` Section 6; ADR 0010 and ADR 0009 move
-      Proposed -> Accepted; ADR 0006 noted for the topic-set update.
-  - Acceptance: no open P0 decision remains; the taxonomy cuts, the 12 topics, and the gate
-    thresholds are locked.
+- [ ] Maintainer records the decisions in [`decisions.md`](decisions.md) (the consolidated
+      decision record; the six in `spec.md` Section 6 are the P0 subset); ADR 0010 and ADR 0009
+      move Proposed -> Accepted; ADR 0006 noted for the topic-set update.
+  - Acceptance: every P0 row in `decisions.md` has a recorded maintainer call; the taxonomy
+    cuts, the 12 topics, the gate thresholds, and the resourcing posture are locked.
 
 ## Phase 1 - Codify the taxonomy (ADR 0010)
 
