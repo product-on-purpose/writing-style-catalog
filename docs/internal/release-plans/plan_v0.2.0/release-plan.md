@@ -4,6 +4,7 @@
 > check passes. Keep the repo buildable and CI green between steps. Spec: [`spec.md`](spec.md).
 > Precedent: pm-skills v2.21.0.
 
+**Status:** SHIPPED 2026-06-02. `writing-style-catalog@product-on-purpose` is live.
 **Version:** 0.2.0 (MINOR). **Spine:** prep -> merge -> tag + Release -> pin registry -> verify.
 **Spans two repos:** `product-on-purpose/writing-style-catalog` and
 `product-on-purpose/agent-plugins`. Both public; full-publish authorized.
@@ -12,7 +13,7 @@
 
 ## Phase 0 - Plan + review (this folder)
 
-- [ ] `spec.md` + `release-plan.md` authored.
+- [x] `spec.md` + `release-plan.md` authored.
   - Acceptance: both files present, dash-free, internally consistent.
 - [x] Adversarial pre-execution review (multi-agent, 13 agents) of the plan; findings triaged
       and accepted findings folded into spec + plan (see Execution log).
@@ -20,28 +21,28 @@
 
 ## Phase 1 - WSC release prep (branch `release/v0.2.0`)
 
-- [ ] Bump `.claude-plugin/plugin.json` version `0.1.0 -> 0.2.0`; `description` -> canonical
+- [x] Bump `.claude-plugin/plugin.json` version `0.1.0 -> 0.2.0`; `description` -> canonical
       de-versioned string (spec 6.1).
-- [ ] Self-hosted `.claude-plugin/marketplace.json`: `version -> 0.2.0`; `description` ->
+- [x] Self-hosted `.claude-plugin/marketplace.json`: `version -> 0.2.0`; `description` ->
       canonical; `source.ref` `main -> v0.2.0`.
-- [ ] `CHANGELOG.md`: `[Unreleased] -> [0.2.0] - <date>`; add marketplace-listing + CI items.
-- [ ] `README.md`: version badge `-> 0.2.0`; warning token `(v0.2.0)`; Quick Start adds
+- [x] `CHANGELOG.md`: `[Unreleased] -> [0.2.0] - <date>`; add marketplace-listing + CI items.
+- [x] `README.md`: version badge `-> 0.2.0`; warning token `(v0.2.0)`; Quick Start adds
       `/plugin update`; Project Status reworded to "listed/live".
-- [ ] `site/src/content/docs/index.mdx`: Quick Start present tense + Install link in
+- [x] `site/src/content/docs/index.mdx`: Quick Start present tense + Install link in
       "Learn the model".
-- [ ] `site/src/content/docs/guides/compose-instruction.md`: rewrite Step 1 install command
+- [x] `site/src/content/docs/guides/compose-instruction.md`: rewrite Step 1 install command
       to the marketplace flow.
-- [ ] New `site/src/content/docs/guides/install.md` (`sidebar: { order: 0 }`; relative-slug
+- [x] New `site/src/content/docs/guides/install.md` (`sidebar: { order: 0 }`; relative-slug
       links only).
-- [ ] New `QUICKSTART.md` at repo root.
-- [ ] `skills/writing-instruction-builder/SKILL.md`: add the helper-script Implementation note.
-- [ ] New `scripts/validate-plugin-manifest.mjs` (zero-dependency Node; `--expect-version`).
-- [ ] `validate.yml`: add `node scripts/validate-plugin-manifest.mjs` step to the `validate`
+- [x] New `QUICKSTART.md` at repo root.
+- [x] `skills/writing-instruction-builder/SKILL.md`: add the helper-script Implementation note.
+- [x] New `scripts/validate-plugin-manifest.mjs` (zero-dependency Node; `--expect-version`).
+- [x] `validate.yml`: add `node scripts/validate-plugin-manifest.mjs` step to the `validate`
       job (required-context coverage).
-- [ ] New `scripts/build-release.sh` + `scripts/build-release.ps1` (flat archive root).
-- [ ] New `.github/workflows/validate-plugin.yml` (no npm), `release.yml` (build + attach
+- [x] New `scripts/build-release.sh` + `scripts/build-release.ps1` (flat archive root).
+- [x] New `.github/workflows/validate-plugin.yml` (no npm), `release.yml` (build + attach
       assets, non-draft), `release-zips.yml` (workflow_dispatch only), `codeql.yml`.
-- [ ] De-version sweep: `grep -rn "v0\.1\.0"` over tracked release artifacts (excluding
+- [x] De-version sweep: `grep -rn "v0\.1\.0"` over tracked release artifacts (excluding
       `examples/`, `docs/internal/`) is clean.
   - Acceptance: `python tools/validate.py` PASS; `python tools/build-indexes.py` leaves
     `taxonomy.json` unchanged; `node scripts/validate-plugin-manifest.mjs` PASS (and FAILs a
@@ -52,38 +53,38 @@
 
 ## Phase 2 - Merge, tag, Release
 
-- [ ] Push `release/v0.2.0`; open PR; CI green (validate + build-site + validate-plugin +
+- [x] Push `release/v0.2.0`; open PR; CI green (validate + build-site + validate-plugin +
       codeql). Resolve all PR conversations.
-- [ ] Register `build-site`, `validate-plugin`, `codeql` as required status checks on
+- [x] Register `build-site`, `validate-plugin`, `codeql` as required status checks on
       `main` (via `gh api .../branches/main/protection`) once green on the PR.
-- [ ] **Squash-merge** to `main` (linear history required; no merge commit).
-- [ ] Tag `v0.2.0` (annotated) at the squashed `main` HEAD; push the tag.
-- [ ] GitHub Release `v0.2.0` published by `release.yml` (non-draft, Latest) with ZIP +
+- [x] **Squash-merge** to `main` (linear history required; no merge commit).
+- [x] Tag `v0.2.0` (annotated) at the squashed `main` HEAD; push the tag.
+- [x] GitHub Release `v0.2.0` published by `release.yml` (non-draft, Latest) with ZIP +
       `.sha256` + `manifest.txt` attached directly; no orphan draft.
   - Acceptance: `gh release view v0.2.0` shows the three assets; `git ls-remote --tags` shows
     the pushed tag; tag commit == `main` HEAD.
 
 ## Phase 3 - Pin agent-plugins registry (branch `list-writing-style-catalog`)
 
-- [ ] Add the `writing-style-catalog` entry (spec Section 5) with the real `v0.2.0` SHA;
+- [x] Add the `writing-style-catalog` entry (spec Section 5) with the real `v0.2.0` SHA;
       bump `metadata.version -> 1.3.0`.
-- [ ] `README.md` Plugins table: add the WSC row (status `listed`); reconcile the existing
+- [x] `README.md` Plugins table: add the WSC row (status `listed`); reconcile the existing
       `thinking-framework-skills` `_planned_ -> listed` + fill its Repo cell.
-- [ ] `CHANGELOG.md`: backfill `[1.1.0]` + `[1.2.0]`, then add `[1.3.0]`.
-- [ ] Poll the raw `plugin.json` URL at the SHA until 200 (propagation), then
+- [x] `CHANGELOG.md`: backfill `[1.1.0]` + `[1.2.0]`, then add `[1.3.0]`.
+- [x] Poll the raw `plugin.json` URL at the SHA until 200 (propagation), then
       `GITHUB_TOKEN=$(gh auth token) node scripts/validate-registry.mjs` PASS (all enforcing
       checks, including 5 sha-on-tag + 7 installability).
-- [ ] PR; CI `validate-registry` green; merge to `main`.
+- [x] PR; CI `validate-registry` green; merge to `main`.
   - Acceptance: validator green locally and in CI; the listing is on `main`.
 
 ## Phase 4 - Verify + hygiene
 
-- [ ] Re-run `validate-registry.mjs` on `main` (post-merge) - green.
-- [ ] Manual `/plugin` smoke recorded: `marketplace add product-on-purpose/agent-plugins`,
+- [x] Re-run `validate-registry.mjs` on `main` (post-merge) - green.
+- [x] Manual `/plugin` smoke recorded: `marketplace add product-on-purpose/agent-plugins`,
       `install writing-style-catalog@product-on-purpose`, one `compose-instruction` call.
       (Human-run; Claude Code cannot be driven from CI. The registry validator's network
       checks 5+7 are the automated proxy.)
-- [ ] Flip this plan + spec status to SHIPPED; refresh MEMORY.
+- [x] Flip this plan + spec status to SHIPPED; refresh MEMORY.
   - Acceptance: every box above checked; acceptance criteria in `spec.md` Section 8 met.
 
 ---
@@ -118,3 +119,27 @@ pushed (Phase 2 precedes Phase 3).
     page; flat ZIP archive root; SKILL.md helper-script note.
   - Noted (not a change): the skill *name* is `compose-instruction` (frontmatter); the folder
     is `writing-instruction-builder`. The documented invocation is correct.
+- **Phase 1-2 (WSC) done.** Release-prep on `release/v0.2.0`: all local gates green (manifest
+  validator pass + fails a bad version; no-dashes; taxonomy validate; `taxonomy.json`
+  unchanged; site build 112 pages; rendered-link + route-parity pass; ZIP unzips flat and the
+  skill resolves `taxonomy/`). PR #13: validate + validate-plugin + build-site + CodeQL all
+  green. Registered `build-site` as a required status check alongside `validate`. Squash-merged
+  to `main` (`3685d65`). Tagged annotated `v0.2.0` at `3685d65` and pushed; `release.yml` built
+  and published the GitHub Release (Latest) with the ZIP + `.sha256` + `manifest.txt`;
+  `validate-plugin` tag-version assertion green. Site deployed; `guides/install/` live (HTTP
+  200).
+- **Phase 3 (agent-plugins) done.** The repo had concurrent local WIP (an `agent-skills-toolkit`
+  listing committed as `374cd8f` on another branch, placeholder sha, not pushed), so the change
+  was made server-side from `origin/main` to avoid entanglement: validated the exact proposed
+  registry locally (all 7 enforcing checks pass), then PR #8 added the `writing-style-catalog`
+  entry (pinned to `3685d65`, https url, strict), bumped `metadata.version` 1.2.0 -> 1.3.0,
+  flipped the stale `thinking-framework-skills` README status to `listed`, and backfilled
+  CHANGELOG `[1.0.1]`..`[1.2.0]` + added `[1.3.0]`. `validate-registry` CI green on the PR and
+  on `main` after squash-merge. No concurrent work disturbed.
+- **Phase 4 (verify) done.** Post-merge `validate-registry` green on `agent-plugins/main`
+  (network checks 5 sha-on-tag + 7 installability are the automated install proxy). GitHub
+  Release Latest with assets confirmed. Install docs live. Manual `/plugin` smoke
+  (`marketplace add` + `install writing-style-catalog@product-on-purpose` + one
+  `compose-instruction` call) is left to the maintainer, since Claude Code cannot be driven from
+  CI; the registry validator's network checks already prove the pin is resolvable and the
+  pinned `plugin.json` is valid.
