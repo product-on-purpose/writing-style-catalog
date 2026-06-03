@@ -1,0 +1,71 @@
+name: Release
+
+# On a v* tag push: build the plugin ZIP and publish the GitHub Release WITH the
+# assets attached directly. This is the sole asset path on purpose: a Release
+# created with the default GITHUB_TOKEN does not trigger a `release: published`
+# event (GitHub suppresses workflow runs triggered by the default token), so a
+# separate "attach on publish" workflow would never fire. Re-running is safe:
+# softprops/action-gh-release overwrites same-named assets idempotently.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Get version from tag
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Build release artifact
+        run: |
+          chmod +x scripts/build-release.sh
+          ./scripts/build-release.sh "$VERSION"
+
+      - name: Generate release notes
+        run: |
+          cat > RELEASE_NOTES.md <<'EOF'
+          ## Writing Style Catalog
+
+          Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format).
+
+          ### Install (Claude Code)
+
+          ```
+          /plugin marketplace add product-on-purpose/agent-plugins
+          /plugin install writing-style-catalog@product-on-purpose
+          ```
+
+          Update later with `/plugin update writing-style-catalog`.
+
+          ### Claude.ai / Claude Desktop
+
+          Download the ZIP below, extract it, and point your client at
+          `.claude-plugin/plugin.json`. The archive root holds the plugin manifest,
+          the `compose-instruction` skill, and the `taxonomy/` catalog the skill reads.
+
+          See the full install guide and the CHANGELOG in the repository for details.
+          EOF
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            dist/writing-style-catalog-v${{ steps.version.outputs.version }}.zip
+            dist/writing-style-catalog-v${{ steps.version.outputs.version }}.zip.sha256
+            dist/manifest.txt
+          body_path: RELEASE_NOTES.md
+          draft: false
+          prerelease: false
+          make_latest: true

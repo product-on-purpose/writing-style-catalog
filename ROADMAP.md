@@ -1,6 +1,6 @@
 # Roadmap
 
-The Writing Style Library is a composable catalog of writing instructions on four orthogonal axes: Voice, Tone, Style, and Format. As of v0.1.0 the catalog is public, the documentation site is live, and the core mechanism is proven. A blind adherence test attributed 8 of 8 confusable composition pairs correctly (chance is roughly 0.4 percent), which means the per-entry instruction phrasings genuinely steer model output.
+The Writing Style Library is a composable catalog of writing instructions on four orthogonal axes: Voice, Tone, Style, and Format. As of v0.2.0 the catalog is public, the documentation site is live, the plugin is installable through the Product on Purpose marketplace, and the core mechanism is proven. A blind adherence test attributed 8 of 8 confusable composition pairs correctly (chance is roughly 0.4 percent), which means the per-entry instruction phrasings genuinely steer model output.
 
 That result sets the direction. The catalog works, so the roadmap is about making it sharper and easier to find: depth and instructional leverage over raw breadth. We are deliberately not building a multi-surface product (SDKs, a composer app) that a catalog of this size does not need and a small team cannot maintain well.
 

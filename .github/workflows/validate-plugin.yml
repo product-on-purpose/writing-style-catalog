@@ -1,0 +1,44 @@
+name: Validate Plugin
+
+# Manifest gate for the Claude Code plugin. Zero npm: the repo has no root
+# package.json, so the validator imports only Node built-ins. The same check is
+# also a step in the required `validate` job (validate.yml); this workflow adds
+# the on-tag version assertion and path-scoped runs.
+
+on:
+  pull_request:
+    paths:
+      - ".claude-plugin/**"
+      - "skills/**"
+      - "scripts/**"
+      - ".github/workflows/validate-plugin.yml"
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+
+      - name: Validate plugin manifest
+        # On a v* tag push, also assert the tag equals the manifest version so the
+        # two cannot diverge. No paths filter applies to tag pushes (the push block
+        # has no `paths`), so this always runs on a tag.
+        run: |
+          if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+            node scripts/validate-plugin-manifest.mjs --expect-version "${GITHUB_REF_NAME#v}"
+          else
+            node scripts/validate-plugin-manifest.mjs
+          fi
