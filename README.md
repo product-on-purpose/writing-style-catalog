@@ -19,7 +19,7 @@
   <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue.svg?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.2.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-three-axis-model">
     <img src="https://img.shields.io/badge/entries-60-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
@@ -61,7 +61,7 @@
 ---
 
 > [!WARNING]
-> **Early and experimental (v0.1.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned Composer and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+> **Early and experimental (v0.2.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned Composer and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
@@ -92,6 +92,10 @@ Install through the Product on Purpose marketplace, then compose. Run these insi
 /plugin marketplace add product-on-purpose/agent-plugins
 /plugin install writing-style-catalog@product-on-purpose
 ```
+
+Already installed? Pull the latest with `/plugin update writing-style-catalog`. Prefer a
+direct install or another agent? See the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)
+for the from-repo and ZIP paths.
 
 Then compose a writing instruction from any combination of axes:
 
@@ -204,7 +208,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 ## Project Status
 
-**v0.1.0 - initial catalog release (early / experimental).** Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+**v0.2.0 - marketplace launch (early / experimental).** The plugin is now listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
 
 **What exists today:**
 
@@ -216,7 +220,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **Planned but not built yet:** a Composer web app, an MCP server, and TypeScript/Python SDKs.
 
-Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
+Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`), with a self-hosted single-plugin marketplace and a direct-from-repo path as fallbacks (see the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

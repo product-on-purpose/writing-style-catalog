@@ -1,0 +1,48 @@
+name: Release ZIPs
+
+# Manual re-pack helper. Rebuilds the plugin ZIP for an existing tag and uploads
+# it to that tag's Release. This is workflow_dispatch only: the primary asset
+# upload happens in release.yml on the tag push. This exists for re-packing
+# without re-tagging (a release.yml that was edited, a corrupted asset, etc).
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to (re)build ZIPs for, e.g. v0.2.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-zips:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.inputs.tag }}
+
+      - name: Determine version
+        id: version
+        run: |
+          VERSION="${{ github.event.inputs.tag }}"
+          VERSION="${VERSION#v}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Build release artifact
+        run: |
+          chmod +x scripts/build-release.sh
+          ./scripts/build-release.sh "$VERSION"
+
+      - name: Upload assets to the existing Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.event.inputs.tag }}
+          files: |
+            dist/writing-style-catalog-v${{ steps.version.outputs.version }}.zip
+            dist/writing-style-catalog-v${{ steps.version.outputs.version }}.zip.sha256
+            dist/manifest.txt

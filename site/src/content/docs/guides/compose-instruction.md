@@ -9,9 +9,14 @@ This guide walks through installing the plugin, running the `compose-instruction
 
 ## Step 1 - Install the Plugin
 
-```bash
-claude plugin install product-on-purpose/writing-style-catalog
+Install through the Product on Purpose marketplace from inside Claude Code:
+
 ```
+/plugin marketplace add product-on-purpose/agent-plugins
+/plugin install writing-style-catalog@product-on-purpose
+```
+
+Full install options (direct-from-repo, Claude.ai / Claude Desktop) are in the [installation guide](../install/).
 
 After installation, the `writing-style-catalog:compose-instruction` skill is available in your Claude Code session. Confirm it loaded:
 

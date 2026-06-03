@@ -24,6 +24,7 @@
 /governance/contribution-process/index.html
 /guides/add-entry/index.html
 /guides/compose-instruction/index.html
+/guides/install/index.html
 /guides/pick-voice/index.html
 /index.html
 /recipes/architect-candid-adr/index.html

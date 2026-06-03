@@ -31,6 +31,18 @@ All parameters are optional. If omitted, the skill picks sensible defaults.
 3. Assembles a composed instruction string that specifies voice, tone, style, and format together
 4. Returns the composed instruction ready to paste into any LLM prompt
 
+### Implementation
+
+The composition is implemented by the helper script `scripts/build-instruction.py` in this
+skill folder. It reads the catalog from the `taxonomy/` directory at the plugin root, so that
+directory ships with the plugin. The slash command takes `key=value` arguments; the script
+itself takes `--flag value` arguments. Run it directly to compose without the slash command,
+for example:
+
+```bash
+python scripts/build-instruction.py --voice pragmatic-architect --tone candid --format adr
+```
+
 ## Examples
 
 Compose an ADR in pragmatic-architect voice with candid tone:

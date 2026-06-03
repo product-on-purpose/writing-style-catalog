@@ -44,6 +44,9 @@ jobs:
       - name: Check for em/en-dashes (house style; CI enforcement of the pre-commit hook)
         run: node scripts/check-no-dashes.mjs
 
+      - name: Validate plugin manifest (covered by the required `validate` context)
+        run: node scripts/validate-plugin-manifest.mjs
+
       - name: Run markdownlint
         run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore site/node_modules --ignore _LOCAL --ignore docs/internal
         continue-on-error: true
