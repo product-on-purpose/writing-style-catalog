@@ -78,7 +78,7 @@ The judge's clean passes are not taken on faith. A **15 percent human spot-audit
 
 ### The frozen golden set
 
-A held-out reference the generator and judge **never** see as training data or few-shot exemplars: the human-authored 60 plus the 8 smoke-test pairs (including the two known-`subtle` pairs), frozen with their recorded ratings. It runs every CI as regression. The catalog's content is its product, and product regresses: someone sharpens `senior-consultant`'s `confusable_with` block to fix one `subtle` pair and accidentally blurs it against `executive`. If a frozen pair drops below its recorded band, the build fails. This is what makes the 8/8 result a continuously enforced invariant rather than a historical fact. Without an uncontaminated reference, model collapse is invisible: there is nothing clean left to measure drift against.
+A held-out reference the generator and judge **never** see as training data or few-shot exemplars: the reviewed baseline 60 (the v0.1.0 seed catalog; LLM-generated and maintainer-curated, not human-authored) plus the 8 smoke-test pairs (including the two known-`subtle` pairs), frozen with their recorded ratings. It runs every CI as regression. The catalog's content is its product, and product regresses: someone sharpens `senior-consultant`'s `confusable_with` block to fix one `subtle` pair and accidentally blurs it against `executive`. If a frozen pair drops below its recorded band, the build fails. This is what makes the 8/8 result a continuously enforced invariant rather than a historical fact. Without an uncontaminated reference, model collapse is invisible: there is nothing clean left to measure drift against.
 
 ### The output
 
@@ -119,6 +119,8 @@ Humans are irreplaceable for exactly three things, and only these:
 - **Exemplar curation.** Selecting the `reference-quality` entries that seed generation. A bad exemplar propagates its flaws into every entry generated against it, so this is the highest-leverage human act in the whole pipeline.
 
 Everything else - the bulk of the labor - the gate absorbs. Machines manufacture and measure; humans adjudicate the margin. API tokens are a rounding error; this reviewer budget is the binding constraint, and it does not parallelize cleanly. The honest consequence: fund 2-4 reviewers for the program or consciously cap the expansion below its target. Solo evenings at 10x is just 10x of the distinct-but-mediocre failure.
+
+> **Update (2026-06-09, decision F3 - resourcing posture).** The maintainer chose neither funded reviewers nor a hard cap, but an agentic-first posture: the cross-family gate carries quality automatically, the maintainer provides only a capacity-bounded spot-audit (100 percent of the `subtle` and near-collision buckets, plus a sustainable sample of clean passers), and distillation - with its mandatory 15-percent audit - is deferred until that rigor is worth funding in maintainer time. See `decisions.md` (C2 - judge policy, F3 - resourcing posture). The 250-300 reviewer-hour figure above is the cost of the human-heavy model this decision avoids; it now bounds how much spot-audit is sustainable solo (and therefore the scale target, F1 - breadth vs depth weighting), not a hiring plan.
 
 ## Failure modes of the gate itself, and mitigations
 
