@@ -1,9 +1,9 @@
 ---
 title: Compose an Instruction
-description: Install the plugin, run compose-instruction, read the output, and use it in a prompt.
+description: Install the plugin, run writing-instruction-builder, read the output, and use it in a prompt.
 ---
 
-This guide walks through installing the plugin, running the `compose-instruction` skill, reading the output, and using it in a prompt.
+This guide walks through installing the plugin, running the `writing-instruction-builder` skill, reading the output, and using it in a prompt.
 
 ---
 
@@ -18,34 +18,34 @@ Install through the Product on Purpose marketplace from inside Claude Code:
 
 Full install options (direct-from-repo, Claude.ai / Claude Desktop) are in the [installation guide](../install/).
 
-After installation, the `writing-style-catalog:compose-instruction` skill is available in your Claude Code session. Confirm it loaded:
+After installation, the `writing-style-catalog:writing-instruction-builder` skill is available in your Claude Code session. Confirm it loaded:
 
 ```bash
-/writing-style-catalog:compose-instruction --help
+/writing-style-catalog:writing-instruction-builder --help
 ```
 
 ---
 
-## Step 2 - Run compose-instruction
+## Step 2 - Run writing-instruction-builder
 
 The skill accepts keyword arguments for each axis. All arguments are optional.
 
 ### Basic example - voice and format only
 
 ```
-/writing-style-catalog:compose-instruction voice=pragmatic-architect format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect format=adr
 ```
 
 ### Full four-axis example
 
 ```
-/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
 ### Using a different combination
 
 ```
-/writing-style-catalog:compose-instruction voice=product-thinker tone=optimistic-realist style=layered-disclosure format=daily-standup
+/writing-style-catalog:writing-instruction-builder voice=product-thinker tone=optimistic-realist style=layered-disclosure format=daily-standup
 ```
 
 ---
@@ -110,10 +110,10 @@ Save the output to a file (for example `.writing-context.md`) and include it in 
 To see all available entries for a given axis:
 
 ```
-/writing-style-catalog:compose-instruction --list voices
-/writing-style-catalog:compose-instruction --list tones
-/writing-style-catalog:compose-instruction --list styles
-/writing-style-catalog:compose-instruction --list formats
+/writing-style-catalog:writing-instruction-builder --list voices
+/writing-style-catalog:writing-instruction-builder --list tones
+/writing-style-catalog:writing-instruction-builder --list styles
+/writing-style-catalog:writing-instruction-builder --list formats
 ```
 
 ---

@@ -1,7 +1,7 @@
 # Writing Style Catalog - Quick Start
 
 Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format). Pick one
-entry per axis and the `compose-instruction` skill assembles a ready-to-paste prompt prefix.
+entry per axis and the `writing-instruction-builder` skill assembles a ready-to-paste prompt prefix.
 
 ## Install
 
@@ -14,13 +14,6 @@ entry per axis and the `compose-instruction` skill assembles a ready-to-paste pr
 
 Update later with `/plugin update writing-style-catalog`.
 
-### Direct from the repo
-
-```
-/plugin marketplace add product-on-purpose/writing-style-catalog
-/plugin install writing-style-catalog@writing-style-catalog-marketplace
-```
-
 ### Claude.ai / Claude Desktop
 
 Download `writing-style-catalog-v<version>.zip` from
@@ -32,7 +25,7 @@ Full detail: the [installation guide](https://product-on-purpose.github.io/writi
 ## Compose an instruction
 
 ```
-/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
 All four axes are optional. The skill returns a structured prompt prefix you can prepend to any

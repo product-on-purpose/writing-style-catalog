@@ -4,7 +4,7 @@ Core skill for the writing-style-catalog plugin.
 
 ## Skills
 
-- `compose-instruction` - Compose a writing instruction from axis entries
+- `writing-instruction-builder` - Compose a writing instruction from axis entries (formerly `compose-instruction`; renamed in ADR 0015 so the skill name matches its directory)
 
 ## How it Works
 

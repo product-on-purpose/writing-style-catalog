@@ -104,7 +104,7 @@ Format entries define the visual and structural container. They specify headings
 
 ## How Composition Works
 
-The `compose-instruction` skill reads one entry from each axis and assembles them into a single structured prompt prefix. The prefix has up to four sections - Voice, Tone (both from Axis 1), Style (Axis 2), and Format (Axis 3) - concatenated in that order.
+The `writing-instruction-builder` skill reads one entry from each axis and assembles them into a single structured prompt prefix. The prefix has up to four sections - Voice, Tone (both from Axis 1), Style (Axis 2), and Format (Axis 3) - concatenated in that order.
 
 Any axis can be omitted. If you only specify a voice and a format, the skill generates a two-section prefix. The composed instruction is designed to be prepended to any writing task without modification.
 

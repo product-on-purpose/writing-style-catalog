@@ -93,17 +93,17 @@ Install through the Product on Purpose marketplace, then compose. Run these insi
 /plugin install writing-style-catalog@product-on-purpose
 ```
 
-Already installed? Pull the latest with `/plugin update writing-style-catalog`. Prefer a
-direct install or another agent? See the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)
-for the from-repo and ZIP paths.
+Already installed? Pull the latest with `/plugin update writing-style-catalog`. Using
+Claude.ai or Claude Desktop? See the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)
+for the ZIP path.
 
 Then compose a writing instruction from any combination of axes:
 
 ```bash
-/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
-The `compose-instruction` skill assembles a structured prompt prefix that you can prepend to any writing task. Mix and match entries across axes to get exactly the register, reasoning pattern, and layout you need.
+The `writing-instruction-builder` skill assembles a structured prompt prefix that you can prepend to any writing task. Mix and match entries across axes to get exactly the register, reasoning pattern, and layout you need.
 
 > Browse the full catalog, worked examples, and side-by-side diff-pairs on the [documentation site](https://product-on-purpose.github.io/writing-style-catalog/).
 
@@ -127,7 +127,7 @@ The Writing Style Library is that vocabulary. It decomposes the overloaded idea 
 
 ### Axis 1 - Voice and Tone
 
-Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound). Tone captures situational register (how you sound right now). They are kept as separate catalog directories (`taxonomy/voices/` and `taxonomy/tones/`) because they have different frontmatter and entry counts, but conceptually they belong to the same axis. When using the `compose-instruction` skill, you pass both `voice=` and `tone=` as separate parameters because each is a distinct catalog lookup within Axis 1.
+Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound). Tone captures situational register (how you sound right now). They are kept as separate catalog directories (`taxonomy/voices/` and `taxonomy/tones/`) because they have different frontmatter and entry counts, but conceptually they belong to the same axis. When using the `writing-instruction-builder` skill, you pass both `voice=` and `tone=` as separate parameters because each is a distinct catalog lookup within Axis 1.
 
 **Voice** is the persistent identity of the writer: their worldview, characteristic concerns, and the professional archetype they embody. Voice is stable across contexts. The `pragmatic-architect` voice, for example, always reasons from constraints and trade-offs, regardless of whether it is writing a slack message or a technical RFC.
 
@@ -193,7 +193,8 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | `examples/horizontal-slices/` | Content | Cross-topic samples for a single axis value |
 | `examples/diff-pairs/` | Content | Side-by-side pairs showing the effect of changing one axis |
 | `schemas/` | Code | JSON Schema files for all entry types |
-| `skills/writing-instruction-builder/` | Code | Claude Code plugin skill (compose-instruction) |
+| `skills/writing-instruction-builder/` | Code | The writing-instruction-builder plugin skill |
+| `library.json` | Config | Canonical plugin manifest (family Standard, Section 5) |
 | `docs/` | Docs | Astro Starlight site (catalog pages generated from `taxonomy/` and `examples/`; narrative pages authored) |
 | `tools/` | Code | Validation and index-generation scripts |
 | `scripts/` | Code | Site page generator and freshness guard |
@@ -214,13 +215,13 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 - 60 taxonomy entries (15 each across Voice, Tone, Style, Format)
 - 195 worked examples across three anchor topics, plus 12 diff-pairs and 5 horizontal-slice recipes
-- Working `compose-instruction` skill
+- Working `writing-instruction-builder` skill
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI
 
 **Planned but not built yet:** a Composer web app, an MCP server, and TypeScript/Python SDKs.
 
-Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`), with a self-hosted single-plugin marketplace and a direct-from-repo path as fallbacks (see the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
+Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`), with a ZIP path for Claude.ai / Claude Desktop as the fallback (see the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
