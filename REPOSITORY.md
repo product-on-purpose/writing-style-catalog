@@ -7,7 +7,7 @@ This document explains what every top-level folder in the Writing Style Library 
 The catalog source lives in `taxonomy/` and `examples/`; the tools in `tools/` validate it; the scripts in `scripts/` generate the catalog into `site/src/content/docs/`; and Astro (under `site/`) builds it into the live site.
 
 ```
-taxonomy/ + examples/        source of truth, hand-authored
+taxonomy/ + examples/        source of truth, directly maintained
         |
    tools/validate.py         integrity gate (7 checks)
    tools/build-indexes.py -> taxonomy.json    machine-readable index
@@ -41,7 +41,7 @@ taxonomy/ + examples/        source of truth, hand-authored
 
 ## Reading the groups
 
-**Source of truth (hand-authored, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored pages in `docs/`, and the `compose-instruction` skill. Edits start here.
+**Source of truth (directly maintained, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored pages in `docs/`, and the `compose-instruction` skill. Edits start here.
 
 **Generated (do not hand-edit; regenerate instead).** `taxonomy.json` and the generated catalog under `site/src/content/docs/` (`reference/`, `examples/`, `recipes/`, `templates/`). The catalog is gitignored and rebuilt on every site build (Pattern S), so editing it by hand is wasted effort; `taxonomy.json` is committed and guarded by a `git diff` check in CI.
 
