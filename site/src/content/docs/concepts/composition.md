@@ -18,7 +18,7 @@ A composed instruction is built from four sections, in this order:
 3. **Style** - how they organize ideas
 4. **Format** - how the output is structured
 
-Each section is independent. The `compose-instruction` skill concatenates them with explicit headers so the receiving LLM can read each section as a self-contained directive.
+Each section is independent. The `writing-instruction-builder` skill concatenates them with explicit headers so the receiving LLM can read each section as a self-contained directive.
 
 You do not have to fill every slot. A two-axis composition (just voice and format, for example) produces a valid instruction. Leaving an axis blank means "the LLM picks whatever fits," which is sometimes the right call.
 
@@ -47,7 +47,7 @@ Not every combination is equally good. A `reverent` tone paired with a `daily-st
 - `avoid_with` - other entries that conflict or produce poor results
 - `confusable_with` - other entries commonly mistaken for this one
 
-These cross-references are guidance, not enforcement. The Composer surface uses them to highlight likely good combinations. The `compose-instruction` skill does not block bad combinations - it produces what you ask for, and trusts you to know when you are doing something unusual.
+These cross-references are guidance, not enforcement. The Composer surface uses them to highlight likely good combinations. The `writing-instruction-builder` skill does not block bad combinations - it produces what you ask for, and trusts you to know when you are doing something unusual.
 
 ---
 

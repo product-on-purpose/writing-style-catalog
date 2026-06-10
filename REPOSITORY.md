@@ -30,8 +30,9 @@ taxonomy/ + examples/        source of truth, directly maintained
 | `site/` | The Astro app (Pattern S): `astro.config.mjs`, `package.json`, `src/` (`components/`, `styles/`, `content.config.ts`, `content/docs/`), `public/`. | Build | Developer |
 | `docs/` | Governance only: `internal/` (ADRs, notes) and `superpowers/` (specs, plans). Not built by Astro; site content lives in `site/src/content/docs/`. | Governance | Maintainer |
 | `taxonomy.json` | Generated machine index of the catalog (from `tools/build-indexes.py`). | Generated | Agent / downstream |
-| `.claude-plugin/` | Plugin manifest and marketplace config (`plugin.json`, `marketplace.json`). | Distribution | Agent |
-| `skills/` | The `compose-instruction` skill (`writing-instruction-builder/`). | Source of truth | Agent / end user |
+| `library.json` | Canonical plugin manifest (family Standard, Section 5): name, version, declared tier, Standard pin, and the component index. | Source of truth | Agent / downstream |
+| `.claude-plugin/` | Claude Code native manifest (`plugin.json`), kept consistent with the canonical root `library.json`. | Distribution | Agent |
+| `skills/` | The `writing-instruction-builder` skill. | Source of truth | Agent / end user |
 | `.github/` | CI workflows and issue templates. | Build | Maintainer |
 | `docs/internal/` | Committed governance: ADRs, working notes, UI mockups, strategy docs. Not published to the site. | Governance | Maintainer |
 | `_agent-context/` | Agent working material; `session-log/` is gitignored. | Research | Agent |
@@ -41,7 +42,7 @@ taxonomy/ + examples/        source of truth, directly maintained
 
 ## Reading the groups
 
-**Source of truth (directly maintained, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored pages in `docs/`, and the `compose-instruction` skill. Edits start here.
+**Source of truth (directly maintained, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored pages in `docs/`, `library.json`, and the `writing-instruction-builder` skill. Edits start here.
 
 **Generated (do not hand-edit; regenerate instead).** `taxonomy.json` and the generated catalog under `site/src/content/docs/` (`reference/`, `examples/`, `recipes/`, `templates/`). The catalog is gitignored and rebuilt on every site build (Pattern S), so editing it by hand is wasted effort; `taxonomy.json` is committed and guarded by a `git diff` check in CI.
 

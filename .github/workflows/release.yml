@@ -52,8 +52,8 @@ jobs:
           ### Claude.ai / Claude Desktop
 
           Download the ZIP below, extract it, and point your client at
-          `.claude-plugin/plugin.json`. The archive root holds the plugin manifest,
-          the `compose-instruction` skill, and the `taxonomy/` catalog the skill reads.
+          `.claude-plugin/plugin.json`. The archive root holds the plugin manifests,
+          the `writing-instruction-builder` skill, and the `taxonomy/` catalog the skill reads.
 
           See the full install guide and the CHANGELOG in the repository for details.
           EOF

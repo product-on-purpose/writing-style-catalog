@@ -5,7 +5,7 @@ description: Composable writing instructions on four orthogonal axes - Voice, To
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-A composable catalog of writing instructions. Pick one value from each axis - Voice, Tone, Style, Format - and the `compose-instruction` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Mix and match to get exactly the writing you need.
+A composable catalog of writing instructions. Pick one value from each axis - Voice, Tone, Style, Format - and the `writing-instruction-builder` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Mix and match to get exactly the writing you need.
 
 The catalog ships 60 curated entries (15 per axis), each with worked examples on three anchor topics, side-by-side diff-pairs that isolate a single axis, recipes that bundle common combinations, and copyable format templates.
 
@@ -34,7 +34,7 @@ Already installed? Run `/plugin update writing-style-catalog`. For the direct-fr
 Then compose an instruction from any combination of axes:
 
 ```
-/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid style=problem-solution format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid style=problem-solution format=adr
 ```
 
 The skill outputs a structured prompt prefix. Copy it into your system prompt or prepend it to your writing task.
@@ -58,7 +58,7 @@ The skill outputs a structured prompt prefix. Copy it into your system prompt or
 
 ## Learn the model
 
-- [Install the plugin](guides/install/) - marketplace, direct-from-repo, and ZIP paths
+- [Install the plugin](guides/install/) - marketplace and ZIP paths
 - [Three-Axis Model](concepts/three-axis-model/) - the design behind the catalog
 - [Composition](concepts/composition/) - how axis values combine
 - [Compose an Instruction](guides/compose-instruction/) - step-by-step guide

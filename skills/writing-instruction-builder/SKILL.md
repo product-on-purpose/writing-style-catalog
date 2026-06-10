@@ -1,6 +1,8 @@
 ---
-name: compose-instruction
+name: writing-instruction-builder
 description: Compose a writing instruction from voice, tone, style, and format axis entries. Use when you need a precise writing instruction for a specific combination of voice, tone, style, and format. Returns a ready-to-use LLM prompt string.
+metadata:
+  version: "0.1.0"
 ---
 
 # Compose Writing Instruction
@@ -10,7 +12,7 @@ Compose a writing instruction by combining taxonomy entries from the Voice and T
 ## Usage
 
 ```
-/writing-style-catalog:compose-instruction [voice=<id>] [tone=<id>] [style=<id>] [format=<id>] [topic=<text>] [audience=<text>]
+/writing-style-catalog:writing-instruction-builder [voice=<id>] [tone=<id>] [style=<id>] [format=<id>] [topic=<text>] [audience=<text>]
 ```
 
 All parameters are optional. If omitted, the skill picks sensible defaults.
@@ -47,12 +49,12 @@ python scripts/build-instruction.py --voice pragmatic-architect --tone candid --
 
 Compose an ADR in pragmatic-architect voice with candid tone:
 ```
-/writing-style-catalog:compose-instruction voice=pragmatic-architect tone=candid format=adr
+/writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid format=adr
 ```
 
 Compose a pastoral devotional:
 ```
-/writing-style-catalog:compose-instruction voice=pastoral tone=reverent style=devotional-reflection format=devotional-entry topic="The discipline of rest"
+/writing-style-catalog:writing-instruction-builder voice=pastoral tone=reverent style=devotional-reflection format=devotional-entry topic="The discipline of rest"
 ```
 
 ## Available Entries
