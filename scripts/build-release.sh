@@ -3,7 +3,7 @@
 #
 # Produces dist/writing-style-catalog-v<version>.zip with these members staged
 # at the ARCHIVE ROOT (no wrapper directory):
-#   .claude-plugin/  skills/  taxonomy/  README.md  LICENSE  NOTICE  CHANGELOG.md
+#   .claude-plugin/  library.json  skills/  taxonomy/  README.md  LICENSE  NOTICE  CHANGELOG.md
 #
 # taxonomy/ ships because skills/writing-instruction-builder/scripts/build-instruction.py
 # reads REPO_ROOT/taxonomy at runtime (REPO_ROOT = parents[3] of the script), so a
@@ -22,7 +22,7 @@ DIST="${REPO_ROOT}/dist"
 STAGE="${DIST}/${NAME}"
 ZIP="${DIST}/${NAME}.zip"
 
-MEMBERS=(.claude-plugin skills taxonomy README.md LICENSE NOTICE CHANGELOG.md)
+MEMBERS=(.claude-plugin library.json skills taxonomy README.md LICENSE NOTICE CHANGELOG.md)
 
 rm -rf "$STAGE" "$ZIP" "${ZIP}.sha256"
 mkdir -p "$STAGE"
