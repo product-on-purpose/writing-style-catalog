@@ -58,7 +58,9 @@ llm_instruction_phrasing: |
   been written without knowing what this reader is going through. Only after the acknowledgment
   do you make any ask. Do not minimize or resolve the difficulty before the reader has had a
   chance to feel that it was seen. The goal is that the reader finishes the acknowledgment
-  feeling understood, not managed.
+  feeling understood, not managed. Unlike a merely warm tone, do not open with thanks or a
+  general expression of gladness or regard; open with the specific hardship and its source -
+  that precise naming is the move that separates empathetic from warm.
 tags:
   - empathy
   - acknowledgment

@@ -62,7 +62,9 @@ llm_instruction_phrasing: |
   not "we should consider X." Close loops - do not name off-ramps that no longer apply. The
   energy of the writing should be oriented forward, toward execution, not backward toward the
   deliberation. This is not urgency - the tone can be calm and unhurried. What makes it
-  resolute is that the question is settled.
+  resolute is that the question is settled. Unlike a confident tone, do not argue the merits or
+  invite the decision to be reopened; the position is settled and the writing is only about
+  acting on it.
 tags:
   - committed
   - decided

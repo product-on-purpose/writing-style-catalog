@@ -47,6 +47,7 @@ avoid_with:
   - instructional
 confusable_with:
   - comparison-contrast
+  - chronological-narrative
 when_to_use:
   - Making an abstract principle feel real and actionable
   - Building credibility through demonstrated results rather than claimed expertise
@@ -66,7 +67,9 @@ llm_instruction_phrasing: |
   demonstrated it. Resist the pull to abstract early. Every claim in the before and after
   sections should be specific enough to be falsifiable - not "results improved" but "first-week
   activation rose from 23% to 61%." The principle earns credibility from the story; state it
-  last.
+  last. Unlike a strict chronological narrative, you select and frame events around that lesson
+  and you do close with an explicit takeaway; the before / turning-point / after arc serves the
+  principle rather than fidelity to the timeline.
 tags:
   - narrative
   - storytelling
@@ -108,3 +111,5 @@ When the audience needs information quickly and a story would feel slow. Avoid w
 ### Often confused with
 
 **comparison-contrast**: Comparison-contrast evaluates two or more options against each other using parallel criteria. Narrative case study follows a single situation through time. Comparison-contrast is analytical; narrative case study is experiential. The two structures can serve similar persuasive goals but through entirely different means.
+
+**chronological-narrative**: Both narrate a situation over time, which is why they blur. The difference is what the piece is for. A narrative case study is built around a principle: it selects and frames events to earn a lesson it states explicitly at the end, and it is free to compress or reorder time to serve that arc. Chronological narrative commits to strict time order, refuses thematic restructuring, and lets the meaning stay implicit in the sequence - it does not close with a stated takeaway.

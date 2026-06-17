@@ -62,7 +62,9 @@ llm_instruction_phrasing: |
   adjacency in time rather than by stating it: if Y happened because X happened first, the sequence
   itself should make that visible. Establish the starting point in time clearly in the opening so
   the reader knows where in the timeline they are. Trust the order to carry the meaning - if it
-  cannot, the events themselves are not the right material for this style.
+  cannot, the events themselves are not the right material for this style. Unlike a narrative
+  case study, do not label a "turning point" or close with a stated lesson or principle; let the
+  meaning stay implicit in the sequence and stop when the events do.
 tags:
   - narrative
   - temporal
