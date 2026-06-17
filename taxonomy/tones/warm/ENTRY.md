@@ -37,6 +37,7 @@ avoid_with:
   - matter-of-fact
 confusable_with:
   - encouraging
+  - empathetic
 when_to_use:
   - Onboarding documentation
   - Care notes and pastoral writing
@@ -54,7 +55,9 @@ llm_instruction_phrasing: |
   but specific and authentic regard. Address them directly as "you." Acknowledge what they are
   dealing with. Use "I want you to get this right" or "I am glad you are here" rather than "we
   value your feedback." Keep warmth specific - name the situation, name the effort. Do not tip
-  into saccharine: warm is restrained and real, not gushing.
+  into saccharine: warm is restrained and real, not gushing. Unlike an empathetic tone, you need
+  not lead by naming the reader's specific hardship; warmth is a steady regard you can carry even
+  through ordinary content, centering gladness and care before moving to the substance.
 tags:
   - care
   - human
@@ -97,3 +100,5 @@ Legal writing, technical documentation for expert audiences, formal executive co
 ### Often confused with
 
 **encouraging**: Warm is a general orientation of care toward the reader. Encouraging is specifically motivational - it is about activating forward motion and naming capability. You can be warm without being encouraging, and you can encourage without warmth (though warmth helps).
+
+**empathetic**: Warm is a steady, general regard you can sustain across an entire document without ever naming the reader's specific situation. Empathetic tone is a foreground move that opens by naming the precise difficulty the reader is in, at a moment when that naming is the point. Warmth can carry ordinary content; empathetic tone is reserved for moments of real difficulty and leads with the hardship, not with gladness.
