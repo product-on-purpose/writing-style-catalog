@@ -58,6 +58,59 @@ The smoke test's first caveat is the exact gap: "strong model on both ends." It 
 | 2. Pedagogical completeness | The entry teaches, not just steers | Deterministic schema + field checks in `validate.py` | Compute (negligible) |
 | 3. Cross-model adherence | The distinction is robust, not model-luck | Re-run Gate 1 on a second model tier | Generator tokens x2 |
 
+### The restraint check (resolving C1)
+
+> Added 2026-06-17. This closes the quality-measurement sub-problem that decision C1
+> (`decisions.md`) left open: the gate scores distinguishability AND quality, but HOW to measure
+> "good" was undefined. The design below is parked, not yet calibrated. It is gate-blocking for E1
+> (Phase 5 / v0.4.0+), not for v0.3.0, and gets calibrated when the gate it rides is built, not
+> before. The decision NOT to build a fuller rubric speculatively is itself part of the design.
+
+**Why a quality check at all.** Gates 1-3 all push toward distinctness, and distinctness has one
+perverse failure: a generator optimized to pass blind attribution learns that exaggeration is the
+cheapest way to be distinguishable, and produces distinct-but-bad caricature (the first row of the
+failure-modes table below). Distinguishability is necessary, not sufficient. So the gate needs a
+second measurement that pulls in the opposite direction: not "is it distinct?" but "is it the
+genuine register a skilled writer would produce, or a costume?"
+
+**The whole check is one judge question, because the catalog supplies its own answer key.**
+Measuring "good" is usually hard because it imports external taste, which is subjective and
+gameable. This catalog sidesteps that. Every entry already carries its own `failure_modes` /
+`anti_patterns` / `when_not_to_use` (required and substance-checked by Gate 2 / ADR 0009), and the
+prose entries name their caricature explicitly: `confident` says "distinct from arrogance," `warm`
+says it "tips into saccharine," `resolute` warns that "performative resoluteness ... reads as
+bluster." So restraint is not an outside aesthetic judgment; it is a check against each entry's own
+published failure mode. The cross-family judge (already running for Gate 1) answers, per rendered
+sample, in the same pass:
+
+> Is this the genuine register, or a caricature of it - judged against this entry's own declared
+> failure modes? (pass / weak / fail)
+
+- **pass** admits; **weak** routes to the existing `subtle` / near-collision human spot-audit
+  bucket (Stage 5), not a new queue; **fail** rejects.
+- It rides the Gate 1 judge call, so it costs rubric tokens, not a second render.
+
+**Why this is non-circular and non-gameable.** Fidelity and distinguishability ask "does it hit
+the instruction?"; restraint asks "does it avoid the instruction's own failure mode?" Those point
+in opposite directions, so a caricature fails restraint precisely because it over-hits fidelity: a
+maximally "confident" render that is all unhedged assertion and no substance is MORE
+distinguishable and fails restraint on `confident`'s own "distinct from arrogance" line. And
+because the bound is the entry's published failure mode rather than the judge's taste, the
+generator cannot move the goalposts by being more stylish.
+
+**Thresholds are calibration outputs, not decisions.** How strict the bar is, and whether "good
+enough" means "in the quality class of the frozen 60," are not set by judgment - they are read off
+a calibration run. Score the frozen 60 (C3, the trusted uncontaminated reference) first: the anchor
+is "as restrained and well-crafted as the 60." A baseline that fails is signal (the bar is
+miscalibrated, or that baseline is genuinely weak), never a target to beat. This is the same
+discipline the distinguishability gate already uses against the same reference set.
+
+**Deliberately kept to one question.** A richer rubric (separate craft and task-fitness criteria,
+or an explicit anti-AI-tell criterion given the house no-dash rule) can be split out of the single
+restraint question later, but only if a calibration run shows one question is too coarse. The
+default is the single restraint check plus the judge's general prose competence, adding criteria
+only when evidence demands them rather than building a multi-part rubric on speculation.
+
 ## The harness design
 
 ### Pipeline position
@@ -128,7 +181,7 @@ The gate is machinery, and machinery can be wrong in ways that are invisible pre
 
 | Failure mode | How it happens | Mitigation |
 |---|---|---|
-| **Gate-gaming into caricature** | A generator optimized to pass attribution learns that exaggeration is distinguishable, so it produces distinct-but-bad prose. Distinguishable is necessary, not sufficient. | Gate 1 scores distinguishability; a second pass/fail quality rubric (the strategy's Decision 1 (b)) keeps prose good while distinct. The 15 percent human spot-audit catches caricature the judge rewards. |
+| **Gate-gaming into caricature** | A generator optimized to pass attribution learns that exaggeration is distinguishable, so it produces distinct-but-bad prose. Distinguishable is necessary, not sufficient. | Gate 1 scores distinguishability; the restraint check (resolving C1, defined above) is the second pass/fail measurement - it asks whether the render is the genuine register or a caricature, judged against the entry's own declared failure modes. The capacity-bounded human spot-audit catches caricature the judge still rewards. |
 | **Judge drift / monoculture** | A same-lineage judge slowly co-adapts to the generator and stops noticing collapsing distinctions; with distillation it co-drifts faster. | Cross-family judge by construction. Rotate judge models periodically. The frozen golden set is the external anchor: if the judge has drifted, golden-set pairs regress and the build fails. |
 | **Golden-set staleness** | The frozen 60 + 8 pairs stop representing the catalog's hard cases as the inventory grows into new families the golden set never covered; regression passes while new territory rots. | Treat the golden set as versioned, not eternal: add (never silently replace) new frozen pairs per new family as it matures, each promoted by a maintainer ADR, so coverage tracks the territory while the original anchors stay immovable. |
 
