@@ -146,6 +146,114 @@ def list_entries() -> dict[str, list[str]]:
     return available
 
 
+def analyze_relationships(selections: list[dict]) -> dict:
+    """Cross-check the selected entries' relationship fields.
+
+    `selections` is a list of {"axis", "id", "entry"} dicts. Conflicts use a
+    symmetric (union) rule per decision B1: a pair is flagged if EITHER entry
+    lists the other in `avoid_with`, so a conflict never depends on which
+    author recorded the link. Returns {"conflicts": [...], "affirmations": [...]}.
+    """
+    conflicts = []
+    affirmations = []
+    items = [(s["axis"], s["id"], s.get("entry") or {}) for s in selections]
+    for i in range(len(items)):
+        for j in range(i + 1, len(items)):
+            a_axis, a_id, a_entry = items[i]
+            b_axis, b_id, b_entry = items[j]
+            pair = {"a": a_id, "a_axis": a_axis, "b": b_id, "b_axis": b_axis}
+            a_avoid = a_entry.get("avoid_with") or []
+            b_avoid = b_entry.get("avoid_with") or []
+            if b_id in a_avoid or a_id in b_avoid:
+                conflicts.append(pair)
+            a_pairs = a_entry.get("pairs_well_with") or []
+            b_pairs = b_entry.get("pairs_well_with") or []
+            if b_id in a_pairs or a_id in b_pairs:
+                affirmations.append(pair)
+    return {"conflicts": conflicts, "affirmations": affirmations}
+
+
+def resolve_selections(
+    voice: str | None = None,
+    tone: str | None = None,
+    style: str | None = None,
+    fmt: str | None = None,
+) -> list[dict]:
+    """Resolve selected entry IDs into loaded entries, in the canonical
+    voice -> tone -> style -> format precedence order regardless of the order
+    the arguments were passed. A not-found entry is kept with entry=None so the
+    caller can report it.
+    """
+    spec = [("voice", voice), ("tone", tone), ("style", style), ("format", fmt)]
+    resolved = []
+    for axis, entry_id in spec:
+        if entry_id is None:
+            continue
+        resolved.append(
+            {"axis": axis, "id": entry_id, "entry": load_entry(axis, entry_id)}
+        )
+    return resolved
+
+
+def compose_report(
+    voice: str | None = None,
+    tone: str | None = None,
+    style: str | None = None,
+    fmt: str | None = None,
+    topic: str | None = None,
+    audience: str | None = None,
+) -> dict:
+    """Compose the instruction AND analyze the selected entries' relationships.
+
+    Returns {"instruction", "conflicts", "affirmations", "errors"}. Conflicts
+    are surfaced as warnings (decision B2: warn, never block), so the full
+    instruction still composes even when a selected pair conflicts.
+    """
+    resolved = resolve_selections(voice, tone, style, fmt)
+    parts = []
+    errors = []
+    found = []
+
+    for sel in resolved:
+        if sel["entry"] is None:
+            errors.append(f"Entry not found: {sel['axis']}/{sel['id']}")
+            continue
+        found.append(sel)
+        phrasing = sel["entry"].get("llm_instruction_phrasing", "")
+        if phrasing:
+            parts.append(phrasing)
+
+    if errors:
+        return {
+            "instruction": "Errors:\n" + "\n".join(f"  - {e}" for e in errors),
+            "conflicts": [],
+            "affirmations": [],
+            "errors": errors,
+        }
+
+    if not parts:
+        return {
+            "instruction": "No entries selected. Use --list to see available entries.",
+            "conflicts": [],
+            "affirmations": [],
+            "errors": [],
+        }
+
+    instruction = "\n\n".join(parts)
+    if topic:
+        instruction += f"\n\nWrite about: {topic}"
+    if audience:
+        instruction += f"\n\nAudience: {audience}"
+
+    analysis = analyze_relationships(found)
+    return {
+        "instruction": instruction,
+        "conflicts": analysis["conflicts"],
+        "affirmations": analysis["affirmations"],
+        "errors": [],
+    }
+
+
 def compose_instruction(
     voice: str | None = None,
     tone: str | None = None,
@@ -154,37 +262,32 @@ def compose_instruction(
     topic: str | None = None,
     audience: str | None = None,
 ) -> str:
-    """Compose a writing instruction from entry IDs."""
-    parts = []
-    errors = []
+    """Compose a writing instruction from entry IDs (string form).
 
-    selections = [("voice", voice), ("tone", tone), ("style", style), ("format", fmt)]
+    Thin wrapper over compose_report for backward compatibility; callers that
+    need the conflict / affirmation report should call compose_report directly.
+    """
+    return compose_report(
+        voice=voice, tone=tone, style=style, fmt=fmt, topic=topic, audience=audience
+    )["instruction"]
 
-    for axis, entry_id in selections:
-        if entry_id is None:
-            continue
-        entry = load_entry(axis, entry_id)
-        if entry is None:
-            errors.append(f"Entry not found: {axis}/{entry_id}")
-            continue
-        phrasing = entry.get("llm_instruction_phrasing", "")
-        if phrasing:
-            parts.append(phrasing)
 
-    if errors:
-        return "Errors:\n" + "\n".join(f"  - {e}" for e in errors)
-
-    if not parts:
-        return "No entries selected. Use --list to see available entries."
-
-    instruction = "\n\n".join(parts)
-
-    if topic:
-        instruction += f"\n\nWrite about: {topic}"
-    if audience:
-        instruction += f"\n\nAudience: {audience}"
-
-    return instruction
+def _print_relationship_notes(report: dict) -> None:
+    """Surface conflicts and affirmations to stderr so stdout stays the clean,
+    pipeable instruction. Conflicts warn but never block (decision B2)."""
+    for c in report.get("conflicts", []):
+        print(
+            f"warning: conflict - {c['a']} ({c['a_axis']}) and {c['b']} "
+            f"({c['b_axis']}) are marked avoid_with. Composing anyway with "
+            f"voice -> tone -> style -> format precedence; expect tension.",
+            file=sys.stderr,
+        )
+    for a in report.get("affirmations", []):
+        print(
+            f"note: {a['a']} ({a['a_axis']}) and {a['b']} ({a['b_axis']}) "
+            f"pair well together.",
+            file=sys.stderr,
+        )
 
 
 def main():
@@ -216,7 +319,7 @@ def main():
                     print("  (no entries yet)")
         return
 
-    result = compose_instruction(
+    report = compose_report(
         voice=args.voice,
         tone=args.tone,
         style=args.style,
@@ -224,7 +327,8 @@ def main():
         topic=args.topic,
         audience=args.audience,
     )
-    print(result)
+    print(report["instruction"])
+    _print_relationship_notes(report)
 
 
 if __name__ == "__main__":

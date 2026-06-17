@@ -63,5 +63,6 @@ site/src/content/docs/examples/
 site/src/content/docs/recipes/
 site/src/content/docs/templates/
 
-# Agent working context - session logs are local-only
+# Agent working context - session logs and pilot artifacts are local-only
 _agent-context/session-log/
+_agent-context/gate-pilot/
