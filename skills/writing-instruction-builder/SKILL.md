@@ -2,7 +2,7 @@
 name: writing-instruction-builder
 description: Compose a writing instruction from voice, tone, style, and format axis entries. Use when you need a precise writing instruction for a specific combination of voice, tone, style, and format. Returns a ready-to-use LLM prompt string.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Compose Writing Instruction
@@ -30,8 +30,9 @@ All parameters are optional. If omitted, the skill picks sensible defaults.
 
 1. Validates each provided entry ID against the taxonomy catalog
 2. Reads the `llm_instruction_phrasing` from each matching entry
-3. Assembles a composed instruction string that specifies voice, tone, style, and format together
-4. Returns the composed instruction ready to paste into any LLM prompt
+3. Assembles a composed instruction string in a fixed precedence order: voice, then tone, then style, then format
+4. Checks the selected entries against each other's relationship fields and warns on any conflict (without blocking)
+5. Returns the composed instruction ready to paste into any LLM prompt
 
 ### Implementation
 
@@ -43,6 +44,29 @@ for example:
 
 ```bash
 python scripts/build-instruction.py --voice pragmatic-architect --tone candid --format adr
+```
+
+### Conflict-aware composition
+
+The builder reads each selected entry's `avoid_with` and `pairs_well_with` relationships and
+reports on them, so a composition is a checked guarantee rather than a blind concatenation. The
+rules (see ADR 0016):
+
+- **Conflicts are symmetric.** A pair is flagged if *either* entry lists the other in
+  `avoid_with`, so the warning never depends on which author recorded the link.
+- **Warn, never block.** A conflicting pair still composes (you may want a deliberate tension);
+  the builder emits a warning and applies voice -> tone -> style -> format precedence so the
+  higher-precedence axis leads.
+- **Affirmations.** A `pairs_well_with` match is surfaced as a confirming note.
+
+The composed instruction prints to stdout; conflict warnings and affirmation notes print to
+stderr, so stdout stays a clean, pipeable prompt. For example, pairing the
+`pragmatic-architect` voice with the `reverent` tone (which it lists in `avoid_with`) still
+returns the instruction and prints:
+
+```
+warning: conflict - pragmatic-architect (voice) and reverent (tone) are marked avoid_with.
+Composing anyway with voice -> tone -> style -> format precedence; expect tension.
 ```
 
 ## Examples

@@ -8,7 +8,7 @@
   "keywords": ["writing", "style", "voice", "tone", "format", "composition", "taxonomy", "prompts", "agent-skills", "agentskills-io"],
   "components": {
     "skills": [
-      { "name": "writing-instruction-builder", "path": "skills/writing-instruction-builder/SKILL.md", "version": "0.1.0", "tier": "universal", "status": "active" }
+      { "name": "writing-instruction-builder", "path": "skills/writing-instruction-builder/SKILL.md", "version": "0.2.0", "tier": "universal", "status": "active" }
     ]
   },
   "repository": "https://github.com/product-on-purpose/writing-style-catalog",
