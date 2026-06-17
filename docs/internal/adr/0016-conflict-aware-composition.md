@@ -2,16 +2,16 @@
 adr_id: "0016"
 title: Conflict-aware composition semantics
 date: 2026-06-16
-status: Proposed
+status: Accepted
 ---
 
 # 0016 - Conflict-aware composition semantics
 
 ## Status
 
-Proposed - implements the decided B1 (`avoid_with` symmetry) and the recommended-but-not-yet-
-ratified B2 (warn, never block) from `docs/internal/release-plans/plan_v0.3.0/decisions.md`.
-Merging the implementing PR ratifies B2 and moves this ADR to Accepted.
+Accepted (2026-06-16) - implements the decided B1 (`avoid_with` symmetry) and B2 (warn, never
+block), both now ratified in `docs/internal/release-plans/plan_v0.3.0/decisions.md`. B2 was
+ratified by merging the implementing PR (#20).
 
 ## Context
 
