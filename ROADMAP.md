@@ -6,13 +6,13 @@ That result sets the direction. The catalog works, so the roadmap is about makin
 
 ## Now - surface and sharpen
 
-- **Sharpen the two "subtle" confusable pairs.** The adherence test rated two pairs only "subtle": `pragmatic-architect` vs `senior-consultant`, and `narrative-case-study` vs `chronological-narrative`. These are the weakest seams in the one result the whole library rests on, so tightening their `confusable_with` distinctions from both sides is worth more than ten new entries.
+- **Sharpen the "subtle" confusable pairs.** Done (2026-06-17). A blind gate pilot, confirmed cross-vendor (8/8 attribution by both an Anthropic and an OpenAI judge), re-rated the seams: `pragmatic-architect` vs `senior-consultant` came back "clear" and needs no work, while three pairs were genuinely subtle and have now been tightened from both sides - `narrative-case-study` vs `chronological-narrative`, `warm` vs `empathetic`, and `confident` vs `resolute`.
 - **Add diff-pairs to the `service-database-choice` anchor topic.** It currently has none, despite being the best-isolated topic. Diff-pairs are the catalog's sharpest teaching tool.
 - **Deepen existing entries toward the pedagogical bar.** Add tells, anti-patterns, failure modes, and before/after micro-examples to the entries that carry the most weight, rather than adding new entries to chase coverage.
 
 ## Next - make composition real
 
-- **Make composition conflict-aware.** Read each entry's `pairs_well_with` and `avoid_with` relationships, flag incompatible selections, and apply a clear precedence order (voice, then tone, then style, then format), instead of concatenating strings. The relationship data already lives in the catalog; this turns "composable" from a claim into a guarantee.
+- **Make composition conflict-aware.** Shipped (2026-06-17, ADR 0016). The builder now reads each entry's `pairs_well_with` and `avoid_with`, flags incompatible selections with a symmetric rule, and applies voice -> tone -> style -> format precedence instead of concatenating strings. "Composable" is now a checked guarantee, which also clears the prerequisite for the MCP server below.
 - **Repository legibility.** A generated repository map, per-folder READMEs on the source directories, and a documentation convention adopted from the family standard. See ADR 0013.
 
 ## Later - reach, not commitment
