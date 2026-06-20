@@ -6,7 +6,7 @@ decision A1 and codified in ADR 0010 (Accepted 2026-06-19):
 - 5 format domains: professional, public, personal, ceremonial, contemplative.
   (`personal` is the renamed `relational` domain, widened to cover both its
   families per A1/Q2.)
-- 16 format families, scoped to their domain.
+- 17 format families, scoped to their domain.
 - 5 voice families: expert, care, principal, witness, dissident. The proposed
   sixth family `pastoral` is folded into `care` as a subfamily (A1 grounding
   pass); see VOICE_SUBFAMILIES_BY_FAMILY.
@@ -78,7 +78,7 @@ FORMAT_FAMILIES_BY_DOMAIN: dict[str, tuple[str, ...]] = {
         "journal",
     ),
 }
-"""Per-domain controlled family values for the format axis (16 families).
+"""Per-domain controlled family values for the format axis (17 families).
 
 Family names are scoped to their domain. A family population may grow within an
 existing domain without a schema change. Adding a new family name re-cuts a
