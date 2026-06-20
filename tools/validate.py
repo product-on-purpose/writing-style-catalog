@@ -28,6 +28,10 @@ except ImportError:
     print("[ERROR] jsonschema and referencing are required. Run: pip install jsonschema referencing")
     sys.exit(1)
 
+# The controlled vocabulary is single-sourced in tools/taxonomy.py (ADR 0010).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import taxonomy  # noqa: E402
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
 SCHEMAS_DIR = REPO_ROOT / "schemas"
@@ -452,6 +456,110 @@ def check_review_status(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     return []  # warnings do not contribute to error count
 
 
+def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Cross-field taxonomy check (ADR 0010 section 5.2).
+
+    For format entries: `family` must belong to `domain`, and a `family` with
+    no `domain` is incomplete. For voice entries: `family` must be a known voice
+    family. For either: a `subfamily` must belong to its family where that
+    family has enumerated subfamilies, and once a family has 12 or more members
+    every entry in it should carry a subfamily.
+
+    Ships optional-with-warning (decision F2): the returned list is for tests
+    and reporting; the runner does NOT add it to the error count, so a
+    not-yet-backfilled catalog still validates clean.
+    """
+    print("[CHECK] Taxonomy membership (optional, warnings)...")
+    warnings: list[str] = []
+
+    family_counts: dict[tuple[str, str], int] = {}
+    for _id, (axis, fm) in id_map.items():
+        if axis in ("format", "voice"):
+            fam = fm.get("family")
+            if fam:
+                family_counts[(axis, fam)] = family_counts.get((axis, fam), 0) + 1
+
+    for entry_id, (axis, fm) in id_map.items():
+        rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
+        domain = fm.get("domain")
+        family = fm.get("family")
+        subfamily = fm.get("subfamily")
+
+        if axis == "format":
+            if family and not domain:
+                warnings.append(f"[WARN] {rel}: has family '{family}' but no domain")
+            if domain and not taxonomy.is_valid_format_domain(domain):
+                warnings.append(f"[WARN] {rel}: unknown format domain '{domain}'")
+            elif domain and family and not taxonomy.is_valid_format_family(domain, family):
+                warnings.append(
+                    f"[WARN] {rel}: family '{family}' does not belong to domain '{domain}'"
+                )
+            if (
+                subfamily and family
+                and taxonomy.format_family_has_subfamilies(family)
+                and not taxonomy.is_valid_format_subfamily(family, subfamily)
+            ):
+                warnings.append(
+                    f"[WARN] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
+                )
+        elif axis == "voice":
+            if family and not taxonomy.is_valid_voice_family(family):
+                warnings.append(f"[WARN] {rel}: unknown voice family '{family}'")
+            if (
+                subfamily and family
+                and taxonomy.voice_family_has_subfamilies(family)
+                and not taxonomy.is_valid_voice_subfamily(family, subfamily)
+            ):
+                warnings.append(
+                    f"[WARN] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
+                )
+
+        if (
+            axis in ("format", "voice") and family
+            and family_counts.get((axis, family), 0) >= 12
+            and not subfamily
+        ):
+            warnings.append(
+                f"[WARN] {rel}: family '{family}' has 12 or more members; subfamily is required"
+            )
+
+    if not warnings:
+        print("[PASS] Taxonomy membership: 0 warnings")
+    for w in warnings:
+        print(w)
+    return warnings
+
+
+def check_faceted_tags(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Validate `facet:value` tags against the governed enum (ADR 0010 section 5.3).
+
+    A tag matching the faceted form whose facet or value is outside the
+    `tools/taxonomy.py` enum produces a warning; free-text tags (no facet
+    prefix) are never checked. Optional-with-warning (decision F2).
+    """
+    print("[CHECK] Faceted tags (optional, warnings)...")
+    warnings: list[str] = []
+
+    for entry_id, (axis, fm) in id_map.items():
+        rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
+        tags = fm.get("tags", [])
+        if not isinstance(tags, list):
+            continue
+        for tag in tags:
+            if not isinstance(tag, str):
+                continue
+            if taxonomy.is_faceted_tag(tag) and not taxonomy.is_valid_facet_tag(tag):
+                warnings.append(
+                    f"[WARN] {rel}: faceted tag '{tag}' is not in the governed enum"
+                )
+
+    if not warnings:
+        print("[PASS] Faceted tags: 0 warnings")
+    for w in warnings:
+        print(w)
+    return warnings
+
+
 # ---------------------------------------------------------------------------
 # Main runner
 # ---------------------------------------------------------------------------
@@ -481,6 +589,12 @@ def run_all_checks() -> list[str]:
         print("[INFO] No entries found - skipping example and diff-pair validation")
 
     check_review_status(id_map)
+
+    if id_map:
+        # Optional-with-warning checks (decision F2): they report but never
+        # contribute to the error count or the exit code.
+        check_taxonomy_membership(id_map)
+        check_faceted_tags(id_map)
 
     print()
     if all_errors:

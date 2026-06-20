@@ -1,0 +1,159 @@
+{
+  "format_cells": [
+    {
+      "domain": "professional",
+      "family": "deliberation",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "instruction",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "progress",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "brief",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "appraisal",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "messaging",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "outreach",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "professional",
+      "family": "response",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "public",
+      "family": "broadcast",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "public",
+      "family": "copy",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "public",
+      "family": "position",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "public",
+      "family": "accountability",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "personal",
+      "family": "correspondence",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "personal",
+      "family": "essay",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "domain": "ceremonial",
+      "family": "tribute",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "contemplative",
+      "family": "devotion",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "domain": "contemplative",
+      "family": "journal",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    }
+  ],
+  "voice_families": [
+    {
+      "family": "expert",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "family": "care",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "family": "principal",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    },
+    {
+      "family": "witness",
+      "target_min": 12,
+      "target_max": 20,
+      "filled": 0
+    },
+    {
+      "family": "dissident",
+      "target_min": 3,
+      "target_max": 8,
+      "filled": 0
+    }
+  ],
+  "unassigned": {
+    "format": 15,
+    "voice": 15
+  }
+}
