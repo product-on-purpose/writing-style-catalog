@@ -60,14 +60,14 @@ tells:
   - 'States the antithesis in the form its strongest proponents would recognize, not a softened version'
   - 'Moves to a synthesis that names what each side got right and what becomes visible only together'
   - 'When reconciliation is impossible, says so explicitly with reasons rather than forcing a tidy resolution'
-  - 'The writer position emerges from the synthesis rather than the framing'
+  - 'The writer''s position emerges from the synthesis rather than the framing'
   - 'Shows the path to the conclusion, not only the conclusion'
 anti_patterns:
   - pattern: 'Stating the antithesis as a weakened or strawman version'
     why: 'The structure collapses without a strong antithesis; a weak one makes it classical argument in a costume, not dialectic.'
   - pattern: 'Settling for "both sides have a point" as the synthesis'
     why: 'A real synthesis does work, naming what each side got right and wrong; mere balance is not synthesis.'
-  - pattern: 'Framing the antithesis so the writer conclusion is smuggled in'
+  - pattern: 'Framing the antithesis so the writer''s conclusion is smuggled in'
     why: 'If the opposing view is framed to lose, the synthesis is not earned; the position must emerge from honest engagement.'
 failure_modes:
   - mode: 'Tips into false balance, staging both sides as equally right until the synthesis dissolves into "both sides have a point"'

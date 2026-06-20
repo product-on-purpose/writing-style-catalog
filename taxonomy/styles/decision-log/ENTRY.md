@@ -60,6 +60,25 @@ when_not_to_use:
   - Contexts where the audience needs the decision communicated, not the reasoning behind it
   - Real-time writing situations where the overhead of structured logging is not warranted
   - When the decision will be immediately visible in its outcomes and the reasoning is obvious
+tells:
+  - 'Organized around context, options, criteria, and decision rather than as continuous prose'
+  - 'A context section captures the situation and constraints that existed at decision time'
+  - 'The options section lists the alternatives actually considered, not a tidied post-hoc menu'
+  - 'The decision section gives the reasoning - the "because," not just the "what"'
+  - 'Written as if the reader was not in the room, so a future reader can follow the choice'
+  - 'Records the reasoning as it stood, without grading the decision by an outcome it could not have known'
+anti_patterns:
+  - pattern: 'Writing the log after the outcome is known and selecting the evidence that makes the choice look right'
+    why: 'A record written with hindsight is justification dressed as a log; the value comes from capturing the reasoning as it actually existed at decision time.'
+  - pattern: 'Listing a clean menu of options nobody seriously weighed, or omitting the ones that were genuinely on the table'
+    why: 'A post-hoc options list misrepresents the decision; the section is honest only when it names the alternatives actually considered.'
+  - pattern: 'Leading with the recommendation and supporting analysis for a busy reader to act on'
+    why: 'Presenting a conclusion to drive action is an executive summary, a confusable neighbor that looks forward; a decision-log looks backward at how the choice was reached.'
+failure_modes:
+  - mode: 'Over-applies the impulse to record everything, logging routine decisions and padding every section with context until the load-bearing reasoning is buried in ceremony'
+    mitigation: 'Reserve the structured record for decisions whose reasoning will matter later, and keep context to what a future reader genuinely needs to make the choice legible.'
+  - mode: 'Over-honors auditability by logging every consideration with equal weight, so the decision is stated but the reader cannot tell which factor was actually decisive among the dozens recorded'
+    mitigation: 'Capture the reasoning that mattered and mark what tipped the choice; a faithful record still distinguishes the load-bearing reason from the considered-and-set-aside, or the future reader inherits a transcript rather than a rationale.'
 llm_instruction_phrasing: |
   Write as a decision log. Organize around four sections: context (what was true when this
   decision was made), options (what was actually considered, not a post-hoc list), criteria

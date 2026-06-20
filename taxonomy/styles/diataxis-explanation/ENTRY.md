@@ -49,6 +49,25 @@ when_not_to_use:
   - When the reader needs to accomplish a specific task right now
   - Runbooks and operational guides
   - Reference documentation
+tells:
+  - 'Oriented toward understanding, not action - it could be read with no intention of ever using the system'
+  - 'Contains no steps or procedures; those belong to how-to or tutorial'
+  - 'Supplies "why" reasoning - design decisions, tradeoffs, origins - and uses "because" freely'
+  - 'Builds concepts in order, simpler before complex'
+  - 'Makes relationships between concepts explicit ("X relates to Y because...")'
+  - 'Aims to leave the reader with a mental model that makes the how-to guides navigable'
+anti_patterns:
+  - pattern: 'Slipping numbered steps or a "do this, then that" procedure into the explanation'
+    why: 'Producing a completed action is the job of how-to or tutorial; explanation serves comprehension and loses its orientation the moment it starts instructing.'
+  - pattern: 'Setting two systems side by side and measuring them against each other'
+    why: 'Weighing two subjects on parallel dimensions is comparison-contrast, a confusable neighbor; explanation examines a single subject in depth to build understanding.'
+  - pattern: 'Cataloguing facts and parameters as a dry reference with no why-reasoning or connective tissue'
+    why: 'A flat list of what-is-true is reference material, another Diataxis mode; explanation earns its name by supplying the because and the relationships that build a mental model.'
+failure_modes:
+  - mode: 'Over-pursues complete understanding until the explanation balloons into conceptual scope-creep, surrounding the subject with so much context, history, and rationale that no graspable model ever crystallizes'
+    mitigation: 'Understanding is the goal, but a usable mental model is the deliverable; bound the explanation to the concepts that make this subject make sense rather than chasing every adjacent why.'
+  - mode: 'Indulges theory for its own sake, building abstraction on abstraction until the reader can follow each sentence yet cannot say what the thing is or why it matters'
+    mitigation: 'Tie the why-reasoning back to something the reader can hold - an example, an analogy, a concrete consequence - so the model lands instead of floating.'
 llm_instruction_phrasing: |
   Write in Diataxis explanation mode. Your goal is understanding, not action - do not include steps
   or procedures. Build the reader's mental model: explain what it is, why it is designed this way,

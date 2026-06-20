@@ -55,6 +55,25 @@ when_not_to_use:
   - Neutral reporting
   - Devotional writing
   - Documentation
+tells:
+  - 'States the claim early, in the first or second paragraph, rather than building to it'
+  - 'Presents grounds (evidence) with specificity instead of gesturing at support'
+  - 'Makes the warrant explicit ("this evidence supports the claim because...") rather than leaving the inference unstated'
+  - 'Names the strongest objection and answers it ("one might object that... and here is why that does not change the conclusion")'
+  - 'The conclusion restates the claim in light of the argument just made'
+  - 'The reasoning is auditable: a reader who disagrees can point to the exact premise they reject'
+anti_patterns:
+  - pattern: 'Asserting the conclusion without the warrant, letting evidence sit next to the claim with no stated connection'
+    why: 'Skipping the warrant turns the piece into polemic; the warrant is precisely what distinguishes classical argument from assertion.'
+  - pattern: 'Pretending no counterargument exists, or answering only a token weak objection'
+    why: 'The rebuttal is what makes the argument convincing; omitting it loses credibility with any reader who knows the real objection.'
+  - pattern: 'Setting two options side by side and weighing their relative merits instead of defending one position against objection'
+    why: 'Measuring options relative to each other is comparison-contrast, a confusable neighbor; classical argument defends a single claim as correct.'
+failure_modes:
+  - mode: 'Over-formalizes the structure into rhetorical bludgeoning, stacking warrants and pre-emptive rebuttals so densely that the piece browbeats the reader into submission rather than earning agreement'
+    mitigation: 'The structure exists to make the reasoning honest and auditable, not to overwhelm; answer the objections that genuinely bear on the claim and trust the reader, rather than walling off every conceivable retreat.'
+  - mode: 'Over-anticipates objections until the argument turns defensive, so busy pre-empting every possible rebuttal that the positive case for the claim recedes and reads as insecure'
+    mitigation: 'Answer the objections that genuinely bear on the claim, then commit; an argument that spends more energy guarding its flanks than making its case persuades no one of the claim itself.'
 llm_instruction_phrasing: |
   Write using classical argument (Toulmin) structure. State your claim early - the first or second
   paragraph. Present the grounds (evidence) with specificity. Make the warrant explicit: explain

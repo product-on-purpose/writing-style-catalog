@@ -52,6 +52,25 @@ when_not_to_use:
   - Single-subject explanations
   - Narrative writing
   - Persuasive essays with a settled conclusion
+tells:
+  - 'Establishes the comparison frame early, naming what is being compared and on which dimensions'
+  - 'Commits to either block structure (all of A, then all of B) or alternating structure (A vs B per dimension)'
+  - 'Selects dimensions of comparison for relevance to the decision, not for exhaustiveness'
+  - 'Resolves the structure with a summary comparison, usually a table or a verdict'
+  - 'Surfaces the delta - the differences that matter - rather than narrating each option in isolation'
+  - 'Holds at least two subjects in view at once, measuring them relative to each other'
+anti_patterns:
+  - pattern: 'Comparing on every axis on which the options differ rather than the ones that matter for the decision'
+    why: 'Exhaustive dimensions bury the relevant delta; the style is most honest when it selects the axes that actually govern the choice.'
+  - pattern: 'Framing the comparison as a problem and driving toward a single recommended solution'
+    why: 'Diagnosing a problem and prescribing one fix is problem-solution, a confusable neighbor; comparison-contrast holds multiple options in view and surfaces the delta, leaving the choice to the reader.'
+  - pattern: 'Defending one option against objections as the single correct position'
+    why: 'Building an auditable case for one side is classical argument; comparison-contrast measures relative differences without necessarily advocating.'
+failure_modes:
+  - mode: 'Over-balances into indiscriminate both-sides framing, granting every option symmetric parallel treatment until no genuine delta emerges and the reader is left unable to choose'
+    mitigation: 'Parallel structure serves the comparison, not fairness for its own sake; if one option is clearly better for the stated situation, the verdict should say so rather than manufacture symmetry.'
+  - mode: 'Forces rigid block or alternating symmetry so every subject gets identical parallel treatment, until the structure itself obscures the one delta that actually decides the question'
+    mitigation: 'Symmetry serves the contrast, not the reverse; when a single dimension is decisive, let it dominate the piece rather than giving every point equal column space.'
 llm_instruction_phrasing: |
   Write using comparison-contrast structure. Establish the comparison frame early: name what you
   are comparing and on which dimensions. Choose between block structure (all of A, then all of B)

@@ -55,6 +55,25 @@ when_not_to_use:
   - Operational content under time pressure
   - Safety-critical instructions
   - Contexts where the reader has not asked to think
+tells:
+  - 'Opens with a question that names what is genuinely at stake, not a rhetorical setup'
+  - 'Each subsequent question depends on the reader having engaged with the previous one'
+  - 'Assertions are rare and load-bearing; the default move is to ask, not tell'
+  - 'At least one question admits a real second answer rather than one obvious response'
+  - 'Ends where the reader can answer the originating question themselves, not where the writer announces the answer'
+  - 'Conclusions are reached as the reader''s own inferences rather than handed over as positions'
+anti_patterns:
+  - pattern: 'Asking rhetorical questions dressed up as inquiry ("isn''t it obvious that X?")'
+    why: 'That is assertion with a question mark; a genuine Socratic question admits more than one answer and invites the reader to consider which survives scrutiny.'
+  - pattern: 'Leading the reader to a conclusion they would have rejected if it had been stated plainly'
+    why: 'Manipulative questioning betrays the trust the form depends on; the reader is meant to reason freely, not be steered to a foregone answer.'
+  - pattern: 'Asserting both positions explicitly and then asserting a synthesis that resolves them'
+    why: 'Stating thesis, antithesis, and synthesis on the page is dialectic, a confusable neighbor where the writer does the work; Socratic inquiry asserts almost nothing and lets the positions emerge as the reader''s own answers.'
+failure_modes:
+  - mode: 'Over-questions until the reader never reaches footing, piling open question on open question so the inquiry circles without ever letting the reader arrive anywhere'
+    mitigation: 'Each question should advance the reader toward the originating question; build a path that lands, and let the rare load-bearing assertion or the closing turn give the reader the footing to answer.'
+  - mode: 'Withholds so relentlessly that the refusal to assert becomes its own obstacle, leaving the reader unsure what the questions were even driving at'
+    mitigation: 'Withholding the answer is the method, not the goal; the opening must name what is genuinely at stake so the reader knows the destination even while walking the path themselves.'
 llm_instruction_phrasing: |
   Write using Socratic inquiry. Open with a real question - one that admits more than one answer -
   and let each subsequent question depend on the reader having engaged with the previous one. Do
