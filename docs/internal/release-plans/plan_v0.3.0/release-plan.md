@@ -42,7 +42,7 @@
 
 - [x] Backfill `domain` / `family` on the 15 formats and `family` on the 15 voices (+
       `subfamily` on `pastoral` -> `care` per the A1 fold); faceted tags deferred (none clear yet).
-- [ ] Tighten the validator from optional-with-warning to required for formats/voices.
+- [x] Tighten the validator from optional-with-warning to required for formats/voices.
   - Acceptance: all 60 entries carry valid taxonomy values; `tools/validate.py` green in
     required mode; `taxonomy.json` regenerates; coverage ledger renders.
 
