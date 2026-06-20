@@ -75,8 +75,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Keeps layering until the point is buried, stacking so many tiers of optional depth that the progressive structure itself becomes the obstacle and no reader ever assembles the whole picture'
     mitigation: 'Add a layer only when it serves a real depth of need; if the layering is multiplying past the audiences that actually exist, collapse tiers so each one earns its place.'
-  - mode: 'Over-honors the complete-at-every-layer rule by reintroducing earlier substance at the top of each deeper layer so it can stand alone, until the document is thick with restatement'
-    mitigation: 'Self-sufficiency comes from each layer adding its own density, not from recapping; cross-link or briefly orient instead of re-covering what an earlier layer already gave the reader.'
+  - mode: 'Over-packs the first layer in pursuit of a complete minimum-useful answer, until the opening is so comprehensive it is no longer skimmable and the fast reader it exists for is back to wading'
+    mitigation: 'The first layer is the minimum that stands alone, not the maximum that still fits; give the fast reader the genuinely essential answer and push the completeness into the deeper layers built for it.'
 llm_instruction_phrasing: |
   Write using layered disclosure. The first paragraph must be complete on its own - it contains
   the full minimum-useful answer, not a teaser or a promise of more. Each subsequent section

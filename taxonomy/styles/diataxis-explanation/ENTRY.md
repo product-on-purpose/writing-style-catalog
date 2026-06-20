@@ -61,8 +61,8 @@ anti_patterns:
     why: 'Producing a completed action is the job of how-to or tutorial; explanation serves comprehension and loses its orientation the moment it starts instructing.'
   - pattern: 'Setting two systems side by side and measuring them against each other'
     why: 'Weighing two subjects on parallel dimensions is comparison-contrast, a confusable neighbor; explanation examines a single subject in depth to build understanding.'
-  - pattern: 'Stating the conclusion and elaborating it directly when the goal was to lead the reader to reason it out'
-    why: 'Asking questions the reader answers in their own head is Socratic inquiry; explanation does state the model, but if the intent was reader-built insight this is the wrong style.'
+  - pattern: 'Cataloguing facts and parameters as a dry reference with no why-reasoning or connective tissue'
+    why: 'A flat list of what-is-true is reference material, another Diataxis mode; explanation earns its name by supplying the because and the relationships that build a mental model.'
 failure_modes:
   - mode: 'Over-pursues complete understanding until the explanation balloons into conceptual scope-creep, surrounding the subject with so much context, history, and rationale that no graspable model ever crystallizes'
     mitigation: 'Understanding is the goal, but a usable mental model is the deliverable; bound the explanation to the concepts that make this subject make sense rather than chasing every adjacent why.'

@@ -62,15 +62,15 @@ tells:
 anti_patterns:
   - pattern: 'Comparing on every axis on which the options differ rather than the ones that matter for the decision'
     why: 'Exhaustive dimensions bury the relevant delta; the style is most honest when it selects the axes that actually govern the choice.'
-  - pattern: 'Working through a synthesis the reader must adopt, or staging thesis and antithesis toward a reconciled position'
-    why: 'Producing a synthesis that resolves the tension is dialectic, a confusable neighbor; comparison-contrast leaves the reader able to weigh the delta and still pick either option.'
+  - pattern: 'Framing the comparison as a problem and driving toward a single recommended solution'
+    why: 'Diagnosing a problem and prescribing one fix is problem-solution, a confusable neighbor; comparison-contrast holds multiple options in view and surfaces the delta, leaving the choice to the reader.'
   - pattern: 'Defending one option against objections as the single correct position'
     why: 'Building an auditable case for one side is classical argument; comparison-contrast measures relative differences without necessarily advocating.'
 failure_modes:
-  - mode: 'Over-balances into ins-less both-sides, granting every option symmetric parallel treatment until no genuine delta emerges and the reader is left unable to choose'
+  - mode: 'Over-balances into indiscriminate both-sides framing, granting every option symmetric parallel treatment until no genuine delta emerges and the reader is left unable to choose'
     mitigation: 'Parallel structure serves the comparison, not fairness for its own sake; if one option is clearly better for the stated situation, the verdict should say so rather than manufacture symmetry.'
-  - mode: 'Multiplies side-by-side dimensions so relentlessly that the piece becomes an exhaustive matrix in which the decision-relevant contrast drowns among trivial ones'
-    mitigation: 'Cut dimensions down to the ones that move the decision; the power of the side-by-side comes from precision about what matters, not from completeness of the grid.'
+  - mode: 'Forces rigid block or alternating symmetry so every subject gets identical parallel treatment, until the structure itself obscures the one delta that actually decides the question'
+    mitigation: 'Symmetry serves the contrast, not the reverse; when a single dimension is decisive, let it dominate the piece rather than giving every point equal column space.'
 llm_instruction_phrasing: |
   Write using comparison-contrast structure. Establish the comparison frame early: name what you
   are comparing and on which dimensions. Choose between block structure (all of A, then all of B)

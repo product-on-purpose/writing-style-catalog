@@ -72,8 +72,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Over-formalizes the structure into rhetorical bludgeoning, stacking warrants and pre-emptive rebuttals so densely that the piece browbeats the reader into submission rather than earning agreement'
     mitigation: 'The structure exists to make the reasoning honest and auditable, not to overwhelm; answer the objections that genuinely bear on the claim and trust the reader, rather than walling off every conceivable retreat.'
-  - mode: 'Treats the rebuttal as a checkbox, manufacturing a weak objection only to demolish it so the structure looks complete'
-    mitigation: 'Engage the objection a smart dissenter would actually raise; a rebuttal to a strawman is the form of the move without its substance and convinces no one who held the real objection.'
+  - mode: 'Over-anticipates objections until the argument turns defensive, so busy pre-empting every possible rebuttal that the positive case for the claim recedes and reads as insecure'
+    mitigation: 'Answer the objections that genuinely bear on the claim, then commit; an argument that spends more energy guarding its flanks than making its case persuades no one of the claim itself.'
 llm_instruction_phrasing: |
   Write using classical argument (Toulmin) structure. State your claim early - the first or second
   paragraph. Present the grounds (evidence) with specificity. Make the warrant explicit: explain

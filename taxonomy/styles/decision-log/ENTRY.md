@@ -77,8 +77,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Over-applies the impulse to record everything, logging routine decisions and padding every section with context until the load-bearing reasoning is buried in ceremony'
     mitigation: 'Reserve the structured record for decisions whose reasoning will matter later, and keep context to what a future reader genuinely needs to make the choice legible.'
-  - mode: 'Treats the "good reasoning, not good outcomes" principle as license to log indecision, recording deliberation that never resolves into a stated decision and its because'
-    mitigation: 'The decision section must name the chosen option and why it seemed best given what was known; capturing reasoning is not the same as capturing an unresolved discussion.'
+  - mode: 'Over-honors auditability by logging every consideration with equal weight, so the decision is stated but the reader cannot tell which factor was actually decisive among the dozens recorded'
+    mitigation: 'Capture the reasoning that mattered and mark what tipped the choice; a faithful record still distinguishes the load-bearing reason from the considered-and-set-aside, or the future reader inherits a transcript rather than a rationale.'
 llm_instruction_phrasing: |
   Write as a decision log. Organize around four sections: context (what was true when this
   decision was made), options (what was actually considered, not a post-hoc list), criteria
