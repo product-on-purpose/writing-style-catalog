@@ -96,8 +96,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Bloats into an exhaustive spec-of-everything - the document tries to pin down every requirement, edge case, and detail until engineering follows the letter and misses the spirit'
     mitigation: 'A PRD creates alignment without constraining implementation; if it leaves no room for engineering to make tradeoffs, it has overshot into a spec, so pull detail back to intent.'
-  - mode: 'Over-specifies the requirements so tightly that the Open Questions section empties out and every assumption is asserted as settled'
-    mitigation: 'The Open Questions section is often the most valuable part; if nothing is open, the PRD is likely hiding untested assumptions rather than having resolved them.'
+  - mode: 'Over-indexes on metrics and success criteria until the user problem and the non-goals it is meant to serve disappear behind a wall of targets'
+    mitigation: 'Metrics measure whether the solution worked, they do not define the problem; lead with the user need and the non-goals, and let the targets follow from them rather than replace them.'
 llm_instruction_phrasing: |
   Write as a Product Requirements Document (PRD). Cover: Problem Statement (who has what problem),
   Goals (measurable outcomes), Non-Goals (explicit scope exclusions), User Stories or

@@ -114,8 +114,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Piles on jargon and citations to perform authority - density of references and terminology stands in for an actual argument'
     mitigation: 'Citations exist so the skeptic can verify the work, not to impress; if a reference or a term does not support the claim, cut it and let the argument carry the authority.'
-  - mode: 'Over-invests in length and ceremony - sections are padded to look substantial until the position is buried under its own scaffolding'
-    mitigation: 'Every section must earn its place; resist padding, and if a reader cannot state the paper''s claim after the summary, the bulk is hiding rather than supporting it.'
+  - mode: 'Lets the position-of-record apparatus take over - the executive summary, appendices, and section ceremony grow until the actual claim is a small island in a sea of formal scaffolding'
+    mitigation: 'The apparatus serves a load-bearing claim, not the reverse; if the summary, body, and appendices mostly restate each other, the paper has more structure than argument, so cut back to the claim and the evidence that carries it.'
 llm_instruction_phrasing: |
   Write a whitepaper - a long-form authoritative document setting position-of-record on a
   substantive topic. Open with an executive summary of roughly one page that stands alone: a reader

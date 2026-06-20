@@ -91,8 +91,8 @@ anti_patterns:
   - pattern: 'Omitting the Blocked section when nothing happens to be stuck'
     why: 'The Blocked section is the most important; silence reads as either nothing is wrong or nothing was surfaced, so it must say so explicitly.'
 failure_modes:
-  - mode: 'Inflates into activity-theater - the Done section lists motion ("worked on", "attended", "investigated") to perform progress instead of reporting outcomes'
-    mitigation: 'Write what changed for the user or the team, not what consumed the hours; if a Done line names an activity rather than a result, rewrite it as an outcome or cut it.'
+  - mode: 'Over-aggregates parallel workstreams into one rolled-up summary until no owner, risk, or ask is attributable to anyone who could act on it'
+    mitigation: 'Aggregate for the outside reader without dissolving accountability; a workstream that carries a risk or an ask needs a named owner, or the report informs without letting anyone respond.'
   - mode: 'Over-reports the period - the update swells with exhaustive detail on every workstream until the headline and the blockers drown in the volume'
     mitigation: 'Give enough detail to stay aligned without a meeting, no more; lead with the stop-here headline and keep the body to outcomes, dates, and what is stuck.'
 llm_instruction_phrasing: |

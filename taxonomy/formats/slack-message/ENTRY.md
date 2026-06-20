@@ -77,8 +77,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Compresses into cryptic shorthand - brevity is pushed until the message is acronyms and clipped fragments that the reader cannot decode without asking'
     mitigation: 'Be brief enough to scan, not so terse it needs a follow-up; if a teammate would have to ask "what do you mean," add the few words that make it clear.'
-  - mode: 'Over-trims a genuinely complex update - an incident or decision is forced into one cramped line when it needed scannable structure'
-    mitigation: 'Appropriately brief means as long as it needs to be; let a complex message run, but make it scannable with bullets and headers rather than crushing it.'
+  - mode: 'Fragments one thought into a burst of many one-line sends, each firing its own notification until a single message becomes a wall of pings'
+    mitigation: 'Group a complete thought into one scannable message; the channel rewards brevity, not a staccato of fragments that each interrupt the whole team.'
 llm_instruction_phrasing: |
   Write as a Slack message for a professional team channel. Lead with the most important
   information in the first line - the message should be understandable from the first line alone.

@@ -79,8 +79,8 @@ anti_patterns:
   - pattern: 'Letting the update sprawl into general channel chatter or discussion'
     why: 'That is a general slack-message; the standup is a tighter fixed-structure format, even when it lives in the same Slack channel.'
 failure_modes:
-  - mode: 'Pads the three-part update - the fixed sections become an arena to demonstrate productivity, with long Done lists and vague aspirational Next items'
-    mitigation: 'Treat the three sections as the minimum a team needs to act, not a productivity report; if Done reads as effort-theater, cut it back to named completed items.'
+  - mode: 'Escalates every minor uncertainty into the Blockers section until the one part that demands a team response is flooded with non-blockers'
+    mitigation: 'Reserve Blockers for what actually halts progress and needs someone else; a standup where everything is blocked trains the team to skim past the section that exists to be acted on.'
   - mode: 'Over-compresses into a checkbox ritual - the update is filled in so tersely ("done: stuff; next: more; blockers: none") that it conveys nothing actionable'
     mitigation: 'Brevity serves coordination, not the appearance of it; each line should let a teammate know whether to act, so name the actual item rather than a placeholder.'
 llm_instruction_phrasing: |

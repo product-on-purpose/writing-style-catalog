@@ -98,8 +98,8 @@ anti_patterns:
   - pattern: 'Inlining full API docs, configuration, and guides instead of linking out'
     why: 'Anything beyond the thirty-second pitch belongs in a dedicated doc; folding it in defeats the README''s job of orienting a newcomer fast.'
 failure_modes:
-  - mode: 'Becomes a kitchen-sink dumping ground - every guide, FAQ, design note, and changelog gets appended until the front door is a wall of text'
-    mitigation: 'Keep only the thirty-second pitch in the README and link out the rest; if a section would not help a first-time visitor decide to keep reading, move it to a linked doc.'
+  - mode: 'Links out so aggressively that the README becomes a bare table of contents - the newcomer lands on a directory of links with no quick start they can actually run'
+    mitigation: 'Linking out is right for depth, but the hook, install, and one working example stay on the page; a front door that only points elsewhere makes the visitor leave to learn what the project even does.'
   - mode: 'Over-polishes the pitch into a landing page of taglines and badges with no actual install or example'
     mitigation: 'The hook earns attention, but install and a minimal working example are the payoff; if the badges and headline crowd those out, restore them first.'
 llm_instruction_phrasing: |

@@ -86,8 +86,8 @@ anti_patterns:
   - pattern: 'Collapsing the notes into a recurring three-part personal status update'
     why: 'That is the confusable daily-standup; meeting notes cover one meeting''s full set of outcomes, not one person''s done/next/blocked.'
 failure_modes:
-  - mode: 'Balloons into a full transcript - the capture grows so complete that it records the whole discussion and the decisions are buried in the play-by-play'
-    mitigation: 'Notes record outcomes, not the conversation; if a reader has to hunt for what was decided, cut the narration and surface the Decisions and Actions.'
+  - mode: 'Strips so hard toward outcomes that the rationale disappears - future readers see what was decided but cannot reconstruct why it was chosen over the alternatives'
+    mitigation: 'Keep the one-line because behind each decision; outcome-focus means the conclusion is findable, not that the reason it won is deleted.'
   - mode: 'Over-documents a meeting that produced nothing - the Decisions and Actions structure is filled out for a check-in with no real outcomes'
     mitigation: 'Write notes only when a meeting decided or assigned something; if the Decisions section is empty, a one-line summary serves better than the full scaffold.'
 llm_instruction_phrasing: |
