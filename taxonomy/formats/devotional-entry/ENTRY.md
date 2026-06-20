@@ -65,6 +65,25 @@ when_not_to_use:
   - Technical writing
   - Business communication
   - Secular audiences
+tells:
+  - 'Anchored to a text, usually a directly quoted scripture passage'
+  - 'Opens with a specific image or observation, not a generalization'
+  - 'Moves from the anchor text toward personal application'
+  - 'Closes with something that lingers - a question, an image, or a simple invitation'
+  - 'Short enough for 5-10 minutes of reading (roughly 400-700 words)'
+  - 'Optionally ends with a brief prayer of 3-5 sentences'
+anti_patterns:
+  - pattern: 'Building toward a thesis and defending it rather than moving toward application'
+    why: 'That is the aim of an essay; a devotional values application over argument and reads like a letter from a trusted friend, not a case being made.'
+  - pattern: 'Expanding into sermon scope with multiple points and an audience address'
+    why: 'A devotional is shorter and more personal than a sermon; the sermon teaches a gathered congregation, the devotional sits beside a single reader.'
+  - pattern: 'Closing with a summary that restates the reflection'
+    why: 'The closing is the last thing the reader carries; a summary wastes it, and the format asks the ending to leave an image, a question, or an invitation.'
+failure_modes:
+  - mode: 'Tips into sentimentality - the personal, warm register is pushed until the piece is all soft feeling and the anchor text and substance dissolve'
+    mitigation: 'Keep the reflection rooted in the quoted text; if the warmth no longer connects to the passage, the devotional has become a mood rather than a reading.'
+  - mode: 'Over-applies - the move toward personal application becomes a list of instructions and to-dos that crowds out contemplation'
+    mitigation: 'Application is an invitation to sit with the text, not a task list; if the closing tells the reader what to do rather than what to consider, soften it.'
 llm_instruction_phrasing: |
   Write as a devotional entry. Anchor the piece to a scripture passage or spiritual observation.
   Move from the text toward personal application. Open with a specific image or moment - not a

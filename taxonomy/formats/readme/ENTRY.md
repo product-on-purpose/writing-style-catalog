@@ -83,6 +83,25 @@ when_not_to_use:
   - Deep reference material that a returning user will navigate by lookup
   - A blog post about a project (the README is not the announcement)
   - Internal team status updates or runbooks
+tells:
+  - 'Organized for narrative onboarding: hook, install, minimal example, links out'
+  - 'Opens with a one-sentence description of what the project does'
+  - 'A badge row near the top (build status, version, license)'
+  - 'A single install command and a minimal usage example, each in a fenced code block'
+  - 'Links to deeper docs rather than inlining them'
+  - 'Short in-README prose (roughly 100-600 words) optimized for the first thirty seconds'
+anti_patterns:
+  - pattern: 'Structuring the document for lookup with exhaustive parameter and option tables'
+    why: 'That is the confusable technical-reference, which serves the returning reader; a README serves the first-time visitor and is organized for narrative, not retrieval.'
+  - pattern: 'Writing it as a launch announcement full of marketing superlatives'
+    why: 'The README is the front door, not the blog post; it should explain what the project does, not how revolutionary it is.'
+  - pattern: 'Inlining full API docs, configuration, and guides instead of linking out'
+    why: 'Anything beyond the thirty-second pitch belongs in a dedicated doc; folding it in defeats the README''s job of orienting a newcomer fast.'
+failure_modes:
+  - mode: 'Links out so aggressively that the README becomes a bare table of contents - the newcomer lands on a directory of links with no quick start they can actually run'
+    mitigation: 'Linking out is right for depth, but the hook, install, and one working example stay on the page; a front door that only points elsewhere makes the visitor leave to learn what the project even does.'
+  - mode: 'Over-polishes the pitch into a landing page of taglines and badges with no actual install or example'
+    mitigation: 'The hook earns attention, but install and a minimal working example are the payoff; if the badges and headline crowd those out, restore them first.'
 llm_instruction_phrasing: |
   Write a README for a software project. Optimize for a first-time visitor with thirty seconds of
   attention. Lead with a single-sentence description of what the project does, followed by a short

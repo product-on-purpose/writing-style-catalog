@@ -72,6 +72,25 @@ when_not_to_use:
   - Operational documentation
   - Formal reports
   - Anything requiring strict citation
+tells:
+  - 'A specific, non-generic title that names the angle, not the field'
+  - 'An opening of 2-3 paragraphs that establishes the specific argument and stakes'
+  - 'Section headers roughly every 300-500 words to give the reader navigation'
+  - 'A clear progression from setup to insight to implication'
+  - 'A closing that lands rather than summarizes - 2-3 paragraphs'
+  - 'Substantial length (1,500-3,000 words) with a present, recognizable authorial voice'
+anti_patterns:
+  - pattern: 'Attempting a comprehensive treatment of an entire domain instead of one focused argument'
+    why: 'The "post" constraint still applies; a comprehensive survey drifts toward the confusable whitepaper, which sets position-of-record rather than exploring a specific angle.'
+  - pattern: 'Writing in an invisible, institutional voice with rigorous citation as the backbone'
+    why: 'That is the whitepaper stance; the long-form post works precisely because the writer is present and the reader feels addressed rather than briefed.'
+  - pattern: 'Ending with a recap that restates the section headers'
+    why: 'The closing is the lasting impression; a summary wastes it, and the format explicitly asks the ending to land, not to summarize.'
+failure_modes:
+  - mode: 'Pads with filler - throat-clearing, restatement, and digression stretch the piece to hit the word count rather than to go deeper'
+    mitigation: 'Length should come from depth, not volume; if a section does not advance the specific argument, cut it even if the post then runs short of 1,500 words.'
+  - mode: 'Over-navigates - so many headers and signposts are added that the prose fragments into a skimmable outline with no continuous thread'
+    mitigation: 'Headers exist to aid a reader who is already reading; if removing a header loses no meaning, the section was too thin to deserve one.'
 llm_instruction_phrasing: |
   Write as a long-form blog post (1,500-3,000 words). Establish the specific argument or question
   in the opening - not the topic, the specific angle. Use headers every 300-500 words to give the

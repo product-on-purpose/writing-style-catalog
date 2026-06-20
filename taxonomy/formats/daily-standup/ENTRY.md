@@ -64,6 +64,25 @@ when_not_to_use:
   - End-of-sprint retrospectives or milestone summaries
   - Communication with stakeholders or external parties who need more context
   - Situations where the recipient needs to understand the work, not just the status
+tells:
+  - 'Exactly three fixed sections: Done, Next, Blockers'
+  - 'Done names completed items without narrating them'
+  - 'Next names the immediate next task, not a plan'
+  - 'Blockers either says "None" or states what is blocked, what is needed, and from whom'
+  - 'Short overall - roughly 10 lines or fewer, one item per line'
+  - 'In async form, every blocker is self-contained (what is needed, from whom, with what urgency)'
+anti_patterns:
+  - pattern: 'Writing a long, detailed Done section that narrates a week of work'
+    why: 'That is the scope of the confusable status-report; a standup covers the immediate cycle and surfaces only what the team needs to coordinate today.'
+  - pattern: 'Dropping the Blockers section or leaving it implicit'
+    why: 'Blockers are the only part of a standup that demands a response; without them the update is information-only and the format''s coordination purpose is lost.'
+  - pattern: 'Letting the update sprawl into general channel chatter or discussion'
+    why: 'That is a general slack-message; the standup is a tighter fixed-structure format, even when it lives in the same Slack channel.'
+failure_modes:
+  - mode: 'Escalates every minor uncertainty into the Blockers section until the one part that demands a team response is flooded with non-blockers'
+    mitigation: 'Reserve Blockers for what actually halts progress and needs someone else; a standup where everything is blocked trains the team to skim past the section that exists to be acted on.'
+  - mode: 'Over-compresses into a checkbox ritual - the update is filled in so tersely ("done: stuff; next: more; blockers: none") that it conveys nothing actionable'
+    mitigation: 'Brevity serves coordination, not the appearance of it; each line should let a teammate know whether to act, so name the actual item rather than a placeholder.'
 llm_instruction_phrasing: |
   Write as a daily standup update. Use exactly three sections: Done, Next, Blockers. Each
   section uses short bullet points, one item per line. Done covers completed work - name the

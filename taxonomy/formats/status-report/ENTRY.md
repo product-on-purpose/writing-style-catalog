@@ -76,6 +76,25 @@ when_not_to_use:
   - Documentation of a discussion that happened in a meeting (use meeting-notes)
   - One-off announcements (use email or slack-message)
   - Formal project reviews requiring deck format
+tells:
+  - 'A header with project, period, author, and an overall status (Green/Yellow/Red)'
+  - 'A one-or-two-sentence headline the reader can stop at'
+  - 'The three-question structure: Done this period, Up next, Blocked'
+  - 'Done lines name outcomes, not activity - what changed, not what was worked on'
+  - 'Up next items carry specific deliverables with target dates'
+  - 'A Blocked section that names what is stuck and what would unblock it, even if "nothing"'
+anti_patterns:
+  - pattern: 'Covering only yesterday and today in a sentence or two'
+    why: 'That is the scope of the confusable daily-standup; a status report spans a week or more with enough detail for someone outside the day-to-day.'
+  - pattern: 'Reconstructing a meeting''s discussion organized by topic'
+    why: 'That is the confusable meeting-notes; a status report is written async with no meeting, organized by done/next/blocked and reflecting the state of the work itself.'
+  - pattern: 'Omitting the Blocked section when nothing happens to be stuck'
+    why: 'The Blocked section is the most important; silence reads as either nothing is wrong or nothing was surfaced, so it must say so explicitly.'
+failure_modes:
+  - mode: 'Over-aggregates parallel workstreams into one rolled-up summary until no owner, risk, or ask is attributable to anyone who could act on it'
+    mitigation: 'Aggregate for the outside reader without dissolving accountability; a workstream that carries a risk or an ask needs a named owner, or the report informs without letting anyone respond.'
+  - mode: 'Over-reports the period - the update swells with exhaustive detail on every workstream until the headline and the blockers drown in the volume'
+    mitigation: 'Give enough detail to stay aligned without a meeting, no more; lead with the stop-here headline and keep the body to outcomes, dates, and what is stuck.'
 llm_instruction_phrasing: |
   Write a status report covering a defined period (typically a week). Open with a single-sentence
   headline that lets the reader stop reading if they only have ten seconds. Use the three-section

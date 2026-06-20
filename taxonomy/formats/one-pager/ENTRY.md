@@ -75,6 +75,25 @@ when_not_to_use:
   - Situations where the reader needs the full analysis to make a sound decision
   - Reference material that people will return to repeatedly
   - Documents where auditability, completeness, or versioning matters more than brevity
+tells:
+  - 'Fits on a single readable page - the constraint is the format'
+  - 'A title that states the argument or situation in one line'
+  - 'Short sections: Situation, The Point, Why It Matters, Ask or Recommendation'
+  - 'Makes one argument or presents one situation, not a survey'
+  - 'Ends with a specific ask or recommendation, not an open invitation to discuss'
+  - 'Readable white space rather than dense packed text'
+anti_patterns:
+  - pattern: 'Specifying complete product requirements with the precision to govern engineering'
+    why: 'That is the confusable prd, which is complete by design and may span many pages; a one-pager is a decision-support tool that makes a single argument.'
+  - pattern: 'Trying to carry the full analysis a decision-maker needs to reason independently'
+    why: 'The one-pager gives the picture, not the complete case; when the reader genuinely needs all the context, the format is wrong and a longer document is required.'
+  - pattern: 'Opening without a clear ask and trailing off into "let me know your thoughts"'
+    why: 'The format signals here is the situation and here is what I am asking for; an open-ended close strips the one-pager of its decision-forcing purpose.'
+failure_modes:
+  - mode: 'Crams until it is no longer one page - the page constraint is met by shrinking fonts and packing bullets rather than by cutting content'
+    mitigation: 'Use the constraint to cut, not to compress; if the content does not fit in readable white space, the problem is the content, so remove what does not change the conclusion.'
+  - mode: 'Over-distills into a slogan - cutting goes so far that the single point loses the minimum context a reader needs to act on it'
+    mitigation: 'Brevity serves clarity, not the appearance of it; keep enough situation and stakes that the ask is decision-ready on its own.'
 llm_instruction_phrasing: |
   Write as a one-pager. The entire document must fit on one printed page. Lead with a title
   that states the argument or situation in one line. Use short sections: situation, central

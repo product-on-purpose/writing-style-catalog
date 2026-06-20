@@ -97,6 +97,25 @@ when_not_to_use:
   - Casual or personal commentary (use blog-post-long-form)
   - Lookup-style documentation (use technical-reference)
   - Anything that will be obsolete in under six months
+tells:
+  - 'A standalone executive summary at the top that carries the claim on its own'
+  - 'Structured body sections with clear, descriptive headings'
+  - 'Figures, tables, and rigorous citations supporting the argument'
+  - 'An explicit Implications and Recommendations section, not left to inference'
+  - 'An authoritative, largely invisible authorial stance - position presented as established'
+  - 'Long-form (roughly 2,000-12,000 words), commonly a designed PDF'
+anti_patterns:
+  - pattern: 'Writing in a personal, exploratory voice with the author present in the prose'
+    why: 'That is the confusable blog-post-long-form; a whitepaper is institutional and authoritative, presenting position rather than a writer thinking out loud.'
+  - pattern: 'Organizing the content for retrieval with lookup-oriented sections'
+    why: 'That is the confusable technical-reference, built for the returning reader; a whitepaper is organized as an argument for the first-time reader who must be convinced.'
+  - pattern: 'Omitting the executive summary or making it depend on the body'
+    why: 'The summary is load-bearing - many executives read only it - so it must stand alone with the claim, the evidence in brief, and the implications.'
+failure_modes:
+  - mode: 'Piles on jargon and citations to perform authority - density of references and terminology stands in for an actual argument'
+    mitigation: 'Citations exist so the skeptic can verify the work, not to impress; if a reference or a term does not support the claim, cut it and let the argument carry the authority.'
+  - mode: 'Lets the position-of-record apparatus take over - the executive summary, appendices, and section ceremony grow until the actual claim is a small island in a sea of formal scaffolding'
+    mitigation: 'The apparatus serves a load-bearing claim, not the reverse; if the summary, body, and appendices mostly restate each other, the paper has more structure than argument, so cut back to the claim and the evidence that carries it.'
 llm_instruction_phrasing: |
   Write a whitepaper - a long-form authoritative document setting position-of-record on a
   substantive topic. Open with an executive summary of roughly one page that stands alone: a reader
