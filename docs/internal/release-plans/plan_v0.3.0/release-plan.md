@@ -25,23 +25,23 @@
 
 ## Phase 1 - Codify the taxonomy (ADR 0010)
 
-- [ ] Rewrite `tools/taxonomy.py` to the v2 vocabulary (5 domains, 16 format families, 6 voice
+- [x] Rewrite `tools/taxonomy.py` to the v2 vocabulary (5 domains, 17 format families, 5 voice
       families) plus the subfamily level and the governed facet-tag enum. Remove the v1 lists.
-- [ ] Add `domain` / `family` / `subfamily` enums and the faceted-tag pattern to
-      `schemas/format.schema.json`, `schemas/voice.schema.json`,
-      `schemas/entry.universal.schema.json` (format requires domain+family; voice requires
-      family; tones/styles unchanged).
-- [ ] Add `check_taxonomy_membership()` to `tools/validate.py` (family-in-domain; subfamily
+- [x] Add `domain` / `family` / `subfamily` enums and the faceted-tag pattern to
+      `schemas/format.schema.json` and `schemas/voice.schema.json` as optional fields (the
+      family/domain and facet rules are enforced by `validate.py`; `entry.universal` is
+      unchanged; tones/styles unchanged).
+- [x] Add `check_taxonomy_membership()` to `tools/validate.py` (family-in-domain; subfamily
       required past 12 family members; facet tags from the governed enum). Ship
       optional-with-warning.
-- [ ] Add the per-cell coverage ledger to `tools/build-indexes.py`.
+- [x] Add the per-cell coverage ledger to `tools/build-indexes.py`.
   - Acceptance: `python tools/validate.py` passes with the new check in warning mode;
     `tools/taxonomy.py` matches ADR 0010 exactly.
 
 ## Phase 2 - Backfill the 60 entries
 
-- [ ] Backfill `domain` / `family` on the 15 formats and `family` on the 15 voices (+
-      `subfamily` where a family already overflows 12); add faceted tags where clear.
+- [x] Backfill `domain` / `family` on the 15 formats and `family` on the 15 voices (+
+      `subfamily` on `pastoral` -> `care` per the A1 fold); faceted tags deferred (none clear yet).
 - [ ] Tighten the validator from optional-with-warning to required for formats/voices.
   - Acceptance: all 60 entries carry valid taxonomy values; `tools/validate.py` green in
     required mode; `taxonomy.json` regenerates; coverage ledger renders.

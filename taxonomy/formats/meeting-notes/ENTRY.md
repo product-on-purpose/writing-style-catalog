@@ -2,6 +2,8 @@
 id: meeting-notes
 name: Meeting Notes
 axis: format
+domain: professional
+family: progress
 one_liner: A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.
 description: |
   Meeting notes are not a transcript and not a summary. A transcript records everything that

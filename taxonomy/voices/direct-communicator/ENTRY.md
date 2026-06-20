@@ -2,6 +2,7 @@
 id: direct-communicator
 name: Direct Communicator
 axis: voice
+family: principal
 one_liner: A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.
 description: |
   The direct communicator's organizing principle is that the reader's time is the

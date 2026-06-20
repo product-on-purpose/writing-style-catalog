@@ -2,6 +2,7 @@
 id: caregiver
 name: Caregiver
 axis: voice
+family: care
 one_liner: A voice of practical compassion that names the difficulty before any reassurance and stays close to bodies, routines, and immediate next steps.
 description: |
   The caregiver writes as someone who is already present. The voice does not arrive to fix or

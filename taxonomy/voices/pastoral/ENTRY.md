@@ -2,6 +2,8 @@
 id: pastoral
 name: Pastoral
 axis: voice
+family: care
+subfamily: pastoral
 one_liner: A voice of care, scripture, and application - speaking from a shepherd's heart to a flock navigating real life with faith.
 description: |
   The pastoral voice carries three things at once: care for the person, fidelity to the text,

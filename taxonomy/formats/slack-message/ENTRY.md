@@ -2,6 +2,8 @@
 id: slack-message
 name: Slack Message
 axis: format
+domain: professional
+family: messaging
 one_liner: A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.
 description: |
   A Slack message in a professional context competes with dozens of others in the same channel.

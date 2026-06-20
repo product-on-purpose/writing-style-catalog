@@ -2,6 +2,7 @@
 id: columnist
 name: Columnist
 axis: voice
+family: witness
 one_liner: An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.
 description: |
   The columnist has a recurring beat and a recognizable perspective. Readers come back not just

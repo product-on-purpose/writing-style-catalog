@@ -2,6 +2,7 @@
 id: researcher
 name: Researcher
 axis: voice
+family: expert
 one_liner: A disciplined voice that treats writing as the presentation of evidence, hedging where the data is thin and committing where it is strong.
 description: |
   The researcher writes as someone accountable to a method. Every claim sits at a known distance

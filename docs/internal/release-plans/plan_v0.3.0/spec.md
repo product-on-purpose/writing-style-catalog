@@ -32,7 +32,7 @@ anchor-topic substrate, and the adherence gate that admits or rejects every futu
 
 | Artifact | What it fixes | Path |
 |---|---|---|
-| ADR 0010 | The frozen taxonomy: 5 domains, 16 format families, 6 voice families, a three-level subfamily, and a governed facet-tag enum; the four axes stay frozen | `docs/internal/adr/0010-domain-and-family-organization.md` |
+| ADR 0010 | The frozen taxonomy: 5 domains, 17 format families, 5 voice families, a three-level subfamily, and a governed facet-tag enum; the four axes stay frozen | `docs/internal/adr/0010-domain-and-family-organization.md` |
 | E1 adherence-gate spec | The automated distinguishability + pedagogical-completeness + cross-model adherence gate | `plan_v0.3.0/adherence-gate-spec.md` |
 | 12 anchor topics | The locked worked-sample substrate (extends ADR 0006) | `plan_v0.3.0/anchor-topics.md` |
 
@@ -43,7 +43,7 @@ check; finalizing it is in scope as a sub-item.
 
 ### In scope (the foundation)
 1. **Codify ADR 0010.** Update `tools/taxonomy.py` from the stale v1 vocabulary (6 domains) to
-   the v2 vocabulary (5 domains, 16 format families, 6 voice families) plus the subfamily level
+   the v2 vocabulary (5 domains, 17 format families, 5 voice families) plus the subfamily level
    and the governed facet-tag enum. Add `domain` / `family` / `subfamily` and the faceted-tag
    namespace to the JSON schemas (`schemas/format.schema.json`, `schemas/voice.schema.json`,
    `schemas/entry.universal.schema.json`). Add `check_taxonomy_membership()` to
@@ -107,8 +107,8 @@ check; finalizing it is in scope as a sub-item.
 These come from the design docs' open questions and the scaling decision matrix; the release
 cannot move from Proposed to executing until they are answered:
 
-1. **Taxonomy cuts** - accept the v2 5-domain / 16-family / 6-voice-family structure and the
-   evocative family names, or request renames/recuts (ADR 0010 open questions).
+1. **Taxonomy cuts** - accept the v2 5-domain / 17-family / 5-voice-family structure and the
+   evocative family names, or request renames/recuts (ADR 0010 open questions). (Ratified 2026-06-19 as A1.)
 2. **Anchor topics** - accept the 12 (and the 9 new slugs), or substitute.
 3. **Gate thresholds** - accept the proposed distinguishability band, the ~0.92 dedup cosine,
    and the 70 percent first-pass stop floor as pilot-tunable starting numbers.

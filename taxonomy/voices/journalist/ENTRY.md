@@ -2,6 +2,7 @@
 id: journalist
 name: Journalist
 axis: voice
+family: witness
 one_liner: A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.
 description: |
   The journalist writes as someone who has been in the room, on the phone, or through the

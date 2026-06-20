@@ -2,6 +2,7 @@
 id: pragmatic-architect
 name: Pragmatic Architect
 axis: voice
+family: expert
 one_liner: A senior technical voice that leads with tradeoffs, names constraints explicitly, and treats every design decision as a bet with known odds.
 description: |
   The pragmatic architect speaks from a place of hard-won experience. They do not moralize or

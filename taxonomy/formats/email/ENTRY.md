@@ -2,6 +2,8 @@
 id: email
 name: Email
 axis: format
+domain: professional
+family: messaging
 one_liner: A business message designed for the inbox scan - subject line doubles as summary, body leads with action, and the reader never needs to re-read to know what is being asked.
 description: |
   Business email is not a letter. Letters open with pleasantries and build toward the point.

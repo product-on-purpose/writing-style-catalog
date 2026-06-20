@@ -2,6 +2,8 @@
 id: daily-standup
 name: Daily Standup
 axis: format
+domain: professional
+family: progress
 one_liner: A brief daily status communication with three fixed sections - done, next, blockers. Surfaces information and flags what needs action. Not a progress report; a coordination tool.
 description: |
   The daily standup is a coordination format, not a status report. The distinction matters.

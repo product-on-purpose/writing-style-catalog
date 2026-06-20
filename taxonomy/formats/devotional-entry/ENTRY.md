@@ -2,6 +2,8 @@
 id: devotional-entry
 name: Devotional Entry
 axis: format
+domain: contemplative
+family: devotion
 one_liner: A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.
 description: |
   A devotional entry is a short-form spiritual piece designed for personal or small-group use,

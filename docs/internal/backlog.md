@@ -38,8 +38,8 @@ it: an aspirational inventory of roughly **180 format candidates and 70 voice ca
 ([`_working/catalog-inventory-aspirational_2026-05-16.md`](_working/catalog-inventory-aspirational_2026-05-16.md)),
 a Phase 2 expansion spec targeting **120 entries (30 per axis) at a full pedagogical bar**
 ([`_working/phase-2-catalog-expansion_2026-05-15.md`](_working/phase-2-catalog-expansion_2026-05-15.md)),
-and a **domain/family taxonomy** (5 domains: professional, public, relational, ceremonial,
-contemplative; 16 format families; 6 voice families) to keep that breadth navigable
+and a **domain/family taxonomy** (5 domains: professional, public, personal, ceremonial,
+contemplative; 17 format families; 5 voice families) to keep that breadth navigable
 ([`_working/domain-and-family-taxonomy_2026-05-15.md`](_working/domain-and-family-taxonomy_2026-05-15.md)).
 After the adherence test passed, the ROADMAP deliberately deferred all of it ("ship it; do not
 expand breadth to chase quality; defer Phase 2 behind a usage signal").
@@ -241,7 +241,7 @@ Grow the catalog toward the aspirational inventory, organized so it stays legibl
   [`_working/catalog-inventory-aspirational_2026-05-16.md`](_working/catalog-inventory-aspirational_2026-05-16.md).
 - **Prerequisite - codify the organizing taxonomy.** At 30+ entries per axis a flat list gets
   noisy (an RFC next to a eulogy next to a wedding toast). Promote the draft domain/family
-  taxonomy (5 domains, 16 format families, 6 voice families) to ADR 0010 and absorb it into the
+  taxonomy (5 domains, 17 format families, 5 voice families) to ADR 0010 and absorb it into the
   schema *before* mass-adding entries, so entries are born categorized. Source:
   [`_working/domain-and-family-taxonomy_2026-05-15.md`](_working/domain-and-family-taxonomy_2026-05-15.md)
   and the draft `_working/0010-domain-and-family-organization.md`.

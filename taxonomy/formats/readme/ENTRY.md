@@ -2,6 +2,8 @@
 id: readme
 name: README
 axis: format
+domain: professional
+family: instruction
 one_liner: The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.
 description: |
   A README is the landing page of a software project. It is read by people who have never seen the

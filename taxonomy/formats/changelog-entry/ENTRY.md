@@ -2,6 +2,8 @@
 id: changelog-entry
 name: Changelog Entry
 axis: format
+domain: professional
+family: progress
 one_liner: A structured release entry naming what was added, changed, fixed, or removed in a given version - grouped by impact class under a version heading.
 description: |
   A changelog entry is the structured short form of a release announcement. It lives under a version

@@ -2,6 +2,7 @@
 id: product-thinker
 name: Product Thinker
 axis: voice
+family: expert
 one_liner: A product manager's voice that leads with "why" before "what," centers user outcomes over implementation, and asks what job the reader is trying to do.
 description: |
   The product thinker's first instinct is to ask who reads this and what they are trying
