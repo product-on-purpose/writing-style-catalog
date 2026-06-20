@@ -64,12 +64,12 @@ anti_patterns:
   - pattern: 'Manufacturing urgency where the stakes are not actually time-sensitive'
     why: 'Urgent tone is a functional choice for a reader who has sixty seconds; applied to non-urgent content it desensitizes the reader to the real urgency that comes later.'
   - pattern: 'Burying the required action after deliberate, unhurried context'
-    why: 'That structure belongs to candid or matter-of-fact, which can take their time; urgent tone inverts normal prose to put the most critical information first and cannot be unhurried.'
+    why: 'That unhurried structure belongs to matter-of-fact, which has no agenda about time; urgent tone inverts normal prose to put the most critical information first and cannot afford a slow build.'
 failure_modes:
   - mode: 'Loses control of the pressure and tips into panic, so the prose transmits alarm instead of direction'
     mitigation: 'The register is controlled, precise, and stripped, not frantic; if the writing conveys the writer''s anxiety rather than the reader''s next action, slow the hand even as the content stays fast. Panic is urgency that has lost command of itself.'
-  - mode: 'Over-escalates routine matters into alarms, treating everything as critical until nothing reads as critical'
-    mitigation: 'Reserve the inverted, stripped structure for genuine stakes; the reader should be able to trust that urgent framing means real consequences, and crying wolf spends the credibility the tone depends on.'
+  - mode: 'Compresses so hard that the required action or the context to act on it is stripped out, leaving the reader alarmed but unable to respond'
+    mitigation: 'Urgency front-loads the critical information, it does not delete it; keep the one next action and the minimum context legible, since a reader who feels the stakes but cannot act is worse served than one who reads a few seconds longer.'
 llm_instruction_phrasing: |
   Write in an urgent tone. The first sentence is the most important thing - it names what is
   at stake and what the reader needs to do right now. Do not build to the point; open with it.

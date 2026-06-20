@@ -67,8 +67,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Over-hits care into the saccharine, using warmth to perform likability rather than to regard the reader'
     mitigation: 'Keep it specific and restrained: name the situation, name the effort. Authentic warmth does not need to be effusive to be felt, and gushing signals performance, which is the absence of warmth dressed up as warmth.'
-  - mode: 'Lays the warmth on so thickly and constantly that it reads as cloying and the reader distrusts it'
-    mitigation: 'Let short, human moments of regard sit alongside ordinary substance rather than saturating every line; warmth felt once and genuinely outlasts warmth asserted in every sentence, which curdles into insincerity.'
+  - mode: 'Over-extends into familiarity that collapses the appropriate distance, presuming an intimacy the relationship has not earned'
+    mitigation: 'Warmth regards the reader without claiming closeness it does not have; keep the regard genuine but calibrated to the actual relationship, since forced intimacy makes the reader withdraw rather than feel met.'
 llm_instruction_phrasing: |
   Write in a warm tone. Communicate genuine care for the reader - not flattery, not performance,
   but specific and authentic regard. Address them directly as "you." Acknowledge what they are

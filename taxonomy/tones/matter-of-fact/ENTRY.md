@@ -65,8 +65,8 @@ anti_patterns:
 failure_modes:
   - mode: 'Over-neutralizes into coldness, reading as a deliberate withdrawal of warmth rather than its absence'
     mitigation: 'Remember the tone has no agenda about feeling, including no agenda to seem detached; state the fact plainly without performing distance. Coldness is a stance, and matter-of-fact takes no stance at all.'
-  - mode: 'Strips so aggressively that information the reader needs to interpret the fact is cut'
-    mitigation: 'Removing coloring is not removing substance; keep the context that lets the reader form the appropriate response, since a fact without the detail that makes it legible is not neutral, it is incomplete.'
+  - mode: 'Over-neutralizes until salience is flattened, reporting a critical fact in the same affectless register as a trivial one so the reader cannot tell what matters'
+    mitigation: 'Neutrality means not coloring the reader''s reaction, not hiding consequence; let selection and order (what is stated first, what is included) carry the weight the tone refuses to add with mood words.'
 llm_instruction_phrasing: |
   Write in a matter-of-fact tone. State what is true without editorial coloring - no
   intensifiers, no mood markers, no meta-commentary on the communication itself. Do not say

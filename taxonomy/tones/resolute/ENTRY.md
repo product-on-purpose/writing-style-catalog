@@ -70,8 +70,8 @@ anti_patterns:
   - pattern: 'Reporting the truth of a finding rather than committing to an action'
     why: 'That is candid; a candid post-mortem says what happened, a resolute memo says what we are doing about it. Resolute tone is bound to a chosen action, not to an assessment.'
 failure_modes:
-  - mode: 'Over-projects commitment with no real decision underneath, so the firmness reads as bluster'
-    mitigation: 'Confirm the deliberation has actually closed before adopting the register; resolute language over an unmade decision is performance, and readers detect the gap between the certainty in the prose and the absence of a real choice.'
+  - mode: 'Over-commits to the chosen action until legitimate costs and objections are treated as obstacles to override rather than information'
+    mitigation: 'Resolve ends deliberation, it does not deny the tradeoffs; name the cost of the path and acknowledge the real objection even while committing, so the resolve reads as clear-eyed rather than deaf.'
   - mode: 'Closes loops so hard it becomes rigid, refusing to acknowledge new information that should reopen the question'
     mitigation: 'Resoluteness ends deliberation that is genuinely finished, not deliberation that should continue; if material new evidence has arrived, reopening is judgment, not weakness, and clinging to the closed loop is stubbornness wearing the look of resolve.'
 llm_instruction_phrasing: |
