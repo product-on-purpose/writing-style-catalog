@@ -67,6 +67,25 @@ when_not_to_use:
   - Marketing-style release announcements (use long-form blog post instead)
   - Internal team status updates (use status-report)
   - A running development journal (use a git log or session notes)
+tells:
+  - 'A version heading in the form "## [Version] - YYYY-MM-DD"'
+  - 'Items grouped by impact class: Added, Changed, Deprecated, Removed, Fixed, Security'
+  - 'Each item is one line, past tense or a short noun phrase'
+  - 'Items written from the user''s perspective and linked to the underlying PR or issue'
+  - 'Newest version at the top, with empty subsections omitted'
+  - 'Breaking changes called out explicitly with a migration note'
+anti_patterns:
+  - pattern: 'Pasting a flat list of raw commit messages under the version heading'
+    why: 'Without grouping by impact class it has stopped being a changelog and become a git log; the grouping is the whole load-bearing convention.'
+  - pattern: 'Writing items from the developer''s internal perspective rather than the user''s'
+    why: 'A reader scans a changelog to learn what changed for them; "refactored the auth module" answers a question no user asked.'
+  - pattern: 'Adding marketing language or narrative framing to the entries'
+    why: 'That is a release-announcement blog post, not a changelog; the format is a matter-of-fact scan surface, not a place to sell the release.'
+failure_modes:
+  - mode: 'Swells each line into an essay - a one-line entry grows into a paragraph of rationale, caveats, and backstory'
+    mitigation: 'Keep each item to a single scannable line; if an entry needs a paragraph to explain, link out to the PR or a migration guide and leave one line behind.'
+  - mode: 'Multiplies impact-class sections beyond the standard set until the scan structure itself becomes noise'
+    mitigation: 'Stick to the established subsections; a reader relies on a known, small set of impact classes, so resist inventing per-release categories.'
 llm_instruction_phrasing: |
   Write a changelog entry for a software release. Use a version heading in the form
   "## [VERSION] - YYYY-MM-DD". Group items under the six standard subsections: Added, Changed,

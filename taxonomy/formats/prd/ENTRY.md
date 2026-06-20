@@ -79,6 +79,25 @@ when_not_to_use:
   - Operational documentation
   - Post-launch retrospectives
   - Engineering design decisions
+tells:
+  - 'Canonical sections: Problem Statement, Goals, Non-Goals, User Stories, Success Metrics, Open Questions'
+  - 'Defines what should be built and why, deliberately not how'
+  - 'A problem statement that names the user, the friction, and the frequency'
+  - 'Non-goals stated as explicitly as the goals'
+  - 'Goals and Success Metrics expressed as measurable outcomes'
+  - 'An Open Questions section naming assumptions not yet tested'
+anti_patterns:
+  - pattern: 'Specifying implementation details - how engineering should build it'
+    why: 'A PRD that prescribes implementation is a spec; the what-not-how boundary is the format''s most important feature and signals distrust of engineering when crossed.'
+  - pattern: 'Recording an architectural decision already made and its reasoning'
+    why: 'That is the confusable adr; a PRD defines requirements before the implementation decisions exist, while an ADR documents a made decision about how.'
+  - pattern: 'Leaving the non-goals blank or vague'
+    why: 'Scope creep lives in what was left ambiguous; goals without matching non-goals let the boundary of the solution drift.'
+failure_modes:
+  - mode: 'Bloats into an exhaustive spec-of-everything - the document tries to pin down every requirement, edge case, and detail until engineering follows the letter and misses the spirit'
+    mitigation: 'A PRD creates alignment without constraining implementation; if it leaves no room for engineering to make tradeoffs, it has overshot into a spec, so pull detail back to intent.'
+  - mode: 'Over-specifies the requirements so tightly that the Open Questions section empties out and every assumption is asserted as settled'
+    mitigation: 'The Open Questions section is often the most valuable part; if nothing is open, the PRD is likely hiding untested assumptions rather than having resolved them.'
 llm_instruction_phrasing: |
   Write as a Product Requirements Document (PRD). Cover: Problem Statement (who has what problem),
   Goals (measurable outcomes), Non-Goals (explicit scope exclusions), User Stories or

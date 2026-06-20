@@ -60,6 +60,25 @@ when_not_to_use:
   - Communication with external parties
   - Emotionally complex topics that deserve more space
   - Announcements requiring broad visibility
+tells:
+  - 'The most important information lands in the first line'
+  - 'Short enough to read without scrolling'
+  - 'Any required action is explicit, often with an @mention and a deadline'
+  - 'Scannable - bullet points and headers used when the message must run longer'
+  - 'Voice and tone matched to the channel, since the format itself is neutral'
+  - 'Spans a wide range, from a 3-word reply to a multi-paragraph update'
+anti_patterns:
+  - pattern: 'Writing it as a self-contained durable record with a formal subject and full context'
+    why: 'That is the confusable email; a Slack message is ephemeral team-channel communication that can lean on the channel and the conversation, where email must travel and stand alone.'
+  - pattern: 'Burying the point under a conversational warm-up before getting to it'
+    why: 'The reader skims a high-volume feed; if the first line does not carry the message, it is missed in the scroll.'
+  - pattern: 'Closing a request with "let me know what you think" instead of a specific ask'
+    why: 'A vague ask in a busy channel goes unanswered; the format works only when the required action names who does what by when.'
+failure_modes:
+  - mode: 'Compresses into cryptic shorthand - brevity is pushed until the message is acronyms and clipped fragments that the reader cannot decode without asking'
+    mitigation: 'Be brief enough to scan, not so terse it needs a follow-up; if a teammate would have to ask "what do you mean," add the few words that make it clear.'
+  - mode: 'Over-trims a genuinely complex update - an incident or decision is forced into one cramped line when it needed scannable structure'
+    mitigation: 'Appropriately brief means as long as it needs to be; let a complex message run, but make it scannable with bullets and headers rather than crushing it.'
 llm_instruction_phrasing: |
   Write as a Slack message for a professional team channel. Lead with the most important
   information in the first line - the message should be understandable from the first line alone.

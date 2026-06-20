@@ -64,6 +64,25 @@ when_not_to_use:
   - Topics so sensitive or complex they require a conversation first
   - Broadcasting to a large audience where a proper announcement format is warranted
   - Situations where the message will be read in a high-noise async thread rather than an inbox
+tells:
+  - 'A specific subject line that doubles as the summary and is itself actionable'
+  - 'The body opens with the purpose and required action, not a greeting that delays both'
+  - 'Only the context the reader needs to act, kept to a few sentences'
+  - 'An explicit next step: who does what, by when'
+  - 'Self-contained - assumes no conversational history, since email travels beyond the team'
+  - 'The reader can act on it without re-reading'
+anti_patterns:
+  - pattern: 'Opening with pleasantries and building toward the point like a letter'
+    why: 'Email readers scan and skip the part before the point; a letter structure buries the ask the reader opened the message to find.'
+  - pattern: 'Writing it like a Slack message that leans on shared context and a conversational opener'
+    why: 'That is the confusable slack-message; email creates a durable record and travels outside the team, so it must be self-contained where a Slack message can assume the channel.'
+  - pattern: 'Leaving the subject line vague ("Q2 Budget") instead of action-specific'
+    why: 'The subject is the only text many recipients read before deciding to open; a vague subject is the summary failing at its one job.'
+failure_modes:
+  - mode: 'Over-formalizes - a quick note is dressed up with formal salutations, hedged phrasing, and ceremony out of proportion to a simple ask'
+    mitigation: 'Match formality to the relationship and the stakes, not to the medium; if the message is one sentence of substance, send one sentence.'
+  - mode: 'Over-engineers the structure - a short message acquires headers, numbered sections, and an executive summary as if it were a brief'
+    mitigation: 'Reserve heavy structure for genuinely complex mail; if subject plus three sentences would carry it, that is the email.'
 llm_instruction_phrasing: |
   Write as a business email. The subject line should be specific enough to act on - it doubles
   as the summary of the message. Open the body with the purpose and required action immediately,

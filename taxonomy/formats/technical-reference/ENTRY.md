@@ -87,6 +87,25 @@ when_not_to_use:
   - Explaining the reasoning behind a design decision
   - Communication with non-technical stakeholders who need context, not specification
   - Documentation that will be read once and discarded
+tells:
+  - 'Organized for lookup, with headers as navigation rather than as a reading order'
+  - 'Each entry leads with a one-sentence definition and no background'
+  - 'Tables for structured data - parameters, fields, options - instead of prose'
+  - 'At least one working code example per entry'
+  - 'Constraints and gotchas stated as explicit notes, not buried as caveats'
+  - 'Precise and stable - complete for its scope, changing only when the system changes'
+anti_patterns:
+  - pattern: 'Mixing in tutorial prose - motivation, analogy, and step-by-step context'
+    why: 'That is the confusable diataxis-explanation aimed at learning; a reference assumes understanding and the explanatory padding is exactly what the experienced reader skips.'
+  - pattern: 'Walking the reader through a task in sequential steps toward a goal'
+    why: 'That is a how-to guide; a reference does not guide, it answers a specific question for someone already mid-task.'
+  - pattern: 'Optimizing the opening as a narrative hook and onboarding pitch'
+    why: 'That is the confusable readme, organized for the first-time visitor; a reference serves the returning reader who arrives knowing what they want.'
+failure_modes:
+  - mode: 'Grows so exhaustive it becomes unnavigable - completeness is pursued until the document is a sprawl no reader can scan to the answer'
+    mitigation: 'Precision serves the returning reader''s specific question; split or cross-link sprawling sections so an answer is still reachable in the fewest steps.'
+  - mode: 'Over-stabilizes into staleness - the stability contract is held so rigidly that the reference no longer tracks the system it documents'
+    mitigation: 'Stability means changing when the underlying system changes, not refusing to change; update the spec the moment the behavior it describes does.'
 llm_instruction_phrasing: |
   Write as technical reference documentation. Optimize for scanning, not reading start to finish.
   Every section should be findable via its header. Use tables for structured data (parameters,

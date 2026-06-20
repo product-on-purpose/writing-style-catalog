@@ -71,6 +71,25 @@ when_not_to_use:
   - Real-time incident response where speed matters more than documentation format
   - Meetings where decisions will be formally documented in an ADR or PRD immediately after
   - Informational-only presentations with no decisions or assignments
+tells:
+  - 'A header with topic, date, and attendees'
+  - 'Organized by outcome - Decisions, Actions, Open Items - not by chronology'
+  - 'Each decision stated as a concluded fact, not as a topic that was discussed'
+  - 'Each action item names a specific owner and a due date'
+  - 'An optional Context section of 1-3 sentences for a later reader'
+  - 'Someone who missed the meeting can act from the notes without a follow-up question'
+anti_patterns:
+  - pattern: 'Recording who said what in the order it was said'
+    why: 'That produces a transcript or a chronological log; meeting notes capture outcomes, and a chronology forces the reader to reconstruct the conclusions.'
+  - pattern: 'Reframing a single architectural decision into a permanent reasoning record'
+    why: 'That is the confusable adr; meeting notes capture everything a meeting decided across any topic, organized for immediate action, not the deep rationale of one technical choice.'
+  - pattern: 'Collapsing the notes into a recurring three-part personal status update'
+    why: 'That is the confusable daily-standup; meeting notes cover one meeting''s full set of outcomes, not one person''s done/next/blocked.'
+failure_modes:
+  - mode: 'Balloons into a full transcript - the capture grows so complete that it records the whole discussion and the decisions are buried in the play-by-play'
+    mitigation: 'Notes record outcomes, not the conversation; if a reader has to hunt for what was decided, cut the narration and surface the Decisions and Actions.'
+  - mode: 'Over-documents a meeting that produced nothing - the Decisions and Actions structure is filled out for a check-in with no real outcomes'
+    mitigation: 'Write notes only when a meeting decided or assigned something; if the Decisions section is empty, a one-line summary serves better than the full scaffold.'
 llm_instruction_phrasing: |
   Write as meeting notes. Organize by outcome: decisions first, then action items, then open
   questions. Do not organize chronologically or by who said what. State each decision as a

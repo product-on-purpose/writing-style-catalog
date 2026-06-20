@@ -69,6 +69,25 @@ when_not_to_use:
   - Long-form essay where the argument needs continuous prose (use blog-post-long-form)
   - Anything emotionally complex that does not survive 280-char compression
   - Formal or authoritative communication (use whitepaper or one-pager)
+tells:
+  - 'A numbered sequence of short posts (1/, 2/, 3/...), commonly 5 to 25'
+  - 'A lead tweet that works as a standalone hook and promises a payoff'
+  - 'Each post under 280 characters carrying a single beat: one idea, one example, one turn'
+  - 'A turn or surprising detail that justifies the thread existing'
+  - 'A closing tweet that lands a quotable takeaway, often with a CTA'
+  - 'Generous line breaks - white space is part of the format'
+anti_patterns:
+  - pattern: 'Slicing a paragraph or essay into 280-character pieces'
+    why: 'A thread is a sequence of complete thoughts, not a chopped essay; if the argument needs continuous prose it belongs in a blog-post-long-form.'
+  - pattern: 'Treating the thread as private team communication in public'
+    why: 'That confuses it with a slack-message; a thread is public broadcast to strangers and rewards being quotable, not scannable to teammates.'
+  - pattern: 'Opening with set-up before the hook'
+    why: 'The lead must work alone and earn the click; a warm-up first post is wasted on readers who never open the thread.'
+failure_modes:
+  - mode: 'Over-hooks every post into engagement-bait - each tweet strains for a cliffhanger or hot take until the thread is all teasers and no substance'
+    mitigation: 'Reserve the hook for the lead and let the middle carry real beats; if a post promises a payoff it never delivers, replace the bait with the idea itself.'
+  - mode: 'Over-compresses past the point of meaning - the 280-char budget is squeezed so hard the beats become cryptic fragments that lose the argument'
+    mitigation: 'The budget forces tight prose, not lost meaning; if a beat no longer reads as a complete thought, give it its own tweet rather than cramming it.'
 llm_instruction_phrasing: |
   Write a tweet thread of [N] numbered tweets, each under 280 characters. The lead tweet must work
   as a standalone post and promise a payoff strong enough to make a curious reader open the thread.
