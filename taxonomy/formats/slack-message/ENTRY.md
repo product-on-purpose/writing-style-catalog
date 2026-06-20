@@ -48,8 +48,7 @@ avoid_with:
   - reverent
   - columnist
 confusable_with:
-  - prd
-  - adr
+  - email
 when_to_use:
   - Team status updates
   - Quick questions

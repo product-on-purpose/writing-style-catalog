@@ -48,7 +48,7 @@ avoid_with:
   - playful
   - warm
 confusable_with:
-  - adr
+  - executive-summary
 when_to_use:
   - Any significant decision where the reasoning will matter to future team members
   - Vendor selections, technology choices, product pivots, or process changes
