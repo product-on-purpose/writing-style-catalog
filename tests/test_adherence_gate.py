@@ -10,6 +10,8 @@ tests against the real 60.
 import sys
 from pathlib import Path
 
+import pytest
+
 TOOLS_DIR = Path(__file__).resolve().parents[1] / "tools"
 sys.path.insert(0, str(TOOLS_DIR))
 
@@ -149,6 +151,20 @@ def test_below_trigger_keeps_whole_family():
     }
     ns = gate.gate_neighbors("ref0", id_map)
     assert set(ns.siblings) == {"tut0"}  # 2 members, no narrowing
+
+
+def test_trigger_with_missing_candidate_subfamily_raises():
+    # A 12+ member family whose candidate lacks a subfamily is an invalid
+    # catalog state (validate.py errors on it). The gate must fail loud, not
+    # silently fall back to a too-broad whole-family neighbor set.
+    id_map = {}
+    for i in range(11):
+        id_map[f"m{i}"] = _entry("format", domain="professional",
+                                 family="instruction", subfamily="reference")
+    id_map["candidate"] = _entry("format", domain="professional",
+                                 family="instruction")  # no subfamily, family at 12
+    with pytest.raises(ValueError):
+        gate.gate_neighbors("candidate", id_map)
 
 
 # ---------------------------------------------------------------------------

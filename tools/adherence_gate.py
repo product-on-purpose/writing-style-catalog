@@ -47,7 +47,10 @@ def load_catalog() -> dict[str, tuple[str, dict]]:
         entry_md = entry_dir / "ENTRY.md"
         if not entry_md.exists():
             continue
-        fm = _extract_frontmatter(entry_md)
+        try:
+            fm = _extract_frontmatter(entry_md)
+        except Exception:
+            continue  # mirror validate.py: skip an entry that will not parse
         if fm is None:
             continue
         entry_id = fm.get("id", entry_dir.name)
@@ -95,9 +98,24 @@ def _tree_siblings(candidate_id, axis, domain, family, subfamily, id_map):
         and (axis != "format" or ofm.get("domain") == domain)
     ]
 
-    # Past the 12-member trigger the family is subfamily-partitioned, so the
-    # gate narrows to same-subfamily neighbors (Gate 1 / A2).
-    if len(members) >= SUBFAMILY_TRIGGER and subfamily:
+    # The trigger uses this family's full membership. For formats the count is
+    # domain-scoped, but format family names are globally unique across domains
+    # (enforced by taxonomy._self_check), so it equals the family total and
+    # agrees with the (axis, family) count validate.py uses to enforce the same
+    # 12-member subfamily rule.
+    if len(members) >= SUBFAMILY_TRIGGER:
+        if not subfamily:
+            # Invalid catalog: validate.py errors when a 12+ member family has
+            # an entry with no subfamily. Fail loud rather than render the
+            # candidate against a too-broad neighbor set and emit a misleading
+            # gate verdict.
+            raise ValueError(
+                f"{candidate_id}: family '{family}' has {len(members)} members "
+                f"(>= {SUBFAMILY_TRIGGER}) but the candidate has no subfamily; "
+                f"the catalog violates the subfamily rule (run tools/validate.py)."
+            )
+        # Past the trigger the family is subfamily-partitioned, so the gate
+        # narrows to same-subfamily neighbors (Gate 1 / A2).
         members = [
             m for m in members
             if id_map[m][1].get("subfamily") == subfamily
