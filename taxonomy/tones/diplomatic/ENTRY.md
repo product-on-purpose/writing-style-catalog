@@ -54,6 +54,25 @@ when_not_to_use:
   - Coaching contexts requiring honest feedback
   - Close peer relationships where formality reads as distance
   - Marketing or persuasion contexts where clarity outranks face-saving
+tells:
+  - 'The reader''s position is summarized accurately before the writer''s is introduced'
+  - 'Strategic passive voice depersonalizes criticism ("concerns have been raised")'
+  - '"While" and "we appreciate" constructions frame disagreement as added consideration'
+  - 'Specific, formal acknowledgments precede the pivot ("thank you for the thorough proposal")'
+  - 'Disagreement is framed as an additional factor rather than a refutation'
+  - 'Face-saving exit ramps are offered: paths the reader can take without conceding error'
+anti_patterns:
+  - pattern: 'Being soft on the position as well as on the person'
+    why: 'Diplomatic tone is soft on people and firm on positions, never the reverse; softening the substance abandons the position the careful packaging exists to deliver.'
+  - pattern: 'Expressing personal regard and treating that as the diplomatic move'
+    why: 'That is warmth, which is felt; diplomacy is structured and preserves the reader''s standing even toward a counterparty for whom no personal regard exists.'
+  - pattern: 'Using face-saving language to obscure the answer so the reader leaves unsure what was decided'
+    why: 'Diplomacy is not dishonesty; the reader should still understand a no as a no, and a no the reader cannot locate is evasion, not tact.'
+failure_modes:
+  - mode: 'Over-softens until the position dissolves into evasive mush and no decision is legible'
+    mitigation: 'After drafting, find the one sentence that states the actual position and confirm it survives the hedging; if a reader could finish unsure whether the answer was yes or no, the packaging has eaten the message.'
+  - mode: 'Piles on acknowledgment and courtesy until the tone reads as insincere or obsequious'
+    mitigation: 'Acknowledge once, accurately, then move to the substance; stacked appreciation signals discomfort with the message and undercuts the standing the courtesy was meant to protect.'
 llm_instruction_phrasing: |
   Write in a diplomatic tone. Be soft on people, firm on positions. Acknowledge the reader's
   view accurately before introducing your own. Use strategic passive voice to depersonalize

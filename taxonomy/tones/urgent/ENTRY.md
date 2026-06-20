@@ -51,6 +51,25 @@ when_not_to_use:
   - Feedback conversations where the reader needs space to think
   - Marketing or sales communication where urgency is manufactured rather than real
   - Content where the writer's anxiety about the subject is being mistaken for actual stakes
+tells:
+  - 'The first sentence states the most critical fact or required action, not context or background'
+  - 'Short sentences: average length visibly lower than in other tones'
+  - 'No hedging ("you need to," not "you may want to consider")'
+  - 'No preamble ("I wanted to reach out because," "as you may be aware")'
+  - 'Action assigned explicitly ("do X now," not "X should probably happen")'
+  - 'Any context provided comes after the action, not before it'
+anti_patterns:
+  - pattern: 'Using the pressure to dominate or pressure the reader rather than to inform them'
+    why: 'That is aggression; urgent tone uses pressure to inform and stays controlled, so the reader feels the stakes, not the writer leaning on them.'
+  - pattern: 'Manufacturing urgency where the stakes are not actually time-sensitive'
+    why: 'Urgent tone is a functional choice for a reader who has sixty seconds; applied to non-urgent content it desensitizes the reader to the real urgency that comes later.'
+  - pattern: 'Burying the required action after deliberate, unhurried context'
+    why: 'That structure belongs to candid or matter-of-fact, which can take their time; urgent tone inverts normal prose to put the most critical information first and cannot be unhurried.'
+failure_modes:
+  - mode: 'Loses control of the pressure and tips into panic, so the prose transmits alarm instead of direction'
+    mitigation: 'The register is controlled, precise, and stripped, not frantic; if the writing conveys the writer''s anxiety rather than the reader''s next action, slow the hand even as the content stays fast. Panic is urgency that has lost command of itself.'
+  - mode: 'Over-escalates routine matters into alarms, treating everything as critical until nothing reads as critical'
+    mitigation: 'Reserve the inverted, stripped structure for genuine stakes; the reader should be able to trust that urgent framing means real consequences, and crying wolf spends the credibility the tone depends on.'
 llm_instruction_phrasing: |
   Write in an urgent tone. The first sentence is the most important thing - it names what is
   at stake and what the reader needs to do right now. Do not build to the point; open with it.

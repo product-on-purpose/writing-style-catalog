@@ -49,6 +49,25 @@ when_not_to_use:
   - Persuasive communication where relationship and trust are the medium
   - Content for expert audiences who need inference latitude, not hand-holding
   - Emotional or high-stakes interpersonal communication
+tells:
+  - 'Numbered steps, each expressing exactly one action'
+  - 'Terms defined in the same sentence or clause where they first appear'
+  - 'Explicit orientation before transitions ("before you do X, make sure Y is complete")'
+  - 'No reassurances or motivational asides, only forward movement'
+  - 'Second person assigns the action to the reader, not to the writer'
+  - 'Anticipated failure points named and addressed inline ("if you see [error], it means...")'
+anti_patterns:
+  - pattern: 'Adding motivational asides or validating the reader''s effort between steps'
+    why: 'That is encouraging, which activates belief; instructional tone clears obstacles so well that confidence is irrelevant, and the asides slow the procedure they interrupt.'
+  - pattern: 'Explaining the topic to show command of it rather than to enable the action'
+    why: 'Instructional tone transfers capability, it does not display knowledge; every sentence should move the reader closer to doing the thing, not demonstrate what the writer knows.'
+  - pattern: 'Assuming context the reader does not have and skipping the step that builds it'
+    why: 'What separates instructional from merely technical is pacing; it builds context rather than assuming it, and a gap the reader cannot bridge breaks the transfer of capability.'
+failure_modes:
+  - mode: 'Over-explains into condescending hand-holding, spelling out what any reader already knows'
+    mitigation: 'Calibrate to the stated audience and cut steps that explain the obvious; the measure is usability, not completeness, and over-instruction wastes the reader''s time as surely as under-instruction strands them.'
+  - mode: 'Over-structures into mechanical rigidity, where the scaffolding obscures the actual task'
+    mitigation: 'Keep the structure in service of the doing; if the numbering, sub-steps, and caveats have grown denser than the procedure they describe, simplify until a reader could follow it on the first pass.'
 llm_instruction_phrasing: |
   Write in an instructional tone. Your only goal is the reader's ability to do the thing when
   they are done. Number every step; each step should express one action only. Define any term

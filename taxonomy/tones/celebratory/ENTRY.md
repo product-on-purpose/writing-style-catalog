@@ -51,6 +51,25 @@ when_not_to_use:
   - Post-mortems and retrospectives that require honest accounting of what went wrong
   - Contexts where the stakes require a measured rather than an elevated register
   - Any situation where the achievement being celebrated is not yet real or is still uncertain
+tells:
+  - 'Names the specific achievement, not a category ("you shipped the auth system," not "great work")'
+  - 'States why it was hard or why it mattered ("this took three restarts and still landed on time")'
+  - 'Makes space for the weight of it rather than pivoting to what is next'
+  - 'Sincere register: no ironic distance, no hedging, no "of course there is still more to do"'
+  - 'Focuses on one or a few things named precisely rather than enumerating every win'
+  - 'Addresses the people involved directly, not abstractly'
+anti_patterns:
+  - pattern: 'Reaching for wit or ironic distance at the moment of recognition'
+    why: 'That is playful, and it undercuts the sincerity celebration depends on; playfulness can decorate a celebration but must not become the load-bearing element.'
+  - pattern: 'Pivoting from the achievement to what comes next or what still needs doing'
+    why: 'That is encouraging, which points forward; celebration pauses to mark what already happened and asks the reader to receive something, not to do something.'
+  - pattern: 'Listing every accomplishment in the same breath'
+    why: 'Naming ten things quickly dilutes all of them; celebratory tone is disciplined by restraint and earns weight by naming one thing precisely.'
+failure_modes:
+  - mode: 'Over-hits recognition into inflated praise, where the words outrun what was actually done'
+    mitigation: 'Anchor every claim of significance to the specific difficulty or result; if the achievement cannot carry the language, the language is hype. Specificity is what keeps celebration from becoming a template applied to a name.'
+  - mode: 'Sustains the elevated register so long it becomes saccharine and the reader stops believing it'
+    mitigation: 'Say the true, specific thing once and let it land; relentless superlatives read as performance, and the sincerity that makes a celebration worth receiving comes from restraint, not volume.'
 llm_instruction_phrasing: |
   Write in a celebratory tone. Name the specific thing that was accomplished - not the category,
   the thing. Say something true about why it was hard or why it mattered. Do not pivot

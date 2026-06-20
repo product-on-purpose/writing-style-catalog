@@ -50,6 +50,25 @@ when_not_to_use:
   - Formal executive communication
   - Post-mortems and incident reports
   - Contexts where personal register would feel manipulative
+tells:
+  - 'Direct address: "you," often early'
+  - 'Acknowledgment of the reader''s situation or effort'
+  - 'Personal investment ("I want you to get this right")'
+  - 'Second-person possessives ("your work," "your situation")'
+  - 'Short, human sentences alongside longer explanations'
+  - 'Inclusive language ("we" when speaking of shared effort)'
+anti_patterns:
+  - pattern: 'Reaching for flattery ("you are amazing") in place of specific regard'
+    why: 'Warmth is distinguished from flattery by specificity and restraint; it notices the actual person ("I am glad you are here"), where flattery inflates and asks nothing of the writer''s attention.'
+  - pattern: 'Opening by naming the reader''s specific hardship as the load-bearing move'
+    why: 'That is empathetic, a foreground move reserved for moments of real difficulty; warmth is a steady regard that can carry ordinary content without ever naming a particular situation.'
+  - pattern: 'Treating general care as if it activates the reader toward a next step'
+    why: 'That is encouraging, which is motivational and names capability; warmth notices and regards the reader but does not, on its own, push toward forward motion.'
+failure_modes:
+  - mode: 'Over-hits care into the saccharine, using warmth to perform likability rather than to regard the reader'
+    mitigation: 'Keep it specific and restrained: name the situation, name the effort. Authentic warmth does not need to be effusive to be felt, and gushing signals performance, which is the absence of warmth dressed up as warmth.'
+  - mode: 'Lays the warmth on so thickly and constantly that it reads as cloying and the reader distrusts it'
+    mitigation: 'Let short, human moments of regard sit alongside ordinary substance rather than saturating every line; warmth felt once and genuinely outlasts warmth asserted in every sentence, which curdles into insincerity.'
 llm_instruction_phrasing: |
   Write in a warm tone. Communicate genuine care for the reader - not flattery, not performance,
   but specific and authentic regard. Address them directly as "you." Acknowledge what they are

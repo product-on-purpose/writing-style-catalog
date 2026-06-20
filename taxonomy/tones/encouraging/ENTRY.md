@@ -49,6 +49,25 @@ when_not_to_use:
   - Neutral status updates
   - Expert audiences who would find it condescending
   - Legal or compliance writing
+tells:
+  - 'Specific acknowledgment of the effort or capability ("you have done the hard part by...")'
+  - 'Future-orientation that points to what the reader can do next'
+  - 'Names the difficulty and the person''s relationship to it ("this is hard, and you are handling it")'
+  - 'Active belief ("I think you can"), not passive hope ("hopefully you can")'
+  - 'No false reassurance: if something is hard, it is named and then the encouragement follows'
+  - 'Progress markers grounded in evidence ("you are further along than you think because...")'
+anti_patterns:
+  - pattern: 'Cheerleading ("you have got this!") regardless of the actual situation'
+    why: 'Cheerleading serves the social function of boosting confidence whether or not it is warranted; encouragement is epistemic, grounded in real evidence of the reader''s capability.'
+  - pattern: 'Expressing general care for the reader and calling that encouragement'
+    why: 'That is warmth, a steady orientation of regard; encouragement is specifically motivational, activating forward motion and naming a capability, which warmth alone does not do.'
+  - pattern: 'Pretending the difficulty is not real so the encouragement sounds breezier'
+    why: 'Encouraging tone holds the difficulty and the capability in the same breath; denying the difficulty makes the encouragement hollow and tells the reader you have not understood the situation.'
+failure_modes:
+  - mode: 'Over-hits belief into ungrounded cheerleading, asserting the reader can do it with no basis'
+    mitigation: 'Tie every encouragement to a specific effort, capability, or result you can actually point to; the line between encouragement and cheerleading is whether you mean it and can say why.'
+  - mode: 'Tips into condescension, encouraging someone as if they need more help than they do'
+    mitigation: 'Encourage the particular thing, not a generic "you," and match the dose to the person; over-encouraging a capable reader implies doubt about them, which is the opposite of the intended effect.'
 llm_instruction_phrasing: |
   Write in an encouraging tone. You genuinely believe the reader can do the hard thing, and you
   have evidence for that belief. Do not cheerlead - do not say "you have got this!" without

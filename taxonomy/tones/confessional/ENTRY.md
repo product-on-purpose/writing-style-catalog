@@ -53,6 +53,25 @@ when_not_to_use:
   - Sales or persuasion contexts where vulnerability reads as weakness
   - Technical writing where personal narrative is a distraction
   - Any context where the admission would be irrelevant or self-indulgent
+tells:
+  - 'First-person ownership of a specific failure, doubt, or learning'
+  - 'Concrete detail about what the writer did, believed, or felt, rather than abstractions'
+  - 'No deflection language: "I made this mistake," not "mistakes were made"'
+  - 'The cost of the admission is visible: the writer is risking how the reader sees them'
+  - 'A learning or change is tied to the admission, not the admission left bare'
+  - 'No fishing for reassurance: the writer is not asking the reader to soften the blow'
+anti_patterns:
+  - pattern: 'Orienting the disclosure toward the reader''s experience rather than the writer''s'
+    why: 'That is empathetic, not confessional; remove the reader and an empathetic passage collapses, but a confessional one still stands because the subject was always the writer.'
+  - pattern: 'Using the form of confession to fish for reassurance or preempt criticism'
+    why: 'That is performative humility, which the specificity of real confession exposes; genuine confession does not ask the reader to soften the blow.'
+  - pattern: 'Admitting fault in the passive voice ("mistakes were made," "errors occurred")'
+    why: 'Deflection is the opposite of ownership; confessional tone names who did what, and vague agency reads as evasion dressed as candor.'
+failure_modes:
+  - mode: 'Over-discloses into self-indulgence, where the admission serves the writer''s catharsis rather than the reader'
+    mitigation: 'Keep the disclosure tied to a learning or a point the reader can use; if the only function is unburdening, it has tipped from confession into oversharing. Ask whether the admission earns its place beyond making the writer feel absolved.'
+  - mode: 'Stages the vulnerability as a performance, so the wound is curated rather than real'
+    mitigation: 'Choose the admission that actually costs something to make; a confession the writer is comfortable broadcasting is usually the safe version, and the specificity test is whether it reveals something the writer would rather hide.'
 llm_instruction_phrasing: |
   Write in a confessional tone. The subject is you - specifically, something you got wrong, a
   doubt you are sitting with, or a learning you came to the hard way. Be concrete. Name the
