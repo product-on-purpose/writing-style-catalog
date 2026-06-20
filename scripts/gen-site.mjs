@@ -134,9 +134,37 @@ function parseFrontmatter(fmText) {
         i++;
       }
       if (block.length && /^-\s+/.test(block[0].trimStart())) {
-        obj[key] = block
-          .filter((l) => /^-\s+/.test(l.trimStart()))
-          .map((l) => stripQuotes(l.trimStart().replace(/^-\s+/, '')));
+        // Block sequence. Group lines into items at each '- ' line, then decide
+        // scalar list vs list of maps. An item is a map when its content after
+        // the dash is a bare 'key: value' pair; quoted scalars never match, so
+        // string lists (including quoted strings that contain colons) stay
+        // scalar, matching the prior behavior.
+        const KV = /^([A-Za-z0-9_][A-Za-z0-9_-]*):\s*(.*)$/;
+        const items = [];
+        let cur = null;
+        for (const l of block) {
+          const t = l.trimStart();
+          if (/^-\s+/.test(t)) {
+            if (cur) items.push(cur);
+            cur = { head: t.replace(/^-\s+/, ''), cont: [] };
+          } else if (cur && t !== '') {
+            cur.cont.push(t);
+          }
+        }
+        if (cur) items.push(cur);
+
+        if (items.length && items.every((it) => KV.test(it.head))) {
+          obj[key] = items.map((it) => {
+            const map = {};
+            for (const line of [it.head, ...it.cont]) {
+              const km = line.match(KV);
+              if (km) map[km[1]] = stripQuotes(km[2]);
+            }
+            return map;
+          });
+        } else {
+          obj[key] = items.map((it) => stripQuotes(it.head));
+        }
       } else {
         const sub = {};
         for (const l of block) {
@@ -387,6 +415,40 @@ function joinPage(lines) {
   return `${lines.join('\n').replace(/\s+$/, '')}\n`;
 }
 
+// Render the ADR 0009 pedagogical fields (tells / anti_patterns / failure_modes)
+// as page sections. Frontmatter is the single source of truth; entries that have
+// not been backfilled yet simply contribute nothing.
+function pedagogySections(entry) {
+  const out = [];
+  const tells = Array.isArray(entry.tells) ? entry.tells : [];
+  if (tells.length) {
+    out.push('## Tells', '');
+    for (const t of tells) out.push(`- ${mdxEscapeProse(String(t))}`);
+    out.push('');
+  }
+  const anti = Array.isArray(entry.anti_patterns) ? entry.anti_patterns : [];
+  if (anti.length) {
+    out.push('## Anti-patterns', '');
+    for (const a of anti) {
+      if (a && a.pattern) {
+        out.push(`- **${mdxEscapeProse(String(a.pattern))}** - ${mdxEscapeProse(String(a.why || ''))}`);
+      }
+    }
+    out.push('');
+  }
+  const fm = Array.isArray(entry.failure_modes) ? entry.failure_modes : [];
+  if (fm.length) {
+    out.push('## Failure modes', '');
+    for (const f of fm) {
+      if (f && f.mode) {
+        out.push(`- **${mdxEscapeProse(String(f.mode))}** - ${mdxEscapeProse(String(f.mitigation || ''))}`);
+      }
+    }
+    out.push('');
+  }
+  return out;
+}
+
 function renderEntryPage(catalog, pairs, entry) {
   const axis = entry._axis;
   const fromSlug = refSlug(entry);
@@ -405,6 +467,8 @@ function renderEntryPage(catalog, pairs, entry) {
   out.push('');
   out.push((entry._body || '').trim());
   out.push('');
+
+  for (const line of pedagogySections(entry)) out.push(line);
 
   const phrasing = (entry.llm_instruction_phrasing || '').trim();
   if (phrasing) {
