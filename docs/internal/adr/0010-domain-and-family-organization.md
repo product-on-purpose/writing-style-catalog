@@ -100,7 +100,7 @@ The `pastoral` fold follows directly from standard 1: `pastoral` is not a distin
 
 The v2 doc deferred a third level as premature at 30/axis. At the committed scale it is required, because the inventory already overflows. Promote the optional `subfamily` field to a real level:
 
-- Formats: `domain (5) -> family (16) -> subfamily -> entry`. Example: `professional -> instruction -> reference -> api-doc` (and `professional -> instruction -> tutorial -> onboarding-walkthrough`).
+- Formats: `domain (5) -> family (17) -> subfamily -> entry`. Example: `professional -> instruction -> reference -> api-doc` (and `professional -> instruction -> tutorial -> onboarding-walkthrough`).
 - Voices: `family (5) -> subfamily -> entry`. Example: `witness -> chronicler -> historian`. The `pastoral` fold makes `care -> pastoral` the first named voice subfamily (`care -> pastoral -> {chaplain, spiritual-director, liturgist, ...}`), even though `care` has not yet crossed the 12-member trigger; it is a register-distinct cluster worth naming early.
 
 `subfamily` is **optional until a family reaches 12 members, then required for every entry in that family.** Twelve is the v2 doc's existing "revisit" trigger, now made a hard schema threshold. On the aspirational inventory this immediately binds `instruction` (~19) and `witness` (~18), and will bind `deliberation` (~15), `broadcast` (~15), `correspondence` (~17), `tribute` (~16), and `devotion` (~17) as they fill. A family under 12 members may stay two-level. Minting a subfamily is governed like a tags-level change (cheap); it does not require an ADR, because it refines a neighbor set rather than re-cutting one.

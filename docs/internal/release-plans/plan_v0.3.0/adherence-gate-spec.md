@@ -121,7 +121,7 @@ E1 is **Stage 3 of the six-stage factory** (scaffold, generate, **adherence gate
 
 - The **candidate** entry plus its rendered samples.
 - The **neighbor set**, looked up mechanically from the taxonomy tree: the candidate's same-family (and, past 12 family members, same-subfamily) siblings. The taxonomy is what makes neighbor selection deterministic; this is why the three-level tree and governed facet enum must land (as the new ADR 0010, superseding the stale v1 draft of that number) before mass generation.
-- The **home anchor topic** for the entry's domain, drawn from the locked ~12-topic set (~4 professional, 2 public, 2 relational, 2 ceremonial, 2 contemplative), so every family is rendered on native substrate rather than tested off its home turf.
+- The **home anchor topic** for the entry's domain, drawn from the anchor-topic set (a frozen regression core plus a growable, optionally randomized seed pool seeded at ~4 professional, 2 public, 2 personal, 2 ceremonial, 2 contemplative; see D1 - anchor topics / ADR 0017 and `anchor-topics.md`), so every family is rendered on native substrate rather than tested off its home turf. Gate 1 admission renders draw from the whole pool (optionally randomized for breadth); the frozen golden-set regression below always renders on the fixed core, so the C3 invariant stays deterministic.
 
 ### The judge
 
