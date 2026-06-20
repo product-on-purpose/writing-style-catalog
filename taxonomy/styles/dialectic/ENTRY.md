@@ -70,12 +70,10 @@ anti_patterns:
   - pattern: 'Framing the antithesis so the writer conclusion is smuggled in'
     why: 'If the opposing view is framed to lose, the synthesis is not earned; the position must emerge from honest engagement.'
 failure_modes:
-  - mode: 'Collapses into false balance, presenting two views and refusing any honest resolution'
-    mitigation: 'Require the synthesis to do real work, or to state with reasons that no synthesis is possible; non-resolution is allowed only when argued.'
-  - mode: 'The antithesis quietly becomes a strawman so the thesis wins'
-    mitigation: 'State the opposing position as its smartest proponent would; if it cannot survive that, the piece is argument, not dialectic.'
-  - mode: 'Turns into an endless survey with no position ever reached'
-    mitigation: 'Dialectic ends in a synthesis or a reasoned non-resolution; if neither appears, the structure is incomplete.'
+  - mode: 'Tips into false balance, staging both sides as equally right until the synthesis dissolves into "both sides have a point"'
+    mitigation: 'The synthesis must name what each side got right and wrong, or state with reasons that none is possible; equal-validity mush is not a synthesis.'
+  - mode: 'Over-performs the thesis-antithesis sparring as point-counterpoint theater that circles without ever landing a synthesis'
+    mitigation: 'Spend the weight on the synthesis doing real work; the opposition exists to earn the synthesis, not as a display of even-handedness.'
 llm_instruction_phrasing: |
   Write using dialectic structure. State the thesis explicitly and give it its strongest case.
   Then state the antithesis - and state it in the form its strongest proponents would recognize,

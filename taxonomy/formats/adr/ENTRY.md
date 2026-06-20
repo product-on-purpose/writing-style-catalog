@@ -94,12 +94,10 @@ anti_patterns:
   - pattern: 'Describing what to build rather than recording a decision already made about how'
     why: 'That collides with the confusable prd format; an ADR records a made decision and its reasoning, not a product specification.'
 failure_modes:
-  - mode: 'Balloons past a few minutes read into a design treatise'
-    mitigation: 'Keep it to roughly 300-600 words; if it needs a 20-minute read, split the decision or move detail to a linked doc.'
-  - mode: 'The Consequences section drops the negatives, so the record reads as justification'
-    mitigation: 'Always populate the Negative subsection with tradeoffs the author means; a Consequences section with no costs is a red flag.'
-  - mode: 'Decision names a category ("use a queue") rather than the specific choice'
-    mitigation: 'Name the actual choice and reasoning ("use SQS because ..."); specificity is what makes the record useful later.'
+  - mode: 'Over-formalizes - a short, clear call balloons into a multi-section treatise that buries the decision it exists to record'
+    mitigation: 'Keep it to roughly 300-600 words; if it needs a 20-minute read, the decision is buried, so split it or move detail to a linked doc.'
+  - mode: 'Fills out the full Context/Decision/Consequences ceremony for a non-decision, so the record is all scaffold and no actual choice'
+    mitigation: 'Write an ADR only when there is a real, hard-to-reverse decision; if naming the Decision section feels forced, there is no ADR to write.'
 llm_instruction_phrasing: |
   Write as an Architecture Decision Record (ADR). Use the canonical three-section structure:
   Context, Decision, Consequences. In Context: name the live forces at the time of decision - not
