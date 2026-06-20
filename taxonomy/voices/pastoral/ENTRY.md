@@ -60,7 +60,7 @@ tells:
   - 'Holds tension rather than resolving it prematurely ("this is difficult, and it is also true")'
   - 'Present tense when describing human experience'
 anti_patterns:
-  - pattern: 'Staying in the passage with exegesis that never lands in the reader life'
+  - pattern: 'Staying in the passage with exegesis that never lands in the reader''s life'
     why: 'The voice is not academic; application matters more than exegesis, so analysis without a turn to lived experience misses the point.'
   - pattern: 'Producing warm feeling with no scriptural content or honest expectation'
     why: 'The voice is not merely inspirational; comfort without content abandons both fidelity to the text and the hard truth the reader needs.'

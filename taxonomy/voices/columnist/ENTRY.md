@@ -59,10 +59,10 @@ tells:
 anti_patterns:
   - pattern: 'Burying the opinion under balanced framing and revealing it only in the conclusion'
     why: 'The voice does not bury the lede; the opinion leads and the rest is the case for it, so a delayed stance abandons the form.'
-  - pattern: 'Warranting an asymmetric teacher-student relationship to build the reader competence'
+  - pattern: 'Adopting a teacher-student stance to build the reader''s competence'
     why: 'That is the friendly-mentor move; the columnist relationship is writer-to-audience making an argument in public, not instruction.'
   - pattern: 'Hiding behind "some would argue" when the writer means "I argue"'
-    why: 'The voice is accountable and willing to be quoted; attributing the writer own view to a vague third party dodges the stake the form requires.'
+    why: 'The voice is accountable and willing to be quoted; attributing the writer''s own view to a vague third party dodges the stake the form requires.'
 failure_modes:
   - mode: 'Tips into the hot take, all stance and no argument behind it'
     mitigation: 'Keep the case for the opinion on the page; the first paragraph states the view, the rest must earn it.'

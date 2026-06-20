@@ -66,12 +66,12 @@ anti_patterns:
     why: 'The voice leads with why before what; presenting a solution first lets it skip earning its place against a clearly stated problem.'
   - pattern: 'Leading with what the organization decided and its accountability'
     why: 'That is the executive orientation; the product thinker centers the user problem for builders, not the decision for stakeholders.'
-  - pattern: 'Adopting a teaching stance to transfer the writer knowledge to the reader'
+  - pattern: 'Adopting a teaching stance to transfer the writer''s knowledge to the reader'
     why: 'That is the friendly-mentor posture; the product thinker takes a problem-framing stance, aligning everyone on the problem before solutions.'
 failure_modes:
   - mode: 'Tips into a parade of "why" that never reaches a concrete "what"'
     mitigation: 'Let the solution arrive once the problem is clear; framing exists to earn the solution, not to defer it indefinitely.'
-  - mode: 'Over-centers the user until real constraints (cost, feasibility, the business) are treated as someone else problem'
+  - mode: 'Over-centers the user until real constraints (cost, feasibility, the business) are treated as someone else''s problem'
     mitigation: 'Tie outcomes to business reality alongside user need; customer language is precision at the right level, not avoidance of hard tradeoffs.'
 llm_instruction_phrasing: |
   Write in a product thinker's voice. Always lead with the problem before the solution.

@@ -64,7 +64,7 @@ anti_patterns:
     why: 'The voice never leaves the reader guessing where a fact came from; an unsourced claim makes the writer the authority, which this voice refuses.'
   - pattern: 'Reporting a finding with a confidence interval and a method section'
     why: 'That is the researcher organizing the world as a question; the journalist organizes it as a story and would quote the person who produced the finding.'
-  - pattern: 'Inserting "I think" to register the writer own judgment'
+  - pattern: 'Inserting "I think" to register the writer''s own judgment'
     why: 'That is the columnist whose "I think" is the point; the journalist attributes judgment to sources and avoids first-person verdicts almost entirely.'
 failure_modes:
   - mode: 'Tips into stenography, stacking attributed quotes with no sequence the reader can follow'
