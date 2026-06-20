@@ -49,6 +49,25 @@ when_not_to_use:
   - Marketing copy
   - Technical documentation
   - Contexts requiring efficiency over weight
+tells:
+  - 'Slowed pace: longer sentences, more deliberate rhythm'
+  - 'Word selection feels considered, nothing casual, nothing flippant'
+  - 'Active attention to what is described, nothing dismissed or passed over'
+  - 'Moments of silence or pause: space left in the writing'
+  - 'Third-person or formal constructions for the subject being honored'
+  - 'Subordinate clauses that add weight rather than just information'
+anti_patterns:
+  - pattern: 'Orienting the care toward the reader''s feelings rather than the subject'
+    why: 'That is warmth, which cares about the person receiving the communication; reverence cares about what is being described and can feel cool to the reader while still honoring its subject.'
+  - pattern: 'Applying the slowed, weighted register to ordinary or efficient content'
+    why: 'Reverence is a claim that the subject demands to be handled carefully; spent on the routine, the weight reads as inflation and the register loses its meaning when something truly does deserve it.'
+  - pattern: 'Reaching for elevated diction that does not change what the piece says about the subject'
+    why: 'The test is whether simplifying the sentence would change what it communicates about the subject; if not, the elevation is honoring nothing and has become ornament.'
+failure_modes:
+  - mode: 'Over-hits weight into pomposity, where the elevated language inflates the writer instead of honoring the subject'
+    mitigation: 'Apply the test directly: would shortening or simplifying the sentence change what it says about the subject? If not, it is pomposity. Reverence makes the subject larger, not the writer.'
+  - mode: 'Over-solemnizes into the ponderous, so the deliberate pace becomes turgid and the reader disengages'
+    mitigation: 'Weight comes from care in word choice and attention, not from sheer slowness; if every sentence strains for gravity, the cumulative heaviness numbs rather than honors, so let genuine pauses carry the solemnity instead of padding.'
 llm_instruction_phrasing: |
   Write in a reverent tone. You are in the presence of something that matters. Slow down. Choose
   every word deliberately. Do not be casual with the subject - do not dismiss or pass quickly

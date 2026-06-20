@@ -49,6 +49,25 @@ when_not_to_use:
   - PR communication
   - Contexts where candor would be received as aggression
   - Casual small talk or low-stakes communication
+tells:
+  - 'Names the hard thing directly and early, not buried in paragraph four'
+  - 'Explicit honesty framing ("I want to be direct about this," "here is the honest picture")'
+  - 'Acknowledgment precedes the hard truth ("I know this is not what you hoped for")'
+  - 'A path forward follows the truth ("here is what we can do")'
+  - 'Active voice for the difficult claims, no euphemisms for negative outcomes'
+  - 'The reader''s ability to receive it is considered, so context comes with the truth'
+anti_patterns:
+  - pattern: 'Leading with the negative for its own sake, with no context or path forward'
+    why: 'That is blunt, not candid; candor delivers the truth in a way the reader can actually receive, blunt does not consider how it lands.'
+  - pattern: 'Stating the hard truth without marking it as honesty or acknowledging the difficulty'
+    why: 'That is matter-of-fact, which has no frame at all; candor explicitly commits to truth-telling and acknowledges the reader before the pivot.'
+  - pattern: 'Using "I want to be honest" as a preface and then softening or hedging the actual message'
+    why: 'The framing promises directness the content does not deliver; candor names the hard thing clearly, it does not announce honesty and then dodge.'
+failure_modes:
+  - mode: 'Over-hits honesty into brutality, delivering the truth with contempt rather than care'
+    mitigation: 'Keep the acknowledgment and the path forward; the test is whether the reader can receive it, not just whether it is true. Candor without care is just bluntness wearing the label.'
+  - mode: 'Performs candor as a personality, narrating one''s own directness more than saying the actual thing'
+    mitigation: 'Cut the meta-framing down to what earns the reader''s trust and spend the words on the substance; the honesty should be visible in the claim, not announced about it.'
 llm_instruction_phrasing: |
   Write in a candid tone. Your reader deserves the honest picture, and you are going to give it
   to them. Name the hard thing directly and early - do not bury it. Acknowledge the difficulty

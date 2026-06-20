@@ -55,6 +55,25 @@ when_not_to_use:
   - Playful or light contexts where commitment language reads as heavy
   - Any context where the decision is not actually made - performative resoluteness is bluster
   - Coaching contexts where the goal is to draw out the reader's own decision
+tells:
+  - 'Future-action sentences ("we are doing X") rather than considerations ("we should do X")'
+  - 'Specific commitments with owners and timing'
+  - 'The reasoning is referenced briefly or not at all: settled, not relitigated'
+  - 'Loop-closing language ("the question is decided," "this is the path we are taking")'
+  - 'Energy oriented toward execution: next steps, milestones, how we will know'
+  - 'No reopening of alternatives: the off-ramps are no longer named'
+anti_patterns:
+  - pattern: 'Arguing the merits of the decision or inviting it to be reopened'
+    why: 'That is confident, which sits before the decision and defends a still-debatable position; resolute sits after it, where the merits are settled and the writing is only about acting.'
+  - pattern: 'Driving the message with time pressure and "right now" framing'
+    why: 'That is urgent, which is about the clock; resoluteness is about commitment and can be calm and unhurried, since what makes it resolute is that deliberation has closed, not that time is short.'
+  - pattern: 'Reporting the truth of a finding rather than committing to an action'
+    why: 'That is candid; a candid post-mortem says what happened, a resolute memo says what we are doing about it. Resolute tone is bound to a chosen action, not to an assessment.'
+failure_modes:
+  - mode: 'Over-commits to the chosen action until legitimate costs and objections are treated as obstacles to override rather than information'
+    mitigation: 'Resolve ends deliberation, it does not deny the tradeoffs; name the cost of the path and acknowledge the real objection even while committing, so the resolve reads as clear-eyed rather than deaf.'
+  - mode: 'Closes loops so hard it becomes rigid, refusing to acknowledge new information that should reopen the question'
+    mitigation: 'Resoluteness ends deliberation that is genuinely finished, not deliberation that should continue; if material new evidence has arrived, reopening is judgment, not weakness, and clinging to the closed loop is stubbornness wearing the look of resolve.'
 llm_instruction_phrasing: |
   Write in a resolute tone. The decision is made. Do not relitigate it. Reference the
   reasoning briefly if at all, then move to action: what is happening, who is doing it, when

@@ -48,6 +48,25 @@ when_not_to_use:
   - Persuasion and fundraising
   - Onboarding where tone helps retention
   - Coaching or feedback contexts requiring warmth
+tells:
+  - 'Declarative sentences without hedging'
+  - 'No intensifiers: "important," not "very important"'
+  - 'No mood markers: not "unfortunately" or "excitingly," just the fact'
+  - 'Active voice stating what is'
+  - 'No meta-commentary on the communication ("I want to be clear"), just the clear statement'
+  - 'Neutral sentence endings: statements close, not questions or emphatics'
+anti_patterns:
+  - pattern: 'Marking the honesty explicitly ("I want to be direct with you") before the statement'
+    why: 'That is candid, which frames its own truth-telling; matter-of-fact has no frame at all and simply states the truth without commenting on the act of stating it.'
+  - pattern: 'Letting the writer''s certainty or conviction color the claim'
+    why: 'That is confident, which carries an explicit affect; matter-of-fact is affect-neutral and reports the fact without staking the writer''s position on it.'
+  - pattern: 'Slipping in intensifiers or mood words ("unfortunately," "thankfully," "really")'
+    why: 'Those editorialize how the reader should feel; matter-of-fact has no agenda about the reader''s response and trusts them to react appropriately on their own.'
+failure_modes:
+  - mode: 'Over-neutralizes into coldness, reading as a deliberate withdrawal of warmth rather than its absence'
+    mitigation: 'Remember the tone has no agenda about feeling, including no agenda to seem detached; state the fact plainly without performing distance. Coldness is a stance, and matter-of-fact takes no stance at all.'
+  - mode: 'Over-neutralizes until salience is flattened, reporting a critical fact in the same affectless register as a trivial one so the reader cannot tell what matters'
+    mitigation: 'Neutrality means not coloring the reader''s reaction, not hiding consequence; let selection and order (what is stated first, what is included) carry the weight the tone refuses to add with mood words.'
 llm_instruction_phrasing: |
   Write in a matter-of-fact tone. State what is true without editorial coloring - no
   intensifiers, no mood markers, no meta-commentary on the communication itself. Do not say

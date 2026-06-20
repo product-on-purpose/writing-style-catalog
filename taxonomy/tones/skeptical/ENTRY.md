@@ -50,6 +50,25 @@ when_not_to_use:
   - Operational instructions where the reader needs to act, not deliberate
   - Sales or persuasion contexts where measured doubt reads as a lack of conviction
   - Crisis communication where the audience needs direction
+tells:
+  - 'Explicit gaps named ("we do not yet have evidence for X," "this has not been established")'
+  - 'Falsification framing ("what would we need to see to believe this?")'
+  - 'Hedges tied to specific evidence, not generic softening ("given only N=12, this is suggestive at best")'
+  - 'Distinguishes absence of evidence from evidence of absence'
+  - 'Counter-hypotheses surfaced rather than dismissed'
+  - 'Conditional claims ("if X holds, then Y, but we have not verified X")'
+anti_patterns:
+  - pattern: 'Stating a conviction the writer holds and merely refusing to soften it'
+    why: 'That is candid, the tone of conviction delivered honestly; skeptical is conviction withheld until the evidence arrives, naming what has not yet been established rather than what the writer believes.'
+  - pattern: 'Dismissing the claim or taking the opposite side reflexively'
+    why: 'Skeptical tone is not contrarian and not dismissive; it asks what would change its mind rather than treating the question as settled in either direction, and reflexive opposition is just certainty pointed the other way.'
+  - pattern: 'Hedging with generic softeners ("it could be argued," "perhaps") untethered to evidence'
+    why: 'Skeptical hedges are tied to a specific gap in the data; generic softening performs doubt without locating it, which informs the reader of nothing about what is actually unproven.'
+failure_modes:
+  - mode: 'Over-extends doubt into reflexive cynicism, distrusting every claim regardless of the evidence for it'
+    mitigation: 'Apply the same standard to the doubt as to the claim: name what evidence would actually settle it. Skepticism that can never be satisfied has stopped tracking evidence and become a corrosive reflex.'
+  - mode: 'Performs uncertainty so thoroughly it reads as helplessness and refuses to commit even where the evidence is clear'
+    mitigation: 'Skeptical tone is engaged with the question, not refusing to engage; where the evidence does support a conclusion, say so. Withholding judgment past the point the data warrants is its own failure to read the evidence.'
 llm_instruction_phrasing: |
   Write in a skeptical tone. You are not dismissing the claim, and you are not endorsing it. You
   are noticing where the evidence is thin and saying so. Name the specific gap: what has not been

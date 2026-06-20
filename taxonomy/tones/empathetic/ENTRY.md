@@ -50,6 +50,25 @@ when_not_to_use:
   - Urgent communications where acknowledgment would delay the critical message
   - Expert or peer audiences who would find the acknowledgment patronizing
   - Legal or compliance writing where neutrality is required
+tells:
+  - 'Names the specific difficulty before any ask ("you are being asked to change something that has worked for you")'
+  - 'The acknowledgment includes the source of the difficulty, not just its existence'
+  - 'No generic comfort phrases ("I understand this may be challenging")'
+  - 'The ask or next step arrives after the acknowledgment, never before'
+  - 'Does not minimize or resolve the difficulty prematurely'
+  - 'The reader''s perspective is held in frame before the writer''s appears'
+anti_patterns:
+  - pattern: 'Opening with thanks or a general expression of gladness or regard'
+    why: 'That is warmth, a steady background register; empathetic tone is a foreground move that opens by naming the precise hardship, and that specificity is what separates the two.'
+  - pattern: 'Leading with the ask or the action before acknowledging what the reader is experiencing'
+    why: 'A reader who feels unseen resists even a reasonable ask; the structure of empathy is acknowledgment first, then ask, and inverting it forfeits the trust the acknowledgment buys.'
+  - pattern: 'Reaching for generic comfort ("I know this is hard," "we are all in this together")'
+    why: 'Generic warmth names that difficulty exists without showing it was understood; empathy demonstrates care by naming the specific difficulty, which generic phrasing cannot do.'
+failure_modes:
+  - mode: 'Over-performs care into therapy-speak, where the acknowledgment becomes a display of the writer''s sensitivity'
+    mitigation: 'Name the difficulty in plain, specific language and then move; if the acknowledgment is longer or more elaborate than the situation warrants, the reader feels managed rather than understood.'
+  - mode: 'Acknowledges so thoroughly it smothers, treating the reader as more fragile than they are'
+    mitigation: 'Acknowledge once, accurately, and trust the reader to proceed; repeated reassurance and refusal to get to the point reads as condescension, the patronizing failure the precise naming was meant to avoid.'
 llm_instruction_phrasing: |
   Write in an empathetic tone. Before you say anything else, name the specific difficulty the
   reader is experiencing - not generally, but with the precision that signals you have actually

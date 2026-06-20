@@ -52,6 +52,25 @@ when_not_to_use:
   - Legal, compliance, or regulatory writing
   - Content about subjects the reader experiences as serious even if you do not
   - Any context where wit would signal that you are not taking the stakes seriously
+tells:
+  - 'Unexpected comparisons precise enough to be true, not just amusing'
+  - 'Sentence rhythm varied for surprise: the short sentence after the long one'
+  - 'Wordplay used sparingly, where the double meaning earns its place'
+  - 'Jokes that do not announce themselves: no "just kidding" or "(pun intended)"'
+  - 'Lightness of touch: the point made with less effort than the reader expected'
+  - 'Humor that sharpens rather than softens the argument'
+anti_patterns:
+  - pattern: 'Reaching for wit to mark an achievement that calls for sincerity'
+    why: 'That is celebratory territory, and ironic distance undercuts it; a celebration can hold a moment of play, but the recognition must be load-bearing, not the joke.'
+  - pattern: 'Adding wit that can be removed without the point landing any less precisely'
+    why: 'That is decoration, not play; playful tone earns its keep only when removing the element makes the meaning land less well, otherwise it is performance on top of the prose.'
+  - pattern: 'Announcing the jokes with "(pun intended)" or "see what I did there"'
+    why: 'The signal makes the reader feel the player trying; lightness of touch means the wit lands on its own, and flagging it converts effortlessness into effort.'
+failure_modes:
+  - mode: 'Over-hits levity into flippancy, treating a subject lightly that the reader holds as serious'
+    mitigation: 'Read the room before the line: knowing when to put the lightness down is as much the skill as the wit itself. If a reader could reasonably wonder whether you take the subject seriously, drop it.'
+  - mode: 'Tips into gimmickry, overusing the same trick until the wit signals effort rather than ease'
+    mitigation: 'Vary the instrument and use each sparingly; the reader should feel the pleasure of the play, not the presence of the player, so cut any joke that exists for its own sake.'
 llm_instruction_phrasing: |
   Write in a playful tone. The pleasure of reading is part of the goal. Use unexpected
   comparisons that are precise enough to be true, not just amusing. Vary sentence rhythm so
