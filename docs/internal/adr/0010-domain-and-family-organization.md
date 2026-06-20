@@ -2,7 +2,7 @@
 adr_id: "0010"
 title: Domain, Family, and Subfamily Organization plus Governed Facet Tags
 date: 2026-06-03
-status: Proposed
+status: Accepted
 supersedes: docs/internal/_working/0010-domain-and-family-organization.md (draft v1, 6 domains / 14 families)
 related:
   - docs/internal/_working/domain-and-family-taxonomy_2026-05-15.md
@@ -23,9 +23,9 @@ related:
 
 ## Status
 
-Proposed - awaiting maintainer approval.
+Accepted - 2026-06-19 (ratifies decision A1 - taxonomy cuts). Adopted with the amendments worked out of the independent Fable review (the Q1-Q12 register in `_LOCAL/2026-06-09_a1-taxonomy-evaluation_by-fable.md`, Section 13) and recorded in `docs/internal/release-plans/plan_v0.3.0/decisions.md` under A1. The structure carried into acceptance differs from the originally proposed cut in two ratified ways: the `relational` domain is renamed `personal` and redefined to cover both its families (Q2), and the voice axis carries **5** families, not 6, with the former `pastoral` family folded into `care` as a subfamily (the grounding pass below). Every recorded alternative to the cut (drop-domains, single-level, tags-only, a fifth axis, the v1 cut) was re-examined in the review and rejected for its recorded reason; the review's verdict was "adopt, do not re-cut." Execution of the field migration this ADR specifies (Section 9) proceeds in Phase 1; the entry-level data moves the review also raised (slug reconciliation Q9, the confusable-graph audit Q6, channel-clone collapse Q3) batch into that migration so entries are touched once.
 
-This ADR supersedes the stale draft at `docs/internal/_working/0010-domain-and-family-organization.md`, which encoded a v1 taxonomy (6 domains: engineering, business, workplace, publication, ceremonial, contemplative; 14 functional families) derived from a ~30-entry candidate set. That draft was never promoted. Maintainer feedback rejected its cuts (business/workplace blurred, `authority` carried wrong connotations, family names read as database columns). The canonical structure is the v2 taxonomy in `domain-and-family-taxonomy_2026-05-15.md`, sized against the ~195-format / ~68-voice aspirational inventory and refined by the agreed scaling strategy (`scaling-the-library-100x.md`, decision-matrix rows 6 and 7). This ADR codifies that canonical structure as a binding contract. On acceptance, mark the draft `Superseded by ADR 0010` and do not copy from it.
+This ADR supersedes the stale draft at `docs/internal/_working/0010-domain-and-family-organization.md`, which encoded a v1 taxonomy (6 domains: engineering, business, workplace, publication, ceremonial, contemplative; 14 functional families) derived from a ~30-entry candidate set. That draft was never promoted. Maintainer feedback rejected its cuts (business/workplace blurred, `authority` carried wrong connotations, family names read as database columns). The canonical structure is the v2 taxonomy in `domain-and-family-taxonomy_2026-05-15.md`, sized against the ~195-format / ~68-voice aspirational inventory and refined by the agreed scaling strategy (`scaling-the-library-100x.md`, decision-matrix rows 6 and 7). This ADR codifies that canonical structure as a binding contract. Mark the draft `Superseded by ADR 0010` and do not copy from it.
 
 ## Context
 
@@ -49,12 +49,12 @@ Voice, Tone, Style, and Format remain the only top-level axes, per ADR 0001. No 
 | Epistemic stance (certain / hedged / speculative) | `epistemic:` facet tag (splits across Tone and Voice; not selectable as an axis) |
 | Register / formality | `formality:` ordinal facet tag on Tone (formality is the core of Tone already) |
 | Medium / channel | Format `family`/`subfamily` plus a `channel:` facet tag |
-| Persona-archetype | This is Voice; Voice families are archetype clusters already |
+| Persona-archetype | This is Voice; Voice families are grounded by communicative function and validated by the gate (Section 2a), with brand-archetype clusters kept only as a recognizability cross-reference |
 | Output modality (prose / list / dialogue / verse) | `modality:` facet tag riding on Style; verse stays out of scope |
 
 The test a top-level axis must pass: orthogonal to the others, the composer selects exactly one value per instruction, and it changes `llm_instruction_phrasing` independently. None of the six pass cleanly; all are better expressed as cross-cutting facets or subfamilies.
 
-### 2. Controlled vocabulary: 5 format domains, 16 format families, 6 voice families
+### 2. Controlled vocabulary: 5 format domains, 16 format families, 5 voice families
 
 **Two new organizational fields, per-axis applicability:**
 
@@ -63,7 +63,7 @@ The test a top-level axis must pass: orthogonal to the others, the composer sele
 
 Tones and Styles receive neither field. They are register and rhetorical-pattern concepts that travel across spheres by nature (a `candid` tone works in Slack and in a eulogy; a `dialectic` style works in an op-ed and a sermon). They stay flat, organized only by the governed facet tags in section 4.
 
-**The 5 format domains:** `professional`, `public`, `relational`, `ceremonial`, `contemplative`.
+**The 5 format domains:** `professional`, `public`, `personal`, `ceremonial`, `contemplative`. (The domain formerly proposed as `relational` is renamed `personal` per A1/Q2, and its definition is widened to cover both its families - `correspondence`, written to someone the author knows, and `essay`, drawn from the author's lived experience for a wider readership. The unifying thread is the personal/relational source of the writing, not the size of the audience. Near miss for the placement algorithm: a personal essay published to strangers still belongs in `personal` because its subject is the writer's own experience, whereas a how-to guide or explainer addressed to a general audience belongs in `public` because its subject is the reader's task, not the writer's life. The full definition with this near-miss regression sentence is recorded under A1 in `decisions.md` and lands in `tools/taxonomy.py` during the Phase 1 migration.)
 
 **The 16 format families, scoped to domain:**
 
@@ -71,20 +71,35 @@ Tones and Styles receive neither field. They are register and rhetorical-pattern
 |---|---|
 | `professional` (8) | `deliberation`, `instruction`, `progress`, `brief`, `appraisal`, `messaging`, `outreach`, `response` |
 | `public` (4) | `broadcast`, `copy`, `position`, `accountability` |
-| `relational` (2) | `correspondence`, `essay` |
+| `personal` (2) | `correspondence`, `essay` |
 | `ceremonial` (1) | `tribute` |
 | `contemplative` (2) | `devotion`, `journal` |
 
-**The 6 voice families (no domain):** `expert`, `care`, `principal`, `witness`, `dissident`, `pastoral`. Voices carry no `domain` because a speaker travels across spheres: a `witness`-family voice can write a public broadcast, a professional brief, a relational essay, or a ceremonial tribute without ceasing to be that voice.
+**The 5 voice families (no domain):** `expert`, `care`, `principal`, `witness`, `dissident`. Voices carry no `domain` because a speaker travels across spheres: a `witness`-family voice can write a public broadcast, a professional brief, a personal essay, or a ceremonial tribute without ceasing to be that voice. (The originally proposed sixth family `pastoral` is folded into `care` as a subfamily per A1 and the grounding pass in Section 2a: by the functional test a pastoral voice performs the same communicative action as `care` - it accompanies, tends, and forms a reader - in a religious register, so it is a register variant of `care`, not a peer family. The `pastoral` voice entry keeps its slug and takes `family: care, subfamily: pastoral` at Phase 1 backfill.)
 
 Family names are deliberately single-word and evocative of a writerly stance, not a functional-organizational label (the v1 names `decision-documents`, `reference-and-onboarding`, `quick-communication` were rejected for reading like column values). Format `family` is scoped to its `domain`, so a `family` value is unique only when paired with its domain; the validator and any consumer always carry both fields together.
+
+### 2a. What grounds the voice families (and why not a personality typology)
+
+The voice families were first justified loosely as "archetype clusters." A 2026-06-19 survey of established literary and psychological taxonomies (the run is summarized in the A1 record in `decisions.md`) found that no externally-validated framework can ground a discrete five-persona voice cut, because the validated science is the wrong shape:
+
+- The personality frameworks that are empirically validated - Big Five / OCEAN and HEXACO - are **trait models**: continuous dimensions, not discrete persona types. They locate a writer on an axis; they do not partition writers into named families.
+- The frameworks that do yield discrete personas - the Jung / Mark-Pearson brand archetypes, DISC, MBTI, Enneagram, Merrill-Reid Social Styles - are **practitioner conventions**, not validated science (MBTI and the Enneagram are actively contested). Adopting one would trade the maintainer's cut for a consultancy's cut: more familiar, not more objective.
+
+So the families are grounded on the two standards the catalog actually owns, in this order:
+
+1. **Communicative function (primary).** Each family names a distinct rhetorical action - the lens of Carolyn Miller's "genre as social action" and Searle's speech-act taxonomy. The catalog already describes families this way: `witness` reports and records what was seen; `dissident` holds a position against prevailing sentiment; `expert` speaks from having done the work; `care` accompanies and tends a reader; `principal` speaks from a defined role. Two families are kept distinct only if they perform distinct actions.
+2. **Empirical distinguishability (the proof).** The E1 adherence gate's blind attribution test is the operative objectivity standard. A family is "real" when a blind judge can attribute its renders against its neighbors. This is a stronger warrant than matching any canon, and it is the standard A1's Q12 pilot began to supply.
+3. **Archetype cross-reference (recognizability only).** The Jung / Mark-Pearson clusters (`expert` ~ Sage, `care` ~ Caregiver, `principal` ~ Ruler, `dissident` ~ Outlaw; `witness` is a composite Chronicler/Observer type) are retained in docs purely so the families read as familiar, and are cited as practitioner convention, never as scientific warrant.
+
+The `pastoral` fold follows directly from standard 1: `pastoral` is not a distinct communicative function from `care` (both accompany, tend, and form a reader); it is `care` in a religious register, so it is a subfamily of `care`, not a sixth family. The same functional test is how future voice families are admitted or rejected. (A separate finding - that the one cleanly-validated external standard, NN/g's four tone dimensions, grounds the **Tone** axis rather than Voice - is logged for a future Tone pass and is out of scope here.)
 
 ### 3. Three levels: promote `subfamily` to a real third level
 
 The v2 doc deferred a third level as premature at 30/axis. At the committed scale it is required, because the inventory already overflows. Promote the optional `subfamily` field to a real level:
 
 - Formats: `domain (5) -> family (16) -> subfamily -> entry`. Example: `professional -> instruction -> reference -> api-doc` (and `professional -> instruction -> tutorial -> onboarding-walkthrough`).
-- Voices: `family (6) -> subfamily -> entry`. Example: `witness -> chronicler -> historian`.
+- Voices: `family (5) -> subfamily -> entry`. Example: `witness -> chronicler -> historian`. The `pastoral` fold makes `care -> pastoral` the first named voice subfamily (`care -> pastoral -> {chaplain, spiritual-director, liturgist, ...}`), even though `care` has not yet crossed the 12-member trigger; it is a register-distinct cluster worth naming early.
 
 `subfamily` is **optional until a family reaches 12 members, then required for every entry in that family.** Twelve is the v2 doc's existing "revisit" trigger, now made a hard schema threshold. On the aspirational inventory this immediately binds `instruction` (~19) and `witness` (~18), and will bind `deliberation` (~15), `broadcast` (~15), `correspondence` (~17), `tribute` (~16), and `devotion` (~17) as they fill. A family under 12 members may stay two-level. Minting a subfamily is governed like a tags-level change (cheap); it does not require an ADR, because it refines a neighbor set rather than re-cutting one.
 
@@ -179,7 +194,18 @@ The three-axis model (ADR 0001) and the atomic-folder pattern (ADR 0002) are unc
 - **Encode domain-to-family as a JSON Schema `oneOf`.** Self-documenting but verbose and hard to evolve; it also cannot express the 12-member subfamily threshold. Rejected in favor of separate enums plus a Python cross-field check, with the vocabulary single-sourced in `tools/taxonomy.py`.
 - **Drop the domain layer entirely, keep only evocative families.** Seriously considered (v2 Alternative 1). Rejected because domain-level queryability and coarse grouping are real and 5 domains is sustainable; dropping it later is non-breaking if it fails to earn its place.
 
-## Open questions for maintainer
+## Open questions - resolution status at acceptance
+
+Recorded against A1 ratification (2026-06-19). Resolutions live in `decisions.md`; the originals are kept below for context.
+
+1. **Subfamily naming** - resolved by A1/Q7: keep the hard 12-member trigger, pre-design subfamily cuts for the known-fat families with a human naming checkpoint per split. The `care -> pastoral` subfamily is named now (Section 3).
+2. **Faceted-tag enum scope** - open as decision A4 (P1, needed during v0.3.0): ship the 7 facet keys as a closed set, values widen on demand. Not blocking acceptance.
+3. **Coverage target bands** - open as decision A5 (P1): the dense 12-20 / narrow 3-8 bands are the working proposal, tuned after first fill. Not blocking acceptance.
+4. **Journalism placement** - resolved direction by E2: a `public` subfamily, not a sixth domain, admitted only if it clears the gate (E1). 
+5. **Migration timing relative to E1** - resolved by F2: land the taxonomy optional, backfill the 60, stand up E1, then tighten to required. This ADR's Section 9 is that sequence.
+6. **Twelve as the subfamily threshold** - resolved by A2/Q7: a hard, validator-enforced cutoff at 12, not a soft alarm. Q12's pilot supports 12 as workable; revisit only on gate evidence.
+
+Originals, for context:
 
 1. **Subfamily naming.** This ADR fixes the three levels and the 12-member trigger but does not enumerate subfamilies. The first binding cases are `instruction` (`reference` vs `tutorial` is the v2 doc's worked example) and `witness` (`chronicler` is named; the other ~17 voices need cuts). Approve the subfamily-naming pass as a follow-on working doc, gate-arbitrated, before mass-add into those two families?
 2. **Faceted-tag enum scope.** Are the 7 facets (`channel:`, `formality:`, `modality:`, `epistemic:`, `length:`, `stance:`, `delivery:`) the right closed set, and are the illustrative value lists complete enough to seed `tools/taxonomy.py`, or should the initial enum start narrower and widen on demand?
