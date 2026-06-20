@@ -77,6 +77,29 @@ when_not_to_use:
   - Operational documentation
   - Explaining how a system works
   - Consumer-facing content
+tells:
+  - 'Three canonical sections: Context, Decision, Consequences'
+  - 'A Status line (Proposed, Accepted, Deprecated, or Superseded by ADR-NNNN)'
+  - 'Context names the live forces and constraints at decision time, not project history'
+  - 'Decision names the specific choice, not just the category'
+  - 'Consequences honestly includes a Negative subsection, not only benefits'
+  - 'Short and focused, roughly 300-600 words, readable in a few minutes'
+anti_patterns:
+  - pattern: 'Writing Context as a history narrative instead of the live forces at decision time'
+    why: 'Context exists to show why this was the right call under the constraints then; history does not let a future reader reconstruct the reasoning.'
+  - pattern: 'Listing only positive consequences and omitting the tradeoffs'
+    why: 'The Consequences section is where an ADR earns its value; hiding the negatives turns a decision record into marketing.'
+  - pattern: 'Reserving ADRs only for rare, major decisions'
+    why: 'ADRs should be small and numerous; the compounding smaller decisions go unrecorded if the bar is set too high.'
+  - pattern: 'Describing what to build rather than recording a decision already made about how'
+    why: 'That collides with the confusable prd format; an ADR records a made decision and its reasoning, not a product specification.'
+failure_modes:
+  - mode: 'Balloons past a few minutes read into a design treatise'
+    mitigation: 'Keep it to roughly 300-600 words; if it needs a 20-minute read, split the decision or move detail to a linked doc.'
+  - mode: 'The Consequences section drops the negatives, so the record reads as justification'
+    mitigation: 'Always populate the Negative subsection with tradeoffs the author means; a Consequences section with no costs is a red flag.'
+  - mode: 'Decision names a category ("use a queue") rather than the specific choice'
+    mitigation: 'Name the actual choice and reasoning ("use SQS because ..."); specificity is what makes the record useful later.'
 llm_instruction_phrasing: |
   Write as an Architecture Decision Record (ADR). Use the canonical three-section structure:
   Context, Decision, Consequences. In Context: name the live forces at the time of decision - not

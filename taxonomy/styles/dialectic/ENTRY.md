@@ -55,6 +55,27 @@ when_not_to_use:
   - Reference material
   - Argumentative pieces where the opposing position is genuinely weak or fringe
   - Contexts where the audience needs the conclusion now and the reasoning later
+tells:
+  - 'States the thesis explicitly and gives it its strongest case before any rebuttal'
+  - 'States the antithesis in the form its strongest proponents would recognize, not a softened version'
+  - 'Moves to a synthesis that names what each side got right and what becomes visible only together'
+  - 'When reconciliation is impossible, says so explicitly with reasons rather than forcing a tidy resolution'
+  - 'The writer position emerges from the synthesis rather than the framing'
+  - 'Shows the path to the conclusion, not only the conclusion'
+anti_patterns:
+  - pattern: 'Stating the antithesis as a weakened or strawman version'
+    why: 'The structure collapses without a strong antithesis; a weak one makes it classical argument in a costume, not dialectic.'
+  - pattern: 'Settling for "both sides have a point" as the synthesis'
+    why: 'A real synthesis does work, naming what each side got right and wrong; mere balance is not synthesis.'
+  - pattern: 'Framing the antithesis so the writer conclusion is smuggled in'
+    why: 'If the opposing view is framed to lose, the synthesis is not earned; the position must emerge from honest engagement.'
+failure_modes:
+  - mode: 'Collapses into false balance, presenting two views and refusing any honest resolution'
+    mitigation: 'Require the synthesis to do real work, or to state with reasons that no synthesis is possible; non-resolution is allowed only when argued.'
+  - mode: 'The antithesis quietly becomes a strawman so the thesis wins'
+    mitigation: 'State the opposing position as its smartest proponent would; if it cannot survive that, the piece is argument, not dialectic.'
+  - mode: 'Turns into an endless survey with no position ever reached'
+    mitigation: 'Dialectic ends in a synthesis or a reasoned non-resolution; if neither appears, the structure is incomplete.'
 llm_instruction_phrasing: |
   Write using dialectic structure. State the thesis explicitly and give it its strongest case.
   Then state the antithesis - and state it in the form its strongest proponents would recognize,
