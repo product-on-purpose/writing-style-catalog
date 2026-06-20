@@ -46,7 +46,6 @@ avoid_with:
   - warm
 confusable_with:
   - decision-log
-  - one-pager
 when_to_use:
   - Presenting a recommendation to a senior audience with limited reading time
   - Briefing a decision-maker who needs to understand the conclusion before the analysis

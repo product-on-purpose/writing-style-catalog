@@ -54,8 +54,7 @@ avoid_with:
   - pragmatic-architect
   - problem-solution
   - adr
-confusable_with:
-  - prd
+confusable_with: []
 when_to_use:
   - Daily devotional series
   - Church newsletter content

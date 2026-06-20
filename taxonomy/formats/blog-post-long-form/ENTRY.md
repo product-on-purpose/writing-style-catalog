@@ -60,8 +60,7 @@ avoid_with:
   - reverent
   - pastoral
 confusable_with:
-  - adr
-  - prd
+  - whitepaper
 when_to_use:
   - Thought leadership
   - Technical explainers

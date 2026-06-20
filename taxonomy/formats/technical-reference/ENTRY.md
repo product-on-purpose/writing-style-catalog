@@ -74,8 +74,7 @@ avoid_with:
   - playful
   - narrative-case-study
 confusable_with:
-  - diataxis-explanation
-  - how-to-tutorial
+  - readme
 when_to_use:
   - Documenting an API, library, CLI, or configuration schema that practitioners will consult repeatedly
   - Providing an authoritative specification for a component's inputs, outputs, and constraints
