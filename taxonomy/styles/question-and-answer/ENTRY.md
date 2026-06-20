@@ -1,6 +1,6 @@
 ---
-id: frequently-asked-questions
-name: Frequently Asked Questions
+id: question-and-answer
+name: Question and Answer
 axis: style
 one_liner: Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.
 description: |
@@ -44,7 +44,7 @@ avoid_with:
   - pastoral
   - storyteller
 confusable_with:
-  - how-to-tutorial
+  - procedural
 when_to_use:
   - Support documentation where readers arrive via search
   - Product help pages with heterogeneous audiences
@@ -102,4 +102,4 @@ Material that builds a single conceptual model the reader must absorb in order, 
 
 ### Often confused with
 
-**how-to-tutorial**: A how-to tutorial assumes a single ordered path - step one, then step two, then step three - and the reader is expected to follow that path. An FAQ assumes many readers arriving at many points, each needing only their one answer. If the material has one correct order, it is a tutorial; if it has many, it is an FAQ.
+**procedural**: A how-to tutorial assumes a single ordered path - step one, then step two, then step three - and the reader is expected to follow that path. An FAQ assumes many readers arriving at many points, each needing only their one answer. If the material has one correct order, it is a tutorial; if it has many, it is an FAQ.

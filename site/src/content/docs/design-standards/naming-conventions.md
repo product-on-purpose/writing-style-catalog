@@ -21,7 +21,7 @@ This means:
 - Must end with a letter or digit (no trailing hyphens)
 - No double hyphens, no leading hyphens, no underscores, no spaces
 
-**Examples that pass:** `pragmatic-architect`, `decision-log`, `one-pager`, `prd`, `slack-message`, `how-to-tutorial`
+**Examples that pass:** `pragmatic-architect`, `decision-log`, `one-pager`, `prd`, `slack-message`, `procedural`
 
 **Examples that fail:** `Pragmatic-Architect` (uppercase), `pragmatic_architect` (underscore), `1-page` (leading digit), `pragmatic--architect` (double hyphen), `voice-pragmatic-architect` (axis prefix - see below)
 

@@ -1,5 +1,5 @@
 ---
-entry_id: frequently-asked-questions
+entry_id: question-and-answer
 axis: style
 topic_slug: async-standups
 topic_label: Should we adopt async-first standups?

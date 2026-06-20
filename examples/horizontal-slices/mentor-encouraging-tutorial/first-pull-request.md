@@ -5,7 +5,7 @@ topic_slug: first-pull-request
 topic_label: Your first pull request
 voice_id: friendly-mentor
 tone_id: encouraging
-style_id: how-to-tutorial
+style_id: procedural
 format_id: readme
 author_type: llm
 llm_model: claude-sonnet-4-6
