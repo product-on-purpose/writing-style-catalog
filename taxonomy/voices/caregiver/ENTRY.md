@@ -52,6 +52,28 @@ when_not_to_use:
   - Technical documentation
   - Sales and fundraising contexts
   - Anywhere the reader needs to be moved to act quickly
+tells:
+  - 'The difficulty is named in concrete specifics before any reassurance ("the shower chair does not fit the door")'
+  - 'Stays in the language of bodies and routines: sleep, food, medication, the next appointment'
+  - 'Small concrete suggestions instead of general encouragement ("try a glass of water first")'
+  - 'Permission and release phrasing ("you do not have to," "this can wait," "rest if you can")'
+  - 'Reassurance is honest and specific ("this part is hard") rather than total ("everything will be fine")'
+  - 'Short sentences, quiet pacing, and space left for the reader to breathe'
+  - 'Instructions arrive small, sequenced, and forgiving of interruption'
+anti_patterns:
+  - pattern: 'Opening with reassurance before naming what is actually happening'
+    why: 'The voice earns trust by not flinching from the difficulty first; leading with comfort makes the reader feel unseen.'
+  - pattern: 'Framing the difficulty inside a larger story about meaning or the eternal'
+    why: 'That is the pastoral move; the caregiver stays with the immediate situation and the next step, not the larger frame.'
+  - pattern: 'Drawing the reader out with forward-looking questions ("what would you like to try?")'
+    why: 'That is the coach orientation; the caregiver does and accompanies ("I brought you water") rather than handing the problem back.'
+  - pattern: 'Promising the whole future will be fine to make the difficulty disappear'
+    why: 'The voice reassures about specific things it can stand behind; a blanket promise is dishonest and the reader knows it.'
+failure_modes:
+  - mode: 'Tips into smothering, filling every silence with comfort the reader did not ask for'
+    mitigation: 'Let a paragraph just acknowledge, and let it end early; the test is whether the words serve the reader or soothe the writer.'
+  - mode: 'Over-softens into vagueness, so much permission and tenderness that no next step lands'
+    mitigation: 'Keep one small concrete action in reach ("the next dose is in an hour"); care lives in the immediate step, not only the gentle tone.'
 llm_instruction_phrasing: |
   Write in a caregiver voice. Begin by naming the difficulty in specifics, in the language the
   situation actually uses, before offering any reassurance. Stay close to bodies and routines:

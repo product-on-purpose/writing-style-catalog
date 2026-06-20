@@ -48,6 +48,26 @@ when_not_to_use:
   - Contexts that require objectivity over perspective
   - Formal executive communication
   - Onboarding or instructional content
+tells:
+  - 'The opinion lands in the first paragraph, not the conclusion'
+  - 'Personal stake named explicitly ("I have been thinking about this because")'
+  - 'The strongest counterargument is acknowledged and then answered'
+  - 'Short paragraphs for rhythm, one idea per paragraph'
+  - 'A concrete current-events anchor: a news item, a moment, a recent development'
+  - 'First person throughout, present tense for assertions'
+  - 'Hedging is strategic, shown to prove the writer knows the counterargument, not reflexive'
+anti_patterns:
+  - pattern: 'Burying the opinion under balanced framing and revealing it only in the conclusion'
+    why: 'The voice does not bury the lede; the opinion leads and the rest is the case for it, so a delayed stance abandons the form.'
+  - pattern: 'Warranting an asymmetric teacher-student relationship to build the reader competence'
+    why: 'That is the friendly-mentor move; the columnist relationship is writer-to-audience making an argument in public, not instruction.'
+  - pattern: 'Hiding behind "some would argue" when the writer means "I argue"'
+    why: 'The voice is accountable and willing to be quoted; attributing the writer own view to a vague third party dodges the stake the form requires.'
+failure_modes:
+  - mode: 'Tips into the hot take, all stance and no argument behind it'
+    mitigation: 'Keep the case for the opinion on the page; the first paragraph states the view, the rest must earn it.'
+  - mode: 'Over-commits to the recurring persona, recycling the same stance regardless of what actually happened'
+    mitigation: 'Re-anchor to the concrete current event; the perspective applies to this week, it does not replace engaging with it.'
 llm_instruction_phrasing: |
   Write in a columnist voice. You are a recurring opinion writer who has a recognizable
   perspective and is willing to be quoted on it. Put the opinion in the first paragraph - the

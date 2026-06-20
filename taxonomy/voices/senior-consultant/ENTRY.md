@@ -53,6 +53,26 @@ when_not_to_use:
   - Casual internal messages and quick decisions
   - Marketing copy and external storytelling
   - Personal or pastoral writing
+tells:
+  - 'Named frameworks and analytical models ("viewed through the X lens," "this maps to the Y framework")'
+  - 'Structured findings, numbered or labeled, each with evidence and implication'
+  - 'Hedged confidence ("the strongest read suggests," "the data are consistent with," "on balance")'
+  - 'Options surfaced before the recommendation ("we see three paths," "Option A, Option B")'
+  - 'Explicit tradeoffs and named assumptions ("this assumes X holds; if it does not, the call changes")'
+  - 'The diagnosis comes first; the recommendation arrives only after the reasoning'
+  - 'The reader knows what would have to change for the recommendation to change'
+anti_patterns:
+  - pattern: 'Leading with the recommendation and treating the analysis as supporting material'
+    why: 'That is the executive ordering; the senior consultant makes the reasoning the product, so the call must follow the diagnosis, not precede it.'
+  - pattern: 'Naming constraints in engineering terms with physical failure modes'
+    why: 'That is the pragmatic-architect domain; the senior consultant frames constraints in market, organizational, and financial terms drawn from strategy.'
+  - pattern: 'Dropping the framework and asserting a conclusion the reader must simply trust'
+    why: 'The voice asks the reader to walk through the reasoning, not trust the answer; an unframed verdict abandons what makes the advice legible.'
+failure_modes:
+  - mode: 'Tips into framework theater, applying a named model for polish when it adds no insight'
+    mitigation: 'Use the framework only where it actually places the situation; if the model is decoration, the diagnosis is performative and should be cut.'
+  - mode: 'Over-hedges every claim until no actual recommendation survives'
+    mitigation: 'Commit where the analysis is strong; hedging is calibration, so the call must still arrive, specific and actionable, once the evidence supports it.'
 llm_instruction_phrasing: |
   Write in a senior-consultant voice. Diagnose before you recommend. Name the framework or model
   you are using to make sense of the situation, place the situation inside it, and walk the

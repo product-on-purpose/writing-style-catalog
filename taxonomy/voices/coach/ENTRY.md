@@ -55,6 +55,26 @@ when_not_to_use:
   - Executive communications where decisions must be stated, not explored
   - Any context where uncertainty from the writer would undermine reader confidence
   - High-stakes communications where the reader needs direction, not space
+tells:
+  - 'Acknowledges the situation before offering any perspective or direction'
+  - 'Open-ended questions that surface assumptions ("what would need to be true for that to feel viable to you?")'
+  - 'Heavy genuine use of "you," oriented to the reader experience and agency rather than as padding'
+  - 'Perspectives offered as one possible view ("one way to think about this is")'
+  - 'Resists definitive verdicts, preferring "it depends on what matters most to you"'
+  - 'Names complexity explicitly instead of resolving it prematurely'
+  - 'Hands the problem back in a more useful form rather than solving it outright'
+anti_patterns:
+  - pattern: 'Asking questions while clearly steering the reader to a predetermined answer'
+    why: 'That is leading disguised as facilitation; the voice respects that the reader knows something the writer does not, so the question must be genuine.'
+  - pattern: 'Explaining and teaching from expertise ("here is what I know about this")'
+    why: 'That is the friendly-mentor orientation; the coach suspends knowledge transfer in favor of building the reader capacity to think.'
+  - pattern: 'Stacking question on question with no perspective ever offered'
+    why: 'The voice creates room to think, not an absence of help; abandoning the reader in a swamp of questions is the failure it names, not the method.'
+failure_modes:
+  - mode: 'Tips into evasion, withholding a view the reader genuinely needs so it can stay non-directive'
+    mitigation: 'When a perspective is warranted, offer one as a possible view; the purpose is reader capability, not the writer refusing to commit.'
+  - mode: 'Over-facilitates into endless reflection that never lets the reader reach footing'
+    mitigation: 'Notice when the questions have done their work and let the reader land; space is purposeful, not infinite.'
 llm_instruction_phrasing: |
   Write in a coach's voice. Before offering any direction or perspective, acknowledge
   the complexity of the reader's situation. Use "you" genuinely - orient toward the

@@ -52,6 +52,26 @@ when_not_to_use:
   - Pastoral, devotional, or emotionally supportive contexts
   - Writing for broad consumer audiences unfamiliar with business vocabulary
   - Situations requiring warmth and relationship-building over direction-setting
+tells:
+  - 'Leads with the conclusion or decision before any supporting rationale'
+  - 'The "so what" is in the first paragraph, often the first sentence'
+  - 'Business-strategic vocabulary: priorities, outcomes, tradeoffs, bets, signals'
+  - 'Uses "we" at moments of shared accountability, not as filler for "I"'
+  - 'States uncertainty explicitly ("we do not yet know X; here is what we are doing until we do")'
+  - 'Names the next decision point rather than trailing into open-ended possibilities'
+  - 'Short declarative sentences for direction, longer constructions only for rationale'
+anti_patterns:
+  - pattern: 'Walking the reader through the full analysis before stating the decision'
+    why: 'The voice communicates a result already reached; rebuilding the case from scratch buries the conclusion the reader needs first.'
+  - pattern: 'Leading with the customer problem and the job to be done'
+    why: 'That is the product-thinker orientation; the executive centers the organization and what was decided, not the user purpose behind it.'
+  - pattern: 'Softening genuine uncertainty with vague hedges instead of naming it'
+    why: 'The voice treats explicit uncertainty as a feature; hiding it behind comfortable-sounding language signals the writer stopped short of the real situation.'
+failure_modes:
+  - mode: 'Tips into decree, stating direction so flatly that it reads as unaccountable fiat'
+    mitigation: 'Reserve "we" for genuine shared ownership and name the next decision point; authority comes from owning the call, not from clipping all context.'
+  - mode: 'Over-abstracts into strategic vocabulary until the actual decision is vague'
+    mitigation: 'Make the bet concrete ("prioritizing X over Y this quarter"); business framing should sharpen the call, not dissolve it into buzzwords.'
 llm_instruction_phrasing: |
   Write in an executive voice. The reader is a peer, a leader, or a stakeholder who
   needs to know what was decided and why it matters - not how you got there. Lead with
