@@ -34,7 +34,7 @@ anchor-topic substrate, and the adherence gate that admits or rejects every futu
 |---|---|---|
 | ADR 0010 | The frozen taxonomy: 5 domains, 17 format families, 5 voice families, a three-level subfamily, and a governed facet-tag enum; the four axes stay frozen | `docs/internal/adr/0010-domain-and-family-organization.md` |
 | E1 adherence-gate spec | The automated distinguishability + pedagogical-completeness + cross-model adherence gate | `plan_v0.3.0/adherence-gate-spec.md` |
-| 12 anchor topics | The locked worked-sample substrate (extends ADR 0006) | `plan_v0.3.0/anchor-topics.md` |
+| Anchor-topic model (ADR 0017) | The two-tier worked-sample substrate: a frozen regression core plus a growable seed pool (extends ADR 0006) | `plan_v0.3.0/anchor-topics.md` |
 
 ADR 0009 (pedagogical-entry-bar, still a draft) is a dependency of the gate's completeness
 check; finalizing it is in scope as a sub-item.
@@ -57,8 +57,10 @@ check; finalizing it is in scope as a sub-item.
    to read `avoid_with` / `pairs_well_with`, flag conflicting selections, apply the
    voice -> tone -> style -> format precedence, and resolve `avoid_with` symmetry. Update
    `SKILL.md`; add tests. (Backlog item S1.)
-4. **Lock the 12 anchor topics** per `anchor-topics.md`, extending ADR 0006. The existing 3
-   stay; the 9 new ones are named and domain-assigned (not yet rendered at scale).
+4. **Decide the anchor-topic model** per `anchor-topics.md` and ADR 0017: a two-tier set (a frozen
+   regression core plus a growable, optionally randomized seed pool; the 12 are the seed, not a
+   cap), extending ADR 0006. The existing 3 stay as the frozen core; the 9 new ones are named and
+   domain-assigned (not yet rendered at scale). DONE 2026-06-20 (PR #32).
 5. **Stand up the E1 adherence gate** per `adherence-gate-spec.md`: `tools/adherence-gate.py`,
    the frozen golden set (the 60 plus the 8/8 smoke-test pairs), the cross-family judge, and CI
    wiring. The gate runs but is not yet the high-volume producer.
@@ -93,8 +95,8 @@ check; finalizing it is in scope as a sub-item.
 - [ ] `tools/build-indexes.py` emits the coverage ledger; `taxonomy.json` regenerates cleanly.
 - [ ] `compose-instruction` flags an `avoid_with` conflict (e.g. `pragmatic-architect` +
       `reverent`), applies precedence, and is covered by tests; `SKILL.md` documents it.
-- [ ] The 12 anchor topics are locked in `anchor-topics.md`, every domain has a native topic,
-      and ADR 0006 is updated to reference the expanded set.
+- [x] The anchor-topic model is decided in `anchor-topics.md` (two-tier: frozen core + seed pool),
+      every domain has a native topic in the seed, and ADR 0017 records it (extending ADR 0006).
 - [ ] `tools/adherence-gate.py` runs the golden set green in CI, uses a cross-family judge, and
       writes a per-entry distinguishability score; the 70 percent first-pass stop floor is
       documented.

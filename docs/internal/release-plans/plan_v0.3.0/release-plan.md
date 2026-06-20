@@ -56,13 +56,15 @@
   - Acceptance: the conflict case warns; precedence is deterministic; tests green; existing
     valid combinations still compose.
 
-## Phase 4 - Lock the anchor topics
+## Phase 4 - Decide the anchor-topic model (D1) [DONE 2026-06-20, PR #32]
 
-- [ ] Finalize `anchor-topics.md` (12 topics, domain assignments, isolation rationale); confirm
-      every domain has a native topic.
-- [ ] Update ADR 0006 (anchor-topic-selection) to reference the expanded set; keep the existing
-      3 topics.
-  - Acceptance: topics locked; ADR 0006 amended; no domain left without a home topic.
+- [x] Finalize `anchor-topics.md` as the two-tier model (a frozen regression core plus a growable,
+      optionally randomized seed pool; the 12 are the seed, not a cap); confirm every domain has a
+      native topic in the seed.
+- [x] Record the architecture in a new ADR (ADR 0017), extending ADR 0006 (the Phase 0 single-topic
+      predecessor, kept Accepted and unchanged); keep the existing 3 topics as the frozen core.
+  - Acceptance: D1 decided (decisions.md); ADR 0017 Accepted; no domain left without a home topic in
+    the seed. (Met: PR #32; all 9 P0 now decided.)
 
 ## Phase 5 - Stand up the adherence gate (E1)
 
