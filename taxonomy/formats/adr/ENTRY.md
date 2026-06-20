@@ -77,6 +77,27 @@ when_not_to_use:
   - Operational documentation
   - Explaining how a system works
   - Consumer-facing content
+tells:
+  - 'Three canonical sections: Context, Decision, Consequences'
+  - 'A Status line (Proposed, Accepted, Deprecated, or Superseded by ADR-NNNN)'
+  - 'Context names the live forces and constraints at decision time, not project history'
+  - 'Decision names the specific choice, not just the category'
+  - 'Consequences honestly includes a Negative subsection, not only benefits'
+  - 'Short and focused, roughly 300-600 words, readable in a few minutes'
+anti_patterns:
+  - pattern: 'Writing Context as a history narrative instead of the live forces at decision time'
+    why: 'Context exists to show why this was the right call under the constraints then; history does not let a future reader reconstruct the reasoning.'
+  - pattern: 'Listing only positive consequences and omitting the tradeoffs'
+    why: 'The Consequences section is where an ADR earns its value; hiding the negatives turns a decision record into marketing.'
+  - pattern: 'Reserving ADRs only for rare, major decisions'
+    why: 'ADRs should be small and numerous; the compounding smaller decisions go unrecorded if the bar is set too high.'
+  - pattern: 'Describing what to build rather than recording a decision already made about how'
+    why: 'That collides with the confusable prd format; an ADR records a made decision and its reasoning, not a product specification.'
+failure_modes:
+  - mode: 'Over-formalizes - a short, clear call balloons into a multi-section treatise that buries the decision it exists to record'
+    mitigation: 'Keep it to roughly 300-600 words; if it needs a 20-minute read, the decision is buried, so split it or move detail to a linked doc.'
+  - mode: 'Fills out the full Context/Decision/Consequences ceremony for a non-decision, so the record is all scaffold and no actual choice'
+    mitigation: 'Write an ADR only when there is a real, hard-to-reverse decision; if naming the Decision section feels forced, there is no ADR to write.'
 llm_instruction_phrasing: |
   Write as an Architecture Decision Record (ADR). Use the canonical three-section structure:
   Context, Decision, Consequences. In Context: name the live forces at the time of decision - not

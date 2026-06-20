@@ -55,6 +55,25 @@ when_not_to_use:
   - Reference material
   - Argumentative pieces where the opposing position is genuinely weak or fringe
   - Contexts where the audience needs the conclusion now and the reasoning later
+tells:
+  - 'States the thesis explicitly and gives it its strongest case before any rebuttal'
+  - 'States the antithesis in the form its strongest proponents would recognize, not a softened version'
+  - 'Moves to a synthesis that names what each side got right and what becomes visible only together'
+  - 'When reconciliation is impossible, says so explicitly with reasons rather than forcing a tidy resolution'
+  - 'The writer position emerges from the synthesis rather than the framing'
+  - 'Shows the path to the conclusion, not only the conclusion'
+anti_patterns:
+  - pattern: 'Stating the antithesis as a weakened or strawman version'
+    why: 'The structure collapses without a strong antithesis; a weak one makes it classical argument in a costume, not dialectic.'
+  - pattern: 'Settling for "both sides have a point" as the synthesis'
+    why: 'A real synthesis does work, naming what each side got right and wrong; mere balance is not synthesis.'
+  - pattern: 'Framing the antithesis so the writer conclusion is smuggled in'
+    why: 'If the opposing view is framed to lose, the synthesis is not earned; the position must emerge from honest engagement.'
+failure_modes:
+  - mode: 'Tips into false balance, staging both sides as equally right until the synthesis dissolves into "both sides have a point"'
+    mitigation: 'The synthesis must name what each side got right and wrong, or state with reasons that none is possible; equal-validity mush is not a synthesis.'
+  - mode: 'Over-performs the thesis-antithesis sparring as point-counterpoint theater that circles without ever landing a synthesis'
+    mitigation: 'Spend the weight on the synthesis doing real work; the opposition exists to earn the synthesis, not as a display of even-handedness.'
 llm_instruction_phrasing: |
   Write using dialectic structure. State the thesis explicitly and give it its strongest case.
   Then state the antithesis - and state it in the form its strongest proponents would recognize,

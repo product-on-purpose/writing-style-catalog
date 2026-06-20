@@ -51,6 +51,27 @@ when_not_to_use:
   - Cross-cultural diplomatic correspondence where directness reads as aggression
   - Coaching contexts where the goal is to draw out the reader's thinking
   - Vulnerable peer-to-peer communication where assertion would feel like dominance
+tells:
+  - 'Core claims land as declarative sentences ("this is the right approach")'
+  - 'Ritual hedges ("I think," "maybe," "just my opinion") are absent'
+  - 'First-person assertions without qualification ("I recommend X")'
+  - 'The claim leads and the reasoning follows, rather than the claim being buried after caveats'
+  - 'Specific commitments ("we should do X") instead of vague exploration'
+  - 'No performative-humility framing ("this is just my take, but")'
+anti_patterns:
+  - pattern: 'Stripping hedges from claims where the uncertainty is genuine'
+    why: 'Confidence removes ritual hedges, not honest ones; deleting a real caveat becomes overclaiming and misleads the reader.'
+  - pattern: 'Talking down to or dismissing the reader to sound sure'
+    why: 'That is arrogance, the defining failure mode; confidence trusts the reader rather than belittling them.'
+  - pattern: 'Adding "we are doing this, starting Monday" execution framing'
+    why: 'That is resolute, not confident; confidence sits before the decision and invites pushback, resoluteness sits after it.'
+failure_modes:
+  - mode: 'Tips into arrogance, dismissing the reader instead of trusting them'
+    mitigation: 'State the claim cleanly and leave room to push back; the test is whether a smart dissenter could still engage, not whether they are flattened.'
+  - mode: 'Becomes overconfidence, hiding genuine uncertainty to keep the register'
+    mitigation: 'Keep hedges where the uncertainty is real and specific; confidence removes ritual padding, it does not fake certainty.'
+  - mode: 'Reads as loud assertion with no substance behind the certainty'
+    mitigation: 'Let the reasoning follow the claim; a supported claim is distinct from a merely loud one.'
 llm_instruction_phrasing: |
   Write in a confident tone. You have done the thinking. State your position directly and let
   the reader respond to the position itself. Strip ritual hedges - the "I think," "maybe,"
