@@ -459,18 +459,19 @@ def check_review_status(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Cross-field taxonomy check (ADR 0010 section 5.2).
 
-    For format entries: `family` must belong to `domain`, and a `family` with
-    no `domain` is incomplete. For voice entries: `family` must be a known voice
-    family. For either: a `subfamily` must belong to its family where that
-    family has enumerated subfamilies, and once a family has 12 or more members
-    every entry in it should carry a subfamily.
+    For format entries: `family` must belong to `domain`. For voice entries:
+    `family` must be a known voice family. For either: a `subfamily` must belong
+    to its family where that family enumerates subfamilies, and once a family has
+    12 or more members every entry in it must carry a subfamily.
 
-    Ships optional-with-warning (decision F2): the returned list is for tests
-    and reporting; the runner does NOT add it to the error count, so a
-    not-yet-backfilled catalog still validates clean.
+    Tightened to required (decision F2 phase 3, 2026-06-19, after the 60 were
+    backfilled and A1 ratified): violations are errors and contribute to the
+    exit code. Field presence (domain/family required) is enforced by the JSON
+    schemas; this check enforces the cross-field rules the schema cannot
+    express. Tones and styles are exempt (no domain/family).
     """
-    print("[CHECK] Taxonomy membership (optional, warnings)...")
-    warnings: list[str] = []
+    print("[CHECK] Taxonomy membership...")
+    errors: list[str] = []
 
     family_counts: dict[tuple[str, str], int] = {}
     for _id, (axis, fm) in id_map.items():
@@ -487,31 +488,31 @@ def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 
         if axis == "format":
             if family and not domain:
-                warnings.append(f"[WARN] {rel}: has family '{family}' but no domain")
+                errors.append(f"[ERROR] {rel}: has family '{family}' but no domain")
             if domain and not taxonomy.is_valid_format_domain(domain):
-                warnings.append(f"[WARN] {rel}: unknown format domain '{domain}'")
+                errors.append(f"[ERROR] {rel}: unknown format domain '{domain}'")
             elif domain and family and not taxonomy.is_valid_format_family(domain, family):
-                warnings.append(
-                    f"[WARN] {rel}: family '{family}' does not belong to domain '{domain}'"
+                errors.append(
+                    f"[ERROR] {rel}: family '{family}' does not belong to domain '{domain}'"
                 )
             if (
                 subfamily and family
                 and taxonomy.format_family_has_subfamilies(family)
                 and not taxonomy.is_valid_format_subfamily(family, subfamily)
             ):
-                warnings.append(
-                    f"[WARN] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
+                errors.append(
+                    f"[ERROR] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
                 )
         elif axis == "voice":
             if family and not taxonomy.is_valid_voice_family(family):
-                warnings.append(f"[WARN] {rel}: unknown voice family '{family}'")
+                errors.append(f"[ERROR] {rel}: unknown voice family '{family}'")
             if (
                 subfamily and family
                 and taxonomy.voice_family_has_subfamilies(family)
                 and not taxonomy.is_valid_voice_subfamily(family, subfamily)
             ):
-                warnings.append(
-                    f"[WARN] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
+                errors.append(
+                    f"[ERROR] {rel}: subfamily '{subfamily}' does not belong to family '{family}'"
                 )
 
         if (
@@ -519,15 +520,15 @@ def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
             and family_counts.get((axis, family), 0) >= 12
             and not subfamily
         ):
-            warnings.append(
-                f"[WARN] {rel}: family '{family}' has 12 or more members; subfamily is required"
+            errors.append(
+                f"[ERROR] {rel}: family '{family}' has 12 or more members; subfamily is required"
             )
 
-    if not warnings:
-        print("[PASS] Taxonomy membership: 0 warnings")
-    for w in warnings:
-        print(w)
-    return warnings
+    if not errors:
+        print("[PASS] Taxonomy membership: 0 errors")
+    for e in errors:
+        print(e)
+    return errors
 
 
 def check_faceted_tags(id_map: dict[str, tuple[str, dict]]) -> list[str]:
@@ -591,9 +592,10 @@ def run_all_checks() -> list[str]:
     check_review_status(id_map)
 
     if id_map:
-        # Optional-with-warning checks (decision F2): they report but never
-        # contribute to the error count or the exit code.
-        check_taxonomy_membership(id_map)
+        # Taxonomy membership is tightened to required (F2 phase 3): violations
+        # are errors. Faceted tags stay optional-with-warning (values widen on
+        # demand per A4), so they report but do not affect the exit code.
+        all_errors += check_taxonomy_membership(id_map)
         check_faceted_tags(id_map)
 
     print()

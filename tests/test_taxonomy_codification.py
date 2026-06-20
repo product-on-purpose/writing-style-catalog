@@ -117,16 +117,21 @@ def test_membership_warns_on_invalid_voice_family():
     assert any("pastoral" in w for w in warnings)
 
 
-def test_membership_returns_no_errors_to_exit_code():
-    """The check is optional-with-warning (F2): even a violation must not
-    push validate.py to a non-zero exit. Warnings are returned, but the
-    runner does not add them to the error list."""
+def test_membership_violations_are_errors_after_tightening():
+    """F2 phase 3: with the backfill complete and A1 ratified, domain/family
+    membership is tightened from optional-with-warning to required - a
+    violation is an [ERROR] that contributes to the error count."""
     id_map = {"x": _entry("voice", family="not-a-family")}
-    # The function may return warnings, but run_all_checks must not count them.
-    before = validate.run_all_checks()
-    # run_all_checks on the real catalog still passes (0 errors); the synthetic
-    # bad entry above is not on disk, so this asserts the wiring, not the data.
-    assert isinstance(before, list)
+    issues = validate.check_taxonomy_membership(id_map)
+    assert issues
+    assert all(i.startswith("[ERROR]") for i in issues)
+
+
+def test_real_catalog_passes_under_required_mode():
+    """Every backfilled entry must validate clean once membership is an
+    error-level check, or tightening would break the build."""
+    errors = validate.run_all_checks()
+    assert errors == []
 
 
 # ---------------------------------------------------------------------------
@@ -208,3 +213,16 @@ def test_format_schema_domain_and_family_enums_match_taxonomy():
 def test_voice_schema_family_enum_matches_taxonomy():
     props = _load_schema("voice.schema.json")["properties"]
     assert set(props["family"]["enum"]) == set(taxonomy.VOICE_FAMILIES)
+
+
+def test_format_schema_requires_domain_and_family():
+    """F2 phase 3: domain and family are required on format entries."""
+    schema = _load_schema("format.schema.json")
+    assert "domain" in schema.get("required", [])
+    assert "family" in schema.get("required", [])
+
+
+def test_voice_schema_requires_family():
+    """F2 phase 3: family is required on voice entries."""
+    schema = _load_schema("voice.schema.json")
+    assert "family" in schema.get("required", [])

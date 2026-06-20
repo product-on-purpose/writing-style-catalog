@@ -13,7 +13,7 @@
     "family": {
       "type": "string",
       "enum": ["expert", "care", "principal", "witness", "dissident"],
-      "description": "Voice family, grounded by communicative function (ADR 0010 sections 2 and 2a). No domain: a voice travels across spheres. Enum mirrors tools/taxonomy.py VOICE_FAMILIES. Optional until the migration tightens it to required (decision F2)."
+      "description": "Voice family, grounded by communicative function (ADR 0010 sections 2 and 2a). No domain: a voice travels across spheres. Enum mirrors tools/taxonomy.py VOICE_FAMILIES. Required (F2 phase 3, tightened 2026-06-19)."
     },
     "subfamily": {
       "type": "string",
@@ -45,5 +45,5 @@
       "description": "Tone IDs that frequently pair with this voice"
     }
   },
-  "required": ["language_patterns"]
+  "required": ["language_patterns", "family"]
 }

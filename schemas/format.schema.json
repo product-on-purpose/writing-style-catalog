@@ -13,7 +13,7 @@
     "domain": {
       "type": "string",
       "enum": ["professional", "public", "personal", "ceremonial", "contemplative"],
-      "description": "Sphere of life the writing happens in (ADR 0010). Optional until the taxonomy migration tightens it to required (decision F2). The enum mirrors tools/taxonomy.py FORMAT_DOMAINS; the family-belongs-to-domain rule is enforced by validate.py."
+      "description": "Sphere of life the writing happens in (ADR 0010). Required (F2 phase 3, tightened 2026-06-19 after the 60 were backfilled). The enum mirrors tools/taxonomy.py FORMAT_DOMAINS; the family-belongs-to-domain rule is enforced by validate.py."
     },
     "family": {
       "type": "string",
@@ -22,7 +22,7 @@
         "messaging", "outreach", "response", "broadcast", "copy", "position",
         "accountability", "correspondence", "essay", "tribute", "devotion", "journal"
       ],
-      "description": "Structural/functional kind of writing, scoped to its domain (ADR 0010). Flat enum (mirrors tools/taxonomy.py); membership within the domain is checked by validate.py. Optional until tightened (F2)."
+      "description": "Structural/functional kind of writing, scoped to its domain (ADR 0010). Flat enum (mirrors tools/taxonomy.py); membership within the domain is checked by validate.py. Required (F2 phase 3)."
     },
     "subfamily": {
       "type": "string",
@@ -67,5 +67,6 @@
       "enum": ["digital", "print", "both", "neither"],
       "description": "Primary medium for this format"
     }
-  }
+  },
+  "required": ["domain", "family"]
 }
