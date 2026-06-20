@@ -46,7 +46,7 @@ Same-family neighbors are the right adversary because the taxonomy (v2, the cano
 
 ### Gate 2 - Pedagogical completeness
 
-Schema-checked, deterministic, no judge needed. Every required field is present and substantive: the universal schema's `pairs_well_with`, `avoid_with`, `confusable_with`, `when_to_use`, `when_not_to_use`, `llm_instruction_phrasing` (all already required and ID-validated by `tools/validate.py`), plus the pedagogical fields the draft ADR 0009 bar names - `tells`, `anti_patterns`, `failure_modes`, a `before_after_example` (before, after, commentary), a `mini_glossary` where applicable, and the minimum sample count (12 per entry across the anchor set). This gate is cheap and runs first, because there is no point paying for judge tokens on a candidate that is structurally incomplete.
+Schema-checked, deterministic, no judge needed. Every required field is present and substantive: the universal schema's `pairs_well_with`, `avoid_with`, `confusable_with`, `when_to_use`, `when_not_to_use`, `llm_instruction_phrasing` (all already required and ID-validated by `tools/validate.py`), plus the pedagogical fields ADR 0009 ratifies. ADR 0009 was **Accepted 2026-06-20 as a gate-critical subset**: the fields Gate 2 enforces are `tells`, `anti_patterns`, and `failure_modes` (now in the universal schema as optional, tightening to required once the 60 are backfilled), plus the minimum sample count (12 per entry across the anchor set). The heavier `before_after_example` and `mini_glossary` are deferred by ADR 0009 (not part of the Gate 2 bar unless a later amendment adopts them). This gate is cheap and runs first, because there is no point paying for judge tokens on a candidate that is structurally incomplete.
 
 ### Gate 3 - Cross-model adherence
 

@@ -19,7 +19,8 @@
     the stale v1) and the scaling decision matrix.
 - [ ] Maintainer records the decisions in [`decisions.md`](decisions.md) (the consolidated
       decision record; the six in `spec.md` Section 6 are the P0 subset); ADR 0010 and ADR 0009
-      move Proposed -> Accepted; ADR 0006 noted for the topic-set update.
+      move Proposed -> Accepted (ADR 0010 on 2026-06-19; ADR 0009 on 2026-06-20 as a gate-critical
+      subset); ADR 0006 noted for the topic-set update (extended by ADR 0017).
   - Acceptance: every P0 row in `decisions.md` has a recorded maintainer call; the taxonomy
     cuts, the 12 topics, the gate thresholds, and the resourcing posture are locked.
 
@@ -73,7 +74,9 @@
       distinguishability score output.
 - [ ] Freeze the golden set (the 60 plus the 8/8 smoke-test pairs); wire the gate + the new
       validators into CI as a regression check.
-- [ ] Finalize ADR 0009 (pedagogical bar); the gate's completeness check reads it.
+- [~] Finalize ADR 0009 (pedagogical bar); the gate's completeness check reads it. ADR ratified
+      2026-06-20 (gate-critical subset: `failure_modes`, `anti_patterns`, `tells`, optional in the
+      schema); the Gate 2 check that reads it rides this gate build.
   - Acceptance: the gate runs the golden set green in CI; a deliberately indistinct entry is
     rejected; the 70 percent first-pass stop floor is documented.
 
