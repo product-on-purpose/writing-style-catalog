@@ -54,7 +54,7 @@ Voice, Tone, Style, and Format remain the only top-level axes, per ADR 0001. No 
 
 The test a top-level axis must pass: orthogonal to the others, the composer selects exactly one value per instruction, and it changes `llm_instruction_phrasing` independently. None of the six pass cleanly; all are better expressed as cross-cutting facets or subfamilies.
 
-### 2. Controlled vocabulary: 5 format domains, 16 format families, 5 voice families
+### 2. Controlled vocabulary: 5 format domains, 17 format families, 5 voice families
 
 **Two new organizational fields, per-axis applicability:**
 
@@ -65,7 +65,7 @@ Tones and Styles receive neither field. They are register and rhetorical-pattern
 
 **The 5 format domains:** `professional`, `public`, `personal`, `ceremonial`, `contemplative`. (The domain formerly proposed as `relational` is renamed `personal` per A1/Q2, and its definition is widened to cover both its families - `correspondence`, written to someone the author knows, and `essay`, drawn from the author's lived experience for a wider readership. The unifying thread is the personal/relational source of the writing, not the size of the audience. Near miss for the placement algorithm: a personal essay published to strangers still belongs in `personal` because its subject is the writer's own experience, whereas a how-to guide or explainer addressed to a general audience belongs in `public` because its subject is the reader's task, not the writer's life. The full definition with this near-miss regression sentence is recorded under A1 in `decisions.md` and lands in `tools/taxonomy.py` during the Phase 1 migration.)
 
-**The 16 format families, scoped to domain:**
+**The 17 format families, scoped to domain:**
 
 | Domain | Families |
 |---|---|
@@ -74,6 +74,8 @@ Tones and Styles receive neither field. They are register and rhetorical-pattern
 | `personal` (2) | `correspondence`, `essay` |
 | `ceremonial` (1) | `tribute` |
 | `contemplative` (2) | `devotion`, `journal` |
+
+(Count correction, 2026-06-19: the per-domain enumeration sums to 8 + 4 + 2 + 1 + 2 = **17**, not the "16" that earlier summary lines in this ADR, the v2 working doc, and the Fable review all carried. The enumeration has always listed 17; "16" was a propagated arithmetic error. Phase 1 codification (`tools/taxonomy.py`) encodes the enumerated 17, which is the binding count.)
 
 **The 5 voice families (no domain):** `expert`, `care`, `principal`, `witness`, `dissident`. Voices carry no `domain` because a speaker travels across spheres: a `witness`-family voice can write a public broadcast, a professional brief, a personal essay, or a ceremonial tribute without ceasing to be that voice. (The originally proposed sixth family `pastoral` is folded into `care` as a subfamily per A1 and the grounding pass in Section 2a: by the functional test a pastoral voice performs the same communicative action as `care` - it accompanies, tends, and forms a reader - in a religious register, so it is a register variant of `care`, not a peer family. The `pastoral` voice entry keeps its slug and takes `family: care, subfamily: pastoral` at Phase 1 backfill.)
 
@@ -209,7 +211,7 @@ Originals, for context:
 
 1. **Subfamily naming.** This ADR fixes the three levels and the 12-member trigger but does not enumerate subfamilies. The first binding cases are `instruction` (`reference` vs `tutorial` is the v2 doc's worked example) and `witness` (`chronicler` is named; the other ~17 voices need cuts). Approve the subfamily-naming pass as a follow-on working doc, gate-arbitrated, before mass-add into those two families?
 2. **Faceted-tag enum scope.** Are the 7 facets (`channel:`, `formality:`, `modality:`, `epistemic:`, `length:`, `stance:`, `delivery:`) the right closed set, and are the illustrative value lists complete enough to seed `tools/taxonomy.py`, or should the initial enum start narrower and widen on demand?
-3. **Coverage target bands.** Confirm the dense (12-20) and narrow (3-8) bands, and assign each of the 16 families to a band. The inventory implies the dense set (`instruction`, `deliberation`, `correspondence`, `broadcast`, `tribute`, `devotion`, `witness`); confirm `messaging`, `journal`, `copy`, `outreach`, `response`, `essay` as narrow.
+3. **Coverage target bands.** Confirm the dense (12-20) and narrow (3-8) bands, and assign each of the 17 families to a band. The inventory implies the dense set (`instruction`, `deliberation`, `correspondence`, `broadcast`, `tribute`, `devotion`, `witness`); confirm `messaging`, `journal`, `copy`, `outreach`, `response`, `essay` as narrow.
 4. **Journalism placement.** If journalism is admitted, is it a `public` subfamily (recommended, widening an existing domain) or its own sixth domain? A new domain is a heavier contract than a subfamily.
 5. **Migration timing relative to E1.** This ADR's tighten-to-required step (migration phase 3) and the E1 gate are interdependent: the gate renders against family neighbors, so families should be populated before the gate runs at volume. Confirm the sequence: land this taxonomy (optional, then backfill), stand up E1, then tighten to required behind the gate.
 6. **Twelve as the subfamily threshold.** Is 12 the right hard cutoff, or should it be a soft alarm in the coverage ledger with the maintainer deciding each split? A hard cutoff is enforceable; a soft one preserves judgment at the cost of determinism.

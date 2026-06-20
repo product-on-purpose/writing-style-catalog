@@ -10,6 +10,16 @@
     "axis": {
       "const": "voice"
     },
+    "family": {
+      "type": "string",
+      "enum": ["expert", "care", "principal", "witness", "dissident"],
+      "description": "Voice family, grounded by communicative function (ADR 0010 sections 2 and 2a). No domain: a voice travels across spheres. Enum mirrors tools/taxonomy.py VOICE_FAMILIES. Optional until the migration tightens it to required (decision F2)."
+    },
+    "subfamily": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Optional third level, required once a family reaches 12 members (ADR 0010). For example care -> pastoral. Membership is checked by validate.py where the family enumerates subfamilies."
+    },
     "language_patterns": {
       "type": "array",
       "items": { "type": "string" },

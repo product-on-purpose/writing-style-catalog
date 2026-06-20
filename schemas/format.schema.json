@@ -10,6 +10,25 @@
     "axis": {
       "const": "format"
     },
+    "domain": {
+      "type": "string",
+      "enum": ["professional", "public", "personal", "ceremonial", "contemplative"],
+      "description": "Sphere of life the writing happens in (ADR 0010). Optional until the taxonomy migration tightens it to required (decision F2). The enum mirrors tools/taxonomy.py FORMAT_DOMAINS; the family-belongs-to-domain rule is enforced by validate.py."
+    },
+    "family": {
+      "type": "string",
+      "enum": [
+        "deliberation", "instruction", "progress", "brief", "appraisal",
+        "messaging", "outreach", "response", "broadcast", "copy", "position",
+        "accountability", "correspondence", "essay", "tribute", "devotion", "journal"
+      ],
+      "description": "Structural/functional kind of writing, scoped to its domain (ADR 0010). Flat enum (mirrors tools/taxonomy.py); membership within the domain is checked by validate.py. Optional until tightened (F2)."
+    },
+    "subfamily": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*[a-z0-9]$",
+      "description": "Optional third level, required once a family reaches 12 members (ADR 0010). Membership is checked by validate.py where the family enumerates subfamilies."
+    },
     "typical_length": {
       "type": "object",
       "properties": {
