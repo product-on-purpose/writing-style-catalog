@@ -75,9 +75,10 @@ genuine register a skilled writer would produce, or a costume?"
 
 **The whole check is one judge question, because the catalog supplies its own answer key.**
 Measuring "good" is usually hard because it imports external taste, which is subjective and
-gameable. This catalog sidesteps that. Every entry already carries its own `failure_modes` /
-`anti_patterns` / `when_not_to_use` (required and substance-checked by Gate 2 / ADR 0009), and the
-prose entries name their caricature explicitly: `confident` says "distinct from arrogance," `warm`
+gameable. This catalog sidesteps that. Every entry already carries its own `when_not_to_use` (required), and
+per ADR 0009 (the ratified gate-critical subset) also its own `failure_modes` / `anti_patterns`
+(optional in the schema now, tightening to required and substance-checked by Gate 2 once the 60 are
+backfilled); the prose entries name their caricature explicitly: `confident` says "distinct from arrogance," `warm`
 says it "tips into saccharine," `resolute` warns that "performative resoluteness ... reads as
 bluster." So restraint is not an outside aesthetic judgment; it is a check against each entry's own
 published failure mode. The cross-family judge (already running for Gate 1) answers, per rendered
@@ -158,7 +159,7 @@ Build on the repo's existing generate-and-guard machinery; do not start fresh.
 - **Extend `tools/diff-pair-generator.py`** into the Stage 1-2 scaffolder/generator. It already imports `_extract_frontmatter`, `AXES`, and `REPO_ROOT` from `validate.py` and already renders one-axis-varied comparisons holding topic constant - the exact shape the gate consumes. Generalize it from "two existing slices" to "candidate plus its taxonomy-derived neighbor set, rendered on the home topic across two model tiers."
 - **New `tools/adherence-gate.py`.** The Stage 3 harness proper: take a candidate, look up neighbors from `tools/taxonomy.py`, render via the generator, run the cross-family blind judge, score forced-choice + band, run the embedding de-dup, and emit ADMIT/REJECT + rationale + the recomputed `distinguishability` score. It reuses `validate.py`'s frontmatter parser and `AXES` map rather than re-parsing.
 - **Extend `tools/build-instruction.py`.** Land S1 (conflict-aware composition) first: today `compose_instruction` (line 180, `"\n\n".join(parts)`) concatenates `llm_instruction_phrasing` blocks and never reads `avoid_with` / `pairs_well_with`, so composing `pragmatic-architect` + `reverent` silently staples together a pairing that is literally in `pragmatic-architect`'s `avoid_with`. The gate renders compositions; if composition is incoherent, the gate measures noise. Conflict-aware composition (and a deterministic `avoid_with` symmetry decision) must precede any combinatorial enumeration the gate scores.
-- **Extend `tools/validate.py`** for Gate 2: check presence and substance of `tells`, `anti_patterns`, `failure_modes`, `before_after_example`, `mini_glossary`, and the minimum sample count, deterministically. The relationship-ID existence checks already in `validate.py` stay; Gate 2 adds the pedagogical bar on top.
+- **Extend `tools/validate.py`** for Gate 2: check presence and substance of the ADR 0009 gate-critical fields (`tells`, `anti_patterns`, `failure_modes`) and the minimum sample count, deterministically. (`before_after_example` and `mini_glossary` were deferred by ADR 0009 and are not part of the Gate 2 bar unless a later amendment adopts them.) The relationship-ID existence checks already in `validate.py` stay; Gate 2 adds the pedagogical bar on top.
 - **Wire into CI alongside `validate.py`.** `validate.py` (structure) and `adherence-gate.py` (empirical, including the frozen golden-set regression) run together. Structural failures short-circuit before judge tokens are spent.
 
 ## Reviewer economics, and where humans are irreplaceable
