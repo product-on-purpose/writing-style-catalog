@@ -93,6 +93,41 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "Relative paths to example files"
+    },
+    "tells": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 5,
+      "maxItems": 7,
+      "description": "ADR 0009 pedagogical bar (optional until backfilled, then required). 5 to 7 spottable phrases, syntactic moves, or structural markers by which a reader identifies this entry's application in the wild. Largely reformats the per-axis fields (language_patterns, markers, structural_conventions)."
+    },
+    "anti_patterns": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["pattern", "why"],
+        "properties": {
+          "pattern": { "type": "string", "description": "A common misuse of this entry" },
+          "why": { "type": "string", "description": "Why it counts as misapplication" }
+        }
+      },
+      "description": "ADR 0009 pedagogical bar (optional until backfilled, then required). 2 to 4 misuse/why pairs; consumed by Gate 2. Makes explicit what is implicit in when_not_to_use and confusable_with."
+    },
+    "failure_modes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["mode", "mitigation"],
+        "properties": {
+          "mode": { "type": "string", "description": "A specific way the entry breaks in practice" },
+          "mitigation": { "type": "string", "description": "How the writer recognizes and corrects it" }
+        }
+      },
+      "description": "ADR 0009 pedagogical bar (optional until backfilled, then required). 2 to 3 mode/mitigation pairs. The field the C1 restraint check renders against: a sample is judged a caricature if it triggers the entry's own declared failure modes."
     }
   }
 }

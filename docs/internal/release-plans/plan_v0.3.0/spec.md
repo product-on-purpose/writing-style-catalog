@@ -36,8 +36,11 @@ anchor-topic substrate, and the adherence gate that admits or rejects every futu
 | E1 adherence-gate spec | The automated distinguishability + pedagogical-completeness + cross-model adherence gate | `plan_v0.3.0/adherence-gate-spec.md` |
 | Anchor-topic model (ADR 0017) | The two-tier worked-sample substrate: a frozen regression core plus a growable seed pool (extends ADR 0006) | `plan_v0.3.0/anchor-topics.md` |
 
-ADR 0009 (pedagogical-entry-bar, still a draft) is a dependency of the gate's completeness
-check; finalizing it is in scope as a sub-item.
+ADR 0009 (pedagogical-entry-bar) is a dependency of the gate's completeness check; it was
+**ratified 2026-06-20 as a gate-critical subset** (Accepted): `failure_modes`, `anti_patterns`,
+and `tells` are adopted (the fields Gate 2 and the C1 restraint check consume) and landed as
+optional schema properties; `before_after_example`, `mini_glossary`, and the cross-reference
+object upgrade are deferred. The backfill of the 60 and the tighten-to-required ride the gate build.
 
 ## 3. Scope
 
@@ -65,6 +68,8 @@ check; finalizing it is in scope as a sub-item.
    the frozen golden set (the 60 plus the 8/8 smoke-test pairs), the cross-family judge, and CI
    wiring. The gate runs but is not yet the high-volume producer.
 6. **Finalize ADR 0009** (pedagogical bar) so the gate's completeness check has a codified bar.
+   DONE 2026-06-20: ratified as a gate-critical subset (`failure_modes`, `anti_patterns`, `tells`),
+   landed optional in the universal schema; the rest deferred and the tighten rides the gate build.
 
 ### Out of scope (future releases, behind this foundation)
 - Mass entry expansion toward 30/axis and the full inventory (backlog E2) - v0.4.0+.
@@ -100,7 +105,8 @@ check; finalizing it is in scope as a sub-item.
 - [ ] `tools/adherence-gate.py` runs the golden set green in CI, uses a cross-family judge, and
       writes a per-entry distinguishability score; the 70 percent first-pass stop floor is
       documented.
-- [ ] ADR 0009 (pedagogical bar) is Accepted and the gate checks against it.
+- [x] ADR 0009 (pedagogical bar) is Accepted (gate-critical subset) and its fields are in the
+      schema (optional). The gate's Gate 2 enforcement and the tighten-to-required ride the gate build.
 - [ ] The catalog still validates and the site still builds (no regression); house dash rule
       holds across all new docs and code.
 
