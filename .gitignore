@@ -63,7 +63,9 @@ site/src/content/docs/examples/
 site/src/content/docs/recipes/
 site/src/content/docs/templates/
 
-# Agent working context - session logs, pilot data, and research notes are local-only
+# Agent working context - session logs, pilot data, research notes, and build
+# plans are local-only
 _agent-context/session-log/
 _agent-context/gate-pilot/
 _agent-context/research/
+_agent-context/plans/
