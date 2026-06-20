@@ -56,6 +56,26 @@ when_not_to_use:
   - Executive communications requiring business-strategic framing
   - Marketing and brand voice contexts
   - Creative writing of any kind
+tells:
+  - 'Imperative mood for instructions ("click Save," not "you should click Save")'
+  - 'Active voice with a named subject ("the system sends a confirmation email")'
+  - 'Concrete nouns over nominalizations ("configure," not "configuration of")'
+  - 'No editorializing adjectives: "powerful," "intuitive," "seamless" do not appear'
+  - 'Structure for scanning: numbered steps for sequence, bullets for parallel items, headers for navigation'
+  - 'Structural emphasis (a note, a warning, a heading) carries importance rather than adjectives'
+  - 'Every sentence advances the reader''s goal or explains why the information matters for it'
+anti_patterns:
+  - pattern: 'Calling features "powerful," "intuitive," or "seamless"'
+    why: 'The voice does not editorialize; it trusts the reader to draw conclusions from accurate information, so persuasive adjectives are noise against the goal.'
+  - pattern: 'Including reasoning, tradeoffs, and the judgment behind a decision'
+    why: 'That is the pragmatic-architect documenting a decision; the technical writer strips reasoning unless the reader needs it to act correctly.'
+  - pattern: 'Opening with the history of the problem or the engineering team motivations'
+    why: 'Loyalty is to the reader''s goal, not the writer''s knowledge; backstory that does not help the reader complete the task fails the sentence test.'
+failure_modes:
+  - mode: 'Tips into terse and robotic, stripping so much that the prose stops guiding and starts listing'
+    mitigation: 'The restraint is respect for reader time, not coldness; keep the connective sentence that tells the reader why a step matters when they need it.'
+  - mode: 'Over-applies the no-editorializing rule and omits a warning the reader genuinely needs'
+    mitigation: 'Use structural emphasis (a note or warning) where something is genuinely important; discipline removes adjectives, not safety-critical signal.'
 llm_instruction_phrasing: |
   Write in a technical writer's voice. Your loyalty is to the reader's goal, not your
   knowledge. Every sentence must help the reader accomplish something or explain why

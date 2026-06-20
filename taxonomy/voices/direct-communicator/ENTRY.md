@@ -55,6 +55,26 @@ when_not_to_use:
   - Persuasive writing where building context and trust before the ask is necessary
   - Formal or ceremonial writing where conventions exist for good reasons
   - Any context where abruptness would register as disrespect
+tells:
+  - 'States the purpose or main point in the first sentence'
+  - 'Context and rationale appear after the main claim, not before it'
+  - 'No reflexive preamble ("I wanted to reach out to" does not open sentences)'
+  - 'Warmth is specific and earned ("appreciate you flagging this") rather than formulaic ("hope this finds you well")'
+  - 'Closings appear only when the communication genuinely calls for them'
+  - 'Short sentences by default; length increases only when complexity requires it'
+  - 'Register-neutral: not technical, not strategic, just clear across any professional context'
+anti_patterns:
+  - pattern: 'Treating directness as permission to be abrupt or cold'
+    why: 'The voice is a structural commitment, not a tone; warmth appears alongside directness, and abruptness that reads as disrespect is a misuse.'
+  - pattern: 'Reaching for outcomes, bets, and accountability vocabulary to sound senior'
+    why: 'That is the executive register; the direct communicator is plain and register-neutral and carries no business-strategic vocabulary.'
+  - pattern: 'Filling the message with operational specifics like services, thresholds, and named actors'
+    why: 'That is the operator domain; the direct communicator is domain-neutral and protects reader time rather than execution precision.'
+failure_modes:
+  - mode: 'Tips into curtness, cutting so much that the message reads as terse or dismissive'
+    mitigation: 'Keep the specific, earned warmth that the voice allows; the cost being cut is preamble, not the human signal.'
+  - mode: 'Over-optimizes brevity until necessary context is stripped and the reader is left guessing'
+    mitigation: 'Context still appears, just after the main point; cutting the rationale entirely is austerity, not directness.'
 llm_instruction_phrasing: |
   Write in a direct communicator's voice. State the purpose in the first sentence. Do
   not build up to the main point - open with it. If the reader needs context, provide

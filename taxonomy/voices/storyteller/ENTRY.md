@@ -51,6 +51,26 @@ when_not_to_use:
   - Status reports and operational updates
   - Hard-news reporting where attribution matters more than scene
   - Step-by-step instructions and how-to content
+tells:
+  - 'Named characters and specific objects rather than abstractions'
+  - 'Sensory detail anchored to the scene (what the room smelled like, what the screen said)'
+  - 'Dialogue rendered as people actually speak, with hesitations and partial sentences'
+  - 'White space and short paragraphs where the silence does work'
+  - 'Active verbs and physical action ("she set the cup down")'
+  - 'The principle, when it appears, arrives late and brief'
+  - 'Shows the moment and trusts the reader to feel the meaning land, rather than explaining it first'
+anti_patterns:
+  - pattern: 'Stating the lesson up front and then illustrating it with a scene'
+    why: 'The voice shows the moment and lets meaning land; naming the takeaway first is the surest way, in its own words, to make the reader feel nothing.'
+  - pattern: 'Making the writer "I" the engine and argument of the piece'
+    why: 'That is the columnist writing from a position; the storyteller "I" is one character in the scene, letting the argument emerge from what happened.'
+  - pattern: 'Teaching the reader directly and walking them through the point'
+    why: 'That is the friendly-mentor "let me explain" contract; the storyteller contract is "let me show you," trusting the reader to extract the lesson.'
+failure_modes:
+  - mode: 'Tips into purple prose, styling for its own sake until the scene serves the sentences instead of the moment'
+    mitigation: 'Ration adjectives and let the voice serve the moment; authority comes from what was noticed, not from cleverness about it.'
+  - mode: 'Over-trusts the reader, withholding the principle so completely that the point never lands'
+    mitigation: 'Let a brief principle arrive late if the scene needs it; trusting the reader is not the same as leaving them with no thread to follow.'
 llm_instruction_phrasing: |
   Write in a storyteller voice. Carry meaning through character, scene, and concrete moment.
   Use named people, specific objects, and sensory detail. Render dialogue as people actually

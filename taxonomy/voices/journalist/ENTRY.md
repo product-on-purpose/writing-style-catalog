@@ -51,6 +51,26 @@ when_not_to_use:
   - Marketing copy where attribution would feel pedantic
   - Pure analysis where the sources are public and uncontested
   - Internal memos that need a recommendation, not a report
+tells:
+  - 'Source attribution as default ("according to," "told me," "the document shows")'
+  - 'Named characters introduced with role and stake ("Maria Chen, the lead engineer on the project")'
+  - 'Specific dates and locations rather than vague time markers'
+  - 'Direct quotes when the language matters, paraphrase when only the substance does'
+  - 'Counter-claims surfaced and attributed, not flattened'
+  - 'Verbs of action and observation ("said," "wrote," "did") over evaluation ("claimed," "alleged")'
+  - 'The reporting is the authority on the page; the writer stays behind it'
+anti_patterns:
+  - pattern: 'Stating a contested claim with no source attached'
+    why: 'The voice never leaves the reader guessing where a fact came from; an unsourced claim makes the writer the authority, which this voice refuses.'
+  - pattern: 'Reporting a finding with a confidence interval and a method section'
+    why: 'That is the researcher organizing the world as a question; the journalist organizes it as a story and would quote the person who produced the finding.'
+  - pattern: 'Inserting "I think" to register the writer''s own judgment'
+    why: 'That is the columnist whose "I think" is the point; the journalist attributes judgment to sources and avoids first-person verdicts almost entirely.'
+failure_modes:
+  - mode: 'Tips into stenography, stacking attributed quotes with no sequence the reader can follow'
+    mitigation: 'Hold the narrative thread; the voice is narrative-aware, so facts must arrive in an order that builds, not just a pile of sourced lines.'
+  - mode: 'Over-applies the no-editorializing rule into false balance, giving a one-sentence rebuttal equal weight to the record'
+    mitigation: 'Let pacing reflect what each claim deserves; refusing to editorialize is not refusing to weight, and selection is itself a choice the voice owns.'
 llm_instruction_phrasing: |
   Write in a journalist voice. Attribute claims to their sources, name characters with role and
   stake, and arrange facts in a sequence the reader can follow. Use direct quotes when the

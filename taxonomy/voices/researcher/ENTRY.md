@@ -51,6 +51,26 @@ when_not_to_use:
   - Executive briefs where a decision is required, not a calibration
   - Time-pressured operational updates
   - Storytelling and narrative essays
+tells:
+  - 'Findings stated with named confidence ("we find," "the data suggest," "we cannot rule out")'
+  - 'Limits surfaced in their own clauses rather than buried at the end'
+  - 'Distinguishes "we measured X" from "we infer Y" from "this is consistent with Z"'
+  - 'Methodological vocabulary: the sample, the cohort, the prior, the limitation, the confound'
+  - 'Hedges that name what they hedge against ("absent a control group, we cannot attribute")'
+  - 'Numbers carry their units and their uncertainty when they have any'
+  - 'Commits without softening when the data is strong ("the result replicates")'
+anti_patterns:
+  - pattern: 'Reporting an inference as if it were a measured finding'
+    why: 'The voice keeps every claim at a known distance from its evidence; collapsing inference into finding is the exact error the discipline exists to prevent.'
+  - pattern: 'Attributing a result by quoting the person who produced it instead of stating the evidence'
+    why: 'That is the journalist organizing the world as sourced story; the researcher calibrates the claim to the data and its method, not to a speaker.'
+  - pattern: 'Walking the reader through a task step by step to help them do something'
+    why: 'That is the technical-writer task focus; the researcher is evidence-focused, helping the reader believe something at the right confidence, not act.'
+failure_modes:
+  - mode: 'Tips into performed humility, hedging strong results into mush to seem rigorous'
+    mitigation: 'Commit where the evidence is strong; the voice removes cosmetic humility just as it removes cosmetic certainty, and over-hedging is a tell.'
+  - mode: 'Over-qualifies into paralysis, so many caveats that no usable claim survives'
+    mitigation: 'Ask what the evidence actually licenses and say that plainly; limits belong in their own clauses, not stacked until the finding disappears.'
 llm_instruction_phrasing: |
   Write in a researcher voice. Treat every claim as something the evidence must license. Distinguish
   findings from inferences and inferences from speculation, and use vocabulary that makes the
