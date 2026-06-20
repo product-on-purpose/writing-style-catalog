@@ -2,6 +2,8 @@
 id: whitepaper
 name: Whitepaper
 axis: format
+domain: public
+family: position
 one_liner: A long-form authoritative document presenting a position, framework, or analysis - the format for setting position-of-record on a substantive topic.
 description: |
   A whitepaper is a long-form document, typically 5 to 30 pages, that presents an authoritative

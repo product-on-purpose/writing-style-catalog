@@ -2,6 +2,8 @@
 id: technical-reference
 name: Technical Reference
 axis: format
+domain: professional
+family: instruction
 one_liner: A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.
 description: |
   Technical reference is not written to be read start to finish. It is written to be consulted.

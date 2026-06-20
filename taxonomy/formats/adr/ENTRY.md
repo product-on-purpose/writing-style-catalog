@@ -2,6 +2,8 @@
 id: adr
 name: Architecture Decision Record
 axis: format
+domain: professional
+family: deliberation
 one_liner: A short structured document that captures a significant architectural decision, its context, and its consequences.
 description: |
   An ADR is a lightweight record of a decision that was hard to make and will be hard to change.

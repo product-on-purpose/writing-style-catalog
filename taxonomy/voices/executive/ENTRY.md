@@ -2,6 +2,7 @@
 id: executive
 name: Executive
 axis: voice
+family: principal
 one_liner: A senior business leader's voice that leads with outcomes and decisions, names uncertainty explicitly, and uses "we" to signal shared accountability.
 description: |
   The executive voice belongs to someone who has already done the analysis and is now

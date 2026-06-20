@@ -2,6 +2,8 @@
 id: blog-post-long-form
 name: Blog Post (Long Form)
 axis: format
+domain: public
+family: broadcast
 one_liner: A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.
 description: |
   Long-form blog posts occupy a specific territory: they go deeper than a quick take but stop

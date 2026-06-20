@@ -5,28 +5,28 @@
       "family": "deliberation",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 2
     },
     {
       "domain": "professional",
       "family": "instruction",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 2
     },
     {
       "domain": "professional",
       "family": "progress",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 4
     },
     {
       "domain": "professional",
       "family": "brief",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "professional",
@@ -40,7 +40,7 @@
       "family": "messaging",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 2
     },
     {
       "domain": "professional",
@@ -61,7 +61,7 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 2
     },
     {
       "domain": "public",
@@ -75,7 +75,7 @@
       "family": "position",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "public",
@@ -110,7 +110,7 @@
       "family": "devotion",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "contemplative",
@@ -125,25 +125,25 @@
       "family": "expert",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 6
     },
     {
       "family": "care",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 4
     },
     {
       "family": "principal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 2
     },
     {
       "family": "witness",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 3
     },
     {
       "family": "dissident",
@@ -153,7 +153,7 @@
     }
   ],
   "unassigned": {
-    "format": 15,
-    "voice": 15
+    "format": 0,
+    "voice": 0
   }
 }

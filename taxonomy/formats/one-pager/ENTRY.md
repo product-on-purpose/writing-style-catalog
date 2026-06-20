@@ -2,6 +2,8 @@
 id: one-pager
 name: One-Pager
 axis: format
+domain: professional
+family: brief
 one_liner: A single-page document that makes one argument or presents one situation. The page constraint is the discipline - everything that does not fit does not belong.
 description: |
   The one-pager is a format defined entirely by its constraint: one page. That constraint is

@@ -2,6 +2,7 @@
 id: storyteller
 name: Storyteller
 axis: voice
+family: witness
 one_liner: A voice that carries meaning through character, scene, and concrete moment, trusting the reader to extract the principle from the specifics.
 description: |
   The storyteller writes in specifics. A real person, in a real room, doing a particular thing on

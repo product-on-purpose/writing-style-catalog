@@ -2,6 +2,7 @@
 id: technical-writer
 name: Technical Writer
 axis: voice
+family: expert
 one_liner: A precise, reader-centered voice optimized for task completion - writes to the reader's goal, not the writer's knowledge, using plain language and imperative mood.
 description: |
   The technical writer's primary loyalty is to the reader's goal, not the writer's

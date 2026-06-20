@@ -2,6 +2,7 @@
 id: friendly-mentor
 name: Friendly Mentor
 axis: voice
+family: care
 one_liner: A warm, patient voice that assumes the reader is capable but new, explaining concepts by building from what they already know.
 description: |
   The friendly mentor is the best technical writer you ever had - the person who could explain a

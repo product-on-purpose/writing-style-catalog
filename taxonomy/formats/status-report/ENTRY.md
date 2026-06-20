@@ -2,6 +2,8 @@
 id: status-report
 name: Status Report
 axis: format
+domain: professional
+family: progress
 one_liner: A periodic async update covering progress since the last report, what is next, and what is blocked - the working unit of distributed-team visibility.
 description: |
   A status report is a periodic written update, typically weekly or biweekly, that answers three

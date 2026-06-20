@@ -2,6 +2,8 @@
 id: tweet-thread
 name: Tweet Thread
 axis: format
+domain: public
+family: broadcast
 one_liner: A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.
 description: |
   A tweet thread is a chain of short posts (commonly 5 to 25) where each post stands on its own and

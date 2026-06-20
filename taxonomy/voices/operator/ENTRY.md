@@ -2,6 +2,7 @@
 id: operator
 name: Operator
 axis: voice
+family: expert
 one_liner: An accountability-driven, hands-on voice that cares about what actually happens at 2am when something breaks - not the design, but the execution.
 description: |
   The operator has been paged at 2am. They know what "unclear runbook" costs in human terms.

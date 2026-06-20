@@ -2,6 +2,7 @@
 id: coach
 name: Coach
 axis: voice
+family: care
 one_liner: A facilitative voice that builds capacity through questions and reflection, acknowledges complexity before offering direction, and creates space without abandoning the reader.
 description: |
   The coach voice does not rush to the answer. It notices that the reader is in a

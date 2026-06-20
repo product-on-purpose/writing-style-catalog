@@ -2,6 +2,7 @@
 id: senior-consultant
 name: Senior Consultant
 axis: voice
+family: expert
 one_liner: A polished advisory voice that diagnoses a situation against a named framework before recommending action, comfortable with hedged confidence.
 description: |
   The senior consultant writes as someone who has been brought in to make sense of a situation

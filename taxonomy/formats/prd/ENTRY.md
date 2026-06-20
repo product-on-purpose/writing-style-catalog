@@ -2,6 +2,8 @@
 id: prd
 name: Product Requirements Document
 axis: format
+domain: professional
+family: deliberation
 one_liner: A structured document that defines what a product or feature should do, for whom, and why - without specifying how to build it.
 description: |
   A PRD (Product Requirements Document) is the contract between a product team and an engineering
