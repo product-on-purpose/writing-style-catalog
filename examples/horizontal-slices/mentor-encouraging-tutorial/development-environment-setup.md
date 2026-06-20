@@ -5,7 +5,7 @@ topic_slug: development-environment-setup
 topic_label: Setting up your development environment
 voice_id: friendly-mentor
 tone_id: encouraging
-style_id: how-to-tutorial
+style_id: procedural
 format_id: readme
 author_type: llm
 llm_model: claude-sonnet-4-6

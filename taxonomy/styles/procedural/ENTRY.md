@@ -1,6 +1,6 @@
 ---
-id: how-to-tutorial
-name: How-To Tutorial
+id: procedural
+name: Procedural
 axis: style
 one_liner: Task-first writing that takes a reader from "I don't know how" to "I did it" by organizing every decision around user goals, not system features.
 description: |

@@ -1,19 +1,19 @@
 ---
-diff_pair_id: style-how-to-tutorial-vs-narrative-case-study-morning-routine
+diff_pair_id: style-procedural-vs-narrative-case-study-morning-routine
 topic_slug: morning-routine
 topic_label: How to start a morning routine
 axis_varied: style
-entry_a: how-to-tutorial
+entry_a: procedural
 entry_b: narrative-case-study
 generator: tools/diff-pair-generator.py
 review_status: reviewed
 ---
 
-# Diff Pair: Style swap - `how-to-tutorial` vs `narrative-case-study`
+# Diff Pair: Style swap - `procedural` vs `narrative-case-study`
 
 **Topic:** How to start a morning routine
 **Axis varied:** style
-**A:** `how-to-tutorial` - Task-first writing that takes a reader from "I don't know how" to "I did it" by organizing every decision around user goals, not system features.
+**A:** `procedural` - Task-first writing that takes a reader from "I don't know how" to "I did it" by organizing every decision around user goals, not system features.
 **B:** `narrative-case-study` - A story with a before, a turning point, and an after - using one specific real situation to make a general principle concrete and trustworthy.
 
 ## What to notice
@@ -26,7 +26,7 @@ swap is the entire cause of those differences.
 
 ---
 
-## A: `how-to-tutorial`
+## A: `procedural`
 
 # How to Build a 30-Day Morning Routine Starting Tomorrow
 

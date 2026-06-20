@@ -31,7 +31,7 @@ nn_g_profile: neutral
 pairs_well_with:
   - technical-writer
   - friendly-mentor
-  - how-to-tutorial
+  - procedural
 avoid_with:
   - playful
   - pastoral
@@ -94,7 +94,7 @@ Conceptual overviews not tied to a specific procedure, executive summaries, pers
 
 ### Pairs well with
 
-`technical-writer`, `friendly-mentor`, `how-to-tutorial`
+`technical-writer`, `friendly-mentor`, `procedural`
 
 ### Often confused with
 

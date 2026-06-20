@@ -1,5 +1,5 @@
 ---
-entry_id: how-to-tutorial
+entry_id: procedural
 axis: style
 topic_slug: service-database-choice
 topic_label: How to choose between Postgres and DynamoDB for a new service

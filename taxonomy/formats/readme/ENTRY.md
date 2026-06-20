@@ -68,7 +68,7 @@ pairs_well_with:
   - technical-writer
   - instructional
   - matter-of-fact
-  - frequently-asked-questions
+  - question-and-answer
 avoid_with:
   - pastoral
   - reverent
@@ -153,7 +153,7 @@ Do not use the README format for deep reference material that returning users wi
 
 ### Pairs well with
 
-`technical-writer`, `instructional`, `matter-of-fact`, `frequently-asked-questions`
+`technical-writer`, `instructional`, `matter-of-fact`, `question-and-answer`
 
 ### Often confused with
 

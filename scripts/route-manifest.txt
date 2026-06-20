@@ -10,7 +10,7 @@
 /examples/diff-pairs/format-devotional-entry-vs-technical-reference-morning-routine/index.html
 /examples/diff-pairs/format-readme-vs-technical-reference-morning-routine/index.html
 /examples/diff-pairs/index.html
-/examples/diff-pairs/style-how-to-tutorial-vs-narrative-case-study-morning-routine/index.html
+/examples/diff-pairs/style-procedural-vs-narrative-case-study-morning-routine/index.html
 /examples/diff-pairs/style-narrative-case-study-vs-chronological-narrative-async-standups/index.html
 /examples/diff-pairs/style-socratic-inquiry-vs-dialectic-morning-routine/index.html
 /examples/diff-pairs/tone-candid-vs-confident-async-standups/index.html
@@ -58,8 +58,8 @@
 /reference/styles/dialectic/index.html
 /reference/styles/diataxis-explanation/index.html
 /reference/styles/executive-summary/index.html
-/reference/styles/frequently-asked-questions/index.html
-/reference/styles/how-to-tutorial/index.html
+/reference/styles/question-and-answer/index.html
+/reference/styles/procedural/index.html
 /reference/styles/layered-disclosure/index.html
 /reference/styles/narrative-case-study/index.html
 /reference/styles/problem-solution/index.html

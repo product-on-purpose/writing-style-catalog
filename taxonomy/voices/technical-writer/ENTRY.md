@@ -35,7 +35,7 @@ pairs_well_with:
   - matter-of-fact
   - instructional
   - diataxis-explanation
-  - how-to-tutorial
+  - procedural
   - technical-reference
 avoid_with:
   - playful
@@ -109,7 +109,7 @@ Avoid for persuasive writing where emotional engagement matters, narrative conte
 
 ### Pairs well with
 
-`matter-of-fact`, `instructional`, `diataxis-explanation`, `how-to-tutorial`, `technical-reference`
+`matter-of-fact`, `instructional`, `diataxis-explanation`, `procedural`, `technical-reference`
 
 ### Often confused with
 

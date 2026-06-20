@@ -5,7 +5,7 @@ topic_slug: restart-auth-service
 topic_label: Restart the auth service
 voice_id: operator
 tone_id: matter-of-fact
-style_id: how-to-tutorial
+style_id: procedural
 format_id: technical-reference
 author_type: llm
 llm_model: claude-sonnet-4-6

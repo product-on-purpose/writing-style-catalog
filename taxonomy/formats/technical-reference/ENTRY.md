@@ -163,4 +163,4 @@ Reference format is wrong for introducing someone to a concept for the first tim
 
 **diataxis-explanation**: A Diataxis explanation document teaches conceptual understanding - it is oriented toward learning and can include motivation, analogy, and context. A technical reference document is oriented toward lookup - it assumes understanding and prioritizes precision and scannability over explanation.
 
-**how-to-tutorial**: A how-to guide walks a practitioner through a specific task with sequential steps toward a defined goal. A technical reference document is a stable specification that a practitioner consults while doing a task - it does not guide; it answers.
+**procedural**: A how-to guide walks a practitioner through a specific task with sequential steps toward a defined goal. A technical reference document is a stable specification that a practitioner consults while doing a task - it does not guide; it answers.

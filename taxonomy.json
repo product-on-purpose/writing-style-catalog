@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-15T05:51:21.947984+00:00",
+  "generated": "2026-06-20T06:01:13.598797+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -275,20 +275,6 @@
       "review_status": "stable"
     },
     {
-      "id": "frequently-asked-questions",
-      "name": "Frequently Asked Questions",
-      "axis": "style",
-      "one_liner": "Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.",
-      "review_status": "stable"
-    },
-    {
-      "id": "how-to-tutorial",
-      "name": "How-To Tutorial",
-      "axis": "style",
-      "one_liner": "Task-first writing that takes a reader from \"I don't know how\" to \"I did it\" by organizing every decision around user goals, not system features.",
-      "review_status": "stable"
-    },
-    {
       "id": "layered-disclosure",
       "name": "Layered Disclosure",
       "axis": "style",
@@ -307,6 +293,20 @@
       "name": "Problem-Solution",
       "axis": "style",
       "one_liner": "Frames the piece as a diagnosis followed by a remedy - establishes the pain before the cure.",
+      "review_status": "stable"
+    },
+    {
+      "id": "procedural",
+      "name": "Procedural",
+      "axis": "style",
+      "one_liner": "Task-first writing that takes a reader from \"I don't know how\" to \"I did it\" by organizing every decision around user goals, not system features.",
+      "review_status": "stable"
+    },
+    {
+      "id": "question-and-answer",
+      "name": "Question and Answer",
+      "axis": "style",
+      "one_liner": "Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.",
       "review_status": "stable"
     },
     {

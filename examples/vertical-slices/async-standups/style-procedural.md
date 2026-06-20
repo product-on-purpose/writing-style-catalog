@@ -1,5 +1,5 @@
 ---
-entry_id: how-to-tutorial
+entry_id: procedural
 axis: style
 topic_slug: async-standups
 topic_label: Should we adopt async-first standups?

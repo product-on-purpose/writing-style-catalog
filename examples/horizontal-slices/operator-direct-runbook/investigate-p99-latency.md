@@ -5,7 +5,7 @@ topic_slug: investigate-p99-latency
 topic_label: Investigate elevated p99 latency
 voice_id: operator
 tone_id: matter-of-fact
-style_id: how-to-tutorial
+style_id: procedural
 format_id: technical-reference
 author_type: llm
 llm_model: claude-sonnet-4-6
