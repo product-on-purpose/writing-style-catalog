@@ -107,3 +107,40 @@ def test_too_many_failure_modes_is_rejected():
 
 def test_too_few_anti_patterns_is_rejected():
     assert not _is_valid(_base(anti_patterns=[{"pattern": "only one", "why": "x"}]))  # 1 < 2
+
+
+def test_too_many_tells_is_rejected():
+    assert not _is_valid(_base(tells=[f"tell {i}" for i in range(8)]))  # 8 > 7
+
+
+def test_too_many_anti_patterns_is_rejected():
+    five = [{"pattern": f"p{i}", "why": f"w{i}"} for i in range(5)]  # 5 > 4
+    assert not _is_valid(_base(anti_patterns=five))
+
+
+def test_too_few_failure_modes_is_rejected():
+    assert not _is_valid(_base(failure_modes=[{"mode": "only one", "mitigation": "x"}]))  # 1 < 2
+
+
+def test_anti_pattern_missing_pattern_is_rejected():
+    assert not _is_valid(_base(anti_patterns=[
+        {"why": "no pattern key"}, {"pattern": "p", "why": "w"},
+    ]))
+
+
+def test_failure_mode_missing_mode_is_rejected():
+    assert not _is_valid(_base(failure_modes=[
+        {"mitigation": "no mode key"}, {"mode": "m", "mitigation": "x"},
+    ]))
+
+
+def test_anti_pattern_subfields_must_be_strings():
+    assert not _is_valid(_base(anti_patterns=[
+        {"pattern": 1, "why": 2}, {"pattern": "p", "why": "w"},
+    ]))
+
+
+def test_failure_mode_subfields_must_be_strings():
+    assert not _is_valid(_base(failure_modes=[
+        {"mode": 1, "mitigation": 2}, {"mode": "m", "mitigation": "x"},
+    ]))
