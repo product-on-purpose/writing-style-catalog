@@ -58,6 +58,25 @@ when_not_to_use:
   - The content is a narrative where layering would break the story arc
   - The decision to be made requires the full depth - a reader who stops early would make a worse decision
   - When brevity is absolute and there is no room for optional depth
+tells:
+  - 'The first paragraph contains the complete minimum-useful answer, not a teaser or a promise of more'
+  - 'Each subsequent layer adds specificity or depth not already present in earlier layers'
+  - 'Layers are visually signaled with headers, expandable sections, or a clearly demarcated progression'
+  - 'No layer repeats the substance of a previous one'
+  - 'The document can be exited at any layer without leaving the reader with an incomplete picture'
+  - 'Depth increases while tone and respect for the reader stay constant across layers'
+anti_patterns:
+  - pattern: 'Making the first paragraph a teaser or context-setter that promises the real answer later'
+    why: 'The opening layer is load-bearing; a casual reader who stops there must leave with something genuinely useful, not a fragment that withholds the point.'
+  - pattern: 'Making deeper readers wade through repeated hand-holding to reach the detail they came for'
+    why: 'Condescension breaks the engagement contract; each layer should reward going further with new density, not re-explain what the previous layer already settled.'
+  - pattern: 'Leading with a single recommendation and arranging the rest as supporting analysis by importance'
+    why: 'Inverted-pyramid support for a decision-maker is an executive summary, a confusable neighbor; layered disclosure serves several audiences at once and discloses rather than recommends.'
+failure_modes:
+  - mode: 'Keeps layering until the point is buried, stacking so many tiers of optional depth that the progressive structure itself becomes the obstacle and no reader ever assembles the whole picture'
+    mitigation: 'Add a layer only when it serves a real depth of need; if the layering is multiplying past the audiences that actually exist, collapse tiers so each one earns its place.'
+  - mode: 'Over-honors the complete-at-every-layer rule by reintroducing earlier substance at the top of each deeper layer so it can stand alone, until the document is thick with restatement'
+    mitigation: 'Self-sufficiency comes from each layer adding its own density, not from recapping; cross-link or briefly orient instead of re-covering what an earlier layer already gave the reader.'
 llm_instruction_phrasing: |
   Write using layered disclosure. The first paragraph must be complete on its own - it contains
   the full minimum-useful answer, not a teaser or a promise of more. Each subsequent section

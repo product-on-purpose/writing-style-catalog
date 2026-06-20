@@ -55,6 +55,25 @@ when_not_to_use:
   - The subject is conceptual rather than procedural
   - The correct procedure depends heavily on context the tutorial cannot predict
   - The goal is to build judgment, not to execute a fixed sequence
+tells:
+  - 'Opens with a one-sentence statement of the task goal, not background context'
+  - 'Each numbered step contains exactly one action ("Click Save" is a step; "Configure your settings and save" is two)'
+  - 'Prerequisites are listed before step one, not embedded inside the steps'
+  - 'Expected outcomes or confirmation signals follow steps where the result is not obvious'
+  - 'Warnings and cautions precede the step they apply to, never follow it'
+  - 'Ends with confirmation that the task is complete, not a summary of what was done'
+anti_patterns:
+  - pattern: 'Opening with the history of the technology, the theory of operation, or a paragraph on why it matters'
+    why: 'The reader arrived already motivated to do the task; every word before the first step is a word they skip, which works against the success contract.'
+  - pattern: 'Packing multiple actions or a concept into a single numbered step'
+    why: 'When a step holds more than one action the reader loses their place, skips one, and blames themselves for the failure; one action per step is what keeps the procedure followable.'
+  - pattern: 'Explaining how the system works and why it is designed that way instead of producing the completed action'
+    why: 'Building understanding is diataxis explanation, a confusable neighbor that answers "how does this work?"; procedural answers "how do I do this?" and serves task completion.'
+failure_modes:
+  - mode: 'Over-applies the one-action-per-step rule until self-evident micro-actions become their own numbered steps and the procedure swells into bureaucratic ceremony the reader must wade through'
+    mitigation: 'Number the actions a reader genuinely needs called out; fold the trivially obvious ones in, because a procedure padded with ceremonial steps is as hard to follow as one with overloaded steps.'
+  - mode: 'Pursues completeness so literally that every conceivable branch, caveat, and confirmation is enumerated until the single task path disappears into an exhaustive tree'
+    mitigation: 'Keep the happy path clear and bounded; route rare branches elsewhere rather than letting exhaustive coverage bury the sequence the reader came to complete.'
 llm_instruction_phrasing: |
   Write as a how-to tutorial. The very first line states the task goal in one sentence. List any
   prerequisites before step one. Number every step and put exactly one action in each step - not

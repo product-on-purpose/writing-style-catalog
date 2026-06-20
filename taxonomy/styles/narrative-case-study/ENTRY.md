@@ -59,6 +59,25 @@ when_not_to_use:
   - When there is no specific, verifiable situation to draw from
   - Technical documentation where procedural clarity outweighs narrative engagement
   - Contexts where the reader needs to act immediately and cannot afford the arc
+tells:
+  - 'Opens inside the specific situation rather than with a general statement of the principle'
+  - 'The "before" names specific conditions ("onboarding took 14 days") rather than vague problems ("onboarding was too long")'
+  - 'A "turning point" identifies the specific intervention and who made it'
+  - 'The "after" names specific outcomes detailed enough to be falsifiable ("activation rose from 23% to 61%")'
+  - 'The principle or takeaway appears at the end, after the story has made it credible'
+  - 'Uses real names, real numbers, or real context wherever possible'
+anti_patterns:
+  - pattern: 'Stating the principle at paragraph two and using the story merely to illustrate it'
+    why: 'A principle asserted before the story is just an assertion; the form earns the lesson by letting it emerge from what happened, so it must arrive last.'
+  - pattern: 'Holding to strict time order and refusing to state any takeaway, letting the meaning stay implicit in the sequence'
+    why: 'Committing to chronology with no stated lesson is chronological narrative, a confusable neighbor; a case study selects and frames events around a principle it names explicitly.'
+  - pattern: 'Setting the situation against alternatives and weighing them on parallel dimensions'
+    why: 'Measuring options against each other is comparison-contrast, an analytical neighbor; a case study follows a single situation through time, which is experiential.'
+failure_modes:
+  - mode: 'Lets the story bury its own lesson, growing so absorbed in vivid specifics and the arc that the principle the case exists to demonstrate never actually lands for the reader'
+    mitigation: 'Stay in the story, but the story is in service of a principle; make sure the ending names what the case demonstrated rather than trailing off as a well-told anecdote.'
+  - mode: 'Over-specifies the narrative with detail that adds texture but not evidence, padding the before and after until the falsifiable facts that earn trust are lost among atmosphere'
+    mitigation: 'Keep the specifics that make a claim checkable and cut the ones that only decorate; specificity earns trust when it is verifiable, not merely abundant.'
 llm_instruction_phrasing: |
   Write as a narrative case study. Open inside the specific situation - not with a general
   principle but with the concrete before-state. Name specifics: who, what, when, what was

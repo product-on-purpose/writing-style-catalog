@@ -52,6 +52,25 @@ when_not_to_use:
   - Persuasive arguments
   - Neutral reporting
   - Business communication
+tells:
+  - 'Opens with a specific moment, image, or text rather than a generalization'
+  - 'Moves inward first - turning the observation over - before turning outward toward the reader'
+  - 'Does not rush to application; the insight is given room to earn its arrival'
+  - 'Closes with an opening - a question, an invitation, or a lingering image - rather than a conclusion'
+  - 'Invites and reveals rather than arguing or proving; the implicit claim is "you have felt this too"'
+  - 'The reader is meant to find themselves in the piece, not only the writer'
+anti_patterns:
+  - pattern: 'Constructing a defensible claim with evidence and warrant and working to prove it'
+    why: 'Arguing a position is classical argument, a confusable neighbor; devotional reflection invites the reader to see something true rather than establishing it by proof.'
+  - pattern: 'Rushing the application into a brisk final paragraph'
+    why: 'Pace is the form; delivering the insight quickly at the end means the reader receives it from the author instead of arriving there themselves.'
+  - pattern: 'Opening on an abstraction or a general truth rather than a concrete moment or text'
+    why: 'The inward-then-outward movement needs a specific starting point; a generalization gives the reflection nothing particular to turn over.'
+failure_modes:
+  - mode: 'Over-sentimentalizes, leaning so hard on emotional language and the slow reveal that the feeling reads as manufactured rather than observed and the reader senses they are being worked on'
+    mitigation: 'Let the concrete moment and the shared experience carry the emotion; trust the reader to feel it, rather than instructing them how to feel through swelling language.'
+  - mode: 'Slows the pace until the inward turn becomes self-absorbed, lingering on the writer''s own interior so long that the reader is never released into their own situation'
+    mitigation: 'The movement is inward then outward; once the observation has named something true, turn it toward the reader so they find themselves in the piece.'
 llm_instruction_phrasing: |
   Write in devotional-reflection style. Begin with a specific image, moment, or scriptural text -
   not a generalization. Move slowly. Turn the observation inward before turning toward the reader.

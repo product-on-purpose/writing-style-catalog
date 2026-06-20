@@ -57,6 +57,25 @@ when_not_to_use:
   - When the goal is narrative - telling a story rather than presenting a recommendation
   - Internal technical documentation where completeness matters more than brevity
   - Situations where the recommendation is politically sensitive and needs to be earned through the analysis first
+tells:
+  - 'States the recommendation or conclusion in the first paragraph, never deferring it'
+  - 'Every paragraph adds new information; none restates or echoes a previous one'
+  - 'Short enough to read completely in about three minutes, typically 250-500 words'
+  - 'Supporting analysis follows the recommendation, ordered by importance rather than chronology'
+  - 'Degrades gracefully - a reader who stops after paragraph one still has what they need to act'
+  - 'Ends when the analysis is complete, with no closing pleasantries or summary of the summary'
+anti_patterns:
+  - pattern: 'Building up through setup and analysis before arriving at the recommendation'
+    why: 'Deferring the conclusion defeats the inverted pyramid; the reader with authority and limited time needs the recommendation before deciding whether to read on.'
+  - pattern: 'Recounting how the analysis was conducted, the options weighed, and the criteria used as a process record'
+    why: 'Capturing the reasoning path is a decision-log, a confusable neighbor that looks backward; an executive summary looks forward and leads with the action.'
+  - pattern: 'Letting paragraphs restate each other or add color that does not change the picture'
+    why: 'Every paragraph must earn its place with new information; echo and decoration violate the ruthless brevity the form depends on.'
+failure_modes:
+  - mode: 'Over-compresses until a decision-critical detail is gone, cutting the caveat, assumption, or risk the recommendation actually hinges on in pursuit of the three-minute budget'
+    mitigation: 'Brevity serves the decision, not the word count; a detail that would change the reader''s action stays even when something more elegant could be cut, because a summary that omits it equips the reader to act wrongly.'
+  - mode: 'Pursues graceful degradation so aggressively that the opening hardens into a bare verdict with no supporting rationale, leaving the reader the recommendation but no basis for confidence in it'
+    mitigation: 'The first paragraph carries the recommendation and enough of the why to stand alone; lead with the conclusion, but a conclusion stripped of all reasoning is an assertion, not a summary.'
 llm_instruction_phrasing: |
   Write as an executive summary. The very first paragraph states the recommendation or conclusion
   - do not build to it. Every paragraph after that must add new information; cut any paragraph

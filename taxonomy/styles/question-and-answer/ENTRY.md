@@ -55,6 +55,25 @@ when_not_to_use:
   - Narrative or reflective writing
   - Content where the reader has not yet formed any questions
   - Tutorials with a single intended path
+tells:
+  - 'Each section header is a question phrased the way a reader would actually ask it, not a topic label'
+  - 'Questions are ordered by frequency or urgency of being asked, not by logical dependency'
+  - 'Each answer is self-contained - a reader arriving via search should not need to have read earlier ones'
+  - 'Answers lead with the answer ("Yes, you can. To do it...") rather than the setup ("Many users wonder...")'
+  - 'Questions are in the reader''s voice ("How do I cancel?") not the writer''s ("On the topic of cancellation")'
+  - 'Cross-links are explicit when one answer depends on context from another'
+anti_patterns:
+  - pattern: 'Writing an outline disguised as questions, with topic headers reworded into question form'
+    why: 'A real FAQ is built from the reader''s mental model; questions in the writer''s framing rather than the reader''s voice defeat the entire structure.'
+  - pattern: 'Writing answers that assume the reader has read the previous question'
+    why: 'The FAQ is a multi-entry-point format; an answer that is not self-contained fails the reader who arrived by search or deep link at that one question.'
+  - pattern: 'Arranging the questions as a single ordered path the reader is expected to follow step by step'
+    why: 'One correct order through the material is a how-to tutorial, a confusable neighbor; an FAQ assumes many readers arriving at many points, each needing only their one answer.'
+failure_modes:
+  - mode: 'Over-applies the self-contained, ordered-by-frequency discipline until the piece fragments into a sprawl of isolated entries that, read through, never assemble into any coherent picture of the topic'
+    mitigation: 'The independence of answers is a strength for searchers, not a license to abandon structure; group and cross-link related questions so a linear reader still comes away with a whole, and reach for a sustained explanation when the material genuinely needs one model.'
+  - mode: 'Pushes self-sufficiency so far that every answer repeats the same shared context, padding the document with duplicated preamble across questions'
+    mitigation: 'Repeat only the context an isolated answer truly needs; where several answers share a foundation, state it once and cross-link rather than re-explaining it in each.'
 llm_instruction_phrasing: |
   Write using a frequently asked questions structure. Each section header is a question phrased the
   way a real reader would ask it, in their voice, not yours. Order the questions by how likely or

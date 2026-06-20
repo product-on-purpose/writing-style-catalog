@@ -56,6 +56,25 @@ when_not_to_use:
   - Argumentative pieces where the term is contested
   - Material covering questions across many concepts (use FAQ instead)
   - Devotional or reflective writing
+tells:
+  - 'The definition appears in the opening, often the first sentence, precise enough to discriminate cases'
+  - 'The body elaborates through facets, components, or distinguishing features rather than through narrative or argument'
+  - 'At least one section addresses what the term is not, with concrete adjacent cases that fail the definition'
+  - 'Examples are used to test the definition - each is answerable as "does this count or not?" - rather than to set atmosphere'
+  - 'The piece ends on a refined or stress-tested version of the opening definition, not on a new claim'
+  - 'A reader who finishes can apply the definition to a fresh case and say whether it qualifies'
+anti_patterns:
+  - pattern: 'Offering a definition vague enough that no example could ever fail it'
+    why: 'A definition that excludes nothing does no work; the discipline of the style is the negative space, the cases the term rules out.'
+  - pattern: 'Drifting from the term into adjacent topics so the elaboration loses the thread'
+    why: 'Once the body wanders, it stops testing the definition and the reader cannot use it to judge new cases, which is the whole point.'
+  - pattern: 'Conveying understanding through narrative, analogy, or model-building without committing to a lead definition'
+    why: 'Building understanding by any available structure is diataxis explanation, a confusable neighbor; definitional is built around one precise definition stated first.'
+failure_modes:
+  - mode: 'Over-precises into pedantry, piling qualifications and edge-case carve-outs onto the definition until it reads as legalese the reader cannot actually apply'
+    mitigation: 'A definition is precise enough when it discriminates the cases that matter; stop refining once it does, rather than armoring it against every exotic counterexample.'
+  - mode: 'Over-invests in the "what it is not" section until the negative space crowds out the positive definition and the reader learns mainly what the term excludes'
+    mitigation: 'Use exclusions to sharpen the positive definition, not to replace it; the reader should leave able to state what the thing is, not only what it is not.'
 llm_instruction_phrasing: |
   Write using definitional structure. Lead with the definition - the first sentence or short
   opening paragraph names what the thing is, precisely enough that the reader could use the

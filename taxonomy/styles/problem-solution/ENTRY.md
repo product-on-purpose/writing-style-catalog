@@ -53,6 +53,25 @@ when_not_to_use:
   - Devotional writing
   - Narrative content
   - Contexts where the reader has not experienced the problem
+tells:
+  - 'States the problem before the solution, never after'
+  - 'The problem is specific enough that the reader can confirm "yes, this is my situation"'
+  - 'The solution addresses the specific problem named, not a generalized version of it'
+  - 'Often draws a before/after contrast to show the delta the remedy creates'
+  - 'Arrives at a concrete path forward rather than ending at the diagnosis'
+  - 'Meets the reader inside a friction they already feel, so the solution answers a question already being asked'
+anti_patterns:
+  - pattern: 'Opening with a vague problem ("organizations face many challenges with process") instead of a concrete pain'
+    why: 'A generic problem statement earns no attention or stakes; specificity is what makes the reader recognize their own situation and care about the fix.'
+  - pattern: 'Diagnosing brilliantly and then ending without a remedy'
+    why: 'This is Problem-Complaint, not problem-solution; the form must arrive at a path forward or it has done only half the work.'
+  - pattern: 'Weighing several options against each other on parallel dimensions for the reader to choose among'
+    why: 'Evaluating options relative to each other is comparison-contrast, a confusable neighbor; problem-solution names one pain and proposes one fix for it.'
+failure_modes:
+  - mode: 'Inflates the problem to glorify the solution, over-dramatizing the pain and its cost so the remedy looks more impressive and necessary than it actually is'
+    mitigation: 'Size the problem honestly; the solution should fit the pain as named, and a remedy propped up by an exaggerated problem collapses the moment the reader recognizes the inflation.'
+  - mode: 'Over-specifies the diagnosis until the problem section sprawls into an exhaustive account of the pain and the solution arrives starved of equivalent concreteness'
+    mitigation: 'Name the problem precisely enough to create stakes, then give the solution the same specificity; the point is the remedy, not a catalogue of the suffering.'
 llm_instruction_phrasing: |
   Write using problem-solution structure. Name the specific problem first - not a vague category
   but the concrete pain the reader experiences. Make the problem statement specific enough that

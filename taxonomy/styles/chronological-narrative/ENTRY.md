@@ -55,6 +55,25 @@ when_not_to_use:
   - Reference material that will be navigated, not read
   - Argumentative pieces organized by logical claim
   - Time-pressured operational writing
+tells:
+  - 'Events appear in the order they occurred, with no flash-forward or flash-back as a structural device'
+  - 'Time markers ("the next morning," "three weeks later," "by the end of the quarter") carry the navigation'
+  - 'Causation is shown by adjacency in time rather than stated thematically'
+  - 'The opening fixes the reader''s starting point on the timeline before anything else'
+  - 'Events are not regrouped by topic ("the financial story," "the people story") even when that would read more neatly'
+  - 'The meaning stays implicit in the sequence; the piece does not stop to announce a labelled turning point or a stated lesson'
+anti_patterns:
+  - pattern: 'Opening at the climax and looping back, or revealing the ending early for ironic effect'
+    why: 'The flash-forward trades the style''s temporal honesty for cleverness and usually signals a writer who did not trust the events to hold attention on their own.'
+  - pattern: 'Regrouping events by theme and labelling a turning point or closing with a stated principle'
+    why: 'Selecting and framing events around a lesson is narrative case study, a neighbor with a different reader contract; chronological narrative commits to time order and lets meaning stay implicit.'
+  - pattern: 'Inserting thematic section headers that cut across the timeline'
+    why: 'Topic-based organization breaks the sequence the reader is relying on to feel cause and consequence, abandoning the one thing the style is for.'
+failure_modes:
+  - mode: 'Holds to raw sequence so rigidly that the piece flattens into an undifferentiated event log where every moment gets equal weight and no causal shaping is felt'
+    mitigation: 'Time order is the backbone, not a license to list; let pacing and selection make the consequential moments land while still honoring the order they happened in.'
+  - mode: 'Over-commits to chronicling every step in real time until the reader is buried in trivial intervening events before reaching what matters'
+    mitigation: 'Keep the sequence intact but compress the stretches that carry no causal weight; fidelity to order does not require recording every minute.'
 llm_instruction_phrasing: |
   Write using chronological narrative. Present events in the order they occurred. Do not flash
   forward, do not reveal the ending early for irony, do not regroup events by theme. Use time

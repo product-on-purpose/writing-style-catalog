@@ -52,6 +52,25 @@ when_not_to_use:
   - Single-subject explanations
   - Narrative writing
   - Persuasive essays with a settled conclusion
+tells:
+  - 'Establishes the comparison frame early, naming what is being compared and on which dimensions'
+  - 'Commits to either block structure (all of A, then all of B) or alternating structure (A vs B per dimension)'
+  - 'Selects dimensions of comparison for relevance to the decision, not for exhaustiveness'
+  - 'Resolves the structure with a summary comparison, usually a table or a verdict'
+  - 'Surfaces the delta - the differences that matter - rather than narrating each option in isolation'
+  - 'Holds at least two subjects in view at once, measuring them relative to each other'
+anti_patterns:
+  - pattern: 'Comparing on every axis on which the options differ rather than the ones that matter for the decision'
+    why: 'Exhaustive dimensions bury the relevant delta; the style is most honest when it selects the axes that actually govern the choice.'
+  - pattern: 'Working through a synthesis the reader must adopt, or staging thesis and antithesis toward a reconciled position'
+    why: 'Producing a synthesis that resolves the tension is dialectic, a confusable neighbor; comparison-contrast leaves the reader able to weigh the delta and still pick either option.'
+  - pattern: 'Defending one option against objections as the single correct position'
+    why: 'Building an auditable case for one side is classical argument; comparison-contrast measures relative differences without necessarily advocating.'
+failure_modes:
+  - mode: 'Over-balances into ins-less both-sides, granting every option symmetric parallel treatment until no genuine delta emerges and the reader is left unable to choose'
+    mitigation: 'Parallel structure serves the comparison, not fairness for its own sake; if one option is clearly better for the stated situation, the verdict should say so rather than manufacture symmetry.'
+  - mode: 'Multiplies side-by-side dimensions so relentlessly that the piece becomes an exhaustive matrix in which the decision-relevant contrast drowns among trivial ones'
+    mitigation: 'Cut dimensions down to the ones that move the decision; the power of the side-by-side comes from precision about what matters, not from completeness of the grid.'
 llm_instruction_phrasing: |
   Write using comparison-contrast structure. Establish the comparison frame early: name what you
   are comparing and on which dimensions. Choose between block structure (all of A, then all of B)
