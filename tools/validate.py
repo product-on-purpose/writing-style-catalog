@@ -55,6 +55,17 @@ AXIS_SCHEMAS = {
 
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9-]*[a-z0-9]$")
 
+# ADR 0009 pedagogical bar (gate-critical subset): the three fields and, for the
+# two lists-of-maps, their named string subfields. The substance check
+# (check_pedagogical_bar) walks these; presence, count band, item type, and
+# object shape are owned by schemas/entry.universal.schema.json (the fields are
+# required, with minItems/maxItems and per-item required subkeys).
+PEDAGOGICAL_FIELDS = {
+    "tells": None,  # a list of plain strings
+    "anti_patterns": ("pattern", "why"),
+    "failure_modes": ("mode", "mitigation"),
+}
+
 # Built from code points so this file embeds no literal em/en-dash and passes the
 # repo's own dash checks (scripts/check-no-dashes.mjs scans .py). Runtime value is
 # the U+2014 and U+2013 characters, identical to the literals this replaces.
@@ -531,6 +542,61 @@ def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     return errors
 
 
+def check_pedagogical_bar(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Gate 2 substance check (ADR 0009 gate-critical subset): the pedagogical
+    fields carry real content, the one bar the JSON schema cannot express.
+
+    Presence, the count band, item type, and object shape for `tells` /
+    `anti_patterns` / `failure_modes` are enforced by the universal schema (the
+    fields are required, with minItems/maxItems and per-item required subkeys)
+    and reported by check_schema_validation. This check adds ONLY the substance
+    bar: a schema string may be "" or whitespace, which satisfies the schema but
+    is not real content.
+
+    To avoid double-reporting a single root cause, mis-shaped values (absent
+    field, non-list, non-string item, missing/non-string subfield) are left to
+    the schema check; an empty/whitespace string is reported only where the
+    surrounding shape is otherwise valid. `tells` holds plain strings;
+    `anti_patterns` / `failure_modes` hold mappings with named string subfields.
+
+    Tightened to required 2026-06-22 (the F2 optional-then-tighten step, after
+    all 60 entries were backfilled), so a substance violation is an error that
+    contributes to the exit code, the same severity as a missing field.
+    """
+    print("[CHECK] Gate 2 - pedagogical substance (ADR 0009)...")
+    errors: list[str] = []
+
+    for entry_id, (axis, fm) in id_map.items():
+        rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
+        for field, subfields in PEDAGOGICAL_FIELDS.items():
+            value = fm.get(field)
+            if not isinstance(value, list):
+                continue  # absent / wrong type: the schema's required + type job
+            for i, item in enumerate(value):
+                if subfields is None:
+                    # tells: a plain string. A non-string item is the schema's
+                    # job; only flag a present string that is blank.
+                    if isinstance(item, str) and not item.strip():
+                        errors.append(
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}]' is an empty or whitespace-only string"
+                        )
+                    continue
+                if not isinstance(item, dict):
+                    continue  # malformed item: the schema's shape job
+                for key in subfields:
+                    sub = item.get(key)
+                    if isinstance(sub, str) and not sub.strip():
+                        errors.append(
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}].{key}' is an empty or whitespace-only string"
+                        )
+
+    if not errors:
+        print("[PASS] Gate 2 - pedagogical substance: 0 errors")
+    for e in errors:
+        print(e)
+    return errors
+
+
 def check_faceted_tags(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Validate `facet:value` tags against the governed enum (ADR 0010 section 5.3).
 
@@ -592,10 +658,15 @@ def run_all_checks() -> list[str]:
     check_review_status(id_map)
 
     if id_map:
-        # Taxonomy membership is tightened to required (F2 phase 3): violations
-        # are errors. Faceted tags stay optional-with-warning (values widen on
-        # demand per A4), so they report but do not affect the exit code.
+        # Taxonomy membership and the Gate 2 pedagogical substance check are both
+        # tightened to required (the F2 optional-then-tighten step): violations
+        # are errors. The pedagogical fields' presence/band/shape is owned by the
+        # schema (check_schema_validation above); check_pedagogical_bar adds only
+        # the substance bar so a single root cause is not reported twice. Faceted
+        # tags stay optional-with-warning (values widen on demand per A4), so they
+        # report but do not affect the exit code.
         all_errors += check_taxonomy_membership(id_map)
+        all_errors += check_pedagogical_bar(id_map)
         check_faceted_tags(id_map)
 
     print()

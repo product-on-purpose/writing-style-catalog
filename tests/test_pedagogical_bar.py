@@ -1,12 +1,13 @@
 """Tests for the pedagogical entry bar (ADR 0009, gate-critical subset).
 
-ADR 0009 adopts three axis-neutral, optional frontmatter fields that the E1
-adherence gate consumes: `failure_modes` (the C1 restraint check renders against
-it), `anti_patterns` and `tells` (Gate 2). They live in the universal base
-schema. Optional now (an entry may omit them), shape-enforced when present, and
-tightened to required once the 60 are backfilled (the F2 optional-then-tighten
-path). These tests pin the schema contract: present-and-well-formed validates,
-absent validates, present-and-malformed is rejected.
+ADR 0009 adopts three axis-neutral frontmatter fields that the E1 adherence
+gate consumes: `failure_modes` (the C1 restraint check renders against it),
+`anti_patterns` and `tells` (Gate 2). They live in the universal base schema.
+Tightened from optional to REQUIRED on 2026-06-22 (the F2 optional-then-tighten
+path) once all 60 entries were backfilled, the same move A1 made for
+domain/family. These tests pin the schema contract: present-and-well-formed
+validates, absent is now rejected (each field is required), and
+present-and-malformed is rejected.
 """
 import json
 import sys
@@ -61,11 +62,34 @@ GOOD_FAILURE_MODES = [
 
 
 # ---------------------------------------------------------------------------
-# Optional: absent fields still validate
+# Required: absent fields are now rejected (F2 tighten-to-required, 2026-06-22)
 # ---------------------------------------------------------------------------
 
-def test_entry_without_pedagogical_fields_is_valid():
-    assert _is_valid(_base())
+def test_entry_without_pedagogical_fields_is_invalid():
+    # Before the 2026-06-22 tightening this base instance validated; the three
+    # fields are now required, so an entry that omits all of them is rejected.
+    assert not _is_valid(_base())
+
+
+def test_entry_missing_tells_is_invalid():
+    assert not _is_valid(_base(
+        anti_patterns=GOOD_ANTI_PATTERNS,
+        failure_modes=GOOD_FAILURE_MODES,
+    ))
+
+
+def test_entry_missing_anti_patterns_is_invalid():
+    assert not _is_valid(_base(
+        tells=GOOD_TELLS,
+        failure_modes=GOOD_FAILURE_MODES,
+    ))
+
+
+def test_entry_missing_failure_modes_is_invalid():
+    assert not _is_valid(_base(
+        tells=GOOD_TELLS,
+        anti_patterns=GOOD_ANTI_PATTERNS,
+    ))
 
 
 # ---------------------------------------------------------------------------

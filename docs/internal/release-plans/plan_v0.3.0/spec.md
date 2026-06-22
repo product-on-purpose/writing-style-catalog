@@ -40,7 +40,9 @@ ADR 0009 (pedagogical-entry-bar) is a dependency of the gate's completeness chec
 **ratified 2026-06-20 as a gate-critical subset** (Accepted): `failure_modes`, `anti_patterns`,
 and `tells` are adopted (the fields Gate 2 and the C1 restraint check consume) and landed as
 optional schema properties; `before_after_example`, `mini_glossary`, and the cross-reference
-object upgrade are deferred. The backfill of the 60 and the tighten-to-required ride the gate build.
+object upgrade are deferred. The backfill of the 60 completed (PRs #39, #41-#44) and the deterministic
+tighten-to-required executed 2026-06-22 (the three fields are now required and Gate 2 enforces them in
+`tools/validate.py`); the judge-side reading still rides the model-calling gate build.
 
 ## 3. Scope
 
@@ -69,7 +71,8 @@ object upgrade are deferred. The backfill of the 60 and the tighten-to-required 
    wiring. The gate runs but is not yet the high-volume producer.
 6. **Finalize ADR 0009** (pedagogical bar) so the gate's completeness check has a codified bar.
    DONE 2026-06-20: ratified as a gate-critical subset (`failure_modes`, `anti_patterns`, `tells`),
-   landed optional in the universal schema; the rest deferred and the tighten rides the gate build.
+   landed optional in the universal schema; the rest deferred. Tighten-to-required + the deterministic
+   Gate 2 check (`check_pedagogical_bar`) DONE 2026-06-22; the judge-side reading rides the gate build.
 
 ### Out of scope (future releases, behind this foundation)
 - Mass entry expansion toward 30/axis and the full inventory (backlog E2) - v0.4.0+.
@@ -105,8 +108,9 @@ object upgrade are deferred. The backfill of the 60 and the tighten-to-required 
 - [ ] `tools/adherence-gate.py` runs the golden set green in CI, uses a cross-family judge, and
       writes a per-entry distinguishability score; the 70 percent first-pass stop floor is
       documented.
-- [x] ADR 0009 (pedagogical bar) is Accepted (gate-critical subset) and its fields are in the
-      schema (optional). The gate's Gate 2 enforcement and the tighten-to-required ride the gate build.
+- [x] ADR 0009 (pedagogical bar) is Accepted (gate-critical subset) and its fields are required in
+      the schema. Gate 2's deterministic enforcement (`check_pedagogical_bar`) and the
+      tighten-to-required landed 2026-06-22; the judge-side reading rides the model-calling gate build.
 - [ ] The catalog still validates and the site still builds (no regression); house dash rule
       holds across all new docs and code.
 
