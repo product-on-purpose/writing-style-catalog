@@ -106,11 +106,13 @@ properties, enforced in shape when present:
 3. **Tighten:** once the backfill is complete and the gate exists, the fields tighten from optional to
    required (a Gate 2 check in `tools/validate.py`), the same optional-then-tighten move A1 used for
    `domain` / `family`. **Executed 2026-06-22:** with all 60 backfilled, the three fields were added to
-   the universal schema's `required` array and `check_pedagogical_bar` (Gate 2) landed in
-   `tools/validate.py` as an error-level presence/band/substance check (substance = non-empty strings,
-   the bar the schema cannot express). The full catalog validates clean under the required bar. The
-   model-calling gate stages (Gates 1 and 3, the cross-family judge) remain to be built; the
-   deterministic Gate 2 enforcement does not depend on them.
+   the universal schema's `required` array - so presence, the count band (minItems/maxItems), and the
+   object shape are now schema-enforced at error level - and `check_pedagogical_bar` (Gate 2) landed in
+   `tools/validate.py` to add the one bar the schema cannot express: substance (a present string that
+   is empty or whitespace-only). The two together enforce presence, band, and substance, with each
+   root cause reported once. The full catalog validates clean under the required bar. The
+   model-calling gate stages (Gates 1 and 3, the cross-family judge, and the 12-sample-per-entry count)
+   remain to be built; the deterministic pedagogical-field enforcement does not depend on them.
 
 ### Versioning
 

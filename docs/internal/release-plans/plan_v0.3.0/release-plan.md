@@ -76,10 +76,11 @@
       validators into CI as a regression check.
 - [~] Finalize ADR 0009 (pedagogical bar); the gate's completeness check reads it. ADR ratified
       2026-06-20 (gate-critical subset: `failure_modes`, `anti_patterns`, `tells`). Deterministic
-      Gate 2 DONE 2026-06-22: the three fields are now required in the universal schema and
-      `check_pedagogical_bar` in `tools/validate.py` enforces presence, count band, and substance
-      (non-empty strings) at error level; the full catalog validates clean. The judge-side reading
-      (the C1 restraint check, Gate 1) still rides the model-calling gate build.
+      Gate 2 (pedagogical-field subset) DONE 2026-06-22: the three fields are now required in the
+      universal schema (presence, count band, shape), and `check_pedagogical_bar` in
+      `tools/validate.py` adds the error-level substance check (no empty/whitespace strings) the schema
+      cannot express; the full catalog validates clean. Gate 2's sample-count half (12 per entry) and
+      the judge-side reading (the C1 restraint check, Gate 1) still ride the model-calling gate build.
   - Acceptance: the gate runs the golden set green in CI; a deliberately indistinct entry is
     rejected; the 70 percent first-pass stop floor is documented.
 

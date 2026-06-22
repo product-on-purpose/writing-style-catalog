@@ -55,18 +55,13 @@ AXIS_SCHEMAS = {
 
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9-]*[a-z0-9]$")
 
-# ADR 0009 pedagogical bar (gate-critical subset): the three fields Gate 2
-# enforces, with their ratified count bands. `tells` is a list of plain strings;
-# `anti_patterns` and `failure_modes` are lists of mappings with named string
-# subfields. Mirrors schemas/entry.universal.schema.json (the schema enforces
-# presence, band, and shape; Gate 2 adds the substance bar - non-empty strings -
-# the schema cannot express).
-PEDAGOGICAL_BANDS = {
-    "tells": (5, 7),
-    "anti_patterns": (2, 4),
-    "failure_modes": (2, 3),
-}
-PEDAGOGICAL_SUBFIELDS = {
+# ADR 0009 pedagogical bar (gate-critical subset): the three fields and, for the
+# two lists-of-maps, their named string subfields. The substance check
+# (check_pedagogical_bar) walks these; presence, count band, item type, and
+# object shape are owned by schemas/entry.universal.schema.json (the fields are
+# required, with minItems/maxItems and per-item required subkeys).
+PEDAGOGICAL_FIELDS = {
+    "tells": None,  # a list of plain strings
     "anti_patterns": ("pattern", "why"),
     "failure_modes": ("mode", "mitigation"),
 }
@@ -548,66 +543,55 @@ def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
 
 
 def check_pedagogical_bar(id_map: dict[str, tuple[str, dict]]) -> list[str]:
-    """Gate 2 (ADR 0009 gate-critical subset): the pedagogical fields are
-    present, in band, and substantive.
+    """Gate 2 substance check (ADR 0009 gate-critical subset): the pedagogical
+    fields carry real content, the one bar the JSON schema cannot express.
 
-    For every entry, each of `tells` / `anti_patterns` / `failure_modes` must be
-    present, a list whose length is inside the ADR 0009 band, and carry only
-    substantive strings (non-empty after stripping whitespace). `tells` holds
-    plain strings; `anti_patterns` and `failure_modes` hold mappings whose named
-    subfields (pattern/why, mode/mitigation) must each be a non-empty string.
+    Presence, the count band, item type, and object shape for `tells` /
+    `anti_patterns` / `failure_modes` are enforced by the universal schema (the
+    fields are required, with minItems/maxItems and per-item required subkeys)
+    and reported by check_schema_validation. This check adds ONLY the substance
+    bar: a schema string may be "" or whitespace, which satisfies the schema but
+    is not real content.
 
-    The JSON schemas enforce presence (the fields are required), the count
-    bands, and the object shape; this check adds the substance bar the schema
-    cannot express - a schema string may be "" - and emits gate-named messages.
+    To avoid double-reporting a single root cause, mis-shaped values (absent
+    field, non-list, non-string item, missing/non-string subfield) are left to
+    the schema check; an empty/whitespace string is reported only where the
+    surrounding shape is otherwise valid. `tells` holds plain strings;
+    `anti_patterns` / `failure_modes` hold mappings with named string subfields.
+
     Tightened to required 2026-06-22 (the F2 optional-then-tighten step, after
-    all 60 entries were backfilled), so violations are errors that contribute to
-    the exit code, the same move A1 made for domain/family.
+    all 60 entries were backfilled), so a substance violation is an error that
+    contributes to the exit code, the same severity as a missing field.
     """
-    print("[CHECK] Gate 2 - pedagogical bar (ADR 0009)...")
+    print("[CHECK] Gate 2 - pedagogical substance (ADR 0009)...")
     errors: list[str] = []
 
     for entry_id, (axis, fm) in id_map.items():
         rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
-        for field, (lo, hi) in PEDAGOGICAL_BANDS.items():
+        for field, subfields in PEDAGOGICAL_FIELDS.items():
             value = fm.get(field)
-            if value is None:
-                errors.append(
-                    f"[ERROR] {rel}: Gate 2: missing required pedagogical field '{field}'"
-                )
-                continue
             if not isinstance(value, list):
-                errors.append(f"[ERROR] {rel}: Gate 2: '{field}' must be a list")
-                continue
-            if not (lo <= len(value) <= hi):
-                errors.append(
-                    f"[ERROR] {rel}: Gate 2: '{field}' has {len(value)} item(s); "
-                    f"ADR 0009 requires {lo} to {hi}"
-                )
-            subfields = PEDAGOGICAL_SUBFIELDS.get(field)
+                continue  # absent / wrong type: the schema's required + type job
             for i, item in enumerate(value):
                 if subfields is None:
-                    # tells: a list of plain strings
-                    if not isinstance(item, str) or not item.strip():
+                    # tells: a plain string. A non-string item is the schema's
+                    # job; only flag a present string that is blank.
+                    if isinstance(item, str) and not item.strip():
                         errors.append(
-                            f"[ERROR] {rel}: Gate 2: '{field}[{i}]' is empty or not a substantive string"
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}]' is an empty or whitespace-only string"
                         )
                     continue
                 if not isinstance(item, dict):
-                    errors.append(
-                        f"[ERROR] {rel}: Gate 2: '{field}[{i}]' must be a mapping with "
-                        f"{' and '.join(subfields)}"
-                    )
-                    continue
+                    continue  # malformed item: the schema's shape job
                 for key in subfields:
                     sub = item.get(key)
-                    if not isinstance(sub, str) or not sub.strip():
+                    if isinstance(sub, str) and not sub.strip():
                         errors.append(
-                            f"[ERROR] {rel}: Gate 2: '{field}[{i}].{key}' is empty or missing"
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}].{key}' is an empty or whitespace-only string"
                         )
 
     if not errors:
-        print("[PASS] Gate 2 - pedagogical bar: 0 errors")
+        print("[PASS] Gate 2 - pedagogical substance: 0 errors")
     for e in errors:
         print(e)
     return errors
@@ -674,10 +658,13 @@ def run_all_checks() -> list[str]:
     check_review_status(id_map)
 
     if id_map:
-        # Taxonomy membership and the Gate 2 pedagogical bar are both tightened
-        # to required (the F2 optional-then-tighten step): violations are errors.
-        # Faceted tags stay optional-with-warning (values widen on demand per
-        # A4), so they report but do not affect the exit code.
+        # Taxonomy membership and the Gate 2 pedagogical substance check are both
+        # tightened to required (the F2 optional-then-tighten step): violations
+        # are errors. The pedagogical fields' presence/band/shape is owned by the
+        # schema (check_schema_validation above); check_pedagogical_bar adds only
+        # the substance bar so a single root cause is not reported twice. Faceted
+        # tags stay optional-with-warning (values widen on demand per A4), so they
+        # report but do not affect the exit code.
         all_errors += check_taxonomy_membership(id_map)
         all_errors += check_pedagogical_bar(id_map)
         check_faceted_tags(id_map)
