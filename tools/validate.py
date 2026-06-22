@@ -55,6 +55,22 @@ AXIS_SCHEMAS = {
 
 SLUG_PATTERN = re.compile(r"^[a-z][a-z0-9-]*[a-z0-9]$")
 
+# ADR 0009 pedagogical bar (gate-critical subset): the three fields Gate 2
+# enforces, with their ratified count bands. `tells` is a list of plain strings;
+# `anti_patterns` and `failure_modes` are lists of mappings with named string
+# subfields. Mirrors schemas/entry.universal.schema.json (the schema enforces
+# presence, band, and shape; Gate 2 adds the substance bar - non-empty strings -
+# the schema cannot express).
+PEDAGOGICAL_BANDS = {
+    "tells": (5, 7),
+    "anti_patterns": (2, 4),
+    "failure_modes": (2, 3),
+}
+PEDAGOGICAL_SUBFIELDS = {
+    "anti_patterns": ("pattern", "why"),
+    "failure_modes": ("mode", "mitigation"),
+}
+
 # Built from code points so this file embeds no literal em/en-dash and passes the
 # repo's own dash checks (scripts/check-no-dashes.mjs scans .py). Runtime value is
 # the U+2014 and U+2013 characters, identical to the literals this replaces.
@@ -531,6 +547,72 @@ def check_taxonomy_membership(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     return errors
 
 
+def check_pedagogical_bar(id_map: dict[str, tuple[str, dict]]) -> list[str]:
+    """Gate 2 (ADR 0009 gate-critical subset): the pedagogical fields are
+    present, in band, and substantive.
+
+    For every entry, each of `tells` / `anti_patterns` / `failure_modes` must be
+    present, a list whose length is inside the ADR 0009 band, and carry only
+    substantive strings (non-empty after stripping whitespace). `tells` holds
+    plain strings; `anti_patterns` and `failure_modes` hold mappings whose named
+    subfields (pattern/why, mode/mitigation) must each be a non-empty string.
+
+    The JSON schemas enforce presence (the fields are required), the count
+    bands, and the object shape; this check adds the substance bar the schema
+    cannot express - a schema string may be "" - and emits gate-named messages.
+    Tightened to required 2026-06-22 (the F2 optional-then-tighten step, after
+    all 60 entries were backfilled), so violations are errors that contribute to
+    the exit code, the same move A1 made for domain/family.
+    """
+    print("[CHECK] Gate 2 - pedagogical bar (ADR 0009)...")
+    errors: list[str] = []
+
+    for entry_id, (axis, fm) in id_map.items():
+        rel = f"taxonomy/{axis}s/{entry_id}/ENTRY.md"
+        for field, (lo, hi) in PEDAGOGICAL_BANDS.items():
+            value = fm.get(field)
+            if value is None:
+                errors.append(
+                    f"[ERROR] {rel}: Gate 2: missing required pedagogical field '{field}'"
+                )
+                continue
+            if not isinstance(value, list):
+                errors.append(f"[ERROR] {rel}: Gate 2: '{field}' must be a list")
+                continue
+            if not (lo <= len(value) <= hi):
+                errors.append(
+                    f"[ERROR] {rel}: Gate 2: '{field}' has {len(value)} item(s); "
+                    f"ADR 0009 requires {lo} to {hi}"
+                )
+            subfields = PEDAGOGICAL_SUBFIELDS.get(field)
+            for i, item in enumerate(value):
+                if subfields is None:
+                    # tells: a list of plain strings
+                    if not isinstance(item, str) or not item.strip():
+                        errors.append(
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}]' is empty or not a substantive string"
+                        )
+                    continue
+                if not isinstance(item, dict):
+                    errors.append(
+                        f"[ERROR] {rel}: Gate 2: '{field}[{i}]' must be a mapping with "
+                        f"{' and '.join(subfields)}"
+                    )
+                    continue
+                for key in subfields:
+                    sub = item.get(key)
+                    if not isinstance(sub, str) or not sub.strip():
+                        errors.append(
+                            f"[ERROR] {rel}: Gate 2: '{field}[{i}].{key}' is empty or missing"
+                        )
+
+    if not errors:
+        print("[PASS] Gate 2 - pedagogical bar: 0 errors")
+    for e in errors:
+        print(e)
+    return errors
+
+
 def check_faceted_tags(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Validate `facet:value` tags against the governed enum (ADR 0010 section 5.3).
 
@@ -592,10 +674,12 @@ def run_all_checks() -> list[str]:
     check_review_status(id_map)
 
     if id_map:
-        # Taxonomy membership is tightened to required (F2 phase 3): violations
-        # are errors. Faceted tags stay optional-with-warning (values widen on
-        # demand per A4), so they report but do not affect the exit code.
+        # Taxonomy membership and the Gate 2 pedagogical bar are both tightened
+        # to required (the F2 optional-then-tighten step): violations are errors.
+        # Faceted tags stay optional-with-warning (values widen on demand per
+        # A4), so they report but do not affect the exit code.
         all_errors += check_taxonomy_membership(id_map)
+        all_errors += check_pedagogical_bar(id_map)
         check_faceted_tags(id_map)
 
     print()

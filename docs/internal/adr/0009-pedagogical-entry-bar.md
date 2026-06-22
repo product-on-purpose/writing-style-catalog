@@ -23,9 +23,10 @@ adherence gate) what it is, how it fails, and how to misuse it. Of the six field
 proposed, three are adopted now because the E1 adherence gate consumes them (`failure_modes`,
 `anti_patterns`, `tells`); the three heavier ones (`before_after_example`, `mini_glossary`, and the
 cross-reference `{id, rationale}` object upgrade) are **deferred, not rejected** (see Decision and
-Alternatives). The adopted fields land as **optional** schema properties now and tighten to required
-once the 60 baseline entries are backfilled and the gate exists (the F2 - migration sequencing
-optional-then-tighten path).
+Alternatives). The adopted fields landed as **optional** schema properties (2026-06-20) and were
+**tightened to required on 2026-06-22**, once all 60 baseline entries were backfilled, via the
+deterministic Gate 2 check in `tools/validate.py` (the F2 - migration sequencing optional-then-tighten
+path; see Migration below).
 
 This ADR supersedes the Proposed draft at `docs/internal/_working/0009-pedagogical-entry-bar.md`
 (2026-05-15), which proposed the full bar against a pre-gate plan ("double the catalog to 120 with
@@ -104,7 +105,12 @@ properties, enforced in shape when present:
    calibrating the C1 restraint bar against the 60.
 3. **Tighten:** once the backfill is complete and the gate exists, the fields tighten from optional to
    required (a Gate 2 check in `tools/validate.py`), the same optional-then-tighten move A1 used for
-   `domain` / `family`.
+   `domain` / `family`. **Executed 2026-06-22:** with all 60 backfilled, the three fields were added to
+   the universal schema's `required` array and `check_pedagogical_bar` (Gate 2) landed in
+   `tools/validate.py` as an error-level presence/band/substance check (substance = non-empty strings,
+   the bar the schema cannot express). The full catalog validates clean under the required bar. The
+   model-calling gate stages (Gates 1 and 3, the cross-family judge) remain to be built; the
+   deterministic Gate 2 enforcement does not depend on them.
 
 ### Versioning
 
@@ -129,11 +135,13 @@ v0.3.0 foundation work.
 
 ### Negative
 
-- **A backfill is still owed.** The 60 entries need real `failure_modes` / `anti_patterns` / `tells`
-  before the fields can tighten to required; until then Gate 2 cannot enforce them.
+- **A backfill was owed (resolved 2026-06-22).** The 60 entries needed real `failure_modes` /
+  `anti_patterns` / `tells` before the fields could tighten to required. The backfill completed
+  (PRs #39, #41-#44) and the tightening executed on 2026-06-22, so Gate 2 now enforces them.
 - **Frontmatter grows.** Entries carrying the new fields are heavier than the lean baseline shape.
-- **Partial bar is a visible interim state.** Some entries will carry the fields and some will not
-  until the backfill completes; this is the intended optional-then-tighten interim, not a defect.
+- **Partial bar was a visible interim state (resolved 2026-06-22).** During the backfill some entries
+  carried the fields and some did not; this was the intended optional-then-tighten interim. With the
+  fields now required, the interim is closed.
 
 ### Neutral
 
