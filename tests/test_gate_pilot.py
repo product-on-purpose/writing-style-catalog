@@ -120,7 +120,7 @@ def _packet_and_samples():
     packet = gp.build_render_packet(
         "pragmatic-architect", ["senior-consultant"], TOPIC, id_map, seed=0
     )
-    samples = {s.label: f"sample text for {s.entry_id}" for s in packet.slots}
+    samples = {s.label: f"sample prose for slot {s.label}" for s in packet.slots}
     return packet, samples, id_map
 
 
@@ -154,6 +154,10 @@ def test_judge_prompt_does_not_reveal_the_mapping():
     pa_pos = prompt.index("pragmatic-architect")
     sc_pos = prompt.index("senior-consultant")
     assert pa_pos < sc_pos
+    # Blindness through content: the samples region must leak no entry id.
+    samples_region = prompt.split("THE SAMPLES:", 1)[1]
+    for entry_id in packet.mapping.values():
+        assert entry_id not in samples_region
 
 
 def test_judge_prompt_demands_json_keys():
