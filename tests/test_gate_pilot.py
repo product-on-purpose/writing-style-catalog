@@ -167,6 +167,15 @@ def test_judge_prompt_demands_json_keys():
         assert key in prompt
 
 
+def test_judge_prompt_rejects_incomplete_samples():
+    import pytest
+    packet, samples, id_map = _packet_and_samples()
+    incomplete = dict(samples)
+    incomplete.pop(packet.slots[0].label)
+    with pytest.raises(ValueError):
+        gp.build_judge_prompt(packet, incomplete, id_map)
+
+
 def test_score_all_correct():
     packet, _samples, _id_map = _packet_and_samples()
     truth = packet.mapping

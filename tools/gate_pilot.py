@@ -117,11 +117,18 @@ def build_judge_prompt(packet: RenderPacket, samples: dict, id_map: dict) -> str
     about slot order), presents the samples by label, and asks for strict JSON.
     The label-to-entry mapping is never stated.
     """
+    expected = {s.label for s in packet.slots}
+    if set(samples) != expected:
+        missing = sorted(expected - set(samples))
+        extra = sorted(set(samples) - expected)
+        raise ValueError(
+            f"samples keys do not match packet slots: missing={missing}, extra={extra}"
+        )
     option_ids = sorted(s.entry_id for s in packet.slots)
     option_lines = []
     for i, eid in enumerate(option_ids, start=1):
         fm = id_map[eid][1]
-        name = fm.get("name", eid)
+        name = fm.get("name") or eid
         one_liner = (fm.get("one_liner") or "").strip()
         option_lines.append(
             f"  {i}. {name} ({eid}): {one_liner}\n"
