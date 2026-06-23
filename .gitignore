@@ -69,3 +69,6 @@ _agent-context/session-log/
 _agent-context/gate-pilot/
 _agent-context/research/
 _agent-context/plans/
+
+# Subagent-driven-development scratch (task briefs, review packages, ledger)
+.superpowers/
