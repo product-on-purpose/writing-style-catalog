@@ -98,3 +98,70 @@ def build_render_packet(candidate_id, neighbor_ids, topic_slug, id_map, seed=0):
         candidate=candidate_id, axis=axis,
         topic_slug=topic_slug, topic_label=topic_label, slots=slots,
     )
+
+
+def _format_failure_modes(fm: dict) -> str:
+    """Format the failure_modes array from a frontmatter dict as indented list."""
+    lines = []
+    for item in fm.get("failure_modes") or []:
+        mode = (item.get("mode") or "").strip()
+        mitigation = (item.get("mitigation") or "").strip()
+        lines.append(f"      - {mode} (mitigation: {mitigation})")
+    return "\n".join(lines) if lines else "      - (none declared)"
+
+
+def build_judge_prompt(packet: RenderPacket, samples: dict, id_map: dict) -> str:
+    """Build the blind judge prompt.
+
+    Lists the N options in alphabetical id order (so option order leaks nothing
+    about slot order), presents the samples by label, and asks for strict JSON.
+    The label-to-entry mapping is never stated.
+    """
+    option_ids = sorted(s.entry_id for s in packet.slots)
+    option_lines = []
+    for i, eid in enumerate(option_ids, start=1):
+        fm = id_map[eid][1]
+        name = fm.get("name", eid)
+        one_liner = (fm.get("one_liner") or "").strip()
+        option_lines.append(
+            f"  {i}. {name} ({eid}): {one_liner}\n"
+            f"     Known failure modes (over-doing this {packet.axis}):\n"
+            f"{_format_failure_modes(fm)}"
+        )
+    options_block = "\n".join(option_lines)
+
+    sample_lines = []
+    for s in packet.slots:
+        sample_lines.append(f"[{s.label}]\n{samples[s.label]}")
+    samples_block = "\n\n".join(sample_lines)
+
+    n = len(packet.slots)
+    axis = packet.axis
+    return (
+        "You are a blind judge in a writing-style attribution test. Judge only "
+        "the prose; the sample order is randomized and carries no signal.\n\n"
+        f"AXIS UNDER TEST: {axis}\n"
+        f"All {n} samples were written about the same topic: "
+        f"\"{packet.topic_label}\". They differ only in {axis}.\n\n"
+        f"THE {n} POSSIBLE {axis.upper()}S (alphabetical; exactly one sample is "
+        f"written in each):\n"
+        f"{options_block}\n\n"
+        "THE SAMPLES:\n\n"
+        f"{samples_block}\n\n"
+        "TASKS:\n"
+        f"1. ATTRIBUTION (forced choice, one-to-one): match each sample label to "
+        f"exactly one {axis} id from the list above.\n"
+        "2. DISTINGUISHABILITY: rate the set as \"identical\", \"subtle\", or "
+        "\"clear\".\n"
+        f"3. RESTRAINT: for each sample, judged ONLY against the failure modes of "
+        f"the {axis} you attributed it to, is it the genuine register (\"pass\"), "
+        "a borderline over-hit (\"weak\"), or a caricature of its own failure mode "
+        "(\"fail\")?\n\n"
+        "Return ONLY this JSON, nothing outside it:\n"
+        "{\n"
+        '  "attribution": {"A": "<id>", ...},\n'
+        '  "distinguishability": "identical|subtle|clear",\n'
+        '  "restraint": {"A": "pass|weak|fail", ...},\n'
+        '  "rationale": "<2-4 sentences>"\n'
+        "}\n"
+    )

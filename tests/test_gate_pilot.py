@@ -90,3 +90,74 @@ def test_packet_unknown_topic_raises():
         gp.build_render_packet(
             "pragmatic-architect", ["senior-consultant"], "no-such-topic", _voice_map()
         )
+
+
+def _voice_map_rich():
+    return {
+        "pragmatic-architect": _entry(
+            "voice",
+            name="Pragmatic Architect",
+            one_liner="Leads with the decision, names constraints.",
+            llm_instruction_phrasing="PA phrasing",
+            failure_modes=[
+                {"mode": "Tips into bossy", "mitigation": "Keep the reasoning visible"},
+            ],
+        ),
+        "senior-consultant": _entry(
+            "voice",
+            name="Senior Consultant",
+            one_liner="Diagnoses against a framework before recommending.",
+            llm_instruction_phrasing="SC phrasing",
+            failure_modes=[
+                {"mode": "Framework theater", "mitigation": "Use a model only where it places the situation"},
+            ],
+        ),
+    }
+
+
+def _packet_and_samples():
+    id_map = _voice_map_rich()
+    packet = gp.build_render_packet(
+        "pragmatic-architect", ["senior-consultant"], TOPIC, id_map, seed=0
+    )
+    samples = {s.label: f"sample text for {s.entry_id}" for s in packet.slots}
+    return packet, samples, id_map
+
+
+def test_judge_prompt_lists_options_with_failure_modes():
+    packet, samples, id_map = _packet_and_samples()
+    prompt = gp.build_judge_prompt(packet, samples, id_map)
+    assert "AXIS UNDER TEST: voice" in prompt
+    assert "Pragmatic Architect" in prompt
+    assert "Senior Consultant" in prompt
+    assert "Tips into bossy" in prompt          # PA failure mode
+    assert "Framework theater" in prompt        # SC failure mode
+    assert packet.topic_label in prompt
+
+
+def test_judge_prompt_includes_each_sample_under_its_label():
+    packet, samples, id_map = _packet_and_samples()
+    prompt = gp.build_judge_prompt(packet, samples, id_map)
+    for label, text in samples.items():
+        assert f"[{label}]" in prompt
+        assert text in prompt
+
+
+def test_judge_prompt_does_not_reveal_the_mapping():
+    packet, samples, id_map = _packet_and_samples()
+    prompt = gp.build_judge_prompt(packet, samples, id_map)
+    # The answer key must not appear as "<label>: <entry_id>" or "<label> = <entry_id>".
+    for label, entry_id in packet.mapping.items():
+        assert f"{label}: {entry_id}" not in prompt
+        assert f"{label} = {entry_id}" not in prompt
+    # Options are listed in alphabetical id order, independent of slot order.
+    pa_pos = prompt.index("pragmatic-architect")
+    sc_pos = prompt.index("senior-consultant")
+    assert pa_pos < sc_pos
+
+
+def test_judge_prompt_demands_json_keys():
+    packet, samples, id_map = _packet_and_samples()
+    prompt = gp.build_judge_prompt(packet, samples, id_map)
+    for key in ("attribution", "distinguishability", "restraint", "rationale"):
+        assert key in prompt
