@@ -222,6 +222,11 @@ def test_nearest_neighbors_prefers_confusable_then_caps():
     # the nearest set must draw from its declared confusables first.
     assert "pragmatic-architect" in near or "executive" in near
     assert "senior-consultant" not in near
+    # Confusable-first contract: senior-consultant declares executive and
+    # pragmatic-architect as confusable, so the first returned neighbor must be
+    # one of its declared confusables, not a plain sibling.
+    ns = gp.gate_neighbors("senior-consultant", id_map)
+    assert near[0] in ns.confusable
 
 
 def test_smoke_pragmatic_architect_packet_builds_on_real_catalog():
