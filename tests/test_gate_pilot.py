@@ -212,3 +212,39 @@ def test_run_record_round_trips_through_json():
     assert back["score"]["accuracy"] == 1.0
     assert back["distinguishability"] == "subtle"
     assert back["mapping"] == packet.mapping
+
+
+def test_nearest_neighbors_prefers_confusable_then_caps():
+    id_map = gp.load_catalog()
+    near = gp.nearest_neighbors("senior-consultant", id_map, limit=2)
+    assert len(near) == 2
+    # senior-consultant declares pragmatic-architect and executive as confusable;
+    # the nearest set must draw from its declared confusables first.
+    assert "pragmatic-architect" in near or "executive" in near
+    assert "senior-consultant" not in near
+
+
+def test_smoke_pragmatic_architect_packet_builds_on_real_catalog():
+    id_map = gp.load_catalog()
+    near = gp.nearest_neighbors("pragmatic-architect", id_map, limit=2)
+    packet = gp.build_render_packet(
+        "pragmatic-architect", near, "service-database-choice", id_map
+    )
+    assert packet.axis == "voice"
+    assert len(packet.slots) == 3
+    # Every rendered instruction carries real phrasing and the topic.
+    for s in packet.slots:
+        assert "Write about: Choosing Postgres vs DynamoDB" in s.instruction
+        assert len(s.instruction) > 60  # real phrasing, not empty
+
+
+def test_smoke_judge_prompt_builds_with_placeholder_samples():
+    id_map = gp.load_catalog()
+    near = gp.nearest_neighbors("pragmatic-architect", id_map, limit=2)
+    packet = gp.build_render_packet(
+        "pragmatic-architect", near, "service-database-choice", id_map
+    )
+    samples = {s.label: f"<placeholder for {s.label}>" for s in packet.slots}
+    prompt = gp.build_judge_prompt(packet, samples, id_map)
+    assert "AXIS UNDER TEST: voice" in prompt
+    assert "Pragmatic Architect" in prompt

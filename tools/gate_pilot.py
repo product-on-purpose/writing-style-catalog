@@ -204,3 +204,49 @@ def build_run_record(packet, samples, judge_json, score) -> dict:
         "rationale": judge_json.get("rationale", ""),
         "score": score,
     }
+
+
+def nearest_neighbors(candidate_id, id_map, limit=2) -> list[str]:
+    """The candidate's nearest gate adversaries: declared confusables first,
+    then remaining tree neighbors, truncated to `limit`. Mirrors the smoke
+    test's '2-3 nearest neighbors' framing."""
+    ns = gate_neighbors(candidate_id, id_map)
+    ordered = list(ns.confusable) + [n for n in ns.neighbors if n not in ns.confusable]
+    return ordered[:limit]
+
+
+def main(argv=None) -> int:
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Inspect a gate-pilot render packet and judge prompt."
+    )
+    parser.add_argument("--candidate", required=True, help="Candidate entry id")
+    parser.add_argument("--topic", required=True, help="Anchor-topic slug")
+    parser.add_argument("--limit", type=int, default=2, help="Nearest neighbors")
+    parser.add_argument("--seed", type=int, default=0, help="Shuffle seed")
+    args = parser.parse_args(argv)
+
+    id_map = load_catalog()
+    if args.candidate not in id_map:
+        print(f"[ERROR] unknown entry id: {args.candidate}", file=sys.stderr)
+        return 1
+
+    near = nearest_neighbors(args.candidate, id_map, limit=args.limit)
+    packet = build_render_packet(args.candidate, near, args.topic, id_map, seed=args.seed)
+
+    print(f"candidate: {packet.candidate} (axis: {packet.axis})")
+    print(f"topic: {packet.topic_slug} - {packet.topic_label}")
+    print(f"neighbors: {', '.join(near)}\n")
+    for s in packet.slots:
+        print(f"=== SLOT {s.label} -> {s.entry_id} ===")
+        print(s.instruction)
+        print()
+    placeholders = {s.label: f"<SAMPLE label={s.label} - paste generated prose here>"
+                    for s in packet.slots}
+    print("=== BLIND JUDGE PROMPT ===")
+    print(build_judge_prompt(packet, placeholders, id_map))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
