@@ -165,3 +165,50 @@ def test_judge_prompt_demands_json_keys():
     prompt = gp.build_judge_prompt(packet, samples, id_map)
     for key in ("attribution", "distinguishability", "restraint", "rationale"):
         assert key in prompt
+
+
+def test_score_all_correct():
+    packet, _samples, _id_map = _packet_and_samples()
+    truth = packet.mapping
+    score = gp.score_attribution(packet, dict(truth))
+    assert score["correct"] == score["n"] == len(truth)
+    assert score["accuracy"] == 1.0
+    assert all(slot["correct"] for slot in score["per_slot"])
+
+
+def test_score_one_wrong():
+    packet, _samples, _id_map = _packet_and_samples()
+    truth = packet.mapping
+    guess = dict(truth)
+    # Flip the two labels' guesses to force both wrong.
+    labels = list(truth.keys())
+    guess[labels[0]], guess[labels[1]] = truth[labels[1]], truth[labels[0]]
+    score = gp.score_attribution(packet, guess)
+    assert score["correct"] == 0
+    assert score["accuracy"] == 0.0
+
+
+def test_score_handles_missing_guess():
+    packet, _samples, _id_map = _packet_and_samples()
+    score = gp.score_attribution(packet, {})  # judge returned nothing
+    assert score["correct"] == 0
+    assert all(slot["guess"] is None for slot in score["per_slot"])
+
+
+def test_run_record_round_trips_through_json():
+    import json
+    packet, samples, id_map = _packet_and_samples()
+    judge_json = {
+        "attribution": dict(packet.mapping),
+        "distinguishability": "subtle",
+        "restraint": {s.label: "pass" for s in packet.slots},
+        "rationale": "Test rationale.",
+    }
+    score = gp.score_attribution(packet, judge_json["attribution"])
+    record = gp.build_run_record(packet, samples, judge_json, score)
+    blob = json.dumps(record)            # must be serializable
+    back = json.loads(blob)
+    assert back["candidate"] == "pragmatic-architect"
+    assert back["score"]["accuracy"] == 1.0
+    assert back["distinguishability"] == "subtle"
+    assert back["mapping"] == packet.mapping

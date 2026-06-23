@@ -165,3 +165,42 @@ def build_judge_prompt(packet: RenderPacket, samples: dict, id_map: dict) -> str
         '  "rationale": "<2-4 sentences>"\n'
         "}\n"
     )
+
+
+def score_attribution(packet: RenderPacket, attribution: dict) -> dict:
+    """Compare the judge's attribution to the hidden answer key."""
+    truth = packet.mapping
+    per_slot = []
+    correct = 0
+    for label in sorted(truth):
+        true_id = truth[label]
+        guess = attribution.get(label)
+        ok = guess == true_id
+        correct += 1 if ok else 0
+        per_slot.append(
+            {"label": label, "true": true_id, "guess": guess, "correct": ok}
+        )
+    n = len(truth)
+    return {
+        "n": n,
+        "correct": correct,
+        "accuracy": (correct / n) if n else 0.0,
+        "per_slot": per_slot,
+    }
+
+
+def build_run_record(packet, samples, judge_json, score) -> dict:
+    """Assemble the full inspectable run record (JSON-serializable)."""
+    return {
+        "candidate": packet.candidate,
+        "axis": packet.axis,
+        "topic_slug": packet.topic_slug,
+        "topic_label": packet.topic_label,
+        "mapping": packet.mapping,
+        "samples": dict(samples),
+        "attribution": judge_json.get("attribution", {}),
+        "distinguishability": judge_json.get("distinguishability"),
+        "restraint": judge_json.get("restraint", {}),
+        "rationale": judge_json.get("rationale", ""),
+        "score": score,
+    }
