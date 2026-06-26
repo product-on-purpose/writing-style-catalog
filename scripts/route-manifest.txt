@@ -79,6 +79,7 @@
 /examples/retirement-send-off/index.html
 /examples/roadmap-deprioritization/index.html
 /examples/service-database-choice/index.html
+/examples/team-milestone-celebration/index.html
 /examples/thanking-a-mentor/index.html
 /governance/contribution-process/index.html
 /guides/add-entry/index.html
