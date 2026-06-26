@@ -156,7 +156,7 @@ Format entries define the visual and structural container: headings, bullet dept
 
 Plus the assets that make the catalog teachable:
 
-- **540 worked examples** across nine anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, and a team milestone), so you can see each entry rendered on real content.
+- **600 worked examples** across ten anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, and a return-to-office position), so you can see each entry rendered on real content.
 - **66 diff-pairs** that hold a topic constant and vary one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
 - **15 format templates** giving the canonical structure for each format.
@@ -214,7 +214,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 **What exists today:**
 
 - 60 taxonomy entries (15 each across Voice, Tone, Style, Format)
-- 540 worked examples across nine anchor topics, plus 66 diff-pairs and 14 horizontal-slice recipes
+- 600 worked examples across ten anchor topics, plus 66 diff-pairs and 14 horizontal-slice recipes
 - Working `writing-instruction-builder` skill
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI
