@@ -77,6 +77,7 @@
 /examples/onboarding-a-new-hire/index.html
 /examples/roadmap-deprioritization/index.html
 /examples/service-database-choice/index.html
+/examples/thanking-a-mentor/index.html
 /governance/contribution-process/index.html
 /guides/add-entry/index.html
 /guides/compose-instruction/index.html
