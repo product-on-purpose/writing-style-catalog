@@ -83,7 +83,10 @@
 /guides/pick-voice/index.html
 /index.html
 /recipes/architect-candid-adr/index.html
+/recipes/caregiver-warm-thankyou/index.html
+/recipes/coach-encouraging-decision/index.html
 /recipes/columnist-candid-blog/index.html
+/recipes/columnist-confessional-reckoning/index.html
 /recipes/consultant-diplomatic-one-pager/index.html
 /recipes/index.html
 /recipes/mentor-encouraging-tutorial/index.html
@@ -92,6 +95,7 @@
 /recipes/product-candid-prd/index.html
 /recipes/researcher-confident-whitepaper/index.html
 /recipes/storyteller-celebratory-announcement/index.html
+/recipes/storyteller-warm-tribute/index.html
 /recipes/techwriter-plain-readme/index.html
 /reference/formats/adr/index.html
 /reference/formats/blog-post-long-form/index.html
