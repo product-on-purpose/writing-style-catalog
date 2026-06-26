@@ -30,7 +30,7 @@ The deeper cost was slower. "Can we avoid a migration?" had become a real questi
 
 ## The Turn
 
-We decided to migrate to CockroachDB in February 2023. The constraint: we could not stop shipping while we did it.
+We decided to migrate to a distributed SQL database in February 2023. The constraint: we could not stop shipping while we did it.
 
 Yuki built the dual-write layer - every change written simultaneously to both databases, old system remaining source of truth. It ran invisibly under every feature for six months. No user ever saw it.
 
@@ -38,9 +38,9 @@ The worst moment came in October 2023. A consistency check found 340,000 rows wh
 
 ## What Shipped
 
-Read-only flag at 6:14 AM. Health checks green across all three regions. By 7:00, Alloy ran entirely on CockroachDB.
+Read-only flag at 6:14 AM. Health checks green across all three regions. By 7:00, Alloy ran entirely on the new database.
 
-No incident. No support ticket. No maintenance windows for the rest of the quarter - the new distributed database handles schema changes online.
+No incident. No support ticket. No maintenance windows for the rest of the quarter - schema changes now ran online, without taking writes offline.
 
 First 30 days: 11 migrations, zero downtime, median 4 minutes. The old median was three days of coordination plus the window itself.
 
