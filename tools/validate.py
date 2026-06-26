@@ -29,8 +29,11 @@ except ImportError:
     sys.exit(1)
 
 # The controlled vocabulary is single-sourced in tools/taxonomy.py (ADR 0010).
+# The anchor-topic pool (the "sample columns") is single-sourced in
+# tools/anchor_topics.py (ADR 0017).
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import taxonomy  # noqa: E402
+import anchor_topics  # noqa: E402
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
@@ -597,6 +600,54 @@ def check_pedagogical_bar(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     return errors
 
 
+def check_sample_count(id_map: dict[str, tuple[str, dict]], vslices_dir: Path | None = None) -> list[str]:
+    """Gate 2 sample-count half: every ADMITTED entry renders as a worked sample
+    on each of the 12 seed-pool anchor topics (the adherence-gate spec's
+    "12 samples per entry" depth bar).
+
+    The pool is single-sourced in anchor_topics.seed_pool(); each render lives at
+    examples/vertical-slices/<topic>/<axis>-<entry_id>.md. Admitted means
+    review_status stable or reference-quality (in active use / exemplary); draft,
+    reviewed, and deprecated entries are exempt, because a candidate is not held
+    to the depth bar until it is admitted (a new Stream-B entry starts at draft
+    and has not been rendered yet).
+
+    Was the deferred half of Gate 2 (the spec's "samples are not in ENTRY.md, so
+    this rides the model-calling gate build"). Now that the matrix is rendered
+    into the repo, the count is a static, deterministic invariant, so it is an
+    error that contributes to the exit code, the sibling of check_pedagogical_bar.
+
+    Scope note: the gate spec's run-time admission also governs `reviewed`, but
+    this STATIC validator deliberately scopes to the admitted (in-use) set - its
+    job is to keep the SHIPPED catalog fully rendered, not to gate in-progress
+    candidates. The error/pass messages count against len(topics) rather than a
+    hardcoded 12, so the contract is locked in the test layer (the exact 12-topic
+    seed pool), not by a magic number here.
+    """
+    print("[CHECK] Gate 2 - sample count (12 per entry)...")
+    if vslices_dir is None:
+        vslices_dir = EXAMPLES_DIR / "vertical-slices"
+    topics = anchor_topics.seed_pool()
+    admitted = ("stable", "reference-quality")
+    errors: list[str] = []
+
+    for entry_id, (axis, fm) in id_map.items():
+        if fm.get("review_status") not in admitted:
+            continue
+        missing = [t for t in topics if not (vslices_dir / t / f"{axis}-{entry_id}.md").is_file()]
+        if missing:
+            errors.append(
+                f"[ERROR] {axis} '{entry_id}': Gate 2: missing worked samples on "
+                f"{len(missing)}/{len(topics)} anchor topic(s): {', '.join(missing)}"
+            )
+
+    if not errors:
+        print(f"[PASS] Gate 2 - sample count: every admitted entry renders on all {len(topics)} anchor topics")
+    for e in errors:
+        print(e)
+    return errors
+
+
 def check_faceted_tags(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     """Validate `facet:value` tags against the governed enum (ADR 0010 section 5.3).
 
@@ -667,6 +718,7 @@ def run_all_checks() -> list[str]:
         # report but do not affect the exit code.
         all_errors += check_taxonomy_membership(id_map)
         all_errors += check_pedagogical_bar(id_map)
+        all_errors += check_sample_count(id_map)
         check_faceted_tags(id_map)
 
     print()
