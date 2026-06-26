@@ -74,6 +74,7 @@
 /examples/diff-pairs/voice-storyteller-vs-columnist-async-standups/index.html
 /examples/diff-pairs/voice-technical-writer-vs-pragmatic-architect-async-standups/index.html
 /examples/morning-routine/index.html
+/examples/roadmap-deprioritization/index.html
 /examples/service-database-choice/index.html
 /governance/contribution-process/index.html
 /guides/add-entry/index.html
