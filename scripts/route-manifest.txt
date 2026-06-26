@@ -76,6 +76,7 @@
 /examples/diff-pairs/voice-technical-writer-vs-pragmatic-architect-async-standups/index.html
 /examples/morning-routine/index.html
 /examples/onboarding-a-new-hire/index.html
+/examples/product-launch-announcement/index.html
 /examples/remote-work-policy/index.html
 /examples/retirement-send-off/index.html
 /examples/roadmap-deprioritization/index.html
