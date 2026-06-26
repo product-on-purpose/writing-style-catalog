@@ -1,7 +1,7 @@
 {
   "name": "writing-style-catalog",
   "version": "0.3.0",
-  "description": "Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format): pick one entry per axis and the builder assembles a ready-to-paste prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Ships 60 curated entries, 389 worked examples, 66 diff-pairs, and 14 recipes, plus a style-profile skill that captures your personal default style. Use when you need a precise, composable writing instruction for an LLM.",
+  "description": "Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format): pick one entry per axis and the builder assembles a ready-to-paste prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Ships 60 curated entries, 449 worked examples, 66 diff-pairs, and 14 recipes, plus a style-profile skill that captures your personal default style. Use when you need a precise, composable writing instruction for an LLM.",
   "standard": "0.11",
   "tier": "universal",
   "license": "Apache-2.0",
