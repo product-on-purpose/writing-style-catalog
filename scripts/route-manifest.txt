@@ -5,6 +5,7 @@
 /design-standards/naming-conventions/index.html
 /design-standards/style-tells/index.html
 /design-standards/voice-and-tone/index.html
+/examples/a-hard-year-in-review/index.html
 /examples/async-standups/index.html
 /examples/daily-rest-practice/index.html
 /examples/diff-pairs/format-adr-vs-meeting-notes-async-standups/index.html
