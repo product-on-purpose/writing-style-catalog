@@ -156,7 +156,7 @@ Format entries define the visual and structural container: headings, bullet dept
 
 Plus the assets that make the catalog teachable:
 
-- **210 worked examples** across four anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, and a roadmap deprioritization), so you can see each entry rendered on real content.
+- **240 worked examples** across four anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, and a roadmap deprioritization), so you can see each entry rendered on real content.
 - **66 diff-pairs** that hold a topic constant and vary one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
 - **15 format templates** giving the canonical structure for each format.
