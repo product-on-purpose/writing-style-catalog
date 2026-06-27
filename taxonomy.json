@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T02:32:24.993208+00:00",
+  "generated": "2026-06-27T04:19:45.298988+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -317,6 +317,13 @@
       "review_status": "stable"
     },
     {
+      "id": "acceptance-speech",
+      "name": "Acceptance Speech",
+      "axis": "format",
+      "one_liner": "A speech given by the recipient of an award to thank those who made it possible and reflect on what it means.",
+      "review_status": "draft"
+    },
+    {
       "id": "ad-copy",
       "name": "Ad Copy",
       "axis": "format",
@@ -329,6 +336,20 @@
       "axis": "format",
       "one_liner": "A short structured document that captures a significant architectural decision, its context, and its consequences.",
       "review_status": "stable"
+    },
+    {
+      "id": "announcement",
+      "name": "Announcement",
+      "axis": "format",
+      "one_liner": "A direct message telling an audience about something new or changing, in the organization's own voice.",
+      "review_status": "draft"
+    },
+    {
+      "id": "apology",
+      "name": "Apology",
+      "axis": "format",
+      "one_liner": "A message that takes responsibility for a specific wrong, names its impact, and commits to repair.",
+      "review_status": "draft"
     },
     {
       "id": "blog-post-long-form",
@@ -443,6 +464,13 @@
       "review_status": "draft"
     },
     {
+      "id": "meeting-agenda",
+      "name": "Meeting Agenda",
+      "axis": "format",
+      "one_liner": "A short pre-meeting document listing what will be discussed, in what order, with time and intended outcomes.",
+      "review_status": "draft"
+    },
+    {
       "id": "meeting-notes",
       "name": "Meeting Notes",
       "axis": "format",
@@ -492,10 +520,24 @@
       "review_status": "draft"
     },
     {
+      "id": "performance-review",
+      "name": "Performance Review",
+      "axis": "format",
+      "one_liner": "A written evaluation of one person's work over a period, against expectations, with direction for what is next.",
+      "review_status": "draft"
+    },
+    {
       "id": "personal-essay",
       "name": "Personal Essay",
       "axis": "format",
       "one_liner": "A first-person reflective essay that uses a particular lived experience to reach a larger insight.",
+      "review_status": "draft"
+    },
+    {
+      "id": "personal-statement",
+      "name": "Personal Statement",
+      "axis": "format",
+      "one_liner": "A first-person application essay that makes the case for the writer toward a specific goal.",
       "review_status": "draft"
     },
     {
