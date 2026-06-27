@@ -22,7 +22,7 @@ That result sets the direction. The catalog works, so the roadmap is about makin
 ## Hygiene (continuous)
 
 - Keep CI runtimes current (Node 24).
-- Resolve the `review_status` governance question: new entries should start at `draft`, not `stable`.
+- Resolve the `review_status` governance question: new entries should start at `draft`, not `stable`. Resolved - the validator enforces it, and 57 Stream-B breadth format candidates currently sit at `draft` awaiting maintainer promotion review (tracker: `docs/internal/release-plans/stream-b-breadth-status.md`).
 - Reconcile the "three axes vs four directories" framing so the model is described consistently in the README, the taxonomy, and the contributor docs.
 
 ## Deliberately deferred
