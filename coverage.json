@@ -12,7 +12,7 @@
       "family": "instruction",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "professional",
@@ -33,7 +33,7 @@
       "family": "appraisal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "professional",
@@ -61,7 +61,7 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "public",
@@ -103,7 +103,7 @@
       "family": "tribute",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "contemplative",
