@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-20T06:01:13.598797+00:00",
+  "generated": "2026-06-26T23:57:12.931047+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -359,6 +359,13 @@
       "review_status": "stable"
     },
     {
+      "id": "eulogy",
+      "name": "Eulogy",
+      "axis": "format",
+      "one_liner": "A tribute that honors a person through specific, concrete memory rather than abstract praise.",
+      "review_status": "draft"
+    },
+    {
       "id": "meeting-notes",
       "name": "Meeting Notes",
       "axis": "format",
@@ -373,6 +380,13 @@
       "review_status": "stable"
     },
     {
+      "id": "postmortem",
+      "name": "Postmortem",
+      "axis": "format",
+      "one_liner": "A blameless retrospective of an incident: what happened, why, the impact, and the changes that keep it from happening again.",
+      "review_status": "draft"
+    },
+    {
       "id": "prd",
       "name": "Product Requirements Document",
       "axis": "format",
@@ -380,11 +394,25 @@
       "review_status": "stable"
     },
     {
+      "id": "press-release",
+      "name": "Press Release",
+      "axis": "format",
+      "one_liner": "A formal external announcement in news style: dateline, headline, a strong lead, a quote, and boilerplate.",
+      "review_status": "draft"
+    },
+    {
       "id": "readme",
       "name": "README",
       "axis": "format",
       "one_liner": "The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.",
       "review_status": "stable"
+    },
+    {
+      "id": "runbook",
+      "name": "Runbook",
+      "axis": "format",
+      "one_liner": "A step-by-step operational procedure for a recurring task or incident, written to be followed correctly under pressure.",
+      "review_status": "draft"
     },
     {
       "id": "slack-message",
