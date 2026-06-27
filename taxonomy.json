@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T01:52:07.378513+00:00",
+  "generated": "2026-06-27T02:14:38.483501+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -345,6 +345,13 @@
       "review_status": "draft"
     },
     {
+      "id": "condolence-note",
+      "name": "Condolence Note",
+      "axis": "format",
+      "one_liner": "A brief, private message of sympathy sent to someone who has lost a loved one.",
+      "review_status": "draft"
+    },
+    {
       "id": "cover-letter",
       "name": "Cover Letter",
       "axis": "format",
@@ -394,6 +401,13 @@
       "review_status": "draft"
     },
     {
+      "id": "gratitude-journal",
+      "name": "Gratitude Journal",
+      "axis": "format",
+      "one_liner": "A dated, recurring practice of naming what the writer is thankful for, written for the writer alone.",
+      "review_status": "draft"
+    },
+    {
       "id": "how-to-guide",
       "name": "How-To Guide",
       "axis": "format",
@@ -427,6 +441,13 @@
       "axis": "format",
       "one_liner": "A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.",
       "review_status": "stable"
+    },
+    {
+      "id": "memoir-excerpt",
+      "name": "Memoir Excerpt",
+      "axis": "format",
+      "one_liner": "A passage of autobiographical narrative that renders a slice of lived experience as story - scene, detail, and what happened.",
+      "review_status": "draft"
     },
     {
       "id": "obituary",
@@ -485,6 +506,20 @@
       "review_status": "draft"
     },
     {
+      "id": "project-brief",
+      "name": "Project Brief",
+      "axis": "format",
+      "one_liner": "A short kickoff document that sets an initiative's goal, scope, constraints, and success criteria before detailed work begins.",
+      "review_status": "draft"
+    },
+    {
+      "id": "public-statement",
+      "name": "Public Statement",
+      "axis": "format",
+      "one_liner": "An organization's official written position on a matter of public concern, written for a watching audience.",
+      "review_status": "draft"
+    },
+    {
       "id": "readme",
       "name": "README",
       "axis": "format",
@@ -496,6 +531,13 @@
       "name": "Release Notes",
       "axis": "format",
       "one_liner": "A user-facing summary of what changed in a release and why it matters to the reader.",
+      "review_status": "draft"
+    },
+    {
+      "id": "retrospective",
+      "name": "Retrospective",
+      "axis": "format",
+      "one_liner": "A structured look back at a period of work that surfaces what went well, what did not, and what the team will change.",
       "review_status": "draft"
     },
     {
