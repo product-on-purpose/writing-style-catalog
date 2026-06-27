@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T09:31:20.712220+00:00",
+  "generated": "2026-06-27T09:55:15.996076+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -342,7 +342,7 @@
       "name": "Announcement",
       "axis": "format",
       "one_liner": "A direct message telling an audience about something new or changing, in the organization's own voice.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "apology",
@@ -461,7 +461,7 @@
       "name": "FAQ",
       "axis": "format",
       "one_liner": "A list of anticipated questions with direct, self-contained answers, ordered by how often they are asked.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "gratitude-journal",
@@ -489,7 +489,7 @@
       "name": "Incident Report",
       "axis": "format",
       "one_liner": "A customer-facing account of a service incident: what happened, the impact, and what is being done.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "invitation",
@@ -538,7 +538,7 @@
       "name": "Meeting Agenda",
       "axis": "format",
       "one_liner": "A short pre-meeting document listing what will be discussed, in what order, with time and intended outcomes.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "meeting-notes",
@@ -622,14 +622,14 @@
       "name": "Pitch Deck",
       "axis": "format",
       "one_liner": "A sequence of presentation slides that tells a persuasive story to win a decision, one idea per slide.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "postmortem",
       "name": "Postmortem",
       "axis": "format",
       "one_liner": "A blameless retrospective of an incident: what happened, why, the impact, and the changes that keep it from happening again.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "prayer",
@@ -664,14 +664,14 @@
       "name": "Project Brief",
       "axis": "format",
       "one_liner": "A short kickoff document that sets an initiative's goal, scope, constraints, and success criteria before detailed work begins.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "proposal",
       "name": "Proposal",
       "axis": "format",
       "one_liner": "A document that pitches a specific piece of work or a deal to a client and asks them to say yes.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "public-statement",
@@ -699,7 +699,7 @@
       "name": "Release Notes",
       "axis": "format",
       "one_liner": "A user-facing summary of what changed in a release and why it matters to the reader.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "resume",
@@ -713,7 +713,7 @@
       "name": "Retrospective",
       "axis": "format",
       "one_liner": "A structured look back at a period of work that surfaces what went well, what did not, and what the team will change.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "review-response",
@@ -727,14 +727,14 @@
       "name": "RFC (Request for Comments)",
       "axis": "format",
       "one_liner": "A design proposal circulated to invite critique before a decision is made.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "runbook",
       "name": "Runbook",
       "axis": "format",
       "one_liner": "A step-by-step operational procedure for a recurring task or incident, written to be followed correctly under pressure.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "sermon",

@@ -139,7 +139,7 @@ tags:
   - accountability
   - incident-management
   - trust
-review_status: draft
+review_status: stable
 ---
 
 ## Incident Report

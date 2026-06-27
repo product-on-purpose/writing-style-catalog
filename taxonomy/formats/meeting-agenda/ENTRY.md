@@ -108,7 +108,7 @@ tags:
   - professional
   - structured
   - pre-meeting
-review_status: draft
+review_status: stable
 ---
 
 ## Meeting Agenda

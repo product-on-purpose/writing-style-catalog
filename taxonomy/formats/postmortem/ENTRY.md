@@ -122,7 +122,7 @@ tags:
   - reliability
   - engineering
   - accountability
-review_status: draft
+review_status: stable
 ---
 
 ## Postmortem

@@ -124,7 +124,7 @@ tags:
   - product
   - documentation
   - software
-review_status: draft
+review_status: stable
 ---
 
 ## Release Notes

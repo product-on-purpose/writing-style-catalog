@@ -101,7 +101,7 @@ tags:
   - public-communications
   - product-launch
   - change-communication
-review_status: draft
+review_status: stable
 ---
 
 ## Announcement
