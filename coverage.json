@@ -12,7 +12,7 @@
       "family": "instruction",
       "target_min": 12,
       "target_max": 20,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "professional",
@@ -47,14 +47,14 @@
       "family": "outreach",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "professional",
       "family": "response",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "public",
@@ -68,14 +68,14 @@
       "family": "copy",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "public",
       "family": "position",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "public",
@@ -103,7 +103,7 @@
       "family": "tribute",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "contemplative",
