@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T04:37:29.049970+00:00",
+  "generated": "2026-06-27T04:53:11.453119+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -492,6 +492,13 @@
       "review_status": "draft"
     },
     {
+      "id": "manifesto",
+      "name": "Manifesto",
+      "axis": "format",
+      "one_liner": "A public declaration of beliefs, principles, and intentions - what a person or movement stands for.",
+      "review_status": "draft"
+    },
+    {
       "id": "meeting-agenda",
       "name": "Meeting Agenda",
       "axis": "format",
@@ -611,10 +618,24 @@
       "review_status": "draft"
     },
     {
+      "id": "product-description",
+      "name": "Product Description",
+      "axis": "format",
+      "one_liner": "Product-page copy that tells a buyer what a product is, what it does for them, and why to buy.",
+      "review_status": "draft"
+    },
+    {
       "id": "project-brief",
       "name": "Project Brief",
       "axis": "format",
       "one_liner": "A short kickoff document that sets an initiative's goal, scope, constraints, and success criteria before detailed work begins.",
+      "review_status": "draft"
+    },
+    {
+      "id": "proposal",
+      "name": "Proposal",
+      "axis": "format",
+      "one_liner": "A document that pitches a specific piece of work or a deal to a client and asks them to say yes.",
       "review_status": "draft"
     },
     {
@@ -646,6 +667,13 @@
       "review_status": "draft"
     },
     {
+      "id": "resume",
+      "name": "Resume",
+      "axis": "format",
+      "one_liner": "A structured, scannable record of a person's professional experience, skills, and qualifications.",
+      "review_status": "draft"
+    },
+    {
       "id": "retrospective",
       "name": "Retrospective",
       "axis": "format",
@@ -671,6 +699,13 @@
       "name": "Runbook",
       "axis": "format",
       "one_liner": "A step-by-step operational procedure for a recurring task or incident, written to be followed correctly under pressure.",
+      "review_status": "draft"
+    },
+    {
+      "id": "sermon",
+      "name": "Sermon",
+      "axis": "format",
+      "one_liner": "A spoken address to a congregation that interprets a sacred text and applies it to listeners' lives.",
       "review_status": "draft"
     },
     {
@@ -721,6 +756,13 @@
       "axis": "format",
       "one_liner": "A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.",
       "review_status": "stable"
+    },
+    {
+      "id": "user-manual",
+      "name": "User Manual",
+      "axis": "format",
+      "one_liner": "Comprehensive documentation covering everything a user can do with a product, organized for lookup.",
+      "review_status": "draft"
     },
     {
       "id": "wedding-vows",

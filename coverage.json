@@ -12,7 +12,7 @@
       "family": "instruction",
       "target_min": 12,
       "target_max": 20,
-      "filled": 5
+      "filled": 6
     },
     {
       "domain": "professional",
@@ -26,7 +26,7 @@
       "family": "brief",
       "target_min": 3,
       "target_max": 8,
-      "filled": 3
+      "filled": 5
     },
     {
       "domain": "professional",
@@ -68,14 +68,14 @@
       "family": "copy",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "public",
       "family": "position",
       "target_min": 3,
       "target_max": 8,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "public",
@@ -110,7 +110,7 @@
       "family": "devotion",
       "target_min": 12,
       "target_max": 20,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "contemplative",
