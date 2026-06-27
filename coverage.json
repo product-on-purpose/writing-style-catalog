@@ -47,7 +47,7 @@
       "family": "outreach",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "professional",
@@ -89,35 +89,35 @@
       "family": "correspondence",
       "target_min": 12,
       "target_max": 20,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "personal",
       "family": "essay",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "ceremonial",
       "family": "tribute",
       "target_min": 12,
       "target_max": 20,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "contemplative",
       "family": "devotion",
       "target_min": 12,
       "target_max": 20,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "contemplative",
       "family": "journal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     }
   ],
   "voice_families": [
