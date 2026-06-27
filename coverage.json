@@ -19,7 +19,7 @@
       "family": "progress",
       "target_min": 3,
       "target_max": 8,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "professional",
@@ -33,7 +33,7 @@
       "family": "appraisal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "professional",
@@ -61,7 +61,7 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 5
+      "filled": 6
     },
     {
       "domain": "public",
@@ -89,21 +89,21 @@
       "family": "correspondence",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "personal",
       "family": "essay",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "ceremonial",
       "family": "tribute",
       "target_min": 12,
       "target_max": 20,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "contemplative",
