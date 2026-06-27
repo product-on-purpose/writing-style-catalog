@@ -125,7 +125,7 @@ tags:
   - documentation
   - design
   - architecture
-review_status: draft
+review_status: stable
 ---
 
 ## Design Document

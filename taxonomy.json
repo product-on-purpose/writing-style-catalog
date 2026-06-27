@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T05:09:06.961423+00:00",
+  "generated": "2026-06-27T09:31:20.712220+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -426,7 +426,7 @@
       "name": "Design Document",
       "axis": "format",
       "one_liner": "An engineering document that explores a design space and justifies an approach before implementation.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "devotional-entry",
@@ -482,7 +482,7 @@
       "name": "How-To Guide",
       "axis": "format",
       "one_liner": "A task-focused guide that teaches a reader to accomplish something they do not yet know how to do.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "incident-report",
