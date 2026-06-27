@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T04:19:45.298988+00:00",
+  "generated": "2026-06-27T04:37:29.049970+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -373,6 +373,13 @@
       "review_status": "draft"
     },
     {
+      "id": "commencement-speech",
+      "name": "Commencement Speech",
+      "axis": "format",
+      "one_liner": "A speech to graduates at a ceremony, offering reflection, wisdom, and a send-off into what comes next.",
+      "review_status": "draft"
+    },
+    {
       "id": "condolence-note",
       "name": "Condolence Note",
       "axis": "format",
@@ -436,6 +443,13 @@
       "review_status": "draft"
     },
     {
+      "id": "guided-meditation",
+      "name": "Guided Meditation",
+      "axis": "format",
+      "one_liner": "A script that leads a listener through a sequence of attention - breath, body, image - in real time.",
+      "review_status": "draft"
+    },
+    {
       "id": "how-to-guide",
       "name": "How-To Guide",
       "axis": "format",
@@ -450,6 +464,13 @@
       "review_status": "draft"
     },
     {
+      "id": "invitation",
+      "name": "Invitation",
+      "axis": "format",
+      "one_liner": "A message asking someone to attend an event, with what they need to decide and respond.",
+      "review_status": "draft"
+    },
+    {
       "id": "journal-entry",
       "name": "Journal Entry",
       "axis": "format",
@@ -461,6 +482,13 @@
       "name": "Landing Page",
       "axis": "format",
       "one_liner": "Web copy written to convert a visitor into a single action - sign up, buy, book, or subscribe.",
+      "review_status": "draft"
+    },
+    {
+      "id": "listicle",
+      "name": "Listicle",
+      "axis": "format",
+      "one_liner": "An article built as a numbered or bulleted list where each item is a self-contained, scannable unit.",
       "review_status": "draft"
     },
     {
@@ -517,6 +545,13 @@
       "name": "Op-Ed",
       "axis": "format",
       "one_liner": "A short argued opinion piece for a publication that advances one clear position on a timely issue.",
+      "review_status": "draft"
+    },
+    {
+      "id": "open-letter",
+      "name": "Open Letter",
+      "axis": "format",
+      "one_liner": "A letter addressed to a specific target but published for a wider public to witness the appeal.",
       "review_status": "draft"
     },
     {
@@ -595,6 +630,13 @@
       "axis": "format",
       "one_liner": "The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.",
       "review_status": "stable"
+    },
+    {
+      "id": "recommendation-letter",
+      "name": "Recommendation Letter",
+      "axis": "format",
+      "one_liner": "A letter by someone who knows a candidate, advocating for them to a third-party decision-maker.",
+      "review_status": "draft"
     },
     {
       "id": "release-notes",
