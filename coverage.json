@@ -5,14 +5,14 @@
       "family": "deliberation",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 4
     },
     {
       "domain": "professional",
       "family": "instruction",
       "target_min": 12,
       "target_max": 20,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "professional",
@@ -61,7 +61,7 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "public",
@@ -82,7 +82,7 @@
       "family": "accountability",
       "target_min": 3,
       "target_max": 8,
-      "filled": 0
+      "filled": 1
     },
     {
       "domain": "personal",
