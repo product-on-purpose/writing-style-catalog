@@ -26,14 +26,14 @@
       "family": "brief",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "professional",
       "family": "appraisal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "professional",
@@ -82,21 +82,21 @@
       "family": "accountability",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "personal",
       "family": "correspondence",
       "target_min": 12,
       "target_max": 20,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "personal",
       "family": "essay",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     },
     {
       "domain": "ceremonial",
@@ -117,7 +117,7 @@
       "family": "journal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 1
+      "filled": 2
     }
   ],
   "voice_families": [
