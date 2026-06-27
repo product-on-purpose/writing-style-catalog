@@ -125,6 +125,4 @@ Formal communication requiring a paper trail, communication with external partie
 
 ### Often confused with
 
-**prd**: A PRD is a structured multi-section document defining product requirements. A Slack message is a short async communication in a team feed - the two should not be confused in practice, but "format" as a category occasionally causes library navigation confusion.
-
-**adr**: An ADR is a permanent record of an architectural decision. A Slack message is ephemeral async communication - it may contain a decision, but it is not a record of one.
+**email**: A Slack message is ephemeral, lives in a team channel, and can lean on shared channel context and conversational history. An email creates a durable record, travels beyond the team, and must be self-contained - the subject line and body carry obligations that a Slack message does not.

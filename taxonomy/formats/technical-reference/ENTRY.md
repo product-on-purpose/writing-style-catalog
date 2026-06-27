@@ -75,6 +75,9 @@ avoid_with:
   - narrative-case-study
 confusable_with:
   - readme
+  - diataxis-explanation
+  - procedural
+  - user-manual
 when_to_use:
   - Documenting an API, library, CLI, or configuration schema that practitioners will consult repeatedly
   - Providing an authoritative specification for a component's inputs, outputs, and constraints
@@ -183,3 +186,5 @@ Reference format is wrong for introducing someone to a concept for the first tim
 **diataxis-explanation**: A Diataxis explanation document teaches conceptual understanding - it is oriented toward learning and can include motivation, analogy, and context. A technical reference document is oriented toward lookup - it assumes understanding and prioritizes precision and scannability over explanation.
 
 **procedural**: A how-to guide walks a practitioner through a specific task with sequential steps toward a defined goal. A technical reference document is a stable specification that a practitioner consults while doing a task - it does not guide; it answers.
+
+**user-manual**: A technical reference is a precise specification of inputs, outputs, and syntax for a developer artifact (API, library, CLI, config schema), organized by signature, parameters, and returns. A user manual is whole-product, end-user task and feature coverage with numbered procedural steps. The discriminator: if the unit of organization is a function, endpoint, or field, it is a technical reference; if it is a user-facing feature or task with steps, it is a user manual.

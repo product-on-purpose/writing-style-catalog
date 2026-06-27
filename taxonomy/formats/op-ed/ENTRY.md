@@ -56,6 +56,7 @@ avoid_with:
   - pastoral
 confusable_with:
   - blog-post-long-form
+  - editorial
 when_to_use:
   - Arguing a clear position on a timely public issue in a named outlet
   - Building external credibility through a third-party publication
@@ -73,6 +74,7 @@ tells:
   - 'Hard word limit observed: 600-800 words, with no digressions'
   - 'Written for a named publication''s readership, not the writer''s own audience'
   - 'Ends on a call, implication, or reframing - not a restatement of the argument'
+  - 'Draws authority from the named author''s own stake, experience, or voice - first-person anecdote is allowed and often central'
 anti_patterns:
   - pattern: 'Opening with background or context before stating the position'
     why: 'Op-ed readers are strangers; the first sentence must earn the next. Delaying the claim wastes the lede and gives an editor reason to reject.'
@@ -140,3 +142,5 @@ When the topic requires nuanced exploration rather than a pre-held conclusion, w
 ### Often confused with
 
 **blog-post-long-form**: A long-form blog post is a substantial web article of 1,500-3,000 words with a present and recognizable authorial voice; it can pursue a focused argument or a deeper exploration of a topic at its own pace. An op-ed is written for a third-party publication, holds to 600-800 words, and argues a single pre-held position from the first sentence. The blog post's length lets the writer develop ideas gradually; the op-ed's hard word limit and external outlet demand that the position be declared and defended without detour.
+
+**editorial**: An editorial is the UNSIGNED collective opinion of a publication's editorial board, speaking as we for the masthead and grounding its authority in the institution's reported-fact and observed-pattern judgment - it forbids personal anecdote. An op-ed is SIGNED by an individual whose authority comes from their own stake, lived experience, or distinctive voice, and may build the argument on first-person anecdote.

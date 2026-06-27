@@ -53,6 +53,7 @@ avoid_with:
   - skeptical
 confusable_with:
   - press-release
+  - release-notes
 when_to_use:
   - Announcing a product launch, new feature, or availability change directly to customers or users
   - Communicating a policy update, pricing change, or operational change to the affected audience
@@ -140,3 +141,5 @@ When the goal is media coverage and a journalist needs to repackage the news - u
 ### Often confused with
 
 **press-release**: A press release is a formal external announcement in news style - with a dateline, headline, attributed spokesperson quotes, a boilerplate "About" section, and a media contact block - built for journalists to republish without needing to interview anyone. It travels through layers of reception (PR wire, editorial inbox, news desk), and its formality signals that the content is legally cleared and safe to quote as issued. An announcement addresses the affected audience directly, in the organization's own voice, with no intermediary to persuade; it carries none of the structural signals a newsroom needs, because no newsroom is in the chain.
+
+**release-notes**: An announcement is a single-subject news message in the organization's own voice - it states a piece of news, explains what it means for the reader, and closes with a next step. Release notes are version-anchored, multi-item, and curated from a changelog into scannable grouped sections (New, Improved, Fixed) under a version identifier. Use an announcement when a single piece of news warrants a direct message to the audience; use release notes when a versioned software release has multiple changes to communicate.

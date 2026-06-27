@@ -86,6 +86,7 @@ avoid_with:
   - reverent
 confusable_with:
   - postmortem
+  - public-statement
 when_to_use:
   - Communicating a service disruption to affected customers during or after an incident
   - Publishing a final account after service is restored with root cause and remediation
@@ -206,3 +207,5 @@ Internal engineering retrospectives on what went wrong, routine maintenance noti
 ### Often confused with
 
 **postmortem**: A postmortem is an internal, blameless engineering retrospective - it asks why the system failed and how to improve team processes, and is written for the engineering team. An incident report is written for customers and the public: it takes organizational accountability, explains impact in accessible terms, and commits to remediation without exposing the forensic depth that belongs in the postmortem.
+
+**public-statement**: An incident-report covers a technical service disruption with a reconstructable timeline and root cause (Status, Timeline, Root Cause, Resolution) and is addressed to affected users who need to know what failed and what changed. A public-statement covers a controversy or decision under scrutiny that has no incident timeline; it is carried as institutional prose with a named signatory and addresses a watching public rather than a population of technically affected customers.

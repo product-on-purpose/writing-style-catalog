@@ -58,6 +58,7 @@ avoid_with:
   - skeptical
 confusable_with:
   - ad-copy
+  - landing-page
 when_to_use:
   - Writing copy for an e-commerce product page, marketplace listing, or app store entry
   - Describing a product to a buyer who has already landed on the product page and is close to deciding
@@ -68,6 +69,7 @@ when_not_to_use:
   - Writing a social or paid ad that must hook a distracted audience before they scroll past
   - Drafting an internal product brief, PRD, or technical specification intended for builders rather than buyers
   - Creating brand or campaign copy where emotional storytelling and abstraction are more appropriate than concrete specifics
+  - Building a dedicated conversion page where every element serves a single repeated call to action; that is a landing page, not a product description block
 tells:
   - 'A lead sentence that names what the product is, who it is for, and the defining benefit in one to two sentences'
   - 'Feature-to-benefit pairs that translate concrete specs into buyer outcomes'
@@ -160,7 +162,7 @@ Writing copy for an e-commerce product page, marketplace listing, or app store e
 
 ### When not to use
 
-Writing a social or paid ad that must hook a distracted audience before they scroll past, drafting an internal product brief, PRD, or technical specification intended for builders rather than buyers, creating brand or campaign copy where emotional storytelling and abstraction are more appropriate than concrete specifics.
+Writing a social or paid ad that must hook a distracted audience before they scroll past, drafting an internal product brief, PRD, or technical specification intended for builders rather than buyers, creating brand or campaign copy where emotional storytelling and abstraction are more appropriate than concrete specifics, or building a dedicated conversion page where every element serves a single repeated call to action (that is a landing page, not a product description block).
 
 ### Pairs well with
 
@@ -169,3 +171,5 @@ Writing a social or paid ad that must hook a distracted audience before they scr
 ### Often confused with
 
 **ad-copy**: Ad copy is short promotional text written to grab attention and drive a single action under tight character limits - a headline, an optional reinforcing line, and a call to action, with every word fighting for the click. Its job is to earn the click, not to close the deal. A product description is what the buyer reads after arriving at the product page: it has room to inform, specify, and reassure in ways ad copy cannot. Ad copy earns the attention that brings the buyer to the page; the product description holds that attention and converts it.
+
+**landing-page**: A landing page is the whole conversion page, where every element - headline, benefits, social proof, objection handlers, call to action - is subordinated to one repeated conversion goal. A product description is a block that sits among other page elements (price, cart, images, reviews) and describes one product's specifics and benefits for a buyer who is already close to deciding. The scope is different: a product description is a component within a larger page; a landing page is the whole page built around a single conversion action.

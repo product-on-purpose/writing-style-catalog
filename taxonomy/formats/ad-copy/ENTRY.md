@@ -79,7 +79,7 @@ anti_patterns:
 failure_modes:
   - mode: 'Over-compresses - the drive for brevity strips out the one specific claim that would make the ad credible, leaving only an empty hook ("Stop struggling. Start winning." tells the reader nothing about what the product does)'
     mitigation: 'Every ad needs at least one concrete anchor - a number, an outcome, or a named benefit - that keeps the hook from tipping into empty sloganeering. If cutting to the character limit removes all specificity, the hook itself needs to be reconceived, not just shortened.'
-  - mode: 'Over-urgencies - every element piles on scarcity, deadlines, and pressure ("Act now! Limited spots! Don''t miss out! Today only!") until the ad reads as a count of pressure tactics rather than a credible offer'
+  - mode: 'Over-pressures - every element piles on scarcity, deadlines, and pressure ("Act now! Limited spots! Don''t miss out! Today only!") until the ad reads as a count of pressure tactics rather than a credible offer'
     mitigation: 'Urgency is most effective when it is singular and true. One specific deadline or one honest scarcity signal outperforms a stack of generic pressure phrases that trained readers have learned to ignore.'
 llm_instruction_phrasing: |
   Write as ad copy. The goal is a single specific action - name it in the headline or CTA.

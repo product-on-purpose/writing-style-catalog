@@ -86,6 +86,7 @@ avoid_with:
   - playful
 confusable_with:
   - how-to-guide
+  - technical-reference
 when_to_use:
   - Documenting a product or tool where users need to look up specific features or tasks at the moment of need rather than learn the product from scratch
   - Shipping the authoritative reference alongside a product that users will return to repeatedly across many sessions
@@ -219,3 +220,5 @@ Teaching a complete beginner who needs guided, capability-building instruction t
 ### Often confused with
 
 **how-to-guide**: A how-to guide teaches a reader to accomplish one specific task they do not yet know how to do, walking them through the steps with enough context to understand what they are doing and why. The goal is a reader who, having followed the guide once, could reproduce the task without the guide the second time - capability, not just completion, is the measure. A user manual is not a teaching document: it covers all tasks and features across the whole product surface for a reader who already has capability and arrives to look up a specific thing. Where a how-to guide takes a learner through one task end to end, a user manual is consulted the way one uses a dictionary rather than a tutorial.
+
+**technical-reference**: A technical reference is a precise specification of inputs, outputs, and syntax for a developer artifact (API, library, CLI, config schema), organized by signature, parameters, and returns. A user manual is whole-product, end-user task and feature coverage with numbered procedural steps. The discriminator: if the unit of organization is a function, endpoint, or field, it is a technical reference; if it is a user-facing feature or task with steps, it is a user manual.

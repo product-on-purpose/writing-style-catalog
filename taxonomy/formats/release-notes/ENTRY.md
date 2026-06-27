@@ -71,6 +71,7 @@ avoid_with:
 confusable_with:
   - changelog-entry
   - blog-post-long-form
+  - announcement
 when_to_use:
   - Announcing a versioned software release to end users or customers.
   - Publishing updates to a SaaS product, mobile app, developer tool, or library where the audience will update or encounter the new version.
@@ -172,3 +173,5 @@ Documenting internal engineering decisions or architecture changes (use an ADR),
 **changelog-entry**: A changelog is a chronological, exhaustive record of every change merged into a codebase, authored for developers rather than users. Release notes curate from the changelog: they select the changes worth communicating, translate them into user language, and lead with benefit rather than implementation detail.
 
 **blog-post-long-form**: A long-form blog post tells a narrative story about why something was built, what problems it solves, and where the product is going. Release notes are not storytelling - they are scannable reference documents. Where a blog post invites reading, release notes invite scanning.
+
+**announcement**: Release notes are version-anchored, multi-item, and curated from a changelog into scannable grouped sections (New, Improved, Fixed) under a version identifier. An announcement is a single-subject news message in the organization's own voice with no version identifier and no grouped change sections. Use release notes when a versioned release has multiple changes to communicate; use an announcement when a single piece of news warrants its own direct message to the audience.

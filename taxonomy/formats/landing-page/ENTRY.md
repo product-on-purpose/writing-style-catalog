@@ -64,6 +64,7 @@ avoid_with:
   - skeptical
 confusable_with:
   - blog-post-long-form
+  - product-description
 when_to_use:
   - Promoting a new product, feature, or offer to a cold or warm audience
   - Capturing sign-ups for a waitlist, newsletter, or free trial
@@ -162,3 +163,5 @@ Explaining a complex product to an audience that needs full context before decid
 ### Often confused with
 
 **blog-post-long-form**: A long-form blog post is a substantial web article (1,500-3,000 words) that informs or explores a specific argument through a conversational, present-voice narrative. The writer is recognizably present, the reader feels addressed rather than briefed, and depth is the reward for staying through the end. A landing page shares the web medium but is not an article - it is structured around one conversion goal, designed for scanning rather than reading, and every element exists to move the visitor toward a single action. Where a long-form post earns trust through depth and exploration, a landing page earns trust through clarity and specificity of offer.
+
+**product-description**: A product description is a block that sits among other page elements - price, cart, images, reviews - describing one product's specifics and benefits for a buyer who is already on the product page. A landing page is the whole page, with every element (headline, benefits section, social proof, objection handlers) subordinated to one repeated conversion call to action. Where a product description is a component that informs within a larger page context, a landing page is that context: every sentence exists to move the visitor toward a single action, not to describe a product among other content.
