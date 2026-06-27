@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T04:53:11.453119+00:00",
+  "generated": "2026-06-27T05:09:06.961423+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -352,6 +352,20 @@
       "review_status": "draft"
     },
     {
+      "id": "bio",
+      "name": "Bio",
+      "axis": "format",
+      "one_liner": "A short third-person summary introducing who a person is professionally, shaped to fit a context.",
+      "review_status": "draft"
+    },
+    {
+      "id": "blessing",
+      "name": "Blessing",
+      "axis": "format",
+      "one_liner": "A short invocation of favor or grace pronounced over a person, gathering, meal, or undertaking.",
+      "review_status": "draft"
+    },
+    {
       "id": "blog-post-long-form",
       "name": "Blog Post (Long Form)",
       "axis": "format",
@@ -394,6 +408,13 @@
       "review_status": "draft"
     },
     {
+      "id": "customer-story",
+      "name": "Customer Story",
+      "axis": "format",
+      "one_liner": "A structured marketing narrative showing how a specific customer used a product to get a result.",
+      "review_status": "draft"
+    },
+    {
       "id": "daily-standup",
       "name": "Daily Standup",
       "axis": "format",
@@ -413,6 +434,13 @@
       "axis": "format",
       "one_liner": "A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.",
       "review_status": "stable"
+    },
+    {
+      "id": "editorial",
+      "name": "Editorial",
+      "axis": "format",
+      "one_liner": "The unsigned opinion of a publication itself, stating the institution's position on an issue.",
+      "review_status": "draft"
     },
     {
       "id": "email",
@@ -489,6 +517,13 @@
       "name": "Listicle",
       "axis": "format",
       "one_liner": "An article built as a numbered or bulleted list where each item is a self-contained, scannable unit.",
+      "review_status": "draft"
+    },
+    {
+      "id": "love-letter",
+      "name": "Love Letter",
+      "axis": "format",
+      "one_liner": "An intimate written expression of romantic affection addressed to the beloved.",
       "review_status": "draft"
     },
     {
@@ -735,6 +770,13 @@
       "axis": "format",
       "one_liner": "A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.",
       "review_status": "stable"
+    },
+    {
+      "id": "testimonial",
+      "name": "Testimonial",
+      "axis": "format",
+      "one_liner": "A short first-person endorsement in a customer's own voice, used as social proof.",
+      "review_status": "draft"
     },
     {
       "id": "thank-you-note",

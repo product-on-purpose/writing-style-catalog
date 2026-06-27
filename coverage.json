@@ -26,7 +26,7 @@
       "family": "brief",
       "target_min": 3,
       "target_max": 8,
-      "filled": 5
+      "filled": 6
     },
     {
       "domain": "professional",
@@ -61,21 +61,21 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 7
+      "filled": 8
     },
     {
       "domain": "public",
       "family": "copy",
       "target_min": 3,
       "target_max": 8,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "public",
       "family": "position",
       "target_min": 3,
       "target_max": 8,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "public",
@@ -89,7 +89,7 @@
       "family": "correspondence",
       "target_min": 12,
       "target_max": 20,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "personal",
@@ -110,7 +110,7 @@
       "family": "devotion",
       "target_min": 12,
       "target_max": 20,
-      "filled": 4
+      "filled": 5
     },
     {
       "domain": "contemplative",
