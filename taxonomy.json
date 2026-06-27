@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T02:14:38.483501+00:00",
+  "generated": "2026-06-27T02:32:24.993208+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -317,6 +317,13 @@
       "review_status": "stable"
     },
     {
+      "id": "ad-copy",
+      "name": "Ad Copy",
+      "axis": "format",
+      "one_liner": "Short promotional text written to grab attention and drive a single action under tight character limits.",
+      "review_status": "draft"
+    },
+    {
       "id": "adr",
       "name": "Architecture Decision Record",
       "axis": "format",
@@ -443,10 +450,24 @@
       "review_status": "stable"
     },
     {
+      "id": "memo",
+      "name": "Memo",
+      "axis": "format",
+      "one_liner": "A formal internal document that puts a decision or policy on the record for a group, with a TO/FROM/DATE/RE header.",
+      "review_status": "draft"
+    },
+    {
       "id": "memoir-excerpt",
       "name": "Memoir Excerpt",
       "axis": "format",
       "one_liner": "A passage of autobiographical narrative that renders a slice of lived experience as story - scene, detail, and what happened.",
+      "review_status": "draft"
+    },
+    {
+      "id": "newsletter",
+      "name": "Newsletter",
+      "axis": "format",
+      "one_liner": "A recurring editorial message delivered to subscribers on a cadence, in a consistent opted-in voice.",
       "review_status": "draft"
     },
     {
@@ -475,6 +496,13 @@
       "name": "Personal Essay",
       "axis": "format",
       "one_liner": "A first-person reflective essay that uses a particular lived experience to reach a larger insight.",
+      "review_status": "draft"
+    },
+    {
+      "id": "pitch-deck",
+      "name": "Pitch Deck",
+      "axis": "format",
+      "one_liner": "A sequence of presentation slides that tells a persuasive story to win a decision, one idea per slide.",
       "review_status": "draft"
     },
     {
@@ -541,6 +569,13 @@
       "review_status": "draft"
     },
     {
+      "id": "review-response",
+      "name": "Review Response",
+      "axis": "format",
+      "one_liner": "A public reply from a business to a customer's posted review, written for the reviewer but read by every future prospect.",
+      "review_status": "draft"
+    },
+    {
       "id": "rfc",
       "name": "RFC (Request for Comments)",
       "axis": "format",
@@ -602,6 +637,13 @@
       "axis": "format",
       "one_liner": "A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.",
       "review_status": "stable"
+    },
+    {
+      "id": "wedding-vows",
+      "name": "Wedding Vows",
+      "axis": "format",
+      "one_liner": "The personal promises spoken by one partner to the other during a marriage ceremony.",
+      "review_status": "draft"
     },
     {
       "id": "whitepaper",
