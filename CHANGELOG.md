@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **57 draft format candidates** (Stream-B breadth program, batches 1-10), bringing the Format axis from 15 to 72 entries across all five domains (professional, public, personal, ceremonial, contemplative). Every format family now has at least two worked entries, and the two previously-empty families (`response`, `copy`) are filled. Each candidate carries the full pedagogical bar (tells, anti_patterns, failure_modes) and cleared a two-gate process: the deterministic `validate.py` suite and a cross-vendor Codex distinguishability gate that checks each entry against its nearest confusable neighbor. All start at `review_status: draft` and are **awaiting maintainer draft-to-stable review**. The curated counts in `library.json` / `plugin.json` are deliberately unchanged until promotion, because drafts are not curated. The full inventory and promotion path live in `docs/internal/release-plans/stream-b-breadth-status.md`.
+- **Draft marking on the docs site.** Generated reference and template pages now render a "Draft - under review" callout for any entry whose `review_status` is `draft`, so the live site visibly distinguishes the breadth candidates from the stable catalog (`scripts/gen-site.mjs`).
+
 ## [0.3.0] - 2026-06-25
 
 A personal `style-profile` skill, a first batch of agentic recipes, a pedagogical bar on every entry (each one now teaches its own tells and failure modes), the v2 taxonomy with domain and family facets, and the deterministic substrate of the adherence gate that will govern the catalog's gated expansion. Rolls up everything merged since v0.2.0.

@@ -463,6 +463,12 @@ function renderEntryPage(catalog, pairs, entry) {
   out.push('');
   out.push("import { Tabs, TabItem } from '@astrojs/starlight/components';");
   out.push('');
+  if (entry.review_status === 'draft') {
+    out.push(':::caution[Draft - under review]');
+    out.push('This entry is a Stream-B breadth candidate under maintainer review. It is not yet part of the stable catalog and may change or be withdrawn before promotion.');
+    out.push(':::');
+    out.push('');
+  }
   out.push(`> ${entry.one_liner || ''}`);
   out.push('');
   out.push((entry._body || '').trim());
@@ -588,6 +594,9 @@ function renderTemplatePage(fmt) {
     '',
     GENERATED_BANNER,
     '',
+    ...(fmt.review_status === 'draft'
+      ? [':::caution[Draft - under review]', 'This format is a Stream-B breadth candidate under maintainer review and is not yet part of the stable catalog.', ':::', '']
+      : []),
     `Canonical template for the [${fmt.name}](${relUrl(fromSlug, refSlug(fmt))}) format.`,
     '',
     '```markdown',
