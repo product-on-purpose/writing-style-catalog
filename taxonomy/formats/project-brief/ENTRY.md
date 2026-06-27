@@ -122,7 +122,7 @@ tags:
   - stakeholder-alignment
   - scope
   - brief
-review_status: draft
+review_status: stable
 ---
 
 ## Project Brief

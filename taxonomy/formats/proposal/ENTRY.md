@@ -133,7 +133,7 @@ tags:
   - client
   - scoping
   - business-development
-review_status: draft
+review_status: stable
 ---
 
 ## Proposal
