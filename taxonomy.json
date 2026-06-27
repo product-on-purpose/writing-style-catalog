@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T00:42:19.601798+00:00",
+  "generated": "2026-06-27T01:23:35.988221+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -338,6 +338,13 @@
       "review_status": "stable"
     },
     {
+      "id": "cold-outreach",
+      "name": "Cold Outreach",
+      "axis": "format",
+      "one_liner": "A brief first-contact message to a stranger that earns a reply by leading with their interest, not yours.",
+      "review_status": "draft"
+    },
+    {
       "id": "daily-standup",
       "name": "Daily Standup",
       "axis": "format",
@@ -387,6 +394,13 @@
       "review_status": "draft"
     },
     {
+      "id": "journal-entry",
+      "name": "Journal Entry",
+      "axis": "format",
+      "one_liner": "A private, dated reflection written for the writer, not for an audience.",
+      "review_status": "draft"
+    },
+    {
       "id": "meeting-notes",
       "name": "Meeting Notes",
       "axis": "format",
@@ -401,10 +415,24 @@
       "review_status": "stable"
     },
     {
+      "id": "personal-essay",
+      "name": "Personal Essay",
+      "axis": "format",
+      "one_liner": "A first-person reflective essay that uses a particular lived experience to reach a larger insight.",
+      "review_status": "draft"
+    },
+    {
       "id": "postmortem",
       "name": "Postmortem",
       "axis": "format",
       "one_liner": "A blameless retrospective of an incident: what happened, why, the impact, and the changes that keep it from happening again.",
+      "review_status": "draft"
+    },
+    {
+      "id": "prayer",
+      "name": "Prayer",
+      "axis": "format",
+      "one_liner": "A written address to the divine - petition, thanksgiving, confession, or praise.",
       "review_status": "draft"
     },
     {
@@ -469,6 +497,20 @@
       "axis": "format",
       "one_liner": "A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.",
       "review_status": "stable"
+    },
+    {
+      "id": "thank-you-note",
+      "name": "Thank-You Note",
+      "axis": "format",
+      "one_liner": "A short, specific note of gratitude focused on one person and one thing they did.",
+      "review_status": "draft"
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "axis": "format",
+      "one_liner": "A short, warm tribute delivered aloud to celebrate a living person or a happy occasion.",
+      "review_status": "draft"
     },
     {
       "id": "tweet-thread",
