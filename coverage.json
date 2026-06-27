@@ -47,7 +47,7 @@
       "family": "outreach",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "professional",
@@ -61,7 +61,7 @@
       "family": "broadcast",
       "target_min": 12,
       "target_max": 20,
-      "filled": 6
+      "filled": 7
     },
     {
       "domain": "public",
@@ -75,7 +75,7 @@
       "family": "position",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "public",
@@ -89,7 +89,7 @@
       "family": "correspondence",
       "target_min": 12,
       "target_max": 20,
-      "filled": 3
+      "filled": 4
     },
     {
       "domain": "personal",
@@ -103,14 +103,14 @@
       "family": "tribute",
       "target_min": 12,
       "target_max": 20,
-      "filled": 5
+      "filled": 6
     },
     {
       "domain": "contemplative",
       "family": "devotion",
       "target_min": 12,
       "target_max": 20,
-      "filled": 2
+      "filled": 3
     },
     {
       "domain": "contemplative",
