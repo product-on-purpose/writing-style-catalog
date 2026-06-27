@@ -147,6 +147,4 @@ Quick updates, operational documentation, formal reports, anything requiring str
 
 ### Often confused with
 
-**adr**: An ADR is short, structured, and records a specific decision. A long-form blog post is conversational, substantial, and explores a topic for a general audience.
-
-**prd**: A PRD defines product requirements internally. A long-form blog post communicates ideas externally to a broad audience.
+**whitepaper**: A whitepaper sets a position-of-record in an invisible institutional voice backed by citation; a long-form blog post keeps a present, recognizable authorial voice and explores a topic rather than setting a record.

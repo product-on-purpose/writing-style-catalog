@@ -67,7 +67,7 @@ tells:
   - 'Unsigned - no byline; the piece is attributed to the editorial board or the publication itself'
   - 'First-person plural throughout: the text speaks as "we" for the masthead, never as "I"'
   - 'Opens with the publication''s stated position in the first one or two sentences'
-  - 'Grounds the position in reported fact, observed pattern, or principled reasoning rather than personal experience'
+  - 'Grounds the position in reported fact, observed pattern, or principled reasoning - personal anecdote and first-person individual experience are forbidden; the authority is the publication''s collective institutional judgment, not any writer''s lived stake'
   - 'Closes with a recommendation or conclusion the reader can attribute to the institution'
   - 'No single author''s expertise or credential is invoked - authority is collective and institutional'
   - 'Shorter and more declarative than a feature or analysis, typically 400 to 700 words'

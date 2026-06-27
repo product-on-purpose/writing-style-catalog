@@ -54,7 +54,7 @@ avoid_with:
   - pragmatic-architect
   - problem-solution
   - adr
-confusable_with: []
+confusable_with: [sermon]
 when_to_use:
   - Daily devotional series
   - Church newsletter content
@@ -137,4 +137,4 @@ Technical writing, business communication, secular audiences.
 
 ### Often confused with
 
-**prd**: A PRD defines what a product should do and for whom. A devotional entry anchors to scripture and moves toward personal application - these two formats could not be more different in purpose, but "entry" as a shared word sometimes causes confusion in library navigation.
+**sermon**: A sermon is a public spoken address to a gathered congregation, moving from exposition to exhortation and calling many listeners toward a shared response together. A devotional entry is a short private reading an individual works through alone, anchored to a scripture passage and moving toward personal application in 5 to 10 minutes - intimate and singular where the sermon is communal and oral.

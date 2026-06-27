@@ -75,6 +75,7 @@ avoid_with:
   - playful
 confusable_with:
   - prd
+  - one-pager
 when_to_use:
   - Aligning a team on direction before requirements work begins
   - Communicating initiative purpose to stakeholders who need context, not detail
@@ -181,3 +182,5 @@ The brief is deliberately high-level. It frames the problem and defines the boun
 ### Often confused with
 
 **prd**: A PRD (Product Requirements Document) is a structured document that defines what a product or feature should do, for whom, and why - it is the contract between a product team and an engineering team, covering problem statement, goals, non-goals, user stories, success metrics, and open questions. A project brief operates one level above: it establishes why the initiative matters and what the boundaries are, so that the PRD can be written well. The brief makes the PRD possible; it does not replace it.
+
+**one-pager**: A one-pager is defined entirely by its constraint - everything must fit on one page - and makes a single argument or presents a single situation toward one decision-forcing ask. A project brief is identified by its fixed kickoff structure (Goal, Scope, Constraints, Success Criteria, Team) and an alignment purpose, not by length; a brief that fits one page is still a project brief, not a one-pager.

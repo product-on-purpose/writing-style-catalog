@@ -75,6 +75,7 @@ avoid_with:
 confusable_with:
   - adr
   - status-report
+  - retrospective
 when_to_use:
   - After a production incident, service outage, or significant near-miss
   - When a team needs to convert a failure into shared institutional knowledge
@@ -182,3 +183,5 @@ Routine project retrospectives that have no specific incident to investigate; ce
 **adr**: An ADR captures a significant decision and the reasoning behind it, typically at or near the time the decision is made. A postmortem investigates a failure that has already occurred; its output is root-cause analysis and action items, not a decision rationale. The adr looks forward from a decision point; the postmortem looks backward from a failure.
 
 **status-report**: A status report gives a periodic snapshot of project health - what is done, what is at risk, and what comes next. A postmortem is bounded to a specific incident: it investigates what broke, why, and what changes will prevent a recurrence. Status reports are recurring and open-ended; postmortems are closed when their action items ship.
+
+**retrospective**: A postmortem is incident-triggered and drives to root cause with a timeline and severity; a retrospective runs on a regular cadence regardless of outcome and examines the whole working process, not one event.

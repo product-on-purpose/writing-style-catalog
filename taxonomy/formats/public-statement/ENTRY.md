@@ -67,6 +67,7 @@ avoid_with:
   - reverent
 confusable_with:
   - press-release
+  - incident-report
 when_to_use:
   - Responding to a controversy, incident, or crisis that is already known to the public
   - Issuing an official position on a contested or sensitive decision the organization made
@@ -170,3 +171,5 @@ Announcing a new product, milestone, or partnership - that is the job of a press
 ### Often confused with
 
 **press-release**: A press release is a standardized broadcast format built to travel from source to journalist to audience; its discipline is the inverted pyramid, and its conventions (FOR IMMEDIATE RELEASE header, dateline, attributed quote, boilerplate "About" section, three-hash closing marker) exist to make the document safe to quote and republish without a follow-up call. A public statement does none of this - it does not seek coverage, does not follow inverted pyramid order, and carries no media contact block. The press release proactively announces; the public statement reactively responds.
+
+**incident-report**: An incident-report is for a technical service disruption with a reconstructable timeline and root cause (Status, Timeline, Root Cause, Resolution); its audience is the population of affected customers who need to know what failed and what the organization is committing to fix. A public-statement covers a controversy or decision under scrutiny that has no incident timeline and is carried as institutional prose with a named signatory addressed to a watching public rather than a population of technically affected service users.

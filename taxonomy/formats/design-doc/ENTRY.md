@@ -81,7 +81,7 @@ when_to_use:
   - Planning a non-trivial feature or system before implementation begins
   - Coordinating design across multiple engineers or teams
   - Surfacing risks and open questions before code is written
-  - Creating a reviewable artifact that invites technical pushback on the proposed approach
+  - Creating a reviewable artifact that lets engineers evaluate the implementation at the concrete level - schemas, APIs, component boundaries - before code is written
   - Documenting the reasoning behind an implementation for future maintainers
 when_not_to_use:
   - Small, self-contained changes where the implementation approach is obvious to any reviewer
@@ -89,7 +89,7 @@ when_not_to_use:
   - When a decision about direction is still open and needs broad input before committing to build (write an RFC instead)
 tells:
   - 'A Problem or Background section that names the constraints shaping the solution space'
-  - 'A Proposed Design section with concrete specifics: schemas, APIs, component boundaries, or data flows'
+  - 'A Proposed Design section committing to concrete implementation specifics - schemas, APIs, component boundaries, or data flows - that an RFC would not yet pin down'
   - 'An Alternatives Considered section that shows what was evaluated and why it was rejected'
   - 'A Risks and Open Questions section that names what could go wrong or is still uncertain'
   - 'A Status header (Draft, In Review, Accepted, Superseded) tracking where the document stands'
@@ -163,7 +163,7 @@ Be specific enough that a reviewer can evaluate the approach.]
 
 ### When to use
 
-Planning a non-trivial feature or system before implementation begins, coordinating design across multiple engineers or teams, surfacing risks and open questions before code is written, creating a reviewable artifact that invites technical pushback on the proposed approach, documenting the reasoning behind an implementation for future maintainers.
+Planning a non-trivial feature or system before implementation begins, coordinating design across multiple engineers or teams, surfacing risks and open questions before a line of code is committed, creating a reviewable artifact that lets engineers evaluate the implementation at the concrete level - schemas, APIs, component boundaries - before code is written, documenting the reasoning behind an implementation for future maintainers.
 
 ### When not to use
 
