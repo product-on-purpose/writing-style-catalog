@@ -53,6 +53,31 @@ The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were 
 
 ---
 
+## Generating and Promoting Content at Scale (the Agentic Factory)
+
+The steps above add ONE entry by hand. To generate or promote content at scale - new
+candidate entries, whole-corpus de-duplication, or rendering and promoting drafts to
+stable - use the **agentic generation factory** in `tools/agentic/`. It is the
+catalog's production engine: isolated subagents do the writing, layered gates do the
+checking, and it all runs free in-session (no paid CI).
+
+Key rules when operating it:
+
+- **New entries always start `review_status: draft`.** Promotion to `stable` is a
+  maintainer decision (and earns a hard cost: rendering on all 12 anchor topics).
+- **Gate 2 is atomic.** A stable entry must render on all 12 anchor topics
+  (`tools/anchor_topics.py`). Render while still draft (drafts are exempt), then flip
+  with `python tools/promote.py` - it is guarded and will refuse to leave the build red.
+- **Gate every batch.** New entries get a cross-vendor distinguishability gate; the
+  corpus gets a family-cluster de-dup audit; dated samples get a calendar gate.
+
+Start at [`tools/agentic/README.md`](tools/agentic/README.md). The design and contracts
+are in [`docs/internal/agentic-generation-spec.md`](docs/internal/agentic-generation-spec.md);
+the step-by-step promotion and release steps are in
+[`docs/internal/release-plans/promotion-and-release-runbook.md`](docs/internal/release-plans/promotion-and-release-runbook.md).
+
+---
+
 ## Validation
 
 Always run validation before committing:
@@ -80,6 +105,8 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `schemas/` | JSON Schema definitions for entry types |
 | `skills/writing-instruction-builder/` | Claude Code plugin skill code |
 | `tools/validate.py` | Validation script |
+| `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
+| `tools/promote.py` | Guarded, atomic draft -> stable promotion |
 | `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
 | `docs/internal/adr/` | Architecture Decision Records |
 | `_LOCAL/` | Source research - read-only, do not modify |
