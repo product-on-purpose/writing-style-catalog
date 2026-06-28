@@ -84,7 +84,8 @@ edit promote.js FORMATS (the approved wave)
 -> python tools/build-indexes.py
 -> update counters: README (x4) + library.json/plugin.json curated counts
 -> python tools/validate.py                              # Gate 2 now ACTIVE for the wave
--> node scripts/validate-plugin-manifest.mjs && (cd site && npm run build)
+-> node scripts/validate-plugin-manifest.mjs
+-> node scripts/gen-site.mjs && (cd site && npm run build)
 -> commit -> PR -> green -> merge
 ```
 

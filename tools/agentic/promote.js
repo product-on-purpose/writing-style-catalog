@@ -55,7 +55,7 @@ const TOPICS = [
   ['product-launch-announcement', 'Announcing a new product to an outside audience'],
   ['morning-routine', 'Designing a sustainable morning routine'],
   ['thanking-a-mentor', 'Writing to thank a mentor who shaped your career'],
-  ['retirement-send-off', 'Marking a long-serving colleague departure'],
+  ['retirement-send-off', "Marking a long-serving colleague's departure"],
   ['team-milestone-celebration', 'Marking the team shipping a hard, long project'],
   ['daily-rest-practice', 'Reflecting on keeping a discipline of rest'],
   ['a-hard-year-in-review', 'A personal year-end reckoning with a difficult year'],
