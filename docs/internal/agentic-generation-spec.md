@@ -103,7 +103,11 @@ the orchestrator returns a compact summary.
 - **Input:** entry ids (or `--all-ready`). `--check` for a dry run.
 - **Invariant (the whole point):** flips to stable ONLY if every named entry already
   renders on all 12 topics; otherwise it changes nothing and reports what is missing.
-  This makes promotion atomic and impossible to leave main red on Gate 2.
+  It is **transactional** - it stages every rewrite in memory and writes the files
+  together, rolling back any written file if a later write fails - so a promotion
+  either fully applies or leaves the tree unchanged, and never leaves main red on
+  Gate 2. It also flips only the single column-0 `review_status: draft` line in the
+  frontmatter (not a lookalike inside a block scalar) and aborts on a duplicate id.
 
 ## 4. The two gate prompts (canonical text)
 
@@ -179,8 +183,11 @@ rendered content and is worth a dedicated calendar pass every promotion.
   could flag weekday-vs-date mismatches in samples it can parse, reducing reliance on
   the date-gate agent. Natural-language date extraction makes a perfect deterministic
   check hard; treat it as a lint, not a gate.
-- **Other axes:** the same harnesses serve Voice/Tone/Style breadth and promotion
-  (`promote.js` keys on `<axis>-<id>.md`; `promote.py` reads the axis from frontmatter).
+- **Other axes:** `promote.py` is already axis-general - it reads each entry's `axis`
+  from frontmatter and keys samples as `<axis>-<id>.md`, so it promotes Voice/Tone/Style
+  entries too. `promote.js` as committed is **format-oriented** (it hardcodes
+  `taxonomy/formats`, `format-<id>.md`, and `axis: format`); extend it to another axis
+  by parameterizing the axis in its paths and the sample frontmatter.
 
 ## 7. Status (2026-06-28)
 
