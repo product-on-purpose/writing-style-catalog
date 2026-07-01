@@ -109,7 +109,7 @@ tags:
   - professional
   - response
   - one-to-one
-review_status: draft
+review_status: stable
 ---
 
 ## Support Reply

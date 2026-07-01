@@ -156,10 +156,10 @@ Format entries define the visual and structural container: headings, bullet dept
 
 Plus the assets that make the catalog teachable:
 
-- **888 worked examples** - every one of the 74 stable entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
+- **1008 worked examples** - every one of the 84 stable entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
 - **130 diff-pairs** that hold a topic constant and vary one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
-- **29 format templates** giving the canonical structure for each format (plus 43 draft candidate formats under review from the Stream-B breadth program).
+- **39 format templates** giving the canonical structure for each format (plus 33 draft candidate formats under review from the Stream-B breadth program).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -213,8 +213,8 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **What exists today:**
 
-- 74 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 29 Format), plus 43 draft format candidates under review (Stream-B breadth, batches 1-10)
-- 888 worked examples across twelve anchor topics, plus 130 diff-pairs and 14 horizontal-slice recipes
+- 84 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 39 Format), plus 33 draft format candidates under review (Stream-B breadth, batches 1-10)
+- 1008 worked examples across twelve anchor topics, plus 130 diff-pairs and 14 horizontal-slice recipes
 - Working `writing-instruction-builder` skill
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI

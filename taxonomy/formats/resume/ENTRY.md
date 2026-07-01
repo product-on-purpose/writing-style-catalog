@@ -119,7 +119,7 @@ tags:
   - credentials
   - job-search
   - structured-document
-review_status: draft
+review_status: stable
 ---
 
 ## Resume

@@ -110,7 +110,7 @@ tags:
   - application
   - outreach
   - job-search
-review_status: draft
+review_status: stable
 ---
 
 ## Cover Letter

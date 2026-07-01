@@ -105,7 +105,7 @@ tags:
   - email
   - prospecting
   - networking
-review_status: draft
+review_status: stable
 ---
 
 ## Cold Outreach
