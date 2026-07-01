@@ -114,7 +114,7 @@ tags:
   - public-response
   - customer-service
   - brand-signal
-review_status: draft
+review_status: stable
 ---
 
 ## Review Response

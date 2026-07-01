@@ -131,7 +131,7 @@ tags:
   - management
   - feedback
   - evaluation
-review_status: draft
+review_status: stable
 ---
 
 ## Performance Review

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T09:55:15.996076+00:00",
+  "generated": "2026-07-01T15:12:32.987684+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -356,7 +356,7 @@
       "name": "Bio",
       "axis": "format",
       "one_liner": "A short third-person summary introducing who a person is professionally, shaped to fit a context.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "blessing",
@@ -384,7 +384,7 @@
       "name": "Cold Outreach",
       "axis": "format",
       "one_liner": "A brief first-contact message to a stranger that earns a reply by leading with their interest, not yours.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "commencement-speech",
@@ -405,7 +405,7 @@
       "name": "Cover Letter",
       "axis": "format",
       "one_liner": "A letter accompanying an application that makes the case for one specific person for one specific role.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "customer-story",
@@ -552,7 +552,7 @@
       "name": "Memo",
       "axis": "format",
       "one_liner": "A formal internal document that puts a decision or policy on the record for a group, with a TO/FROM/DATE/RE header.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "memoir-excerpt",
@@ -601,7 +601,7 @@
       "name": "Performance Review",
       "axis": "format",
       "one_liner": "A written evaluation of one person's work over a period, against expectations, with direction for what is next.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "personal-essay",
@@ -692,7 +692,7 @@
       "name": "Recommendation Letter",
       "axis": "format",
       "one_liner": "A letter by someone who knows a candidate, advocating for them to a third-party decision-maker.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "release-notes",
@@ -706,7 +706,7 @@
       "name": "Resume",
       "axis": "format",
       "one_liner": "A structured, scannable record of a person's professional experience, skills, and qualifications.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "retrospective",
@@ -720,7 +720,7 @@
       "name": "Review Response",
       "axis": "format",
       "one_liner": "A public reply from a business to a customer's posted review, written for the reviewer but read by every future prospect.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "rfc",
@@ -762,7 +762,7 @@
       "name": "Support Reply",
       "axis": "format",
       "one_liner": "A written response to one customer's specific question or problem that resolves it and leaves them able to act.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "technical-reference",
@@ -804,7 +804,7 @@
       "name": "User Manual",
       "axis": "format",
       "one_liner": "Comprehensive documentation covering everything a user can do with a product, organized for lookup.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "wedding-vows",

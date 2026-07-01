@@ -1,24 +1,32 @@
 ---
 title: Stream-B Promotion Proposal - recommended draft-to-stable tranches
-date: 2026-06-27
-status: proposal - awaiting maintainer decision
+date: 2026-06-28
+status: Wave 1 released (v0.4.0); Wave 2A (professional, 10) promoted, Wave 2B (public, 13) next -> v0.5.0; Hold-20 deferred
 author: agent (recommendation only; promotion is the maintainer's call)
 related:
   - docs/internal/release-plans/stream-b-breadth-status.md (the inventory + gate record)
+  - docs/internal/release-plans/promotion-and-release-runbook.md (the step-by-step to execute a wave)
   - _local/marketing-release (the PM/builder beachhead this proposal leans on)
 ---
 
 # Stream-B Promotion Proposal
 
-57 draft format candidates are staged for a `draft -> stable` decision. They have each cleared
+> **Status (2026-07-01): Wave 1 released; Wave 2 in progress.** The 14 eng/PM-core formats shipped
+> in **v0.4.0**. **Wave 2A** (the 10 professional drafts: user-manual, resume, bio, performance-review,
+> memo, cold-outreach, cover-letter, recommendation-letter, support-reply, review-response) is now
+> promoted to `stable` (120 samples, date-gated). **Wave 2B** (the 13 public drafts) is next; both
+> ship in **v0.5.0**. **Hold-20** stays deferred. The original recommendation is preserved below as
+> the decision record.
+
+57 draft format candidates were staged for a `draft -> stable` decision. They had each cleared
 a per-entry distinguishability gate AND a whole-corpus de-dup audit, so quality and
-distinctness are not the question. The remaining questions are strategic: **which formats earn
+distinctness were not the question. The remaining questions were strategic: **which formats earn
 a permanent stable slot (sharpening the catalog rather than diluting it), and in what order**,
 given that promoting one is not free - a stable entry must render on all 12 anchor topics to
 clear the Gate 2 sample-count check.
 
-This is a recommendation. Promotion (setting `review_status: stable`) is the maintainer's call;
-adjust any line freely.
+This is a recommendation. Promotion is the maintainer's call; adjust any line freely. (Promotion
+is now executed with `tools/promote.py`, the guarded flip - see Mechanics below.)
 
 ## The principle behind the recommendation
 
@@ -37,13 +45,13 @@ adjust any line freely.
 
 ## Recommendation at a glance
 
-| Bucket | Count | What |
-|---|---|---|
-| **Wave 1 - promote now** | 14 | The eng/PM core: decision docs, ops, product comms |
-| **Wave 2 - promote next** | 23 | The rest of professional + public (marketing, correspondence-at-work, opinion) |
-| **Hold** | 20 | personal + ceremonial + contemplative (off-beachhead; promote in a future audience-expansion release) |
+| Bucket | Count | What | Status |
+|---|---|---|---|
+| **Wave 1 - the eng/PM core** | 14 | Decision docs, ops, product comms | **DONE - released as v0.4.0** |
+| **Wave 2 - promote next** | 23 | The rest of professional + public (marketing, correspondence-at-work, opinion) | next -> v0.5.0 |
+| **Hold** | 20 | personal + ceremonial + contemplative (off-beachhead; promote in a future audience-expansion release) | deferred |
 
-## Wave 1 - promote now (14): the eng/PM core
+## Wave 1 (14): the eng/PM core - DONE (v0.4.0)
 
 The highest-frequency documents for the beachhead, extending the existing stable professional set.
 
@@ -66,7 +74,7 @@ The highest-frequency documents for the beachhead, extending the existing stable
 
 Rendering cost: 14 x 12 = ~168 anchor-topic samples (a few free workflow runs; the agent does it).
 
-## Wave 2 - promote next (23): the rest of professional + public
+## Wave 2 (23): the rest of professional + public - NEXT (-> v0.5.0)
 
 Grouped by family; all beachhead-relevant, slightly broader or lower-frequency than Wave 1.
 
@@ -114,14 +122,25 @@ case for jumping the queue.
 
 ## Mechanics + sequence (per wave)
 
-1. Maintainer approves the wave (and any line edits).
-2. Agent sets `review_status: stable` on the approved entries.
-3. Agent renders each across the 12 anchor topics (the free per-topic vertical-slice workflow),
-   so they clear the Gate 2 sample-count check. `validate.py` will fail for a stable entry that
-   is not yet rendered, so promotion + render ship together.
-4. Agent bumps the curated counts in `library.json` / `plugin.json` to include the newly-stable
-   formats (the manifest validator enforces parity).
-5. Cut the release: version bump + CHANGELOG roll-up + tag.
+Render FIRST (while draft, Gate-2-exempt), THEN flip - that order is the whole reason `validate.py`
+stays green throughout, and `tools/promote.py` enforces it (it refuses to flip an unrendered entry).
+The full step-by-step is the [promotion-and-release runbook](promotion-and-release-runbook.md); in
+brief:
 
-Recommended first action: approve (or edit) **Wave 1**, and the agent will promote + render +
-manifest it as one release-ready batch.
+1. Maintainer approves the wave (and any line edits).
+2. Render each across the 12 anchor topics while still draft: edit `FORMATS` in
+   `tools/agentic/promote.js`, run it with the Workflow tool, then `python tools/validate.py`
+   (green - drafts are exempt).
+3. Date-gate the dated formats (one `general-purpose` agent per format vs the real calendar; ~30%
+   of dated samples slip), and apply any fixes with `tools/agentic/remediate.js`.
+4. Flip: `python tools/promote.py <ids>` (transactional, guarded - sets `review_status: stable`
+   only when all 12 samples exist).
+5. `python tools/build-indexes.py`; bump the README counters (x4) and the curated counts in
+   `library.json` / `plugin.json` (the manifest validator enforces parity); re-run `validate.py`
+   (Gate 2 now active for the wave), `validate-plugin-manifest.mjs`, and the site build.
+6. Cut the release: version bump + CHANGELOG roll-up + tag (`release.yml` publishes the GitHub
+   Release on the tag push).
+
+Recommended next action: run **Wave 2** (the 23 formats above) through the runbook as one
+release-ready batch -> **v0.5.0**. Counter deltas: stable 74 -> 97, Format stable 29 -> 52, vertical
+samples 888 -> 1164, total worked examples 917 -> 1193, drafts 43 -> 20.
