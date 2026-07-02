@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-07-02
+
+A content-accuracy and documentation-hygiene patch, no new entries. Fixes content bugs
+surfaced during Wave 2 review and a repo-wide audit of every release-facing doc against the
+current catalog state.
+
+### Fixed
+
+- **Date and duration bugs across 13 already-stable files** (team-milestone-celebration and
+  retirement-send-off topics): a "first peak weekend" labeled June 14-15 (a Sunday-Monday in
+  2026) corrected to June 13-14 across five files including the topic's own scenario seed; a
+  "30-day archive window" from the June 13 cutover to the July 14 decommission (actually 31
+  days) corrected across every file making that explicit day-count claim; a stable
+  `retirement-send-off` announcement calling June 27, 2026 a "Friday" (it is a Saturday)
+  corrected to match the fix already applied to the newer newsletter and open-letter samples
+  on the same topic.
+- **Documentation drift across every release-facing doc**, caught by a full audit against the
+  current catalog state (97 stable entries, 52 Format, 20 draft, 1193 worked examples,
+  v0.5.0): the docs site homepage (`index.mdx`) still advertised "60 curated entries... three
+  anchor topics"; `QUICKSTART.md` said "60 entries (15 per axis)"; `ROADMAP.md` said "57
+  Stream-B breadth format candidates" still awaiting promotion (37 have since been promoted,
+  leaving the Hold-20); `REPOSITORY.md`'s taxonomy folder count was stale at 60. `AGENTS.md`
+  (the instructions every agent working in this repo reads first) had three real bugs: a
+  nonexistent example format id (`slack-thread`, corrected to `slack-message`), a false claim
+  that the catalog has no draft entries (it has 20, the Hold-20), and an intro paragraph
+  promising a future TypeScript/Python SDK and Composer SPA that `ROADMAP.md` had already
+  deliberately deferred indefinitely.
+- **The README axes table, the peak-weekend and archive-window content bugs, and the
+  promotion-and-release runbook's missing link/route-parity checks** - these shipped to `main`
+  unreleased (PR #88) before this release captured them in a tagged, published version.
+
 ## [0.5.0] - 2026-07-02
 
 Wave 2 completes the Stream-B promotion program. The 23 remaining professional and public format candidates - marketing copy, correspondence-at-work, opinion pieces, and the rest of professional communication - are promoted into the stable catalog, each rendered across all 12 anchor topics and date-gated against the real calendar. Format axis growth: 29 to 52 stable. Only the Hold-20 (personal, ceremonial, contemplative - deliberately off the current PM/builder beachhead) remain as drafts, staged for a future audience-expansion release. Rolls up everything merged since v0.4.0.

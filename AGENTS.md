@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with a `writing-instruction-builder` skill, and will grow to include a TypeScript/Python SDK and a Composer SPA in later phases.
+The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with a `writing-instruction-builder` skill. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred"); this project stays a catalog plus the one skill.
 
 ---
 
@@ -15,7 +15,7 @@ The Writing Style Library is a composable catalog of writing instructions organi
 
 **Axis 2 - Style** (`taxonomy/styles/`): The cognitive and rhetorical pattern of the writing. How ideas are sequenced and structured. Example seed entries: `problem-solution`, `layered-disclosure`, `decision-log`.
 
-**Axis 3 - Format** (`taxonomy/formats/`): The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Example seed entries: `adr`, `daily-standup`, `slack-thread`.
+**Axis 3 - Format** (`taxonomy/formats/`): The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Example seed entries: `adr`, `daily-standup`, `slack-message`.
 
 ---
 
@@ -37,7 +37,7 @@ This is a hard rule with no exceptions. Do not use U+2014 (em-dash) or U+2013 (e
 
 New entries must start at `draft`. The progression is: `draft` -> `reviewed` -> `stable` -> `reference-quality`. Do not set a new entry to `stable` or `reference-quality` without maintainer approval.
 
-The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were reviewed and set to `stable` as the initial baseline, which is why the catalog currently shows no `draft` entries. This rule governs new contributions from here forward.
+The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were reviewed and set to `stable` as the initial baseline. This rule governs every contribution since - the catalog currently carries 20 `draft` Format entries (the Hold-20, staged for a future audience-expansion release) alongside 97 `stable` entries, and any new entry starts at `draft` the same way.
 
 ---
 
