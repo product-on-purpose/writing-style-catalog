@@ -1,7 +1,7 @@
 ---
 title: Stream-B Breadth - Status and Promotion Tracker
 date: 2026-06-28
-status: Wave 1 + Wave 2A (professional, 10) promoted; 33 drafts awaiting review; Wave 2B (public, 13) next -> v0.5.0
+status: Wave 1 + Wave 2 (professional + public, 23) promoted; 20 drafts (Hold-20) remain; v0.5.0 release-prep next
 owner: maintainer (promotion decisions); agent (generation + gating)
 related:
   - docs/internal/release-plans/stream-b-promotion-proposal.md (the wave plan; Wave 1 DONE)
@@ -20,27 +20,32 @@ draft-to-stable promotion decision.
 
 ## Where things stand (2026-07-01)
 
-- **Format axis: 72 entries = 39 stable + 33 draft.** (The other three axes are unchanged
-  at 15 stable each, so the catalog is 117 entries total = **84 stable + 33 draft**.)
+- **Format axis: 72 entries = 52 stable + 20 draft.** (The other three axes are unchanged
+  at 15 stable each, so the catalog is 117 entries total = **97 stable + 20 draft**.)
 - **Wave 1 is promoted and released.** The 14 eng/PM-core formats (see the promotion proposal)
   are now `stable`, each rendered across all 12 anchor topics (168 worked samples) and
   date-gated, and shipped as **v0.4.0** (tag pushed; GitHub Release published by `release.yml`).
   Format stable count went 15 -> 29; catalog curated count 60 -> 74.
-- **Wave 2A (professional, 10) is promoted.** user-manual, resume, bio, performance-review, memo,
-  cold-outreach, cover-letter, recommendation-letter, support-reply, review-response are now
-  `stable`, each rendered across all 12 anchor topics (120 worked samples) and date-gated. Format
-  stable count went 29 -> 39; catalog curated count 74 -> 84. Ships in **v0.5.0** with Wave 2B.
+- **Wave 2 (professional + public, 23) is promoted.** Wave 2A (10 professional: user-manual, resume,
+  bio, performance-review, memo, cold-outreach, cover-letter, recommendation-letter, support-reply,
+  review-response) and Wave 2B (13 public: press-release, newsletter, listicle, customer-story,
+  landing-page, ad-copy, product-description, testimonial, op-ed, editorial, manifesto, open-letter,
+  public-statement) are now `stable`, each rendered across all 12 anchor topics (276 worked samples
+  total) and date-gated. Format stable count went 29 -> 52; catalog curated count 74 -> 97. Ships as
+  **v0.5.0**.
 - The original 57 drafts were produced in **10 gated batches** (PRs #66 through #75), all merged
   to `main`. Each batch is six candidates; each candidate is one isolated subagent render, then
-  two gates (below). 24 of those 57 have since been promoted (Wave 1 + Wave 2A), leaving **33 draft**.
+  two gates (below). 37 of those 57 have since been promoted (Wave 1 + Wave 2), leaving **20 draft**
+  - exactly the Hold-20 (personal, ceremonial, contemplative), deferred to a future audience-expansion
+  release.
 - **Every format family now has at least two worked entries.** The two families that were
   empty before this program - `professional/response` and `public/copy` - are filled.
 - The docs site rebuilds and **auto-deploys on every push to `main`** (`.github/workflows/build-site.yml`),
   so all 72 formats are live now. Draft entries render a **"Draft - under review" callout** so
   visitors can tell drafts from the stable catalog.
-- **The marketplace manifests (`library.json` / `plugin.json`) now advertise 84 curated entries**
+- **The marketplace manifests (`library.json` / `plugin.json`) now advertise 97 curated entries**
   (bumped at each promotion wave; the manifest validator enforces `plugin.json` == `library.json`).
-  The remaining 33 drafts are not curated and are excluded from the count until promoted.
+  The remaining 20 drafts (Hold-20) are not curated and are excluded from the count until promoted.
 - **The production method is now tracked tooling.** What was ephemeral scratchpad scripts is now
   `tools/agentic/` (Workflow templates) + `tools/promote.py` (the guarded, transactional
   draft->stable flip), with the design in `docs/internal/agentic-generation-spec.md` and the
@@ -49,7 +54,8 @@ draft-to-stable promotion decision.
 ## Complete: the full format inventory
 
 Legend: no tag = **stable** (the reviewed baseline); `†` = **promoted in Wave 1 (v0.4.0)**;
-`‡` = **promoted in Wave 2A (v0.5.0)**; `(draft)` = **awaiting promotion review**.
+`‡` = **promoted in Wave 2 (v0.5.0)**; `(draft)` = **Hold-20, awaiting a future audience-expansion
+release**.
 
 ### professional
 - **deliberation** - adr, prd, design-doc †, rfc †
@@ -62,10 +68,10 @@ Legend: no tag = **stable** (the reviewed baseline); `†` = **promoted in Wave 
 - **response** - support-reply ‡, review-response ‡
 
 ### public
-- **broadcast** - blog-post-long-form, tweet-thread, press-release (draft), release-notes †, newsletter (draft), announcement †, listicle (draft), customer-story (draft)
-- **copy** - landing-page (draft), ad-copy (draft), product-description (draft), testimonial (draft)
-- **position** - whitepaper, op-ed (draft), manifesto (draft), open-letter (draft), editorial (draft)
-- **accountability** - incident-report †, public-statement (draft)
+- **broadcast** - blog-post-long-form, tweet-thread, press-release ‡, release-notes †, newsletter ‡, announcement †, listicle ‡, customer-story ‡
+- **copy** - landing-page ‡, ad-copy ‡, product-description ‡, testimonial ‡
+- **position** - whitepaper, op-ed ‡, manifesto ‡, open-letter ‡, editorial ‡
+- **accountability** - incident-report †, public-statement ‡
 
 ### personal
 - **correspondence** - thank-you-note (draft), condolence-note (draft), apology (draft), invitation (draft), love-letter (draft)

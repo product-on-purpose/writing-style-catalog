@@ -120,7 +120,7 @@ tags:
   - institutional
   - official
   - reactive
-review_status: draft
+review_status: stable
 ---
 
 ## Public Statement

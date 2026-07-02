@@ -103,7 +103,7 @@ tags:
   - copy
   - marketing
   - customer-voice
-review_status: draft
+review_status: stable
 ---
 
 ## Testimonial

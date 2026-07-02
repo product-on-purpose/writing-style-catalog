@@ -1,7 +1,7 @@
 ---
 title: Stream-B Promotion Proposal - recommended draft-to-stable tranches
 date: 2026-06-28
-status: Wave 1 released (v0.4.0); Wave 2A (professional, 10) promoted, Wave 2B (public, 13) next -> v0.5.0; Hold-20 deferred
+status: Wave 1 (v0.4.0) and Wave 2 (v0.5.0 release-prep) both promoted; Hold-20 deferred
 author: agent (recommendation only; promotion is the maintainer's call)
 related:
   - docs/internal/release-plans/stream-b-breadth-status.md (the inventory + gate record)
@@ -11,12 +11,11 @@ related:
 
 # Stream-B Promotion Proposal
 
-> **Status (2026-07-01): Wave 1 released; Wave 2 in progress.** The 14 eng/PM-core formats shipped
-> in **v0.4.0**. **Wave 2A** (the 10 professional drafts: user-manual, resume, bio, performance-review,
-> memo, cold-outreach, cover-letter, recommendation-letter, support-reply, review-response) is now
-> promoted to `stable` (120 samples, date-gated). **Wave 2B** (the 13 public drafts) is next; both
-> ship in **v0.5.0**. **Hold-20** stays deferred. The original recommendation is preserved below as
-> the decision record.
+> **Status (2026-07-01): Wave 1 and Wave 2 are both promoted.** The 14 eng/PM-core formats shipped in
+> **v0.4.0**. All 23 Wave 2 formats (10 professional + 13 public, 276 samples, date-gated) are now
+> `stable`; release-prep for **v0.5.0** is next. **Hold-20** (personal, ceremonial, contemplative)
+> stays deferred to a future audience-expansion release. The original recommendation is preserved
+> below as the decision record.
 
 57 draft format candidates were staged for a `draft -> stable` decision. They had each cleared
 a per-entry distinguishability gate AND a whole-corpus de-dup audit, so quality and
@@ -48,7 +47,7 @@ is now executed with `tools/promote.py`, the guarded flip - see Mechanics below.
 | Bucket | Count | What | Status |
 |---|---|---|---|
 | **Wave 1 - the eng/PM core** | 14 | Decision docs, ops, product comms | **DONE - released as v0.4.0** |
-| **Wave 2 - promote next** | 23 | The rest of professional + public (marketing, correspondence-at-work, opinion) | next -> v0.5.0 |
+| **Wave 2 - the rest of professional + public** | 23 | Marketing, correspondence-at-work, opinion | **DONE - releasing as v0.5.0** |
 | **Hold** | 20 | personal + ceremonial + contemplative (off-beachhead; promote in a future audience-expansion release) | deferred |
 
 ## Wave 1 (14): the eng/PM core - DONE (v0.4.0)
@@ -74,7 +73,7 @@ The highest-frequency documents for the beachhead, extending the existing stable
 
 Rendering cost: 14 x 12 = ~168 anchor-topic samples (a few free workflow runs; the agent does it).
 
-## Wave 2 (23): the rest of professional + public - NEXT (-> v0.5.0)
+## Wave 2 (23): the rest of professional + public - DONE (v0.5.0)
 
 Grouped by family; all beachhead-relevant, slightly broader or lower-frequency than Wave 1.
 
@@ -141,6 +140,8 @@ brief:
 6. Cut the release: version bump + CHANGELOG roll-up + tag (`release.yml` publishes the GitHub
    Release on the tag push).
 
-Recommended next action: run **Wave 2** (the 23 formats above) through the runbook as one
-release-ready batch -> **v0.5.0**. Counter deltas: stable 74 -> 97, Format stable 29 -> 52, vertical
-samples 888 -> 1164, total worked examples 917 -> 1193, drafts 43 -> 20.
+**Wave 2 is complete.** Counter deltas realized: stable 74 -> 97, Format stable 29 -> 52, vertical
+samples 888 -> 1164, total worked examples 917 -> 1193, drafts 43 -> 20 (exactly the Hold-20).
+Recommended next action: cut the **v0.5.0** release per the runbook (version bump + CHANGELOG
+roll-up + tag). After that, **Hold-20** is a deliberate later audience-expansion decision, not a
+default next step.
