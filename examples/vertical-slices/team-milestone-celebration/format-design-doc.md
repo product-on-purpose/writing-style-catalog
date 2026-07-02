@@ -106,7 +106,7 @@ Decommission of `checkout-v1` begins only after:
 
 1. `checkout-v2` has handled two peak-load periods at 100% traffic without a rollback event.
 2. All session-compatibility shims have been reviewed for removal safety.
-3. A 30-day archive window for v1 logs and session state has elapsed.
+3. A 31-day archive window for v1 logs and session state has elapsed.
 
 Decommission is a separate milestone and is not in scope for this design document.
 

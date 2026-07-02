@@ -12,7 +12,7 @@ review_status: reviewed
 
 ## Before you begin
 
-- The project has shipped and you have at least a few days of post-launch data showing the system held. For Project Halyard, that threshold was the weekend of June 14-15, when the rebuilt checkout held through peak load without incident. Marking a milestone before you know whether the launch is stable risks recognizing something that may still need to be rolled back.
+- The project has shipped and you have at least a few days of post-launch data showing the system held. For Project Halyard, that threshold was the weekend of June 13-14, when the rebuilt checkout held through peak load without incident. Marking a milestone before you know whether the launch is stable risks recognizing something that may still need to be rolled back.
 - You have a list of the specific decisions that determined whether the launch succeeded - not job titles, but names and what each person actually did. Halyard's close-out required knowing that Dani Rowe called the March hold when the February near-miss was not fully resolved, that Marcus Teel filed the February bug on his own initiative rather than marking it low severity, and that Jordan Osei rewrote the payment callback handler rather than patching around it.
 - You have access to the incident records, slip notices, and decision logs from the full project run. For a fourteen-month project, this material will not be reconstructed from memory.
 
@@ -76,5 +76,5 @@ Return to Step 2. Generic praise is not recognition. Recognition names what a sp
 ## Next steps
 
 - Review the outcome measurement once the data is available. For Halyard, Mia Chen's analytics team targeted July 7 for the first post-launch cart-abandonment baseline. That number is the measurement that confirms whether the decision recorded in ADR-0017 was correct. Read it in the context of the parallel-period attribution noise the status report flagged.
-- Complete the decommission on schedule. Halyard's legacy checkout was scheduled for July 14, following the 30-day archive window. The close-out is not finished until the old system is gone and the archive window closes cleanly.
+- Complete the decommission on schedule. Halyard's legacy checkout was scheduled for July 14, following the 31-day archive window. The close-out is not finished until the old system is gone and the archive window closes cleanly.
 - Carry the practices forward explicitly. The parallel-run approach, the near-miss process, and the discipline of holding launch dates on engineering judgment rather than deadline pressure are reusable. Document them as named practices the team can point to on the next project, not just as things that happened on this one.

@@ -46,4 +46,4 @@ The checkout pipeline was rebuilt in full as a separate system, running alongsid
 ## Next Steps
 
 - Cart-abandonment baseline report, target July 7, 2026: fourteen months of parallel operation affects early analytics; clean attribution will be available after 21 days of post-cutover data, and the report will be published at that point
-- Legacy checkout decommission, target July 14, 2026: the old checkout pipeline will be fully removed following a 30-day archive window, contingent on no rollback events in that period
+- Legacy checkout decommission, target July 14, 2026: the old checkout pipeline will be fully removed following a 31-day archive window, contingent on no rollback events in that period

@@ -66,8 +66,16 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
    entries are stable, so Gate 2 sample-count applies to them; it must pass.
    `node scripts/validate-plugin-manifest.mjs` - confirms `plugin.json` == `library.json`.
 
-10. **Build the site.** `node scripts/gen-site.mjs && (cd site && npm run build)`. The
-    promoted entries lose the "Draft - under review" badge automatically.
+10. **Build the site and check link/route integrity.** `node scripts/gen-site.mjs && (cd
+    site && npm run build)`. The promoted entries lose the "Draft - under review" badge
+    automatically. Then run the same two checks the PR-time `build-site` CI job runs
+    (`.github/workflows/validate.yml`), so a broken link in rendered content is caught
+    locally instead of failing CI: `STRICT_ANCHORS=1 node scripts/check-rendered-links.mjs
+    site/dist` and `node scripts/check-route-parity.mjs site/dist`. A rendered sample with
+    a fabricated `../`-prefixed internal link (a plausible-sounding but non-existent
+    cross-reference) will fail the first check; the fix is either a real target or the
+    bare-relative convention used for illustrative, non-navigational example links (no
+    leading `./` or `../`).
 
 11. **PR -> green -> squash-merge.** Conventional commit; no dashes.
 

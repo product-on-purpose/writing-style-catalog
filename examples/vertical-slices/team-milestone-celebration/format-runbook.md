@@ -12,13 +12,13 @@ review_status: reviewed
 
 ## Overview
 
-Execute this runbook to decommission the legacy v1 checkout service after the 30-day archive window expires, completing the final operational step of Project Halyard and retiring the parallel-run infrastructure.
+Execute this runbook to decommission the legacy v1 checkout service after the 31-day archive window expires, completing the final operational step of Project Halyard and retiring the parallel-run infrastructure.
 
 ## Prerequisites
 
-- [ ] 30-day archive window has elapsed (window started June 13, 2026; decommission is not permitted before July 14, 2026)
+- [ ] 31-day archive window has elapsed (window started June 13, 2026; decommission is not permitted before July 14, 2026)
 - [ ] No rollback events have triggered during the archive window - verify with Ket Osei or the current on-call infra engineer before starting
-- [ ] The v2 checkout has processed at least two peak-load periods without incident (the June 14-15 weekend counts as the first; confirm a second has elapsed)
+- [ ] The v2 checkout has processed at least two peak-load periods without incident (the June 13-14 weekend counts as the first; confirm a second has elapsed)
 - [ ] Cart-abandonment baseline report is published or explicitly deferred by Mia Chen's analytics team
 - [ ] Written decommission approval from Priya Vasquez (program lead) is recorded in the Project Halyard tracker
 - [ ] You have write access to the infra control plane and the legacy service configuration repository
@@ -73,7 +73,7 @@ If all five checks pass, update the decommission ticket status to `Closed` and n
 
 ## Rollback
 
-Rollback is available if failure occurs before step 5 completes. After step 5 (replicas scaled to zero), automated rollback is not available - the 30-day archive window was designed to make rollback unnecessary at decommission time.
+Rollback is available if failure occurs before step 5 completes. After step 5 (replicas scaled to zero), automated rollback is not available - the 31-day archive window was designed to make rollback unnecessary at decommission time.
 
 **If failure occurs before step 5 is complete:**
 

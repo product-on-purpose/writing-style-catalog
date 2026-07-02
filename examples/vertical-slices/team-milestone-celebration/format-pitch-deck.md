@@ -53,7 +53,7 @@ The only way to validate checkout under checkout load is to route real checkout 
 ## Slide 5: What the Data Says Now
 
 - **Shipped June 13, 2026** - full cutover, zero rollback
-- **Peak weekend June 14-15** - sustained load, no latency spikes, no rollback triggers
+- **Peak weekend June 13-14** - sustained load, no latency spikes, no rollback triggers
 - **Cart completion rate** held at the target the team modeled in January
 - **Both near-misses resolved before any user was affected**
 

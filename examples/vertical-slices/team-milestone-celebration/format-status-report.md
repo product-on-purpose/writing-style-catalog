@@ -23,11 +23,11 @@ Project Halyard shipped on June 13, held through the first peak weekend without 
 **Full cutover to the rebuilt checkout** (June 13)
 - All checkout traffic shifted to the new flow. The legacy system moved to read-only archive mode. No rollback required during cutover.
 
-**Survived first peak window without incident** (June 14-15)
+**Survived first peak window without incident** (June 13-14)
 - Sustained peak load through Saturday and Sunday. No latency spikes above threshold. No rollback triggers. Cart completion rate held at the target the team modeled in January.
 
 **Legacy regression freeze complete** (June 10)
-- Sam Wickfield's team completed the regression freeze pass on all legacy-only code paths. The 30-day archive window began June 13. Decommission is scheduled for July 14.
+- Sam Wickfield's team completed the regression freeze pass on all legacy-only code paths. The 31-day archive window began June 13. Decommission is scheduled for July 14.
 
 **Both near-misses resolved before go-live - zero user impact**
 
@@ -41,7 +41,7 @@ Neither issue was surfaced by the automated test suite alone. Both were found by
 ## Up next
 
 - **Cart-abandonment baseline report** - target July 7: Mia Chen's analytics team will publish the first post-launch baseline. Clean attribution requires 21 days of post-cutover data; the parallel-period overlap makes earlier numbers unreliable. No action needed before that date.
-- **Legacy decommission** - target July 14: Full decommission follows the 30-day archive window, assuming no rollback events trigger. Currently on track.
+- **Legacy decommission** - target July 14: Full decommission follows the 31-day archive window, assuming no rollback events trigger. Currently on track.
 - **Operational runbook handoff** - target June 27: Dani Rowe is completing the runbook for the ops team. Initial draft is in review now.
 - **Team retrospective** - target June 30: A separate document will follow. Fourteen months is long enough that a standard sprint retro format will not do it justice; the format will differ from normal.
 

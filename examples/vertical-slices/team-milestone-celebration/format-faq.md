@@ -12,7 +12,7 @@ review_status: reviewed
 
 ### What is Project Halyard and what did it actually ship?
 
-Project Halyard rebuilt the company's checkout pipeline from scratch and replaced the legacy system entirely. The new checkout handles all sessions as of June 13, 2026. The legacy flow moved to a 30-day read-only archive on cutover day and is scheduled for full decommission on July 14.
+Project Halyard rebuilt the company's checkout pipeline from scratch and replaced the legacy system entirely. The new checkout handles all sessions as of June 13, 2026. The legacy flow moved to a 31-day read-only archive on cutover day and is scheduled for full decommission on July 14.
 
 ### Why did this take 14 months?
 
