@@ -7,10 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-02
+
+Wave 2 completes the Stream-B promotion program. The 23 remaining professional and public format candidates - marketing copy, correspondence-at-work, opinion pieces, and the rest of professional communication - are promoted into the stable catalog, each rendered across all 12 anchor topics and date-gated against the real calendar. Format axis growth: 29 to 52 stable. Only the Hold-20 (personal, ceremonial, contemplative - deliberately off the current PM/builder beachhead) remain as drafts, staged for a future audience-expansion release. Rolls up everything merged since v0.4.0.
+
 ### Added
 
 - **10 more stable format entries (Wave 2A)**, taking the Format axis from 29 to 39 and the catalog from 74 to 84 curated entries: `user-manual`, `resume`, `bio`, `performance-review`, `memo`, `cold-outreach`, `cover-letter`, `recommendation-letter`, `support-reply`, and `review-response`. These are the rest of the professional formats (correspondence-at-work, appraisal, and response), promoted from the Stream-B breadth drafts. Each was rendered across all 12 anchor topics and date-gated against the real calendar, adding 120 worked examples (888 to 1008 vertical-slice samples).
 - **13 more stable format entries (Wave 2B)**, taking the Format axis from 39 to 52 and the catalog from 84 to 97 curated entries: `press-release`, `newsletter`, `listicle`, `customer-story`, `landing-page`, `ad-copy`, `product-description`, `testimonial`, `op-ed`, `editorial`, `manifesto`, `open-letter`, and `public-statement`. These are the rest of the public formats (marketing, opinion, and outward-facing copy), completing Wave 2. Each was rendered across all 12 anchor topics and date-gated against the real calendar, adding 156 worked examples (1008 to 1164 vertical-slice samples). The library now ships 97 curated entries and 1193 worked examples. This closes Stream-B Wave 1 + Wave 2: 57 draft candidates down to 20, all off the PM/builder beachhead and held for a future audience-expansion release.
+
+### Fixed
+
+- **Six date and internal-consistency slips**, surfaced by a per-format date gate against the real calendar (one checker per dated format across Wave 2A and Wave 2B): a `memo` and several other samples were checked clean; two `retirement-send-off` samples independently mislabeled a Saturday as a Friday; a `team-milestone-celebration` newsletter's stated start date contradicted its own fourteen-month span; an onboarding `listicle` miscounted a 32-day gap as six weeks; and a `customer-story` headline contradicted its own body on how long a manual process took.
+- **Three fabricated internal links** in an onboarding-a-new-hire `newsletter` sample, caught by the PR-time rendered-link checker: `../`-prefixed links pointed at a fictional team's documentation with no corresponding site page. Corrected to the bare-relative convention already used elsewhere in the same file for illustrative, non-navigational example links.
 
 ## [0.4.0] - 2026-06-27
 
