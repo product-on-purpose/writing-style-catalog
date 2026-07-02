@@ -21,7 +21,7 @@ taxonomy/ + examples/        source of truth, directly maintained
 
 | Folder | Role | Kind | Audience |
 |---|---|---|---|
-| `taxonomy/` | The catalog. 60 `ENTRY.md` files across `voices/`, `tones/`, `styles/`, `formats/` (15 each). | Source of truth | Catalog author |
+| `taxonomy/` | The catalog. 117 `ENTRY.md` files across `voices/`, `tones/`, `styles/`, `formats/` (15 each for Voice/Tone/Style; Format has 52 stable + 20 draft). | Source of truth | Catalog author |
 | `examples/` | Worked output examples: `vertical-slices/`, `horizontal-slices/`, `diff-pairs/`. | Source of truth | Catalog author |
 | `schemas/` | JSON Schema for each entry and example type (7 files). The catalog's data contract. | Source of truth | Developer |
 | `tools/` | Catalog integrity, source-side: `validate.py`, `build-indexes.py`, `diff-pair-generator.py`, `taxonomy.py`. | Build (validate) | Build / developer |
