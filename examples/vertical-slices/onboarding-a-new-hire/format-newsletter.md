@@ -30,10 +30,10 @@ This week: Priya's first pull request lands Wednesday, Arjun's pairing on the re
 
 A few things worth pulling from this if you're building your own version:
 
-- [ADR-0023: Structured Guided Pairing](../backend-services/adr-0023-guided-pairing.md) - three domains, one named buddy, one task chosen before the new hire's first day instead of after. Steal the structure, not the specifics.
-- [Backend Services onboarding guide](../backend-services/README.md) - written for two readers at once, the new hire and the buddy. Notice how much of it is instructions for the buddy, not just the new hire.
+- [ADR-0023: Structured Guided Pairing](backend-services/adr-0023-guided-pairing.md) - three domains, one named buddy, one task chosen before the new hire's first day instead of after. Steal the structure, not the specifics.
+- [Backend Services onboarding guide](backend-services/README.md) - written for two readers at once, the new hire and the buddy. Notice how much of it is instructions for the buddy, not just the new hire.
 - [Issue 9: the two failure modes](archive/ramp-notes-09.md) - the piece this whole protocol is designed against. Worth a re-read if you're still deciding whether structure is worth the buddy's lost capacity.
-- [How Backend Services scopes a first task](../backend-services/README.md#week-two) - one service, one data model, a test that fits in an hour, nothing that needs on-call context. Small enough to be real, small enough that nobody's pager depends on it going right.
+- [How Backend Services scopes a first task](backend-services/README.md#week-two) - one service, one data model, a test that fits in an hour, nothing that needs on-call context. Small enough to be real, small enough that nobody's pager depends on it going right.
 
 ---
 
