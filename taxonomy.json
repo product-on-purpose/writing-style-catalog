@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-01T15:12:32.987684+00:00",
+  "generated": "2026-07-02T02:42:46.955814+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -328,7 +328,7 @@
       "name": "Ad Copy",
       "axis": "format",
       "one_liner": "Short promotional text written to grab attention and drive a single action under tight character limits.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "adr",
@@ -412,7 +412,7 @@
       "name": "Customer Story",
       "axis": "format",
       "one_liner": "A structured marketing narrative showing how a specific customer used a product to get a result.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "daily-standup",
@@ -440,7 +440,7 @@
       "name": "Editorial",
       "axis": "format",
       "one_liner": "The unsigned opinion of a publication itself, stating the institution's position on an issue.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "email",
@@ -510,14 +510,14 @@
       "name": "Landing Page",
       "axis": "format",
       "one_liner": "Web copy written to convert a visitor into a single action - sign up, buy, book, or subscribe.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "listicle",
       "name": "Listicle",
       "axis": "format",
       "one_liner": "An article built as a numbered or bulleted list where each item is a self-contained, scannable unit.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "love-letter",
@@ -531,7 +531,7 @@
       "name": "Manifesto",
       "axis": "format",
       "one_liner": "A public declaration of beliefs, principles, and intentions - what a person or movement stands for.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "meeting-agenda",
@@ -566,7 +566,7 @@
       "name": "Newsletter",
       "axis": "format",
       "one_liner": "A recurring editorial message delivered to subscribers on a cadence, in a consistent opted-in voice.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "obituary",
@@ -587,14 +587,14 @@
       "name": "Op-Ed",
       "axis": "format",
       "one_liner": "A short argued opinion piece for a publication that advances one clear position on a timely issue.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "open-letter",
       "name": "Open Letter",
       "axis": "format",
       "one_liner": "A letter addressed to a specific target but published for a wider public to witness the appeal.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "performance-review",
@@ -650,14 +650,14 @@
       "name": "Press Release",
       "axis": "format",
       "one_liner": "A formal external announcement in news style: dateline, headline, a strong lead, a quote, and boilerplate.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "product-description",
       "name": "Product Description",
       "axis": "format",
       "one_liner": "Product-page copy that tells a buyer what a product is, what it does for them, and why to buy.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "project-brief",
@@ -678,7 +678,7 @@
       "name": "Public Statement",
       "axis": "format",
       "one_liner": "An organization's official written position on a matter of public concern, written for a watching audience.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "readme",
@@ -776,7 +776,7 @@
       "name": "Testimonial",
       "axis": "format",
       "one_liner": "A short first-person endorsement in a customer's own voice, used as social proof.",
-      "review_status": "draft"
+      "review_status": "stable"
     },
     {
       "id": "thank-you-note",

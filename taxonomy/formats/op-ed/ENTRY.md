@@ -102,7 +102,7 @@ tags:
   - journalism
   - persuasion
   - argument
-review_status: draft
+review_status: stable
 ---
 
 ## Op-Ed

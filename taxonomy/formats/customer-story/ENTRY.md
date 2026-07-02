@@ -103,7 +103,7 @@ tags:
   - proof-point
   - customer-success
   - content-marketing
-review_status: draft
+review_status: stable
 ---
 
 ## Customer Story

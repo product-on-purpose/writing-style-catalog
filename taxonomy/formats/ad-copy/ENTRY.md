@@ -97,7 +97,7 @@ tags:
   - digital
   - marketing
   - paid-media
-review_status: draft
+review_status: stable
 ---
 
 ## Ad Copy

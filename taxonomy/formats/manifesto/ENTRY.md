@@ -107,7 +107,7 @@ tags:
   - identity
   - persuasion
   - position
-review_status: draft
+review_status: stable
 ---
 
 ## Manifesto
