@@ -39,7 +39,7 @@ June 30, 2026
 
 ## Notes
 
-This retrospective covers the full project arc: ADR-0017 acceptance (February 2025) through final cutover (June 13, 2026) and the first post-launch peak weekend (June 14-15, 2026). It is not a sprint retro. The working period is 14 months, and the format was adapted accordingly, as noted in the June 20 close-out status report.
+This retrospective covers the full project arc: ADR-0017 acceptance (February 2025) through final cutover (June 13, 2026) and the first post-launch peak weekend (June 13-14, 2026). It is not a sprint retro. The working period is 14 months, and the format was adapted accordingly, as noted in the June 20 close-out status report.
 
 The cart-abandonment baseline report from Mia Chen's analytics team is due July 7. Post-launch outcome data will be a separate artifact; clean attribution requires 21 days of post-cutover data without the parallel-period overlap. That document is not part of this retrospective.
 

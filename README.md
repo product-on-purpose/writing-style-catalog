@@ -152,7 +152,7 @@ Format entries define the visual and structural container: headings, bullet dept
 | **Voice** | 15 | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
 | **Tone** | 15 | Situational register layered on top of voice | `candid`, `warm`, `reverent`, `urgent` |
 | **Style** | 15 | Cognitive and rhetorical pattern: how ideas are sequenced | `problem-solution`, `layered-disclosure`, `socratic-inquiry`, `dialectic` |
-| **Format** | 15 | Visual and structural container: headings, sections, layout | `adr`, `daily-standup`, `slack-message`, `devotional-entry` |
+| **Format** | 52 | Visual and structural container: headings, sections, layout | `adr`, `daily-standup`, `slack-message`, `devotional-entry` |
 
 Plus the assets that make the catalog teachable:
 

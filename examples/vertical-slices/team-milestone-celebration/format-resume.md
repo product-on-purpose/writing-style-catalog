@@ -19,7 +19,7 @@ Program Lead, Platform Engineering | Thornbury Retail | February 2023 - Present
 - Held the launch when a final dress-rehearsal test surfaced a race condition between the payment-processor callback and the session store, delaying go-live eleven days rather than ship with an unresolved defect; the fix required rewriting the callback handler outright, and the issue never reached production.
 - Delivered the final cutover in June 2026, moving all checkout traffic off a five-year-old system and holding through the first peak-traffic weekend with no rollback and no latency-threshold breach.
 - Addressed a three-year elevated cart-abandonment trend; the migrated cohort's abandonment rate improved ahead of full cutover, confirming the rebuild's hypothesis with live production data.
-- Sequenced the 30-day legacy regression freeze and archive window following cutover, setting up final decommission of the old checkout system for mid-July without disrupting the archive period.
+- Sequenced the 31-day legacy regression freeze and archive window following cutover, setting up final decommission of the old checkout system for mid-July without disrupting the archive period.
 
 Technical Program Manager | Ashgrove Systems | August 2016 - January 2023
 - Coordinated release planning across three backend teams for a subscription commerce platform, standardizing sprint cadences and reducing cross-team dependency conflicts flagged at planning.

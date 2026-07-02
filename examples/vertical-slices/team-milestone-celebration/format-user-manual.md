@@ -197,7 +197,7 @@ Most of the fourteen months of work does not appear in either document by design
 - **Parallel run**: Operating the old and new checkout systems at the same time, routing live traffic to only one, so the new system can be validated under real load without a single-shot cutover risk.
 - **Near-miss**: An issue found and fixed before it reached a customer. Halyard had two, in February and April 2026.
 - **Cutover**: The point at which all live traffic moves to the new system and the old system stops carrying production load. Halyard's cutover was June 13, 2026.
-- **Archive window**: The 30-day period after cutover during which the legacy system stays available in read-only mode before decommission.
+- **Archive window**: The 31-day period after cutover during which the legacy system stays available in read-only mode before decommission.
 - **Close-out**: The set of activities - status report, retrospective, recognition, decommission - that formally end a project after launch.
 
 ### Key dates
