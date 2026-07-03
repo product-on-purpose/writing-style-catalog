@@ -5,9 +5,10 @@
 > that justifies each item, the editable surface to change, and a rough effort. Living doc -
 > update the snapshot date and check items off as they ship.
 
-**Last updated:** 2026-06-03 (after the v0.2.0 marketplace launch and the comprehensive-catalog
+**Last updated:** 2026-07-02 (added S4, the entry-recommender skill proposal; noted S1 shipped).
+Originally written 2026-06-03, after the v0.2.0 marketplace launch and the comprehensive-catalog
 vision; the foundation - taxonomy, adherence gate, anchor topics, conflict-aware composition -
-is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md)).
+is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md).
 **Priority key:** P1 = highest leverage, do next; P2 = valuable, after P1; P3 = hygiene / opportunistic.
 
 This doc holds two horizons: the **near-term, evidence-led work** (sharpen the proven core,
@@ -148,9 +149,12 @@ carry the most composition weight, instead of adding new entries to chase covera
 > Phase A. The machinery the comprehensive catalog is built on. S1 in particular is a
 > prerequisite for scale, not just a feature.
 
-### S1 (P1) - Make `compose-instruction` conflict-aware
-**The single highest-leverage item in the roadmap.** It hardens the core promise and is the
-stated gate before any MCP server (S2).
+### S1 (P1) - Make `compose-instruction` conflict-aware - SHIPPED 2026-06-17
+**Done, via ADR 0016.** `build-instruction.py` now cross-checks each selection against the
+others' `avoid_with`/`pairs_well_with` (symmetric rule), applies voice -> tone -> style -> format
+precedence, and warns without hard-blocking. Kept below for the historical record; see
+`ROADMAP.md` "Next - make composition real" for the shipped summary. It hardened the core promise
+and was the stated gate before any MCP server (S2).
 
 - **What it does today:** `skills/writing-instruction-builder/scripts/build-instruction.py`,
   function `compose_instruction` (lines 163-180), loads each selected entry, pulls only its
@@ -197,6 +201,23 @@ server exposes the guaranteed behavior, not the naive concatenation.
 - **`review_status` governance** - new entries must start at `draft`, not `stable`; the
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.
+
+### S4 (P2) - Entry recommender skill - proposed 2026-07-02
+Given a described writing situation, recommend a voice+tone+style+format combination from the
+stable catalog, optionally composing the final prompt in the same step. Addresses a gap S1-S3 do
+not: neither existing skill (`writing-instruction-builder`, `style-profile`) helps a user who does
+not yet know which axis values fit their situation, and that gap grew real at 97 stable entries
+(52 Format alone) - it did not exist when the catalog had 15 formats. Deprioritizes the MCP server
+(S2) as the next skill-layer investment: S2 is explicitly "reach, not commitment" per `ROADMAP.md`
+with no waiting consumer, while this addresses live browsing friction today.
+- **Source:** [`docs/internal/entry-recommender-spec.md`](../entry-recommender-spec.md) (spec,
+  `status: draft`, 8 AC), [`release-plans/entry-recommender-implementation-plan.md`](release-plans/entry-recommender-implementation-plan.md)
+  (8-phase build plan), [`release-plans/entry-recommender-release-plan.md`](release-plans/entry-recommender-release-plan.md)
+  (target `v0.6.0`).
+- **Editable surface:** a new `skills/entry-recommender/` directory; reuses (does not duplicate)
+  the conflict-detection and composition logic in
+  `skills/writing-instruction-builder/scripts/build-instruction.py`.
+- **Effort:** medium. Awaiting maintainer review of the spec before implementation starts.
 
 ---
 
