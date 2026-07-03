@@ -111,7 +111,7 @@ This regenerates `taxonomy.json` and `docs/reference/index.md` so the new entry 
 
 ## Step 7 - Add at least one example
 
-Every new entry should ship with at least one worked example. For new entries, vertical-slice examples are preferred: pick a topic that the catalog already has examples for (currently `async-standups`) and write a new example file showing the new entry rendering that topic.
+Every new entry should ship with at least one worked example when it is created as a draft. For new entries, vertical-slice examples are preferred: pick one of the twelve existing anchor topics (for example `async-standups`) and write a new example file showing the new entry rendering that topic. Promotion from `draft` to `stable` is a separate, later step that requires the entry to render across all twelve anchor topics (see [Contribution Process](../../governance/contribution-process/)) - one example is enough to start, not enough to promote.
 
 The file goes in `examples/vertical-slices/<topic-slug>/<axis>-<entry-id>.md`. See `examples/vertical-slices/async-standups/voice-pragmatic-architect.md` for the format.
 

@@ -93,12 +93,12 @@ Entries move through four states:
 |-------|---------|--------------------|
 | `draft` | Initial submission, in the catalog but unproven | One maintainer review |
 | `reviewed` | Editorially checked, ready for use | Schema valid, examples present, no open issues |
-| `stable` | Validated in active use | Two of: worked example exists, used in at least one composed instruction in the wild, two months without revision |
+| `stable` | Validated and curated | Gate 2: the entry renders across all twelve anchor topics (enforced by `tools/validate.py`), plus an explicit maintainer promotion decision |
 | `reference-quality` | Exemplary - included in onboarding material | Maintainer judgment, rare |
 
 A `deprecated` state exists separately for superseded entries. Deprecated entries remain in the catalog but should set `deprecated_in_favor_of` to point to the replacement.
 
-Promotion to `stable` or `reference-quality` is a maintainer action, never a self-promotion. If you believe one of your entries deserves promotion, open an issue with the case.
+Promotion to `stable` or `reference-quality` is a maintainer action, never a self-promotion, and never automatic even once Gate 2 passes - `tools/promote.py` performs the actual flip, guarded so it refuses to promote an entry that has not cleared Gate 2. If you believe one of your entries deserves promotion, open an issue with the case.
 
 ### Deprecating an entry
 

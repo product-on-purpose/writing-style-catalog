@@ -13,7 +13,7 @@ The three-axis model separates writing instruction into components that vary ind
 2. **How they structure reasoning** (Style): independent of both identity and mood
 3. **How they present output** (Format): purely structural, applies to any voice/tone/style combination
 
-Because these three axes are independent, you can compose any combination. A `pragmatic-architect` voice with a `mentoring` tone writing in a `problem-solution` style formatted as a `daily-standup` is a fully specified, reproducible writing instruction.
+Because these three axes are independent, you can compose any combination. A `pragmatic-architect` voice with an `encouraging` tone writing in a `problem-solution` style formatted as a `daily-standup` is a fully specified, reproducible writing instruction.
 
 ---
 
@@ -38,9 +38,9 @@ Voice is **stable across contexts**. A `pragmatic-architect` voice behaves the s
 |----|-------------|
 | `pragmatic-architect` | Reasons from system constraints and trade-offs; names costs explicitly |
 | `product-thinker` | Centers user outcomes; connects decisions to measurable value |
-| `ops-realist` | Prioritizes reliability and operational burden; suspicious of complexity |
-| `technical-educator` | Builds up from first principles; patient with foundational gaps |
-| `skeptical-analyst` | Questions assumptions; demands evidence before committing |
+| `operator` | Grounded in what actually runs and breaks in production; prioritizes reliability over theory |
+| `technical-writer` | Explains precisely and clearly for a reader unfamiliar with the system |
+| `researcher` | Questions assumptions; demands evidence before committing to a claim |
 
 ---
 
@@ -53,8 +53,8 @@ Tone is situational coloring applied on top of voice. It reflects how the writer
 This is the most important distinction in the model. Voice does not change; tone does. The same `pragmatic-architect` can be:
 
 - `candid`: direct, no softening, states the problem plainly
-- `mentoring`: patient, explanatory, meets the reader where they are
-- `optimistic-realist`: acknowledges problems while keeping forward momentum
+- `encouraging`: patient, supportive, meets the reader where they are
+- `confident`: acknowledges problems while holding a position without hedging
 
 Separating tone from voice means you do not need a different voice entry for every emotional register. You have one `pragmatic-architect` entry and five tone modifiers.
 
@@ -63,10 +63,10 @@ Separating tone from voice means you do not need a different voice entry for eve
 | ID | Description |
 |----|-------------|
 | `candid` | Direct and unhedged; states the situation plainly without softening |
-| `mentoring` | Patient and explanatory; guides the reader rather than directing them |
-| `optimistic-realist` | Acknowledges problems; maintains forward momentum |
-| `cautious` | Surfaces risks prominently; prefers explicit caveats |
-| `energizing` | Motivating register; emphasizes opportunity and momentum |
+| `encouraging` | Patient and supportive; guides the reader rather than directing them |
+| `confident` | States a position and holds it without hedging or excessive qualification |
+| `skeptical` | Surfaces risks prominently; prefers explicit caveats |
+| `celebratory` | Motivating register; marks and amplifies a win or milestone |
 
 ---
 
@@ -81,8 +81,8 @@ Style describes the cognitive and rhetorical pattern of the writing: how ideas a
 | `problem-solution` | Diagnosis first, then remedy; clear causal structure |
 | `layered-disclosure` | Lead with the answer; bury supporting detail for readers who want depth |
 | `decision-log` | Documents a choice: context, options considered, decision, rationale |
-| `narrative-arc` | Situation, complication, resolution; story structure for complex topics |
-| `step-by-step` | Sequential instructions with explicit ordering and numbered steps |
+| `chronological-narrative` | Situation, complication, resolution, told in time order |
+| `procedural` | Sequential instructions with explicit ordering and numbered steps |
 
 ---
 
@@ -96,9 +96,9 @@ Format entries define the visual and structural container. They specify headings
 |----|-------------|
 | `adr` | Architecture Decision Record: Status, Context, Decision, Consequences |
 | `daily-standup` | Three fields: Yesterday, Today, Blockers |
-| `slack-thread` | Opening summary, threaded replies pattern, reaction-aware length |
-| `technical-rfc` | Abstract, Motivation, Detailed Design, Drawbacks, Alternatives |
-| `bullet-brief` | Flat bullet list with bold lead-ins; no prose paragraphs |
+| `slack-message` | Short-form message tuned for a team channel; reaction-aware length |
+| `rfc` | Proposes a change and invites disagreement before deciding: Context, Proposal, Alternatives, Open Questions |
+| `one-pager` | Flat, scannable structure for a decision-ready summary; minimal prose |
 
 ---
 

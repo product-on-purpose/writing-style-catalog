@@ -37,7 +37,7 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 ## Example terms
 
-**Vertical slice** - A single anchor topic rendered across many catalog entries. Lets a reader compare how the same situation reads through different voices, tones, styles, or formats. The Phase 0 anchor topic is "Should we adopt async-first standups?" Lives in `examples/vertical-slices/<topic-slug>/`.
+**Vertical slice** - A single anchor topic rendered across many catalog entries. Lets a reader compare how the same situation reads through different voices, tones, styles, or formats. The catalog has twelve anchor topics (for example "Should we adopt async-first standups?" and "A hard year in review"); every stable entry renders across all twelve. Lives in `examples/vertical-slices/<topic-slug>/`.
 
 **Horizontal slice** - A single combination of entries (a recipe) rendered across many topics. Lets a reader confirm that the recipe produces consistent output regardless of subject matter. Lives in `examples/horizontal-slices/<recipe-id>/`.
 
