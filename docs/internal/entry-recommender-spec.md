@@ -17,10 +17,10 @@ related:
 ## Task Summary
 
 **Status:** draft
-**Last updated:** 2026-07-03 by agent (Claude Opus 4.8), revised after a fifth Codex adversarial review
+**Last updated:** 2026-07-03 by agent (Claude Opus 4.8), revised after a sixth Codex adversarial review
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 5 (see Revisions)
+**Revisions:** 6 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
@@ -151,6 +151,8 @@ Expected: the skill does not silently substitute the irrelevant-but-compatible c
 **Revision 5 (2026-07-03):** A fifth Codex adversarial review found two more gaps, both accepted and both verified directly against the schemas before fixing:
 1. A mechanical hole in Revision 4's own fix: the widened search is required to check AC-7's relevance bar, but the original Phase 2 design only ever scored the short list (top-N) - candidates beyond it had no score to check a bar against. Fixed by having Phase 2 score the axis's entire stable pool in one pass instead of just the short list. This is not a performance compromise: the scoring step is cheap deterministic string/set matching, not an LLM call, so scoring 52 entries costs about the same as scoring 8. The short list is now simply the top-N slice of a list that was always fully computed; Phase 5's widened search became a lookup against existing data, not a second pre-filter run. Only Phase 3's LLM read (the genuinely expensive step) stays scoped to the short list.
 2. The scoring design assumed every axis's non-universal facet fields were reliably present - `subfamily` for Voice, `spectrum` for Tone, `frame`/`classical_mode` for Style - when in fact each axis schema's own `required` list guarantees only one such field: Voice requires `family` alone, Tone requires `markers` alone, Style requires `structural_conventions` alone. Verified directly against `schemas/{voice,tone,style}.schema.json` and the real `pragmatic-architect` entry, confirmed to have zero `subfamily` occurrences (no voice family in the current 15-voice, 5-family catalog is close to the 12-member threshold that would require it). Phase 1 and Phase 2 revised so optional facets are loaded and used as bonus signal when present, never as a required input whose absence errors or silently depresses a score.
+
+**Revision 6 (2026-07-03):** A sixth Codex adversarial review - the first to open with an initial "approve" read before catching one remaining issue on closer inspection, a reasonable signal of convergence - found a single medium-severity cross-reference miss, accepted: the implementation plan's Phase 6 (compose-or-recommend-only output) still described the warning-fallback trigger as "the short list was exhausted," a condition written during Revision 2 and never updated as Phase 5's real trigger evolved through Revisions 3 through 5 to "no candidate anywhere in the full ranked pool is both compatible and relevant enough." Implemented literally, Phase 6 could have attached a conflict warning to an already-resolved widened-pool composition (Example 6's case), directly contradicting AC-4/AC-5's own text in the same output. Phase 6 Step 2 corrected to match Phase 5's actual condition, and its verification section extended to explicitly cover Example 6 (resolved from the wider pool, must compose with no warning) alongside Example 7 (genuinely unresolvable, must warn).
 
 ## Sources & Evidence
 
