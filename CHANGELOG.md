@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-07-03
+
+A second content-accuracy and documentation-hygiene patch, no new entries. A full read-through
+of every hand-authored Astro page - not just a stale-count sweep - found real, user-facing bugs
+beyond the previous release, plus a repo-governance gap surfaced while drafting an unrelated
+skill proposal.
+
+### Fixed
+
+- **Fictional entry IDs used as copy-pasteable examples**, verified against the real `taxonomy/`
+  directory before fixing - none of these ever existed in the catalog: `ops-realist`,
+  `technical-educator`, `skeptical-analyst`, `optimistic-realist`, `mentoring` (as a tone),
+  `narrative-arc`, `step-by-step` (as a style id), `slack-thread`, `technical-rfc`,
+  `bullet-brief`. Corrected in `three-axis-model.md` (4 seed-entry tables plus 2 prose examples),
+  `compose-instruction.md` (the Common Combinations table plus 2 standalone command examples),
+  and `AGENTS.md`'s Voice/Tone example lines. Replacements are real ids picked for semantic fit,
+  not just nearest-available substitution - for example `postmortem` instead of the fictional
+  `technical-rfc` for an "incident post-mortem" row.
+- **Stale promotion-criteria description** in `voice-and-tone.md` and `contribution-process.md`:
+  both described a "two of three criteria" model that has been fully superseded by the real
+  Gate 2 system (render across all 12 anchor topics, `tools/promote.py`) the v0.4.0/v0.5.0
+  promotion waves were built on. `contribution-process.md` did not mention Gate 2 at all.
+- **Stale single-anchor-topic framing** in `glossary.md` and `add-entry.md`, both describing the
+  catalog as if only `async-standups` exists; there are twelve.
+- **`AGENTS.md`'s `docs/internal/` rule corrected at the source.** The file (and the project
+  `CLAUDE.md`) stated a blanket "read-only" rule for `docs/internal/` that never matched this
+  repo's own demonstrated practice - `docs/internal/adr/` and `docs/internal/release-plans/`
+  have been living, maintainer-directed documents since v0.3.0. Both files now state the actual
+  rule, with `docs/internal/_working/` and `_LOCAL/` as the genuinely frozen exceptions.
+- **`AGENTS.md`'s skill count corrected.** The Project Purpose paragraph said "this project stays
+  a catalog plus the one skill," a claim introduced in this same release's Astro-accuracy pass
+  that was already wrong at the time (`style-profile` shipped as a second skill in v0.3.0).
+  Corrected to describe the two skills that exist today, pointing to `docs/internal/` for any
+  in-flight proposals rather than hardcoding a count that will drift the next time a skill ships.
+
 ## [0.5.1] - 2026-07-02
 
 A content-accuracy and documentation-hygiene patch, no new entries. Fixes content bugs
