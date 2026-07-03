@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with a `writing-instruction-builder` skill. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred"); this project stays a catalog plus the one skill.
+The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with two skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want) and `style-profile` (capture a personal default style once, for reuse) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
 
 ---
 
@@ -108,6 +108,6 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
 | `tools/promote.py` | Guarded, atomic draft -> stable promotion |
 | `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
-| `docs/internal/adr/` | Architecture Decision Records |
+| `docs/internal/` | Living planning docs - ADRs, release-plan trackers, specs, the backlog - maintained under direct maintainer direction as work proceeds. Demonstrated by this repo's own history: `agentic-generation-spec.md`, the promotion-and-release runbook, and every `stream-b-*` tracker were all produced and merged here. |
+| `docs/internal/_working/` | Frozen historical planning snapshots - read-only, do not modify |
 | `_LOCAL/` | Source research - read-only, do not modify |
-| `docs/internal/` | Internal strategy docs - read-only, do not modify |
