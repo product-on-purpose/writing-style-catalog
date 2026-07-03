@@ -108,6 +108,6 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
 | `tools/promote.py` | Guarded, atomic draft -> stable promotion |
 | `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
-| `docs/internal/adr/` | Architecture Decision Records |
+| `docs/internal/` | Living planning docs - ADRs, release-plan trackers, specs, the backlog - maintained under direct maintainer direction as work proceeds. Demonstrated by this repo's own history: `agentic-generation-spec.md`, the promotion-and-release runbook, and every `stream-b-*` tracker were all produced and merged here. |
+| `docs/internal/_working/` | Frozen historical planning snapshots - read-only, do not modify |
 | `_LOCAL/` | Source research - read-only, do not modify |
-| `docs/internal/` | Internal strategy docs - read-only, do not modify |

@@ -25,7 +25,7 @@ Decomposes `docs/internal/entry-recommender-spec.md` into buildable phases. Acce
 | 5 | Conflict detection and resolution (reuse, not reimplement) | AC-4, AC-5 | LLM | Not started |
 | 6 | Compose-or-recommend-only output | AC-5 | LLM | Not started |
 | 7 | SKILL.md + manifest registration | packaging (no direct AC) | LLM | Not started |
-| 8 | Smoke test against the five spec examples | AC-1 through AC-7 (verification) | human or LLM | Not started |
+| 8 | Smoke test against the six spec examples | AC-1 through AC-7 (verification) | human or LLM | Not started |
 
 ## Phase 1: Candidate-pool loader
 
@@ -110,20 +110,21 @@ Decomposes `docs/internal/entry-recommender-spec.md` into buildable phases. Acce
 
 **Addresses:** AC-4, AC-5
 
-**Goal:** The complete final four-axis set - every value that will be composed, whether it came from Phase 3's recommendation or Phase 4's fixed input - is cross-checked for `avoid_with` conflicts on every invocation, using the exact logic `writing-instruction-builder` already exposes. This runs unconditionally, not only when Phase 4 found a fixed value. When a conflict is found and at least one side is recommender-controlled (a Phase 3 pick, not a Phase 4 fixed value), the skill tries to resolve it by re-picking that axis from its own Phase 2 short list before falling back to warning - see the spec's Revision 2. Warn-and-compose is now the fallback for conflicts the skill genuinely cannot avoid, not the default response to one it created itself and could have avoided.
+**Goal:** The complete final four-axis set - every value that will be composed, whether it came from Phase 3's recommendation or Phase 4's fixed input - is cross-checked for `avoid_with` conflicts on every invocation, using the exact logic `writing-instruction-builder` already exposes. This runs unconditionally, not only when Phase 4 found a fixed value. When a conflict is found and at least one side is recommender-controlled (a Phase 3 pick, not a Phase 4 fixed value), the skill tries to resolve it - first from its own Phase 2 short list, then, if that is exhausted, from the full stable pool Phase 1 already loaded - before falling back to warning. See the spec's Revisions 2 and 3. Warn-and-compose is the fallback only for conflicts the skill genuinely cannot avoid (both values user-fixed, or truly no compatible stable candidate exists anywhere on that axis), not the default response to one it created itself and could have avoided.
 
 **Steps:**
 1. Import or otherwise call `build-instruction.py`'s existing conflict-analysis function directly (per the spec's explicit reuse-not-reimplement requirement) - do not port or duplicate the `avoid_with`/`pairs_well_with` symmetric-check logic into a second file.
 2. If `skills/entry-recommender/` and `skills/writing-instruction-builder/` need to share code across skill boundaries, resolve the import path during this phase - this is a real Claude Code skill-packaging question the implementation needs to answer, not assumed away here. Flag if skills cannot practically import each other's scripts, and fall back to extracting the shared function into a common location both skills reference, still without duplicating the logic.
 3. Call the conflict analysis once, after both Phase 3 (recommended values) and Phase 4 (fixed values) have run, passing all four final values together - not per-pair, not conditionally gated on "if something was fixed."
 4. If a conflict is found, classify it: does it involve a Phase-3-recommended (non-fixed) axis, or is it strictly between two Phase-4-fixed values?
-   - **At least one side recommender-controlled:** re-pick that axis from Phase 2's short list, excluding the candidate that caused the conflict (no new pre-filter run - walk down the same ranked list Phase 2 already produced). Re-run the conflict check against the new candidate. Repeat until resolved or the short list is exhausted. This is naturally bounded by the short list's size (Phase 2's top-N, e.g. 5-8) - no unbounded loop risk. If BOTH conflicting axes are recommender-controlled, re-pick the lower-precedence one first (format before style before tone before voice, the reverse of the compose precedence order in `build-instruction.py`), since that is the axis least likely to be the one the user cares most about matching exactly.
-   - **Both sides user-fixed:** no re-pick is possible - the skill has no agency over either value. Fall through to the warning path.
-   - **Short list exhausted with no compatible candidate found:** fall through to the warning path, same as the both-fixed case.
+   - **At least one side recommender-controlled:** re-pick that axis from Phase 2's short list, excluding the candidate that caused the conflict (no new pre-filter run - walk down the same ranked list Phase 2 already produced). Re-run the conflict check against the new candidate. Repeat until resolved or the short list is exhausted. If BOTH conflicting axes are recommender-controlled, re-pick the lower-precedence one first (format before style before tone before voice, the reverse of the compose precedence order in `build-instruction.py`), since that is the axis least likely to be the one the user cares most about matching exactly.
+   - **Short list exhausted, still recommender-controlled:** the short list is a relevance heuristic (Phase 2's keyword/facet score), orthogonal to conflict status - a compatible candidate can easily rank below the cutoff for reasons that have nothing to do with whether it conflicts. Before falling back to warning, widen the search to Phase 1's full stable candidate pool for that axis (the loader already holds it in memory; this does not require a new pre-filter run, just continuing past the short list's cutoff), looking for the first candidate that does not conflict, not necessarily the highest-scoring one - the goal has shifted from best-fit to best-fit-that-does-not-conflict. This widened search is bounded by the axis's total stable count (52 at most, for Format) and only runs on this rare fallback path, not on every invocation, so it does not compromise the Interactive Latency NFR in the common case.
+   - **Both sides user-fixed:** no re-pick or widened search is possible - the skill has no agency over either value. Fall through to the warning path directly.
+   - **Entire stable pool exhausted for a recommender-controlled axis with no compatible candidate found:** only now fall through to the warning path. This should be extremely rare - it means every stable entry on that axis conflicts with the other value - but the design does not assume it cannot happen.
 5. For the warning path (only reached when resolution was not possible): `writing-instruction-builder` itself composes and warns on the same rule (verified against its code - "the instruction still composes even when a selected pair conflicts"); this skill matches that behavior for this fallback case. Surface the conflict alongside the composed output, not instead of it.
 6. When resolution succeeds (Step 4's first branch), the newly-selected candidate still needs a real justification, not a silent id swap: re-run Phase 3's justification step (Phase 3 Step 2) for the new candidate alone, then append the conflict-avoidance reason - for example "picked over the higher-scoring candidate X because X conflicts with the fixed voice." AC-3 applies to every final recommendation, including one chosen during conflict resolution.
 
-**Verification:** Four cases, not two: (a) feed a variant of Example 2 (voice fixed, Tone's top candidate conflicts, a compatible second-best Tone candidate exists in the short list) through the skill and confirm it silently re-picks Tone rather than warning; (b) feed Example 4 (all-recommended, Voice and Tone conflict, a compatible alternate Tone exists) and confirm the same resolve-not-warn behavior when nothing is fixed; (c) feed Example 5 (both voice and tone fixed, conflicting) and confirm the skill falls back to warn-and-compose exactly as `writing-instruction-builder` would, since no resolution is possible; (d) construct a case where an axis's entire short list is exhausted without finding a compatible candidate, and confirm the same warn-and-compose fallback fires.
+**Verification:** Five cases, not two: (a) feed a variant of Example 2 (voice fixed, Tone's top candidate conflicts, a compatible second-best Tone candidate exists in the short list) through the skill and confirm it silently re-picks Tone rather than warning; (b) feed Example 4 (all-recommended, Voice and Tone conflict, a compatible alternate Tone exists) and confirm the same resolve-not-warn behavior when nothing is fixed; (c) feed Example 5 (both voice and tone fixed, conflicting) and confirm the skill falls back to warn-and-compose exactly as `writing-instruction-builder` would, since no resolution is possible; (d) construct a case where every short-listed Tone candidate conflicts but a compatible Tone exists outside the short list in the full stable pool, and confirm the widened search finds it rather than warning prematurely; (e) construct a case where the entire stable pool for an axis conflicts (a synthetic worst case, not expected in the real catalog) and confirm the warn-and-compose fallback fires only then.
 
 **Decision Gate:** The Step 2 packaging question (can skills share scripts) blocks this phase's completion - resolve before Phase 6.
 
@@ -169,18 +170,18 @@ Decomposes `docs/internal/entry-recommender-spec.md` into buildable phases. Acce
 
 **Suggested Owner:** LLM.
 
-## Phase 8: Smoke test against the five spec examples
+## Phase 8: Smoke test against the six spec examples
 
 **Addresses:** AC-1 through AC-7 (end-to-end verification; AC-8 if built)
 
-**Goal:** Confirm the assembled skill, invoked the way a real user would invoke it, produces the behavior the spec's five Behavior/Examples describe.
+**Goal:** Confirm the assembled skill, invoked the way a real user would invoke it, produces the behavior the spec's six Behavior/Examples describe.
 
 **Steps:**
-1. Invoke the skill five times, once per spec example: full recommendation; partial with voice fixed and a resolvable conflict; low-confidence houseplant case; all-recommended resolvable conflict (Example 4); both-axes-fixed unresolvable conflict (Example 5). Examples 2, 4, and 5 together cover all three branches of Phase 5's classification (recommender-controlled resolved, all-recommended resolved, both-fixed fallback).
+1. Invoke the skill six times, once per spec example: full recommendation; partial with voice fixed and a short-list-resolvable conflict; low-confidence houseplant case; all-recommended short-list-resolvable conflict (Example 4); both-axes-fixed unresolvable conflict (Example 5); short list exhausted but resolvable from the wider pool (Example 6). Examples 2, 4, 5, and 6 together cover all of Phase 5's classification branches: recommender-controlled resolved from the short list, all-recommended resolved from the short list, both-fixed fallback, and resolved from the widened pool after the short list is exhausted.
 2. Compare each run's output against the spec's stated expectations.
 3. Run the release plan's full hygiene-gate checklist (`docs/internal/release-plans/entry-recommender-release-plan.md`).
 
-**Verification:** All five examples behave as specified; every hygiene gate passes.
+**Verification:** All six examples behave as specified; every hygiene gate passes.
 
 **Decision Gate:** This phase's pass/fail is the gate for marking the spec `fulfilled` and proceeding to the release plan's version-bump step.
 
