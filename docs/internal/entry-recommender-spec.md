@@ -17,10 +17,10 @@ related:
 ## Task Summary
 
 **Status:** draft
-**Last updated:** 2026-07-03 by agent (Claude Opus 4.8), revised after a sixth Codex adversarial review
+**Last updated:** 2026-07-03 by agent (Claude Opus 4.8), revised after a seventh Codex adversarial review
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 6 (see Revisions)
+**Revisions:** 7 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
@@ -153,6 +153,10 @@ Expected: the skill does not silently substitute the irrelevant-but-compatible c
 2. The scoring design assumed every axis's non-universal facet fields were reliably present - `subfamily` for Voice, `spectrum` for Tone, `frame`/`classical_mode` for Style - when in fact each axis schema's own `required` list guarantees only one such field: Voice requires `family` alone, Tone requires `markers` alone, Style requires `structural_conventions` alone. Verified directly against `schemas/{voice,tone,style}.schema.json` and the real `pragmatic-architect` entry, confirmed to have zero `subfamily` occurrences (no voice family in the current 15-voice, 5-family catalog is close to the 12-member threshold that would require it). Phase 1 and Phase 2 revised so optional facets are loaded and used as bonus signal when present, never as a required input whose absence errors or silently depresses a score.
 
 **Revision 6 (2026-07-03):** A sixth Codex adversarial review - the first to open with an initial "approve" read before catching one remaining issue on closer inspection, a reasonable signal of convergence - found a single medium-severity cross-reference miss, accepted: the implementation plan's Phase 6 (compose-or-recommend-only output) still described the warning-fallback trigger as "the short list was exhausted," a condition written during Revision 2 and never updated as Phase 5's real trigger evolved through Revisions 3 through 5 to "no candidate anywhere in the full ranked pool is both compatible and relevant enough." Implemented literally, Phase 6 could have attached a conflict warning to an already-resolved widened-pool composition (Example 6's case), directly contradicting AC-4/AC-5's own text in the same output. Phase 6 Step 2 corrected to match Phase 5's actual condition, and its verification section extended to explicitly cover Example 6 (resolved from the wider pool, must compose with no warning) alongside Example 7 (genuinely unresolvable, must warn).
+
+**Revision 7 (2026-07-03):** A seventh Codex adversarial review found two more issues, both accepted:
+1. AC-7 itself already says low confidence should follow from "the deterministic pre-filter AND the model's own read," but the implementation plan's Phase 3 only ever implemented the first half - low confidence triggered solely from Phase 2's score crossing (or not crossing) a threshold, with no path for the model to veto a candidate that clears the score by keyword coincidence but does not genuinely fit on an actual read of its `when_to_use`/`tells` language. This is exactly the failure mode Example 3 was written to prevent, just from the opposite direction (a false positive rather than a false negative). Phase 3 Step 3 revised to make both triggers explicit, with a corresponding verification case.
+2. Independent of the entry-recommender proposal itself: `AGENTS.md`'s Project Purpose paragraph said "this project stays a catalog plus the one skill" - a claim I introduced myself during the earlier Astro-doc-accuracy pass (removing a stale SDK/Composer promise) that was already wrong at the time (`style-profile` had shipped as a second skill since v0.3.0) and became more visibly wrong once this proposal named a third. Corrected to describe the two skills that exist today and point to `docs/internal/` for in-flight proposals, rather than hardcoding a count that will drift again the next time a skill ships.
 
 ## Sources & Evidence
 

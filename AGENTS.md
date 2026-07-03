@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with a `writing-instruction-builder` skill. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred"); this project stays a catalog plus the one skill.
+The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with two skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want) and `style-profile` (capture a personal default style once, for reuse) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
 
 ---
 
