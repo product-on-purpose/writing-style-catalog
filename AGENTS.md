@@ -10,8 +10,8 @@ The Writing Style Library is a composable catalog of writing instructions organi
 
 **Axis 1 - Voice & Tone**: Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound); Tone captures situational register (how you sound right now). They are kept as separate catalog directories because they have different frontmatter and entry counts, but they belong to the same conceptual axis.
 
-- **Voice** (`taxonomy/voices/`): The persistent identity of the writer. Voice captures worldview, characteristic concerns, and professional archetype. It is stable across contexts. Example seed entries: `pragmatic-architect`, `product-thinker`, `ops-realist`.
-- **Tone** (`taxonomy/tones/`): Situational register layered on top of voice. Tone is orthogonal to voice and can be mixed freely. Example seed entries: `candid`, `mentoring`, `optimistic-realist`.
+- **Voice** (`taxonomy/voices/`): The persistent identity of the writer. Voice captures worldview, characteristic concerns, and professional archetype. It is stable across contexts. Example seed entries: `pragmatic-architect`, `product-thinker`, `operator`.
+- **Tone** (`taxonomy/tones/`): Situational register layered on top of voice. Tone is orthogonal to voice and can be mixed freely. Example seed entries: `candid`, `encouraging`, `confident`.
 
 **Axis 2 - Style** (`taxonomy/styles/`): The cognitive and rhetorical pattern of the writing. How ideas are sequenced and structured. Example seed entries: `problem-solution`, `layered-disclosure`, `decision-log`.
 

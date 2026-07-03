@@ -45,7 +45,7 @@ The skill accepts keyword arguments for each axis. All arguments are optional.
 ### Using a different combination
 
 ```
-/writing-style-catalog:writing-instruction-builder voice=product-thinker tone=optimistic-realist style=layered-disclosure format=daily-standup
+/writing-style-catalog:writing-instruction-builder voice=product-thinker tone=confident style=layered-disclosure format=daily-standup
 ```
 
 ---
@@ -123,9 +123,9 @@ To see all available entries for a given axis:
 | Use Case | Suggested Combination |
 |----------|-----------------------|
 | Technical decision record | `voice=pragmatic-architect tone=candid style=decision-log format=adr` |
-| Daily async standup | `voice=ops-realist tone=candid style=step-by-step format=daily-standup` |
-| User-facing feature announcement | `voice=product-thinker tone=energizing style=narrative-arc format=bullet-brief` |
-| Incident post-mortem | `voice=ops-realist tone=cautious style=problem-solution format=technical-rfc` |
-| Mentoring code review | `voice=technical-educator tone=mentoring style=layered-disclosure format=bullet-brief` |
+| Daily async standup | `voice=operator tone=candid style=procedural format=daily-standup` |
+| User-facing feature announcement | `voice=product-thinker tone=celebratory style=chronological-narrative format=announcement` |
+| Incident post-mortem | `voice=operator tone=skeptical style=problem-solution format=postmortem` |
+| Mentoring code review | `voice=friendly-mentor tone=encouraging style=layered-disclosure format=one-pager` |
 
 See the [recipes/](../../recipes/) directory for more curated combinations with full worked examples.
