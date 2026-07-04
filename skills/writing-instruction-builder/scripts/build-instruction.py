@@ -23,7 +23,21 @@ AXES = {
 
 
 def load_entry(axis: str, entry_id: str) -> dict | None:
-    """Load and parse an ENTRY.md file, returning the frontmatter as a dict."""
+    """Load and parse an ENTRY.md file, returning the frontmatter as a dict.
+
+    Validates entry_id against list_entries()[axis] BEFORE building any path
+    from it - confirmed necessary by an adversarial review of the
+    entry-recommender skill, which reuses this function for its final
+    conflict check and composition: without this check,
+    `--voice "../tones/reverent"` successfully loaded the TONE entry
+    `reverent` and returned it as if it were a voice, since entry_id was
+    joined directly into a filesystem path with no containment check. This
+    is the same class of path-traversal bug entry-recommender's own
+    scripts/recommend.py already fixed in its --fetch helper; fixing it here
+    too closes the shared composer's own copy of the gap, which affects any
+    caller of build-instruction.py, not just entry-recommender."""
+    if entry_id not in list_entries().get(axis, []):
+        return None
     entry_path = AXES[axis] / entry_id / "ENTRY.md"
     if not entry_path.exists():
         return None

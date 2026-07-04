@@ -528,21 +528,34 @@ def main():
         description="Score the stable catalog against a described writing situation, per axis."
     )
     parser.add_argument(
+        "--ephemeral-input-file",
+        type=Path,
+        help=(
+            "Same JSON payload as --input-file, but this process deletes the "
+            "file itself immediately after reading it (in a finally block, so "
+            "cleanup happens even if the JSON is malformed or scoring later "
+            "raises) - THE PREFERRED way for an agent to pass real situation "
+            "text, which can be sensitive (HR, incident, customer detail). "
+            "Cleanup does not depend on a separate agent-followed instruction "
+            "step; it is guaranteed by this process's own control flow. Write "
+            "the file with a file-write tool (never a shell command) to a "
+            "temp/scratchpad location outside the project directory; the "
+            "situation text must be properly JSON-string-escaped first "
+            "(backslash, quote, newline, etc.) - see SKILL.md Step 1."
+        ),
+    )
+    parser.add_argument(
         "--input-file",
         type=Path,
         help=(
-            "JSON file with situation/topic/audience/voice/tone/style/format/"
-            "short_list_size/threshold (all optional except situation). THE "
-            "PREFERRED way for an agent to pass situation text: write it with "
-            "a file-write tool (never a shell command) to a temp/scratchpad "
-            "location outside the project directory, run this, then delete "
-            "the file. The situation text must be properly JSON-string-escaped "
-            "before writing (backslash, quote, newline, etc.) - see SKILL.md "
-            "Step 1 for the exact steps. --situation below is a convenience "
-            "for direct manual/terminal use, where the caller controls their "
-            "own shell escaping - a caller assembling this command from "
-            "untrusted text (an agent following SKILL.md, for example) MUST "
-            "use --input-file instead."
+            "Same JSON payload, but this process does NOT delete the file - "
+            "for a deliberately-kept test fixture reused across runs, not "
+            "day-to-day use with real (possibly sensitive) situation text. "
+            "Prefer --ephemeral-input-file for that. --situation below is a "
+            "convenience for direct manual/terminal use, where the caller "
+            "controls their own shell escaping - a caller assembling this "
+            "command from untrusted text (an agent following SKILL.md, for "
+            "example) MUST use --ephemeral-input-file instead."
         ),
     )
     parser.add_argument(
@@ -593,8 +606,21 @@ def main():
         print(json.dumps(result, indent=2) if args.output_json else result)
         return
 
-    if args.stdin or args.input_file:
-        raw = sys.stdin.read() if args.stdin else args.input_file.read_text(encoding="utf-8")
+    if args.stdin or args.input_file or args.ephemeral_input_file:
+        if args.ephemeral_input_file:
+            # Delete as part of THIS process's own execution, in a finally
+            # block, rather than relying on a separate agent-instructed
+            # cleanup step - confirmed necessary by an adversarial review:
+            # "delete it after" as a SKILL.md instruction is only followed if
+            # the agent actually reaches that step, and situation text can be
+            # sensitive (HR matters, incident detail). This runs regardless
+            # of whether json.loads or recommend() below succeeds or raises.
+            try:
+                raw = args.ephemeral_input_file.read_text(encoding="utf-8")
+            finally:
+                args.ephemeral_input_file.unlink(missing_ok=True)
+        else:
+            raw = sys.stdin.read() if args.stdin else args.input_file.read_text(encoding="utf-8")
         payload = json.loads(raw)
         situation = payload.get("situation")
         topic = payload.get("topic")
@@ -623,7 +649,7 @@ def main():
         threshold = args.threshold
 
     if not situation:
-        parser.error("situation is required (the \"situation\" key via --stdin or --input-file, or --situation) unless --list or --fetch is used")
+        parser.error("situation is required (the \"situation\" key via --ephemeral-input-file, --input-file, or --stdin, or --situation) unless --list or --fetch is used")
 
     result = recommend(
         situation=situation,

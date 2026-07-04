@@ -31,25 +31,25 @@ The situation description is free text - what you need to write and for whom. An
 
 Order is load-bearing: score before reading full fields (Step 1 before Step 2), pick before conflict-checking (Step 2 before Step 3), resolve before composing (Step 3 before Step 4).
 
-**Step 1 - Score the candidate pool.** The situation description is arbitrary user text - it can and will contain quotes, apostrophes, backslashes, or newlines ("explaining my team's Q3 numbers" already has one) - and it can be sensitive (HR matters, incident details, customer or product information). Three failure modes to avoid, not one or two:
+**Step 1 - Score the candidate pool.** The situation description is arbitrary user text - it can and will contain quotes, apostrophes, backslashes, or newlines ("explaining my team's Q3 numbers" already has one) - and it can be sensitive (HR matters, incident details, customer or product information). Four failure modes to avoid, not one, two, or three:
 
 - Never build a shell command by embedding that text directly into a `--situation "..."` string - real command injection, not theoretical; an ordinary apostrophe is enough to break it with no ill intent.
 - Never hand-substitute it into a JSON template without properly escaping it first ("explaining why \"quality\" matters" breaks `{"situation": "<text>"}` the instant you paste it in unescaped - confirmed, this produces invalid JSON from completely ordinary text, no attacker required).
 - Never pipe it through a shell heredoc, even a quoted one - the delimiter that closes a heredoc is plain text matched against the body; if the situation text itself contains that exact line (a fixed, predictable delimiter is guessable by anyone who has read this file, since it is public), the heredoc ends early and whatever follows is interpreted as a new, separate shell command, silently reintroducing the exact injection this is supposed to prevent.
+- Never rely on yourself to remember a separate delete-the-file step afterward as the only cleanup - if this run is interrupted, errors out earlier than expected, or the step is simply skipped, sensitive situation text is left sitting on disk. Use `--ephemeral-input-file` (below), which deletes the file as part of the script's own execution, not as a separate instruction you have to remember and successfully reach.
 
-Do all three correctly, in order:
+Do all of this correctly, in order:
 
 1. Apply real JSON string escaping to the situation text (and to `topic`/`audience` if given): replace `\` with `\\`, `"` with `\"`, newline with `\n`, carriage return with `\r`, tab with `\t`. This is a mechanical, well-defined transformation, not a judgment call - do not skip it or assume the text happens to be simple enough not to need it.
 2. Use the Write tool (never a shell command, `echo`, or heredoc) to write the escaped JSON payload to a new file in your scratchpad/temp directory - never inside this project's working directory, so it cannot be inspected later or committed by accident:
    ```json
    {"situation": "<the escaped situation text>", "voice": "<id, if fixed>", "tone": "<id, if fixed>"}
    ```
-   Omit any key for an axis that is not fixed. The Write tool writes file content directly - it does not involve a shell at all, so nothing here is a quoting or injection concern; the only remaining requirement is that the JSON string itself is valid, which Step 1 above ensures.
-3. Run the scorer against that file - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself:
+   Omit any key for an axis that is not fixed. The Write tool writes file content directly - it does not involve a shell at all, so nothing here is a quoting or injection concern; the only remaining requirement is that the JSON string itself is valid, which step 1 above ensures.
+3. Run the scorer against that file with `--ephemeral-input-file`, not `--input-file` - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself. This flag deletes the file itself, guaranteed, as soon as it has been read - you do not need a separate cleanup step, and the file is gone even if the JSON turns out to be malformed or scoring fails:
    ```bash
-   python skills/entry-recommender/scripts/recommend.py --input-file <path-to-the-temp-file> --json
+   python skills/entry-recommender/scripts/recommend.py --ephemeral-input-file <path-to-the-temp-file> --json
    ```
-4. Delete the temp file immediately after this call returns, whether it succeeded or reported an error, before moving on to Step 2. Do not leave it for later cleanup.
 
 This returns, per non-fixed axis: `short_list` (the top few candidates with their `score`, `distinct_matches`, `matched_tokens` - which situation words actually matched, broken out by field - `one_liner`, `when_to_use`, `tells` - everything Step 2 needs to read), `full_ranked` (the rest of the stable pool, id+score+`above_threshold`+`matched_tokens`, for Step 3's widened search if it is ever needed), and `candidate_count`. Every `above_threshold: true` candidate is guaranteed to appear in `short_list` before any non-qualifying one, regardless of raw score - so `short_list` is not strictly "top-N by score," and you do not need to cross-check `full_ranked` to find a qualifying candidate the raw-score ranking alone might have pushed out. A fixed axis reports `{"fixed": id, "valid": true/false}` instead - if `valid` is `false`, stop and tell the user the fixed value does not exist in the stable catalog rather than silently ignoring it (Phase 4 Step 3).
 
