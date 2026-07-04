@@ -41,12 +41,12 @@ Order is load-bearing: score before reading full fields (Step 1 before Step 2), 
 Do all of this correctly, in order:
 
 1. Apply real JSON string escaping to the situation text (and to `topic`/`audience` if given): replace `\` with `\\`, `"` with `\"`, newline with `\n`, carriage return with `\r`, tab with `\t`. This is a mechanical, well-defined transformation, not a judgment call - do not skip it or assume the text happens to be simple enough not to need it.
-2. Use the Write tool (never a shell command, `echo`, or heredoc) to write the escaped JSON payload to a new file in your scratchpad/temp directory - never inside this project's working directory, so it cannot be inspected later or committed by accident:
+2. Use the Write tool (never a shell command, `echo`, or heredoc) to write the escaped JSON payload to a new file in your scratchpad/temp directory - never inside this project's working directory, so it cannot be inspected later or committed by accident. The filename MUST end in `.entry-recommender-input.json` (any prefix is fine, for example `situation-<something>.entry-recommender-input.json`) - Step 3's flag refuses to touch a file that is not named this way, on purpose, so a path mistake fails loudly instead of silently deleting the wrong file:
    ```json
    {"situation": "<the escaped situation text>", "voice": "<id, if fixed>", "tone": "<id, if fixed>"}
    ```
    Omit any key for an axis that is not fixed. The Write tool writes file content directly - it does not involve a shell at all, so nothing here is a quoting or injection concern; the only remaining requirement is that the JSON string itself is valid, which step 1 above ensures.
-3. Run the scorer against that file with `--ephemeral-input-file`, not `--input-file` - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself. This flag deletes the file itself, guaranteed, as soon as it has been read - you do not need a separate cleanup step, and the file is gone even if the JSON turns out to be malformed or scoring fails:
+3. Run the scorer against that file with `--ephemeral-input-file`, not `--input-file` - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself. This flag deletes the file itself, guaranteed, as soon as it has been read (you do not need a separate cleanup step, and the file is gone even if the JSON turns out to be malformed or scoring fails), but only if the path is outside this repo, inside the system temp directory, AND correctly named per step 2 - otherwise it raises an error instead of reading or deleting anything:
    ```bash
    python skills/entry-recommender/scripts/recommend.py --ephemeral-input-file <path-to-the-temp-file> --json
    ```

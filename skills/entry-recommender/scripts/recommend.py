@@ -25,10 +25,14 @@ import json
 import math
 import re
 import sys
+import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]  # 3 levels up from skills/entry-recommender/scripts/
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
+
+# Required filename suffix for --ephemeral-input-file - see _assert_safe_to_delete.
+EPHEMERAL_SUFFIX = ".entry-recommender-input.json"
 
 # build-instruction.py already parses ENTRY.md frontmatter without requiring
 # PyYAML - deliberately, per its own comment ("Parse YAML manually... avoid
@@ -358,25 +362,28 @@ def build_ranked_list(
 
 
 def _select_short_list(ranked: list[dict], short_list_size: int) -> list[dict]:
-    """Select the short list from the full ranked pool, putting every
-    `above_threshold: True` candidate ahead of every non-qualifying one,
-    regardless of raw score.
+    """Select the short list from the full ranked pool.
 
-    Pure top-N-by-score would not guarantee this: a single very rare word
-    (high IDF) in a high-weight field can score higher than a genuine
-    two-distinct-token match, even though the single-token match fails
-    `above_threshold` (MIN_DISTINCT_MATCHES) and the two-token one passes it.
-    If short_list_size candidates already score higher by raw number alone,
-    the genuinely-qualifying one would be pushed into `full_ranked`, where
-    Step 2's low-confidence check would never see it - confirmed as a real
-    design gap by an adversarial review, even though no live catalog example
-    was found to trigger it with today's entries; the gap is structural, not
-    dependent on this specific corpus staying small. Within each group
-    (qualifying, then non-qualifying), `ranked`'s existing score order is
-    preserved."""
+    ALL `above_threshold: True` candidates are included, however many there
+    are - `short_list_size` never truncates the qualifying group. An
+    adversarial review found this the hard way: for a real, ordinary
+    situation ("telling my engineering team a feature is getting cut..."),
+    31 of the 52 stable Format entries cleared `above_threshold` - a
+    short_list_size of 6 would have silently hidden 25 of them from Step 2's
+    read, in `full_ranked` where they never get their full field text read,
+    on a genuinely common case, not a rare edge case. AC-7's low-confidence
+    decision and Step 2's actual pick both depend on seeing every candidate
+    that genuinely clears the bar, not just the highest-scoring handful of
+    them - correctness here matters more than a tidy, fixed-size list.
+    `short_list_size` still bounds how many EXTRA non-qualifying candidates
+    are shown for context/comparison when there are FEWER qualifying
+    candidates than that - it is a floor for a short list, not a ceiling on
+    genuine matches. Within each group (qualifying, then non-qualifying),
+    `ranked`'s existing score order is preserved."""
     qualifying = [r for r in ranked if r["above_threshold"]]
     non_qualifying = [r for r in ranked if not r["above_threshold"]]
-    return (qualifying + non_qualifying)[:short_list_size]
+    padding_needed = max(0, short_list_size - len(qualifying))
+    return qualifying + non_qualifying[:padding_needed]
 
 
 def _situation_tokens(situation: str | None, topic: str | None, audience: str | None) -> set[str]:
@@ -523,6 +530,43 @@ def list_stable() -> dict[str, list[str]]:
     return {axis: load_stable_ids(axis) for axis in AXES}
 
 
+def _require_ephemeral_path_is_safe(path: Path) -> None:
+    """Raise if `path` is not safe to delete via --ephemeral-input-file.
+
+    Three independent conditions must ALL hold - any one alone is not
+    sufficient defense in depth against a caller path mistake, which an
+    adversarial review confirmed is a real risk (this flag, unguarded,
+    deleted an arbitrary non-JSON file passed to it by mistake):
+    1. The resolved path is NOT inside this repository at all - deleting
+       anything under REPO_ROOT is never acceptable for this flag,
+       regardless of what a temp-directory check below concludes.
+    2. The resolved path IS inside the system temp directory
+       (tempfile.gettempdir() - covers OS temp roots and session-scoped
+       scratchpad directories nested under them, since a scratchpad path is
+       itself a subdirectory of the system temp root on this environment).
+    3. The filename ends with EPHEMERAL_SUFFIX - a marker that only a file
+       actually intended for this mechanism would carry, so even a stray
+       file that happens to sit in a temp directory for an unrelated reason
+       is not deleted by accident.
+    """
+    resolved = path.resolve()
+    if resolved.is_relative_to(REPO_ROOT.resolve()):
+        raise ValueError(
+            f"--ephemeral-input-file refuses to touch a path inside the repository: {resolved}"
+        )
+    temp_root = Path(tempfile.gettempdir()).resolve()
+    if not resolved.is_relative_to(temp_root):
+        raise ValueError(
+            f"--ephemeral-input-file requires a path inside the system temp directory "
+            f"({temp_root}), got: {resolved}"
+        )
+    if not resolved.name.endswith(EPHEMERAL_SUFFIX):
+        raise ValueError(
+            f"--ephemeral-input-file requires a filename ending in {EPHEMERAL_SUFFIX!r}, "
+            f"got: {resolved.name!r}"
+        )
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Score the stable catalog against a described writing situation, per axis."
@@ -537,11 +581,18 @@ def main():
             "raises) - THE PREFERRED way for an agent to pass real situation "
             "text, which can be sensitive (HR, incident, customer detail). "
             "Cleanup does not depend on a separate agent-followed instruction "
-            "step; it is guaranteed by this process's own control flow. Write "
-            "the file with a file-write tool (never a shell command) to a "
-            "temp/scratchpad location outside the project directory; the "
-            "situation text must be properly JSON-string-escaped first "
-            "(backslash, quote, newline, etc.) - see SKILL.md Step 1."
+            "step; it is guaranteed by this process's own control flow. This "
+            "deletes whatever path you pass, so three conditions are enforced "
+            f"first, all required: the path must NOT be inside this repo, MUST "
+            f"be inside the system temp directory, and its filename MUST end "
+            f"in {EPHEMERAL_SUFFIX!r} - anything else raises instead of "
+            f"reading or deleting anything (a caller path mistake must fail "
+            f"loudly, not silently destroy the wrong file). Write the file "
+            f"with a file-write tool (never a shell command) to a temp/"
+            f"scratchpad location outside the project directory, with a "
+            f"filename ending in {EPHEMERAL_SUFFIX!r}; the situation text must "
+            f"be properly JSON-string-escaped first (backslash, quote, "
+            f"newline, etc.) - see SKILL.md Step 1."
         ),
     )
     parser.add_argument(
@@ -581,13 +632,23 @@ def main():
     parser.add_argument("--tone", help="Fixed tone entry id (skip scoring this axis)")
     parser.add_argument("--style", help="Fixed style entry id (skip scoring this axis)")
     parser.add_argument("--format", dest="fmt", help="Fixed format entry id (skip scoring this axis)")
-    parser.add_argument("--short-list-size", type=int, default=DEFAULT_SHORT_LIST_SIZE)
+    parser.add_argument(
+        "--short-list-size",
+        type=int,
+        default=DEFAULT_SHORT_LIST_SIZE,
+        help="Floor for how many non-qualifying candidates pad the short list when there are "
+        "fewer qualifying ones than this - never a cap on genuinely qualifying candidates. "
+        "Must be a non-negative integer.",
+    )
     parser.add_argument("--threshold", type=float, default=DEFAULT_RELEVANCE_THRESHOLD)
     parser.add_argument("--fetch", nargs=2, metavar=("AXIS", "ID"), help="Fetch one candidate's full fields")
     parser.add_argument("--list", action="store_true", help="List all stable/reference-quality ids per axis")
     parser.add_argument("--json", dest="output_json", action="store_true", help="Output as JSON")
 
     args = parser.parse_args()
+
+    if args.short_list_size < 0:
+        parser.error("--short-list-size must be a non-negative integer")
 
     if args.list:
         result = list_stable()
@@ -615,6 +676,15 @@ def main():
             # the agent actually reaches that step, and situation text can be
             # sensitive (HR matters, incident detail). This runs regardless
             # of whether json.loads or recommend() below succeeds or raises.
+            #
+            # _require_ephemeral_path_is_safe is called BEFORE the read/
+            # delete, not just before the delete: an earlier version of this
+            # deleted whatever path it was given, no questions asked -
+            # confirmed live by an adversarial review to delete an arbitrary
+            # non-JSON file (a copy of CHANGELOG.md) passed to this flag by
+            # mistake. A caller path mistake must fail loudly, not silently
+            # destroy the wrong file.
+            _require_ephemeral_path_is_safe(args.ephemeral_input_file)
             try:
                 raw = args.ephemeral_input_file.read_text(encoding="utf-8")
             finally:
