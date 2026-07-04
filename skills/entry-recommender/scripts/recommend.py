@@ -519,7 +519,24 @@ def main():
     parser = argparse.ArgumentParser(
         description="Score the stable catalog against a described writing situation, per axis."
     )
-    parser.add_argument("--situation", help="Free-text description of the writing situation")
+    parser.add_argument(
+        "--input-file",
+        type=Path,
+        help=(
+            "JSON file with situation/topic/audience/voice/tone/style/format/"
+            "short_list_size/threshold (all optional except situation). The "
+            "PREFERRED way to pass situation text: it never has to be embedded "
+            "into a shell command line, so quotes, dollar signs, backticks, or "
+            "other shell metacharacters in real user text (an apostrophe in "
+            "\"my team's retrospective\" is enough to break naive quoting) "
+            "cannot affect command parsing. --situation below is a convenience "
+            "for direct manual/terminal use, where the caller controls their "
+            "own shell escaping - a caller assembling this command from "
+            "untrusted text (an agent following SKILL.md, for example) MUST "
+            "use --input-file instead."
+        ),
+    )
+    parser.add_argument("--situation", help="Free-text description of the writing situation (manual/terminal use only - see --input-file)")
     parser.add_argument("--topic", help="Optional topic, folded into the situation tokens")
     parser.add_argument("--audience", help="Optional audience, folded into the situation tokens")
     parser.add_argument("--voice", help="Fixed voice entry id (skip scoring this axis)")
@@ -551,31 +568,46 @@ def main():
         print(json.dumps(result, indent=2) if args.output_json else result)
         return
 
-    if not args.situation:
-        parser.error("--situation is required unless --list or --fetch is used")
+    if args.input_file:
+        payload = json.loads(args.input_file.read_text(encoding="utf-8"))
+        situation = payload.get("situation")
+        topic = payload.get("topic")
+        audience = payload.get("audience")
+        fixed = {
+            axis: payload[axis]
+            for axis in ("voice", "tone", "style", "format")
+            if payload.get(axis)
+        }
+        short_list_size = payload.get("short_list_size", DEFAULT_SHORT_LIST_SIZE)
+        threshold = payload.get("threshold", DEFAULT_RELEVANCE_THRESHOLD)
+    else:
+        situation = args.situation
+        topic = args.topic
+        audience = args.audience
+        fixed = {}
+        if args.voice:
+            fixed["voice"] = args.voice
+        if args.tone:
+            fixed["tone"] = args.tone
+        if args.style:
+            fixed["style"] = args.style
+        if args.fmt:
+            fixed["format"] = args.fmt
+        short_list_size = args.short_list_size
+        threshold = args.threshold
 
-    fixed = {}
-    if args.voice:
-        fixed["voice"] = args.voice
-    if args.tone:
-        fixed["tone"] = args.tone
-    if args.style:
-        fixed["style"] = args.style
-    if args.fmt:
-        fixed["format"] = args.fmt
+    if not situation:
+        parser.error("situation is required (via --input-file's \"situation\" key, or --situation) unless --list or --fetch is used")
 
     result = recommend(
-        situation=args.situation,
-        topic=args.topic,
-        audience=args.audience,
+        situation=situation,
+        topic=topic,
+        audience=audience,
         fixed=fixed,
-        short_list_size=args.short_list_size,
-        threshold=args.threshold,
+        short_list_size=short_list_size,
+        threshold=threshold,
     )
-    if args.output_json:
-        print(json.dumps(result, indent=2))
-    else:
-        print(json.dumps(result, indent=2))  # structured output is this tool's only real output shape
+    print(json.dumps(result, indent=2))  # structured output is this tool's only real output shape
 
 
 if __name__ == "__main__":

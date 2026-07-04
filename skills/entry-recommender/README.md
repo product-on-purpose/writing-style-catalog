@@ -14,8 +14,9 @@ The actual pick, justification, conflict resolution, and composition (Phases 3-6
 
 ## Scripts
 
-- `scripts/recommend.py --situation TEXT [--voice ID] [--tone ID] [--style ID] [--format ID] [--json]` - score the catalog against a situation.
-- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one candidate (used when conflict resolution selects a candidate beyond the initial short list).
+- `scripts/recommend.py --input-file PATH --json` - score the catalog against a situation described in a JSON file (`{"situation": "...", "voice": "...", ...}`). This is the path `SKILL.md` requires: situation text is arbitrary user prose that can contain quotes, dollar signs, or other shell metacharacters, so it must never be interpolated directly into a shell command - the JSON file avoids that entirely.
+- `scripts/recommend.py --situation TEXT [--voice ID] [--tone ID] [--style ID] [--format ID] [--json]` - the same, for direct manual/terminal use where the caller controls their own shell escaping.
+- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one stable candidate (used when conflict resolution selects a candidate beyond the initial short list; rejects any non-stable id).
 - `scripts/recommend.py --list` - list all stable/reference-quality ids per axis.
 
 ## See Also

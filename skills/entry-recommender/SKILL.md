@@ -31,13 +31,21 @@ The situation description is free text - what you need to write and for whom. An
 
 Order is load-bearing: score before reading full fields (Step 1 before Step 2), pick before conflict-checking (Step 2 before Step 3), resolve before composing (Step 3 before Step 4).
 
-**Step 1 - Score the candidate pool.** Run the scorer once, passing the situation text and any fixed axis values:
+**Step 1 - Score the candidate pool.** The situation description is arbitrary user text - it can and will contain quotes, apostrophes, dollar signs, or other characters a shell treats specially ("explaining my team's Q3 numbers" already has one). Never build a shell command by embedding that text directly into a `--situation "..."` string; that is a real command-injection risk, not a theoretical one, and an ordinary apostrophe is enough to break it even with no ill intent. Instead:
 
-```bash
-python skills/entry-recommender/scripts/recommend.py --situation "<text>" [--voice <id>] [--tone <id>] [--style <id>] [--format <id>] --json
-```
+1. Write a JSON file with the Write tool (not a shell heredoc or `echo`, which reintroduces the same quoting problem) containing the situation text and any fixed axis values verbatim, for example:
+   ```json
+   {"situation": "<the full situation text, exactly as given>", "voice": "<id, if fixed>", "tone": "<id, if fixed>"}
+   ```
+   Omit any key for an axis that is not fixed.
+2. Run the scorer against that file:
+   ```bash
+   python skills/entry-recommender/scripts/recommend.py --input-file <path-to-the-json-file> --json
+   ```
 
 This returns, per non-fixed axis: `short_list` (the top few candidates with their `score`, `distinct_matches`, `matched_tokens` - which situation words actually matched, broken out by field - `one_liner`, `when_to_use`, `tells` - everything Step 2 needs to read), `full_ranked` (the rest of the stable pool, id+score+`above_threshold`+`matched_tokens`, for Step 3's widened search if it is ever needed), and `candidate_count`. Every `above_threshold: true` candidate is guaranteed to appear in `short_list` before any non-qualifying one, regardless of raw score - so `short_list` is not strictly "top-N by score," and you do not need to cross-check `full_ranked` to find a qualifying candidate the raw-score ranking alone might have pushed out. A fixed axis reports `{"fixed": id, "valid": true/false}` instead - if `valid` is `false`, stop and tell the user the fixed value does not exist in the stable catalog rather than silently ignoring it (Phase 4 Step 3).
+
+From this point on, every id this skill puts into a shell command (in Step 3 and Step 4 below) is either one this step's JSON output already validated (a `fixed` axis reported `valid: true`) or one this skill itself picked from `short_list`/`full_ranked` (which only ever contains real stable catalog ids, matching the strict kebab-case id pattern every entry is validated against). Never interpolate the raw, not-yet-validated situation text or an unvalidated fixed-axis claim into any later shell command either - route it through `--input-file` here first.
 
 **Step 2 - Read, pick, and justify each non-fixed axis (AC-1, AC-3, AC-7).**
 
