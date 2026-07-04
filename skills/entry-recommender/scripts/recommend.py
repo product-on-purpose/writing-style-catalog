@@ -24,6 +24,7 @@ import importlib.util
 import json
 import math
 import re
+import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]  # 3 levels up from skills/entry-recommender/scripts/
@@ -466,27 +467,34 @@ def fetch_one(axis: str, entry_id: str) -> dict:
     the cost of returning full fields for the whole pool up front.
 
     Enforces the same stable/reference-quality boundary as scoring and
-    listing (AC-6) - confirmed as a real gap by an adversarial review:
-    without this check, --fetch would return full field content for ANY id,
-    including a draft (verified: `--fetch format acceptance-speech`, a real
-    Hold-20 draft, returned its complete when_to_use/tells before this fix).
-    In SKILL.md's own documented workflow this id always comes from
-    full_ranked, which is already stable-filtered, so this was not reachable
-    through the intended path - but AC-6 is framed as a hard constraint with
-    no override, and a general-purpose fetch-by-id function should not rely
-    on every caller happening to pass it a pre-filtered id."""
+    listing (AC-6) by checking membership in load_stable_ids(axis) BEFORE any
+    filesystem access, not after loading. An earlier version of this
+    function checked review_status only after loading - which was itself a
+    real gap (a draft entry's fields were returned in full: verified via
+    `--fetch format acceptance-speech`) - but checking only a loaded entry's
+    own review_status is not enough by itself either: load_full_entry builds
+    a path as AXES[axis] / entry_id / "ENTRY.md" with no containment check,
+    so a crafted entry_id such as "../voices/pragmatic-architect" escapes
+    the intended axis directory entirely and returns a DIFFERENT axis's
+    stable entry, mislabeled as belonging to the requested one - confirmed
+    live: `--fetch format "../voices/pragmatic-architect"` returned the real
+    `pragmatic-architect` voice entry tagged `"axis": "format"`. Checking
+    membership first closes this - load_stable_ids only ever contains real
+    directory names this process already enumerated itself via
+    build_instruction.list_entries, never a caller-supplied string, so a
+    path is only ever built from a name already known to be safe."""
     if axis not in AXES:
         return {"found": False, "error": f"unknown axis: {axis}"}
-    entry = load_full_entry(axis, entry_id)
-    if entry is None:
-        return {"found": False, "id": entry_id, "axis": axis}
-    if entry.get("review_status") not in STABLE_STATUSES:
+    if entry_id not in load_stable_ids(axis):
         return {
             "found": False,
             "id": entry_id,
             "axis": axis,
-            "error": f"{entry_id} is not stable/reference-quality (review_status={entry.get('review_status')!r}) and cannot be fetched",
+            "error": f"{entry_id!r} is not a stable/reference-quality {axis} entry",
         }
+    entry = load_full_entry(axis, entry_id)
+    if entry is None:
+        return {"found": False, "id": entry_id, "axis": axis}
     facets = {
         field: entry[field]
         for field in AXIS_GUARANTEED_FIELDS.get(axis, []) + AXIS_OPTIONAL_FACETS.get(axis, [])
@@ -520,20 +528,30 @@ def main():
         description="Score the stable catalog against a described writing situation, per axis."
     )
     parser.add_argument(
+        "--stdin",
+        action="store_true",
+        help=(
+            "Read the same JSON payload --input-file takes from stdin instead "
+            "of a file. THE PREFERRED way for an agent to pass situation text: "
+            "piped through a quoted heredoc, it never touches disk and never "
+            "has to be embedded into a shell command line, so neither shell "
+            "metacharacters in the text nor leaving it sitting in a file is a "
+            "concern. See SKILL.md Step 1."
+        ),
+    )
+    parser.add_argument(
         "--input-file",
         type=Path,
         help=(
             "JSON file with situation/topic/audience/voice/tone/style/format/"
-            "short_list_size/threshold (all optional except situation). The "
-            "PREFERRED way to pass situation text: it never has to be embedded "
-            "into a shell command line, so quotes, dollar signs, backticks, or "
-            "other shell metacharacters in real user text (an apostrophe in "
-            "\"my team's retrospective\" is enough to break naive quoting) "
-            "cannot affect command parsing. --situation below is a convenience "
-            "for direct manual/terminal use, where the caller controls their "
-            "own shell escaping - a caller assembling this command from "
-            "untrusted text (an agent following SKILL.md, for example) MUST "
-            "use --input-file instead."
+            "short_list_size/threshold (all optional except situation). Prefer "
+            "--stdin for anything holding real user situation text - a file "
+            "left on disk can persist or be committed by accident. --input-file "
+            "is for a deliberately-kept test fixture, not day-to-day use. "
+            "--situation below is a convenience for direct manual/terminal use, "
+            "where the caller controls their own shell escaping - a caller "
+            "assembling this command from untrusted text (an agent following "
+            "SKILL.md, for example) MUST use --stdin instead."
         ),
     )
     parser.add_argument("--situation", help="Free-text description of the writing situation (manual/terminal use only - see --input-file)")
@@ -568,8 +586,9 @@ def main():
         print(json.dumps(result, indent=2) if args.output_json else result)
         return
 
-    if args.input_file:
-        payload = json.loads(args.input_file.read_text(encoding="utf-8"))
+    if args.stdin or args.input_file:
+        raw = sys.stdin.read() if args.stdin else args.input_file.read_text(encoding="utf-8")
+        payload = json.loads(raw)
         situation = payload.get("situation")
         topic = payload.get("topic")
         audience = payload.get("audience")
@@ -597,7 +616,7 @@ def main():
         threshold = args.threshold
 
     if not situation:
-        parser.error("situation is required (via --input-file's \"situation\" key, or --situation) unless --list or --fetch is used")
+        parser.error("situation is required (the \"situation\" key via --stdin or --input-file, or --situation) unless --list or --fetch is used")
 
     result = recommend(
         situation=situation,

@@ -14,9 +14,10 @@ The actual pick, justification, conflict resolution, and composition (Phases 3-6
 
 ## Scripts
 
-- `scripts/recommend.py --input-file PATH --json` - score the catalog against a situation described in a JSON file (`{"situation": "...", "voice": "...", ...}`). This is the path `SKILL.md` requires: situation text is arbitrary user prose that can contain quotes, dollar signs, or other shell metacharacters, so it must never be interpolated directly into a shell command - the JSON file avoids that entirely.
+- `scripts/recommend.py --stdin --json` (JSON payload `{"situation": "...", "voice": "...", ...}` piped via a quoted heredoc) - score the catalog against a situation. This is the path `SKILL.md` requires: situation text is arbitrary, sometimes sensitive user prose, so it must never be interpolated directly into a shell command (real shell-injection risk) or written to a file in the working directory (persistence/privacy risk) - stdin avoids both.
+- `scripts/recommend.py --input-file PATH --json` - same payload, from a file. For a deliberately-kept test fixture, not day-to-day use - prefer `--stdin` for real situation text.
 - `scripts/recommend.py --situation TEXT [--voice ID] [--tone ID] [--style ID] [--format ID] [--json]` - the same, for direct manual/terminal use where the caller controls their own shell escaping.
-- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one stable candidate (used when conflict resolution selects a candidate beyond the initial short list; rejects any non-stable id).
+- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one stable candidate (used when conflict resolution selects a candidate beyond the initial short list; rejects any non-stable id or id outside the requested axis).
 - `scripts/recommend.py --list` - list all stable/reference-quality ids per axis.
 
 ## See Also
