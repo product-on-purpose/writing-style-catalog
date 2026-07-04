@@ -37,8 +37,10 @@ outputs: [Recommend Entries for a Situation](https://product-on-purpose.github.i
 
 - `skills/writing-instruction-builder/scripts/build-instruction.py` - added `--json` support
   to the compose path (previously `--list` only), so `entry-recommender` can get structured
-  conflict/affirmation data via subprocess instead of parsing warning text. Purely additive;
-  existing behavior is unchanged.
+  conflict/affirmation data via subprocess instead of parsing warning text. Also closed a
+  pre-existing path-traversal gap in `load_entry` (not introduced this release, but confirmed
+  reachable and fixed because `entry-recommender` now depends on this exact function) - see
+  Security below. All 7 existing tests in `tests/test_compose_instruction.py` still pass.
 - `scripts/build-release.sh` / `build-release.ps1` - the release ZIP now ships `taxonomy.json`
   alongside `taxonomy/`, closing a gap found while hardening `entry-recommender`: the file was
   never staged, which briefly would have made the new skill see zero candidates for a
@@ -48,22 +50,29 @@ outputs: [Recommend Entries for a Situation](https://product-on-purpose.github.i
 ### Security
 
 - `entry-recommender`'s design went through eight rounds of Codex adversarial review before
-  the spec was approved, then seven more against the real implementation once built - full
-  detail in the spec's Revisions section (`docs/internal/entry-recommender-spec.md`). Three
-  findings against the implementation were security-relevant and are called out here
-  specifically: an earlier draft of `SKILL.md` would have interpolated arbitrary user
-  situation text directly into a shell command (command injection - ordinary punctuation
-  like an apostrophe is enough to break naive quoting, no ill intent required); an
-  intermediate fix would have hand-substituted that text into a JSON template without
-  escaping (malformed JSON from a single embedded quote) or piped it through a shell heredoc
-  with a fixed, predictable delimiter (which situation text containing that exact line could
-  use to terminate the heredoc early and reintroduce shell execution); and a `--fetch` helper
-  built a filesystem path from an unvalidated id with no containment check (path traversal,
-  confirmed by fetching a voice entry through the format axis, returned mislabeled as a
-  format). All fixed before this release: situation text is now properly JSON-escaped,
-  written via a file-write tool (never a shell command or heredoc) to a scratchpad location
-  outside the project directory, read via a file path, and deleted immediately after use;
-  `--fetch` now validates an id against the real stable catalog before ever touching the
+  the spec was approved, then eight more against the real implementation once built - full
+  detail in the spec's Revisions section (`docs/internal/entry-recommender-spec.md`). Four
+  findings against the implementation were security-relevant, all fixed before this release:
+  - An earlier draft of `SKILL.md` would have interpolated arbitrary user situation text
+    directly into a shell command (command injection - ordinary punctuation like an
+    apostrophe is enough to break naive quoting, no ill intent required).
+  - An intermediate fix would have hand-substituted that text into a JSON template without
+    escaping (malformed JSON from a single embedded quote) or piped it through a shell
+    heredoc with a fixed, predictable delimiter (which situation text containing that exact
+    line could use to terminate the heredoc early and reintroduce shell execution).
+  - A `--fetch` helper, and separately `build-instruction.py`'s own pre-existing `load_entry`
+    (which `writing-instruction-builder` has always used, and which `entry-recommender` now
+    also depends on), both built filesystem paths from an unvalidated id with no containment
+    check - confirmed live in both, returning one axis's entry mislabeled as another's.
+  - The situation-text cleanup step was only an agent-followed instruction, not enforced by
+    the script - an interrupted run could leave sensitive prose on disk indefinitely.
+
+  Final design: situation text is properly JSON-escaped, written via a file-write tool (never
+  a shell command or heredoc) to a scratchpad location outside the project directory, read
+  via `recommend.py --ephemeral-input-file`, which deletes the file itself in a `finally`
+  block immediately after reading - guaranteed regardless of whether anything downstream
+  succeeds. `--fetch` and `build-instruction.py`'s `load_entry` both now validate an id
+  against the real stable catalog / real directory listing before ever touching the
   filesystem.
 
 ## [0.5.2] - 2026-07-03
