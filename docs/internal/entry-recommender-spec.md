@@ -20,7 +20,7 @@ related:
 **Last updated:** 2026-07-03 by agent (Claude Opus 4.8) - built, smoke-tested against all 7 Behavior/Examples by an independent fresh-context agent (found and both of us fixed two real scorer bugs and two SKILL.md clarity gaps in the process; see Revision 9), and hardened accordingly
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 11 (see Revisions)
+**Revisions:** 12 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
@@ -180,6 +180,8 @@ Not fixed, and not a defect: the spec's own Example 2 text hypothesizes `reveren
 **Revision 11 (2026-07-03):** A third Codex adversarial review found two more issues, both verified before fixing:
 1. `fetch_one` accepted any axis/id and returned full field content without checking `review_status` at all. Confirmed real by fetching a genuine Hold-20 draft directly (`--fetch format acceptance-speech`), which returned its complete `when_to_use`/`tells` before this fix - a live violation of AC-6's "hard constraint, no override" framing, even though `SKILL.md`'s own documented workflow never reaches this path with a draft id (it only ever fetches an id already confirmed via the stable-filtered `full_ranked`). Fixed: `fetch_one` now rejects any non-stable/reference-quality entry before returning fields, so the guarantee does not depend on every caller happening to pass a pre-filtered id.
 2. `SKILL.md`'s widened-search condition 2 read "`above_threshold` true, or if beyond the short list, score >= the threshold `recommend.py` reported" - the second branch is strictly weaker than the first, since it drops the minimum-distinct-match gate `above_threshold` already encodes, and `full_ranked` has carried a complete `above_threshold` field (score AND distinct-match gate both applied) since the fix logged above in this same revision history. The wording was simply stale relative to that earlier fix, not an intentional design choice. Fixed: condition 2 is now just "`above_threshold` true," with no raw-score fallback.
+
+**Revision 12 (2026-07-03):** A fourth Codex adversarial review found that `short_list` was a pure top-N-by-raw-score slice, which does not guarantee every `above_threshold` candidate actually appears in it. The reasoning is structural, not tied to a specific observed failure: a single very rare word (high IDF) in a high-weight field can mathematically outscore a genuine two-distinct-token match, even though the single-token match fails `above_threshold`'s minimum-distinct-match gate and the two-token one passes it - if enough such single-token false positives exist, a genuinely qualifying candidate could be pushed into `full_ranked`, where Step 2's low-confidence check would never see it, incorrectly blanking an axis a real stable candidate would have filled. Searching all 97 stable entries (each entry's own `when_to_use` text used as a situation probe) found no live instance of this with today's catalog, but the gap depends on the scorer's weighting math, not on the corpus staying this size, so it was fixed rather than left as a theoretical risk pending a bigger catalog exposing it later. Fixed: `recommend.py`'s short-list selection now places every `above_threshold` candidate ahead of every non-qualifying one, regardless of raw score, preserving score order within each group - verified with a synthetic case constructing exactly the inversion described above, since no organic one could be found to test against directly.
 
 ## Sources & Evidence
 
