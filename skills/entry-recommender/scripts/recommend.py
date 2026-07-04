@@ -528,30 +528,37 @@ def main():
         description="Score the stable catalog against a described writing situation, per axis."
     )
     parser.add_argument(
-        "--stdin",
-        action="store_true",
-        help=(
-            "Read the same JSON payload --input-file takes from stdin instead "
-            "of a file. THE PREFERRED way for an agent to pass situation text: "
-            "piped through a quoted heredoc, it never touches disk and never "
-            "has to be embedded into a shell command line, so neither shell "
-            "metacharacters in the text nor leaving it sitting in a file is a "
-            "concern. See SKILL.md Step 1."
-        ),
-    )
-    parser.add_argument(
         "--input-file",
         type=Path,
         help=(
             "JSON file with situation/topic/audience/voice/tone/style/format/"
-            "short_list_size/threshold (all optional except situation). Prefer "
-            "--stdin for anything holding real user situation text - a file "
-            "left on disk can persist or be committed by accident. --input-file "
-            "is for a deliberately-kept test fixture, not day-to-day use. "
-            "--situation below is a convenience for direct manual/terminal use, "
-            "where the caller controls their own shell escaping - a caller "
-            "assembling this command from untrusted text (an agent following "
-            "SKILL.md, for example) MUST use --stdin instead."
+            "short_list_size/threshold (all optional except situation). THE "
+            "PREFERRED way for an agent to pass situation text: write it with "
+            "a file-write tool (never a shell command) to a temp/scratchpad "
+            "location outside the project directory, run this, then delete "
+            "the file. The situation text must be properly JSON-string-escaped "
+            "before writing (backslash, quote, newline, etc.) - see SKILL.md "
+            "Step 1 for the exact steps. --situation below is a convenience "
+            "for direct manual/terminal use, where the caller controls their "
+            "own shell escaping - a caller assembling this command from "
+            "untrusted text (an agent following SKILL.md, for example) MUST "
+            "use --input-file instead."
+        ),
+    )
+    parser.add_argument(
+        "--stdin",
+        action="store_true",
+        help=(
+            "Read the same JSON payload --input-file takes from stdin instead "
+            "of a file. NOT recommended for untrusted situation text piped via "
+            "a shell heredoc: a heredoc's closing delimiter is plain text "
+            "matched against the body, so situation text containing that exact "
+            "line terminates it early and whatever follows is executed as a "
+            "new shell command - a real risk if the delimiter is fixed and "
+            "predictable (for example, one written into this file's own "
+            "history). Safe only when the JSON is supplied by a mechanism with "
+            "no delimiter-collision risk, such as another process's stdout "
+            "piped directly in. Prefer --input-file for an agent workflow."
         ),
     )
     parser.add_argument("--situation", help="Free-text description of the writing situation (manual/terminal use only - see --input-file)")
