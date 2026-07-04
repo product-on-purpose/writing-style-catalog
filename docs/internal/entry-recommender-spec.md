@@ -20,7 +20,7 @@ related:
 **Last updated:** 2026-07-03 by agent (Claude Opus 4.8) - built, smoke-tested against all 7 Behavior/Examples by an independent fresh-context agent (found and both of us fixed two real scorer bugs and two SKILL.md clarity gaps in the process; see Revision 9), and hardened accordingly
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 14 (see Revisions)
+**Revisions:** 15 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
@@ -190,6 +190,12 @@ Not fixed, and not a defect: the spec's own Example 2 text hypothesizes `reveren
 2. Revision 13's own fix traded one risk for another: it required writing arbitrary, sometimes-sensitive user situation text (HR matters, incident detail, customer or product information) to a file with no specified location or cleanup - a real persistence/privacy concern, since the natural reading of "write a JSON file" could leave that prose sitting in the project working directory, inspectable later or committed by accident. Fixed by adding `recommend.py --stdin`, reading the same JSON payload from stdin instead of a file. `SKILL.md`'s Step 1 now pipes the JSON through a quoted bash heredoc (`<<'ENTRY_RECOMMENDER_EOF'` - the delimiter itself must be single-quoted, since an unquoted one still allows `$`/backtick expansion inside the body) - nothing touches disk, and no shell metacharacter in the text can affect parsing either, closing both the injection risk and the persistence risk in one mechanism. `--input-file` is kept for a deliberately-created test fixture, not day-to-day use.
 
 Verified: the path-traversal payload above is now rejected while a legitimate fetch still works; `--stdin` correctly tokenizes the same adversarial situation text from Revision 13 with no shell interpretation and no file written; every previously-verified example reproduces identically.
+
+**Revision 15 (2026-07-03):** A seventh Codex adversarial review found that Revision 14's own fix was not actually hardened, on two counts:
+1. `SKILL.md` showed hand-substituting raw situation text into a JSON template - but ordinary text containing a quote breaks that immediately (confirmed: `{"situation": "explaining why \"quality\" matters"}`, built by naive substitution rather than real JSON escaping, fails `json.loads` outright - no attacker required, just a normal sentence).
+2. A heredoc's closing delimiter is plain text matched against the body, not a special shell construct with any collision protection. A fixed, predictable delimiter - one written into this very file's committed history, freely readable by anyone - can be deliberately included by an attacker as a line within their situation text, terminating the heredoc early and having whatever follows interpreted as a new, separate shell command. Quoting the delimiter (Revision 13's fix) prevents expansion WITHIN the body; it does nothing to prevent the body from containing the delimiter itself. This reintroduces the exact shell-injection risk Revision 13 was supposed to close.
+
+Both fixed by redesigning Step 1 rather than patching either issue in isolation: the situation text is now properly JSON-string-escaped first (spelled out as an explicit, mechanical instruction - not implied by "verbatim"), written via a file-write tool (never a shell command or heredoc - there is no delimiter concept at all in a direct file write) to a scratchpad/temp location outside the project directory, read via `--input-file`, then deleted immediately after the call, success or failure. `--stdin` stays available in `recommend.py` but its help text now explicitly warns against the heredoc pattern for untrusted text rather than recommending it. Verified: situation text containing a quote, a backslash, and a newline, once correctly JSON-escaped, tokenizes with no errors; every previously-verified example and the Revision 14 path-traversal rejection reproduce identically.
 
 ## Sources & Evidence
 

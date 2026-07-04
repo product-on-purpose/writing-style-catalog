@@ -49,16 +49,22 @@ outputs: [Recommend Entries for a Situation](https://product-on-purpose.github.i
 
 - `entry-recommender`'s design went through eight rounds of Codex adversarial review before
   the spec was approved, then seven more against the real implementation once built - full
-  detail in the spec's Revisions section (`docs/internal/entry-recommender-spec.md`). Two
+  detail in the spec's Revisions section (`docs/internal/entry-recommender-spec.md`). Three
   findings against the implementation were security-relevant and are called out here
   specifically: an earlier draft of `SKILL.md` would have interpolated arbitrary user
-  situation text directly into a shell command (a real command-injection risk - ordinary
-  punctuation like an apostrophe is enough to break naive quoting, with no ill intent
-  required), and a `--fetch` helper built a filesystem path from an unvalidated id with no
-  containment check (a path-traversal bug, confirmed by fetching a voice entry through the
-  format axis). Both were fixed before this release: situation text is now piped through
-  stdin via a quoted heredoc, never a file or a shell-interpolated argument; `--fetch` now
-  validates an id against the real stable catalog before ever touching the filesystem.
+  situation text directly into a shell command (command injection - ordinary punctuation
+  like an apostrophe is enough to break naive quoting, no ill intent required); an
+  intermediate fix would have hand-substituted that text into a JSON template without
+  escaping (malformed JSON from a single embedded quote) or piped it through a shell heredoc
+  with a fixed, predictable delimiter (which situation text containing that exact line could
+  use to terminate the heredoc early and reintroduce shell execution); and a `--fetch` helper
+  built a filesystem path from an unvalidated id with no containment check (path traversal,
+  confirmed by fetching a voice entry through the format axis, returned mislabeled as a
+  format). All fixed before this release: situation text is now properly JSON-escaped,
+  written via a file-write tool (never a shell command or heredoc) to a scratchpad location
+  outside the project directory, read via a file path, and deleted immediately after use;
+  `--fetch` now validates an id against the real stable catalog before ever touching the
+  filesystem.
 
 ## [0.5.2] - 2026-07-03
 
