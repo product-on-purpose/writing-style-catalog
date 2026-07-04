@@ -20,17 +20,34 @@ Usage:
     python recommend.py --list
 """
 import argparse
+import importlib.util
 import json
 import math
 import re
-import sys
 from pathlib import Path
-
-import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[3]  # 3 levels up from skills/entry-recommender/scripts/
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
 TAXONOMY_INDEX = REPO_ROOT / "taxonomy.json"
+
+# build-instruction.py already parses ENTRY.md frontmatter without requiring
+# PyYAML - deliberately, per its own comment ("Parse YAML manually... avoid
+# requiring pyyaml"), since a shipped skill script cannot assume an end user's
+# Claude Code / ZIP-installed Python environment has any package beyond the
+# standard library. An earlier version of this script used `yaml.safe_load`
+# (matching tools/validate.py's pattern) - but that is repo DEV tooling, run
+# under requirements-dev.txt in CI/local dev, a completely different
+# execution context from a shipped skill script running in an end user's
+# environment. Loading build-instruction.py's own load_entry here reuses its
+# proven, dependency-free parser directly (its filename has a hyphen, so a
+# normal `import` statement cannot name it - hence importlib) rather than
+# vendoring a second parser that could drift from it.
+_BUILD_INSTRUCTION_PATH = (
+    REPO_ROOT / "skills" / "writing-instruction-builder" / "scripts" / "build-instruction.py"
+)
+_spec = importlib.util.spec_from_file_location("build_instruction", _BUILD_INSTRUCTION_PATH)
+build_instruction = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(build_instruction)
 
 AXES = {
     "voice": TAXONOMY_ROOT / "voices",
@@ -109,28 +126,6 @@ FACET_WEIGHT = 1
 _TOKEN_RE = re.compile(r"[a-z0-9]{2,}")
 
 
-def _extract_frontmatter(entry_md_path: Path) -> dict | None:
-    """Read ENTRY.md and return parsed frontmatter, or None on failure.
-
-    Same pattern as tools/validate.py's _extract_frontmatter: split on a
-    standalone "---" line (not any "---" substring, which can appear inside
-    table separators in a block scalar), then yaml.safe_load with CRLF
-    normalized to LF first (this repo's templates are sometimes CRLF).
-    """
-    content = entry_md_path.read_text(encoding="utf-8")
-    if not content.startswith("---"):
-        return None
-    parts = re.split(r"(?m)^---[ \t]*$", content, maxsplit=2)
-    if len(parts) < 3:
-        return None
-    frontmatter_text = parts[1].strip()
-    try:
-        data = yaml.safe_load(frontmatter_text.replace("\r\n", "\n").replace("\r", "\n"))
-    except yaml.YAMLError:
-        return None
-    return data if isinstance(data, dict) else None
-
-
 def load_stable_ids(axis: str) -> list[str]:
     """Return every id for `axis` whose review_status is stable or
     reference-quality, per the root taxonomy.json index - fast, and it means a
@@ -151,11 +146,10 @@ def load_full_entry(axis: str, entry_id: str) -> dict | None:
     a slim index (id/name/axis/one_liner/review_status only) and does not
     carry when_to_use, tells, avoid_with, pairs_well_with, or any axis-specific
     facet, so every field this scorer or a caller needs beyond the slim index
-    requires this direct read."""
-    entry_path = AXES[axis] / entry_id / "ENTRY.md"
-    if not entry_path.exists():
-        return None
-    return _extract_frontmatter(entry_path)
+    requires this direct read. Delegates to build-instruction.py's own
+    load_entry (see the importlib delegation above) rather than a second
+    parser - same axis names, same taxonomy/ layout, same frontmatter shape."""
+    return build_instruction.load_entry(axis, entry_id)
 
 
 def _singularize(token: str) -> str:
