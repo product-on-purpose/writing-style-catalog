@@ -440,12 +440,30 @@ def fetch_one(axis: str, entry_id: str) -> dict:
     """Full field content for exactly one candidate - used when Phase 5's
     widened search selects a candidate beyond the short list and needs its
     when_to_use/tells for a real Phase 3 Step 2 justification, without paying
-    the cost of returning full fields for the whole pool up front."""
+    the cost of returning full fields for the whole pool up front.
+
+    Enforces the same stable/reference-quality boundary as scoring and
+    listing (AC-6) - confirmed as a real gap by an adversarial review:
+    without this check, --fetch would return full field content for ANY id,
+    including a draft (verified: `--fetch format acceptance-speech`, a real
+    Hold-20 draft, returned its complete when_to_use/tells before this fix).
+    In SKILL.md's own documented workflow this id always comes from
+    full_ranked, which is already stable-filtered, so this was not reachable
+    through the intended path - but AC-6 is framed as a hard constraint with
+    no override, and a general-purpose fetch-by-id function should not rely
+    on every caller happening to pass it a pre-filtered id."""
     if axis not in AXES:
         return {"found": False, "error": f"unknown axis: {axis}"}
     entry = load_full_entry(axis, entry_id)
     if entry is None:
         return {"found": False, "id": entry_id, "axis": axis}
+    if entry.get("review_status") not in STABLE_STATUSES:
+        return {
+            "found": False,
+            "id": entry_id,
+            "axis": axis,
+            "error": f"{entry_id} is not stable/reference-quality (review_status={entry.get('review_status')!r}) and cannot be fetched",
+        }
     facets = {
         field: entry[field]
         for field in AXIS_GUARANTEED_FIELDS.get(axis, []) + AXIS_OPTIONAL_FACETS.get(axis, [])
