@@ -28,7 +28,6 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[3]  # 3 levels up from skills/entry-recommender/scripts/
 TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
-TAXONOMY_INDEX = REPO_ROOT / "taxonomy.json"
 
 # build-instruction.py already parses ENTRY.md frontmatter without requiring
 # PyYAML - deliberately, per its own comment ("Parse YAML manually... avoid
@@ -128,17 +127,36 @@ _TOKEN_RE = re.compile(r"[a-z0-9]{2,}")
 
 def load_stable_ids(axis: str) -> list[str]:
     """Return every id for `axis` whose review_status is stable or
-    reference-quality, per the root taxonomy.json index - fast, and it means a
-    draft entry's ENTRY.md is never even opened (AC-6 is a hard constraint,
-    not a post-hoc filter)."""
-    if not TAXONOMY_INDEX.exists():
-        return []
-    index = json.loads(TAXONOMY_INDEX.read_text(encoding="utf-8"))
+    reference-quality, scanned directly from taxonomy/<axis>s/ - not from the
+    root taxonomy.json index.
+
+    An earlier version of this function used taxonomy.json for speed. That
+    was a real bug: taxonomy.json is a generated build artifact, and the
+    release ZIP packaging scripts (scripts/build-release.sh /
+    build-release.ps1) do not stage it - confirmed by reading their MEMBERS
+    lists directly - so a user installing via the documented ZIP path (as
+    opposed to the Claude Code marketplace path) would have gotten a
+    taxonomy.json-less install, and this function would have silently
+    returned an empty list for every axis with no error. Reading taxonomy/
+    directly has no such gap: it is the actual entry data, confirmed present
+    in every install path (both packaging scripts' MEMBERS lists include it,
+    and it is what build-instruction.py itself already depends on)."""
     return sorted(
-        e["id"]
-        for e in index.get("entries", [])
-        if e.get("axis") == axis and e.get("review_status") in STABLE_STATUSES
+        entry_id
+        for entry_id, entry in _iter_all_entries(axis)
+        if entry.get("review_status") in STABLE_STATUSES
     )
+
+
+def _iter_all_entries(axis: str):
+    """Yield (entry_id, frontmatter) for every entry in `axis` - draft
+    included - reusing build-instruction.py's own list_entries for the id
+    scan and load_entry for each read, so a draft entry's presence is only
+    ever used to check review_status, never to feed a recommendation."""
+    for entry_id in build_instruction.list_entries().get(axis, []):
+        entry = build_instruction.load_entry(axis, entry_id)
+        if entry is not None:
+            yield entry_id, entry
 
 
 def load_full_entry(axis: str, entry_id: str) -> dict | None:
@@ -203,15 +221,16 @@ def load_all_stable_entries() -> dict[str, dict[str, dict]]:
     """Load every stable/reference-quality entry's full frontmatter, across
     all axes, once. Returns {axis: {entry_id: frontmatter}}. Reused both to
     build the corpus-wide IDF table below and to score each axis's pool, so
-    each of the (currently 97) stable ENTRY.md files is read exactly once per
-    invocation rather than twice."""
+    each entry (stable or draft) is read exactly once per invocation, not
+    twice - a draft entry is opened only long enough to see its
+    review_status and is then dropped, never reaching scoring or output."""
     cache = {}
     for axis in AXES:
-        cache[axis] = {}
-        for entry_id in load_stable_ids(axis):
-            entry = load_full_entry(axis, entry_id)
-            if entry is not None:
-                cache[axis][entry_id] = entry
+        cache[axis] = {
+            entry_id: entry
+            for entry_id, entry in _iter_all_entries(axis)
+            if entry.get("review_status") in STABLE_STATUSES
+        }
     return cache
 
 
