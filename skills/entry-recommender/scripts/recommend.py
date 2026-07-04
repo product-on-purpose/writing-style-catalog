@@ -1,0 +1,528 @@
+#!/usr/bin/env python3
+"""
+Score the stable catalog against a described writing situation, per axis.
+
+Implements Phases 1-2 of docs/internal/release-plans/entry-recommender-implementation-plan.md:
+loads every stable/reference-quality candidate per axis (never draft, per AC-6),
+then scores the ENTIRE pool in one pass (not just a short list) using each axis's
+schema-guaranteed facet field plus when_to_use/tells keyword overlap. Optional
+facets fold in as bonus signal only - most stable entries omit them.
+
+This is a deterministic pre-filter, not the recommendation itself. The actual
+pick-and-justify judgment (Phase 3) happens in the skill's own reasoning per
+SKILL.md, using this script's output as its candidate data.
+
+Usage:
+    python recommend.py --situation TEXT [--topic TEXT] [--audience TEXT]
+                         [--voice ID] [--tone ID] [--style ID] [--format ID]
+                         [--short-list-size N] [--json]
+    python recommend.py --fetch AXIS ID [--json]
+    python recommend.py --list
+"""
+import argparse
+import json
+import math
+import re
+import sys
+from pathlib import Path
+
+import yaml
+
+REPO_ROOT = Path(__file__).resolve().parents[3]  # 3 levels up from skills/entry-recommender/scripts/
+TAXONOMY_ROOT = REPO_ROOT / "taxonomy"
+TAXONOMY_INDEX = REPO_ROOT / "taxonomy.json"
+
+AXES = {
+    "voice": TAXONOMY_ROOT / "voices",
+    "tone": TAXONOMY_ROOT / "tones",
+    "style": TAXONOMY_ROOT / "styles",
+    "format": TAXONOMY_ROOT / "formats",
+}
+
+STABLE_STATUSES = {"stable", "reference-quality"}
+
+# The one field each axis's own schema actually guarantees beyond the universal
+# set (id/name/axis/one_liner/description/pairs_well_with/avoid_with/
+# confusable_with/when_to_use/when_not_to_use/llm_instruction_phrasing/tags/
+# review_status/tells/anti_patterns/failure_modes) - verified directly against
+# schemas/{voice,tone,style,format}.schema.json's own "required" list, not
+# assumed. See the spec's Requirements section and Revision 5.
+AXIS_GUARANTEED_FIELDS = {
+    "voice": ["family"],
+    "tone": ["markers"],
+    "style": ["structural_conventions"],
+    "format": ["domain", "family"],
+}
+
+# Present on some entries, absent on most today - fold in as bonus signal only.
+# Never required; absence must never lower a score or raise an error.
+AXIS_OPTIONAL_FACETS = {
+    "voice": ["subfamily"],
+    "tone": ["spectrum", "spectrum_position", "nn_g_profile"],
+    "style": ["frame", "classical_mode", "evidence_types", "reader_contract"],
+    "format": [],
+}
+
+# Common English function words plus a few domain-generic verbs that appear in
+# almost every situation description ("write", "need", "want") and would
+# otherwise dilute the overlap score against every candidate equally.
+STOPWORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "but", "by", "for", "from",
+    "has", "have", "i", "in", "is", "it", "its", "just", "me", "my", "need",
+    "of", "on", "or", "our", "should", "so", "that", "the", "their", "them",
+    "then", "there", "they", "this", "to", "want", "was", "we", "were",
+    "will", "with", "would", "write", "writing", "you", "your",
+}
+
+# Calibrated empirically against the spec's own Behavior/Examples during Phase
+# 8's smoke test (docs/internal/release-plans/entry-recommender-implementation-plan.md
+# Phase 2 Step 4) - not a value with any external source, by the plan's own
+# admission ("the one place... a real number needs picking"). See the module
+# docstring in build_idf_table for why this is an IDF-weighted score, not a raw
+# token count: a raw count let generic words ("something", a stray token from
+# an unstripped possessive) clear the bar as easily as a genuinely distinctive
+# word ("houseplant", "migration"), which defeated AC-7 in early testing.
+DEFAULT_RELEVANCE_THRESHOLD = 3.0
+
+# A single matching token, however rare, is weaker evidence than several
+# independently-informative words overlapping - it is exactly as consistent
+# with an incidental match (a generic filler word an IDF weight alone does
+# not push low enough, or a genuine polysemy collision - the same word in an
+# unrelated sense, like "account" meaning a social-media account in the
+# situation but a written incident account in a candidate's one_liner) as
+# with a real fit. Requiring at least two distinct tokens, on top of the
+# weighted score, rejected exactly this failure mode in testing without
+# needing a hand-maintained blocklist of specific words.
+MIN_DISTINCT_MATCHES = 2
+
+DEFAULT_SHORT_LIST_SIZE = 6
+
+WHEN_TO_USE_WEIGHT = 3
+TELLS_WEIGHT = 2
+ONE_LINER_WEIGHT = 1
+FACET_WEIGHT = 1
+
+# Length >= 2: drops stray single-character fragments a naive alphanumeric
+# split produces from possessives and contractions ("houseplant's" -> "s"),
+# which otherwise coincidentally match apostrophe fragments in unrelated
+# candidate text and contribute score that is pure noise, not signal.
+_TOKEN_RE = re.compile(r"[a-z0-9]{2,}")
+
+
+def _extract_frontmatter(entry_md_path: Path) -> dict | None:
+    """Read ENTRY.md and return parsed frontmatter, or None on failure.
+
+    Same pattern as tools/validate.py's _extract_frontmatter: split on a
+    standalone "---" line (not any "---" substring, which can appear inside
+    table separators in a block scalar), then yaml.safe_load with CRLF
+    normalized to LF first (this repo's templates are sometimes CRLF).
+    """
+    content = entry_md_path.read_text(encoding="utf-8")
+    if not content.startswith("---"):
+        return None
+    parts = re.split(r"(?m)^---[ \t]*$", content, maxsplit=2)
+    if len(parts) < 3:
+        return None
+    frontmatter_text = parts[1].strip()
+    try:
+        data = yaml.safe_load(frontmatter_text.replace("\r\n", "\n").replace("\r", "\n"))
+    except yaml.YAMLError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def load_stable_ids(axis: str) -> list[str]:
+    """Return every id for `axis` whose review_status is stable or
+    reference-quality, per the root taxonomy.json index - fast, and it means a
+    draft entry's ENTRY.md is never even opened (AC-6 is a hard constraint,
+    not a post-hoc filter)."""
+    if not TAXONOMY_INDEX.exists():
+        return []
+    index = json.loads(TAXONOMY_INDEX.read_text(encoding="utf-8"))
+    return sorted(
+        e["id"]
+        for e in index.get("entries", [])
+        if e.get("axis") == axis and e.get("review_status") in STABLE_STATUSES
+    )
+
+
+def load_full_entry(axis: str, entry_id: str) -> dict | None:
+    """Read one entry's full ENTRY.md frontmatter directly - taxonomy.json is
+    a slim index (id/name/axis/one_liner/review_status only) and does not
+    carry when_to_use, tells, avoid_with, pairs_well_with, or any axis-specific
+    facet, so every field this scorer or a caller needs beyond the slim index
+    requires this direct read."""
+    entry_path = AXES[axis] / entry_id / "ENTRY.md"
+    if not entry_path.exists():
+        return None
+    return _extract_frontmatter(entry_path)
+
+
+def _singularize(token: str) -> str:
+    """Normalize the one plural pattern common enough, and safe enough, to
+    handle without a real stemmer: "-ies" -> "-y" (eulogies -> eulogy,
+    categories -> category). Confirmed necessary in testing: a situation
+    describing a "eulogy" scored 0 against the `reverent` tone entry, whose
+    own field text says "Eulogies," purely on this inflection mismatch -
+    a real, avoidable miss on an otherwise clear match.
+
+    Deliberately NOT extended to bare "-s"/"-es" stripping: too many common,
+    non-plural English words end that way ("always", "focus", "status",
+    "process", "business") for a blanket rule to be safe - it would trade
+    this miss for a new class of false match. Broader normalization (real
+    stemming, or an embedding-based match) is the spec's own Open Question 2,
+    deliberately deferred, not a gap introduced here."""
+    if token.endswith("ies") and len(token) > 4:
+        return token[:-3] + "y"
+    return token
+
+
+def tokenize(text) -> set[str]:
+    """Lowercase, alphanumeric-only tokens, stopwords removed, then the one
+    safe pluralization normalized (see _singularize). Accepts a string, a
+    list of strings (joined), or None."""
+    if text is None:
+        return set()
+    if isinstance(text, list):
+        text = " ".join(str(t) for t in text)
+    tokens = {_singularize(t) for t in _TOKEN_RE.findall(str(text).lower())}
+    return tokens - STOPWORDS
+
+
+def _facet_text(axis: str, entry: dict) -> str:
+    """Join every guaranteed and present-optional facet value into one string
+    for tokenizing. Absence of an optional facet is silent - never an error,
+    never a reason to score lower than the guaranteed field alone would."""
+    parts = []
+    for field in AXIS_GUARANTEED_FIELDS.get(axis, []):
+        value = entry.get(field)
+        if value:
+            parts.append(str(value) if not isinstance(value, list) else " ".join(str(v) for v in value))
+    for field in AXIS_OPTIONAL_FACETS.get(axis, []):
+        value = entry.get(field)
+        if value:
+            parts.append(str(value) if not isinstance(value, list) else " ".join(str(v) for v in value))
+    return " ".join(parts)
+
+
+def load_all_stable_entries() -> dict[str, dict[str, dict]]:
+    """Load every stable/reference-quality entry's full frontmatter, across
+    all axes, once. Returns {axis: {entry_id: frontmatter}}. Reused both to
+    build the corpus-wide IDF table below and to score each axis's pool, so
+    each of the (currently 97) stable ENTRY.md files is read exactly once per
+    invocation rather than twice."""
+    cache = {}
+    for axis in AXES:
+        cache[axis] = {}
+        for entry_id in load_stable_ids(axis):
+            entry = load_full_entry(axis, entry_id)
+            if entry is not None:
+                cache[axis][entry_id] = entry
+    return cache
+
+
+def _entry_text(axis: str, entry: dict) -> str:
+    """Every field this scorer considers, joined into one string."""
+    return " ".join(
+        [
+            str(entry.get("one_liner", "") or ""),
+            " ".join(str(x) for x in (entry.get("when_to_use") or [])),
+            " ".join(str(x) for x in (entry.get("tells") or [])),
+            _facet_text(axis, entry),
+        ]
+    )
+
+
+def build_idf_table(all_entries: dict[str, dict[str, dict]]) -> dict:
+    """Corpus-wide inverse document frequency per token, computed once from
+    every stable entry's combined text.
+
+    A raw keyword-overlap count treats every matching word as equally
+    informative, which does not hold in practice: a token that appears in most
+    entries' when_to_use/tells ("reader", "writing"-adjacent words the
+    stopword list does not happen to name) contributes score for almost any
+    situation, while a token distinctive to only one or two entries
+    ("houseplant", "migration", "postmortem") is genuine topical signal. IDF
+    weighting (classic information-retrieval technique, pure counting and a
+    log - no embeddings, no external call) makes that distinction without a
+    hand-maintained blocklist of generic words, which is always incomplete -
+    confirmed necessary when an early version of this scorer, using raw counts,
+    let "something" clear the relevance bar as easily as a genuinely
+    distinctive word.
+    """
+    doc_count = 0
+    df: dict[str, int] = {}
+    for axis, entries in all_entries.items():
+        for entry in entries.values():
+            doc_count += 1
+            for token in tokenize(_entry_text(axis, entry)):
+                df[token] = df.get(token, 0) + 1
+    return {"doc_count": doc_count, "df": df}
+
+
+def _idf(token: str, idf_table: dict) -> float:
+    doc_count = idf_table["doc_count"] or 1
+    df = idf_table["df"].get(token, 0)
+    return math.log(doc_count / (1 + df))
+
+
+def _weighted_overlap(situation_tokens: set[str], field_tokens: set[str], weight: float, idf_table: dict) -> float:
+    return weight * sum(_idf(t, idf_table) for t in (situation_tokens & field_tokens))
+
+
+def score_entry(situation_tokens: set[str], axis: str, entry: dict, idf_table: dict) -> dict:
+    """IDF-weighted score plus the count of distinct situation tokens matched
+    anywhere in the entry (see MIN_DISTINCT_MATCHES). when_to_use counts most
+    per token (it is the field AC-3 anchors justifications on); tells next;
+    one_liner and facets are lighter signals. Each matching token additionally
+    contributes more the rarer it is across the whole stable corpus (see
+    build_idf_table). Pure set intersection and arithmetic - no embeddings, no
+    external calls, per the spec's Non-Functional Requirements.
+
+    Also returns exactly which situation tokens matched, per field - a score
+    with no visibility into which words drove it is not auditable from the
+    documented workflow alone (confirmed during Phase 8 testing: a match
+    hiding inside a facet field, invisible in this script's own output,
+    required reading the raw ENTRY.md directly to explain a low-confidence
+    false positive)."""
+    when_to_use_tokens = tokenize(entry.get("when_to_use"))
+    tells_tokens = tokenize(entry.get("tells"))
+    one_liner_tokens = tokenize(entry.get("one_liner"))
+    facet_tokens = tokenize(_facet_text(axis, entry))
+
+    score = (
+        _weighted_overlap(situation_tokens, when_to_use_tokens, WHEN_TO_USE_WEIGHT, idf_table)
+        + _weighted_overlap(situation_tokens, tells_tokens, TELLS_WEIGHT, idf_table)
+        + _weighted_overlap(situation_tokens, one_liner_tokens, ONE_LINER_WEIGHT, idf_table)
+        + _weighted_overlap(situation_tokens, facet_tokens, FACET_WEIGHT, idf_table)
+    )
+    matched_tokens = {
+        "when_to_use": sorted(situation_tokens & when_to_use_tokens),
+        "tells": sorted(situation_tokens & tells_tokens),
+        "one_liner": sorted(situation_tokens & one_liner_tokens),
+        "facets": sorted(situation_tokens & facet_tokens),
+    }
+    distinct_matches = len(set().union(*matched_tokens.values()))
+    return {"score": round(score, 2), "distinct_matches": distinct_matches, "matched_tokens": matched_tokens}
+
+
+def build_ranked_list(
+    axis: str,
+    situation_tokens: set[str],
+    all_entries: dict[str, dict[str, dict]],
+    idf_table: dict,
+    threshold: float = DEFAULT_RELEVANCE_THRESHOLD,
+) -> list[dict]:
+    """Score every stable candidate for `axis`, sorted highest-score first.
+    Ties broken by id for a stable, reproducible order. Returns the FULL pool,
+    not a top-N slice - conflict resolution (Phase 5) needs the whole ranked
+    list, already scored, to widen into without a second pass. A candidate
+    clears `above_threshold` only if BOTH the weighted score clears the bar
+    AND at least MIN_DISTINCT_MATCHES distinct situation tokens matched -
+    either alone lets a single incidental word masquerade as a genuine fit."""
+    results = []
+    for entry_id, entry in all_entries.get(axis, {}).items():
+        scored = score_entry(situation_tokens, axis, entry, idf_table)
+        above = scored["score"] >= threshold and scored["distinct_matches"] >= MIN_DISTINCT_MATCHES
+        results.append(
+            {
+                "id": entry_id,
+                "score": scored["score"],
+                "distinct_matches": scored["distinct_matches"],
+                "above_threshold": above,
+                "one_liner": entry.get("one_liner", ""),
+                # Which situation words actually matched, per field - lets a
+                # caller (or a human) see AT A GLANCE whether a score is
+                # driven by a genuine when_to_use/tells match or by a single
+                # word hiding in a rarely-read facet field, without having to
+                # open the raw ENTRY.md to find out.
+                "matched_tokens": scored["matched_tokens"],
+            }
+        )
+    results.sort(key=lambda r: (-r["score"], r["id"]))
+    return results
+
+
+def _situation_tokens(situation: str | None, topic: str | None, audience: str | None) -> set[str]:
+    combined = " ".join(t for t in (situation, topic, audience) if t)
+    return tokenize(combined)
+
+
+def recommend(
+    situation: str | None,
+    topic: str | None = None,
+    audience: str | None = None,
+    fixed: dict | None = None,
+    short_list_size: int = DEFAULT_SHORT_LIST_SIZE,
+    threshold: float = DEFAULT_RELEVANCE_THRESHOLD,
+) -> dict:
+    """Build the per-axis ranked lists and short lists. `fixed` is a dict of
+    axis -> entry_id for any axis the caller already fixed (Phase 4) - a fixed
+    axis is validated against the stable pool and never scored."""
+    fixed = fixed or {}
+    situation_tokens = _situation_tokens(situation, topic, audience)
+    all_entries = load_all_stable_entries()
+    idf_table = build_idf_table(all_entries)
+    axes_out = {}
+    errors = []
+
+    for axis in AXES:
+        fixed_id = fixed.get(axis)
+        if fixed_id:
+            stable_ids = list(all_entries.get(axis, {}).keys())
+            if fixed_id not in stable_ids:
+                errors.append(
+                    f"Fixed {axis}={fixed_id!r} is not in the stable/reference-quality catalog."
+                )
+                axes_out[axis] = {"fixed": fixed_id, "valid": False}
+            else:
+                axes_out[axis] = {"fixed": fixed_id, "valid": True}
+            continue
+
+        ranked = build_ranked_list(axis, situation_tokens, all_entries, idf_table, threshold)
+        short_list_ids = {r["id"] for r in ranked[:short_list_size]}
+        short_list = []
+        for r in ranked[:short_list_size]:
+            entry = load_full_entry(axis, r["id"])
+            short_list.append(
+                {
+                    **r,
+                    "when_to_use": (entry or {}).get("when_to_use", []),
+                    "tells": (entry or {}).get("tells", []),
+                }
+            )
+        axes_out[axis] = {
+            "fixed": None,
+            "candidate_count": len(ranked),
+            "short_list": short_list,
+            # Full ranked list, id+score+matched_tokens (cheap - no full field
+            # text) - Phase 5's widened search walks this past the short
+            # list's cutoff with no re-scoring. matched_tokens is included so
+            # a widened-search candidate's relevance can be sanity-checked
+            # before fetching its full fields: a candidate whose only match is
+            # a single generic-feeling word is a signal to look closer (or
+            # skip it) even before Step 2's read-based check runs on it.
+            "full_ranked": [
+                {
+                    "id": r["id"],
+                    "score": r["score"],
+                    "above_threshold": r["above_threshold"],
+                    "matched_tokens": r["matched_tokens"],
+                }
+                for r in ranked
+                if r["id"] not in short_list_ids
+            ],
+        }
+
+    return {
+        "situation_tokens": sorted(situation_tokens),
+        "relevance_threshold": threshold,
+        "short_list_size": short_list_size,
+        "axes": axes_out,
+        "errors": errors,
+    }
+
+
+def fetch_one(axis: str, entry_id: str) -> dict:
+    """Full field content for exactly one candidate - used when Phase 5's
+    widened search selects a candidate beyond the short list and needs its
+    when_to_use/tells for a real Phase 3 Step 2 justification, without paying
+    the cost of returning full fields for the whole pool up front."""
+    if axis not in AXES:
+        return {"found": False, "error": f"unknown axis: {axis}"}
+    entry = load_full_entry(axis, entry_id)
+    if entry is None:
+        return {"found": False, "id": entry_id, "axis": axis}
+    facets = {
+        field: entry[field]
+        for field in AXIS_GUARANTEED_FIELDS.get(axis, []) + AXIS_OPTIONAL_FACETS.get(axis, [])
+        if entry.get(field)
+    }
+    return {
+        "found": True,
+        "id": entry_id,
+        "axis": axis,
+        "one_liner": entry.get("one_liner", ""),
+        "when_to_use": entry.get("when_to_use", []),
+        "tells": entry.get("tells", []),
+        "avoid_with": entry.get("avoid_with", []),
+        "pairs_well_with": entry.get("pairs_well_with", []),
+        "review_status": entry.get("review_status", ""),
+        # The facet field(s) that feed part of this candidate's score (see
+        # AXIS_GUARANTEED_FIELDS / AXIS_OPTIONAL_FACETS) - present here so a
+        # caller can see everything that contributed to a score without a raw
+        # ENTRY.md read, only the guaranteed/optional fields that actually
+        # have a value on this entry.
+        "facets": facets,
+    }
+
+
+def list_stable() -> dict[str, list[str]]:
+    return {axis: load_stable_ids(axis) for axis in AXES}
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Score the stable catalog against a described writing situation, per axis."
+    )
+    parser.add_argument("--situation", help="Free-text description of the writing situation")
+    parser.add_argument("--topic", help="Optional topic, folded into the situation tokens")
+    parser.add_argument("--audience", help="Optional audience, folded into the situation tokens")
+    parser.add_argument("--voice", help="Fixed voice entry id (skip scoring this axis)")
+    parser.add_argument("--tone", help="Fixed tone entry id (skip scoring this axis)")
+    parser.add_argument("--style", help="Fixed style entry id (skip scoring this axis)")
+    parser.add_argument("--format", dest="fmt", help="Fixed format entry id (skip scoring this axis)")
+    parser.add_argument("--short-list-size", type=int, default=DEFAULT_SHORT_LIST_SIZE)
+    parser.add_argument("--threshold", type=float, default=DEFAULT_RELEVANCE_THRESHOLD)
+    parser.add_argument("--fetch", nargs=2, metavar=("AXIS", "ID"), help="Fetch one candidate's full fields")
+    parser.add_argument("--list", action="store_true", help="List all stable/reference-quality ids per axis")
+    parser.add_argument("--json", dest="output_json", action="store_true", help="Output as JSON")
+
+    args = parser.parse_args()
+
+    if args.list:
+        result = list_stable()
+        if args.output_json:
+            print(json.dumps(result, indent=2))
+        else:
+            for axis, ids in result.items():
+                print(f"\n{axis.upper()} ({len(ids)})")
+                for i in ids:
+                    print(f"  {i}")
+        return
+
+    if args.fetch:
+        axis, entry_id = args.fetch
+        result = fetch_one(axis, entry_id)
+        print(json.dumps(result, indent=2) if args.output_json else result)
+        return
+
+    if not args.situation:
+        parser.error("--situation is required unless --list or --fetch is used")
+
+    fixed = {}
+    if args.voice:
+        fixed["voice"] = args.voice
+    if args.tone:
+        fixed["tone"] = args.tone
+    if args.style:
+        fixed["style"] = args.style
+    if args.fmt:
+        fixed["format"] = args.fmt
+
+    result = recommend(
+        situation=args.situation,
+        topic=args.topic,
+        audience=args.audience,
+        fixed=fixed,
+        short_list_size=args.short_list_size,
+        threshold=args.threshold,
+    )
+    if args.output_json:
+        print(json.dumps(result, indent=2))
+    else:
+        print(json.dumps(result, indent=2))  # structured output is this tool's only real output shape
+
+
+if __name__ == "__main__":
+    main()

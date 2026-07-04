@@ -327,6 +327,15 @@ def main():
         topic=args.topic,
         audience=args.audience,
     )
+    if args.output_json:
+        # Structured form of the same report, for a programmatic caller (for
+        # example entry-recommender's conflict-resolution step) that needs the
+        # conflicts/affirmations list itself, not the stderr prose warnings
+        # below - this is the same compose_report() dict, reused rather than
+        # re-derived, per the "reuse, not reimplement" discipline the
+        # entry-recommender spec's AC-4/AC-5 rely on.
+        print(json.dumps(report, indent=2))
+        return
     print(report["instruction"])
     _print_relationship_notes(report)
 

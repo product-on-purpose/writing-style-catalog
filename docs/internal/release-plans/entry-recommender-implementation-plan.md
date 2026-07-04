@@ -1,7 +1,7 @@
 ---
 title: Entry Recommender Skill - implementation plan
-status: draft - decomposed from the spec, not yet started; revised 2026-07-02 and 2026-07-03 across four rounds of Codex adversarial review
-owner: maintainer (approval to start); agent or human (execution, phase by phase)
+status: complete - all 8 phases built and smoke-tested 2026-07-03; spec revised across eight rounds of Codex adversarial review before build started, plus a ninth revision from smoke-test findings
+owner: maintainer (approval given 2026-07-03); agent (execution and smoke test, 2026-07-03)
 audience: whichever agent or human picks up a phase
 related:
   - docs/internal/entry-recommender-spec.md (the committed spec this decomposes - AC live there, not here; see its Revisions section for what changed and why)
@@ -12,20 +12,20 @@ related:
 
 Decomposes `docs/internal/entry-recommender-spec.md` into buildable phases. Acceptance criteria live in the spec; this plan maps every AC to at least one phase and describes how to build, not what "done" means.
 
-**Do not start this plan until the spec's `status` is `committed`.** It is currently `draft`.
+**The spec's `status` is `fulfilled` as of 2026-07-03.** All 8 phases built, smoke-tested, and hardened - see the spec's Revision 9.
 
 ## Completion Status
 
 | Phase | Goal | Fulfills AC | Owner | Status |
 |---|---|---|---|---|
-| 1 | Candidate-pool loader (stable-only, axis-specific facets) | AC-1, AC-6 | LLM | Not started |
-| 2 | Deterministic pre-filter (per-axis scoring) | AC-1, AC-7 | LLM | Not started |
-| 3 | LLM pick + justification | AC-1, AC-3, AC-7, AC-8 | LLM | Not started |
-| 4 | Partial-axis / fixed-value handling | AC-2 | LLM | Not started |
-| 5 | Conflict detection and resolution (reuse, not reimplement) | AC-4, AC-5 | LLM | Not started |
-| 6 | Compose-or-recommend-only output | AC-5 | LLM | Not started |
-| 7 | SKILL.md + manifest registration | packaging (no direct AC) | LLM | Not started |
-| 8 | Smoke test against the seven spec examples | AC-1 through AC-7 (verification) | human or LLM | Not started |
+| 1 | Candidate-pool loader (stable-only, axis-specific facets) | AC-1, AC-6 | LLM | Done - `skills/entry-recommender/scripts/recommend.py` (`load_stable_ids`, `load_full_entry`, `load_all_stable_entries`) |
+| 2 | Deterministic pre-filter (per-axis scoring) | AC-1, AC-7 | LLM | Done - IDF-weighted scoring (`build_idf_table`, `score_entry`), not the simple keyword count originally planned; calibrated and fixed twice against real smoke-test data (see spec Revisions 5 and 9) |
+| 3 | LLM pick + justification | AC-1, AC-3, AC-7, AC-8 | LLM | Done except AC-8 (`SKILL.md` Step 2) - AC-8's runner-up disclosure correctly deferred as nice-to-have, not built |
+| 4 | Partial-axis / fixed-value handling | AC-2 | LLM | Done - `recommend.py`'s `fixed` handling + `SKILL.md` Step 1 |
+| 5 | Conflict detection and resolution (reuse, not reimplement) | AC-4, AC-5 | LLM | Done - `SKILL.md` Step 3, calling `build-instruction.py --json` via subprocess (the packaging question this phase flagged - resolved by following `style-profile`'s existing cross-skill subprocess pattern, not a new import mechanism) |
+| 6 | Compose-or-recommend-only output | AC-5 | LLM | Done - `SKILL.md` Step 4 |
+| 7 | SKILL.md + manifest registration | packaging (no direct AC) | LLM | Done - `skills/entry-recommender/SKILL.md`, `library.json`/`plugin.json` updated, `validate-plugin-manifest.mjs` passes |
+| 8 | Smoke test against the seven spec examples | AC-1 through AC-7 (verification) | human or LLM | Done - independent fresh-context agent ran all 7 examples for real (4/6/7 as directly-constructed traces, per the spec's Revision 9); found and both of us fixed 2 real bugs and 2 SKILL.md clarity gaps |
 
 ## Phase 1: Candidate-pool loader
 

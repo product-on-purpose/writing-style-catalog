@@ -1,7 +1,7 @@
 ---
 title: Entry Recommender Skill - spec
-status: draft - proposed, not yet reviewed by the maintainer
-owner: maintainer (approval); agent (drafted this spec 2026-07-02)
+status: committed - maintainer approved building this on 2026-07-03
+owner: maintainer (approval given 2026-07-03); agent (drafted this spec 2026-07-02, implementing 2026-07-03)
 audience: humans and agents building or reviewing this skill
 related:
   - docs/internal/release-plans/entry-recommender-release-plan.md (what ships, when)
@@ -16,22 +16,22 @@ related:
 
 ## Task Summary
 
-**Status:** draft
-**Last updated:** 2026-07-03 by agent (Claude Opus 4.8), revised after an eighth Codex adversarial review
+**Status:** fulfilled - implemented and smoke-tested 2026-07-03 (`skills/entry-recommender/`, branch `feat/entry-recommender-skill`)
+**Last updated:** 2026-07-03 by agent (Claude Opus 4.8) - built, smoke-tested against all 7 Behavior/Examples by an independent fresh-context agent (found and both of us fixed two real scorer bugs and two SKILL.md clarity gaps in the process; see Revision 9), and hardened accordingly
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 8 (see Revisions)
+**Revisions:** 9 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
-- [ ] **AC-1** - Full-recommendation path: no fixed axes, all four recommended from stable entries only
-- [ ] **AC-2** - Partial-recommendation path: fixed axes are respected, not overridden
-- [ ] **AC-3** - Every recommendation cites the entry's own field language, not invented reasoning
-- [ ] **AC-4** - Conflicts anywhere in the final four-axis set are resolved by re-picking a recommender-controlled axis with a candidate that is both non-conflicting and relevant enough (AC-7's bar), trying every recommender-controlled axis involved before giving up, and named when not (both fixed, or no such candidate on any controlled axis)
-- [ ] **AC-5** - Default output is a composed prompt; a low-confidence axis is omitted (blank), not force-picked; warn-and-compose is the fallback only when no compatible-and-relevant candidate exists on any controlled axis; `--recommend-only` suppresses composition
-- [ ] **AC-6** - Draft-status entries (including all of Hold-20) are never recommended
-- [ ] **AC-7** - Low-confidence situations (from the score, or from the model's own read overriding a coincidentally-high score) are named as such, not force-picked, and omitted from composition
-- [ ] **AC-8** - Runner-up disclosure when the top two scores are close (nice-to-have)
+- [x] **AC-1** - Full-recommendation path: no fixed axes, all four recommended from stable entries only. Verified: Example 1, full pipeline run, real composed output.
+- [x] **AC-2** - Partial-recommendation path: fixed axes are respected, not overridden. Verified: Example 2, voice passed through untouched, no re-justification generated for it.
+- [x] **AC-3** - Every recommendation cites the entry's own field language, not invented reasoning. Verified across every example, including conflict-resolution re-picks.
+- [x] **AC-4** - Conflicts anywhere in the final four-axis set are resolved by re-picking a recommender-controlled axis with a candidate that is both non-conflicting and relevant enough (AC-7's bar), trying every recommender-controlled axis involved before giving up, and named when not (both fixed, or no such candidate on any controlled axis). Verified: Examples 4, 5 (including a real double-conflict case beyond the spec's own description - see Revision 9), 6, 7.
+- [x] **AC-5** - Default output is a composed prompt; a low-confidence axis is omitted (blank), not force-picked; warn-and-compose is the fallback only when no compatible-and-relevant candidate exists on any controlled axis; `--recommend-only` suppresses composition. Verified: Example 3 (blank-axis composition), Example 5 (warn-and-compose fallback). `--recommend-only`'s output shape verified by direct code read, not a live invocation.
+- [x] **AC-6** - Draft-status entries (including all of Hold-20) are never recommended. Verified: candidate counts match the live stable pool exactly (15/15/15/52), confirming Hold-20's 20 draft formats are excluded before any ENTRY.md is even read.
+- [x] **AC-7** - Low-confidence situations (from the score, or from the model's own read overriding a coincidentally-high score) are named as such, not force-picked, and omitted from composition. Verified: Example 3 (score-side trigger, all four axes), Example 1's tone/format picks (read-side trigger overriding a cleared threshold - see Revision 9).
+- [ ] **AC-8** - Runner-up disclosure when the top two scores are close (nice-to-have). Not built - correctly deferred per the spec's own priority note; no phase depends on it.
 
 ### Currently In Progress
 
@@ -161,6 +161,17 @@ Expected: the skill does not silently substitute the irrelevant-but-compatible c
 **Revision 8 (2026-07-03):** An eighth Codex adversarial review found two more gaps, both accepted:
 1. A genuinely new gap, not a variant of an earlier one: nothing in the spec ever said what happens to composition when AC-7 finds no genuinely fitting candidate for an axis. AC-5 required a composed prompt by default; AC-7 required not force-picking; the two requirements were never reconciled, leaving an implementer to either force-pick anyway (defeating AC-7), block composition entirely (an undefined, overly conservative path), or invent something. Resolved by reusing an already-shipped, already-documented behavior of the underlying composer rather than inventing a new one: `writing-instruction-builder` already supports a blank axis ("leaving an axis blank means the LLM picks whatever fits," per `site/src/content/docs/concepts/composition.md` [S8]). AC-5 and AC-7 revised so a low-confidence axis is passed to composition as blank, with the near-miss report attached alongside the output the same way an AC-4 conflict is. Example 3 and Phase 6 updated to make this concrete.
 2. The same "don't give up before trying every option you actually have" principle already applied twice to the short-list-then-wide-pool search (Revisions 3-5) had one more gap: when BOTH conflicting axes were recommender-controlled, Phase 5 tried only the lower-precedence axis's full search before falling through to warning, never trying the higher-precedence axis's own search if the first one failed. A voice/tone conflict could warn-and-compose even when changing the voice - never attempted - would have resolved it cleanly. Phase 5 revised to try every recommender-controlled axis actually involved in the conflict, lower precedence first, before warning is reached.
+
+**Revision 9 (2026-07-03):** The design was implemented (`skills/entry-recommender/`) and smoke-tested by an independent agent with no prior context on this design, per the implementation plan's Phase 8. It ran all 7 Behavior/Examples for real - Examples 1, 2, 3, 5 as live end-to-end invocations; Examples 4, 6, 7 as directly-constructed traces of the conflict-resolution decision tree, since a natural situation cannot reliably trigger those specific edge cases (confirmed: a real situation strong enough to score `reverent` highly scores `pragmatic-architect` at zero, and vice versa - the entries are semantic opposites by design). All 7 produced the spec's stated behavior. The test surfaced two real bugs and two real `SKILL.md` clarity gaps, all fixed:
+1. **Bug**: `recommend.py`'s `--threshold` CLI flag was declared `type=int` while the actual default threshold is a float, crashing on any non-integer value. Fixed (`type=float`).
+2. **Bug, found organically, not by search**: the scorer had no plural/singular normalization. A real test situation describing a "eulogy" scored 0 against the `reverent` tone entry, whose own field text says "Eulogies" - a genuine miss on an otherwise clear match, purely from inflection. Fixed narrowly: `-ies` -> `-y` normalization only (eulogy/eulogies, category/categories), which is safe and unambiguous in English. Deliberately NOT extended to bare `-s`/`-es` stripping - too many common non-plural words end that way ("always", "focus", "status") for a blanket rule to be safe; that broader gap is the same one Open Question 2 already anticipates and defers.
+3. **Auditability gap**: part of every score comes from axis-specific facet fields (`markers`, `structural_conventions`, `family`, `domain`) that never appeared in the script's own JSON output - the tester had to read a raw `ENTRY.md` directly to find where a match was hiding, a workflow SKILL.md never documents. Fixed: `recommend.py` now returns `matched_tokens` (which situation words matched, broken out by field) on every scored candidate in both `short_list` and `full_ranked`, and `--fetch` now includes the raw facet values.
+4. **SKILL.md Step 2 clarity gap**: the "read decides, score only builds the pool" principle was present but implicit, sitting next to much more prominent boolean `above_threshold` mechanics. In testing, the raw top score was very often NOT the best actual pick - real, organic cases included a top-scoring tone whose own tells directly contradicted what the situation asked for, and a top-scoring format whose high score traced to "trust" used in an unrelated sense (brand credibility vs. trusting reasoning) - exactly the kind of same-word-different-sense trap the spec worries about, just surfacing on a different axis than its own illustration uses. Step 2 rewritten to lead with this principle explicitly and give worked reasoning for why it matters, rather than leaving it as one clause among several.
+5. **SKILL.md Step 3 clarity gap**: the widened-search text said a replacement "must clear BOTH conditions - non-conflicting AND above_threshold true," immediately followed by a caveat that an irrelevant-but-compatible candidate is still not acceptable - but phrasing the qualitative relevance read as an aside after "BOTH conditions" invites an implementation to stop at the two named, mechanical checks. Confirmed as a real risk, not a hypothetical one: two real candidates in a constructed widened-search trace (an institutional-editorial voice matching on one generic word; a task-tutorial format matching on unrelated vocabulary) passed both named conditions while being genuine non-fits. Step 3 rewritten to name THREE required conditions explicitly, with the third (a real read of the candidate's own field language, the same judgment Step 2 requires) stated as a requirement, not a footnote.
+
+Also fixed, lower-severity: "closest near-miss" was undefined when every short-listed candidate ties at an identical score (including a tie at zero) - SKILL.md now says to report that nothing showed a real signal rather than presenting an arbitrary tie-broken id as if it were meaningfully closer.
+
+Not fixed, and not a defect: the spec's own Example 2 text hypothesizes `reverent` as tone's best-scoring candidate for that situation, creating a conflict with the fixed `pragmatic-architect` voice. The real scorer does not reproduce this for that literal wording (`resolute` wins cleanly, no conflict) - the spec's example illustrates the mechanism correctly; it was never a guarantee that exact wording would trigger it. The user-facing usage guide uses situations verified against the real, current scorer rather than this exact text.
 
 ## Sources & Evidence
 
