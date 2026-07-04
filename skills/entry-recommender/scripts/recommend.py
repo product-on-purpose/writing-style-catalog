@@ -356,6 +356,28 @@ def build_ranked_list(
     return results
 
 
+def _select_short_list(ranked: list[dict], short_list_size: int) -> list[dict]:
+    """Select the short list from the full ranked pool, putting every
+    `above_threshold: True` candidate ahead of every non-qualifying one,
+    regardless of raw score.
+
+    Pure top-N-by-score would not guarantee this: a single very rare word
+    (high IDF) in a high-weight field can score higher than a genuine
+    two-distinct-token match, even though the single-token match fails
+    `above_threshold` (MIN_DISTINCT_MATCHES) and the two-token one passes it.
+    If short_list_size candidates already score higher by raw number alone,
+    the genuinely-qualifying one would be pushed into `full_ranked`, where
+    Step 2's low-confidence check would never see it - confirmed as a real
+    design gap by an adversarial review, even though no live catalog example
+    was found to trigger it with today's entries; the gap is structural, not
+    dependent on this specific corpus staying small. Within each group
+    (qualifying, then non-qualifying), `ranked`'s existing score order is
+    preserved."""
+    qualifying = [r for r in ranked if r["above_threshold"]]
+    non_qualifying = [r for r in ranked if not r["above_threshold"]]
+    return (qualifying + non_qualifying)[:short_list_size]
+
+
 def _situation_tokens(situation: str | None, topic: str | None, audience: str | None) -> set[str]:
     combined = " ".join(t for t in (situation, topic, audience) if t)
     return tokenize(combined)
@@ -393,9 +415,10 @@ def recommend(
             continue
 
         ranked = build_ranked_list(axis, situation_tokens, all_entries, idf_table, threshold)
-        short_list_ids = {r["id"] for r in ranked[:short_list_size]}
+        short_list_entries = _select_short_list(ranked, short_list_size)
+        short_list_ids = {r["id"] for r in short_list_entries}
         short_list = []
-        for r in ranked[:short_list_size]:
+        for r in short_list_entries:
             entry = load_full_entry(axis, r["id"])
             short_list.append(
                 {
