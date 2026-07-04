@@ -1,8 +1,8 @@
 ---
 title: Entry Recommender Skill - release plan
 date: 2026-07-02
-status: proposal - awaiting maintainer decision to build
-author: agent (recommendation only; building and releasing is the maintainer's call)
+status: executing - maintainer approved 2026-07-03; built, hardened across 7 rounds of code-level adversarial review, hygiene gates passing; v0.6.0 tag in progress
+author: agent (recommendation drafted 2026-07-02; build and release executed 2026-07-03 under maintainer direction)
 related:
   - docs/internal/entry-recommender-spec.md (what it does, why - read this first)
   - docs/internal/release-plans/entry-recommender-implementation-plan.md (how to build it)
@@ -12,11 +12,11 @@ related:
 
 # Entry Recommender Skill - Release Plan
 
-This plan covers how the `entry-recommender` skill (spec: `docs/internal/entry-recommender-spec.md`) ships, once the maintainer approves building it. It is a proposal, not a commitment - nothing here is built yet.
+This plan covers how the `entry-recommender` skill (spec: `docs/internal/entry-recommender-spec.md`) ships. The maintainer approved building it on 2026-07-03; this document now records what actually happened, not just what was planned.
 
 ## What ships
 
-One new Claude Code skill, `skills/entry-recommender/` (name pending - see the spec's Open Questions), registered as a third component in `library.json` / `.claude-plugin/plugin.json` alongside `writing-instruction-builder` and `style-profile`. No taxonomy or example changes; this is purely a skill-layer addition, so none of the Wave-1/Wave-2 promotion machinery (Gate 2, anchor-topic rendering, date gates) applies.
+One new Claude Code skill, `skills/entry-recommender/`, registered as a third component in `library.json` / `.claude-plugin/plugin.json` alongside `writing-instruction-builder` and `style-profile`. No taxonomy or example changes; this is purely a skill-layer addition, so none of the Wave-1/Wave-2 promotion machinery (Gate 2, anchor-topic rendering, date gates) applies. Also touches `skills/writing-instruction-builder/scripts/build-instruction.py` (additive `--json` support on the compose path) and `scripts/build-release.sh`/`build-release.ps1` (ship `taxonomy.json`) - see the spec's Revisions 9 through 14 for why.
 
 ## Target release
 
@@ -32,21 +32,21 @@ One new Claude Code skill, `skills/entry-recommender/` (name pending - see the s
 
 ## Hygiene gates (must pass before tagging)
 
-- [ ] `python tools/validate.py` passes (no schema/dash/cross-reference regressions).
-- [ ] `node scripts/validate-plugin-manifest.mjs` passes - the new skill's `SKILL.md` frontmatter carries `name`, `description`, and `metadata.version`, and `library.json`'s new component entry matches it exactly (the validator enforces `frontmatter.name == entry.name` and `frontmatter.metadata.version == entry.version`).
-- [ ] `library.json` and `.claude-plugin/plugin.json` descriptions stay byte-identical (the validator's existing parity check).
-- [ ] The new skill installs cleanly and its example invocations in `SKILL.md` actually run (manual smoke test - no automated skill-invocation test harness exists in this repo yet).
-- [ ] Every spec AC (AC-1 through AC-7; AC-8 optional) has a corresponding `Done` row in the implementation plan's completion-status table before the spec is marked `fulfilled`.
-- [ ] `STRICT_ANCHORS=1 node scripts/check-rendered-links.mjs site/dist` and `node scripts/check-route-parity.mjs site/dist` both pass if the site build changes at all (a new skill likely does not touch generated catalog pages, but the docs site's hand-authored guides might gain a cross-link - see the spec's Open Question 3).
+- [x] `python tools/validate.py` passes (no schema/dash/cross-reference regressions).
+- [x] `node scripts/validate-plugin-manifest.mjs` passes - the new skill's `SKILL.md` frontmatter carries `name`, `description`, and `metadata.version`, and `library.json`'s new component entry matches it exactly.
+- [x] `library.json` and `.claude-plugin/plugin.json` descriptions stay byte-identical.
+- [x] The new skill installs cleanly and its example invocations in `SKILL.md` actually run - smoke-tested by an independent agent with no prior design context against all 7 spec examples (Phase 8), which found and both of us fixed 2 real scorer bugs and 2 `SKILL.md` clarity gaps; the implementation was then adversarially reviewed 7 more times against the real code, finding and fixing 2 packaging/dependency bugs, 2 defense-in-depth gaps (an AC-6 bypass, a raw-score conflict-resolution weakening), a short-list ranking gap, and 2 genuine security issues (shell injection, path traversal) - full detail in the spec's Revisions 9 through 14.
+- [x] Every spec AC (AC-1 through AC-7) has a corresponding `Done` row in the implementation plan's completion-status table; AC-8 correctly deferred as nice-to-have, not built.
+- [x] `STRICT_ANCHORS=1 node scripts/check-rendered-links.mjs site/dist` and `node scripts/check-route-parity.mjs site/dist` both pass - the new usage guide page (`guides/recommend-entries.md`) needed one relative-link depth fix, caught by this exact gate.
 
 ## Doc-update checklist (gates the tag)
 
-- [ ] `README.md` - add the new skill to whatever section currently lists `writing-instruction-builder` and `style-profile` (check both the feature list and any install/usage examples).
-- [ ] `QUICKSTART.md` - same, if it names specific skills anywhere.
-- [ ] `AGENTS.md` - confirm whether this doc's skill references need updating (currently it references the two existing skills only implicitly through the "Generating and Promoting Content at Scale" section, which is about content tooling, not skills - likely no change needed, confirm during implementation).
-- [ ] `CHANGELOG.md` - `[0.6.0]` entry describing the new skill, its purpose, and pointing at the spec.
-- [ ] `docs/internal/backlog.md` - flip the S4 entry (added alongside this planning pass) from open to shipped, with the release version.
-- [ ] `site/src/content/docs/index.mdx` - if the homepage's "How to read this site" cards or skill mentions need a fourth entry.
+- [x] `README.md` - entry-recommender added alongside the other two skills.
+- [x] `QUICKSTART.md` - same.
+- [x] `AGENTS.md` - confirmed no change needed, per this checklist's own prediction: the file references skills only implicitly through content-tooling sections, not a skill-by-skill list.
+- [x] `CHANGELOG.md` - `[0.6.0]` entry describing the new skill, its purpose, and pointing at the spec, plus a Security section calling out the two security-relevant fixes specifically.
+- [x] `docs/internal/backlog.md` - S4 flipped from proposed to shipped, v0.6.0.
+- [x] `site/src/content/docs/index.mdx` - a brief mention added alongside the existing Quick Start section; no new "How to read this site" card, since those four cards are about navigating catalog CONTENT (browse/diff-pairs/recipes/templates), not skills, and entry-recommender is a different kind of thing.
 
 ## What this plan deliberately does not cover
 

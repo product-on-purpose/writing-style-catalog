@@ -1,7 +1,8 @@
 # Writing Style Catalog - Quick Start
 
 Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format). Pick one
-entry per axis and the `writing-instruction-builder` skill assembles a ready-to-paste prompt prefix.
+entry per axis and the `writing-instruction-builder` skill assembles a ready-to-paste prompt
+prefix - or describe your situation and let `entry-recommender` pick the combination for you.
 
 ## Install
 
@@ -31,6 +32,21 @@ Full detail: the [installation guide](https://product-on-purpose.github.io/writi
 All four axes are optional. The skill returns a structured prompt prefix you can prepend to any
 writing task. Mix and match across axes for exactly the register, reasoning pattern, and layout
 you need.
+
+## Not sure which combination fits?
+
+```
+/writing-style-catalog:entry-recommender I need to tell my engineering team that a feature we committed to is getting cut this quarter, and I want them to trust the reasoning, not just accept the decision.
+```
+
+Describe the situation instead of picking ids yourself. The skill scores the catalog, picks a
+combination with a reason quoting each entry's own language, and composes the prompt in the same
+step. Fix an axis you already know (`voice=pragmatic-architect`) and it only recommends the rest.
+See the [usage guide](https://product-on-purpose.github.io/writing-style-catalog/guides/recommend-entries/)
+for real example output.
+
+Want a durable personal default instead of a one-off recommendation? `style-profile` captures
+your own style once, for reuse across sessions.
 
 ## Browse the catalog
 
