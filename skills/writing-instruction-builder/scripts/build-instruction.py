@@ -35,7 +35,19 @@ def load_entry(axis: str, entry_id: str) -> dict | None:
     is the same class of path-traversal bug entry-recommender's own
     scripts/recommend.py already fixed in its --fetch helper; fixing it here
     too closes the shared composer's own copy of the gap, which affects any
-    caller of build-instruction.py, not just entry-recommender."""
+    caller of build-instruction.py, not just entry-recommender.
+
+    Deliberately does NOT check review_status: this is a general-purpose
+    composer, and a direct writing-instruction-builder user may legitimately
+    want to compose using a draft entry (for example, previewing one before
+    promotion). entry-recommender's own AC-6 ("never recommend a draft")
+    holds only because entry-recommender never hands this function a draft
+    id in the first place (its fixed-axis values are validated against the
+    stable catalog, and its own recommendations only ever come from a
+    stable-only short list) - confirmed by an adversarial review, which
+    noted this coupling is worth stating explicitly rather than assuming a
+    future reader infers it: `--format acceptance-speech` (a real Hold-20
+    draft) composes here with no error, by design."""
     if entry_id not in list_entries().get(axis, []):
         return None
     entry_path = AXES[axis] / entry_id / "ENTRY.md"

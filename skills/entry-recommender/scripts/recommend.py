@@ -543,13 +543,30 @@ def list_stable() -> dict[str, list[str]]:
     return {axis: load_stable_ids(axis) for axis in AXES}
 
 
-def _require_ephemeral_path_is_safe(path: Path) -> None:
-    """Raise if `path` is not safe to delete via --ephemeral-input-file.
+def _require_ephemeral_path_is_safe(path: Path) -> Path:
+    """Raise if `path` is not safe to delete via --ephemeral-input-file;
+    otherwise return the resolved path the caller must use for BOTH the read
+    and the delete.
+
+    Returning the resolved path (rather than letting the caller re-use the
+    original, possibly-symlinked one) closes a real gap an independent
+    review found: checking `path.resolve()` here but then reading/deleting
+    the original `path` in main() meant a symlink sitting inside the repo,
+    pointing at a legitimate temp target, could pass every check here (its
+    RESOLVED target is outside the repo and correctly named) while `unlink()`
+    in main() removed the symlink object itself, not the file this function
+    actually validated. Checking and acting on the same path removes the
+    inconsistency entirely.
 
     Three independent conditions must ALL hold - any one alone is not
     sufficient defense in depth against a caller path mistake, which an
-    adversarial review confirmed is a real risk (this flag, unguarded,
-    deleted an arbitrary non-JSON file passed to it by mistake):
+    earlier adversarial review confirmed is a real risk (this flag,
+    unguarded, deleted an arbitrary non-JSON file passed to it by mistake).
+    Every failure message says outright that nothing was deleted and that
+    the caller must clean up manually if the path holds real, possibly
+    sensitive text - a second adversarial review found that a caller whose
+    scratch location does not happen to satisfy condition 2 would otherwise
+    get a raised exception with no indication that the file was left behind:
     1. The resolved path is NOT inside this repository at all - deleting
        anything under REPO_ROOT is never acceptable for this flag,
        regardless of what a temp-directory check below concludes.
@@ -565,19 +582,23 @@ def _require_ephemeral_path_is_safe(path: Path) -> None:
     resolved = path.resolve()
     if resolved.is_relative_to(REPO_ROOT.resolve()):
         raise ValueError(
-            f"--ephemeral-input-file refuses to touch a path inside the repository: {resolved}"
+            f"--ephemeral-input-file refuses to touch a path inside the repository: {resolved} "
+            f"- nothing was read or deleted; if this file holds real situation text, delete it yourself."
         )
     temp_root = Path(tempfile.gettempdir()).resolve()
     if not resolved.is_relative_to(temp_root):
         raise ValueError(
             f"--ephemeral-input-file requires a path inside the system temp directory "
-            f"({temp_root}), got: {resolved}"
+            f"({temp_root}), got: {resolved} - nothing was read or deleted; if this file "
+            f"holds real situation text, delete it yourself now."
         )
     if not resolved.name.endswith(EPHEMERAL_SUFFIX):
         raise ValueError(
             f"--ephemeral-input-file requires a filename ending in {EPHEMERAL_SUFFIX!r}, "
-            f"got: {resolved.name!r}"
+            f"got: {resolved.name!r} - nothing was read or deleted; if this file holds real "
+            f"situation text, delete it yourself now."
         )
+    return resolved
 
 
 def main():
@@ -696,12 +717,18 @@ def main():
             # confirmed live by an adversarial review to delete an arbitrary
             # non-JSON file (a copy of CHANGELOG.md) passed to this flag by
             # mistake. A caller path mistake must fail loudly, not silently
-            # destroy the wrong file.
-            _require_ephemeral_path_is_safe(args.ephemeral_input_file)
+            # destroy the wrong file. The RESOLVED path it returns is what
+            # gets read and deleted below, not args.ephemeral_input_file
+            # itself - operating on whatever was actually checked, not a
+            # possibly-different symlink pointing at it, closes a second gap
+            # an adversarial review found (a repo-internal symlink to a safe
+            # temp target could pass the check while the original path -
+            # the symlink object - was what got deleted).
+            safe_path = _require_ephemeral_path_is_safe(args.ephemeral_input_file)
             try:
-                raw = args.ephemeral_input_file.read_text(encoding="utf-8")
+                raw = safe_path.read_text(encoding="utf-8")
             finally:
-                args.ephemeral_input_file.unlink(missing_ok=True)
+                safe_path.unlink(missing_ok=True)
         else:
             raw = sys.stdin.read() if args.stdin else args.input_file.read_text(encoding="utf-8")
         payload = json.loads(raw)
@@ -715,6 +742,22 @@ def main():
         }
         short_list_size = payload.get("short_list_size", DEFAULT_SHORT_LIST_SIZE)
         threshold = payload.get("threshold", DEFAULT_RELEVANCE_THRESHOLD)
+        # The CLI path validates these (see the --short-list-size check
+        # below); an adversarial review found the JSON-payload path did not,
+        # so a malformed payload (a string where an int/float belongs)
+        # crashed with an unhandled TypeError deep inside scoring rather than
+        # a clear error here. Coerce and bound-check right after loading,
+        # matching the CLI's own rule.
+        try:
+            short_list_size = int(short_list_size)
+        except (TypeError, ValueError):
+            parser.error(f"payload short_list_size must be an integer, got: {short_list_size!r}")
+        if short_list_size < 0:
+            parser.error("payload short_list_size must be a non-negative integer")
+        try:
+            threshold = float(threshold)
+        except (TypeError, ValueError):
+            parser.error(f"payload threshold must be a number, got: {threshold!r}")
     else:
         situation = args.situation
         topic = args.topic
