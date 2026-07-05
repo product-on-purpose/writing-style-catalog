@@ -433,6 +433,18 @@ def recommend(
                     **r,
                     "when_to_use": (entry or {}).get("when_to_use", []),
                     "tells": (entry or {}).get("tells", []),
+                    # A required universal field, same as when_to_use - an
+                    # adversarial review found it was never surfaced, so a
+                    # candidate could score well on positive language while
+                    # its own when_not_to_use explicitly disqualifies the
+                    # situation, with Step 2's read never seeing the
+                    # contradiction because the field was not even in this
+                    # payload. Deliberately not folded into the score itself
+                    # (a negative-overlap penalty risks the same polysemy
+                    # false-positive/negative class already found and fixed
+                    # for the positive fields) - this is a Step 2 read-based
+                    # check, the same division of labor as everywhere else.
+                    "when_not_to_use": (entry or {}).get("when_not_to_use", []),
                 }
             )
         axes_out[axis] = {
@@ -513,6 +525,7 @@ def fetch_one(axis: str, entry_id: str) -> dict:
         "axis": axis,
         "one_liner": entry.get("one_liner", ""),
         "when_to_use": entry.get("when_to_use", []),
+        "when_not_to_use": entry.get("when_not_to_use", []),
         "tells": entry.get("tells", []),
         "avoid_with": entry.get("avoid_with", []),
         "pairs_well_with": entry.get("pairs_well_with", []),
