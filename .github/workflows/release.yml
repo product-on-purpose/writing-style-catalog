@@ -35,7 +35,8 @@ jobs:
 
       - name: Generate release notes
         run: |
-          cat > RELEASE_NOTES.md <<'EOF'
+          {
+            cat <<'EOF'
           ## Writing Style Catalog
 
           Composable writing instructions on four orthogonal axes (Voice, Tone, Style, Format).
@@ -53,10 +54,20 @@ jobs:
 
           Download the ZIP below, extract it, and point your client at
           `.claude-plugin/plugin.json`. The archive root holds the plugin manifests,
-          the `writing-instruction-builder` skill, and the `taxonomy/` catalog the skill reads.
+          every skill (currently `writing-instruction-builder`, `style-profile`,
+          `entry-recommender`), and the `taxonomy/` catalog they read.
 
-          See the full install guide and the CHANGELOG in the repository for details.
+          See the full install guide in the repository for details.
           EOF
+            echo ""
+            echo "### What's in this release"
+            echo ""
+            if grep -q "^## \[${VERSION}\]" CHANGELOG.md; then
+              sed -n "/^## \[${VERSION}\]/,/^## \[/p" CHANGELOG.md | sed '1d;$d'
+            else
+              echo "See CHANGELOG.md in the repository for details."
+            fi
+          } > RELEASE_NOTES.md
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
