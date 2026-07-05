@@ -23,7 +23,33 @@ AXES = {
 
 
 def load_entry(axis: str, entry_id: str) -> dict | None:
-    """Load and parse an ENTRY.md file, returning the frontmatter as a dict."""
+    """Load and parse an ENTRY.md file, returning the frontmatter as a dict.
+
+    Validates entry_id against list_entries()[axis] BEFORE building any path
+    from it - confirmed necessary by an adversarial review of the
+    entry-recommender skill, which reuses this function for its final
+    conflict check and composition: without this check,
+    `--voice "../tones/reverent"` successfully loaded the TONE entry
+    `reverent` and returned it as if it were a voice, since entry_id was
+    joined directly into a filesystem path with no containment check. This
+    is the same class of path-traversal bug entry-recommender's own
+    scripts/recommend.py already fixed in its --fetch helper; fixing it here
+    too closes the shared composer's own copy of the gap, which affects any
+    caller of build-instruction.py, not just entry-recommender.
+
+    Deliberately does NOT check review_status: this is a general-purpose
+    composer, and a direct writing-instruction-builder user may legitimately
+    want to compose using a draft entry (for example, previewing one before
+    promotion). entry-recommender's own AC-6 ("never recommend a draft")
+    holds only because entry-recommender never hands this function a draft
+    id in the first place (its fixed-axis values are validated against the
+    stable catalog, and its own recommendations only ever come from a
+    stable-only short list) - confirmed by an adversarial review, which
+    noted this coupling is worth stating explicitly rather than assuming a
+    future reader infers it: `--format acceptance-speech` (a real Hold-20
+    draft) composes here with no error, by design."""
+    if entry_id not in list_entries().get(axis, []):
+        return None
     entry_path = AXES[axis] / entry_id / "ENTRY.md"
     if not entry_path.exists():
         return None
@@ -327,6 +353,15 @@ def main():
         topic=args.topic,
         audience=args.audience,
     )
+    if args.output_json:
+        # Structured form of the same report, for a programmatic caller (for
+        # example entry-recommender's conflict-resolution step) that needs the
+        # conflicts/affirmations list itself, not the stderr prose warnings
+        # below - this is the same compose_report() dict, reused rather than
+        # re-derived, per the "reuse, not reimplement" discipline the
+        # entry-recommender spec's AC-4/AC-5 rely on.
+        print(json.dumps(report, indent=2))
+        return
     print(report["instruction"])
     _print_relationship_notes(report)
 

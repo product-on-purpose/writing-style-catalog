@@ -5,7 +5,7 @@
 > that justifies each item, the editable surface to change, and a rough effort. Living doc -
 > update the snapshot date and check items off as they ship.
 
-**Last updated:** 2026-07-02 (added S4, the entry-recommender skill proposal; noted S1 shipped).
+**Last updated:** 2026-07-03 (S4, the entry-recommender skill, shipped in v0.6.0).
 Originally written 2026-06-03, after the v0.2.0 marketplace launch and the comprehensive-catalog
 vision; the foundation - taxonomy, adherence gate, anchor topics, conflict-aware composition -
 is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md).
@@ -202,22 +202,26 @@ server exposes the guaranteed behavior, not the naive concatenation.
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.
 
-### S4 (P2) - Entry recommender skill - proposed 2026-07-02
-Given a described writing situation, recommend a voice+tone+style+format combination from the
-stable catalog, optionally composing the final prompt in the same step. Addresses a gap S1-S3 do
-not: neither existing skill (`writing-instruction-builder`, `style-profile`) helps a user who does
-not yet know which axis values fit their situation, and that gap grew real at 97 stable entries
-(52 Format alone) - it did not exist when the catalog had 15 formats. Deprioritizes the MCP server
+### S4 (P2) - Entry recommender skill - SHIPPED 2026-07-03 (v0.6.0)
+Given a described writing situation, recommends a voice+tone+style+format combination from the
+stable catalog, composing the final prompt in the same step. Addressed a gap S1-S3 did not:
+neither existing skill (`writing-instruction-builder`, `style-profile`) helps a user who does not
+yet know which axis values fit their situation, a gap that grew real at 97 stable entries (52
+Format alone) - it did not exist when the catalog had 15 formats. Deprioritized the MCP server
 (S2) as the next skill-layer investment: S2 is explicitly "reach, not commitment" per `ROADMAP.md`
-with no waiting consumer, while this addresses live browsing friction today.
+with no waiting consumer, while this addressed live browsing friction directly.
+- **What shipped:** `skills/entry-recommender/` (scorer + `SKILL.md`), registered as a third
+  skill component; `build-instruction.py` gained `--json` support on the compose path so the new
+  skill can reuse its conflict-detection and composition logic rather than duplicating it; a
+  usage guide with real example outputs at `guides/recommend-entries.md`.
 - **Source:** [`docs/internal/entry-recommender-spec.md`](../entry-recommender-spec.md) (spec,
-  `status: draft`, 8 AC), [`release-plans/entry-recommender-implementation-plan.md`](release-plans/entry-recommender-implementation-plan.md)
-  (8-phase build plan), [`release-plans/entry-recommender-release-plan.md`](release-plans/entry-recommender-release-plan.md)
-  (target `v0.6.0`).
-- **Editable surface:** a new `skills/entry-recommender/` directory; reuses (does not duplicate)
-  the conflict-detection and composition logic in
-  `skills/writing-instruction-builder/scripts/build-instruction.py`.
-- **Effort:** medium. Awaiting maintainer review of the spec before implementation starts.
+  `status: fulfilled`, 14 revisions across design review and post-build hardening),
+  [`release-plans/entry-recommender-implementation-plan.md`](release-plans/entry-recommender-implementation-plan.md)
+  (8-phase build plan, all phases done), [`release-plans/entry-recommender-release-plan.md`](release-plans/entry-recommender-release-plan.md).
+- **Hardening note:** the spec's own Revisions log (9 through 14) is worth reading before touching
+  this skill again - it documents two genuine security fixes (a shell-injection risk in the
+  original situation-text handling, and a path-traversal bug in the candidate-fetch helper) found
+  by adversarial review of the real implementation, not just the design.
 
 ---
 

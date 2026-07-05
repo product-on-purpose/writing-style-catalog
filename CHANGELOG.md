@@ -7,6 +7,74 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-07-03
+
+A new skill: `entry-recommender`. Describe a writing situation and it scores the stable
+catalog, reads the strongest candidates, picks a voice/tone/style/format combination with a
+reason quoting each entry's own field language, and composes the final prompt in the same
+step - addressing the gap that neither `writing-instruction-builder` (assumes you already
+know your picks) nor `style-profile` (a durable personal default, not a per-situation search)
+covers. Full spec: `docs/internal/entry-recommender-spec.md`; usage guide with real example
+outputs: [Recommend Entries for a Situation](https://product-on-purpose.github.io/writing-style-catalog/guides/recommend-entries/).
+
+### Added
+
+- `skills/entry-recommender/` - a third skill, registered in `library.json`/`plugin.json`.
+  `scripts/recommend.py` scores every stable/reference-quality candidate per axis (draft
+  entries, including all of Hold-20, are never even read) using IDF-weighted keyword/facet
+  overlap - a word rare across the stable corpus counts far more than a common one, which is
+  what lets the scorer tell a genuine topical match from an incidental word coincidence
+  without a hand-maintained blocklist. `SKILL.md` reads the strongest candidates in full and
+  picks based on genuine fit, not raw score alone; reports low confidence rather than
+  force-picking when nothing genuinely fits; and resolves conflicts between picks by trying
+  every reasonable alternative before falling back to a warning, reusing
+  `writing-instruction-builder`'s existing conflict-detection and composition logic rather
+  than reimplementing either.
+- `site/src/content/docs/guides/recommend-entries.md` - detailed usage guide with real,
+  verified example outputs, including the low-confidence and conflict-resolution paths.
+
+### Changed
+
+- `skills/writing-instruction-builder/scripts/build-instruction.py` - added `--json` support
+  to the compose path (previously `--list` only), so `entry-recommender` can get structured
+  conflict/affirmation data via subprocess instead of parsing warning text. Also closed a
+  pre-existing path-traversal gap in `load_entry` (not introduced this release, but confirmed
+  reachable and fixed because `entry-recommender` now depends on this exact function) - see
+  Security below. All 7 existing tests in `tests/test_compose_instruction.py` still pass.
+- `scripts/build-release.sh` / `build-release.ps1` - the release ZIP now ships `taxonomy.json`
+  alongside `taxonomy/`, closing a gap found while hardening `entry-recommender`: the file was
+  never staged, which briefly would have made the new skill see zero candidates for a
+  ZIP-installed user (the skill's own loader no longer depends on it either, as defense in
+  depth - see the spec's Revision 10).
+
+### Security
+
+- `entry-recommender`'s design went through eight rounds of Codex adversarial review before
+  the spec was approved, then eight more against the real implementation once built - full
+  detail in the spec's Revisions section (`docs/internal/entry-recommender-spec.md`). Four
+  findings against the implementation were security-relevant, all fixed before this release:
+  - An earlier draft of `SKILL.md` would have interpolated arbitrary user situation text
+    directly into a shell command (command injection - ordinary punctuation like an
+    apostrophe is enough to break naive quoting, no ill intent required).
+  - An intermediate fix would have hand-substituted that text into a JSON template without
+    escaping (malformed JSON from a single embedded quote) or piped it through a shell
+    heredoc with a fixed, predictable delimiter (which situation text containing that exact
+    line could use to terminate the heredoc early and reintroduce shell execution).
+  - A `--fetch` helper, and separately `build-instruction.py`'s own pre-existing `load_entry`
+    (which `writing-instruction-builder` has always used, and which `entry-recommender` now
+    also depends on), both built filesystem paths from an unvalidated id with no containment
+    check - confirmed live in both, returning one axis's entry mislabeled as another's.
+  - The situation-text cleanup step was only an agent-followed instruction, not enforced by
+    the script - an interrupted run could leave sensitive prose on disk indefinitely.
+
+  Final design: situation text is properly JSON-escaped, written via a file-write tool (never
+  a shell command or heredoc) to a scratchpad location outside the project directory, read
+  via `recommend.py --ephemeral-input-file`, which deletes the file itself in a `finally`
+  block immediately after reading - guaranteed regardless of whether anything downstream
+  succeeds. `--fetch` and `build-instruction.py`'s `load_entry` both now validate an id
+  against the real stable catalog / real directory listing before ever touching the
+  filesystem.
+
 ## [0.5.2] - 2026-07-03
 
 A second content-accuracy and documentation-hygiene patch, no new entries. A full read-through

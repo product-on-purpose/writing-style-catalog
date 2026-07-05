@@ -19,9 +19,9 @@
   <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
-  <img src="https://img.shields.io/badge/version-0.2.0-blue.svg?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.6.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-three-axis-model">
-    <img src="https://img.shields.io/badge/entries-60-brightgreen.svg?style=flat-square" alt="Catalog entries">
+    <img src="https://img.shields.io/badge/entries-97-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
   <a href="https://agentskills.io/specification">
     <img src="https://img.shields.io/badge/spec-agentskills.io-orange.svg?style=flat-square" alt="Agent Skills Spec">
@@ -61,7 +61,7 @@
 ---
 
 > [!WARNING]
-> **Early and experimental (v0.2.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the planned Composer and SDK surfaces are not built yet. Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+> **Early and experimental (v0.6.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
@@ -104,6 +104,14 @@ Then compose a writing instruction from any combination of axes:
 ```
 
 The `writing-instruction-builder` skill assembles a structured prompt prefix that you can prepend to any writing task. Mix and match entries across axes to get exactly the register, reasoning pattern, and layout you need.
+
+Not sure which combination fits your situation? Describe it instead:
+
+```bash
+/writing-style-catalog:entry-recommender I need to tell my engineering team that a feature we committed to is getting cut this quarter, and I want them to trust the reasoning, not just accept the decision.
+```
+
+The `entry-recommender` skill scores the catalog against your description, picks a voice/tone/style/format combination with a reason quoting each entry's own language, and composes the prompt in the same step. See the [usage guide](https://product-on-purpose.github.io/writing-style-catalog/guides/recommend-entries/) for real example output.
 
 > Browse the full catalog, worked examples, and side-by-side diff-pairs on the [documentation site](https://product-on-purpose.github.io/writing-style-catalog/).
 
@@ -193,7 +201,9 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | `examples/horizontal-slices/` | Content | Cross-topic samples for a single axis value |
 | `examples/diff-pairs/` | Content | Side-by-side pairs showing the effect of changing one axis |
 | `schemas/` | Code | JSON Schema files for all entry types |
-| `skills/writing-instruction-builder/` | Code | The writing-instruction-builder plugin skill |
+| `skills/writing-instruction-builder/` | Code | Compose a prompt from axis values you already know you want |
+| `skills/style-profile/` | Code | Capture a personal default style once, for reuse |
+| `skills/entry-recommender/` | Code | Recommend a combination for a described situation |
 | `library.json` | Config | Canonical plugin manifest (family Standard, Section 5) |
 | `docs/` | Docs | Astro Starlight site (catalog pages generated from `taxonomy/` and `examples/`; narrative pages authored) |
 | `tools/` | Code | Validation and index-generation scripts |
@@ -209,17 +219,17 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 ## Project Status
 
-**v0.2.0 - marketplace launch (early / experimental).** The plugin is now listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+**v0.6.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
 
 **What exists today:**
 
 - 97 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
 - 1164 worked examples across twelve anchor topics, plus 130 diff-pairs and 14 horizontal-slice recipes
-- Working `writing-instruction-builder` skill
+- Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI
 
-**Planned but not built yet:** a Composer web app, an MCP server, and TypeScript/Python SDKs.
+**Deliberately deferred, not planned:** a Composer web app and TypeScript/Python SDKs - the docs site already covers browsing and composing, and there is no consumer signal for the SDKs (see [ROADMAP.md](ROADMAP.md)'s "Deliberately deferred"). **Genuinely possible later:** an MCP server exposing composition to other agents, gated on a real consumer signal that has not appeared yet.
 
 Distributed through the Product on Purpose marketplace (`product-on-purpose/agent-plugins`), with a ZIP path for Claude.ai / Claude Desktop as the fallback (see the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/)). See [ROADMAP.md](ROADMAP.md) for upcoming phases.
 

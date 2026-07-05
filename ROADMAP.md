@@ -7,6 +7,7 @@ That result sets the direction. The catalog works, so the roadmap is about makin
 ## Now - surface and sharpen
 
 - **Sharpen the "subtle" confusable pairs.** Done (2026-06-17). A blind gate pilot, confirmed cross-vendor (8/8 attribution by both an Anthropic and an OpenAI judge), re-rated the seams: `pragmatic-architect` vs `senior-consultant` came back "clear" and needs no work, while three pairs were genuinely subtle and have now been tightened from both sides - `narrative-case-study` vs `chronological-narrative`, `warm` vs `empathetic`, and `confident` vs `resolute`.
+- **Recommend the right combination for a described situation.** Shipped (2026-07-03, v0.6.0). The `entry-recommender` skill scores the stable catalog against a described writing situation and recommends a voice/tone/style/format combination with a reason quoting each entry's own field language, then composes the prompt in the same step - addressing the browsing friction that grew real at 97 stable entries (52 Format alone), which did not exist when the catalog had 15 formats.
 - **Add diff-pairs to the `service-database-choice` anchor topic.** It currently has none, despite being the best-isolated topic. Diff-pairs are the catalog's sharpest teaching tool.
 - **Deepen existing entries toward the pedagogical bar.** Add tells, anti-patterns, failure modes, and before/after micro-examples to the entries that carry the most weight, rather than adding new entries to chase coverage.
 

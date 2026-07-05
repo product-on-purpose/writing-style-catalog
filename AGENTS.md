@@ -2,7 +2,7 @@
 
 ## Project Purpose
 
-The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with two skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want) and `style-profile` (capture a personal default style once, for reuse) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
+The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with three skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want), `style-profile` (capture a personal default style once, for reuse), and `entry-recommender` (recommend a combination for a described situation, composing the prompt in the same step) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
 
 ---
 
@@ -103,7 +103,9 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `taxonomy/` | All axis entries |
 | `examples/` | Worked output examples |
 | `schemas/` | JSON Schema definitions for entry types |
-| `skills/writing-instruction-builder/` | Claude Code plugin skill code |
+| `skills/writing-instruction-builder/` | Compose a prompt from axis values you already know you want |
+| `skills/style-profile/` | Capture a personal default style once, for reuse |
+| `skills/entry-recommender/` | Recommend a combination for a described situation |
 | `tools/validate.py` | Validation script |
 | `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
 | `tools/promote.py` | Guarded, atomic draft -> stable promotion |
