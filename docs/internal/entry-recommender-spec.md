@@ -20,7 +20,7 @@ related:
 **Last updated:** 2026-07-03 by agent (Claude Opus 4.8) - built, smoke-tested against all 7 Behavior/Examples by an independent fresh-context agent (found and both of us fixed two real scorer bugs and two SKILL.md clarity gaps in the process; see Revision 9), and hardened accordingly
 **Linked plan:** `docs/internal/release-plans/entry-recommender-implementation-plan.md`
 **Open questions:** 3 (see Open Questions)
-**Revisions:** 17 (see Revisions)
+**Revisions:** 18 (see Revisions)
 
 ### Acceptance Criteria Fulfillment
 
@@ -206,6 +206,8 @@ Both fixed by redesigning Step 1 rather than patching either issue in isolation:
 2. `_select_short_list` (Revision 12's fix) still truncated the qualifying group itself to `short_list_size`. Verified this is common, not rare: for the real engineering-team situation already used throughout this spec's examples, 31 of the 52 stable Format entries clear `above_threshold` - a `short_list_size` of 6 would silently hide 25 of them in `full_ranked`, where Step 2 never reads their full fields, on an entirely ordinary situation, not a constructed edge case. Fixed: the short list now includes ALL `above_threshold` candidates, however many there are; `short_list_size` only bounds how many EXTRA non-qualifying candidates pad the list when there are fewer qualifying ones than that - a floor, not a ceiling on genuine matches. Also added validation rejecting a negative `--short-list-size`.
 
 Verified: every previously-verified example reproduces identically, including the low-confidence case (a padding-only short list still correctly shows `above_threshold: false` throughout); both existing path-traversal fixes (`recommend.py --fetch`, `build-instruction.py load_entry`) still hold; all 7 tests in `tests/test_compose_instruction.py` still pass.
+
+**Revision 18 (2026-07-03):** A tenth Codex adversarial review found that `when_not_to_use` - a required universal field on every entry, the same as `when_to_use` - was never read, scored, or surfaced anywhere in `recommend.py`'s output. A candidate could score well on positive `when_to_use`/`tells` language while its own `when_not_to_use` field explicitly disqualified the situation, with Step 2's read never seeing the contradiction because the field was not even in the data it reads. Fixed by adding `when_not_to_use` to both `short_list` entries and `--fetch`'s output, and updating `SKILL.md`'s Step 2 to explicitly require checking it before picking - a genuine match there is disqualifying, the same weight a positive match carries as support. Deliberately NOT folded into the deterministic score itself: a negative-overlap penalty risks the same polysemy false-positive/negative class already found and fixed on the positive fields (Revisions 9-10) - this stays a Step 2 read-based check, the same division of labor as everywhere else in this design. Verified: both surfacing points return real data correctly; every previously-verified example reproduces identically.
 
 ## Sources & Evidence
 
