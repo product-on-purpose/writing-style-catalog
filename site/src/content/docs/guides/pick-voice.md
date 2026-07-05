@@ -5,7 +5,7 @@ description: A three-step method for choosing the voice that fits your reader.
 
 Voice is the most consequential choice in a composed instruction. Tone, style, and format adjust how a piece reads; voice determines who is reading it back to you. Get the voice wrong and no amount of tone or format polish will save the artifact.
 
-This guide walks through the choice in three steps.
+This guide walks through the choice in three steps, teaching the reasoning behind it. If you would rather describe your situation and get a fast answer across all four axes at once - not just voice - see [Recommend Entries for a Situation](../recommend-entries/) instead.
 
 ---
 
