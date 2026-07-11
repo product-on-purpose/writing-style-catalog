@@ -112,8 +112,11 @@ test('parseDiffPair splits boundary sections and strips rule separators', () => 
 test('generate emits the expected page set with relative links and no base literal', () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gen-site-'));
   const count = generate(tmp);
-  // 60 entries + 12 diff-pairs + 5 recipes + 15 templates = 92 counted pages.
-  assert.equal(count, 92);
+  // The v0.1.0 baseline generated 92 pages (60 entries + 12 diff-pairs +
+  // 5 recipes + 15 templates). The catalog grows release over release, so
+  // assert the floor rather than a point count that goes stale with every
+  // added entry.
+  assert.ok(count >= 92, `expected at least 92 generated pages, got ${count}`);
 
   const coach = fs.readFileSync(path.join(tmp, 'reference/voices/coach.mdx'), 'utf8');
   assert.match(coach, /import \{ Tabs, TabItem \} from '@astrojs\/starlight\/components';/);
