@@ -2,7 +2,7 @@
 name: writing-instruction-builder
 description: Compose a writing instruction from voice, tone, style, and format axis entries. Use when you need a precise writing instruction for a specific combination of voice, tone, style, and format. Returns a ready-to-use LLM prompt string.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Compose Writing Instruction
@@ -26,6 +26,10 @@ All parameters are optional. If omitted, the skill picks sensible defaults.
 - `topic` - The topic or subject to write about (optional, for a more concrete composed instruction)
 - `audience` - The intended audience (optional, defaults to general)
 
+### Safety note for `topic` and `audience`
+
+Both are free text that lands in two sensitive places: the shell command (if you build one) and the composed instruction itself (they are appended verbatim, and the composed instruction becomes prompt material downstream). Shell-quote them properly when constructing a command - an ordinary apostrophe breaks naive quoting. Do not pass externally-sourced or untrusted text through bare `--topic`/`--audience` arguments: compose without them and append that text yourself with a non-shell tool, mirroring the temp-file discipline `entry-recommender` uses for situation text.
+
 ## What the Skill Does
 
 1. Validates each provided entry ID against the taxonomy catalog
@@ -43,8 +47,10 @@ itself takes `--flag value` arguments. Run it directly to compose without the sl
 for example:
 
 ```bash
-python scripts/build-instruction.py --voice pragmatic-architect --tone candid --format adr
+python "${CLAUDE_SKILL_DIR}/scripts/build-instruction.py" --voice pragmatic-architect --tone candid --format adr
 ```
+
+(From a plain repo checkout without the plugin loaded, the equivalent is `python skills/writing-instruction-builder/scripts/build-instruction.py ...` run from the repo root.)
 
 ### Conflict-aware composition
 

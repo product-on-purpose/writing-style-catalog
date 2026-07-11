@@ -14,7 +14,7 @@ The load-bearing idea: **trust the confirmation, not the intake.** Intake is a f
 ## Prerequisites
 
 - The `writing-style-catalog` plugin is present: `taxonomy/` (the entries) and `skills/writing-instruction-builder/scripts/build-instruction.py` (the composer) exist at the plugin root.
-- You can resolve entry ids. List them with `python skills/writing-instruction-builder/scripts/build-instruction.py --list`.
+- You can resolve entry ids. List them with `python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruction.py" --list`.
 
 If a prerequisite is missing, say so and stop. Do not invent entries or hand-author instructions.
 
@@ -40,7 +40,7 @@ Read `references/intake-modes.md` for how to run each. Verify: exactly one mode 
 
 **Step 3 - Compose the prompt prefix.** Build the prefix by calling the existing composer, never by re-implementing composition:
 ```bash
-python skills/writing-instruction-builder/scripts/build-instruction.py --voice <id> --tone <id> --style <id> --format <id>
+python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruction.py" --voice <id> --tone <id> --style <id> --format <id>
 ```
 (omit flags for blank axes). Verify: the command returns a non-empty instruction and no "Entry not found" error. Surface any conflict warning it prints to stderr to the user.
 
