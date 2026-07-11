@@ -11,6 +11,7 @@ on:
       - ".claude-plugin/**"
       - "skills/**"
       - "scripts/**"
+      - "library.json"
       - ".github/workflows/validate-plugin.yml"
   push:
     branches: [main]

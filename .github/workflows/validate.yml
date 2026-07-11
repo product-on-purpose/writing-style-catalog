@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -29,6 +32,12 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements-dev.txt
 
+      - name: Run pytest
+        run: python -m pytest tests -q
+
+      - name: Run site generator tests
+        run: node --test tests/gen-site.test.mjs
+
       - name: Install markdownlint-cli2
         run: npm install -g markdownlint-cli2
 
@@ -40,6 +49,9 @@ jobs:
 
       - name: Check taxonomy.json is up to date
         run: git diff --exit-code taxonomy.json
+
+      - name: Check coverage.json is up to date
+        run: git diff --exit-code coverage.json
 
       - name: Check for em/en-dashes (house style; CI enforcement of the pre-commit hook)
         run: node scripts/check-no-dashes.mjs
