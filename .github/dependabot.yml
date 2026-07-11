@@ -1,0 +1,18 @@
+# Keeps the SHA-pinned GitHub Actions, the site's npm dependencies, and the
+# Python dev dependencies current via weekly update PRs. Added alongside the
+# commit-SHA pin on softprops/action-gh-release: a pin without automation goes
+# stale; automation without a pin is mutable. Both together are the point.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /site
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
