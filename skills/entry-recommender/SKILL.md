@@ -22,7 +22,7 @@ Full spec: `docs/internal/entry-recommender-spec.md`. Implementation plan (this 
 /writing-style-catalog:entry-recommender <situation description> [voice=<id>] [tone=<id>] [style=<id>] [format=<id>] [--recommend-only]
 ```
 
-The situation description is free text - what you need to write and for whom. Any `axis=id` tokens in the input are pre-fixed axis values; strip them out of the text you pass as `--situation` to the script. Everything else in the input is the situation description.
+The situation description is free text - what you need to write and for whom. Any `axis=id` tokens in the input are pre-fixed axis values; strip them out. Everything else in the input is the situation description, and it reaches the script only through Step 1's temp-file mechanism - never as a `--situation` shell argument (that is Step 1's first failure mode).
 
 - `voice=`, `tone=`, `style=`, `format=` - optional. An axis with a fixed value is never recommended, re-justified, or second-guessed (AC-2).
 - `--recommend-only` - optional. Suppresses composition; returns just the four picks, justifications, and any conflict/low-confidence notes, for a user who wants to review before composing (AC-5).
@@ -35,7 +35,7 @@ Order is load-bearing: score before reading full fields (Step 1 before Step 2), 
 
 - Never build a shell command by embedding that text directly into a `--situation "..."` string - real command injection, not theoretical; an ordinary apostrophe is enough to break it with no ill intent.
 - Never hand-substitute it into a JSON template without properly escaping it first ("explaining why \"quality\" matters" breaks `{"situation": "<text>"}` the instant you paste it in unescaped - confirmed, this produces invalid JSON from completely ordinary text, no attacker required).
-- Never pipe it through a shell heredoc, even a quoted one - the delimiter that closes a heredoc is plain text matched against the body; if the situation text itself contains that exact line (a fixed, predictable delimiter is guessable by anyone who has read this file, since it is public), the heredoc ends early and whatever follows is interpreted as a new, separate shell command, silently reintroducing the exact injection this is supposed to prevent.
+- Never pipe it through a shell heredoc, even a quoted one - the delimiter that closes a heredoc is plain text matched against the body; if the situation text itself contains that exact line (a fixed, predictable delimiter is guessable by anyone who has read this file, since it is public), the heredoc ends early and whatever follows is interpreted as a new, separate shell command, silently reintroducing the exact injection this is supposed to prevent. The script's `--stdin` flag is this same trap by another name when fed via a heredoc or here-string - do not use `--stdin` for situation text either.
 - Never rely on yourself to remember a separate delete-the-file step afterward as the only cleanup - if this run is interrupted, errors out earlier than expected, or the step is simply skipped, sensitive situation text is left sitting on disk. Use `--ephemeral-input-file` (below), which deletes the file as part of the script's own execution, not as a separate instruction you have to remember and successfully reach.
 
 Do all of this correctly, in order:
@@ -48,7 +48,7 @@ Do all of this correctly, in order:
    Omit any key for an axis that is not fixed. The Write tool writes file content directly - it does not involve a shell at all, so nothing here is a quoting or injection concern; the only remaining requirement is that the JSON string itself is valid, which step 1 above ensures.
 3. Run the scorer against that file with `--ephemeral-input-file`, not `--input-file` - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself. This flag deletes the file itself, guaranteed, as soon as it has been read (you do not need a separate cleanup step, and the file is gone even if the JSON turns out to be malformed or scoring fails), but only if the path is outside this repo, inside the system temp directory, AND correctly named per step 2 - otherwise it raises an error instead of reading or deleting anything:
    ```bash
-   python skills/entry-recommender/scripts/recommend.py --ephemeral-input-file <path-to-the-temp-file> --json
+   python "${CLAUDE_SKILL_DIR}/scripts/recommend.py" --ephemeral-input-file <path-to-the-temp-file> --json
    ```
 
 This returns, per non-fixed axis: `short_list` - EVERY candidate that clears `above_threshold`, however many there are, padded with a few non-qualifying candidates only if there are fewer than `short_list_size` qualifying ones - with `score`, `distinct_matches`, `matched_tokens` (which situation words actually matched, broken out by field), `one_liner`, `when_to_use`, `tells`, `when_not_to_use` - everything Step 2 needs to read, positive and negative fields alike. Also `full_ranked` (everyone else - always non-qualifying, since every qualifying candidate is already in `short_list` by construction - kept only for transparency/debugging, not part of the documented workflow below) and `candidate_count`. A fixed axis reports `{"fixed": id, "valid": true/false}` instead - if `valid` is `false`, stop and tell the user the fixed value does not exist in the stable catalog rather than silently ignoring it (Phase 4 Step 3).
@@ -74,7 +74,7 @@ Otherwise, pick the short-listed candidate whose `when_to_use`/`tells` language 
 
 1. Call the composer's conflict check on the complete final four-axis set (whatever Step 2 picked, plus any fixed values, plus a blank for any low-confidence axis) - this is the same call as Step 4's compose, so in practice you will often do this and Step 4 together in one call and inspect the `conflicts` field first:
    ```bash
-   python skills/writing-instruction-builder/scripts/build-instruction.py --voice <id-or-omit> --tone <id-or-omit> --style <id-or-omit> --format <id-or-omit> --json
+   python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruction.py" --voice <id-or-omit> --tone <id-or-omit> --style <id-or-omit> --format <id-or-omit> --json
    ```
    A blank axis (from Step 2's low-confidence path) is simply omitted from the flags - `writing-instruction-builder` already supports composing with a blank axis, and this skill reuses that rather than inventing new behavior.
 2. If `conflicts` is empty, there is nothing to resolve - proceed to Step 4.
