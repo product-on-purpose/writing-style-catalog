@@ -7,6 +7,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+A hardening batch driven by a six-dimension repository audit (2026-07-10): install-path
+correctness for all three skills, CI enforcement of the existing test suites, supply-chain
+pinning, and a sweep of documentation drift. No catalog content changed.
+
+### Fixed
+
+- All three `SKILL.md` files now anchor their script commands to `${CLAUDE_SKILL_DIR}`
+  instead of CWD-relative paths, so the documented commands work in marketplace and ZIP
+  installs (where the plugin does not live in the user's project directory), not only in
+  a repo checkout. The scripts themselves were already install-location independent; the
+  invocation paths were not.
+- `tests/gen-site.test.mjs` asserted the v0.1.0 page count (92) as an exact value and
+  failed against the current catalog; it now asserts the floor, and the test runs in CI.
+- `entry-recommender/SKILL.md` Usage no longer suggests passing situation text "as
+  `--situation`", which contradicted the temp-file mechanism Step 1 mandates for exactly
+  that text; Step 1 now also names `--stdin` as an avoided path.
+- Documentation drift: AGENTS.md and CONTRIBUTING.md no longer describe a per-entry
+  `examples/` subdirectory (worked examples live under the top-level `examples/` tree);
+  README.md and AGENTS.md no longer mislabel `docs/` as the Astro site (the site lives in
+  `site/`); the add-entry guide and contribution-process page no longer reference the
+  retired `docs/reference/index.md` output; the "seven checks" validator claim is gone
+  from CLAUDE.md, REPOSITORY.md, and the add-entry guide; the compose guide's nonexistent
+  `--list <axis>` filter is corrected to the real bare `--list`; the builder READMEs no
+  longer describe an unshipped `resources/taxonomy.json` index; REPOSITORY.md lists all
+  three skills and drops the removed `packages/` and `recipes/` stub rows.
+
+### Changed
+
+- `writing-instruction-builder` skill version 0.2.0 -> 0.3.0, recording the `--json`
+  compose mode and the `load_entry` path-containment hardening that shipped with plugin
+  v0.6.0 while the component version stayed still.
+- `writing-instruction-builder/SKILL.md` now carries a safety note for `topic`/`audience`:
+  shell-quote them, and never pass externally-sourced text through the bare flags.
+
+### Added
+
+- CI (`validate.yml`): the pytest suite and the site-generator test now run on every
+  push/PR - both previously existed but were never executed in CI; `coverage.json` gets
+  the same freshness gate `taxonomy.json` already had.
+- `tests/test_recommend.py`: first regression coverage for the entry-recommender scorer -
+  tokenization, IDF weighting, the all-qualifying short-list guarantee, `--fetch`
+  stable-membership and path-traversal rejection, and all three `--ephemeral-input-file`
+  safety conditions.
+- `.github/dependabot.yml`: weekly update PRs for GitHub Actions, the site's npm
+  dependencies, and the Python dev dependencies.
+
+### Security
+
+- `softprops/action-gh-release` is pinned to a full commit SHA in both release workflows
+  instead of the mutable `v3` tag (a third-party action holding `contents: write`).
+- `validate.yml` now declares least-privilege `permissions: contents: read`; it was the
+  only workflow inheriting the repository default.
+- SECURITY.md routes reports through GitHub private vulnerability reporting instead of an
+  email instruction that listed no address.
+
 ## [0.6.0] - 2026-07-03
 
 A new skill: `entry-recommender`. Describe a writing situation and it scores the stable
