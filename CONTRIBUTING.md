@@ -8,10 +8,11 @@ Thank you for contributing. This guide covers the two main contribution paths: a
 
 ### Path 1 - New Taxonomy Entry
 
-A taxonomy entry is a directory under `taxonomy/voices/`, `taxonomy/tones/`, `taxonomy/styles/`, or `taxonomy/formats/`. Each entry directory is named with a kebab-case ID and contains:
+A taxonomy entry is a directory under `taxonomy/voices/`, `taxonomy/tones/`, `taxonomy/styles/`, or `taxonomy/formats/`. Each entry directory is named with a kebab-case ID and contains exactly one file:
 
 - `ENTRY.md` - the entry body and frontmatter
-- `examples/` - at least one worked example file
+
+Worked examples do not live inside the entry folder. They are separate files under the top-level `examples/` tree - for a new entry, `examples/vertical-slices/<topic-slug>/<axis>-<entry-id>.md` (see Path 2 below).
 
 For example: `taxonomy/voices/pragmatic-architect/ENTRY.md`. Each entry defines one reusable writing instruction component.
 
@@ -90,6 +91,7 @@ Every new taxonomy entry should be accompanied by at least one example file. Ver
 Before opening a pull request:
 
 - [ ] `python tools/validate.py` passes with no errors
+- [ ] `python -m pytest tests` passes
 - [ ] No em-dashes (U+2014) or en-dashes (U+2013) in any file
 - [ ] At least one anchor example using the new entry
 - [ ] Schema validation passes for all modified entries

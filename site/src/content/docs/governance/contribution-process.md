@@ -28,7 +28,7 @@ python tools/validate.py
 python tools/build-indexes.py
 ```
 
-The validator must report zero errors. The indexer must produce no surprise changes - if it modifies `taxonomy.json` or `docs/reference/index.md` in ways you did not expect, investigate before committing.
+The validator must report zero errors. The indexer must produce no surprise changes - if it modifies `taxonomy.json` or `coverage.json` in ways you did not expect, investigate before committing.
 
 The pre-commit hook runs the validator and indexer automatically if you installed it (`pre-commit install`). The CI pipeline runs both on every PR.
 

@@ -40,7 +40,7 @@ cd site && npm run build
 1. Create `taxonomy/<axis>/<kebab-case-id>/ENTRY.md`
 2. Follow the frontmatter schema in `schemas/<axis>.schema.json`
 3. Cross-references (`pairs_well_with`, `avoid_with`, `confusable_with`) must use IDs that already exist in the catalog
-4. Run `python tools/validate.py` - all 7 checks must pass
+4. Run `python tools/validate.py` - every check must pass
 5. Run `python tools/build-indexes.py` to update the indexes
 
 ## Schema changes

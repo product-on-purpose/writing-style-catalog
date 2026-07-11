@@ -9,7 +9,7 @@ The catalog source lives in `taxonomy/` and `examples/`; the tools in `tools/` v
 ```
 taxonomy/ + examples/        source of truth, directly maintained
         |
-   tools/validate.py         integrity gate (7 checks)
+   tools/validate.py         integrity gate
    tools/build-indexes.py -> taxonomy.json    machine-readable index
         |
    scripts/gen-site.mjs -> site/src/content/docs/   generated catalog (gitignored, rebuilt each build)
@@ -26,23 +26,21 @@ taxonomy/ + examples/        source of truth, directly maintained
 | `schemas/` | JSON Schema for each entry and example type (7 files). The catalog's data contract. | Source of truth | Developer |
 | `tools/` | Catalog integrity, source-side: `validate.py`, `build-indexes.py`, `diff-pair-generator.py`, `taxonomy.py`. | Build (validate) | Build / developer |
 | `scripts/` | Documentation generation, output-side: `gen-site.mjs` (zero-dependency Node generator). | Build (publish) | Build / developer |
-| `tests/` | Tests for the site generator (`gen-site.test.mjs`, run with `node --test`). | Build | Developer |
+| `tests/` | Pytest suites for the tools and skill scripts, plus the site-generator test (`gen-site.test.mjs`, run with `node --test`). | Build | Developer |
 | `site/` | The Astro app (Pattern S): `astro.config.mjs`, `package.json`, `src/` (`components/`, `styles/`, `content.config.ts`, `content/docs/`), `public/`. | Build | Developer |
 | `docs/` | Governance only: `internal/` (ADRs, notes) and `superpowers/` (specs, plans). Not built by Astro; site content lives in `site/src/content/docs/`. | Governance | Maintainer |
 | `taxonomy.json` | Generated machine index of the catalog (from `tools/build-indexes.py`). | Generated | Agent / downstream |
 | `library.json` | Canonical plugin manifest (family Standard, Section 5): name, version, declared tier, Standard pin, and the component index. | Source of truth | Agent / downstream |
 | `.claude-plugin/` | Claude Code native manifest (`plugin.json`), kept consistent with the canonical root `library.json`. | Distribution | Agent |
-| `skills/` | The `writing-instruction-builder` skill. | Source of truth | Agent / end user |
+| `skills/` | Three skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation). | Source of truth | Agent / end user |
 | `.github/` | CI workflows and issue templates. | Build | Maintainer |
 | `docs/internal/` | Committed governance: ADRs, working notes, UI mockups, strategy docs. Not published to the site. | Governance | Maintainer |
 | `_agent-context/` | Agent working material; `session-log/` is gitignored. | Research | Agent |
 | `_LOCAL/` | Gitignored research and scratch: audit reports, AI-chat transcripts, planning drafts. | Research | Maintainer |
-| `packages/` | Empty SDK stubs (`.gitkeep` only). Slated for removal; see the roadmap. | Stub | n/a |
-| `recipes/` | Empty stub (`.gitkeep` only). The real recipes are generated into `site/src/content/docs/recipes/`. | Stub | n/a |
 
 ## Reading the groups
 
-**Source of truth (directly maintained, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored pages in `docs/`, `library.json`, and the `writing-instruction-builder` skill. Edits start here.
+**Source of truth (directly maintained, never generated).** `taxonomy/`, `examples/`, `schemas/`, the authored site pages under `site/src/content/docs/`, `library.json`, and the three skills under `skills/`. Edits start here.
 
 **Generated (do not hand-edit; regenerate instead).** `taxonomy.json` and the generated catalog under `site/src/content/docs/` (`reference/`, `examples/`, `recipes/`, `templates/`). The catalog is gitignored and rebuilt on every site build (Pattern S), so editing it by hand is wasted effort; `taxonomy.json` is committed and guarded by a `git diff` check in CI.
 
