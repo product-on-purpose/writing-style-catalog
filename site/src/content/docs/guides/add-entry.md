@@ -88,7 +88,7 @@ Run the validator before committing:
 python tools/validate.py
 ```
 
-The validator runs seven checks. All must pass. Common failures:
+The validator runs a series of checks (schema validity, cross-references, dash policy, examples, review status, taxonomy membership, pedagogical substance, and more). All must pass. Common failures:
 
 - Cross-reference to an ID that does not exist in the catalog (typo or wrong axis)
 - An em-dash (U+2014) or en-dash (U+2013) somewhere in the file
@@ -105,7 +105,7 @@ After validation passes, rebuild the catalog indexes:
 python tools/build-indexes.py
 ```
 
-This regenerates `taxonomy.json` and `docs/reference/index.md` so the new entry appears in both. The pre-commit hook does this automatically, but running it manually lets you see the changes before staging.
+This regenerates the machine-readable indexes (`taxonomy.json` and `coverage.json`). The site's reference pages under `site/src/content/docs/reference/` are generated separately by `scripts/gen-site.mjs` at site build time. The pre-commit hook runs the indexer automatically, but running it manually lets you see the changes before staging.
 
 ---
 

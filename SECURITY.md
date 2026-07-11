@@ -12,13 +12,13 @@ Security concerns most likely to be relevant:
 
 ## Reporting a Vulnerability
 
-If you discover a security issue, please do not open a public GitHub issue. Instead, email the maintainer directly with:
+If you discover a security issue, please do not open a public GitHub issue. Instead, report it privately through GitHub's vulnerability reporting for this repository: open the **Security** tab and choose **Report a vulnerability** (direct link: <https://github.com/product-on-purpose/writing-style-catalog/security/advisories/new>). Include:
 
 1. A description of the vulnerability and its potential impact
 2. Steps to reproduce
 3. Any relevant file paths or code locations
 
-The maintainer will acknowledge receipt within 72 hours and provide a timeline for resolution. Confirmed vulnerabilities will be patched and disclosed in the CHANGELOG with appropriate credit to the reporter.
+The maintainer will acknowledge receipt in the advisory thread within 72 hours and provide a timeline for resolution. Confirmed vulnerabilities will be patched and disclosed in the CHANGELOG with appropriate credit to the reporter.
 
 ## Supported Versions
 

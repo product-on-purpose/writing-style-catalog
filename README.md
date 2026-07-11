@@ -205,10 +205,11 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | `skills/style-profile/` | Code | Capture a personal default style once, for reuse |
 | `skills/entry-recommender/` | Code | Recommend a combination for a described situation |
 | `library.json` | Config | Canonical plugin manifest (family Standard, Section 5) |
-| `docs/` | Docs | Astro Starlight site (catalog pages generated from `taxonomy/` and `examples/`; narrative pages authored) |
+| `site/` | Docs | Astro Starlight site app (authored pages in `src/content/docs/`; catalog pages generated at build time) |
+| `docs/` | Docs | Internal governance only (ADRs, plans, specs) - not built by Astro; the site lives in `site/` |
 | `tools/` | Code | Validation and index-generation scripts |
 | `scripts/` | Code | Site page generator and freshness guard |
-| `tests/` | Code | Pytest tests for the generator |
+| `tests/` | Code | Pytest suites for tools and skills, plus the site-generator test (run with `node --test`) |
 | `docs/internal/adr/` | Docs | Architecture Decision Records |
 | `.claude-plugin/` | Config | Claude Code plugin manifest and config |
 | `.github/` | Config | CI workflows and issue templates |

@@ -107,14 +107,13 @@ Save the output to a file (for example `.writing-context.md`) and include it in 
 
 ## Listing Available Entries
 
-To see all available entries for a given axis:
+To see all available entries, grouped by axis:
 
 ```
-/writing-style-catalog:writing-instruction-builder --list voices
-/writing-style-catalog:writing-instruction-builder --list tones
-/writing-style-catalog:writing-instruction-builder --list styles
-/writing-style-catalog:writing-instruction-builder --list formats
+/writing-style-catalog:writing-instruction-builder --list
 ```
+
+`--list` takes no axis argument - it prints every entry for all four axes in one listing.
 
 ---
 

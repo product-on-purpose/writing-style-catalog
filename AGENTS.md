@@ -23,7 +23,7 @@ The Writing Style Library is a composable catalog of writing instructions organi
 
 ### Atomic-Folder Pattern
 
-Each taxonomy entry lives in its own folder: `taxonomy/<axis>/<entry-id>/`. The folder contains at minimum `ENTRY.md` (the entry body and frontmatter) plus an `examples/` subdirectory. Additional files such as `variants/` may be added alongside `ENTRY.md`.
+Each taxonomy entry lives in its own folder: `taxonomy/<axis>/<entry-id>/`. The folder contains `ENTRY.md` (the entry body and frontmatter) and nothing else. Worked examples do not live inside the entry folder: they are separate files under the top-level `examples/` tree (`examples/vertical-slices/<topic-slug>/<axis>-<entry-id>.md` - see `examples/README.md` and CONTRIBUTING.md Path 2).
 
 ### Frontmatter-First
 
@@ -109,7 +109,8 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 | `tools/validate.py` | Validation script |
 | `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
 | `tools/promote.py` | Guarded, atomic draft -> stable promotion |
-| `docs/` | Astro Starlight documentation site (catalog pages generated from `taxonomy/` and `examples/`) |
+| `site/` | The Astro Starlight documentation site (authored pages in `src/content/docs/`; catalog pages generated at build time) |
+| `docs/` | Internal governance only (see the two rows below) - not built by Astro; the site lives in `site/` |
 | `docs/internal/` | Living planning docs - ADRs, release-plan trackers, specs, the backlog - maintained under direct maintainer direction as work proceeds. Demonstrated by this repo's own history: `agentic-generation-spec.md`, the promotion-and-release runbook, and every `stream-b-*` tracker were all produced and merged here. |
 | `docs/internal/_working/` | Frozen historical planning snapshots - read-only, do not modify |
 | `_LOCAL/` | Source research - read-only, do not modify |
