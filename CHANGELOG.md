@@ -40,6 +40,13 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   v0.6.0 while the component version stayed still.
 - `writing-instruction-builder/SKILL.md` now carries a safety note for `topic`/`audience`:
   shell-quote them, and never pass externally-sourced text through the bare flags.
+- Composer "Entry not found" errors now teach recovery: they name `--list` and detect
+  a valid id passed on the wrong axis flag ("'candid' exists as a tone, not a voice").
+- `list_entries()` raises a clear install-diagnosis error when a taxonomy axis
+  directory is missing entirely, instead of silently reporting an empty axis.
+- `recommend.py` guards its importlib interface to the composer: a missing symbol now
+  fails at startup with a version-sync message instead of a mid-run AttributeError.
+- markdownlint-cli2 pinned to 0.23.0 in CI (was an unpinned latest install).
 
 ### Added
 
@@ -52,6 +59,23 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   safety conditions.
 - `.github/dependabot.yml`: weekly update PRs for GitHub Actions, the site's npm
   dependencies, and the Python dev dependencies.
+- `tests/test_promote.py`: regression coverage for the promotion tool's transactional
+  guards (the exactly-one-draft-line rule, CRLF preservation, block-scalar lookalikes,
+  preflight classification), plus a golden-output test freezing the composed
+  instruction text for a fully-affirmed stack and coverage for the new composer
+  error hints.
+- Issue forms (bug report, feature request) and a pull-request template carrying the
+  CONTRIBUTING.md checklist; `.github/ISSUE_TEMPLATE/` previously held only a
+  `.gitkeep`.
+- A weekly scheduled CI run (validate job plus the non-deploying site build) so link
+  rot and toolchain drift surface between code changes.
+- A local pre-commit hook running the plugin-manifest validator; the dash hook now
+  covers the same file types as the CI check instead of markdown only.
+- `LICENSE-CC-BY-4.0`: the full content-license text, staged into the release ZIP
+  next to LICENSE and NOTICE. The manifests' `license` field is unchanged pending a
+  decision on SPDX dual expressions.
+- ZIP-path verification steps in the install guide and QUICKSTART (the previous
+  "verify it loaded" check only worked in Claude Code).
 
 ### Security
 
