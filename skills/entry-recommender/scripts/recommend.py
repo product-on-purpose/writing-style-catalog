@@ -52,6 +52,15 @@ _BUILD_INSTRUCTION_PATH = (
 _spec = importlib.util.spec_from_file_location("build_instruction", _BUILD_INSTRUCTION_PATH)
 build_instruction = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(build_instruction)
+# Interface guard: the two skills version independently (library.json), so a
+# refactor of build-instruction.py must fail HERE with a named contract
+# violation, not later as an unguided AttributeError mid-recommendation.
+for _sym in ("list_entries", "load_entry"):
+    if not hasattr(build_instruction, _sym):
+        raise ImportError(
+            f"build-instruction.py is missing expected symbol {_sym!r}; the two "
+            "skills' versions may be out of sync (see library.json components)."
+        )
 
 AXES = {
     "voice": TAXONOMY_ROOT / "voices",
