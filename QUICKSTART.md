@@ -21,6 +21,10 @@ Download `writing-style-catalog-v<version>.zip` from
 [Releases](https://github.com/product-on-purpose/writing-style-catalog/releases), extract, and
 point your client at `.claude-plugin/plugin.json`.
 
+Verify it loaded: ask Claude to describe the `pragmatic-architect` voice entry from the
+plugin - a correct install quotes the catalog's own field language rather than answering
+generically.
+
 Full detail: the [installation guide](https://product-on-purpose.github.io/writing-style-catalog/guides/install/).
 
 ## Compose an instruction

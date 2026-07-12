@@ -1,0 +1,44 @@
+name: Bug report
+description: Something in the catalog, a skill, or the tooling behaved incorrectly.
+labels: [bug]
+body:
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Where did it happen?
+      options:
+        - A skill running in Claude Code (writing-instruction-builder / style-profile / entry-recommender)
+        - A script run at the terminal (build-instruction.py, recommend.py, tools/)
+        - The documentation site
+        - Validation or CI (validate.py, workflows)
+        - Somewhere else
+    validations:
+      required: true
+  - type: input
+    id: command
+    attributes:
+      label: Command or invocation
+      description: The exact command, slash-command, or prompt you used.
+      placeholder: "python skills/entry-recommender/scripts/recommend.py --list"
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Paste the actual output or error verbatim where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+    validations:
+      required: true
+  - type: input
+    id: entry
+    attributes:
+      label: Entry or axis affected (if any)
+      placeholder: "voice/pragmatic-architect"
+    validations:
+      required: false
