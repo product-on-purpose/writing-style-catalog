@@ -159,12 +159,20 @@ def _parse_simple_yaml(text: str) -> dict:
 
 
 def list_entries() -> dict[str, list[str]]:
-    """Return all available entry IDs grouped by axis."""
+    """Return all available entry IDs grouped by axis.
+
+    Raises RuntimeError if an axis directory is missing entirely: that is a
+    broken or partial install, not an empty axis, and returning [] here made
+    it indistinguishable from "no matches" downstream (the recommender would
+    report a no-signal result instead of a fixable install problem)."""
     available = {}
     for axis, axis_path in AXES.items():
         if not axis_path.exists():
-            available[axis] = []
-            continue
+            raise RuntimeError(
+                f"taxonomy axis directory not found: {axis_path}. Is the plugin "
+                f"installed completely? Every install layout (git clone, marketplace, "
+                f"release ZIP) ships the full taxonomy/ catalog alongside skills/."
+            )
         available[axis] = sorted([
             d.name for d in axis_path.iterdir()
             if d.is_dir() and (d / "ENTRY.md").exists()
@@ -242,7 +250,21 @@ def compose_report(
 
     for sel in resolved:
         if sel["entry"] is None:
-            errors.append(f"Entry not found: {sel['axis']}/{sel['id']}")
+            # Teach recovery instead of dead-ending: name the fix (--list) and,
+            # when the id exists on a different axis, say so - the most common
+            # real mistake is a valid id passed to the wrong axis flag.
+            hint = f"run --list to see valid {sel['axis']} ids"
+            other_axes = [
+                axis for axis, ids in list_entries().items()
+                if axis != sel["axis"] and sel["id"] in ids
+            ]
+            if other_axes:
+                hint = (
+                    f"'{sel['id']}' exists as a {' and '.join(other_axes)} entry, "
+                    f"not a {sel['axis']}; did you mean --{other_axes[0]} {sel['id']}? "
+                    + hint
+                )
+            errors.append(f"Entry not found: {sel['axis']}/{sel['id']} ({hint})")
             continue
         found.append(sel)
         phrasing = sel["entry"].get("llm_instruction_phrasing", "")
