@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+  # Weekly run so link rot and toolchain drift surface between code changes
+  # (the build-site job below also runs on this schedule, without deploying).
+  schedule:
+    - cron: "0 6 * * 1"
 
 permissions:
   contents: read
@@ -39,7 +43,9 @@ jobs:
         run: node --test tests/gen-site.test.mjs
 
       - name: Install markdownlint-cli2
-        run: npm install -g markdownlint-cli2
+        # Pinned: an unpinned global install re-resolves latest on every run,
+        # so a breaking release changes CI behavior with no repo change.
+        run: npm install -g markdownlint-cli2@0.23.0
 
       - name: Run taxonomy validation
         run: python tools/validate.py
@@ -67,7 +73,7 @@ jobs:
   # only runs on push to main). Builds the Astro site (generator + astro build)
   # without uploading or deploying, so a build-breaking change cannot merge.
   build-site:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
