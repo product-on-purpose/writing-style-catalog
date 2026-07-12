@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a new entry, a skill improvement, or a tooling change.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: What kind of change?
+      options:
+        - A new taxonomy entry (voice / tone / style / format)
+        - A change to an existing entry's language
+        - Skill behavior (writing-instruction-builder / style-profile / entry-recommender)
+        - Tooling, validation, or CI
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the writing situation or workflow gap, not just the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: For a new entry, sketch the one_liner and a few when_to_use bullets. New entries start at review_status draft (see CONTRIBUTING.md).
+    validations:
+      required: true

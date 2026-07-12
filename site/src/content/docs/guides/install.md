@@ -45,12 +45,22 @@ For clients that take a plugin as an uploaded archive:
 
 ## Verify it loaded
 
-In Claude Code, confirm the skill resolves:
+### Claude Code (Option A)
+
+Confirm the skill resolves:
 
 ```
 /writing-style-catalog:writing-instruction-builder voice=pragmatic-architect format=adr
 ```
 
-You should get a structured prompt prefix back. From here, the
+You should get a structured prompt prefix back.
+
+### Claude.ai and Claude Desktop (Option B)
+
+These clients have no slash-command listing, so verify conversationally: ask Claude to
+"describe the pragmatic-architect voice entry from the writing-style-catalog plugin and
+quote its one_liner." A correct install answers in the catalog's own field language (a
+senior technical voice that leads with tradeoffs and names constraints explicitly); a
+missing or broken install answers generically or says it cannot find the entry. From here, the
 [Compose an Instruction](../compose-instruction/) guide walks through reading and using the
 output.
