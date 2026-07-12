@@ -85,6 +85,11 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   only workflow inheriting the repository default.
 - SECURITY.md routes reports through GitHub private vulnerability reporting instead of an
   email instruction that listed no address.
+- `npm audit fix` in site/ cleared the vite server.fs.deny bypass, launch-editor NTLM
+  hash disclosure, Astro SSRF, and DOMPurify advisories (a lockfile-only change,
+  verified by a full site build plus the link checks). One low-severity esbuild
+  dev-server advisory remains: its only fix path is the astro@7 beta, a breaking
+  upgrade deliberately not taken; dependabot will surface it when a stable path exists.
 
 ## [0.6.0] - 2026-07-03
 
