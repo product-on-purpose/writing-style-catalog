@@ -5,7 +5,7 @@
 
 .DESCRIPTION
   Produces dist/writing-style-catalog-v<version>.zip with .claude-plugin/, library.json,
-  skills/, taxonomy/, taxonomy.json, README.md, LICENSE, NOTICE, and CHANGELOG.md staged at
+  skills/, taxonomy/, taxonomy.json, README.md, LICENSE, LICENSE-CC-BY-4.0, NOTICE, and CHANGELOG.md staged at
   the ARCHIVE ROOT (no wrapper directory). taxonomy/ ships because build-instruction.py reads
   REPO_ROOT/taxonomy at runtime (parents[3]); the flat root keeps that path correct
   after unzip. taxonomy.json ships too - it was missing until an adversarial review of the
@@ -29,7 +29,7 @@ $Dist = Join-Path $RepoRoot "dist"
 $Stage = Join-Path $Dist $Name
 $Zip = Join-Path $Dist "$Name.zip"
 
-$Members = @(".claude-plugin", "library.json", "skills", "taxonomy", "taxonomy.json", "README.md", "LICENSE", "NOTICE", "CHANGELOG.md")
+$Members = @(".claude-plugin", "library.json", "skills", "taxonomy", "taxonomy.json", "README.md", "LICENSE", "LICENSE-CC-BY-4.0", "NOTICE", "CHANGELOG.md")
 
 if (Test-Path $Stage) { Remove-Item -Recurse -Force $Stage }
 if (Test-Path $Zip) { Remove-Item -Force $Zip }
