@@ -112,6 +112,60 @@ def test_resolve_selections_applies_voice_tone_style_format_precedence():
     assert [r["axis"] for r in resolved] == ["voice", "tone", "style", "format"]
 
 
+def test_not_found_error_teaches_recovery_with_list_hint():
+    """A wrong id must not dead-end: the error names --list as the fix."""
+    report = bi.compose_report(voice="definitely-not-a-real-entry-id")
+
+    assert report["errors"]
+    assert "Entry not found: voice/definitely-not-a-real-entry-id" in report["errors"][0]
+    assert "--list" in report["errors"][0]
+
+
+def test_not_found_error_detects_cross_axis_ids():
+    """The most common real mistake: a valid id on the wrong axis flag.
+    'candid' is a tone; passing it as --voice must say so."""
+    report = bi.compose_report(voice="candid")
+
+    assert report["errors"]
+    assert "exists as a tone" in report["errors"][0]
+    assert "--tone candid" in report["errors"][0]
+
+
+GOLDEN_PATH = Path(__file__).resolve().parent / "golden-outputs" / "compose-pa-candid-ps-adr.golden.txt"
+
+
+def _normalized(text: str) -> str:
+    # Newline- and trailing-whitespace-insensitive so the committed golden can
+    # pass through pre-commit's mixed-line-ending / trailing-whitespace fixers
+    # without ever desyncing from live CLI output.
+    lines = text.replace("\r\n", "\n").split("\n")
+    return "\n".join(line.rstrip() for line in lines).strip()
+
+
+def test_cli_composed_output_matches_golden():
+    """Golden regression for the composed instruction TEXT: a change to the
+    llm_instruction_phrasing wiring or the compose template must be a
+    deliberate golden-file update, never silent drift. The chosen stack is
+    fully affirmed (six pairs_well_with notes, zero conflicts), so stderr
+    noise stays out of the assertion."""
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(MODULE_PATH),
+            "--voice", "pragmatic-architect",
+            "--tone", "candid",
+            "--style", "problem-solution",
+            "--format", "adr",
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert _normalized(result.stdout) == _normalized(GOLDEN_PATH.read_text(encoding="utf-8"))
+    assert "conflict" not in result.stderr.lower()
+
+
 def test_cli_warns_on_conflict_to_stderr_and_still_prints_instruction():
     """End to end through the CLI: a conflicting selection prints the full
     instruction on stdout and a conflict warning on stderr, exit code 0."""
