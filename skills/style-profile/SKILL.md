@@ -1,6 +1,7 @@
 ---
 name: style-profile
-description: Guide a user to a personal writing-style profile - a saved selection across the catalog's Voice, Tone, Style, and Format axes - and prove it sounds like them with a generated sample before saving. Use when a user wants to set, capture, reuse, or load their own default writing style, or says "set up my writing style", "capture my voice", "create a style profile", "what's my house style", "use my style profile", or wants a reusable style across the writing-style-catalog. Offers four intake modes (infer from your writing, recognize from examples, interview, or fill a template), confirms with an A/B sample, and saves a reusable profile to local user state.
+description: Guide a user to a personal writing-style profile - a saved selection across the catalog's Voice, Tone, Style, and Format axes - and prove it sounds like them with a generated sample before saving. Offers four intake modes (infer from your writing, recognize from examples, interview, or fill a template), confirms with an A/B sample, and saves a reusable profile to local user state.
+when_to_use: Use when a user wants to set, capture, reuse, or load their own default writing style, or says "set up my writing style", "capture my voice", "create a style profile", "what's my house style", "use my style profile", or wants a reusable style. For a one-off situation recommendation, use entry-recommender; for composing from ids the user already knows, use writing-instruction-builder.
 metadata:
   version: "0.1.0"
 ---

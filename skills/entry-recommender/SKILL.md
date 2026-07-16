@@ -1,6 +1,7 @@
 ---
 name: entry-recommender
-description: Recommend a voice, tone, style, and format combination from the catalog's stable entries for a described writing situation, then compose the prompt in the same step. Use when a user has a writing situation but does not yet know which catalog entries fit it - they describe what they need to write, not which entry ids to use. Accepts optional pre-fixed axis values so a user who already knows one or two axes only gets recommendations for the rest. Never recommends a draft-status entry. Reports low confidence rather than force-picking when nothing genuinely fits.
+description: Recommend a voice, tone, style, and format combination from the catalog's stable entries for a described writing situation, then compose the prompt in the same step. Accepts optional pre-fixed axis values; never recommends draft entries; reports low confidence rather than force-picking when nothing fits.
+when_to_use: Use when a user has a writing situation but does not yet know which catalog entries fit it - they describe what they need to write, not which entry ids to use. If the user already knows the exact ids, use writing-instruction-builder directly; if they want a durable personal default rather than a one-situation answer, use style-profile.
 metadata:
   version: "0.2.0"
 ---
