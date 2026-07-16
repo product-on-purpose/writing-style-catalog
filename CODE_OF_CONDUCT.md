@@ -34,7 +34,13 @@ This Code of Conduct applies within all project spaces and also applies when an 
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project maintainers. All complaints will be reviewed and investigated promptly and fairly. Maintainers are obligated to respect the privacy and security of the reporter.
+Report abusive, harassing, or otherwise unacceptable behavior through **GitHub's abuse reporting form: <https://github.com/contact/report-abuse>**. Reports made there are private and cover conduct in this project's GitHub spaces, including issues, pull requests, discussions, and commits.
+
+Please do not report a concern by opening an issue or a pull request. Both are public, and a public report exposes the reporter to the person they are reporting.
+
+This project is maintained by one person ([@jprisant](https://github.com/jprisant)). That is worth knowing when you decide where to report: there is no impartial internal route for a concern about the maintainer's own conduct, and GitHub's abuse reporting is the appropriate channel for it.
+
+All reports will be reviewed and investigated promptly and fairly, and the privacy and security of the reporter will be respected.
 
 ## Attribution
 
