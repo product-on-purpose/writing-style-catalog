@@ -75,6 +75,15 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   `site/package.json` is now the SPDX expression `Apache-2.0 AND CC-BY-4.0`. It declared
   `Apache-2.0` alone, which understated the dual license ADR 0003 ratified and left the
   content license invisible to any tool reading the manifest.
+- All three skills now split their frontmatter into `description` (what the skill does)
+  and `when_to_use` (when to reach for it). The platform appends the two and reads both
+  when selecting a skill, so trigger phrasing belonged in the second field and had been
+  sitting in the first. Each skill's `when_to_use` now also points at its two siblings
+  for the cases that are not its own, so the three stop relying on inference to be told
+  apart: the builder composes from ids you already know, the recommender finds them when
+  you only have a situation, and style-profile is for a durable default rather than a
+  one-situation answer. Combined text stays well inside the 1,536-character listing cap
+  (422, 642, and 769 characters).
 - CODE_OF_CONDUCT.md names a reporting channel. It asked people to report to "the
   project maintainers" and then gave no address, form, or link, which left a reporter
   with nowhere to go. It now routes to GitHub's abuse reporting, warns against reporting
