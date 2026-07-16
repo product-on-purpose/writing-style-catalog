@@ -19,7 +19,7 @@
   <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
-  <img src="https://img.shields.io/badge/version-0.6.0-blue.svg?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.7.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-three-axis-model">
     <img src="https://img.shields.io/badge/entries-97-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
@@ -61,7 +61,7 @@
 ---
 
 > [!WARNING]
-> **Early and experimental (v0.6.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+> **Early and experimental (v0.7.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
@@ -220,7 +220,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 ## Project Status
 
-**v0.6.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+**v0.7.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). Expect change: the schema, the skill interface, entry wording, and the docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
 
 **What exists today:**
 
