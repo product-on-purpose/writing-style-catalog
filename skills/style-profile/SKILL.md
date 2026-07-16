@@ -29,6 +29,7 @@ If the user wants to USE or LOAD an already-saved profile (not build a new one),
 Order is load-bearing. Do not save before confirming (Step 6 after Step 5), and do not compose before you have a candidate stack (Step 3 after Step 2). At least one A/B round (Step 5) is required before any save.
 
 **Step 1 - Choose the intake mode.** If the user named one, use it. Otherwise present the four modes and let them pick:
+
 1. **Infer from my writing** (recommended) - paste prose, or give file paths/globs to your own writing.
 2. **Recognize from examples** - react to contrasting samples, pick "this feels like me."
 3. **Interview** - answer a few questions per axis.
@@ -39,9 +40,11 @@ Read `references/intake-modes.md` for how to run each. Verify: exactly one mode 
 **Step 2 - Produce a candidate stack.** Run the chosen mode to get a candidate stack: zero-or-one entry per axis, using only ids that resolve in the catalog. Verify each id against `--list`; drop any that do not resolve and tell the user. Failure looks like inventing an id or writing a new instruction; if tempted, stop - this skill selects, it does not author. Recovery: if EVERY proposed id fails to resolve, do not proceed with an empty stack - re-run intake or ask the user to pick from valid ids. Proceed with an all-null stack only if the user explicitly confirms they want no style constraints.
 
 **Step 3 - Compose the prompt prefix.** Build the prefix by calling the existing composer, never by re-implementing composition:
+
 ```bash
 python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruction.py" --voice <id> --tone <id> --style <id> --format <id>
 ```
+
 (omit flags for blank axes). Verify: the command returns a non-empty instruction and no "Entry not found" error. Surface any conflict warning it prints to stderr to the user.
 
 **Step 4 - Generate the confirmation sample.** Ask the user for a topic they care about (the sample only proves the style if it is on real material). Only if they decline, pick a default that exercises the stack and tell them it is a lower-confidence check. Using the composed prefix, write a short sample (about 150-200 words) in-session - do NOT call an external model or API. Verify: the sample exists and reflects the stack. Show it.
@@ -49,6 +52,7 @@ python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruc
 **Step 5 - A/B refine (at least 1 round, up to 3).** Produce a second sample on the same topic from a near-neighbor stack: vary exactly one axis, swapping that entry for one of its `pairs_well_with` / `confusable_with` neighbors. If that entry has no usable neighbor field, fall back to another same-axis entry with contrasting `tells` and say you did so. Show both without signaling which is better (you may label them Sample A and Sample B). Ask "which is more you?" Record the changed axis, the candidate id, the neighbor id, and the user's choice; move the stack toward the chosen sample. After each swap, re-validate the changed id against `--list`. Repeat until the user is satisfied or 3 rounds pass. **This step is required:** do not advance to Step 6 without at least one completed round, unless the user, after you warn that skipping it means saving a style they have not stress-tested, explicitly declines. Recovery: if the user likes neither sample, ask which axis feels off and vary that axis specifically.
 
 **Step 6 - Save the profile.** Only after the user explicitly confirms. Do these in order:
+
 1. **task_key:** default `default`. It MUST match `^[a-z0-9][a-z0-9-]{0,63}$` (a bare slug - no slashes, dots, or `..`). Reject anything else and ask for a valid key.
 2. **owner:** use `git config user.name` and disclose it ("saving as owner: <name>"), or ask; `null` is acceptable if the user prefers not to record one.
 3. **Re-validate the final stack:** check every non-null id against `--list` and recompose the final prefix with `build-instruction.py`. If any id fails, fix it or halt.

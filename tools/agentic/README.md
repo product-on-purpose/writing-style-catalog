@@ -33,7 +33,7 @@ in-session subagents at zero marginal API cost; no paid CI is required.
 ## The harnesses
 
 | Harness | Stage | What it does |
-|---|---|---|
+| --- | --- | --- |
 | [`generate.js`](generate.js) | Generate | Writes N new draft format `ENTRY.md` files, one read-its-neighbor agent per candidate, mirroring the `adr` template. |
 | [`dedup.js`](dedup.js) | Audit | Whole-corpus distinguishability + quality audit, one auditor per **family cluster**. Returns structured flags. |
 | [`remediate.js`](remediate.js) | Remediate | Applies a precise per-file fix-list, one agent per file. General-purpose (de-dup fixes, date fixes, any surgical batch). |

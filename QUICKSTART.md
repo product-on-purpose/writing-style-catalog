@@ -62,9 +62,9 @@ your own style once, for reuse across sessions.
 
 ## Learn more
 
-- Full documentation: https://product-on-purpose.github.io/writing-style-catalog/
+- Full documentation: <https://product-on-purpose.github.io/writing-style-catalog/>
 - Contribute an entry: [`CONTRIBUTING.md`](CONTRIBUTING.md)
-- Skill specification: https://agentskills.io/specification
+- Skill specification: <https://agentskills.io/specification>
 
 ---
 

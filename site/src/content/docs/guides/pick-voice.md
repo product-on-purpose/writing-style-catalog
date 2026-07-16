@@ -25,7 +25,7 @@ If you cannot answer both, no voice will reliably fit. Refine the brief before c
 Each voice in the catalog embodies a recognizable professional archetype. The right archetype is the one a real person in that role would already be using.
 
 | Reader and relationship | Likely voice |
-|---|---|
+| --- | --- |
 | Senior engineer reading a design review | `pragmatic-architect` |
 | Product team reading a feature proposal | `product-thinker` |
 | New hire reading an onboarding guide | `friendly-mentor` or `technical-writer` |

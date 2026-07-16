@@ -42,11 +42,14 @@ Do all of this correctly, in order:
 
 1. Apply real JSON string escaping to the situation text (and to `topic`/`audience` if given): replace `\` with `\\`, `"` with `\"`, newline with `\n`, carriage return with `\r`, tab with `\t`. This is a mechanical, well-defined transformation, not a judgment call - do not skip it or assume the text happens to be simple enough not to need it.
 2. Use the Write tool (never a shell command, `echo`, or heredoc) to write the escaped JSON payload to a new file. The location MUST be inside the OS/system temp directory specifically (Python's `tempfile.gettempdir()` - on this session, that is the same root your scratchpad directory is nested under) - NOT merely "somewhere that feels temporary," and NEVER inside this project's working directory. Step 3's flag checks this exact condition and refuses to touch (read OR delete) a path outside it, so if you write somewhere else, the file will be left behind with an error telling you to delete it yourself - avoid that by writing to the right place the first time. The filename MUST end in `.entry-recommender-input.json` (any prefix is fine, for example `situation-<something>.entry-recommender-input.json`) - Step 3's flag also refuses to touch a file that is not named this way, on purpose, so a path mistake fails loudly instead of silently deleting the wrong file:
+
    ```json
    {"situation": "<the escaped situation text>", "voice": "<id, if fixed>", "tone": "<id, if fixed>"}
    ```
+
    Omit any key for an axis that is not fixed. The Write tool writes file content directly - it does not involve a shell at all, so nothing here is a quoting or injection concern; the only remaining requirement is that the JSON string itself is valid, which step 1 above ensures.
 3. Run the scorer against that file with `--ephemeral-input-file`, not `--input-file` - the path is short, assistant-chosen, and safe to put in a shell command, unlike the situation text itself. This flag deletes the file itself, guaranteed, as soon as it has been read (you do not need a separate cleanup step, and the file is gone even if the JSON turns out to be malformed or scoring fails), but only if the path is outside this repo, inside the system temp directory, AND correctly named per step 2 - otherwise it raises an error instead of reading or deleting anything:
+
    ```bash
    python "${CLAUDE_SKILL_DIR}/scripts/recommend.py" --ephemeral-input-file <path-to-the-temp-file> --json
    ```
@@ -73,9 +76,11 @@ Otherwise, pick the short-listed candidate whose `when_to_use`/`tells` language 
 **Step 3 - Check and resolve conflicts across the complete final set (AC-4).** This runs on every invocation, including when every axis was freshly recommended and nothing is fixed - two independently-picked entries can conflict with each other exactly as a fixed-and-recommended pair can.
 
 1. Call the composer's conflict check on the complete final four-axis set (whatever Step 2 picked, plus any fixed values, plus a blank for any low-confidence axis) - this is the same call as Step 4's compose, so in practice you will often do this and Step 4 together in one call and inspect the `conflicts` field first:
+
    ```bash
    python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruction.py" --voice <id-or-omit> --tone <id-or-omit> --style <id-or-omit> --format <id-or-omit> --json
    ```
+
    A blank axis (from Step 2's low-confidence path) is simply omitted from the flags - `writing-instruction-builder` already supports composing with a blank axis, and this skill reuses that rather than inventing new behavior.
 2. If `conflicts` is empty, there is nothing to resolve - proceed to Step 4.
 3. If a conflict is found, classify it: does it involve at least one axis you recommended in Step 2 (recommender-controlled), or is it strictly between two axes the user fixed?
@@ -86,6 +91,7 @@ Otherwise, pick the short-listed candidate whose `when_to_use`/`tells` language 
 5. When resolution was not possible (both fallback cases above), proceed to compose anyway with the conflict named alongside the output - this is `writing-instruction-builder`'s own verified behavior (warn, never block), reused here as the fallback for a conflict this skill genuinely could not avoid, not the default response to one it created and could have fixed itself.
 
 **Step 4 - Compose or recommend-only (AC-5).** By default, call the composer on the final set (recommended + fixed values, any low-confidence axis passed as blank) exactly as in Step 3's call, and use its `instruction` as the output. Attach two kinds of notes alongside the composed prompt, never instead of it:
+
 - A conflict note, only if Step 3 ended in the warning path (both-fixed, or no compatible-and-relevant candidate found after exhausting every recommender-controlled axis involved).
 - A low-confidence note for every axis Step 2 left blank, naming the near-miss and why it did not genuinely fit.
 
@@ -105,16 +111,19 @@ Non-negotiable.
 ## Examples
 
 Full recommendation, nothing fixed:
+
 ```
 /writing-style-catalog:entry-recommender I need to tell my engineering team that a feature we committed to is getting cut this quarter, and I want them to trust the reasoning, not just accept the decision.
 ```
 
 Partial recommendation, voice already decided:
+
 ```
 /writing-style-catalog:entry-recommender explaining a database migration decision to the team voice=pragmatic-architect
 ```
 
 Recommendation only, no composed prompt:
+
 ```
 /writing-style-catalog:entry-recommender a public apology for a service outage --recommend-only
 ```

@@ -35,7 +35,7 @@ Voice is **stable across contexts**. A `pragmatic-architect` voice behaves the s
 ### Seed Voice Entries
 
 | ID | Description |
-|----|-------------|
+| ---- | ----------- |
 | `pragmatic-architect` | Reasons from system constraints and trade-offs; names costs explicitly |
 | `product-thinker` | Centers user outcomes; connects decisions to measurable value |
 | `operator` | Grounded in what actually runs and breaks in production; prioritizes reliability over theory |
@@ -61,7 +61,7 @@ Separating tone from voice means you do not need a different voice entry for eve
 ### Seed Tone Entries
 
 | ID | Description |
-|----|-------------|
+| ---- | ----------- |
 | `candid` | Direct and unhedged; states the situation plainly without softening |
 | `encouraging` | Patient and supportive; guides the reader rather than directing them |
 | `confident` | States a position and holds it without hedging or excessive qualification |
@@ -77,7 +77,7 @@ Style describes the cognitive and rhetorical pattern of the writing: how ideas a
 ### Seed Style Entries
 
 | ID | Description |
-|----|-------------|
+| ---- | ----------- |
 | `problem-solution` | Diagnosis first, then remedy; clear causal structure |
 | `layered-disclosure` | Lead with the answer; bury supporting detail for readers who want depth |
 | `decision-log` | Documents a choice: context, options considered, decision, rationale |
@@ -93,7 +93,7 @@ Format entries define the visual and structural container. They specify headings
 ### Seed Format Entries
 
 | ID | Description |
-|----|-------------|
+| ---- | ----------- |
 | `adr` | Architecture Decision Record: Status, Context, Decision, Consequences |
 | `daily-standup` | Three fields: Yesterday, Today, Blockers |
 | `slack-message` | Short-form message tuned for a team channel; reaction-aware length |

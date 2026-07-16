@@ -78,11 +78,13 @@ Composing anyway with voice -> tone -> style -> format precedence; expect tensio
 ## Examples
 
 Compose an ADR in pragmatic-architect voice with candid tone:
+
 ```
 /writing-style-catalog:writing-instruction-builder voice=pragmatic-architect tone=candid format=adr
 ```
 
 Compose a pastoral devotional:
+
 ```
 /writing-style-catalog:writing-instruction-builder voice=pastoral tone=reverent style=devotional-reflection format=devotional-entry topic="The discipline of rest"
 ```
