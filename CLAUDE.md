@@ -5,6 +5,7 @@ See `AGENTS.md` for the full multi-agent reference. This file adds Claude Code-s
 ## Quick orientation
 
 This repo is a composable catalog of writing instructions organized into four directories (Voice, Tone, Style, Format):
+
 - **Voice** (`taxonomy/voices/`) - persistent writer identity
 - **Tone** (`taxonomy/tones/`) - situational register
 - **Style** (`taxonomy/styles/`) - rhetorical and cognitive pattern

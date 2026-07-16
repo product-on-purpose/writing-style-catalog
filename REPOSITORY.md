@@ -20,7 +20,7 @@ taxonomy/ + examples/        source of truth, directly maintained
 ## Folders at a glance
 
 | Folder | Role | Kind | Audience |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `taxonomy/` | The catalog. 117 `ENTRY.md` files across `voices/`, `tones/`, `styles/`, `formats/` (15 each for Voice/Tone/Style; Format has 52 stable + 20 draft). | Source of truth | Catalog author |
 | `examples/` | Worked output examples: `vertical-slices/`, `horizontal-slices/`, `diff-pairs/`. | Source of truth | Catalog author |
 | `schemas/` | JSON Schema for each entry and example type (7 files). The catalog's data contract. | Source of truth | Developer |
@@ -53,7 +53,7 @@ taxonomy/ + examples/        source of truth, directly maintained
 ## The site content subfolders (`site/src/content/docs/`)
 
 | Subfolder | Authored or generated | Diataxis role |
-|---|---|---|
+| --- | --- | --- |
 | `concepts/` | Authored (committed) | Explanation (the mental models) |
 | `guides/` | Authored (committed) | How-to and tutorial |
 | `design-standards/` | Authored (committed) | Explanation (house style) |
@@ -66,7 +66,7 @@ taxonomy/ + examples/        source of truth, directly maintained
 Repo-root `docs/` holds governance only, not built by Astro:
 
 | Subfolder | Role |
-|---|---|
+| --- | --- |
 | `docs/internal/` | ADRs, working notes, mockups, strategy docs (maintainer governance) |
 | `docs/superpowers/` | Specs and plans |
 

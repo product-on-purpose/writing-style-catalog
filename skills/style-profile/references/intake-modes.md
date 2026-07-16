@@ -5,7 +5,7 @@ Four ways to reach a candidate stack. All four converge on the same thing: zero-
 Record which mode produced the stack as the profile's `provenance`, using exactly these values:
 
 | Mode | provenance value |
-|------|------------------|
+| ------ | ---------------- |
 | Infer from my writing | `infer-from-writing` |
 | Recognize from examples | `recognize` |
 | Interview | `interview` |
@@ -19,6 +19,7 @@ The user supplies their own writing; you attribute it to the nearest stack. Two 
 - **Pasted text (universal fallback).** The user pastes 1-3 samples into the chat. Use this when there is no filesystem access or no corpus on disk.
 
 How to attribute (v1 - in-session reasoning):
+
 1. Read 1-3 representative samples (a few hundred words total is plenty).
 2. For each axis, pick the entry whose `tells` and description best match what you observe. Read candidate entries from `taxonomy/<axis>/<id>/ENTRY.md`; the `tells` field lists spottable markers.
 3. Output the stack with a one-line rationale per axis tying the choice to a specific observed marker (e.g. "you open by naming a framework before recommending -> senior-consultant").

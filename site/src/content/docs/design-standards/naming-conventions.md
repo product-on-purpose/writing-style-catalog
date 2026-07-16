@@ -34,7 +34,7 @@ The validator runs this pattern check on every entry directory.
 This is the rule most often violated. Entry IDs do not include their axis. The folder structure (`taxonomy/<axis>/<id>/`) already tells you the axis - putting it in the ID is redundant and noisy at cross-reference time.
 
 | Correct | Incorrect |
-|---|---|
+| --- | --- |
 | `taxonomy/voices/pragmatic-architect/` | `taxonomy/voices/voice-pragmatic-architect/` |
 | `taxonomy/tones/candid/` | `taxonomy/tones/tone-candid/` |
 | `taxonomy/formats/adr/` | `taxonomy/formats/format-adr/` |

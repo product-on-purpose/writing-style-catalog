@@ -43,6 +43,7 @@ pytest tests/
 ```
 
 Validation (`python tools/validate.py`) checks:
+
 - Frontmatter completeness against the axis-specific JSON Schema
 - No em-dashes (U+2014) or en-dashes (U+2013) anywhere in content
 - `review_status` is a valid progression value
@@ -107,7 +108,7 @@ PRs that fail schema validation will not be merged.
 Entries move through these states as they are reviewed:
 
 | Status | Meaning |
-|--------|---------|
+| -------- | ------- |
 | `draft` | Initial submission, not yet reviewed |
 | `reviewed` | At least one maintainer review complete |
 | `stable` | Validated against multiple real examples, no open issues |

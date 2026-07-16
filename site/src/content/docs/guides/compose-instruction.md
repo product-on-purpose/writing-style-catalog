@@ -120,7 +120,7 @@ To see all available entries, grouped by axis:
 ## Common Combinations
 
 | Use Case | Suggested Combination |
-|----------|-----------------------|
+| ---------- | --------------------- |
 | Technical decision record | `voice=pragmatic-architect tone=candid style=decision-log format=adr` |
 | Daily async standup | `voice=operator tone=candid style=procedural format=daily-standup` |
 | User-facing feature announcement | `voice=product-thinker tone=celebratory style=chronological-narrative format=announcement` |

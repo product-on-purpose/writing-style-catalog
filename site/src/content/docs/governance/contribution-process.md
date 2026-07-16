@@ -90,7 +90,7 @@ A merged entry starts at `review_status: draft`. This signals that the entry is 
 Entries move through four states:
 
 | State | Meaning | Promotion criteria |
-|-------|---------|--------------------|
+| ------- | --------- | ------------------ |
 | `draft` | Initial submission, in the catalog but unproven | One maintainer review |
 | `reviewed` | Editorially checked, ready for use | Schema valid, examples present, no open issues |
 | `stable` | Validated and curated | Gate 2: the entry renders across all twelve anchor topics (enforced by `tools/validate.py`), plus an explicit maintainer promotion decision |

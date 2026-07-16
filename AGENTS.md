@@ -112,7 +112,7 @@ This is a project-private convention - it is not part of the Claude Code skills 
 ## Paths to Know
 
 | Path | What it contains |
-|------|-----------------|
+| ------ | --------------- |
 | `taxonomy/` | All axis entries |
 | `examples/` | Worked output examples |
 | `schemas/` | JSON Schema definitions for entry types |

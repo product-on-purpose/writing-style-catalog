@@ -156,7 +156,7 @@ Format entries define the visual and structural container: headings, bullet dept
 ## What's in the Catalog
 
 | Axis | Entries | What it controls | Example entries |
-|------|--------:|------------------|-----------------|
+| ------ | --------: | ---------------- | --------------- |
 | **Voice** | 15 | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
 | **Tone** | 15 | Situational register layered on top of voice | `candid`, `warm`, `reverent`, `urgent` |
 | **Style** | 15 | Cognitive and rhetorical pattern: how ideas are sequenced | `problem-solution`, `layered-disclosure`, `socratic-inquiry`, `dialectic` |
@@ -178,7 +178,7 @@ Plus the assets that make the catalog teachable:
 The full catalog is browsable as an [Astro Starlight site](https://product-on-purpose.github.io/writing-style-catalog/). Every entry has its own page with language patterns, when-to-use guidance, cross-references to compatible and confusable neighbors, and its worked examples embedded inline. The catalog pages are generated from `taxonomy/` and `examples/`, so the site never drifts from the source.
 
 | If you want to... | Go to |
-|---|---|
+| --- | --- |
 | Browse every entry by axis | [Reference](https://product-on-purpose.github.io/writing-style-catalog/reference/) |
 | See one axis swapped on a fixed topic | [Diff-pairs](https://product-on-purpose.github.io/writing-style-catalog/examples/diff-pairs/) |
 | Start from a ready-made combination | [Recipes](https://product-on-purpose.github.io/writing-style-catalog/recipes/) |
@@ -192,7 +192,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 ## Project Structure
 
 | Path | Type | Purpose |
-|------|------|---------|
+| ------ | ---- | ------- |
 | `taxonomy/voices/` | Content | Voice entries (persistent writer identity) |
 | `taxonomy/tones/` | Content | Tone entries (situational register modifiers) |
 | `taxonomy/styles/` | Content | Style/mode/genre entries (rhetorical patterns) |

@@ -66,8 +66,9 @@ jobs:
         run: node scripts/validate-plugin-manifest.mjs
 
       - name: Run markdownlint
-        run: markdownlint-cli2 "**/*.md" --ignore node_modules --ignore site/node_modules --ignore _LOCAL --ignore docs/internal
-        continue-on-error: true
+        # Scope and rule config live in .markdownlint-cli2.jsonc at repo root.
+        # examples/ (generated content) and docs/internal/ are excluded there.
+        run: markdownlint-cli2
 
   # PR-time non-deploying site build: closes the build gap (the deploy workflow
   # only runs on push to main). Builds the Astro site (generator + astro build)
