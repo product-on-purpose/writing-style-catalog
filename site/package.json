@@ -4,7 +4,7 @@
   "description": "A composable catalog of writing instructions organized along three axes",
   "private": true,
   "type": "module",
-  "license": "Apache-2.0",
+  "license": "Apache-2.0 AND CC-BY-4.0",
   "engines": {
     "node": ">=22.12.0"
   },
