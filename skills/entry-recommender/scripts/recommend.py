@@ -15,9 +15,11 @@ SKILL.md, using this script's output as its candidate data.
 Usage:
     python recommend.py --situation TEXT [--topic TEXT] [--audience TEXT]
                          [--voice ID] [--tone ID] [--style ID] [--format ID]
-                         [--short-list-size N] [--json]
-    python recommend.py --fetch AXIS ID [--json]
-    python recommend.py --list
+                         [--short-list-size N] [--response-format concise|detailed]
+                         [--pretty] [--debug] [--json]
+    python recommend.py --fetch AXIS ID [--json] [--pretty]
+    python recommend.py --fetch-many AXIS ID [ID ...] [--json] [--pretty]
+    python recommend.py --list [--json] [--pretty]
 """
 import argparse
 import importlib.util
@@ -407,10 +409,38 @@ def recommend(
     fixed: dict | None = None,
     short_list_size: int = DEFAULT_SHORT_LIST_SIZE,
     threshold: float = DEFAULT_RELEVANCE_THRESHOLD,
+    response_format: str = "concise",
+    debug: bool = False,
 ) -> dict:
     """Build the per-axis ranked lists and short lists. `fixed` is a dict of
     axis -> entry_id for any axis the caller already fixed (Phase 4) - a fixed
-    axis is validated against the stable pool and never scored."""
+    axis is validated against the stable pool and never scored.
+
+    response_format controls the output contract:
+    - "concise" (default): tiered short_list. The first `short_list_size`
+      above_threshold rows (read tier) carry full fields
+      (when_to_use/tells/when_not_to_use). All other rows are lean
+      (id/score/distinct_matches/above_threshold/one_liner/matched_tokens
+      plus "fields": "fetch") - this covers BOTH qualifying candidates beyond
+      short_list_size (triage tier) AND non-qualifying padding rows. A lean
+      row must be fetched via --fetch-many before a pick can be made from it
+      (qualifying triage rows); non-qualifying padding rows are not pick
+      candidates. full_ranked is omitted unless debug=True.
+    - "detailed": legacy behavior - full fields for all short_list entries,
+      full_ranked always present. Use when you want everything inline.
+
+    Floor case (0 qualifying candidates): every short_list row is lean; no
+    full-field loading occurs. Payload collapses to roughly the K=0 figure.
+    Typical case (qualifying <= short_list_size): qualifying rows get full
+    fields; non-qualifying padding rows are lean (the B-1 fix).
+    High-qualifying case (qualifying > short_list_size): first short_list_size
+    qualifying rows are full (read tier); remaining qualifying rows are lean
+    (triage tier); no padding rows exist.
+
+    C1 guarantee holds in both modes: every above_threshold candidate appears
+    somewhere in short_list (read tier or lean triage). No qualifying candidate
+    is ever hidden from the caller.
+    """
     fixed = fixed or {}
     situation_tokens = _situation_tokens(situation, topic, audience)
     all_entries = load_all_stable_entries()
@@ -432,52 +462,153 @@ def recommend(
             continue
 
         ranked = build_ranked_list(axis, situation_tokens, all_entries, idf_table, threshold)
-        short_list_entries = _select_short_list(ranked, short_list_size)
-        short_list_ids = {r["id"] for r in short_list_entries}
-        short_list = []
-        for r in short_list_entries:
-            entry = load_full_entry(axis, r["id"])
-            short_list.append(
-                {
-                    **r,
-                    "when_to_use": (entry or {}).get("when_to_use", []),
-                    "tells": (entry or {}).get("tells", []),
-                    # A required universal field, same as when_to_use - an
-                    # adversarial review found it was never surfaced, so a
-                    # candidate could score well on positive language while
-                    # its own when_not_to_use explicitly disqualifies the
-                    # situation, with Step 2's read never seeing the
-                    # contradiction because the field was not even in this
-                    # payload. Deliberately not folded into the score itself
-                    # (a negative-overlap penalty risks the same polysemy
-                    # false-positive/negative class already found and fixed
-                    # for the positive fields) - this is a Step 2 read-based
-                    # check, the same division of labor as everywhere else.
-                    "when_not_to_use": (entry or {}).get("when_not_to_use", []),
-                }
-            )
-        axes_out[axis] = {
-            "fixed": None,
-            "candidate_count": len(ranked),
-            "short_list": short_list,
-            # Full ranked list, id+score+matched_tokens (cheap - no full field
-            # text) - Phase 5's widened search walks this past the short
-            # list's cutoff with no re-scoring. matched_tokens is included so
-            # a widened-search candidate's relevance can be sanity-checked
-            # before fetching its full fields: a candidate whose only match is
-            # a single generic-feeling word is a signal to look closer (or
-            # skip it) even before Step 2's read-based check runs on it.
-            "full_ranked": [
-                {
-                    "id": r["id"],
-                    "score": r["score"],
-                    "above_threshold": r["above_threshold"],
-                    "matched_tokens": r["matched_tokens"],
-                }
-                for r in ranked
-                if r["id"] not in short_list_ids
-            ],
-        }
+        all_short_list_entries = _select_short_list(ranked, short_list_size)
+
+        if response_format == "detailed":
+            # Legacy behavior: full fields for every short_list entry.
+            short_list_ids = {r["id"] for r in all_short_list_entries}
+            short_list = []
+            for r in all_short_list_entries:
+                entry = load_full_entry(axis, r["id"])
+                short_list.append(
+                    {
+                        **r,
+                        "when_to_use": (entry or {}).get("when_to_use", []),
+                        "tells": (entry or {}).get("tells", []),
+                        # A required universal field, same as when_to_use - an
+                        # adversarial review found it was never surfaced, so a
+                        # candidate could score well on positive language while
+                        # its own when_not_to_use explicitly disqualifies the
+                        # situation, with Step 2's read never seeing the
+                        # contradiction because the field was not even in this
+                        # payload. Deliberately not folded into the score itself
+                        # (a negative-overlap penalty risks the same polysemy
+                        # false-positive/negative class already found and fixed
+                        # for the positive fields) - this is a Step 2 read-based
+                        # check, the same division of labor as everywhere else.
+                        "when_not_to_use": (entry or {}).get("when_not_to_use", []),
+                    }
+                )
+            axes_out[axis] = {
+                "fixed": None,
+                "candidate_count": len(ranked),
+                "short_list": short_list,
+                # Full ranked list, id+score+matched_tokens (cheap - no full field
+                # text) - Phase 5's widened search walks this past the short
+                # list's cutoff with no re-scoring. matched_tokens is included so
+                # a widened-search candidate's relevance can be sanity-checked
+                # before fetching its full fields: a candidate whose only match is
+                # a single generic-feeling word is a signal to look closer (or
+                # skip it) even before Step 2's read-based check runs on it.
+                "full_ranked": [
+                    {
+                        "id": r["id"],
+                        "score": r["score"],
+                        "above_threshold": r["above_threshold"],
+                        "matched_tokens": r["matched_tokens"],
+                    }
+                    for r in ranked
+                    if r["id"] not in short_list_ids
+                ],
+            }
+        else:
+            # Concise mode (default): tiered short_list.
+            # Full fields go ONLY to the first short_list_size qualifying
+            # candidates (read tier). Every other row is lean, carrying
+            # "fields": "fetch" and physically lacking when_to_use/tells/
+            # when_not_to_use. "Every other row" covers two distinct groups:
+            #
+            # (a) Qualifying candidates beyond short_list_size (triage tier):
+            #     above_threshold True, must be fetched before picking.
+            # (b) Non-qualifying padding rows: above_threshold False, added
+            #     by _select_short_list only when qualifying < short_list_size.
+            #     These are near-miss context, not pick candidates; no fetch
+            #     is needed unless citing one in an AC-7 justification.
+            #
+            # Triage and padding are mutually exclusive: padding appears only
+            # when qualifying < short_list_size, which means no triage exists.
+            #
+            # Consequences:
+            #   Floor case (0 qualifying): all rows are padding -> all lean ->
+            #     payload collapses to roughly the K=0 figure (no full-field
+            #     loading at all, regardless of short_list_size).
+            #   Typical case (qualifying <= short_list_size): qualifying rows
+            #     get full fields; padding rows are lean (B-1 fix).
+            #   High-qualifying case (qualifying > short_list_size): first K
+            #     qualifying rows are full (read tier); remaining qualifying
+            #     rows are lean triage; no padding rows.
+            qualifying_sl = [r for r in all_short_list_entries if r["above_threshold"]]
+            non_qualifying_sl = [r for r in all_short_list_entries if not r["above_threshold"]]
+            read_tier = qualifying_sl[:short_list_size]
+            lean_triage = qualifying_sl[short_list_size:]
+            lean_padding = non_qualifying_sl
+
+            short_list = []
+            for r in read_tier:
+                entry = load_full_entry(axis, r["id"])
+                short_list.append(
+                    {
+                        **r,
+                        "when_to_use": (entry or {}).get("when_to_use", []),
+                        "tells": (entry or {}).get("tells", []),
+                        "when_not_to_use": (entry or {}).get("when_not_to_use", []),
+                    }
+                )
+            for r in lean_triage:
+                # Lean row (triage): qualifying candidate beyond the read tier.
+                # "fields": "fetch" sentinel - must fetch full fields before
+                # picking; never pick from a lean row without reading it first.
+                short_list.append(
+                    {
+                        "id": r["id"],
+                        "score": r["score"],
+                        "distinct_matches": r["distinct_matches"],
+                        "above_threshold": r["above_threshold"],
+                        "one_liner": r["one_liner"],
+                        "matched_tokens": r["matched_tokens"],
+                        "fields": "fetch",
+                    }
+                )
+            for r in lean_padding:
+                # Lean row (padding): non-qualifying candidate, near-miss context
+                # only (not a pick candidate). Cite in an AC-7 justification only
+                # after fetching - "fields": "fetch" means its own language is not
+                # available inline and quoting it requires a --fetch-many call.
+                short_list.append(
+                    {
+                        "id": r["id"],
+                        "score": r["score"],
+                        "distinct_matches": r["distinct_matches"],
+                        "above_threshold": r["above_threshold"],
+                        "one_liner": r["one_liner"],
+                        "matched_tokens": r["matched_tokens"],
+                        "fields": "fetch",
+                    }
+                )
+
+            axis_data: dict = {
+                "fixed": None,
+                "candidate_count": len(ranked),
+                "short_list": short_list,
+            }
+            if debug:
+                # full_ranked is only included in debug mode. In normal concise
+                # operation it is not needed: every qualifying candidate is already
+                # in short_list (read or triage tier), so full_ranked would be
+                # exclusively non-qualifying entries with no additional signal for
+                # the Step 2 workflow. --debug is for humans diagnosing scores.
+                short_list_ids = {r["id"] for r in all_short_list_entries}
+                axis_data["full_ranked"] = [
+                    {
+                        "id": r["id"],
+                        "score": r["score"],
+                        "above_threshold": r["above_threshold"],
+                        "matched_tokens": r["matched_tokens"],
+                    }
+                    for r in ranked
+                    if r["id"] not in short_list_ids
+                ]
+            axes_out[axis] = axis_data
 
     return {
         "situation_tokens": sorted(situation_tokens),
@@ -488,7 +619,7 @@ def recommend(
     }
 
 
-def fetch_one(axis: str, entry_id: str) -> dict:
+def fetch_one(axis: str, entry_id: str, _stable_ids=None) -> dict:
     """Full field content for exactly one candidate - used when Phase 5's
     widened search selects a candidate beyond the short list and needs its
     when_to_use/tells for a real Phase 3 Step 2 justification, without paying
@@ -510,10 +641,17 @@ def fetch_one(axis: str, entry_id: str) -> dict:
     membership first closes this - load_stable_ids only ever contains real
     directory names this process already enumerated itself via
     build_instruction.list_entries, never a caller-supplied string, so a
-    path is only ever built from a name already known to be safe."""
+    path is only ever built from a name already known to be safe.
+
+    `_stable_ids` is an internal-only parameter for callers (i.e. fetch_many)
+    that have already hoisted the whitelist computation to avoid an O(N x M)
+    re-scan per id. When provided, it is used directly; when None (the default
+    for all external callers), load_stable_ids(axis) is called here as normal.
+    The gate logic is single-sourced here regardless of which path is taken."""
     if axis not in AXES:
         return {"found": False, "error": f"unknown axis: {axis}"}
-    if entry_id not in load_stable_ids(axis):
+    stable_ids = _stable_ids if _stable_ids is not None else load_stable_ids(axis)
+    if entry_id not in stable_ids:
         return {
             "found": False,
             "id": entry_id,
@@ -546,6 +684,34 @@ def fetch_one(axis: str, entry_id: str) -> dict:
         # have a value on this entry.
         "facets": facets,
     }
+
+
+def fetch_many(axis: str, ids: list[str]) -> list[dict]:
+    """Full field content for multiple candidates in one call, returned as a
+    list in the same order as `ids`. Each id passes through the exact same
+    stable-membership gate as fetch_one: a list-derived whitelist check that
+    the id is a real stable/reference-quality catalog entry, with no path
+    construction from caller strings.
+
+    Implemented as a loop over fetch_one (not a reimplementation of its gate)
+    to guarantee identical gate behavior per id. The history here is load-
+    bearing: two path-traversal bugs were found and fixed in the original
+    hardening of fetch_one. This function inherits all of those fixes
+    automatically by delegating, rather than by copying and possibly
+    drifting from the hardened version.
+
+    The whitelist (load_stable_ids result) is hoisted once and passed into
+    each fetch_one call via `_stable_ids` to avoid an O(N x axis-size)
+    re-scan. For an unknown axis, `_stable_ids` is None and fetch_one handles
+    it via its own axis-not-in-AXES guard, same as a direct fetch_one call.
+    The gate logic is single-sourced in fetch_one regardless.
+
+    C6 (security): ids placed into --fetch-many originate only from this
+    script's own JSON output (short_list entries carrying "fields": "fetch");
+    the ephemeral-input mechanism is untouched. Never pass caller-supplied
+    strings from outside the script's own output."""
+    stable_ids = load_stable_ids(axis) if axis in AXES else None
+    return [fetch_one(axis, entry_id, _stable_ids=stable_ids) for entry_id in ids]
 
 
 def list_stable() -> dict[str, list[str]]:
@@ -685,18 +851,69 @@ def main():
     )
     parser.add_argument("--threshold", type=float, default=DEFAULT_RELEVANCE_THRESHOLD)
     parser.add_argument("--fetch", nargs=2, metavar=("AXIS", "ID"), help="Fetch one candidate's full fields")
+    parser.add_argument(
+        "--fetch-many",
+        nargs="+",
+        metavar="AXIS_OR_ID",
+        help=(
+            "Fetch multiple candidates' full fields in one call: "
+            "--fetch-many AXIS ID [ID ...]. Each id passes through the same "
+            "stable-membership gate as --fetch (list-derived whitelist, no path "
+            "construction from caller strings). Returns a JSON array with one "
+            "result per id, in the order given. Use for triage-tier lean rows "
+            "(those with \"fields\": \"fetch\") when one_liner or matched_tokens "
+            "suggest a candidate may be competitive with the read tier."
+        ),
+    )
     parser.add_argument("--list", action="store_true", help="List all stable/reference-quality ids per axis")
-    parser.add_argument("--json", dest="output_json", action="store_true", help="Output as JSON")
+    parser.add_argument(
+        "--response-format",
+        choices=["concise", "detailed"],
+        default="concise",
+        help=(
+            "Output contract for the recommend path. "
+            "\"concise\" (default): tiered short_list - read tier (first "
+            "short_list_size above_threshold rows) carries full "
+            "when_to_use/tells/when_not_to_use; all other rows are lean "
+            "(qualifying triage rows AND non-qualifying padding rows) and carry "
+            "\\\"fields\\\": \\\"fetch\\\" marker; full_ranked omitted unless --debug. "
+            "\"detailed\": legacy full-fields-for-all-short_list-entries behavior, "
+            "full_ranked always emitted."
+        ),
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help=(
+            "Include full_ranked in the output (omitted by default in concise mode). "
+            "full_ranked contains only non-qualifying entries in concise mode, since "
+            "every qualifying candidate is already in short_list. Use for diagnosing "
+            "scores, not as part of the documented Step 2 workflow."
+        ),
+    )
+    parser.add_argument(
+        "--pretty",
+        action="store_true",
+        help="Pretty-print JSON output with indent=2. Default is compact JSON (no whitespace). The model never needed the whitespace; this flag is for human inspection.",
+    )
+    parser.add_argument("--json", dest="output_json", action="store_true", help="Output as JSON (for --list and --fetch; the recommend path always outputs JSON)")
 
     args = parser.parse_args()
 
     if args.short_list_size < 0:
         parser.error("--short-list-size must be a non-negative integer")
 
+    # Fail loudly on mutually exclusive flag combinations rather than silently
+    # dropping one of the requested operations (A-6 "fail loudly" principle).
+    if args.fetch and args.fetch_many:
+        parser.error("--fetch and --fetch-many are mutually exclusive; use one or the other")
+
+    indent = 2 if args.pretty else None
+
     if args.list:
         result = list_stable()
         if args.output_json:
-            print(json.dumps(result, indent=2))
+            print(json.dumps(result, indent=indent))
         else:
             for axis, ids in result.items():
                 print(f"\n{axis.upper()} ({len(ids)})")
@@ -707,7 +924,19 @@ def main():
     if args.fetch:
         axis, entry_id = args.fetch
         result = fetch_one(axis, entry_id)
-        print(json.dumps(result, indent=2) if args.output_json else result)
+        # Always emit JSON: --fetch output is a structured dict. Previously this
+        # required --json; without it, print(result) emitted Python repr (not
+        # valid JSON). Made consistent with --fetch-many which always emits JSON.
+        print(json.dumps(result, indent=indent))
+        return
+
+    if args.fetch_many:
+        if len(args.fetch_many) < 2:
+            parser.error("--fetch-many requires an axis followed by at least one id: --fetch-many AXIS ID [ID ...]")
+        axis = args.fetch_many[0]
+        ids = args.fetch_many[1:]
+        results = fetch_many(axis, ids)
+        print(json.dumps(results, indent=indent))
         return
 
     if args.stdin or args.input_file or args.ephemeral_input_file:
@@ -751,6 +980,7 @@ def main():
         }
         short_list_size = payload.get("short_list_size", DEFAULT_SHORT_LIST_SIZE)
         threshold = payload.get("threshold", DEFAULT_RELEVANCE_THRESHOLD)
+        response_format = payload.get("response_format", args.response_format)
         # The CLI path validates these (see the --short-list-size check
         # below); an adversarial review found the JSON-payload path did not,
         # so a malformed payload (a string where an int/float belongs)
@@ -767,6 +997,8 @@ def main():
             threshold = float(threshold)
         except (TypeError, ValueError):
             parser.error(f"payload threshold must be a number, got: {threshold!r}")
+        if response_format not in ("concise", "detailed"):
+            parser.error(f"payload response_format must be 'concise' or 'detailed', got: {response_format!r}")
     else:
         situation = args.situation
         topic = args.topic
@@ -782,9 +1014,21 @@ def main():
             fixed["format"] = args.fmt
         short_list_size = args.short_list_size
         threshold = args.threshold
+        response_format = args.response_format
 
     if not situation:
         parser.error("situation is required (the \"situation\" key via --ephemeral-input-file, --input-file, or --stdin, or --situation) unless --list or --fetch is used")
+
+    # Fail loudly: --debug is a silent no-op in detailed mode because full_ranked
+    # is always included there regardless. Reject the combination rather than
+    # silently ignoring the flag.
+    if args.debug and response_format == "detailed":
+        parser.error(
+            "--debug has no effect with --response-format detailed: "
+            "full_ranked is always included in detailed mode. "
+            "Omit --debug, or switch to --response-format concise where "
+            "--debug adds full_ranked to the otherwise-omitted remainder."
+        )
 
     result = recommend(
         situation=situation,
@@ -793,8 +1037,10 @@ def main():
         fixed=fixed,
         short_list_size=short_list_size,
         threshold=threshold,
+        response_format=response_format,
+        debug=args.debug,
     )
-    print(json.dumps(result, indent=2))  # structured output is this tool's only real output shape
+    print(json.dumps(result, indent=indent))
 
 
 if __name__ == "__main__":

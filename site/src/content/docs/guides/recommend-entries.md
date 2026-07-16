@@ -5,7 +5,9 @@ description: Describe a writing situation and get a voice/tone/style/format reco
 
 `writing-instruction-builder` composes a prompt from axis values you already know you want. `entry-recommender` is for when you do not know them yet - you describe the situation, and the skill scores the stable catalog against it, reads the strongest candidates, picks one per axis with a reason quoting the entry's own language, and composes the final prompt.
 
-This guide walks through what you get back, with real example output. For the mechanics of composition itself, see [Compose an Instruction](../compose-instruction/).
+This guide walks through what you get back, with real example output verified against v0.2.0. For the mechanics of composition itself, see [Compose an Instruction](../compose-instruction/).
+
+**How the candidate list works:** The scorer returns every qualifying candidate per axis in a tiered `short_list`. The first 6 candidates that are `above_threshold` (read tier) arrive with their full field text so the skill can read and pick from them immediately. All other rows are lean - they carry a `"fields": "fetch"` marker and omit the full text. Two kinds of lean rows appear: qualifying candidates beyond the first 6 (lean triage, `above_threshold: true`), which the skill fetches before picking; and non-qualifying near-misses (lean padding, `above_threshold: false`), which are context only and are not pick candidates. The format axis routinely produces 20-30+ qualifying candidates on real situations; the tiered structure keeps the payload compact without hiding any qualifying option from consideration. The floor case - a situation with zero qualifying candidates on an axis - collapses to lean-only rows with no full-text loading.
 
 ---
 

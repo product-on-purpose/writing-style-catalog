@@ -10,7 +10,7 @@
     "skills": [
       { "name": "writing-instruction-builder", "path": "skills/writing-instruction-builder/SKILL.md", "version": "0.3.0", "tier": "universal", "status": "active" },
       { "name": "style-profile", "path": "skills/style-profile/SKILL.md", "version": "0.1.0", "tier": "universal", "status": "active" },
-      { "name": "entry-recommender", "path": "skills/entry-recommender/SKILL.md", "version": "0.1.0", "tier": "universal", "status": "active" }
+      { "name": "entry-recommender", "path": "skills/entry-recommender/SKILL.md", "version": "0.2.0", "tier": "universal", "status": "active" }
     ]
   },
   "repository": "https://github.com/product-on-purpose/writing-style-catalog",
