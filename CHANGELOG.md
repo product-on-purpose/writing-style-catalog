@@ -38,6 +38,18 @@ pinning, and a sweep of documentation drift. No catalog content changed.
 - `writing-instruction-builder` skill version 0.2.0 -> 0.3.0, recording the `--json`
   compose mode and the `load_entry` path-containment hardening that shipped with plugin
   v0.6.0 while the component version stayed still.
+- `entry-recommender` skill version 0.1.0 -> 0.2.0: the payload it returns is now tiered.
+  Every invocation previously emitted full `when_to_use`/`tells`/`when_not_to_use` text
+  for every qualifying candidate, which on a real situation meant 106,847 bytes (roughly
+  27,000 tokens) in a single response, past the documented tool-response cap. Full text
+  now loads only for candidates that clear the relevance threshold, capped at
+  `short_list_size`; every other row is lean and carries a `"fields": "fetch"` marker.
+  The same situation now costs 32,370 bytes, and a situation where nothing qualifies
+  costs 8,667 rather than 36,302 - it was previously paying full price for near-misses
+  nobody asked about. Nothing is hidden: every above-threshold candidate is still present
+  and eligible, which the tests now enforce. The read-before-pick rule is stronger than
+  before rather than weaker, because a lean row physically lacks the fields a
+  justification has to quote. `--response-format detailed` restores the old behavior.
 - `writing-instruction-builder/SKILL.md` now carries a safety note for `topic`/`audience`:
   shell-quote them, and never pass externally-sourced text through the bare flags.
 - Composer "Entry not found" errors now teach recovery: they name `--list` and detect
@@ -46,7 +58,28 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   directory is missing entirely, instead of silently reporting an empty axis.
 - `recommend.py` guards its importlib interface to the composer: a missing symbol now
   fails at startup with a version-sync message instead of a mid-run AttributeError.
-- markdownlint-cli2 pinned to 0.23.0 in CI (was an unpinned latest install).
+- The `readme` and `technical-reference` format entries wrap a canonical template in a
+  code fence, but the templates themselves contain code fences, so the outer block closed
+  early and the template rendered on the site as several fragments with prose escaping
+  between them. The outer fences are now four-backtick.
+- The four `tools/agentic/` scripts hardcoded the maintainer's absolute checkout path as
+  ROOT and injected it into agent prompts, naming a directory that exists on one machine.
+  ROOT is now derived from the script's own location.
+- markdownlint-cli2 pinned to 0.23.0 in CI (was an unpinned latest install), and the
+  markdown gate now blocks instead of advising. It had no configuration at all, so it
+  ran stock defaults and reported 25,261 errors across 1,552 files, 78 percent of them
+  the default 80-column line limit that this repository's prose violates by design.
+  `.markdownlint-cli2.jsonc` now records which rules this project actually holds itself
+  to, and why, in the file itself. Baseline is 156 files and 0 errors.
+- The `license` field in `library.json`, `.claude-plugin/plugin.json`, and
+  `site/package.json` is now the SPDX expression `Apache-2.0 AND CC-BY-4.0`. It declared
+  `Apache-2.0` alone, which understated the dual license ADR 0003 ratified and left the
+  content license invisible to any tool reading the manifest.
+- CODE_OF_CONDUCT.md names a reporting channel. It asked people to report to "the
+  project maintainers" and then gave no address, form, or link, which left a reporter
+  with nowhere to go. It now routes to GitHub's abuse reporting, warns against reporting
+  in a public issue, and states plainly that a single-maintainer project has no
+  impartial internal route for a concern about the maintainer.
 
 ### Added
 
@@ -72,10 +105,17 @@ pinning, and a sweep of documentation drift. No catalog content changed.
 - A local pre-commit hook running the plugin-manifest validator; the dash hook now
   covers the same file types as the CI check instead of markdown only.
 - `LICENSE-CC-BY-4.0`: the full content-license text, staged into the release ZIP
-  next to LICENSE and NOTICE. The manifests' `license` field is unchanged pending a
-  decision on SPDX dual expressions.
+  next to LICENSE and NOTICE.
 - ZIP-path verification steps in the install guide and QUICKSTART (the previous
   "verify it loaded" check only worked in Claude Code).
+- AGENTS.md documents the `metadata: version:` frontmatter convention. It is not part of
+  the Claude Code skills specification, but it is not inert either: the manifest
+  validator fails the build when it drifts from the skill's version in `library.json`.
+- `entry-recommender`: `--fetch-many AXIS ID [ID ...]` retrieves full text for any number
+  of lean candidates in one call, through the same stable-membership gate as `--fetch`;
+  `--debug` restores `full_ranked`, which is otherwise no longer emitted (it was returned
+  on every call while SKILL.md declared it debug-only); `--pretty` opts into indented
+  JSON, which the model never needed.
 
 ### Security
 
@@ -84,7 +124,10 @@ pinning, and a sweep of documentation drift. No catalog content changed.
 - `validate.yml` now declares least-privilege `permissions: contents: read`; it was the
   only workflow inheriting the repository default.
 - SECURITY.md routes reports through GitHub private vulnerability reporting instead of an
-  email instruction that listed no address.
+  email instruction that listed no address. That reporting channel is now actually
+  enabled on the repository: the policy had been advertising a form that was switched
+  off, so the documented link led nowhere. Secret scanning, push protection, and
+  Dependabot security updates are enabled alongside it.
 - `npm audit fix` in site/ cleared the vite server.fs.deny bypass, launch-editor NTLM
   hash disclosure, Astro SSRF, and DOMPurify advisories (a lockfile-only change,
   verified by a full site build plus the link checks). One low-severity esbuild
