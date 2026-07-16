@@ -1,6 +1,7 @@
 ---
 name: writing-instruction-builder
-description: Compose a writing instruction from voice, tone, style, and format axis entries. Use when you need a precise writing instruction for a specific combination of voice, tone, style, and format. Returns a ready-to-use LLM prompt string.
+description: Compose a writing instruction from voice, tone, style, and format entries you have already chosen. Returns a ready-to-paste LLM prompt prefix.
+when_to_use: Use when the user names specific catalog entry ids, or has already picked them in this session. If the user describes a writing situation but does not know which entries fit, use entry-recommender instead; if they want to save or reuse a personal default style, use style-profile.
 metadata:
   version: "0.3.0"
 ---
