@@ -138,7 +138,7 @@ Technical reference is distinct from tutorials and how-to guides. A tutorial wal
 
 ### Canonical template
 
-```
+````
 # [Component / Function / Concept Name]
 
 [One sentence: what this is and what it does. No background.]
@@ -167,7 +167,7 @@ Technical reference is distinct from tutorials and how-to guides. A tutorial wal
 
 ## See Also
 - [Related component or concept] - [link or cross-reference]
-```
+````
 
 ### When to use
 

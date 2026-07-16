@@ -126,7 +126,7 @@ A README is the landing page of a software project. It is read by people who hav
 
 ### Canonical template
 
-```
+````
 # Project Name
 
 [badges: build status, version, license, downloads]
@@ -160,7 +160,7 @@ See CONTRIBUTING.md.
 ## License
 
 [License name]
-```
+````
 
 ### When to use
 
