@@ -7,9 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-A hardening batch driven by a six-dimension repository audit (2026-07-10): install-path
-correctness for all three skills, CI enforcement of the existing test suites, supply-chain
-pinning, and a sweep of documentation drift. No catalog content changed.
+## [0.7.0] - 2026-07-16
+
+The audit release. A six-dimension repository audit (2026-07-10) produced 45 findings; 41
+are closed here, including every confirmed high-severity one.
+
+The headline is the `entry-recommender` payload. It returned full field text for every
+qualifying candidate on every call, which on a real situation meant 106,847 bytes, roughly
+27,000 tokens, in a single response - past the tool-response cap the skill has to fit
+inside. Its own documented headline example was unusable as written. Full text now loads
+only for candidates that clear the relevance bar, and a situation where nothing qualifies
+no longer pays full price for near-misses nobody asked about.
+
+Around that: the three skills' documented commands now work in marketplace and ZIP
+installs rather than only in a repo checkout; where a profile may be written is enforced
+by code instead of by instructions an LLM was asked to follow; the test suites that
+existed but never ran now run in CI, and the suite grew from 111 to 178 tests; the dual
+license ADR 0003 ratified is finally declared to machines; and the code of conduct names
+a reporting channel instead of asking people to contact "the project maintainers" and
+then telling them nothing.
+
+No catalog entries were added, removed, or re-scored. Two format entries had broken
+canonical-template code fences repaired.
 
 ### Fixed
 
