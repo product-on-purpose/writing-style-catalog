@@ -36,13 +36,16 @@
 //   strings or backtick template literals. YAML-style '' doubling inside a single-
 //   quoted JS string is a parse error.
 
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
 export const meta = {
   name: 'agentic-generate',
   description: 'Generate N draft candidate FORMAT entries, each read-its-neighbor gated, mirroring the adr template',
   phases: [{ title: 'Generate', detail: 'one agent per candidate writes a schema-valid draft ENTRY.md' }],
 }
 
-const ROOT = 'E:/Projects/product-on-purpose/writing-style-catalog'
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 // EDIT THIS: each candidate is pre-validated (all cross-ref ids must already exist).
 // `concept` should embed the key contrast with the confusable neighbor.
