@@ -96,6 +96,19 @@ Do not modify any file in `schemas/` without also updating every existing taxono
 
 ---
 
+## Skill Frontmatter Convention
+
+Each `skills/*/SKILL.md` includes a `metadata: version:` block in its YAML frontmatter:
+
+```yaml
+metadata:
+  version: "0.3.0"
+```
+
+This is a project-private convention - it is not part of the Claude Code skills specification. The value must be a SemVer `X.Y.Z` string and must match the `version` field for that skill in `library.json` under `components.skills`. The validator at `scripts/validate-plugin-manifest.mjs` enforces this agreement: it will fail if the SKILL.md version and the library.json version drift. When bumping a skill version, update both `SKILL.md` and `library.json` in the same commit.
+
+---
+
 ## Paths to Know
 
 | Path | What it contains |
