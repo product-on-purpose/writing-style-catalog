@@ -75,6 +75,16 @@ pinning, and a sweep of documentation drift. No catalog content changed.
   `site/package.json` is now the SPDX expression `Apache-2.0 AND CC-BY-4.0`. It declared
   `Apache-2.0` alone, which understated the dual license ADR 0003 ratified and left the
   content license invisible to any tool reading the manifest.
+- `style-profile` skill version 0.1.0 -> 0.2.0: where a profile may be written is now
+  enforced by code rather than by instructions. The task-key format check and the
+  path-containment check were prose in SKILL.md asking the model to verify them itself,
+  and they were bypassable: a task key of `../../.gitconfig` resolved outside the
+  profiles directory, and `/etc/passwd` resolved outside the project entirely, both
+  confirmed against the shipped code. `scripts/validate-profile-path.py` now decides,
+  and SKILL.md calls it before any write. Two independent layers: a strict key format
+  (blocking separators, dots, null bytes, drive letters, UNC prefixes, homoglyphs, and
+  case) and a containment check on the resolved path, so neutering either one still
+  leaves the other standing.
 - All three skills now split their frontmatter into `description` (what the skill does)
   and `when_to_use` (when to reach for it). The platform appends the two and reads both
   when selecting a skill, so trigger phrasing belonged in the second field and had been
