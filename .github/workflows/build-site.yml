@@ -24,7 +24,7 @@ jobs:
       - run: pip install -r requirements-dev.txt
       - name: Validate catalog
         run: python tools/validate.py
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         with: { node-version-file: .nvmrc }
       - name: Install site deps
         working-directory: site
