@@ -30,13 +30,16 @@
 //   3. Apply fixes via remediate.js; re-run a focused cross-vendor check on the
 //      medium/high pairs to confirm RESOLVED (gate -> remediate -> re-gate).
 
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
 export const meta = {
   name: 'agentic-dedup-audit',
   description: 'Whole-corpus de-dup + quality audit, one auditor per family cluster',
   phases: [{ title: 'Audit', detail: 'one auditor per family-cluster flags thin distinctions + quality issues' }],
 }
 
-const ROOT = 'E:/Projects/product-on-purpose/writing-style-catalog'
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 // EDIT THIS: regenerate from the current family map. Each group is one or more
 // family clusters; members carry (S)=stable / (D)=draft.

@@ -28,13 +28,16 @@
 //   2. Invoke with the Workflow tool.
 //   3. validate.py + build (+ re-gate genuine findings) + PR.
 
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
 export const meta = {
   name: 'agentic-remediate',
   description: 'Apply a list of precise per-file corrections, one agent per file',
   phases: [{ title: 'Remediate', detail: 'one agent per fix applies a precise edit' }],
 }
 
-const ROOT = 'E:/Projects/product-on-purpose/writing-style-catalog'
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 // EDIT THIS: one entry per file (or per reciprocal pair). `instruction` should quote
 // the exact text to change and state the exact replacement.

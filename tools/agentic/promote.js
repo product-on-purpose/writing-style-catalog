@@ -34,13 +34,16 @@
 //   if the pool changes. Prose passed into agent prompts must avoid YAML-style ''
 //   apostrophe doubling - that is a JS parse error inside a single-quoted string.
 
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve } from 'node:path'
+
 export const meta = {
   name: 'agentic-render',
   description: 'Render N formats across all 12 anchor topics (12*N worked samples), reusing each topic shared scenario',
   phases: [{ title: 'Render', detail: 'one agent per (format, topic) cell writes a scenario-consistent sample' }],
 }
 
-const ROOT = 'E:/Projects/product-on-purpose/writing-style-catalog'
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 // EDIT THIS: the draft format ids to render (then promote).
 const FORMATS = ['example-format-id']
