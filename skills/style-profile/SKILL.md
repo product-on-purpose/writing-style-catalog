@@ -3,7 +3,7 @@ name: style-profile
 description: Guide a user to a personal writing-style profile - a saved selection across the catalog's Voice, Tone, Style, and Format axes - and prove it sounds like them with a generated sample before saving. Offers four intake modes (infer from your writing, recognize from examples, interview, or fill a template), confirms with an A/B sample, and saves a reusable profile to local user state.
 when_to_use: Use when a user wants to set, capture, reuse, or load their own default writing style, or says "set up my writing style", "capture my voice", "create a style profile", "what's my house style", "use my style profile", or wants a reusable style. For a one-off situation recommendation, use entry-recommender; for composing from ids the user already knows, use writing-instruction-builder.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Style Profile
@@ -54,11 +54,18 @@ python "${CLAUDE_SKILL_DIR}/../writing-instruction-builder/scripts/build-instruc
 
 **Step 6 - Save the profile.** Only after the user explicitly confirms. Do these in order:
 
-1. **task_key:** default `default`. It MUST match `^[a-z0-9][a-z0-9-]{0,63}$` (a bare slug - no slashes, dots, or `..`). Reject anything else and ask for a valid key.
+1. **task_key:** default `default`. It MUST match `^[a-z0-9][a-z0-9-]{0,63}$` (a bare slug - no slashes, dots, or `..`). Reject anything else and ask for a valid key. Then run the path validator to enforce this in code before any write (this is the authoritative check - do not self-assess the path):
+
+   ```bash
+   python "${CLAUDE_SKILL_DIR}/scripts/validate-profile-path.py" --profiles-dir .claude/writing-style-catalog/profiles --task-key <task_key>
+   ```
+
+   If it exits non-zero, stop and report the error to the user. If it exits 0, use the path it prints to stdout as the profile path for all subsequent steps. Do not construct the path yourself; use exactly what the script printed.
+
 2. **owner:** use `git config user.name` and disclose it ("saving as owner: <name>"), or ask; `null` is acceptable if the user prefers not to record one.
 3. **Re-validate the final stack:** check every non-null id against `--list` and recompose the final prefix with `build-instruction.py`. If any id fails, fix it or halt.
 4. **Ensure the store is ignored, before writing:** run `git check-ignore .claude/writing-style-catalog/`. If it is NOT ignored, append `.claude/writing-style-catalog/` to `.gitignore` (this is the only write allowed outside the profile file), then re-run `git check-ignore` to confirm. Also confirm the profile path is not tracked: `git ls-files --error-unmatch <path>` should fail.
-5. **Assert the path is in-bounds:** resolve the absolute profile path and confirm it is inside `.claude/writing-style-catalog/profiles/` and ends with `.local.md`. If not, stop.
+5. **Path already validated by the script in step 1.** Use the path the script printed; do not reconstruct a separate path. If you did not capture the script's stdout, re-run step 1 rather than guessing.
 6. **Do not clobber:** if the target file already exists, load and summarize it, then require explicit replace confirmation or a new `task_key`. Never silently overwrite.
 7. **Confirm and write:** ask "Save this profile to `<path>`?" Treat any ambiguous reply as no. On a clear yes, write the profile (schema in `references/profile-schema.md`) using the FINAL accepted sample (from the final stack); put rejected A/B observations in the Notes section, not as the confirmation sample.
 8. **Verify:** `git status --porcelain -- <path>` must be empty (the file is ignored). If it shows the file, the ignore failed - stop and tell the user rather than leaving a committable profile.
@@ -72,7 +79,7 @@ Non-negotiable. Pressure ("just pick something", "skip the sample", "save it in 
 - **Selection-only.** A profile selects existing catalog entry ids. Never author new `llm_instruction_phrasing` or invent style guidance.
 - **No committed-catalog writes.** Never write to `taxonomy/`, `examples/`, `schemas/`, `site/`, or `tools/`. The only files this skill writes are the user-local profile and (if needed) a one-line `.gitignore` addition.
 - **Gitignored user state, verified.** The profile lives under `.claude/writing-style-catalog/profiles/` and MUST be confirmed ignored via `git check-ignore` before and after writing. Scope: always.
-- **Path safety.** `task_key` is a bare slug (`^[a-z0-9][a-z0-9-]{0,63}$`); the resolved profile path must stay inside the profiles directory and end with `.local.md`.
+- **Path safety (code-enforced).** Run `scripts/validate-profile-path.py` before any write (Step 6.1). The script enforces the task_key format (`^[a-z0-9][a-z0-9-]{0,63}$`) and containment (the resolved path must be inside the profiles directory and end with `.local.md`). Do not self-assess the path; honor the script's exit code and use the path it prints.
 - **Reuse the composer.** Build the prefix only via `build-instruction.py`. Do not duplicate the voice -> tone -> style -> format precedence logic.
 - **Confirm before saving.** Never write a profile the user has not (a) seen a sample for, (b) A/B-tested at least once, and (c) explicitly approved for save.
 - **No em-dashes or en-dashes** in any output, prose, or file you write. Use " - ". A pre-commit hook enforces this on committed files.
@@ -81,3 +88,4 @@ Non-negotiable. Pressure ("just pick something", "skip the sample", "save it in 
 
 - `references/intake-modes.md` - how to run each of the four intake modes (load at Step 1-2).
 - `references/profile-schema.md` - the profile `.local.md` artifact shape and an example (load at Step 6).
+- `scripts/validate-profile-path.py` - path validator called at Step 6.1; rejects out-of-bounds paths in code, not prose.
