@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- The site is on astro 7, which clears the last open advisory: `npm audit` in `site/`
+  goes from 4 low to **0**. All four were the same esbuild dev-server advisory counted
+  once per hop up the chain (esbuild -> astro -> mdx -> starlight); esbuild moves 0.27.7
+  to 0.28.1, past it.
+
+  Worth recording why this sat unfixed: v0.7.0's notes said the fix path was "the
+  astro@7 beta, a breaking upgrade deliberately not taken". Astro 7.0.0 stable had
+  actually been published on 2026-06-22, three weeks before that was written. The
+  upgrade was declined on a belief that was already false, and the advisory outlived
+  its own blocker by a month. Declining a beta is sound; the failure was not
+  re-checking whether it was still a beta.
+
+### Changed
+
+- Site framework: astro 6.4.8 -> 7.1.0, `@astrojs/starlight` 0.39.2 -> 0.41.3,
+  `@astrojs/mdx` 5.0.6 -> 7.0.3, plus `@astrojs/markdown-remark` as a new direct
+  dependency. Astro 7 replaced its default markdown processor, so `markdown.remarkPlugins`
+  is gone and remark now goes through `markdown.processor: unified({...})`. That matters
+  here because remark-gfm is load-bearing: without it, GFM tables in `.mdx` pages render
+  as literal text. Verified they did not: 42 pages carry real tables before and after,
+  with no pipe-table leakage. Also unblocks two dependency updates that could not resolve
+  against astro 6.
+
 ### Added
 
 - `tests/eval/`: a regression corpus for the recommender's scorer, plus a runner. Ten
@@ -183,8 +208,8 @@ canonical-template code fences repaired.
 - `npm audit fix` in site/ cleared the vite server.fs.deny bypass, launch-editor NTLM
   hash disclosure, Astro SSRF, and DOMPurify advisories (a lockfile-only change,
   verified by a full site build plus the link checks). One low-severity esbuild
-  dev-server advisory remains: its only fix path is the astro@7 beta, a breaking
-  upgrade deliberately not taken; dependabot will surface it when a stable path exists.
+  dev-server advisory remains in this release; clearing it requires the astro 7
+  major upgrade, which this release does not take.
 
 ## [0.6.0] - 2026-07-03
 
