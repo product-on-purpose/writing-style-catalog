@@ -16,7 +16,7 @@ a release. This is the operational checklist; the design is in the spec. It was
 walked end to end for Wave 1 / v0.4.0 and is the template for Wave 2 / v0.5.0.
 
 Everything here runs on free in-session subagents plus deterministic tooling. The
-only outward-facing, maintainer-reserved step is cutting the release tag (step 13).
+only outward-facing, maintainer-reserved step is cutting the release tag (step 14).
 
 ## Preconditions
 
@@ -81,13 +81,31 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
 
 ## Cut the release
 
-12. **Release-prep PR.** Branch `release/vX.Y.0`. Bump `"version"` in `library.json`
+12. **Recommender eval (run if recommend.py or any stable entry changed).** From
+    the repo root:
+    ```
+    python tests/eval/run_eval.py --verbose
+    ```
+    The runner checks two things: (a) a deterministic token round-trip assertion -
+    ten reconstruction situations must tokenize to their recorded token sets; and
+    (b) an informational drift report - any change to the qualifying entry sets
+    since the baseline date (2026-07-16). Round-trip failures are a hard finding
+    (the corpus is broken); drift findings require human judgment. If a scorer
+    or catalog change intentionally shifts qualifying sets, update `baseline` and
+    `baseline_date` in `tests/eval/situations.jsonl` in the same PR. This runner
+    is NOT in CI because the drift comparison is judgment-based. The corpus and
+    runner live in `tests/eval/`; the design rationale and all ten probe findings
+    are in `_local/audit/2026-07-10_fable-audit/recommender-quality-probe.md`.
+    Skip this step only if neither `recommend.py` nor any stable ENTRY.md changed
+    in this release.
+
+13. **Release-prep PR.** Branch `release/vX.Y.0`. Bump `"version"` in `library.json`
     and `.claude-plugin/plugin.json` (line 3) to the new version. Roll the CHANGELOG
     `[Unreleased]` block into a `## [X.Y.0] - <date>` section with a summary line and
     Added / Changed / Fixed entries describing the wave. Leave a fresh empty
     `[Unreleased]`. Validate (`validate.py` + the manifest validator), PR, green, merge.
 
-13. **Tag (maintainer-reserved, outward-facing).** On `main` at the release commit:
+14. **Tag (maintainer-reserved, outward-facing).** On `main` at the release commit:
     ```
     git tag -a vX.Y.0 -m "vX.Y.0 - <summary>"
     git push origin vX.Y.0
@@ -96,7 +114,7 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
     ZIP, and publishes the GitHub Release with the ZIP + sha256 + manifest. Confirm
     with `gh release view vX.Y.0`.
 
-14. **Marketplace registry re-pin (separate repo, manual).** The listing in
+15. **Marketplace registry re-pin (separate repo, manual).** The listing in
     `product-on-purpose/agent-plugins` tracks the released tag, not `main`, so the
     install surface updates only when that registry re-pins to the new tag. Bump the
     registry `metadata.version` on a new listing. This is NOT done by the release here.
