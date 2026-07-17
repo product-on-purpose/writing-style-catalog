@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import mdx from '@astrojs/mdx';
 import remarkGfm from 'remark-gfm';
+import { unified } from '@astrojs/markdown-remark';
 
 // Integration order matters here:
 //  - astro-mermaid must come BEFORE starlight (its own rule).
@@ -15,14 +16,15 @@ import remarkGfm from 'remark-gfm';
 export default defineConfig({
   site: 'https://product-on-purpose.github.io',
   base: '/writing-style-catalog',
-  // Apply GFM (tables, strikethrough, autolinks) explicitly. .mdx files inherit
-  // this via @astrojs/mdx's extendMarkdownConfig (on by default). Without an
-  // explicit remark-gfm here, GFM tables in .mdx pages render as literal text
-  // (CommonMark features like bold and links still work, but the GFM table
-  // extension is not applied to the .mdx pipeline in this Starlight +
-  // astro-mermaid + mdx setup).
+  // Apply GFM (tables, strikethrough, autolinks) explicitly via the unified
+  // processor (required in astro 7, which switched the default to Satteri).
+  // .mdx files inherit this via @astrojs/mdx's extendMarkdownConfig (on by
+  // default). Without an explicit remark-gfm here, GFM tables in .mdx pages
+  // render as literal text (CommonMark features like bold and links still
+  // work, but the GFM table extension is not applied to the .mdx pipeline in
+  // this Starlight + astro-mermaid + mdx setup).
   markdown: {
-    remarkPlugins: [remarkGfm],
+    processor: unified({ remarkPlugins: [remarkGfm] }),
   },
   integrations: [
     mermaid({
@@ -53,7 +55,7 @@ export default defineConfig({
       // only applies to the committed hand-authored narrative pages.
       editLink: { baseUrl: 'https://github.com/product-on-purpose/writing-style-catalog/edit/main/site/' },
       customCss: ['./src/styles/custom.css'],
-      // Starlight 0.39: autogenerate must be wrapped in items: [].
+      // Starlight 0.41: autogenerate must be wrapped in items: [].
       // Pattern S: content lives in src/content/docs/ read by the stock
       // docsLoader(), so autogenerate directories are bare section names (no
       // 'docs/' prefix).
