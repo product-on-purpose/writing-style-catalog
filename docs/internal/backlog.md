@@ -339,6 +339,7 @@ composable set of writing instructions no sibling or external tool provides.
 | Aspirational inventory (~180 formats / 70 voices) | `docs/internal/_working/catalog-inventory-aspirational_2026-05-16.md` |
 | Phase 2 expansion spec (120 entries, pedagogical bar) | `docs/internal/_working/phase-2-catalog-expansion_2026-05-15.md` |
 | Domain/family taxonomy (5 domains, families) | `docs/internal/_working/domain-and-family-taxonomy_2026-05-15.md`; draft ADR `_working/0010-domain-and-family-organization.md` |
+| Recommender scorer quality (designed, deferred 2026-07-17) | [`docs/internal/recommender-scorer-quality-proposal.md`](recommender-scorer-quality-proposal.md); measured against `tests/eval/` |
 | Composition code | `skills/writing-instruction-builder/scripts/build-instruction.py` |
 | Skill contract | `skills/writing-instruction-builder/SKILL.md` |
 | Entry schema + relationship fields | `schemas/*.schema.json`; any `taxonomy/**/ENTRY.md` |
