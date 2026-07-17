@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `tests/eval/`: a regression corpus for the recommender's scorer, plus a runner. Ten
+  situations covering the phenomena a 2026-07-10 quality probe found (negation blindness,
+  the distinct-match gate rejecting a maximally topical single word, vocabulary gaps in
+  whole registers, noise dilution, and stopword candidates), each recording which one it
+  exists to catch. The scorer had no way to tell a fix from a regression; now any change
+  to it can be measured against a fixed baseline instead of argued about. Deliberately
+  not in CI, because deciding whether a shifted result is better or worse is a judgment
+  call, not a gate: it runs from the release runbook. The probe's original situation text
+  was lost, so the corpus reconstructs each one to tokenize identically to the recorded
+  tokens, which the runner asserts on every run; all ten reproduce the probe's qualifying
+  sets exactly.
+
 ## [0.7.0] - 2026-07-16
 
 The audit release. A six-dimension repository audit (2026-07-10) produced 45 findings; 41
