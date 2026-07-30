@@ -7,32 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Security
+## [0.8.0] - 2026-07-29
 
-- The site is on astro 7, which clears the last open advisory: `npm audit` in `site/`
-  goes from 4 low to **0**. All four were the same esbuild dev-server advisory counted
-  once per hop up the chain (esbuild -> astro -> mdx -> starlight); esbuild moves 0.27.7
-  to 0.28.1, past it.
-
-  Worth recording why this sat unfixed: v0.7.0's notes said the fix path was "the
-  astro@7 beta, a breaking upgrade deliberately not taken". Astro 7.0.0 stable had
-  actually been published on 2026-06-22, three weeks before that was written. The
-  upgrade was declined on a belief that was already false, and the advisory outlived
-  its own blocker by a month. Declining a beta is sound; the failure was not
-  re-checking whether it was still a beta.
-
-### Changed
-
-- Site framework: astro 6.4.8 -> 7.1.0, `@astrojs/starlight` 0.39.2 -> 0.41.3,
-  `@astrojs/mdx` 5.0.6 -> 7.0.3, plus `@astrojs/markdown-remark` as a new direct
-  dependency. Astro 7 replaced its default markdown processor, so `markdown.remarkPlugins`
-  is gone and remark now goes through `markdown.processor: unified({...})`. That matters
-  here because remark-gfm is load-bearing: without it, GFM tables in `.mdx` pages render
-  as literal text. Verified they did not: 42 pages carry real tables before and after,
-  with no pipe-table leakage. Also unblocks two dependency updates that could not resolve
-  against astro 6.
+The v1.0 readiness release. Three of the six launch-readiness gates closed: the schema is
+frozen, the axis model is named consistently, and the last anchor topic without teaching
+material has it.
 
 ### Added
+
+- **Diff-pairs for `service-database-choice`.** The topic had zero despite being the
+  best-isolated anchor topic and having all 97 axis renders on hand. Four now, one per axis:
+  `pragmatic-architect` vs `senior-consultant`, `narrative-case-study` vs
+  `chronological-narrative`, `adr` vs `whitepaper`, and `candid` vs `diplomatic`. The first
+  two are the pairs a blind adherence test rated only "subtle", so writing them up also
+  sharpens the catalog's weakest confusable seams.
+
+  These are the first diff-pairs with authored "What to notice" commentary. The other 130
+  carry a generic prompt that asks "where does the framing change?" and answers nothing.
+  Parity claims are deliberately narrow, because renders were generated independently per
+  entry and no pair is a controlled single-variable experiment. The style pair says outright
+  that its two sides reach opposite verdicts. The tone pair turned up the better finding:
+  `candid` and `diplomatic` assemble the same four-part plan, but candid decides it ("you
+  will have the decision by Friday") and diplomatic only proposes it ("regardless of where we
+  land"). The register carried a commitment change nobody asked for.
+
+- **A change policy for `schemas/`**, replacing a rule that could not be followed. The old
+  rule required a version bump, an ADR, and updates to every referencing file for any schema
+  edit, which meant fixing a typo in a `description` string cost an ADR and a migration of all
+  117 entries. Three classes now: annotation (allowlist only, normal PR), additive-optional
+  (minor bump), and breaking-or-unclear (ADR, major bump, full migration). The default is the
+  expensive one.
+
+- **Dependency provenance is enforced at PR time.** `npm audit signatures` runs wherever
+  `npm ci` does, so an unsigned or unattested package cannot reach `main`. Currently 468 of
+  468 packages verify, 99 with SLSA attestations. The lockfile's SRI digests prove the bytes
+  match what was committed; they say nothing about who published them, and the repo had no
+  reproducible way to answer that.
 
 - `tests/eval/`: a regression corpus for the recommender's scorer, plus a runner. Ten
   situations covering the phenomena a 2026-07-10 quality probe found (negation blindness,
@@ -45,6 +55,90 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   was lost, so the corpus reconstructs each one to tokenize identically to the recorded
   tokens, which the runner asserts on every run; all ten reproduce the probe's qualifying
   sets exactly.
+
+### Changed
+
+- **The model is named four-axis, not three-axis** ([ADR 0018]). Every mechanical surface
+  already said four (four directories, four per-axis schemas, four `axis` enum values, four
+  composer parameters), and so did the marketplace listing and QUICKSTART. Only the design
+  docs said three, grouping Voice with Tone, so a reader arriving from the marketplace was
+  told four and a reader who clicked through to understand the design was told three.
+
+  Both founding ADRs predicted this in their own Negative consequences and proposed the same
+  mitigation: a parenthetical in every document mentioning the model. That required perpetual
+  discipline and failed. A 16-test guard now replaces it. Voice and Tone are documented as two
+  closely related but separate axes, with the rule stated plainly: voice is what does not
+  change, tone is what changes per piece.
+
+  The concepts page moved to `/concepts/four-axis-model/`; the old URL redirects, so external
+  links still resolve.
+
+- **The entry schema is frozen** ([ADR 0019]). Six of seven schemas, `diff-pair` excepted
+  because its generator is still evolving. Worth being precise about what this buys: it is an
+  internal engineering discipline, not yet an external guarantee. Every schema `$id` still
+  resolves to `main` and the per-axis schemas reference the shared one relatively, so there is
+  no versioned artifact to pin. Versioned schema IDs are a prerequisite before any claim of a
+  stable published contract.
+
+- **Regenerating a diff-pair no longer destroys authored commentary.** The generator rebuilt
+  the whole file every run, so a single re-run would have reverted hand-written teaching text
+  to boilerplate. Regeneration is now byte-identical on a pair somebody has written up;
+  `--reset-notice` discards deliberately.
+
+- Site dependencies: astro 7.1.0 to 7.1.6, `@astrojs/starlight` 0.41.3 to 0.41.5,
+  `@astrojs/markdown-remark` 7.2.1 to exactly 7.2.2. That last one is pinned exactly rather
+  than by caret because astro declares a peerOptional on one exact version, so a caret range
+  lets a lockfile regeneration resolve a version that no longer satisfies the peer.
+  `actions/setup-python` 6 to 7, `pre-commit` floor to 4.6.1.
+
+- Site framework: astro 6.4.8 -> 7.1.0, `@astrojs/starlight` 0.39.2 -> 0.41.3,
+  `@astrojs/mdx` 5.0.6 -> 7.0.3, plus `@astrojs/markdown-remark` as a new direct
+  dependency. Astro 7 replaced its default markdown processor, so `markdown.remarkPlugins`
+  is gone and remark now goes through `markdown.processor: unified({...})`. That matters
+  here because remark-gfm is load-bearing: without it, GFM tables in `.mdx` pages render
+  as literal text. Verified they did not: 42 pages carry real tables before and after,
+  with no pipe-table leakage. Also unblocks two dependency updates that could not resolve
+  against astro 6.
+
+### Fixed
+
+- **The deploy workflow granted deployment-capable credentials to the build job.**
+  `build-site.yml` set `pages: write` and `id-token: write` at the workflow level, so the job
+  running `npm ci` and `astro build`, which executes several hundred transitive dependencies,
+  inherited them. Now scoped to the deploy job. Pre-existing, inherited from the GitHub Pages
+  starter workflow, which grants them workflow-wide.
+
+### Security
+
+- **No action needed on GHSA-hpcx-pg6g-x697.** `npm audit` reported 1 critical against the
+  pinned `astro@7.1.0`, "Malicious code in astro", citing `piccolore`, `obug`, and
+  `@astrojs/markdown-satteri` as typosquatted dependencies. It is a false positive. Every
+  astro 7.x release from 7.0.0 through 7.1.6 declares that same dependency set, published by
+  the real maintainers, and the packages belong to Astro core and known ecosystem authors,
+  predating astro 7 by months. They are Astro 7's deliberate replacements for `picocolors`,
+  `debug`, and `@astrojs/markdown-remark`, which this changelog documented last release as
+  "Astro 7 replaced its default markdown processor". No install scripts, network callouts, or
+  exfiltration primitives were found in any of them.
+
+  Recording it because the advisory is still live and unwithdrawn, so anyone auditing this
+  repo will meet it. The cheap disproof: check whether the known-good latest version declares
+  the same dependencies. Note this is the mirror of last release's lesson, where an advisory
+  went unfixed for a month because nobody rechecked whether its blocker was still true. Both
+  are the same failure, inheriting a security claim without testing its premise.
+
+  Moving to 7.1.6 clears the audit regardless, since the advisory pins `= 7.1.0` exactly.
+
+- The site is on astro 7, which clears the last open advisory: `npm audit` in `site/`
+  goes from 4 low to **0**. All four were the same esbuild dev-server advisory counted
+  once per hop up the chain (esbuild -> astro -> mdx -> starlight); esbuild moves 0.27.7
+  to 0.28.1, past it.
+
+  Worth recording why this sat unfixed: v0.7.0's notes said the fix path was "the
+  astro@7 beta, a breaking upgrade deliberately not taken". Astro 7.0.0 stable had
+  actually been published on 2026-06-22, three weeks before that was written. The
+  upgrade was declined on a belief that was already false, and the advisory outlived
+  its own blocker by a month. Declining a beta is sound; the failure was not
+  re-checking whether it was still a beta.
 
 ## [0.7.0] - 2026-07-16
 
