@@ -18,10 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-These two are the closest confusable pair in the Voice axis, and both land on the same
-answer here: Postgres. That makes the voice the only thing that differs, which is exactly
-what makes the pair worth studying. The distinction is not "technical versus polished." It
-is **who is left holding the decision.**
+These two are the closest confusable pair in the Voice axis, and both land on the same answer
+here: Postgres. The verdict matches; the action plan does not. A prescribes a partitioned
+events table, a Redis-backed queue, and a revisit at 5x volume. B prescribes day-one
+instrumentation and a Q3 DynamoDB readiness spike, and makes the whole recommendation
+conditional on Ana's judgment. Since each render was generated independently per entry, treat
+this as verdict parity rather than a controlled voice-only experiment.
+
+That divergence is worth reading as evidence rather than noise, because it falls along exactly
+the line the two voices differ on. The distinction is not "technical versus polished." It is
+**who is left holding the decision.**
 
 **A owns the decision and hands over an implementation.** It opens with the verdict in the
 first sentence ("We should ship the Lattice Notify notification service on Postgres"), then

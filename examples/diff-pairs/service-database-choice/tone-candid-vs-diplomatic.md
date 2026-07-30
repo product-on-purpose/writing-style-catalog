@@ -18,12 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-This is the tightest content parity of any pair on this topic, which makes it the best one
-for isolating tone. Both are letters from Ana. Both propose the identical plan: ship on
-Postgres, design the schema and event model for portability, give Marcus ownership of the
-DynamoDB migration document, and revisit at 3M events per day or partnership signing,
-whichever comes first. Not one substantive term differs. What changes is **where the
-disagreement is put.**
+This is the tightest pair on this topic, which makes it the best one for isolating tone. Both
+are letters from Ana, and both assemble the same four components: ship on Postgres, design
+the schema and event model for portability, give Marcus ownership of the DynamoDB migration
+document, and revisit at 3M events per day or partnership signing, whichever comes first.
+
+Two things change, and the second one is easy to miss. The obvious one is **where the
+disagreement is put.** The subtle one is **whether a decision has actually been made** - and
+that shift rides along with the tone rather than being asked for. Read for both.
 
 **A puts the disagreement in the open and names its cost.** It is addressed to all three
 ("Ana, Marcus, Priya"), so the dissent happens in front of everyone. It announces its own
@@ -52,12 +54,25 @@ the objection in the speaker and marks it as costly to say; B locates it in the 
 and makes it nobody's. Watch the grammar, not the politeness: candid prefers first-person
 active, diplomatic reaches for the passive with an institutional subject.
 
+**The second difference: the same plan is a decision in A and a proposal in B.** This is the
+more valuable observation, because nobody asked for it. A commits - "What I think we should
+do," Marcus "owns the migration design doc," and "Priya, you will have the decision by
+Friday." B floats the identical structure in the conditional: "We **may want to explore**,"
+"One framing **worth surfacing**," "**perhaps** 3M events per day," and then hands the
+question back entirely: "whatever recommendation we bring to Priya" and "regardless of where
+we land." A reader can finish A knowing what was decided and by whom. A reader can finish B
+knowing only that a conversation is scheduled.
+
+That is not a flaw in the render; it is what diplomatic tone does when it is applied to a
+disagreement rather than to a decision. Softening the delivery softened the commitment along
+with it. If you want diplomatic tone *and* a decision, the commitment has to be re-asserted
+deliberately, because the register will not carry it for you.
+
 **The failure modes are mirror images.** Over-hit candid and the reader gets bluntness
 performed as virtue, where naming the discomfort becomes the point instead of resolving it.
-Over-hit diplomatic and the recommendation disappears into hedges, so a reader can finish the
-letter without knowing what was decided. Note that B avoids that trap only because the
-concrete plan (portable schema, named owner, numeric threshold) survives intact inside the
-softening.
+Over-hit diplomatic and the recommendation dissolves into hedges until nothing has been
+decided. B sits closer to its own failure mode than A does to its: the four concrete
+components survive the softening, but their status as a decision does not.
 
 **If you are choosing between them:** the axis is not honesty. Both are honest and both
 reach the same plan. Pick `candid` when the group needs the real disagreement on the table to
