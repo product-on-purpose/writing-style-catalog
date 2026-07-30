@@ -2,14 +2,26 @@
 adr_id: "0001"
 title: Adopt a Three-Axis Taxonomy (Voice & Tone, Style, Format)
 date: 2026-05-10
-status: Accepted
+status: Accepted, labelling superseded by ADR 0018
+superseded_context: >
+  The three-axis LABEL is superseded by ADR 0018 (2026-07-29), which names the model
+  four-axis to match the four directories, four schemas, and four composer parameters.
+  Everything structural in this ADR still holds, including the orthogonality argument
+  below, which was always a four-dimensional claim.
+related:
+  - docs/internal/adr/0018-four-axis-framing.md
 ---
 
 # 0001 - Adopt a Three-Axis Taxonomy (Voice & Tone, Style, Format)
 
 ## Status
 
-Accepted
+Accepted, with the "three-axis" label superseded by
+[ADR 0018](0018-four-axis-framing.md). The orthogonality argument, the decomposed model,
+and the separate Voice/Tone directories all still stand; only the count in the name changed.
+Note that the Negative consequence recorded below ("first-time readers may count four and
+expect the model to be called four-axis") is exactly what came to pass, and is what ADR 0018
+resolves.
 
 ## Context
 

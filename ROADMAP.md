@@ -24,7 +24,7 @@ That result sets the direction. The catalog works, so the roadmap is about makin
 
 - Keep CI runtimes current (Node 24).
 - Resolve the `review_status` governance question: new entries should start at `draft`, not `stable`. Resolved - the validator enforces it. Of the original 57 Stream-B breadth format candidates, 37 have been promoted to `stable` (Wave 1 + Wave 2); the remaining 20 (the Hold-20: personal, ceremonial, and contemplative formats, deliberately off the current PM/builder beachhead) sit at `draft` awaiting a future audience-expansion decision (tracker: `docs/internal/release-plans/stream-b-breadth-status.md`).
-- Reconcile the "three axes vs four directories" framing so the model is described consistently in the README, the taxonomy, and the contributor docs.
+- Reconcile the "three axes vs four directories" framing so the model is described consistently in the README, the taxonomy, and the contributor docs. Resolved 2026-07-29 - the model is now named four-axis everywhere (ADR 0018), matching the four directories, four schemas, and four composer parameters. Voice and Tone are documented as two closely related but separate axes rather than halves of one. The concepts page moved to `/concepts/four-axis-model/` with a redirect from the old path.
 
 ## Deliberately deferred
 

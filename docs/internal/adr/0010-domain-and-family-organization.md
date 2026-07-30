@@ -161,7 +161,9 @@ Backward-compatible, mirroring the additive-then-tightening pattern:
 2. **Backfill the 60.** Populate `domain` and `family` on every existing format and voice entry. The reviewed `stable` baseline keeps its `review_status` (this ADR does not touch lifecycle). Faceted tags are migrated from any existing free-text tags that map to a facet.
 3. **Tighten to required.** Promote `domain` (formats) and `family` (formats and voices) from optional to required; promote validator warnings to errors. `subfamily` tightens per-family: it becomes required for a family the moment that family crosses 12 members, enforced by the cross-field check, not by a global schema flag.
 
-The three-axis model (ADR 0001) and the atomic-folder pattern (ADR 0002) are unchanged: these are within-axis frontmatter fields, not a fifth axis and not a folder restructure.
+The axis model (ADR 0001, since relabelled four-axis by [ADR 0018](0018-four-axis-framing.md))
+and the atomic-folder pattern (ADR 0002) are unchanged: these are within-axis frontmatter
+fields, not an additional axis and not a folder restructure.
 
 ## Consequences
 

@@ -2,20 +2,29 @@
 
 ## Project Purpose
 
-The Writing Style Library is a composable catalog of writing instructions organized along three orthogonal axes: Voice & Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with three skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want), `style-profile` (capture a personal default style once, for reuse), and `entry-recommender` (recommend a combination for a described situation, composing the prompt in the same step) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
+The Writing Style Library is a composable catalog of writing instructions organized along four orthogonal axes: Voice, Tone, Style/Mode/Genre, and Format/Output Structure. The goal is to allow any combination of axis values to be assembled into a structured prompt prefix that shapes LLM writing output toward a specific register, rhetorical pattern, and layout. The library is packaged as a Claude Code plugin with three skills today - `writing-instruction-builder` (compose a prompt from axis values you already know you want), `style-profile` (capture a personal default style once, for reuse), and `entry-recommender` (recommend a combination for a described situation, composing the prompt in the same step) - plus any further skill a maintainer-approved spec adds; check `docs/internal/` for in-flight proposals. A TypeScript/Python SDK and a Composer SPA were considered and deliberately deferred indefinitely (see `ROADMAP.md` - "Deliberately deferred").
 
 ---
 
-## The Three-Axis Taxonomy Model
+## The Four-Axis Taxonomy Model
 
-**Axis 1 - Voice & Tone**: Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound); Tone captures situational register (how you sound right now). They are kept as separate catalog directories because they have different frontmatter and entry counts, but they belong to the same conceptual axis.
+Four axes, one directory each, one selection each. Composition applies them in the precedence
+order below (ADR 0016). Named "four-axis" per ADR 0018; earlier docs called this a three-axis
+model and grouped Voice with Tone, so treat any surviving "Axis 1/2/3" numbering as stale.
 
-- **Voice** (`taxonomy/voices/`): The persistent identity of the writer. Voice captures worldview, characteristic concerns, and professional archetype. It is stable across contexts. Example seed entries: `pragmatic-architect`, `product-thinker`, `operator`.
-- **Tone** (`taxonomy/tones/`): Situational register layered on top of voice. Tone is orthogonal to voice and can be mixed freely. Example seed entries: `candid`, `encouraging`, `confident`.
+**Axis 1 - Voice** (`taxonomy/voices/`): The persistent identity of the writer. Voice captures worldview, characteristic concerns, and professional archetype. It is stable across contexts. Example seed entries: `pragmatic-architect`, `product-thinker`, `operator`.
 
-**Axis 2 - Style** (`taxonomy/styles/`): The cognitive and rhetorical pattern of the writing. How ideas are sequenced and structured. Example seed entries: `problem-solution`, `layered-disclosure`, `decision-log`.
+**Axis 2 - Tone** (`taxonomy/tones/`): Situational register layered on top of voice. Tone is orthogonal to voice and can be mixed freely. Example seed entries: `candid`, `encouraging`, `confident`.
 
-**Axis 3 - Format** (`taxonomy/formats/`): The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Example seed entries: `adr`, `daily-standup`, `slack-message`.
+> Voice and Tone are the most confusable pair in the catalog. The rule: **voice is what does
+> not change; tone is what changes per piece.** They have separate directories, separate
+> schemas with different required fields, and separate composer parameters. When triaging
+> which directory a new entry belongs in, ask whether a writer could hold it constant across
+> a year of writing.
+
+**Axis 3 - Style** (`taxonomy/styles/`): The cognitive and rhetorical pattern of the writing. How ideas are sequenced and structured. Example seed entries: `problem-solution`, `layered-disclosure`, `decision-log`.
+
+**Axis 4 - Format** (`taxonomy/formats/`): The visual and structural container. Defines headings, bullet depth, table layouts, section templates. Example seed entries: `adr`, `daily-standup`, `slack-message`.
 
 ---
 

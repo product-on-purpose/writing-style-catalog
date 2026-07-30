@@ -2,14 +2,30 @@
 adr_id: "0004"
 title: Treat Voice and Tone as Paired Dimensions Within One Axis
 date: 2026-05-10
-status: Accepted
+status: Accepted, pairing label superseded by ADR 0018
+superseded_context: >
+  The "paired dimensions within one axis" FRAMING is superseded by ADR 0018 (2026-07-29):
+  Voice and Tone are now documented as two closely related but separate axes. Every
+  structural decision here still holds unchanged - separate directories, separate schemas
+  with different required fields, separate composer parameters, and confusable_with as the
+  cross-axis disambiguation hook.
+related:
+  - docs/internal/adr/0018-four-axis-framing.md
 ---
 
 # 0004 - Treat Voice and Tone as Paired Dimensions Within One Axis
 
 ## Status
 
-Accepted
+Accepted on structure, with the "one axis" framing superseded by
+[ADR 0018](0018-four-axis-framing.md).
+
+Read this ADR for **why Voice and Tone are separated** - that reasoning is unchanged and is
+still the guidance for deciding which directory an entry belongs in. The part that changed is
+only the presentational compromise in the Decision section below: the product is no longer
+called "three-axis." ADR 0018 acted on the documentation cost this ADR predicted in its own
+Negative consequences, namely that every mention of "three-axis" would need a parenthetical
+explaining the pairing.
 
 ## Context
 

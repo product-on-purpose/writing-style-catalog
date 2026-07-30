@@ -1,5 +1,6 @@
 /404.html
 /concepts/composition/index.html
+/concepts/four-axis-model/index.html
 /concepts/glossary/index.html
 /concepts/three-axis-model/index.html
 /design-standards/naming-conventions/index.html
