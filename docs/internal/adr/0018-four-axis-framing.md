@@ -115,15 +115,20 @@ for programmatic composition, not just human reading."
    three-axis model were accurate when written. The same applies to the frozen research and
    planning snapshots under `docs/internal/_working/` and the dated strategy documents: they
    record what was believed at the time.
-5. **The `schemas/` annotations are deliberately not changed here.** All five schema files
-   (`entry.universal`, plus `voice`, `tone`, `style`, `format`) carry "Axis 1 / Axis 2 /
-   Axis 3" wording in `description` fields. Fixing them is correct but is blocked on a
-   governance question this ADR should not answer by fiat: `AGENTS.md` requires "a version
+5. **The `schemas/` annotations were deliberately not changed here.** All five schema files
+   (`entry.universal`, plus `voice`, `tone`, `style`, `format`) carried "Axis 1 / Axis 2 /
+   Axis 3" wording in `description` fields. Fixing them was correct but was blocked on a
+   governance question this ADR should not answer by fiat: `AGENTS.md` required "a version
    bump and an ADR entry" for any change to `schemas/`, a rule written for structural changes
-   that can invalidate existing entries. A `description` string cannot. Rather than
-   silently invent an annotation-only exception, this is sequenced into the schema-freeze
-   work, whose post-1.0 change policy is the right place to define that class of edit. Until
-   then the schema annotations are the one known-stale surface, recorded in the backlog.
+   that can invalidate existing entries. A `description` string cannot. Rather than silently
+   invent an annotation-only exception, it was sequenced into the schema-freeze work.
+
+   **Resolved the same day.** [ADR 0019](0019-schema-freeze-and-change-policy.md) defined
+   annotation-only edits as a class A change requiring no version bump and no entry
+   migration, and the five annotations were corrected under it. The
+   `test_schema_annotations_are_the_known_gap` guard that pinned this deferral has been
+   replaced by `test_schema_annotations_use_the_four_axis_framing`, which asserts the
+   opposite.
 6. ADR 0001 and ADR 0004 keep their status as Accepted for everything structural. Only their
    labelling decisions are superseded. Specifically, these decisions from 0004 remain in
    force and are unaffected: separate entry directories, separate JSON Schemas with different
@@ -134,10 +139,9 @@ for programmatic composition, not just human reading."
 
 ### Positive
 
-- The marketplace description, the QUICKSTART, the README, `AGENTS.md`, and every published
-  site page now agree. A reader who counts four directories and is told "four axes" needs no
-  reconciliation. The `schemas/` annotations are the one exception, deliberately deferred per
-  decision 5 above and guarded by a test so the gap stays visible rather than forgotten.
+- The marketplace description, the QUICKSTART, the README, `AGENTS.md`, every published site
+  page, and (as of ADR 0019, same day) the `schemas/` annotations now all agree. A reader who
+  counts four directories and is told "four axes" needs no reconciliation.
 - The documentation tax ADR 0004 named is retired. No parenthetical is required, so nothing
   degrades when the next document is written by someone who has not read this ADR.
 - The label now matches the reasoning in ADR 0001's Context and the mechanics in `validate.py`.

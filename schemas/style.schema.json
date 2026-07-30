@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/style.schema.json",
   "title": "Style Entry Schema",
-  "description": "Schema for Axis 2 style entries. Style is the kind or mode of writing (rhetorical, narrative, or genre category).",
+  "description": "Schema for style entries (axis 3 of 4). Style is the kind or mode of writing (rhetorical, narrative, or genre category): how ideas are sequenced and structured.",
   "allOf": [
     { "$ref": "entry.universal.schema.json" }
   ],
