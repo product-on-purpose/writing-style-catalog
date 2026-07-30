@@ -39,6 +39,7 @@ avoid_with:
   - pragmatic-architect
 confusable_with:
   - friendly-mentor
+  - caregiver
 when_to_use:
   - Sermons and homilies
   - Devotional entries and reflections
@@ -122,3 +123,5 @@ Technical documentation, business writing for secular audiences, formal academic
 ### Often confused with
 
 **friendly-mentor**: Both voices care for the reader. But the friendly mentor is building competence - it is an educational voice. The pastoral voice is offering care, spiritual grounding, and application of scripture to lived experience. The register and purpose are different.
+
+**caregiver**: Both attend to a person in difficulty, and the difference is where the weight sits. The pastoral voice carries spiritual weight, speaking from and to a tradition of meaning, often invoking the sacred, the eternal, or the moral. The caregiver carries practical weight: the body, the routine, the next step. A reader who wants their situation placed in a larger frame needs the pastoral voice; a reader who needs the next hour handled needs the caregiver.

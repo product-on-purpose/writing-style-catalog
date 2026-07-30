@@ -38,6 +38,9 @@ pairs_well_with:
 confusable_with:
   - classical-argument
   - problem-solution
+  - dialectic
+  - diataxis-explanation
+  - narrative-case-study
 avoid_with:
   - devotional-reflection
   - reverent
@@ -120,3 +123,9 @@ Single-subject explanations, narrative writing, persuasive essays with a settled
 **classical-argument**: Classical argument examines one position and defends it against objections. Comparison-contrast requires at least two subjects and measures relative differences without necessarily advocating for one.
 
 **problem-solution**: Problem-solution names a pain and proposes a fix. Comparison-contrast evaluates options for a reader who is making a choice - the "problem" may already be understood.
+
+**dialectic**: Comparison-contrast weighs options side by side and can leave the reader free to pick either one; the writer need not take a position. Dialectic requires a synthesis that resolves the disagreement, or an explicit refusal to resolve it. A comparison that ends in a verdict has become dialectic.
+
+**diataxis-explanation**: Comparison-contrast needs at least two subjects measured against each other on parallel criteria. Diataxis explanation examines a single subject in depth to build understanding, and may use a comparison as one device among several without being structured by it.
+
+**narrative-case-study**: Comparison-contrast evaluates two or more options against parallel criteria; narrative case study follows a single situation through time. One is analytical, the other experiential. They can serve the same persuasive end, but the case study earns its conclusion from what happened while the comparison earns it from the criteria.

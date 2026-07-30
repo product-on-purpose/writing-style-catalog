@@ -113,4 +113,6 @@ The `writing-instruction-builder` skill reads one entry from each axis and assem
 
 Any axis can be omitted. If you only specify a voice and a format, the skill generates a two-section prefix. The composed instruction is designed to be prepended to any writing task without modification.
 
-See [Compose an Instruction](../../guides/compose-instruction/) for a worked example.
+See [Compose an Instruction](../../guides/compose-instruction/) for a worked example, and
+[Does it actually work?](../adherence-evidence/) for the measured evidence that these four
+axes produce output a blind judge can tell apart.

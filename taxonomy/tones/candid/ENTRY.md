@@ -37,6 +37,9 @@ avoid_with:
   - pastoral
 confusable_with:
   - matter-of-fact
+  - resolute
+  - skeptical
+  - urgent
 when_to_use:
   - Feedback conversations where softening would be a disservice
   - Post-mortems requiring honest accounting
@@ -117,3 +120,9 @@ Formal diplomatic communication, legal writing, PR communication, and contexts w
 ### Often confused with
 
 **matter-of-fact**: Matter-of-fact simply states the truth without marking it. Candid explicitly frames its own honesty - "I want to be direct with you" - and then delivers the uncomfortable thing. Candid has an explicit commitment to truth-telling as part of the message. Matter-of-fact does not editorialize about the communication at all.
+
+**resolute**: Candid is about delivering the truth honestly, whatever that truth turns out to be. Resolute is about commitment to a chosen action, which is a claim about the writer's intent rather than about a finding. A candid post-mortem can end without a decision; a resolute one cannot. If the piece could stay honest while remaining undecided, it is candid.
+
+**skeptical**: Candid states a truth the writer has identified and believes, and simply refuses to soften it. Skeptical states that the truth has not been identified yet, that the evidence is incomplete. Candid is conviction delivered without cushioning; skeptical is the withholding of conviction. A reader should finish candid prose knowing where the writer stands.
+
+**urgent**: Candid names an uncomfortable truth and gives the reader the honest picture; it is about clarity and trust, not speed. Urgent is about time, and it will invert normal prose structure to put the deadline first. The two often travel together, but candid prose with no time pressure is still candid, while urgent prose that softens the facts is no longer candid at all.

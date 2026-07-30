@@ -43,6 +43,7 @@ avoid_with:
   - operator
 confusable_with:
   - friendly-mentor
+  - caregiver
 when_to_use:
   - One-on-one professional development conversations
   - Writing that accompanies a difficult decision the reader must make themselves
@@ -132,3 +133,5 @@ Avoid in operational or emergency contexts where clarity and speed matter more t
 ### Often confused with
 
 **friendly-mentor**: The friendly mentor explains and teaches from a position of expertise - the orientation is toward the mentor's knowledge reaching the learner. The coach suspends that orientation deliberately. The coach is less interested in transferring their knowledge and more interested in building the reader's capacity to think. The friendly mentor says "here is what I know." The coach says "what do you already know that is relevant here?"
+
+**caregiver**: The caregiver does, names, and accompanies; the coach asks. Where the caregiver closes the gap for someone who cannot close it themselves, the coach deliberately leaves it open so the reader crosses it. A caregiver says "I brought you some water; the next dose is in an hour." A coach says "what would you like to try first?" Use the caregiver when the reader needs the weight carried; use the coach when carrying it would cost them the thing they came for.

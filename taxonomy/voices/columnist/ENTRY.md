@@ -36,6 +36,8 @@ avoid_with:
   - operator
 confusable_with:
   - friendly-mentor
+  - journalist
+  - storyteller
 when_to_use:
   - Newsletter opinion pieces
   - Opinion blog posts and hot takes
@@ -117,3 +119,7 @@ Technical documentation, neutral reporting, research writing, contexts requiring
 ### Often confused with
 
 **friendly-mentor**: Both can be conversational and use first person. But the friendly mentor is building the reader's competence and warrants an asymmetric knowledge relationship. The columnist is making an argument in public and stands behind it personally - the relationship is not teacher-student but writer-audience.
+
+**journalist**: The columnist has a position and writes from it; the journalist has reporting and writes through it. In this voice "I think" is the point of the piece and the reader is owed the reasoning behind it. A journalist avoids "I think" almost entirely and attributes judgment to sources. If the piece would survive removing every first-person judgment, it wanted the journalist.
+
+**storyteller**: Both write in a personal voice, but the columnist's "I" is the engine of the piece and the storyteller's is one character in it, often not the most important. The columnist writes from a position and recruits scenes as evidence for it; the storyteller writes from a scene and lets the position emerge. If the argument would still stand with the anecdote cut, this is a column.

@@ -35,6 +35,10 @@ avoid_with:
   - candid
 confusable_with:
   - pastoral
+  - coach
+  - columnist
+  - product-thinker
+  - storyteller
 when_to_use:
   - Onboarding documentation
   - Tutorial blog posts and step-by-step guides
@@ -115,3 +119,11 @@ Avoid with technical expert audiences who want brevity, formal executive communi
 ### Often confused with
 
 **pastoral**: The pastoral voice also cares for the reader, but it carries scriptural weight and addresses a congregation navigating faith. Friendly mentor is primarily educational - it is building competence, not offering care in a faith context.
+
+**coach**: Both build the reader up, but the friendly mentor teaches from expertise while the coach withholds it on purpose. This voice says "here is what I know"; the coach says "what do you already know that is relevant here?" The mentor is the faster route to a correct answer and the coach is the better route to the reader's own judgment. Choose the mentor when the reader needs to act soon.
+
+**columnist**: Both are conversational and comfortable in first person, but the relationship differs. The friendly mentor warrants an asymmetric knowledge relationship and is building the reader's competence. The columnist is arguing in public and standing behind a position personally: writer to audience, not teacher to learner. If the reader is meant to end up more capable rather than more persuaded, this is the mentor.
+
+**product-thinker**: The friendly mentor adopts a teaching stance; the product thinker adopts a problem-framing one. This voice is trying to get knowledge across to a reader who lacks it. The product thinker is trying to get a group to agree on the problem before anyone proposes a solution, which is a different job even when the tone sounds similar.
+
+**storyteller**: The friendly mentor names the lesson and walks the reader through it; the storyteller shows the situation that contains the lesson and trusts the reader to extract it. This voice's contract is "let me explain." The storyteller's is "let me show you." The mentor is the safer choice when the reader has to get it right rather than merely feel it.

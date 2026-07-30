@@ -37,6 +37,8 @@ avoid_with:
   - candid
 confusable_with:
   - warm
+  - celebratory
+  - instructional
 when_to_use:
   - Onboarding content where confidence matters
   - Teaching materials and lesson feedback
@@ -118,3 +120,7 @@ Executive reporting, post-mortems, neutral status updates, expert audiences who 
 ### Often confused with
 
 **warm**: Warm is a general orientation of care toward the reader - it notices them and regards them as a person. Encouraging is specifically motivational - it is about activating forward motion and naming capability. Warm can be present without encouraging, and you can encourage without warmth (though warmth makes encouraging land better).
+
+**celebratory**: Encouraging activates forward motion: it names capability and points at what comes next. Celebratory does not point forward at all; it pauses to mark what already happened and asks the reader to receive rather than to do. A celebration that ends in a task has slipped into encouragement, which usually costs the moment its weight.
+
+**instructional**: Encouraging validates effort and names capability; it works on the reader's belief that they can succeed. Instructional does not validate or motivate at all, it clears obstacles, and it succeeds by making the path so plain that confidence becomes unnecessary. Reach for encouraging when the blocker is belief, and instructional when the blocker is the path.

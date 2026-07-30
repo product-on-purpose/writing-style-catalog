@@ -41,6 +41,7 @@ pairs_well_with:
 confusable_with:
   - devotional-reflection
   - comparison-contrast
+  - problem-solution
 avoid_with:
   - reverent
   - pastoral
@@ -123,3 +124,5 @@ Instructional content, neutral reporting, devotional writing, documentation.
 **devotional-reflection**: Devotional reflection invites rather than argues - it does not construct a defensible claim with evidence and warrant. Classical argument makes its reasoning auditable; devotional reflection makes its truth felt.
 
 **comparison-contrast**: Comparison-contrast measures options relative to each other. Classical argument defends a single position as correct against the strongest available objection.
+
+**problem-solution**: Classical argument builds a defensible claim, complete with warrant and rebuttal, so the reader can check the reasoning. Problem-solution is prescriptive rather than argumentative: it diagnoses and then fixes. If the piece never anticipates an objection, it is problem-solution.

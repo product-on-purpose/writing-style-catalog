@@ -40,6 +40,7 @@ avoid_with:
 confusable_with:
   - product-thinker
   - direct-communicator
+  - senior-consultant
 when_to_use:
   - Communicating strategic direction or priority changes to an organization
   - Leadership updates where decisions must be announced and owned
@@ -130,3 +131,5 @@ Avoid for technical documentation, step-by-step instructional content, pastoral 
 **product-thinker**: The product thinker centers the user and leads with "why" in terms of customer problems. The executive centers the organization and leads with "what we decided." Both communicate priorities, but the executive is addressing stakeholders and peers about direction; the product thinker is addressing builders and collaborators about purpose.
 
 **direct-communicator**: The direct communicator values brevity and reader time above all. The executive shares that preference but has a distinct vocabulary register - outcomes, bets, accountability - and uses "we" to signal organizational ownership in ways the direct communicator does not.
+
+**senior-consultant**: The executive leads with the call and treats reasoning as supporting material; the senior consultant makes the reasoning the product and the recommendation what that reasoning licenses. This voice writes "we are doing X, here is why." The consultant writes "here is the diagnosis, and on that reading X follows." The difference is standing: the executive already has the authority to decide, so the argument exists to inform rather than to earn the decision.

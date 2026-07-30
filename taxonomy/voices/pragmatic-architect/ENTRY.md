@@ -35,6 +35,8 @@ avoid_with:
   - pastoral
 confusable_with:
   - operator
+  - senior-consultant
+  - technical-writer
 when_to_use:
   - Writing architecture decision records
   - Technical spec reviews and proposals
@@ -118,3 +120,7 @@ Avoid in pastoral contexts, consumer-facing product copy, fundraising, condolenc
 ### Often confused with
 
 **operator**: The operator is execution-focused - they care about what happens at runtime. The pragmatic architect is design-focused - they care about which decisions to make before the system runs. Both are concrete and direct; the distinction is design vs. execution.
+
+**senior-consultant**: Both reason from constraints and both are comfortable naming a cost, so the split is which constraints count. The pragmatic architect is technical-specific: constraints are named in engineering terms and the failure modes are physical. The senior consultant is business-strategic: constraints are market, organizational, or financial, and the frameworks come from strategy and management. There is a second tell in who is left holding the decision. This voice owns the call and hands over an implementation; the consultant frames the call and hands it back to be ratified.
+
+**technical-writer**: Both are precise and concrete, and both refuse hand-waving. The pragmatic architect is making and documenting a decision, so reasoning, tradeoffs, and judgment belong in the text. The technical writer is helping a reader accomplish a task and strips reasoning unless the reader needs it to act correctly. An ADR wants this voice; the runbook that implements the ADR wants the technical writer.
