@@ -11,6 +11,13 @@ The generator reads the two source example files, validates that they
 match on topic and differ only on the named axis, pulls one-liners from
 the corresponding entry frontmatter, and assembles a comparison artifact.
 
+The "What to notice" section is the one part of a diff-pair that is meant to
+be written by a human: the render bodies are mechanical, the teaching
+commentary is not. Regenerating an existing pair therefore refreshes the
+render bodies but carries authored commentary forward untouched, so a re-run
+is a no-op on a pair somebody has already written up. Pass --reset-notice to
+deliberately discard it and go back to the generic prompt.
+
 Usage:
     python tools/diff-pair-generator.py --topic <topic-slug> \
         --axis <voice|tone|style|format> --a <id_a> --b <id_b>
@@ -21,6 +28,7 @@ Example:
 """
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -30,6 +38,46 @@ from validate import _extract_frontmatter, AXES, REPO_ROOT  # noqa: E402
 EXAMPLES_DIR = REPO_ROOT / "examples"
 DIFF_PAIRS_DIR = EXAMPLES_DIR / "diff-pairs"
 VERTICAL_SLICES_DIR = EXAMPLES_DIR / "vertical-slices"
+
+NOTICE_HEADING = "## What to notice"
+
+# The generic prompt this tool emits when nobody has authored commentary yet. Its
+# closing clause is the marker used to tell placeholder text from authored text,
+# so it must stay stable; changing it orphans the detection in
+# extract_what_to_notice() and every authored pair silently reverts on the next run.
+PLACEHOLDER_TAIL = "swap is the entire cause of those differences."
+
+PLACEHOLDER_NOTICE_TEMPLATE = (
+    "Both examples address the same topic and (by default) share every axis other than {axis}. \n"
+    "The only deliberate variable is which {axis} the writing was rendered through. Read both \n"
+    "and ask: where does the framing change? Where does the vocabulary change? What does the \n"
+    "reader take away from A that they would not take away from B, and vice versa? The {axis} \n"
+    + PLACEHOLDER_TAIL
+)
+
+
+def placeholder_notice(axis: str) -> str:
+    """Return the generic 'What to notice' prompt for an axis."""
+    return PLACEHOLDER_NOTICE_TEMPLATE.format(axis=axis)
+
+
+def extract_what_to_notice(doc: str) -> str | None:
+    """Return the authored 'What to notice' body from an existing diff-pair.
+
+    Returns None when the section is absent or still holds this tool's generic
+    placeholder, so callers can treat None as "nothing worth preserving".
+    """
+    match = re.search(
+        rf"^{re.escape(NOTICE_HEADING)}\s*\n(.*?)(?=^---\s*$|^## )",
+        doc,
+        flags=re.DOTALL | re.MULTILINE,
+    )
+    if match is None:
+        return None
+    body = match.group(1).strip()
+    if not body or PLACEHOLDER_TAIL in body:
+        return None
+    return body
 
 
 def load_example(topic: str, axis: str, entry_id: str) -> tuple[dict, str]:
@@ -62,7 +110,9 @@ def load_entry_one_liner(axis: str, entry_id: str) -> str:
     return fm.get("one_liner", "")
 
 
-def build_diff_pair(topic: str, axis: str, a: str, b: str) -> str:
+def build_diff_pair(
+    topic: str, axis: str, a: str, b: str, preserved_notice: str | None = None
+) -> str:
     fm_a, body_a = load_example(topic, axis, a)
     fm_b, body_b = load_example(topic, axis, b)
 
@@ -97,13 +147,9 @@ def build_diff_pair(topic: str, axis: str, a: str, b: str) -> str:
         f"**A:** `{a}` - {one_liner_a}",
         f"**B:** `{b}` - {one_liner_b}",
         "",
-        "## What to notice",
+        NOTICE_HEADING,
         "",
-        f"Both examples address the same topic and (by default) share every axis other than {axis}. ",
-        f"The only deliberate variable is which {axis} the writing was rendered through. Read both ",
-        "and ask: where does the framing change? Where does the vocabulary change? What does the ",
-        f"reader take away from A that they would not take away from B, and vice versa? The {axis} ",
-        "swap is the entire cause of those differences.",
+        preserved_notice if preserved_notice else placeholder_notice(axis),
         "",
         "---",
         "",
@@ -136,16 +182,15 @@ def main() -> int:
         "--output",
         help="Output path (default: examples/diff-pairs/<topic>/<axis>-<a>-vs-<b>.md)",
     )
+    parser.add_argument(
+        "--reset-notice",
+        action="store_true",
+        help="Discard authored 'What to notice' commentary and restore the generic prompt",
+    )
     args = parser.parse_args()
 
     if args.a == args.b:
         print(f"[ERROR] A and B must differ (got '{args.a}' for both)", file=sys.stderr)
-        return 1
-
-    try:
-        content = build_diff_pair(args.topic, args.axis, args.a, args.b)
-    except (FileNotFoundError, ValueError) as exc:
-        print(f"[ERROR] {exc}", file=sys.stderr)
         return 1
 
     if args.output:
@@ -155,8 +200,27 @@ def main() -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         out_path = out_dir / f"{args.axis}-{args.a}-vs-{args.b}.md"
 
+    # Regenerating refreshes the render bodies from the vertical slices, but the
+    # "What to notice" commentary is the one part a human is expected to write.
+    # Carry it forward unless explicitly told to reset it, so a re-run cannot
+    # silently revert authored teaching text to the generic prompt.
+    preserved_notice = None
+    if out_path.exists() and not args.reset_notice:
+        preserved_notice = extract_what_to_notice(
+            out_path.read_text(encoding="utf-8")
+        )
+
+    try:
+        content = build_diff_pair(
+            args.topic, args.axis, args.a, args.b, preserved_notice=preserved_notice
+        )
+    except (FileNotFoundError, ValueError) as exc:
+        print(f"[ERROR] {exc}", file=sys.stderr)
+        return 1
+
     out_path.write_text(content, encoding="utf-8")
-    print(f"[OK] Wrote {out_path.relative_to(REPO_ROOT)}")
+    note = " (authored commentary preserved)" if preserved_notice else ""
+    print(f"[OK] Wrote {out_path.relative_to(REPO_ROOT)}{note}")
     return 0
 
 
