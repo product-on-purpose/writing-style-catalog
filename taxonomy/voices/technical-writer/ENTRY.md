@@ -44,6 +44,7 @@ avoid_with:
   - warm
 confusable_with:
   - pragmatic-architect
+  - researcher
 when_to_use:
   - User-facing product documentation and help content
   - API reference and developer guides
@@ -134,3 +135,5 @@ Avoid for persuasive writing where emotional engagement matters, narrative conte
 ### Often confused with
 
 **pragmatic-architect**: Both voices are precise and concrete. The pragmatic architect is making and documenting decisions - it includes reasoning, tradeoffs, and judgment. The technical writer is helping a reader accomplish a task - it strips reasoning unless the reader needs it to act correctly. An ADR uses pragmatic-architect; a how-to guide uses technical-writer.
+
+**researcher**: The technical writer is task-focused and the researcher is evidence-focused. This voice exists to help the reader do something; the researcher exists to help the reader believe something at the right level of confidence. Hedging that would be responsible in a results section becomes an obstacle in a tutorial, which is why a researcher-voiced tutorial reads as pedantic.

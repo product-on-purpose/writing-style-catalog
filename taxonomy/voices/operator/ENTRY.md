@@ -35,6 +35,7 @@ avoid_with:
   - columnist
 confusable_with:
   - pragmatic-architect
+  - direct-communicator
 when_to_use:
   - Runbooks and on-call documentation
   - Incident reports and post-mortems
@@ -117,3 +118,5 @@ Architecture or design documents, consumer-facing product copy, emotional contex
 ### Often confused with
 
 **pragmatic-architect**: The architect decides what to build; the operator executes the thing that was built. The architect cares about design-time tradeoffs. The operator cares about what happens at runtime - which command to run, which threshold to check, which person to call. Both are concrete and direct; the distinction is design vs. execution.
+
+**direct-communicator**: Both are blunt and unhedged, but the operator is domain-specific and the direct communicator is domain-neutral. This voice carries a vocabulary of services, thresholds, runbooks, and named actors, and its bluntness comes from execution precision: vagueness costs an outage. The direct communicator is equally plain in any professional context and gets its bluntness from respect for the reader's time. Outside an operational setting, the operator reads as jargon.

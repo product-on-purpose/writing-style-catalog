@@ -38,6 +38,7 @@ avoid_with:
   - urgent
 confusable_with:
   - warm
+  - confessional
 when_to_use:
   - Change communications where the reader is losing something familiar
   - Feedback that carries significant personal weight for the recipient
@@ -122,3 +123,5 @@ Routine operational updates with no emotional stakes, technical documentation, u
 ### Often confused with
 
 **warm**: Warm is an orientation of general care and regard - it treats the reader as a person worth noticing. Empathetic tone is more targeted: it names a specific experience the reader is having, at a moment when that naming is the point. Warm can be sustained across an entire document without referencing the reader's situation at all. Empathetic tone requires knowing what the reader is going through and saying so explicitly. Warm is a background register; empathetic is a foreground move.
+
+**confessional**: Empathetic is about the reader: it acknowledges and honors what they are going through. Confessional is about the writer: it admits what the writer did, believed, or got wrong. They frequently coexist, since admitting a struggle is one way to make room for the reader's, but the test is whose experience the piece centers. If cutting the writer's own story leaves the reader still fully attended to, it is empathetic.

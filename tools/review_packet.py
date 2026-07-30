@@ -183,10 +183,13 @@ def render_catalog_report(catalog, findings):
          "deciding them 97 times inside individual packets.", ""]
 
     L += [f"## One-way `confusable_with` ({len(ow)})", "",
-          "Confusability is a perceptual property and is inherently mutual: if A reads like B, "
-          "B reads like A. Where only one side declares it, a reader arriving from the other "
-          "side gets no warning. This is a data gap, not a judgment call, so it can be fixed "
-          "in a batch without reviewing each entry.", "",
+          "Confusability is largely mutual: if A reads like B, B reads like A. Where only one "
+          "side declares it, a reader arriving from the other side gets no warning.", "",
+          "**This is prose work, not a data edit.** The glossary requires that every "
+          "`confusable_with` id have a matching `### Often confused with` block in the entry "
+          "body explaining the functional difference, and all 117 entries honour that. So "
+          "each missing back-reference is a short authored section written from the other "
+          "entry's side, not a one-line frontmatter addition. Batch it by axis.", "",
           "Note this is **not** the same as one-way `avoid_with`, which is fine: ADR 0016 "
           "applies a symmetric union at composition time, so the composer warns both ways "
           "regardless of which side declares it.", "",

@@ -37,6 +37,9 @@ pairs_well_with:
   - blog-post-long-form
 confusable_with:
   - comparison-contrast
+  - definitional
+  - procedural
+  - socratic-inquiry
 avoid_with:
   - operator
 when_to_use:
@@ -114,3 +117,9 @@ When the reader needs to accomplish a specific task right now. Runbooks, operati
 ### Often confused with
 
 **comparison-contrast**: Comparison-contrast requires at least two subjects measured against each other. Diataxis explanation examines a single subject in depth to build understanding.
+
+**definitional**: Diataxis explanation may use any structure, narrative, comparison, analogy, or model-building, so long as understanding results. Definitional commits to one structural move: lead with a precise definition, then test and elaborate it. An explanation might contain a definition; a definitional piece is built on one.
+
+**procedural**: Diataxis explanation answers "how does this work?" and is finished when the reader understands. Procedural answers "how do I do this?" and is finished when the reader has completed the action. The distinction is functional rather than stylistic: explanations serve comprehension, procedures serve task completion.
+
+**socratic-inquiry**: Diataxis explanation states the conceptual model directly and then elaborates it. Socratic inquiry refuses to state the model, leaving the reader to build it from the questions. Both aim at understanding; only one of them will tell you the answer.

@@ -36,6 +36,7 @@ avoid_with:
   - reverent
 confusable_with:
   - candid
+  - confident
 when_to_use:
   - Status updates and progress reports
   - Incident reports and technical documentation
@@ -114,3 +115,5 @@ Condolences, celebrations, persuasion, emotional support, and coaching contexts 
 ### Often confused with
 
 **candid**: Candid names the meta-communication explicitly - "I want to be direct with you" - and then says the hard thing. Matter-of-fact simply states the truth without marking it. Candid has an explicit frame; matter-of-fact has no frame at all.
+
+**confident**: Matter-of-fact is affect-neutral: it states what is true without coloring it, and it works equally well on a trivial fact. Confident carries an explicit affect, the writer's certainty present in the prose, and is reserved for claims the writer is staking something on. If the sentence would read oddly about a routine detail, the tone is confident rather than matter-of-fact.

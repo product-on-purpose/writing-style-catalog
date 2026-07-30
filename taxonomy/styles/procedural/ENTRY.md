@@ -44,6 +44,7 @@ avoid_with:
   - reverent
 confusable_with:
   - diataxis-explanation
+  - question-and-answer
 when_to_use:
   - The reader needs to accomplish a specific, bounded task
   - The outcome is verifiable - the reader can confirm they succeeded
@@ -122,3 +123,5 @@ When the reader needs to understand how a system works rather than just operate 
 ### Often confused with
 
 **diataxis-explanation**: A Diataxis explanation is designed to build understanding - it answers "how does this work?" A how-to tutorial is designed to produce a completed action - it answers "how do I do this?" The distinction is functional: explanations serve comprehension; tutorials serve task completion. The same subject can yield two completely different documents depending on which goal governs the writing.
+
+**question-and-answer**: Procedural assumes a single ordered path and a reader who follows it from step one. Question-and-answer assumes many readers arriving at many points, each needing only their one answer. If the material has one correct order, it is procedural; if the reader is entitled to start anywhere, it is not.

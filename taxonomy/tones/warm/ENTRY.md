@@ -38,6 +38,8 @@ avoid_with:
 confusable_with:
   - encouraging
   - empathetic
+  - diplomatic
+  - reverent
 when_to_use:
   - Onboarding documentation
   - Care notes and pastoral writing
@@ -121,3 +123,7 @@ Legal writing, technical documentation for expert audiences, formal executive co
 **encouraging**: Warm is a general orientation of care toward the reader. Encouraging is specifically motivational - it is about activating forward motion and naming capability. You can be warm without being encouraging, and you can encourage without warmth (though warmth helps).
 
 **empathetic**: Warm is a steady, general regard you can sustain across an entire document without ever naming the reader's specific situation. Empathetic tone is a foreground move that opens by naming the precise difficulty the reader is in, at a moment when that naming is the point. Warmth can carry ordinary content; empathetic tone is reserved for moments of real difficulty and leads with the hardship, not with gladness.
+
+**diplomatic**: Warm conveys personal regard for the reader, genuine care for them as a person. Diplomatic preserves the reader's face and standing without necessarily feeling anything toward them. A diplomatic letter to a hostile counterparty can be perfectly courteous and contain no warmth whatever, which is precisely what makes it usable there.
+
+**reverent**: Warm is oriented toward the reader and cares about the person receiving the writing. Reverent is oriented toward the subject and cares about what is being described, refusing to treat it casually. A reverent piece can land cold on its reader without failing at being reverent. If the care in the prose is aimed at a person rather than a subject, it is warm.

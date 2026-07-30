@@ -46,6 +46,7 @@ avoid_with:
   - warm
 confusable_with:
   - decision-log
+  - layered-disclosure
 when_to_use:
   - Presenting a recommendation to a senior audience with limited reading time
   - Briefing a decision-maker who needs to understand the conclusion before the analysis
@@ -126,3 +127,5 @@ When the reader needs to follow the analytical path before the conclusion will m
 **decision-log**: A decision-log records how a decision was reached - the options considered, the criteria, the reasoning. An executive summary presents a recommendation or conclusion with supporting evidence. The decision-log looks backward at a process; the executive summary looks forward at an action.
 
 **one-pager**: A one-pager can take many forms - product pitch, project brief, overview. An executive summary is specifically inverted-pyramid: recommendation first, analysis after. A one-pager may build to its point; an executive summary never does.
+
+**layered-disclosure**: An executive summary is inverted-pyramid writing aimed at decision-makers: lead with the recommendation, then supporting analysis in order of importance. Layered disclosure serves several audiences at once and makes each layer complete on its own. The summary has one reader in mind; the layered piece has several.
