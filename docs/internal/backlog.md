@@ -195,9 +195,18 @@ server exposes the guaranteed behavior, not the naive concatenation.
   Starlight slugs at build time), deferred during the Astro conformance work. Until it lands,
   author internal cross-page links as relative-slug URLs. Source:
   `docs/internal/release-plans/astro-starlight-conformance/` + `scripts/README.md`.
-- **Reconcile the "three axes vs four directories" framing** so the model is described
-  consistently across `README.md`, the taxonomy, and the contributor docs (Voice and Tone are
-  two dimensions of one axis, but live in separate directories).
+- **Reconcile the "three axes vs four directories" framing** - DONE 2026-07-29
+  ([ADR 0018](adr/0018-four-axis-framing.md)). The model is named four-axis everywhere,
+  matching the four directories, four schemas, and four composer parameters. Voice and Tone
+  are documented as two closely related but separate axes, not halves of one. The concepts
+  page moved to `/concepts/four-axis-model/` with a redirect from the old path.
+  **One piece deliberately left open:** the four per-axis schema files
+  (`voice|tone|style|format.schema.json`) and `entry.universal.schema.json` still carry
+  "Axis 1 / Axis 2 / Axis 3" wording in their `description` annotations. Editing them is
+  blocked on a governance question, since `AGENTS.md` requires a version bump plus an ADR for
+  any change to `schemas/`, a rule written for structural changes that cannot break on an
+  annotation. Sequenced into the schema-freeze work, which is where the post-1.0 change
+  policy defines an annotation-only class.
 - **`review_status` governance** - new entries must start at `draft`, not `stable`; the
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.

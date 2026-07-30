@@ -9,11 +9,11 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 ## Core taxonomy terms
 
-**Axis** - One of the three orthogonal dimensions of a writing instruction. The catalog has three axes: Voice & Tone (a paired axis covering identity and register), Style, and Format. See [The Three-Axis Model](../three-axis-model/).
+**Axis** - One of the four orthogonal dimensions of a writing instruction. The catalog has four axes: Voice (persistent identity), Tone (situational register), Style, and Format. Voice and Tone are closely related and are the most confusable pair, but they are modelled and validated separately. See [The Four-Axis Model](../four-axis-model/).
 
 **Voice** - The persistent identity of the writer. Stable across contexts. Captures professional archetype, characteristic concerns, and assumed reader. Lives in `taxonomy/voices/`.
 
-**Tone** - Situational register layered on voice. Changes with context and message intent. Lives in `taxonomy/tones/`. Voice and Tone are distinct catalog directories but part of the same conceptual axis.
+**Tone** - Situational register layered on voice. Changes with context and message intent. Lives in `taxonomy/tones/`. Voice and Tone are separate axes with separate directories and separate schemas; the rule for telling them apart is that voice is what does not change and tone is what changes per piece.
 
 **Style** - The cognitive and rhetorical pattern of the writing. How ideas are sequenced and structured. Lives in `taxonomy/styles/`.
 

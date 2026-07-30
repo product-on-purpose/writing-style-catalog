@@ -31,6 +31,12 @@ export default defineConfig({
   markdown: {
     processor: unified({ remarkPlugins: [remarkGfm] }),
   },
+  // Renamed routes keep their old path as a redirect so external links still
+  // resolve and scripts/check-route-parity.mjs still sees the route present
+  // (Astro renders a redirect source as a real page). See ADR 0018.
+  redirects: {
+    '/concepts/three-axis-model': '/writing-style-catalog/concepts/four-axis-model/',
+  },
   integrations: [
     mermaid({
       theme: 'default',

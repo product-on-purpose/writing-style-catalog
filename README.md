@@ -20,7 +20,7 @@
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
   <img src="https://img.shields.io/badge/version-0.7.0-blue.svg?style=flat-square" alt="Version">
-  <a href="#the-three-axis-model">
+  <a href="#the-four-axis-model">
     <img src="https://img.shields.io/badge/entries-97-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
   <a href="https://agentskills.io/specification">
@@ -50,7 +50,7 @@
 <p align="center">
   <a href="#the-big-idea">About</a> •
   <a href="#quick-start">Install</a> •
-  <a href="#the-three-axis-model">The Model</a> •
+  <a href="#the-four-axis-model">The Model</a> •
   <a href="#whats-in-the-catalog">Catalog</a> •
   <a href="#documentation-site">Docs Site</a> •
   <a href="#project-status">Status</a> •
@@ -68,10 +68,11 @@
 
 - [Quick Start](#quick-start)
 - [The Big Idea](#the-big-idea)
-- [The Three-Axis Model](#the-three-axis-model)
-  - [Axis 1 - Voice and Tone](#axis-1---voice-and-tone)
-  - [Axis 2 - Style / Mode / Genre](#axis-2---style--mode--genre)
-  - [Axis 3 - Format / Output Structure](#axis-3---format--output-structure)
+- [The Four-Axis Model](#the-four-axis-model)
+  - [Axis 1 - Voice](#axis-1---voice)
+  - [Axis 2 - Tone](#axis-2---tone)
+  - [Axis 3 - Style / Mode / Genre](#axis-3---style--mode--genre)
+  - [Axis 4 - Format / Output Structure](#axis-4---format--output-structure)
 - [What's in the Catalog](#whats-in-the-catalog)
 - [Documentation Site](#documentation-site)
 - [Project Structure](#project-structure)
@@ -131,21 +132,25 @@ The Writing Style Library is that vocabulary. It decomposes the overloaded idea 
 
 ---
 
-## The Three-Axis Model
+## The Four-Axis Model
 
-### Axis 1 - Voice and Tone
+Four axes, one selection each, any combination valid. The test each axis has to pass: hold the other three constant, vary this one, and the output changes in a way you can point at.
 
-Voice and Tone are two dimensions within the first axis. Voice captures persistent identity (how you always sound). Tone captures situational register (how you sound right now). They are kept as separate catalog directories (`taxonomy/voices/` and `taxonomy/tones/`) because they have different frontmatter and entry counts, but conceptually they belong to the same axis. When using the `writing-instruction-builder` skill, you pass both `voice=` and `tone=` as separate parameters because each is a distinct catalog lookup within Axis 1.
+### Axis 1 - Voice
 
 **Voice** is the persistent identity of the writer: their worldview, characteristic concerns, and the professional archetype they embody. Voice is stable across contexts. The `pragmatic-architect` voice, for example, always reasons from constraints and trade-offs, regardless of whether it is writing a slack message or a technical RFC.
 
+### Axis 2 - Tone
+
 **Tone** is situational coloring layered on top of voice. The same pragmatic-architect voice can deliver a message with a `candid` tone (direct, no softening) or a `warm` tone (patient, explanatory). Tone entries are orthogonal to voice entries, so any combination is valid.
 
-### Axis 2 - Style / Mode / Genre
+Voice and Tone are the most confusable pair in the catalog, so the rule for telling them apart is worth stating plainly: **voice is what does not change; tone is what changes per piece.** They live in separate directories (`taxonomy/voices/` and `taxonomy/tones/`), require different frontmatter, and validate against different schemas. If you come from brand-writing, where "voice and tone" is a single compound noun, note that this catalog splits them because you select them as two independent parameters at composition time. Earlier docs called this a three-axis model and grouped them; see [ADR 0018](docs/internal/adr/0018-four-axis-framing.md) for why the label changed.
+
+### Axis 3 - Style / Mode / Genre
 
 Style entries describe the cognitive and rhetorical pattern of the writing: how ideas are structured and sequenced. `problem-solution` moves from diagnosis to remedy. `layered-disclosure` leads with the answer and buries supporting detail for readers who want depth. Entries on this axis are independent of voice and tone, so the same style can be applied across a wide range of purposes.
 
-### Axis 3 - Format / Output Structure
+### Axis 4 - Format / Output Structure
 
 Format entries define the visual and structural container: headings, bullet depth, table layouts, ADR sections, standup fields. Format is purely presentational and can be composed with any voice/tone/style combination. A `daily-standup` format entry, for example, specifies the three canonical fields and their order, without dictating voice or rhetorical pattern.
 
@@ -183,7 +188,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | See one axis swapped on a fixed topic | [Diff-pairs](https://product-on-purpose.github.io/writing-style-catalog/examples/diff-pairs/) |
 | Start from a ready-made combination | [Recipes](https://product-on-purpose.github.io/writing-style-catalog/recipes/) |
 | Grab a canonical format structure | [Templates](https://product-on-purpose.github.io/writing-style-catalog/templates/) |
-| Understand the design | [Concepts](https://product-on-purpose.github.io/writing-style-catalog/concepts/three-axis-model/) |
+| Understand the design | [Concepts](https://product-on-purpose.github.io/writing-style-catalog/concepts/four-axis-model/) |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
