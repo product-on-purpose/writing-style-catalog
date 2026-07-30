@@ -18,11 +18,29 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+Both are trying to get the reader to change their morning. One hands over a procedure,
+the other hands over a person.
+
+**A is executable tomorrow.** It opens with `Prerequisites`, a checklist of things to
+have in place before starting, which is a move only a procedure makes. The steps are
+numbered and physical, and it ends with a test the reader can actually apply to
+themselves: if you can say yes to fewer than three of these, "the routine is too long.
+Cut it in half and run another thirty days." A procedure that cannot tell you whether it
+worked is unfinished.
+
+**B is evidence.** It runs `Before`, a turning point, and an after, and it has something
+A cannot have: a protagonist with a specific life. Maya is thirty-eight, has two
+children, a partner who leaves earlier, and an 8:30 standup. Her two previous failures
+are named with durations, eleven days and six days, and with the conclusion she drew
+from them, that she "was not the kind of person who could have a morning routine." The
+turning point is one decision, "the phone would sleep in the kitchen," and the piece
+closes on her own compressed account of it: "I moved the phone."
+
+**The sharpest single tell.** A has prerequisites; B has a protagonist. A tells you what
+to do and trusts you to see why; B shows you one person and trusts you to extract the
+what. That is why B can carry the thing A struggles with, which is the reader's belief
+that this could work for someone like them, and why A can carry the thing B struggles
+with, which is telling them precisely what to do on Tuesday morning.
 
 ---
 

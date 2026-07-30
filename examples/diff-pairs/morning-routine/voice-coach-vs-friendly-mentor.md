@@ -18,11 +18,30 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both voices are kind, neither one lectures, and both land on a small first step.
+The difference is **who is allowed to supply the answer.**
+
+**A never says what to do.** Count the question marks: "What does your morning look
+like right now?", "Which one is yours?", "What is yours?", "what would those two steps
+be?" The questions are not warm-up before the advice arrives, they *are* the content,
+and the piece ends before any answer does: "Write them down. Try them for a week. Then
+we will talk again, and you will tell me what you noticed." The reader leaves holding
+homework, not instructions.
+
+**B states the answer in its fourth paragraph.** "Pick the smallest thing you can
+imagine sticking with for two weeks. One glass of water before the phone. That is it."
+It then supplies the mechanism, which A never does: "your morning energy is finite and
+your willpower at 6am is roughly zero." It closes on an instruction with a date on it:
+"Start tomorrow. One glass of water."
+
+**The sharpest single tell is the last line.** A ends with the reader reporting back to
+the writer; B ends with the reader doing a specific thing. A coach's piece is unfinished
+by design, because the missing part is the reader's; a mentor's piece is finished,
+because the mentor has already done the thinking.
+
+**If you are choosing between them:** pick `coach` when the reader's own answer is the
+point and a supplied one would be worth less. Pick `friendly-mentor` when the reader
+needs to act soon and self-discovery is a tax they cannot afford this week.
 
 ---
 

@@ -18,11 +18,26 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Same routine, same four steps, same author. What changes is the reader being served,
+and both formats announce that reader in their first heading.
+
+**A is written for someone who has just arrived.** Its first section is `Why this
+exists`, which is a question only a newcomer asks, and it answers in the first person
+with a life attached: "I wake around 6:30. I check my phone before my feet hit the floor.
+I am reactive by 7am, depleted by 2pm." It even explains its own publication: public
+"because accountability works better when someone might look." None of that helps anyone
+run the routine. All of it helps someone decide whether to care.
+
+**B is written for someone mid-task.** It opens on a module summary table with columns
+for duration, window, and whether the module is required, and it timestamps everything
+against wake time: `T+0 to T+5`, `T+5 to T+20`. It promises "defined inputs, outputs,
+timing, and failure modes." There is no author in it, because for a lookup the author is
+not relevant.
+
+**The sharpest single tell.** A has a "Why this exists" section; B has a table with a
+`Required` column. Ask which one survives being read out of order. B does, because it was
+built for a reader who arrives at section 1.1 and leaves. A does not, and does not need
+to.
 
 ---
 
