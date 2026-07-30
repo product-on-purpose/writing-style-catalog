@@ -3,6 +3,11 @@ import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import mdx from '@astrojs/mdx';
 import remarkGfm from 'remark-gfm';
+// @astrojs/markdown-remark is a direct dependency only so this import resolves.
+// It is pinned to an EXACT version in package.json, not a caret range: astro
+// declares a peerOptional on it pinned to one exact version (7.2.2 for astro
+// 7.1.6), so a caret range lets a lockfile regeneration resolve a newer 7.x that
+// no longer satisfies the peer. The two must be bumped together.
 import { unified } from '@astrojs/markdown-remark';
 
 // Integration order matters here:

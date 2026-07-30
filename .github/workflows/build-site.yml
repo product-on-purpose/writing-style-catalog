@@ -5,10 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Least privilege, scoped per job. The build job runs `npm ci` and `astro build`,
+# which executes the code of several hundred transitive dependencies, so it gets
+# read access and nothing else. Only the deploy job needs pages:write (to create
+# a Pages deployment) and id-token:write (to request the OIDC JWT). Granting
+# those at the top level, as the GitHub starter workflow does, would hand
+# deployment-capable credentials to every third-party package the build runs.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -29,6 +33,15 @@ jobs:
       - name: Install site deps
         working-directory: site
         run: npm ci
+      # Enforcing supply-chain gate. Verifies every installed package against the
+      # registry's Sigstore signatures and, where published, its SLSA build
+      # attestation. The lockfile's SRI digests only prove the bytes match what
+      # was committed; they say nothing about who published them. Added after a
+      # false-positive advisory (GHSA-hpcx-pg6g-x697) showed the repo had no
+      # reproducible way to answer "is this artifact actually from its publisher".
+      - name: Verify dependency provenance (enforcing)
+        working-directory: site
+        run: npm audit signatures
       - name: Build site
         working-directory: site
         run: npm run build
@@ -48,6 +61,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
