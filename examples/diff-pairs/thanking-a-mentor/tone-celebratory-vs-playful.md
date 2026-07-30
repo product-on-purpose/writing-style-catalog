@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are light. Only one of them is joking.
+
+**A marks the occasion** with a straight face and names a cost: "you said you knew, and you did
+it anyway. What I did not understand at the time was what that created for you."
+
+**B is funny at the writer's own expense**, which is what buys it permission: "about ten years
+overdue, which is embarrassing but also probably on brand for the version of me you remember."
+It even extends the joke to inanimate parties: "I knew it. You knew it. The project probably
+knew it."
+
+**The tell:** playfulness here always aims downward at the writer, never at Dana. A playful tone
+that jokes at the honoured party's expense is not playful, it is careless, and this render never
+risks it.
 
 ---
 

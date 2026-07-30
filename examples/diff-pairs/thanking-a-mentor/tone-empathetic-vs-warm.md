@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+The pair the adherence test rated *clear*. Both are kind; they aim at different targets.
+
+**A models Dana's experience from the inside**, and spends its whole opening there before the
+writer appears at all: "You know what they don't know yet. You can see the turns they are about
+to miss." Its insight is about the cost of restraint, "a daily decision to trust someone's
+growth over your own efficiency, made again every time they make a choice you wouldn't make."
+
+**B offers regard for Dana as a person**, and stays in the writer's own remembered experience of
+being chosen.
+
+**The tell:** warmth says *I care about you*; empathy says *I know what that was like for you*.
+One is a feeling directed at someone, the other is an accurate model of them, and the second is
+what makes A land even though it never uses an affectionate word.
 
 ---
 

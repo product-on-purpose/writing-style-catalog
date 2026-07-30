@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both refuse to decorate. Only one of them has something it is refusing to hide.
+
+**A is honest about something costly.** "I want to be honest with you about something I should
+have said years ago," and then the admission: "I spent the first two weeks quietly panicking,
+second-guessing every decision, and wondering whether you had miscalculated."
+
+**B is simply unornamented.** "Something happened at work last month that I traced back to you...
+I knew she could handle it. I stayed available, checked in each week, and let her work it out.
+She did." Nothing is being withheld, because nothing in it is difficult to say.
+
+**The tell:** candour implies a cost to speaking; matter-of-fact implies none. B could be
+written about a routine handoff without changing a word. A could not.
 
 ---
 

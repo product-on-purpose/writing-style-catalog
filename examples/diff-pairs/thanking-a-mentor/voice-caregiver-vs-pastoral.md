@@ -18,11 +18,21 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both hold weight, and they locate it differently.
+
+**A puts the weight in the body and the ordinary.** Late evenings, questions that could not be
+asked, decisions turned over: "I stayed past seven not because I had more to do but because I
+did not know how to put the work down." The caregiver stays inside the practical texture of
+what happened.
+
+**B puts the weight in meaning, and reaches the particular through the universal.** It does not
+open on Dana at all: "There is a moment every person who leads comes to know, though they often
+cannot name it at the time." Only after establishing the pattern does it land the instance,
+"You know this feeling, Dana." Its verdict is moral rather than practical: "What you did in the
+months that followed is not a small thing."
+
+**The tell:** A opens on a specific evening; B opens on a truth about everyone who leads. The
+pastoral voice earns the right to the particular by first placing it in something larger.
 
 ---
 

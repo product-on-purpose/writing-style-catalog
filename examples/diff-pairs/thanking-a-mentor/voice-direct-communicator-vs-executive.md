@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are brief and unhedged. The difference is what the brevity is in service of.
+
+**A is being accurate.** Its sharpest moment is a correction of the writer's own past reading:
+"I told you I wasn't ready. You said I was closer than I thought, which I took as encouragement.
+It wasn't - it was a read." Plain language, domain-neutral, no framing apparatus.
+
+**B is being decisive.** It leads with the call, "The reason I'm writing is this," and reaches
+for the vocabulary of decisions and bets: a "playbook," "more exposed surface area," "I wasn't
+sure I was the right bet."
+
+**The tell:** A's economy comes from refusing ornament; B's comes from treating the letter as a
+decision with a headline. Only one of them needed a frame to say it.
 
 ---
 

@@ -18,11 +18,20 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are personal and first-person; the relationship to the reader differs.
+
+**A is writing for the record and for an audience.** "I want to be on record about something
+Dana did for me a decade ago." It behaves like an argued piece, including the move a mentor
+would never need: it raises the strongest objection to itself. "The counterargument I keep
+running in my head is that this is what good managers do... The career-development literature is
+full of it."
+
+**B is writing to a person, to teach.** It walks Dana through what she could not see and names
+the mechanism plainly ("You picked the container before you picked me for it"). No
+counterargument appears, because there is no public to persuade.
+
+**The tell:** A anticipates disagreement; B anticipates confusion. One is defending a claim, the
+other is closing a knowledge gap.
 
 ---
 

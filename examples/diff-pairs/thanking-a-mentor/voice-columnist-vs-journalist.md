@@ -18,11 +18,20 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are publication voices, and they differ on where judgment is allowed to sit.
+
+**A owns the judgment.** "I want to be on record" is a first-person claim, and the piece then
+argues it, counterargument included.
+
+**B routes judgment through attribution and record.** It opens like a lede with a sourced
+identification, "Dana Reeves, who ran the client analytics group in the spring of 2015," and
+substantiates with countable detail: "The project logs show seventeen steering meetings across
+four months; you attended nine." It brings in a third party, Jamila Torres, rather than
+asserting. Even its motive is hedged against sentiment: "The reason I am writing now is not
+sentiment, or not only sentiment."
+
+**The tell:** A says *I think*; B says *the logs show* and *a colleague says*. Strip every
+first-person judgment from each and only one of them survives.
 
 ---
 

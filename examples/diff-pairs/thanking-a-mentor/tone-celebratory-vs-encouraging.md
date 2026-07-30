@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are generous. They point in opposite temporal directions.
+
+**A stops to mark what happened.** "I want to name something specific that you did, because I
+finally understand what it cost you." The piece asks nothing of Dana; receiving it is the whole
+transaction.
+
+**B activates.** It is organised around the writer's own recent act of restraint, six weeks of
+resisting the urge to step in, and traces the capability forward from Dana into present
+practice.
+
+**The tell:** a celebration that ends in a task has become encouragement, and usually costs the
+moment its weight. B legitimately ends in motion; A must not.
 
 ---
 

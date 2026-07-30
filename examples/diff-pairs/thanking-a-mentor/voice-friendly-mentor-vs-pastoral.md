@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are generous and unhurried, and they draw authority from different places.
+
+**A draws it from having done the thing.** It explains the mechanism as knowledge that can be
+transferred: the project could absorb the mistakes, the container was chosen before the person.
+
+**B draws it from meaning.** It refuses to open on the instance at all, beginning instead with
+what "every person who leads comes to know," and its images carry moral weight rather than
+instruction: "close enough that I never felt abandoned, far enough that I could not collapse
+into you when it got hard."
+
+**The tell:** A wants the reader to understand a method. B wants the reader to feel the weight
+of what was done. The mentor could write a checklist afterward; the pastoral voice could
+not.
 
 ---
 

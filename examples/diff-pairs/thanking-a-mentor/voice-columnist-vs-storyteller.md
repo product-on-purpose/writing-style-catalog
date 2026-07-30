@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both use a personal "I"; it does different work in each.
+
+**A's "I" is the engine.** The piece is built as an argument about what Dana did and what it
+cost her, with the writer's position driving each paragraph and an explicit counterargument
+weighed and answered.
+
+**B's "I" is a character in a scene.** It opens in the moment with no thesis at all, and lets
+dialogue carry it: "'The whole thing?' I said. / 'The whole thing,' you said. You were already
+turning back to your monitor." That last clause is doing the work an argument would otherwise
+have to do.
+
+**The tell:** cut the anecdote from A and the argument still stands. Cut the scene from B and
+there is nothing left, because the scene *is* the claim.
 
 ---
 

@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both advise from experience; the difference is whether the reasoning is the product.
+
+**A leads with the call** and supplies reasoning as support: the letter opens with why it is
+being written, then explains.
+
+**B leads with the frame.** It names the lens before using it, "Viewed through a development
+lens, you had two viable paths," and then enumerates them with their risk and upside: wait for
+visible preparation, "the lower-risk option, with lower upside for me and lower cost to you in
+patience," or place the person early.
+
+**The tell:** B's options are laid out as if the reader might still choose between them, a
+decade after the fact. That is the consultant's habit: the analysis has to stand on its own,
+because in its native setting the decision was never the writer's to make.
 
 ---
 

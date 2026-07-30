@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both put something uncomfortable first. They are urgent about different things.
+
+**A is urgent about accuracy** and takes its time getting the admission right.
+
+**B is urgent about time**, and says so in its first line: "You need to know what you gave me,
+and I have been sitting on this since last Wednesday." It then inverts the chronology, leading
+with last Wednesday rather than with the decade-old event, which is the structural signature of
+the tone.
+
+**The tell:** remove every time reference from B and the tone collapses; remove them from A and
+nothing changes. Urgency lives in the clock, candour in the content.
 
 ---
 

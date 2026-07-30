@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both admit something hard. The subject differs.
+
+**A admits about itself.** "For about four months in my second year, I was angry at you." Then
+the harder part, the concealment: "What I said instead was fine, everything is fine, I have it
+covered. I said it so many times I started to believe I was lying less than I was."
+
+**B admits about the other person's experience.** It does not mention the writer for its whole
+opening: "Watching someone find their footing when you could fix the problem in an afternoon is
+not a comfortable place to stand. You know what they don't know yet."
+
+**The tell:** cut the writer's own story from each. B is still fully addressed to Dana; A has
+nothing left. Confession centres the writer, empathy centres the other.
 
 ---
 

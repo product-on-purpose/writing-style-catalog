@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are senior and both compress. They compress toward different things.
+
+**A compresses toward the decision.** It leads with why it is writing and frames the past in
+terms of a bet placed and a playbook borrowed.
+
+**B compresses toward the problem.** Before saying anything about the outcome it lays out the
+conditions: "a real deadline, a skeptical stakeholder who had already flagged concerns to your
+director, and a team that was watching to see if the new PM could hold the room." The situation
+is specified before the judgment is.
+
+**The tell:** A tells you what was decided; B tells you what made it hard. Executive language
+assumes the standing to call it; product-thinker language builds agreement on the problem
+first.
 
 ---
 

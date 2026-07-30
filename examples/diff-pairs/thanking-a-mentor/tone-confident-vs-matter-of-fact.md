@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are unhedged. Only one is staking something.
+
+**A asserts and then backs it.** "You changed how I work. I know that sounds like a card, but I
+mean it technically - I have traced the specific thing you did backward through a decade of
+decisions." The pre-empting of the cliché is itself a confidence move: it acknowledges the risk
+of the claim and makes it anyway.
+
+**B reports.** Its sentences would read identically about a minor scheduling change.
+
+**The tell:** A's opening line is a claim someone could dispute. B contains nothing to dispute.
+Matter-of-fact works on trivia; confident is reserved for what the writer will defend.
 
 ---
 

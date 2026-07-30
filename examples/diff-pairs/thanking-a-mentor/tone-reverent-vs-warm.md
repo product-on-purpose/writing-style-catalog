@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both slow down. They are slowing down for different reasons.
+
+**A treats the subject as weighty** and refuses to handle it casually, which shows up as
+sensory exactness about a moment that mattered: "in the conference room on the third floor, with
+early spring still gray outside the windows." The detail is not decoration; it is the writing
+declining to summarise something significant.
+
+**B is oriented to Dana's feelings** and would rather be close than exact.
+
+**The tell:** A's care is aimed at the event; B's is aimed at the reader. A reverent piece can
+land slightly cool on its recipient without failing. A warm one that lands cool has failed.
 
 ---
 

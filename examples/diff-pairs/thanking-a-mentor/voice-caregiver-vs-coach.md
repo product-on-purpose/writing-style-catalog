@@ -18,11 +18,21 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both stay close to a person in difficulty; they differ in what they do with the difficulty.
+
+**A accompanies.** It slows down before it starts ("this is going to take me a moment to say
+right"), then reports the private cost nobody saw: "There were mornings in that first month
+where I stayed past seven not because I had more to do but because I did not know how to put
+the work down... I did not tell you most of this at the time." The caregiver's move is to name
+what was carried.
+
+**B asks.** It opens by interrogating its own letter, "gratitude that arrives this late carries
+a question inside it: what took you so long?", and then turns the question outward toward what
+the moment looked like from Dana's side. The coach's move is to hand the reader a question they
+have to answer themselves.
+
+**The tell:** A tells you what the hard months contained; B asks what they meant. One closes a
+gap, the other opens one on purpose.
 
 ---
 
