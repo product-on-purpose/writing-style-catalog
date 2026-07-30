@@ -18,11 +18,32 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+This is the widest pair on this topic, and the useful thing is that the subject matter is
+identical. The same first hour is treated once as something received and once as
+something specified.
+
+**A treats the morning as a gift that precedes any effort.** It opens on scripture
+(Lamentations 3:22-23) and reads it against its own situation: Jeremiah "wrote those lines
+from the ruins of Jerusalem... He was describing the daily miracle that mercy comes to
+people whose lives are not yet repaired." Its account of the routine is deliberately
+modest, "a way of receiving the gift before spending it," and it then does something no
+instructional format would permit itself: it disclaims the value of its own subject.
+"There is no virtue in the routine itself." A devotional that promises the practice will
+earn something has changed genre.
+
+**B treats the morning as a system with contracts.** Four composable modules, sequential
+unless noted, each with inputs, outputs, timing, and failure modes, the whole thing
+budgeted to 45 minutes inside a 60-minute window with 15 minutes of buffer "for
+transitions and interruptions." Every element exists so a reader can execute or verify.
+
+**The sharpest single tell.** A's central claim is that the routine accomplishes nothing
+on its own; B's central claim is that every step has a defined output. That is not a
+difference of tone, it is a difference in what the writing thinks a morning is for.
+
+**Why a pair this wide is still worth reading.** The subtle pairs teach discrimination;
+this one teaches range. It is the clearest demonstration on this topic that Format is not
+decoration on top of content, because holding the topic fixed and changing only the
+container has changed what can be said at all.
 
 ---
 

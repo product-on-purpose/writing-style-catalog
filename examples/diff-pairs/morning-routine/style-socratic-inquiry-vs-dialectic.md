@@ -18,11 +18,30 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+Read only the section headings of each, and the distinction is already complete.
+
+**A's headings are all questions**, and it never answers any of them: "What is your
+current morning actually like?", "Whose morning are you trying to copy?", "What is the
+phone doing for you?" Even where it supplies material, the material is more question:
+the phone might meet a need for information, regulation, or avoidance, and then, "if you
+take the phone away without naming the need, what fills the gap?" The piece states no
+model. The reader assembles one or leaves without one.
+
+**B's headings are declarative positions** and it is obliged to resolve them: `Thesis`,
+`Antithesis`, `Synthesis`. Because it takes a position, it can do the thing A structurally
+cannot, which is argue against itself in good faith. Note that it steelmans its own
+opposition rather than knocking it over: "The strongest version of this objection is not
+'I do not feel like it.' It is structural."
+
+**The sharpest single tell is what the synthesis admits.** B does not merely combine the
+two sides, it prices the combination: "This synthesis costs both sides something real.
+The thesis loses the symbolic weight of 'I never miss'... The antithesis loses the option
+to skip entirely on hard mornings." A dialectic that resolves without naming what each
+side gives up has produced a compromise and called it a synthesis.
+
+**If you are choosing between them:** pick `socratic-inquiry` when the reader's situation
+is so particular that any answer you supply would probably be wrong. Pick `dialectic`
+when the disagreement is real, public, and worth resolving in front of them.
 
 ---
 

@@ -18,11 +18,36 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both refuse to shame the reader, both start from where the reader actually is, and both
+arrive at roughly the same modest advice. They refuse differently, and that is the whole
+lesson: **A offers regard, B offers accounting.**
+
+**A reassures.** "That is not failure. That is what mornings look like for most
+thoughtful adults with full lives." It attributes something good to the reader for merely
+considering the change, "the fact that you are even thinking about doing this
+differently says something kind about how you want to live," and it closes by naming the
+reader's effort as delicate: "Be patient with yourself. You are doing something tender
+here." Nowhere does it explain why the previous attempts failed. It does not need to.
+
+**B itemises.** Where A says the reader has not failed, B says what the standard advice
+actually costs them, line by line: "It costs you sleep you cannot easily replace. It
+risks waking your partner, who already does not love your alarm. It puts a strain on a
+system that is, frankly, already operating at the edge." Then it supplies the mechanism
+A leaves out, and this is the passage to read twice: "After a few days of an earlier
+wake-up, you feel worse, not better... Then you give up, and you feel like you failed,
+even though what really happened is that the plan asked too much of a body that is
+already doing a lot."
+
+**The sharpest single tell.** A says *you are doing something tender*. B says *the plan
+asked too much of a body that is already doing a lot*. Both absolve the reader. A does it
+by feeling something about them; B does it by modelling their situation accurately enough
+that the failure is obviously the plan's. Warmth is aimed at the person. Empathy is aimed
+at the person's circumstances, and reaches the person through them.
+
+**The failure modes differ accordingly.** Over-hit warmth becomes reassurance with no
+information in it, comfortable to read and impossible to act on. Over-hit empathy becomes
+an exhaustive catalogue of how hard everything is, which can leave a reader more defeated
+than when they arrived.
 
 ---
 
