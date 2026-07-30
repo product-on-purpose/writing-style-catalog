@@ -769,6 +769,91 @@ function assertSafeOutRoot(outRoot) {
   }
 }
 
+// The schema contract version. This is deliberately NOT the plugin version: the
+// data contract changes far less often than the catalog does, and tying the two
+// would make every release rewrite every $id, which ADR 0019 classifies as a
+// breaking change. It bumps only when the contract itself breaks, at which point
+// v1 keeps being served alongside v2 so existing consumers do not break.
+const SCHEMA_CONTRACT_VERSION = 'v1';
+const SCHEMAS_SRC = path.join(REPO_ROOT, 'schemas');
+// Frozen snapshots of superseded contract versions, one directory per version
+// (e.g. schemas/contracts/v1/). Empty until the first breaking change; the
+// snapshot is taken in the same PR that bumps SCHEMA_CONTRACT_VERSION, and a test
+// enforces that pairing so a bump cannot silently retire a live contract.
+const RETIRED_CONTRACTS_DIR = path.join(SCHEMAS_SRC, 'contracts');
+// Schemas that are published but explicitly NOT covered by the freeze.
+const EXPERIMENTAL_SCHEMAS_DIR = path.join(SCHEMAS_SRC, 'experimental');
+const SCHEMAS_PUBLISH_DIR = path.join(REPO_ROOT, 'site', 'public', 'schemas');
+
+/**
+ * Copy schemas/ to the site's public tree so each schema's $id actually
+ * resolves over HTTP.
+ *
+ * Before this, every $id pointed at raw.githubusercontent on `main`, so the
+ * published contract tracked the tip of the branch and there was no versioned
+ * artifact to pin (ADR 0019 decision 3, resolved by ADR 0020). Serving them from
+ * a version-scoped path makes the frozen contract retrievable at a stable URL,
+ * and makes the relative `$ref: "entry.universal.schema.json"` in the per-axis
+ * schemas resolve within the same version instead of across versions.
+ *
+ * Verifies each file's $id matches where it is being published, so a moved
+ * schema fails the build rather than silently serving a document whose declared
+ * identity disagrees with its own URL.
+ */
+function publishOneVersion(version, srcDir, outRoot) {
+  const outDir = path.join(outRoot, version);
+  fs.mkdirSync(outDir, { recursive: true });
+  const files = fs.readdirSync(srcDir).filter((f) => f.endsWith('.schema.json'));
+  for (const name of files) {
+    const raw = fs.readFileSync(path.join(srcDir, name), 'utf8');
+    const { $id: id } = JSON.parse(raw);
+    const expectedSuffix = `/schemas/${version}/${name}`;
+    if (!id || !id.endsWith(expectedSuffix)) {
+      throw new Error(
+        `gen-site: ${path.relative(REPO_ROOT, path.join(srcDir, name))} declares $id ` +
+          `'${id}', which does not end with '${expectedSuffix}'. The $id and the published ` +
+          'path must agree, or the schema is unreachable at the URI it claims. See ADR 0020.'
+      );
+    }
+    fs.writeFileSync(path.join(outDir, name), raw);
+  }
+  return files.length;
+}
+
+function publishSchemas() {
+  const outRoot = path.join(REPO_ROOT, 'site', 'public', 'schemas');
+  fs.rmSync(outRoot, { recursive: true, force: true });
+
+  // The current contract, from the live schemas/ directory.
+  let count = publishOneVersion(SCHEMA_CONTRACT_VERSION, SCHEMAS_SRC, outRoot);
+  const published = [SCHEMA_CONTRACT_VERSION];
+
+  // Every superseded contract, from its frozen snapshot. ADR 0020 promises that
+  // v1 keeps being served once v2 exists. That promise is only real if a CLEAN
+  // build emits the old versions too: the published tree is gitignored, so
+  // anything not regenerated from a committed source simply vanishes on the next
+  // CI deploy and every pinned consumer gets a 404. Snapshots are that source.
+  if (fs.existsSync(RETIRED_CONTRACTS_DIR)) {
+    for (const version of fs.readdirSync(RETIRED_CONTRACTS_DIR).sort()) {
+      const dir = path.join(RETIRED_CONTRACTS_DIR, version);
+      if (!fs.statSync(dir).isDirectory()) continue;
+      count += publishOneVersion(version, dir, outRoot);
+      published.push(version);
+    }
+  }
+
+  // The unfrozen schema does not get to sit in a frozen namespace. ADR 0019 lets
+  // diff-pair take a breaking change without a major bump, so serving it under
+  // /v1/ would let the document at a "pinned" URL change underneath a consumer
+  // with no way to tell it apart from the frozen five by URL alone.
+  if (fs.existsSync(EXPERIMENTAL_SCHEMAS_DIR)) {
+    count += publishOneVersion('experimental', EXPERIMENTAL_SCHEMAS_DIR, outRoot);
+    published.push('experimental');
+  }
+
+  return { count, published };
+}
+
 function generate(outRoot) {
   assertSafeOutRoot(outRoot);
   const catalog = loadCatalog();
@@ -855,6 +940,11 @@ function main() {
   if (outIdx !== -1 && args[outIdx + 1]) outRoot = path.resolve(args[outIdx + 1]);
   const count = generate(outRoot);
   console.log(`[OK] generated ${count} catalog pages into ${outRoot}`);
+  const schemas = publishSchemas();
+  console.log(
+    `[OK] published ${schemas.count} schemas to ${SCHEMAS_PUBLISH_DIR} ` +
+      `(namespaces: ${schemas.published.join(', ')})`
+  );
 }
 
 export {
@@ -869,6 +959,8 @@ export {
   loadDiffPairs,
   assertSafeOutRoot,
   generate,
+  publishSchemas,
+  SCHEMA_CONTRACT_VERSION,
 };
 
 // Run only when executed directly (node scripts/gen-site.mjs), not when imported

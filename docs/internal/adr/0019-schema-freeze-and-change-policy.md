@@ -140,6 +140,23 @@ draft revisions have altered keyword semantics.
 **Requires:** an ADR, a **major** version bump, every affected file migrated in the same
 change, and `validate.py` green before merge.
 
+##### Amendment (2026-07-30): what "major bump" means before 1.0
+
+This policy was written assuming post-1.0 versions and did not say what class C costs while
+the project is at `0.y.z`. Left unstated, the first class C change had to either ship as
+`1.0.0` (claiming a v1.0 readiness the open GATE 1 does not support) or reinterpret "major"
+on the fly, which would weaken the policy one release after adopting it.
+
+Deciding it explicitly instead: **while the version is `0.y.z`, a class C change bumps the
+MINOR component** (`0.8.0` -> `0.9.0`). SemVer treats the whole `0.y.z` range as unstable and
+makes no compatibility promise across it, so the minor is where breaking changes already
+live pre-1.0. This is a stated exception with a defined end: **at `1.0.0` and after, class C
+means the major component, with no exceptions.**
+
+The practical consequence is worth naming, because it cuts the other way from most policy:
+any class C change is *cheapest right now* and gets permanently more expensive at 1.0.0.
+Contract fixes should be pulled forward, not deferred.
+
 **The default is C.** If an edit is not obviously A or B, it is C. Unclear is not a fourth
 class; it resolves to the most expensive one.
 
@@ -161,9 +178,12 @@ document invalidated. That promise is not currently deliverable, for two concret
    a tagged fetch can mix versions.
 
 **Versioned schema IDs and version-consistent `$ref`s are therefore a prerequisite for
-advertising external schema stability**, and are recorded in the backlog. Until they exist,
-the freeze is an internal engineering discipline, and the v1.0 launch copy must not claim a
-pinnable schema contract.
+advertising external schema stability.**
+
+**Resolved by [ADR 0020](0020-versioned-schema-ids.md) (2026-07-30).** Schemas are now served
+from `.../schemas/v1/`, a contract-versioned path independent of the plugin version, and the
+relative `$ref`s resolve within that version automatically. The freeze is an external
+guarantee as of v0.9.0, and launch copy may describe a pinnable contract.
 
 **Additive-optional stays available after the freeze.** Freezing must not mean the catalog
 cannot grow: the planned breadth expansion may want `family` on styles and tones once those
@@ -220,11 +240,11 @@ three restatements that can drift.
 
 ### Neutral
 
-- **Prerequisite for external stability, not fixed here:** versioned schema IDs and
-  version-consistent `$ref`s. Today every `$id` resolves to `main` and the per-axis schemas
-  `$ref` the shared schema relatively, so even a tagged fetch can mix versions. Repointing
-  `$id` is itself breaking for anyone resolving it now, so it wants its own decision.
-  Recorded in the backlog and named in decision 3 as a blocker on any external claim.
+- **Prerequisite for external stability, resolved the next day:** versioned schema IDs and
+  version-consistent `$ref`s, delivered by [ADR 0020](0020-versioned-schema-ids.md). It was
+  done immediately rather than deferred because a `$id` change is class C under this very
+  policy, and pre-1.0 that bill is a minor bump while post-1.0 it is a real major plus every
+  pinned consumer. This was the last cheap moment.
 - **On applying the annotation cleanup under a class defined in the same change.** This ADR
   defines class A and then immediately uses it, which is a shape worth naming rather than
   glossing. What makes it a sequence rather than a circle is that the policy was drafted as

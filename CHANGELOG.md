@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-07-30
+
+Makes the schema freeze real for anyone outside this repository.
+
+### Changed
+
+- **Schemas are served from a contract-versioned URL** ([ADR 0020]):
+  `https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/<name>.schema.json`.
+  Previously every `$id` resolved to `raw.githubusercontent.com/.../main/`, so the "frozen"
+  contract tracked the tip of a branch and there was nothing to pin. v0.8.0 froze the schema
+  and said so in writing; this is what makes the promise deliverable.
+
+  The version in that path is the **schema contract version**, not the plugin version. Tying
+  them would make every catalog release rewrite every `$id`, which is a breaking change under
+  the policy shipped last release, so routine releases would become breaking ones. It bumps
+  only when the contract breaks, and `v1` will keep being served alongside a future `v2`.
+
+  This also fixes a subtler bug. The four per-axis schemas compose the shared one with a
+  relative `$ref`, which resolves against the containing document's base URI. With every `$id`
+  on `main`, fetching `voice.schema.json` from a tag would still pull `entry.universal` from
+  `main`: the axis schema pinned, its parent not. A version-scoped base makes that
+  structurally impossible rather than a thing to remember.
+
+  Done now specifically because it is class C under the freeze policy: pre-1.0 that costs a
+  minor bump, post-1.0 a real major plus every pinned consumer. This was the last cheap moment.
+
+- `tools/validate.py` builds its schema registry from each file's own `$id` instead of
+  rebuilding the URI from a hardcoded base. That base was a second copy of the URL, in a
+  different file from the one declaring it; any move would have left the registry mapping
+  documents under URIs that no longer matched their identity, and `$ref` resolution would have
+  failed with nothing pointing at the cause.
+
 ## [0.8.0] - 2026-07-29
 
 The v1.0 readiness release. Three of the six launch-readiness gates closed: the schema is

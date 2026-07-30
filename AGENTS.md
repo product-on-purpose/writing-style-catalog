@@ -103,8 +103,9 @@ This checks frontmatter completeness, schema conformance, no em-dash/en-dash cha
 
 The six contributor-facing schemas (`entry.universal`, `voice`, `tone`, `style`, `format`,
 `example`) are **frozen** as of
-[ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md). `diff-pair.schema.json`
-is not frozen, but the classes below still govern it.
+[ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md). `experimental/diff-pair.schema.json`
+is not frozen and is served from `/schemas/experimental/` so its URL says so, but the
+classes below still govern it.
 
 The test: **would this edit change the verdict on any conceivable document, not just the
 files in this repo?** Checking only the current corpus is the trap this policy exists to

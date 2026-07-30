@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/example.schema.json",
+  "$id": "https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/example.schema.json",
   "title": "Example File Schema",
   "description": "Schema for the YAML frontmatter of example files in the examples/ directory",
   "type": "object",
@@ -20,7 +20,12 @@
     },
     "axis": {
       "type": "string",
-      "enum": ["voice", "tone", "style", "format"]
+      "enum": [
+        "voice",
+        "tone",
+        "style",
+        "format"
+      ]
     },
     "topic_slug": {
       "type": "string",
@@ -33,12 +38,21 @@
     },
     "author_type": {
       "type": "string",
-      "enum": ["human", "llm", "hybrid"],
+      "enum": [
+        "human",
+        "llm",
+        "hybrid"
+      ],
       "description": "Who produced the example content. human = written by a person; llm = fully AI-generated; hybrid = AI-generated and then edited by a human."
     },
     "review_status": {
       "type": "string",
-      "enum": ["draft", "reviewed", "stable", "reference-quality"]
+      "enum": [
+        "draft",
+        "reviewed",
+        "stable",
+        "reference-quality"
+      ]
     },
     "llm_model": {
       "type": "string",
@@ -86,11 +100,16 @@
   "if": {
     "properties": {
       "author_type": {
-        "enum": ["llm", "hybrid"]
+        "enum": [
+          "llm",
+          "hybrid"
+        ]
       }
     }
   },
   "then": {
-    "required": ["llm_model"]
+    "required": [
+      "llm_model"
+    ]
   }
 }

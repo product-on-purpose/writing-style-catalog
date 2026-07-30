@@ -232,12 +232,20 @@ server exposes the guaranteed behavior, not the naive concatenation.
   open pending a governance question, and were corrected the same day under
   [ADR 0019](adr/0019-schema-freeze-and-change-policy.md), which defined annotation-only
   edits as a class A change. Nothing remains open on this item.
-- **Published schema `$id` points at `main`** (raised by
-  [ADR 0019](adr/0019-schema-freeze-and-change-policy.md), not fixed there). Every schema's
-  `$id` resolves to a raw GitHub URL on `main`, so an external consumer resolving it gets the
-  tip of the branch rather than a released tag. Now that the schemas are frozen this matters
-  more, because the freeze promises stability that a moving URL does not deliver. Repointing
-  it at a tag is itself breaking for anyone resolving it today, so it wants its own decision.
+- **Published schema `$id`** - DONE 2026-07-30
+  ([ADR 0020](adr/0020-versioned-schema-ids.md)). Every `$id` now resolves to
+  `.../schemas/v1/`, a contract-versioned path served by the docs site and independent of the
+  plugin version, so the freeze is an external guarantee rather than internal discipline. Also
+  removed a duplicated base-URL literal in `validate.py` that would have silently disagreed
+  with the schemas on any future move.
+- **Schema URIs are not portable across a rename or transfer** (raised by
+  [ADR 0020](adr/0020-versioned-schema-ids.md), not fixed there). Schema identity is tied to
+  the `product-on-purpose` org and the `writing-style-catalog` Pages path, and GitHub does not
+  redirect a Pages site after a transfer, so a move would 404 every `$id`. Strictly better than
+  the previous raw.githubusercontent URLs, which carried the same coupling plus branch
+  mutability, but not durable. The fix is a project-controlled custom domain for canonical
+  schema IDs, which is an infrastructure decision with real cost. **A v1.0 claim of a permanent
+  contract should wait for this.**
 - **`review_status` governance** - new entries must start at `draft`, not `stable`; the
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.

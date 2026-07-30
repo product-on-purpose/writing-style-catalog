@@ -1,10 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/tone.schema.json",
+  "$id": "https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/tone.schema.json",
   "title": "Tone Entry Schema",
   "description": "Schema for tone entries (axis 2 of 4). Tone captures situational register, how the writing feels in a given context, and varies from one piece to the next. Voice, its most confusable neighbour, captures persistent identity and is stable across contexts. They are separate axes with separate schemas. See ADR 0018.",
   "allOf": [
-    { "$ref": "entry.universal.schema.json" }
+    {
+      "$ref": "entry.universal.schema.json"
+    }
   ],
   "properties": {
     "axis": {
@@ -22,15 +24,23 @@
     },
     "nn_g_profile": {
       "type": "string",
-      "enum": ["funny", "neutral", "serious"],
+      "enum": [
+        "funny",
+        "neutral",
+        "serious"
+      ],
       "description": "Nielsen-Norman Group tone profile classification"
     },
     "markers": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 3,
       "description": "Observable textual markers that signal this tone"
     }
   },
-  "required": ["markers"]
+  "required": [
+    "markers"
+  ]
 }

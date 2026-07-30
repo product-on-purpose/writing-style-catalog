@@ -1,10 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/format.schema.json",
+  "$id": "https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/format.schema.json",
   "title": "Format Entry Schema",
   "description": "Schema for format entries (axis 4 of 4). Format is the structural container or output type: headings, field ordering, section templates.",
   "allOf": [
-    { "$ref": "entry.universal.schema.json" }
+    {
+      "$ref": "entry.universal.schema.json"
+    }
   ],
   "properties": {
     "axis": {
@@ -12,15 +14,35 @@
     },
     "domain": {
       "type": "string",
-      "enum": ["professional", "public", "personal", "ceremonial", "contemplative"],
+      "enum": [
+        "professional",
+        "public",
+        "personal",
+        "ceremonial",
+        "contemplative"
+      ],
       "description": "Sphere of life the writing happens in (ADR 0010). Required (F2 phase 3, tightened 2026-06-19 after the 60 were backfilled). The enum mirrors tools/taxonomy.py FORMAT_DOMAINS; the family-belongs-to-domain rule is enforced by validate.py."
     },
     "family": {
       "type": "string",
       "enum": [
-        "deliberation", "instruction", "progress", "brief", "appraisal",
-        "messaging", "outreach", "response", "broadcast", "copy", "position",
-        "accountability", "correspondence", "essay", "tribute", "devotion", "journal"
+        "deliberation",
+        "instruction",
+        "progress",
+        "brief",
+        "appraisal",
+        "messaging",
+        "outreach",
+        "response",
+        "broadcast",
+        "copy",
+        "position",
+        "accountability",
+        "correspondence",
+        "essay",
+        "tribute",
+        "devotion",
+        "journal"
       ],
       "description": "Structural/functional kind of writing, scoped to its domain (ADR 0010). Flat enum (mirrors tools/taxonomy.py); membership within the domain is checked by validate.py. Required (F2 phase 3)."
     },
@@ -45,7 +67,11 @@
           "const": "words"
         }
       },
-      "required": ["min", "max", "unit"],
+      "required": [
+        "min",
+        "max",
+        "unit"
+      ],
       "description": "Typical word-count range for this format"
     },
     "canonical_template": {
@@ -54,19 +80,31 @@
     },
     "typical_voices": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Voice IDs that frequently use this format"
     },
     "typical_tones": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Tone IDs that frequently use this format"
     },
     "digital_or_print": {
       "type": "string",
-      "enum": ["digital", "print", "both", "neither"],
+      "enum": [
+        "digital",
+        "print",
+        "both",
+        "neither"
+      ],
       "description": "Primary medium for this format"
     }
   },
-  "required": ["domain", "family"]
+  "required": [
+    "domain",
+    "family"
+  ]
 }

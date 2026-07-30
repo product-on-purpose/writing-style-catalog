@@ -63,6 +63,10 @@ site/src/content/docs/examples/
 site/src/content/docs/recipes/
 site/src/content/docs/templates/
 
+# Schemas are copied here by scripts/gen-site.mjs so each $id resolves over HTTP.
+# The source of truth is schemas/ at the repo root (ADR 0020).
+site/public/schemas/
+
 # Agent working context - session logs, pilot data, research notes, and build
 # plans are local-only
 _agent-context/session-log/
