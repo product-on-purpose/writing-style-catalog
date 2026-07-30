@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Both report progress; they differ in window and audience.
+
+**A covers one person and one day**, and assumes everyone reading already knows what the
+rate-limiter is.
+
+**B covers the team over a week and names its readers**: "Period: Days 8 to 14... Audience:
+Director of engineering, team, peer EMs," with a `Headline` supplied because those readers will
+not read further.
+
+**The tell:** A assumes shared context; B supplies it. That is why B needs a headline and A does
+not.
 
 ---
 

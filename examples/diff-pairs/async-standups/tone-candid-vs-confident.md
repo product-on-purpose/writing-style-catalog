@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A names an uncomfortable truth about the team's own ritual**: "our daily standup is not
+delivering what it is supposed to deliver, and we need to change it. Here is the honest
+pict[ure]."
+
+**B asserts a conclusion and treats the evidence as compelling**: "Async standups are the right
+call for this team. The math forces it."
+
+**The tell:** A frames the difficulty of saying it; B frames the inevitability of the answer. "The
+math forces it" is a confident sentence, not a candid one, because nothing about it costs the
+writer anything.
 
 ---
 

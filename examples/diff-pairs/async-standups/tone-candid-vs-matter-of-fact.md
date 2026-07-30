@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A announces honesty as the operative move** and delivers a picture the team has been avoiding.
+
+**B states the situation without colour**: "**Proposal: Transition to Async-First Standup
+Format**. The team currently holds a daily synchronous standup at 9am Pacific. Attendance has
+averaged 8 of 11 engi[neers]."
+
+**The tell:** B's opening is a heading and a number. A's is an admission. Only one of them
+implies that saying this was difficult.
 
 ---
 

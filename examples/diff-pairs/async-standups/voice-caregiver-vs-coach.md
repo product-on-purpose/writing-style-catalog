@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A insists the human cost be said out loud first.** "Before we talk about whether to change the
+standup, let's say out loud what is actually happening to the three engineers in India. Their
+workday ends, they put a chi[ld to bed]..." It supplies the experience nobody in the meeting has
+described.
+
+**B insists the reader work it out.** "Before you make the call, it might be worth sitting with a
+few questions. You already know the surface facts: 11 engineers, 4 timezones, India attending
+3.2 out of 5."
+
+**The tell:** both delay the decision by one beat, and use the beat differently. A fills it with
+what is being missed; B empties it into a question.
 
 ---
 

@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A is domain-neutral and states the case plainly.**
+
+**B narrates the failure at runtime**: "Here is what happens at 9am on a bad standup day. Three
+engineers have been working since 7am. Two engineers are on the west coast and join 10 minutes
+late."
+
+**The tell:** B's argument is a timeline of a specific bad morning. A's is a claim with a
+supporting statistic. One knows what it looks like when the system degrades; the other knows what
+the report says.
 
 ---
 

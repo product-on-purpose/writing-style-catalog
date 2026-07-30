@@ -18,11 +18,12 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A asserts and stakes something on it**: the math forces it.
+
+**B records the same math and draws no conclusion in the same breath.**
+
+**The tell:** A contains a claim someone could contest. B contains an average attendance figure.
+Matter-of-fact survives being wrong about the recommendation; confident does not.
 
 ---
 

@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A admits the writer's own failure to act**: "I should have raised this six months ago, and I
+want to name that before I say anything else. When we added the second India engineer in
+October, I noticed the [problem]."
+
+**B names what the schedule has cost other people** and says the silence was collective: "I want
+to name what the current schedule has been costing some of you, because I think we have been too
+quiet about it."
+
+**The tell:** A's subject is the writer's delay; B's is the team's experience. Both open by
+naming an omission, and only one of them is a confession.
 
 ---
 

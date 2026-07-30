@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A treats the ritual as worth pausing over before it is changed**: "There is something worth
+pausing over in the daily standup, before we decide whether to change it. The practice, at its
+origin, was not really about status."
+
+**B is oriented to the team's feelings** and wants their reaction.
+
+**The tell:** A's care is aimed at the practice; B's at the people. Reverence here means
+declining to treat a thirteen-year-old ritual as merely a scheduling problem.
 
 ---
 

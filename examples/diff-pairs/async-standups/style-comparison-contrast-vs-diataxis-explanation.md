@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A needs two subjects** measured against each other on parallel criteria.
+
+**B examines one subject in depth to build understanding**, and says so in its opening move: "An
+async standup is not a standup without the video call. It is a different kind of coordination
+mechanism, built on different assumptions."
+
+**The tell:** B mentions the synchronous standup only to clear away a misconception about the
+thing it is explaining. A cannot do that, because without the second subject it has no
+structure.
 
 ---
 

@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A refuses to supply the model.** It says so explicitly, which is unusually candid about its
+own method: "Some have clean answers. Some do not, and that is the point." Its headings are
+questions, beginning "## What is the standup actually for?"
+
+**B states the model directly** and then elaborates it.
+
+**The tell:** both are aimed at understanding, and only one of them will tell you the answer. A
+is the right choice when the team's answer has to be theirs to own; B when they simply need to
+know how the thing works.
 
 ---
 

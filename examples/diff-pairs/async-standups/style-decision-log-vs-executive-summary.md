@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A looks backward at how the decision was reached.** Status, date, owner, and a stakeholder
+list that carefully records standing: "Head of Engineering (informed, not approving)."
+
+**B looks forward from a conclusion.** It leads with the recommendation in bold, trial length and
+revert criteria included, then supplies support in order of importance.
+
+**The tell:** A's most careful sentence is about who had authority; B's is the recommendation
+itself. One is auditable, the other actionable.
 
 ---
 

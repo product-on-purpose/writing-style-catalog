@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+Both put the conclusion first; they differ in who the layers are for.
+
+**A is aimed at one reader making one decision**, and its bolded recommendation contains the
+scope, the duration, and the revert criteria in a single sentence.
+
+**B is aimed at several audiences at once** and makes each layer complete on its own, opening
+with a `## TL;DR` that already contains the channel and the three field names.
+
+**The tell:** A's opening is a recommendation; B's is a summary. One expects a yes or no, the
+other expects readers to stop at different depths.
 
 ---
 

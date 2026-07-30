@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+This is the sharpest pair on the topic, because A is the artifact the whole discussion is about.
+
+**A is one person's post**, timestamped and scoped to them: Devon Park, day 9 of the trial,
+`Shipped` / `In progress`, with a soak time and a merged PR number.
+
+**B is the record of eleven people in a room** deciding whether posts like A should exist.
+
+**The tell:** A has a single author and no attendees; B has attendees and a note-taker. If you
+want to know what one engineer did yesterday, only one of these answers.
 
 ---
 

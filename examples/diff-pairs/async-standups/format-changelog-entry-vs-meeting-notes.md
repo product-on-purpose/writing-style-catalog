@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A versions the ritual itself**, which is the joke and also the point: "All notable changes to
+this team's standup ritual are documented here. Versioning loosely follows SemVer: breaking
+ritual changes bump the major version," then `## [2.0.0]`.
+
+**B captures the meeting where that change was discussed**, with attendees and a facilitator.
+
+**The tell:** A is organised by impact class and is readable years later without knowing a
+meeting happened. B is organised by an hour on a Thursday.
 
 ---
 

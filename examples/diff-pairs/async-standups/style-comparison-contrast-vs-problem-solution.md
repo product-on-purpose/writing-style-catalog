@@ -18,11 +18,12 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A weighs two options neutrally.**
+
+**B has already concluded that one of them is a problem** and moves to a remedy.
+
+**The tell:** B's first heading is `## The Problem`. A has no equivalent, because naming one side
+a problem would end the comparison before it started.
 
 ---
 

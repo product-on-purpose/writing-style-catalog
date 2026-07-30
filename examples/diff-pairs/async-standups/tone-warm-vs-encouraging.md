@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A shares something unresolved and asks for reaction**, which keeps the reader beside the
+writer.
+
+**B credits the team for what they have already done** and points at what becomes possible.
+
+**The tell:** A's request is for the team's honest response; B's is for their belief. Warmth
+seeks company, encouragement seeks momentum.
 
 ---
 

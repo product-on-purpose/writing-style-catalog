@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A is warm and straight**, and its warmth is anchored to results.
+
+**B is comic and structural**, opening with a mock-oratorical address: "Friends, colleagues,
+fellow connoisseurs of the 14-minute meeting in which 10 minutes are spent waiting for Zoom to
+admit Rajiv: I have a modest proposal."
+
+**The tell:** B is joking about the shared indignity, never about the people bearing the cost.
+That restraint is what keeps playfulness usable on a topic where three colleagues are up at
+9:30pm.
 
 ---
 

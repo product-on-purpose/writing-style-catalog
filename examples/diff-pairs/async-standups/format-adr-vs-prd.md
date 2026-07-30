@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Note first that these two renders are not even about the same object, and that is the lesson.
+
+**A decides a team process**: whether this team will run async standups.
+
+**B specifies a product**: an "Async Standup Bot" with a `Problem Statement` about engineering
+teams generally having "no structured way to run async standups within the tool they already
+use."
+
+**The tell:** the ADR's subject is a choice this team made; the PRD's subject is a thing
+somebody would build and ship. Handed the same prompt, one format reached for a decision and the
+other reached for a roadmap item, because a PRD has no way to represent a decision that produces
+no software.
 
 ---
 

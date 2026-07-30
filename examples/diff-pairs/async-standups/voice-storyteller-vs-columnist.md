@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A is inside the moment**: forty-seven unread messages, 9:47pm, the standup over without her,
+again.
+
+**B is above it**, naming the phenomenon and indicting it.
+
+**The tell:** A's strongest word is "again," which implies everything and argues nothing. B's is
+"cargo cult," which argues everything and implies nothing.
 
 ---
 

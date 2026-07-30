@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A is for the returning reader.** "Applies to," "Channel," "Status," "Owner," then numbered
+sections. Nothing argues; everything is indexed.
+
+**B is for the first-time reader who must be persuaded**, and opens on an executive summary
+making a general claim.
+
+**The tell:** ask which survives being entered at section 3. A does, because it was built for
+someone who arrives mid-task and leaves. B does not, because an argument read from the middle is
+not an argument.
 
 ---
 
