@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both want the reader to end up somewhere. They differ on whether belief is part of the job.
+
+**A works on capability and motion**, organised around the writer's six weeks of restraint and
+what that made possible.
+
+**B clears the path and signposts it.** "Before reading this letter in full, know why you are
+receiving it," then "Here is what I need you to understand, in the order it happened." It is
+telling Dana how to read the letter, which is an instructional move applied to a thank-you.
+
+**The tell:** B's structure is announced before its content. Encouragement never needs to do
+that, because it is not trying to make anything easy to follow, only easy to believe.
 
 ---
 

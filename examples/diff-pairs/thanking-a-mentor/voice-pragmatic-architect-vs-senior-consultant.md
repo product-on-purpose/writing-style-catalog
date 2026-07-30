@@ -18,11 +18,20 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+The pair the adherence test rated *subtle*, and this topic sharpens it.
+
+**Both reconstruct the decision as a choice between options with costs.** A prices it in the
+language of engineering risk: execution risk, a fixed timeline, stakeholders with "low tolerance
+for visible stumbling," and a bet that is bad "unless you have already priced in the constraint
+that adequate execution produces adequate engineers."
+
+**B prices it in the language of development and frameworks**, naming its lens first ("Viewed
+through a development lens") and setting out two viable paths with their respective upside and
+cost in patience and oversight.
+
+**The tell is who ends up holding the decision.** A announces a verdict on Dana's behalf: "You
+made the right call." B lays out the paths and lets the reasoning stand as the deliverable. The
+architect closes the question; the consultant hands back a defensible basis for it.
 
 ---
 

@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are firm; they are firm about different objects.
+
+**A is certain about a finding**: the causal trace from Dana's decision through a decade of the
+writer's own.
+
+**B is certain about a commitment**: that the letter will be sent this year, and that the
+writer checked in daily rather than stepping in.
+
+**The tell:** A's certainty could be wrong on the facts. B's cannot, because it is about
+intent. Confidence is a claim about the world; resolve is a claim about the writer.
 
 ---
 

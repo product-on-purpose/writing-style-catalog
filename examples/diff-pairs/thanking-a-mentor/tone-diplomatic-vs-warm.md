@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are kind, and only one is personal.
+
+**A protects everyone's standing**, including its own, and hedges accordingly: "I recognize that
+a decade's distance makes the gesture somewhat formal. I hope the delay does not read as an
+afterthought." Even the awkward fact is stated in the passive-ish register of the careful:
+"it was fair to say that the scope exceeded what I had handled before."
+
+**B expresses regard directly.** "I want you to know I've been thinking about you lately - not
+for the first time, but differently." Nothing is being managed.
+
+**The tell:** A could be sent to someone the writer does not like and remain entirely correct.
+B could not be written at all without the affection being real.
 
 ---
 

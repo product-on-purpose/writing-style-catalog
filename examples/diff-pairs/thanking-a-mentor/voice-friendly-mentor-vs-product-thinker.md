@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both explain, and they are explaining different objects.
+
+**A explains the mentor's move**, so the reader can use it: the calculation, the survivable
+stakes, the container chosen before the person.
+
+**B explains the situation**, so the reader agrees on what was actually at risk: the deadline,
+the stakeholder who had escalated to the director, the watching team.
+
+**The tell:** A's subject is a technique; B's subject is a problem. Both are teaching, but only
+one of them is teaching you what to *do*.
 
 ---
 

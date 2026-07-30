@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are unhedged, and they are committed to different things.
+
+**A is committed to the truth of the account**, including the unflattering parts of the writer's
+own state at the time.
+
+**B is committed to an action.** "I am not going to let another year pass without saying so."
+Its detail is about what the writer *did*: checked in daily, answered what was asked, watched a
+person decide "whether to stay or run."
+
+**The tell:** A could end without resolving anything and still be complete. B cannot; its
+register is a promise, and a promise that goes unfulfilled reads as a failure of the piece
+rather than of the writer.
 
 ---
 

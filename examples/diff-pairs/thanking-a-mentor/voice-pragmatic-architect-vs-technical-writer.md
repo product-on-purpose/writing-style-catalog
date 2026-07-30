@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are precise, and precision serves different ends.
+
+**A reasons.** Its content is the tradeoff, the risk, the counterfactual candidate who had done
+it twice before, and the conditions under which the bet is good.
+
+**B specifies and instructs.** It states the intent up front, "You taught me something over four
+months in 2016 without naming it as a lesson. I want to name it now, because I just used it,"
+then lays out the scope as requirements: coordination across four engineering teams, sign-off
+from a skeptical release manager.
+
+**The tell:** A includes the reasoning because a decision is unusable without it. B strips
+reasoning to what the reader needs in order to act, and names the lesson as a discrete,
+transferable thing.
 
 ---
 

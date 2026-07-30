@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are plain; one is domain-neutral and the other is not.
+
+**A works anywhere.** Nothing in its vocabulary belongs to a particular kind of work, and its
+precision is about the human read: encouragement versus assessment.
+
+**B is unmistakably operational.** It states the system and its blast radius, "a production
+system that two other teams depended on," quotes the operating agreement verbatim, "Weekly
+check-in, Tuesdays, half an hour. You run it. I'll come to you if I see something," and reports
+the failure like an incident: "In week six I missed the first integration milestone by four
+days."
+
+**The tell:** B has a boundary that "held for eight months." Outside an operational context that
+sentence has nowhere to land, which is exactly why the operator voice does not travel.
 
 ---
 

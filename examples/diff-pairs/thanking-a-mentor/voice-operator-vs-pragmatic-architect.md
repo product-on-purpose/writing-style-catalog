@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are concrete, and they sit on opposite sides of the decision.
+
+**A is execution.** It reports what ran and what broke, with the shape of the work in numbers,
+and it treats the missed milestone as an operational fact with a date and a blocker.
+
+**B is design.** It opens on the judgment itself, "You made the right call. I want to name that
+directly," and reconstructs the decision as a priced bet: "you traded guaranteed adequate
+execution for the possibility of something better, with the cost landing on you personally if I
+failed publicly. That is a bad bet unless you have already priced in..."
+
+**The tell:** A tells you how the eight months went; B tells you why the eight months were
+started. Same rigour, opposite side of the choice.
 
 ---
 

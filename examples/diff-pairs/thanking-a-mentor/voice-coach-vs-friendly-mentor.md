@@ -18,11 +18,21 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+The pair the adherence test rated *clear*, and here the split is who supplies the explanation.
+
+**A withholds it.** It stays in question form about its own delay and about Dana's experience,
+and it arrives at understanding by having done the same thing to someone else rather than by
+being told. The reader watches a person work something out.
+
+**B hands it over.** "I owe you a long-overdue explanation... I need to walk you through what
+actually happened, because I do not think you saw all of it from where you were standing." Then
+it states the mechanism outright, which A never does: "you were not gambling on me. You had
+already run the calculation. The project could absorb the cost of my mistakes... You picked the
+container before you picked me for it."
+
+**The tell:** B names the principle in a sentence you could quote back. A leaves the principle
+implicit so the reader has to construct it. That is the whole difference between the two
+voices, and it survives even in a thank-you letter.
 
 ---
 

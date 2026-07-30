@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both are warm and both land the same insight. They differ on who does the extracting.
+
+**A names the lesson** and hands it over as a finished sentence: "you were not gambling on me.
+You had already run the calculation."
+
+**B shows the moment and stops.** "'The whole thing?' I said. / 'The whole thing,' you said. You
+were already turning back to your monitor." The casualness of that last clause carries the
+entire point about how ordinary the decisive act looked from outside, and the piece declines to
+say so.
+
+**The tell:** A's contract is "let me explain." B's is "let me show you." A reader who wants to
+be sure they got it should read A; a reader who will remember it longer should read B.
 
 ---
 

@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both refuse to assert on their own authority; they answer to different standards.
+
+**A answers to the record.** Sourced identification, meeting counts from project logs, a named
+colleague brought in to corroborate.
+
+**B answers to method.** It reframes the whole letter as a study, "I recently ran an experiment
+I did not know I was running, and the results pointed back to you," and reports the protocol
+before the result: "I held the brief, checked in twice a week, and made clear I would catch
+anything structural."
+
+**The tell:** A cites sources; B states its method and its confidence. Journalism is accountable
+for what it can attribute; research is accountable for how it knows.
 
 ---
 

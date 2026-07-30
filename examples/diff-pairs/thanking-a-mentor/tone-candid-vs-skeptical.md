@@ -18,11 +18,19 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Both are rigorous about honesty, in opposite directions.
+
+**A states a truth it has already reached** and refuses to soften it.
+
+**B doubts the truth is available at all**, and doubts itself first: "I have been trying to work
+out whether I actually learned this from you or whether I simply arrived at the same method on
+my own and am now assigning you credit retroactively. That is an important distinction, and I am
+not sure I can resolve it cleanly." It then rations its confidence explicitly: "Here is what I
+can say with some confidence."
+
+**The tell:** candour is conviction delivered without cushioning; scepticism is the withholding
+of conviction. A reader finishes A knowing where the writer stands, and finishes B knowing
+exactly how far the writer is willing to go.
 
 ---
 
