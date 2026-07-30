@@ -18,9 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-This is the wide pair on this topic, and the clean one: both sides recommend Postgres with a
-5M events/day revisit threshold, so the content is genuinely held constant and the container
-is the only variable. The difference is **who the writing is accountable to.**
+This is the wide pair on this topic, and the one with the cleanest **decision** parity: both
+sides recommend Postgres with the same 5M events/day revisit threshold. Be precise about what
+that does and does not buy you. Each vertical-slice render in this catalog was generated
+independently per entry, so the verdict matches but the supporting material does not: A alone
+names `pg_notify`, a `notification_jobs` table, read replicas, and a "3 weeks faster"
+estimate, while B alone introduces an eight-dimension matrix, weighted scores of 0.79 against
+0.68, a literature positioning, and a list of its own limitations. The container is the
+reason those differences take the shape they do, but it is not the sole cause of every one of
+them.
+
+Read the pair for **who the writing is accountable to.**
 
 **A is accountable to this team, later.** `adr` is a record with a status field, and
 "Accepted" is doing real work: it marks the decision as closed and the document as the thing
