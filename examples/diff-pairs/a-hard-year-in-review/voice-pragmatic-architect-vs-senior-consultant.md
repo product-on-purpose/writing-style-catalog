@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+The pair rated *subtle*. Here the two voices reach nearly the same conclusion by different
+warrants.
+
+**A works in failure modes and incentives**, and locates the cause inside the writer's own
+reluctance to name a signal that would have cost something to name.
+
+**B works in engagements and findings**, announcing the lens first and then numbering the
+conclusions with the months attached.
+
+**The tell:** A's analysis implicates the author as the mechanism. B's holds the year at arm's
+length as an object of study. Architect reasoning is inside the system; consultant reasoning is
+about it.
 
 ---
 

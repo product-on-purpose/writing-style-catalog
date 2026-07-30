@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Both discipline themselves against premature meaning, by different instruments.
+
+**A uses the record.** Dates, a ticket tracker, the shutdown note quoted in full.
+
+**B uses epistemics.** "Things I can say with confidence:" then a list, and the closing move
+that marks the boundary: "These are findings, not..."
+
+**The tell:** A withholds interpretation because it cannot be sourced. B withholds it because it
+has not been established. Both refuse the tidy story; only one of them is refusing on
+methodological grounds.
 
 ---
 

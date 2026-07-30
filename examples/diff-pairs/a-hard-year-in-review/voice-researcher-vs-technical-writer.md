@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A rations confidence explicitly** and labels its outputs as findings.
+
+**B removes uncertainty from view** and states what happened in the fewest words that remain
+true.
+
+**The tell:** A tells you how far to trust each sentence. B assumes you need to know the facts,
+not the confidence intervals. Both are honest; only one of them treats calibration as part of
+the message.
 
 ---
 

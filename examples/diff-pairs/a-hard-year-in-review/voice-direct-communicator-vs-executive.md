@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A states damage plainly and takes the sentence no further than it needs to go.** "The product
+shipped. Nobody used it."
+
+**B refuses a euphemism as its opening move**, which is a different kind of bluntness: "The year
+delivered two significant failures, and I am not going to describe them as growth
+opportunities." It then reaches for the language of stakes and bets.
+
+**The tell:** A is plain because ornament would obscure. B is plain because softening would be a
+failure of leadership. Both are unhedged; only one is making a point of it.
 
 ---
 

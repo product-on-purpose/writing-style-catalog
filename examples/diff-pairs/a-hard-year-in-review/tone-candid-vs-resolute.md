@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A is committed to the accuracy of the account.**
+
+**B is committed to having finished arguing with it.** "The year is over. I have stopped trying
+to understand it differently than it was." It then holds a position it will not retract: "I
+still believe the direction was right."
+
+**The tell:** B's defining sentence is about the writer's stance going forward. A's is about
+what is true.
 
 ---
 

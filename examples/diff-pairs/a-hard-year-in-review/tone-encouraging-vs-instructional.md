@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A points at capability while naming the writer's own error**: the vision was held too long
+against the evidence.
+
+**B refuses motivation entirely and gives procedure.** "Before you begin, establish what this
+exercise is: reckoning means accurate accounting of what happened, not resolution. You are not
+looking for lessons." Then it numbers the steps.
+
+**The tell:** B explicitly rules out the thing A is doing. "You are not looking for lessons" is
+an instructional sentence disowning an encouraging one.
 
 ---
 

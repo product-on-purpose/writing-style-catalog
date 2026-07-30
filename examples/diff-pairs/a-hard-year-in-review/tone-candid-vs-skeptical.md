@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A states the picture and stands behind it.**
+
+**B doubts its own narration.** "What I am less certain about is the story I keep trying to
+build around it," and then names the problem exactly: the year "gives me two competing
+accounts."
+
+**The tell:** A has one account and delivers it unsoftened. B has two and refuses to pick, which
+is not indecision but a refusal to overclaim.
 
 ---
 

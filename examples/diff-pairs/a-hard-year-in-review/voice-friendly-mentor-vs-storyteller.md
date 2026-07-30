@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A names the lesson at the top** and then walks through the year in support of it.
+
+**B refuses to name anything** and puts you at the table on a Tuesday in November with a
+sentence spoken across it.
+
+**The tell:** A's first paragraph could stand alone as advice. B's first paragraph could not
+stand alone as anything but a scene, which is the point.
 
 ---
 

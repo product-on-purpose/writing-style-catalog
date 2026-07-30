@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A is sure about a diagnosis**, including the uncomfortable one about the cheapness of its own
+earlier honesty.
+
+**B is sure about a stance**: the arguing is over, the direction was still right.
+
+**The tell:** you could disprove A with better evidence. You could not disprove B, because it is
+a decision rather than a claim.
 
 ---
 

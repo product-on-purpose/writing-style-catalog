@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A leads with the claim** and organises the year as an argument about optimism.
+
+**B leads with a Tuesday.** "Marcus and I sat on opposite sides of the conference table we had
+used for three years of planning sessions, and he said, 'I think we have to call it.' He was
+right." The three-years-of-planning-sessions detail about the table is the argument, delivered
+as furniture.
+
+**The tell:** A could lose its scenes and keep its point. B is its scene.
 
 ---
 

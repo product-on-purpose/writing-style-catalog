@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A stays straight-faced** and lets the quietness of the wind-down carry the weight.
+
+**B gets its distance through comedy at the ritual's expense**: "The project had one of those
+endings where everyone uses the word 'learnings' a lot. That should have been the first sign."
+
+**The tell:** B is making fun of the vocabulary of failure, not of the failure. Aim playfulness
+at the loss itself on this topic and it curdles immediately.
 
 ---
 

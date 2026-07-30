@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Rated *clear* by the adherence test, and this topic makes the split easy to see.
+
+**A holds up a mirror.** Second person throughout, and its observations are about what the
+reader keeps doing with the year rather than what the year contained.
+
+**B teaches from a generalisation.** "This is the part nobody tells you about hard years: they
+do not announce themselves. You find out sometime around October, looking back at January." It
+then states its method plainly: naming what actually happened "is the only way I have found to
+make sense of it."
+
+**The tell:** B gives you a rule you could apply next year. A gives you a question about this
+one.
 
 ---
 

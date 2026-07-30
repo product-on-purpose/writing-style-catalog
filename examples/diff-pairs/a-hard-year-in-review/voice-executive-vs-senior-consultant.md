@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A delivers a verdict** and declines the softening frame.
+
+**B names its lens and then numbers its conclusions.** "Viewed through a straightforward
+post-engagement lens, the year produced two clean findings, neither of which the data flatters,"
+followed by **Finding 1** with the engagement length and the month the diagnostic was formed.
+
+**The tell:** B's structure would survive being handed to someone else to act on. A's is a
+statement of where the writer now stands.
 
 ---
 

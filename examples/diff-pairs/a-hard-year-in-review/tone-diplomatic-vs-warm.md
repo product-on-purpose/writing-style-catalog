@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A keeps its footing and its face.** "The year made its position clear enough: two things I
+had invested in did not come through, and there is no framing that changes the basic account."
+The passive construction of the year "making its position clear" is the tone at work.
+
+**B speaks to someone specific and trades on the relationship**: "You have been with me through
+enough that I want to say this plainly."
+
+**The tell:** A could be read by a colleague without embarrassment. B assumes an intimacy that
+would make a colleague uncomfortable to read.
 
 ---
 

@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A teaches a way of looking back** and says so.
+
+**B diagnoses a specific error**, and the error is definitional: the problem named at the start
+was not the problem being solved, and the gap consumed the year.
+
+**The tell:** A would be useful to a reader whose year went badly for entirely different
+reasons. B would not, because it is about this particular mis-specification.
 
 ---
 

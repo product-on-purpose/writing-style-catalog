@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A admits what the writer believed and how much.** "I believed in it the way I believe in very
+few things," and then the ending that offered nothing to push against: it ended "not with a
+decision against it, but with sile[nce]."
+
+**B addresses a reader in the same position and names the shape of their loss.** "You put real
+work into something and it ended without what you were trying to build... That is a specific
+kind of loss, different from loss by accident."
+
+**The tell:** A is in the first person and cannot be moved out of it. B is in the second and
+never needs the first.
 
 ---
 
