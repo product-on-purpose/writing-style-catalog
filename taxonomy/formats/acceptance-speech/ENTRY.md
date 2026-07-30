@@ -63,6 +63,7 @@ avoid_with:
   - urgent
 confusable_with:
   - toast
+  - commencement-speech
 when_to_use:
   - Accepting an industry, civic, or organizational award as the named recipient
   - Receiving an honorary degree, fellowship, or lifetime achievement recognition
@@ -159,3 +160,5 @@ Presenting or conferring an award to someone else, contexts where the honoree is
 ### Often confused with
 
 **toast**: A toast is a short, warm tribute delivered aloud to celebrate a living person or a happy occasion, typically ending with an invitation for the room to raise a glass. The speaker is someone outside the recognition - a friend, colleague, or admirer celebrating the honoree to the assembled guests. An acceptance speech inverts that speaker position entirely: the honoree steps to the podium and gratitude flows outward from the person in the spotlight to those who made the moment possible. Both formats are warm and ceremonial and may occur at the same event; the difference is who speaks and which direction the thanks travel.
+
+**commencement-speech**: Both are delivered from a podium at a milestone, but the acceptance speech is spoken by the person being honoured and is bounded by that moment: thank, reflect, sit down. A commencement address is spoken by an invited outsider to people at a threshold, and its job is to send them somewhere. If the speaker is the subject of the occasion, it is an acceptance speech.

@@ -52,6 +52,9 @@ avoid_with:
   - devotional-reflection
 confusable_with:
   - slack-message
+  - cold-outreach
+  - memo
+  - thank-you-note
 when_to_use:
   - Communicating with external parties or stakeholders outside the team
   - Requests that require a durable record or audit trail
@@ -137,3 +140,9 @@ Email is the wrong format for quick back-and-forth that belongs in a chat channe
 ### Often confused with
 
 **slack-message**: Slack messages are designed for team channels, are ephemeral, and tolerate a conversational opening. Email creates a record, travels outside the team, and must be self-contained - the subject line and body structure carry obligations that a Slack message does not.
+
+**cold-outreach**: Email operates inside an established professional context and can lead straight with the request. Cold outreach has no such context and must earn attention before it earns a reply. An email that opens with a researched compliment to a stranger has become cold outreach.
+
+**memo**: Email is optimised for the inbox scan, with the subject line carrying the summary. A memo is a durable internal document with a fixed header block, written to be filed and referenced rather than skimmed and archived. Length is not the tell; permanence is.
+
+**thank-you-note**: An email leads with purpose or action and carries whatever context the reader needs. A thank-you note has one subject, names a specific thing the recipient did, and asks for nothing. An email that thanks and then requests is not a thank-you note.

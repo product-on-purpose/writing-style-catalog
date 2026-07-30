@@ -66,6 +66,7 @@ avoid_with:
 confusable_with:
   - meeting-notes
   - daily-standup
+  - postmortem
 when_to_use:
   - Weekly or biweekly team updates in a distributed organization
   - Consulting engagement status updates to a client
@@ -159,3 +160,5 @@ Do not use this format for a daily standup (smaller scope, less detail - use `da
 **meeting-notes**: Meeting notes capture a discussion that happened synchronously; they are organized by topic and reflect what was said. A status report is written async, with no meeting required; it is organized by done/next/blocked and reflects the state of the work itself.
 
 **daily-standup**: A daily standup covers yesterday and today in a sentence or two and is read in seconds. A status report covers a longer window (a week or more) with enough detail to be useful to someone outside the day-to-day. Same shape (done/next/blocked), different scope.
+
+**postmortem**: A status report gives a periodic snapshot of project health: done, at risk, next. A postmortem is bounded to one incident and investigates cause and prevention. The report recurs on a cadence; the postmortem is triggered by a failure.

@@ -81,6 +81,7 @@ avoid_with:
 confusable_with:
   - readme
   - technical-reference
+  - how-to-guide
 when_to_use:
   - Recurring operational procedures where step order matters and a missed step causes failures
   - Incident response playbooks that must be usable by engineers who did not build the system
@@ -193,3 +194,5 @@ Conceptual or architectural explanations where the goal is understanding rather 
 **readme**: A README orients a reader to a project - what it is, how to install it, and where to start. A runbook is not an orientation document; it is a procedure to follow in sequence during a specific operation. A README can be read in any order; a runbook must be followed step by step to a defined end state.
 
 **technical-reference**: A technical reference lists commands, parameters, APIs, or configuration options for lookup. A runbook sequences those primitives into a specific operation with a defined start condition, end state, and rollback path. A reader consults a reference to find information; a reader follows a runbook to complete a task under operational conditions.
+
+**how-to-guide**: A runbook is written to be executed under pressure by an operator who did not build the system, so it removes interpretation. A how-to guide teaches, and includes enough context that the reader understands what they are doing and why. Understanding is the guide's goal and the runbook's overhead.

@@ -74,6 +74,7 @@ avoid_with:
   - reverent
 confusable_with:
   - technical-reference
+  - runbook
 when_to_use:
   - The top-level entry point for any open-source or internal software project
   - Library or CLI tool documentation root
@@ -177,3 +178,5 @@ Do not use the README format for deep reference material that returning users wi
 ### Often confused with
 
 **technical-reference**: A technical reference is optimized for the returning reader who knows what they want and needs to look it up - it is organized for retrieval. A README is optimized for the first-time visitor who does not yet know what the project does - it is organized for narrative hook and onboarding. A project usually needs both, in separate files.
+
+**runbook**: A README orients a reader to a project: what it is, how to install it, where to start. A runbook is executed during a specific operational situation by someone who may not have built the system and cannot afford to interpret. Orientation is optional reading; a runbook is not.

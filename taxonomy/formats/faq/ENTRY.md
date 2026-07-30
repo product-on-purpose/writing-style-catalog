@@ -63,6 +63,7 @@ avoid_with:
   - reverent
 confusable_with:
   - technical-reference
+  - support-reply
 when_to_use:
   - A product, service, or process generates a predictable set of recurring questions from users or customers
   - A landing page or onboarding flow needs to pre-empt common questions before the reader reaches a support channel
@@ -158,3 +159,5 @@ When the content is a precise technical specification with syntax, parameter def
 ### Often confused with
 
 **technical-reference**: Both formats serve a reader who arrives with a specific lookup rather than reading straight through. The difference is content: a FAQ collects recurring natural-language questions with self-contained prose answers, ordered by reader frequency; a technical-reference is a precise specification of syntax, signatures, parameters, fields, and code examples. A FAQ answers "How do I..." or "What happens if..."; a technical-reference documents exactly how something is defined.
+
+**support-reply**: An FAQ is proactive: it anticipates what many readers will ask and answers each self-containedly, ordered by frequency. A support reply is reactive and private, addressed to one customer's actual problem. An FAQ answer that addresses 'your account' has slipped registers.

@@ -129,3 +129,5 @@ Routine operational decisions that will not affect future readers. Avoid when th
 ### Often confused with
 
 **adr**: An ADR (architecture decision record) is a decision-log specialized for software architecture choices, with conventions specific to that domain - drivers, status, consequences in a technical sense. Decision-log is the general form that applies to any significant organizational choice. Every ADR follows the decision-log pattern; not every decision-log is an ADR. The distinction is scope and specialization, not structure.
+
+**executive-summary**: A decision log looks backward at the process: which options were on the table, what criteria were applied, and how the reasoning ran. An executive summary looks forward from a conclusion, leading with the recommendation and marshalling evidence behind it. The log is auditable; the summary is actionable.

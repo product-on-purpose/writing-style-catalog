@@ -54,7 +54,7 @@ avoid_with:
   - pragmatic-architect
   - problem-solution
   - adr
-confusable_with: [sermon]
+confusable_with: [sermon, eulogy, journal-entry, prayer]
 when_to_use:
   - Daily devotional series
   - Church newsletter content
@@ -138,3 +138,9 @@ Technical writing, business communication, secular audiences.
 ### Often confused with
 
 **sermon**: A sermon is a public spoken address to a gathered congregation, moving from exposition to exhortation and calling many listeners toward a shared response together. A devotional entry is a short private reading an individual works through alone, anchored to a scripture passage and moving toward personal application in 5 to 10 minutes - intimate and singular where the sermon is communal and oral.
+
+**eulogy**: A devotional entry centres universal spiritual themes and turns toward the reader's own faith or growth. A eulogy centres one specific person and the room grieving them. The devotional generalises on purpose; the eulogy must not.
+
+**journal-entry**: A devotional entry is written for a reader, usually anchored to scripture, and moves toward application. A journal entry is written for an audience of one and owes nobody a takeaway. The devotional has a duty to land somewhere useful.
+
+**prayer**: A devotional entry speaks about God to a human reader, teaching or encouraging through reflection and application. A prayer speaks to God in second person, with the human reader as witness. The direction of address is the whole distinction.

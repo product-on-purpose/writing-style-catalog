@@ -61,6 +61,9 @@ avoid_with:
 confusable_with:
   - adr
   - daily-standup
+  - changelog-entry
+  - meeting-agenda
+  - status-report
 when_to_use:
   - Capturing outcomes from any synchronous meeting where decisions were made or tasks were assigned
   - Team syncs, planning sessions, retrospectives, stakeholder meetings, or design reviews
@@ -155,3 +158,9 @@ Skip formal notes for casual conversations and informal 1:1 check-ins with no ac
 **adr**: An ADR is a permanent, structured record of a specific architectural decision designed to explain the reasoning to future engineers. Meeting notes capture everything decided in a meeting, including non-architectural matters, and are organized for immediate action by attendees and absentees alike.
 
 **daily-standup**: A daily standup is a recurring short-form status communication with a fixed three-part structure. Meeting notes cover a specific meeting's full set of outcomes, including decisions and assigned work, across any topic or time range.
+
+**changelog-entry**: Meeting notes capture a discussion, organised by topic and by what was decided. A changelog entry captures what changed in a release, organised by impact class and authored for developers. One records people talking; the other records code moving.
+
+**meeting-agenda**: Meeting notes are written during or after and are organised by outcome: decisions, actions, open items. An agenda is written before and is organised by intended use of time. The agenda proposes; the notes record what actually happened.
+
+**status-report**: Meeting notes record a synchronous discussion and reflect what was said. A status report is written asynchronously with no meeting required and is organised by domain rather than by conversation. If no meeting occurred, notes are the wrong container.

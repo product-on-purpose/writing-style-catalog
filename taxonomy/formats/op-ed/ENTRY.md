@@ -57,6 +57,8 @@ avoid_with:
 confusable_with:
   - blog-post-long-form
   - editorial
+  - manifesto
+  - open-letter
 when_to_use:
   - Arguing a clear position on a timely public issue in a named outlet
   - Building external credibility through a third-party publication
@@ -144,3 +146,7 @@ When the topic requires nuanced exploration rather than a pre-held conclusion, w
 **blog-post-long-form**: A long-form blog post is a substantial web article of 1,500-3,000 words with a present and recognizable authorial voice; it can pursue a focused argument or a deeper exploration of a topic at its own pace. An op-ed is written for a third-party publication, holds to 600-800 words, and argues a single pre-held position from the first sentence. The blog post's length lets the writer develop ideas gradually; the op-ed's hard word limit and external outlet demand that the position be declared and defended without detour.
 
 **editorial**: An editorial is the UNSIGNED collective opinion of a publication's editorial board, speaking as we for the masthead and grounding its authority in the institution's reported-fact and observed-pattern judgment - it forbids personal anecdote. An op-ed is SIGNED by an individual whose authority comes from their own stake, lived experience, or distinctive voice, and may build the argument on first-person anecdote.
+
+**manifesto**: An op-ed argues one specific claim on a timely issue for a publication's readership, and it accepts the burden of persuading people who disagree. A manifesto declares a position and a programme, addressing those who might join rather than those who need convincing. The op-ed argues; the manifesto proclaims.
+
+**open-letter**: An op-ed argues a position to the public, and the readers are the direct audience. An open letter addresses a named recipient while the public reads over its shoulder; the pressure of that audience is the point. Change the addressee and the form changes with it.

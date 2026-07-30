@@ -40,6 +40,7 @@ confusable_with:
   - definitional
   - procedural
   - socratic-inquiry
+  - technical-reference
 avoid_with:
   - operator
 when_to_use:
@@ -123,3 +124,5 @@ When the reader needs to accomplish a specific task right now. Runbooks, operati
 **procedural**: Diataxis explanation answers "how does this work?" and is finished when the reader understands. Procedural answers "how do I do this?" and is finished when the reader has completed the action. The distinction is functional rather than stylistic: explanations serve comprehension, procedures serve task completion.
 
 **socratic-inquiry**: Diataxis explanation states the conceptual model directly and then elaborates it. Socratic inquiry refuses to state the model, leaving the reader to build it from the questions. Both aim at understanding; only one of them will tell you the answer.
+
+**technical-reference**: An explanation document is oriented toward understanding and may use motivation, analogy, and context. A technical reference is oriented toward lookup and is organised for retrieval by a reader who already understands. Analogy in a reference is noise; absence of it in an explanation is a failure.

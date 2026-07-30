@@ -61,6 +61,8 @@ avoid_with:
   - urgent
 confusable_with:
   - eulogy
+  - acceptance-speech
+  - wedding-vows
 when_to_use:
   - Wedding receptions, rehearsal dinners, or engagement parties
   - Retirement celebrations and farewell gatherings for living honorees
@@ -156,3 +158,7 @@ Memorial services or funerals, formal presentations where the audience expects a
 ### Often confused with
 
 **eulogy**: A eulogy is a formal tribute delivered at a funeral or memorial service for someone who has died. Its emotional register permits grief, loss, and retrospective mourning, and its typical length runs 600-900 words. A toast, by contrast, honors the living and must land on joy - the shared raised glass is a forward-looking act of celebration, not commemoration.
+
+**acceptance-speech**: A toast is given by someone outside the honour, speaks to the assembled room, and closes by inviting them to raise a glass. An acceptance speech is given by the person receiving the honour and thanks those who made it possible. The glass is the structural tell.
+
+**wedding-vows**: A toast speaks to the room about the couple and ends by inviting a shared gesture. Vows are spoken by one partner to the other, in the second person, as a promise. A toast that becomes a direct address to one person has stopped serving the room it is built for.

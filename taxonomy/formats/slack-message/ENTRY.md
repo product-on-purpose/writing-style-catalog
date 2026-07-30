@@ -49,6 +49,8 @@ avoid_with:
   - columnist
 confusable_with:
   - email
+  - daily-standup
+  - tweet-thread
 when_to_use:
   - Team status updates
   - Quick questions
@@ -126,3 +128,7 @@ Formal communication requiring a paper trail, communication with external partie
 ### Often confused with
 
 **email**: A Slack message is ephemeral, lives in a team channel, and can lean on shared channel context and conversational history. An email creates a durable record, travels beyond the team, and must be self-contained - the subject line and body carry obligations that a Slack message does not.
+
+**daily-standup**: A Slack message is general-purpose channel communication and takes many shapes. A standup is a specific three-part structure that often lives in Slack but keeps its form anywhere. The container is not the format.
+
+**tweet-thread**: Both are short and async, but a Slack message is private team communication inside a channel with shared context. A tweet thread is public broadcast to strangers, so it must carry its own context and it lives with the stakes of being quoted. The voice cannot transfer unchanged.

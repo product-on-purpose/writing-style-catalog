@@ -80,6 +80,8 @@ avoid_with:
 confusable_with:
   - blog-post-long-form
   - whitepaper
+  - announcement
+  - public-statement
 when_to_use:
   - Announcing a product launch, company milestone, partnership, or significant hire to external media
   - Distributing news via a wire service or media list for republication
@@ -195,3 +197,7 @@ Internal communications, team updates, or all-hands announcements that have no e
 **blog-post-long-form**: A blog post develops a perspective, argument, or narrative over multiple sections and invites the reader into a sustained piece of thinking. A press release reports a time-bound event and expects the reader to stop at any paragraph without losing the story; it is not an essay and does not develop ideas across sections.
 
 **whitepaper**: A whitepaper makes a sustained argument backed by data, research, or technical detail, typically to educate or persuade a sophisticated audience over many pages. A press release announces a single event to media for republication; it does not develop an argument or ask the reader to work through evidence.
+
+**announcement**: A press release is built for journalists, with a dateline, attributed quotes, boilerplate, and a media contact, and it follows news conventions because someone may reprint it. An announcement speaks in the organisation's own voice directly to its audience and needs none of that apparatus.
+
+**public-statement**: A press release is a standardised broadcast built to travel from source to journalist to audience, disciplined by the inverted pyramid. A public statement responds to a situation, often a difficult one, and is judged on its position rather than its newsworthiness. Reaching for release conventions during a crisis reads as evasion.

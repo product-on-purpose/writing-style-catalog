@@ -54,6 +54,7 @@ avoid_with:
 confusable_with:
   - meeting-notes
   - slack-message
+  - status-report
 when_to_use:
   - Daily coordination in a team that works in short cycles (sprints, weekly goals)
   - Async team updates when the team is distributed across time zones
@@ -139,3 +140,5 @@ Skip the standup format when the situation calls for context or narrative - end-
 **meeting-notes**: Meeting notes capture the full outcomes of a specific meeting - decisions, assigned actions, open items - across any topic. A standup is a recurring short-form personal status update with a fixed three-section structure focused on coordination.
 
 **slack-message**: A Slack message is a general-purpose channel communication that can take many forms and lengths. A standup is a specific format with a fixed three-part structure - it often lives in Slack, but the format constraint is tighter than the Slack message format allows for.
+
+**status-report**: A standup covers yesterday and today in a sentence or two and is read in seconds by people already in context. A status report covers a week or more with enough detail for someone outside the team. Standups assume shared context; status reports supply it.

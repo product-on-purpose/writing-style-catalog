@@ -68,6 +68,10 @@ avoid_with:
   - warm
 confusable_with:
   - prd
+  - design-doc
+  - meeting-notes
+  - postmortem
+  - rfc
 when_to_use:
   - Recording architectural decisions
   - Capturing technology choices
@@ -159,3 +163,11 @@ Operational documentation, explaining how a system works, consumer-facing conten
 ### Often confused with
 
 **prd**: A PRD defines what should be built and why. An ADR records a decision already made about how to build it.
+
+**design-doc**: An ADR records one decision that has already been made, plus its consequences, and is written for the engineer who finds it in two years asking why. A design doc is the working space before that point, and one design doc usually produces several ADRs. If the question is still open, it is not an ADR yet.
+
+**meeting-notes**: An ADR is a permanent record of one architectural decision, structured so a future reader can reconstruct the reasoning. Meeting notes capture everything a meeting produced, decisions included, organised by the meeting rather than by the decision. A decision worth finding later should be lifted out of the notes into its own ADR.
+
+**postmortem**: An ADR is written at or near the moment of choosing and looks forward at consequences. A postmortem is written after a failure and looks backward at cause. Both are blameless and both name costs, but one is deciding and the other is explaining.
+
+**rfc**: An ADR records a decision already taken. An RFC is the proposal that precedes it and is explicitly still open, asking reviewers whether the approach is right. Publishing an ADR while the question is genuinely undecided misrepresents its status, which is the main way the two get confused.

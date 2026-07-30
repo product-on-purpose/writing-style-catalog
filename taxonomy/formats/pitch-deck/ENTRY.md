@@ -72,6 +72,7 @@ avoid_with:
   - pastoral
 confusable_with:
   - one-pager
+  - proposal
 when_to_use:
   - Pitching to investors, partners, or executives to win funding, a deal, or a strategic go-ahead
   - Presenting at a demo day, accelerator, or board meeting where narrative speed and visual clarity matter
@@ -171,3 +172,5 @@ When the decision-maker needs to reason through the full argument independently 
 ### Often confused with
 
 **one-pager**: A one-pager is a single-page prose document that makes one argument or presents one situation, compressed to fit on a single page and designed to be read independently by a decision-maker without a presenter. A pitch deck unfolds across many slides in a deliberate narrative sequence, relies on minimal text per slide and visual momentum, and is built for a live presentation moment where the speaker carries the story thread. The one-pager can circulate and be absorbed on its own; the pitch deck typically needs a presenter to deliver its persuasive force.
+
+**proposal**: A pitch deck tells a persuasive story one idea per slide, built to be presented aloud or skimmed fast. A proposal is a complete written document that specifies scope, terms, and deliverables and is meant to be evaluated on the page. The deck wins the interest; the proposal survives the scrutiny.

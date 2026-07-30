@@ -49,6 +49,8 @@ avoid_with:
   - skeptical
 confusable_with:
   - landing-page
+  - product-description
+  - testimonial
 when_to_use:
   - Writing paid search ads (Google Ads, Bing), social ads (Meta, LinkedIn, X), or display placements
   - Crafting email subject lines and preview text intended to lift open rate
@@ -137,3 +139,7 @@ Explaining a complex product that requires context before evaluation, building c
 ### Often confused with
 
 **landing-page**: A landing page is web copy written to convert a visitor into a single action - the full conversion experience the click leads to. It leads with a clear value proposition, organizes benefits for scanning, handles the obvious objections before the visitor raises them, adds social proof, and drives toward one CTA across a complete page. Ad copy is the brief hook that earns the click to arrive at that page. The landing page is what a reader finds after acting on the ad; ad copy is what makes them act in the first place.
+
+**product-description**: Ad copy is bounded by character limits and aimed at a single action, so every word is fighting for the click. A product description assumes the reader has already arrived and wants to know what the thing is; it can afford completeness. Ad copy that reads as informative has usually stopped selling.
+
+**testimonial**: Ad copy speaks in the seller's voice and is accountable to a conversion. A testimonial speaks in the customer's voice and is accountable to sounding like a real person. Putting seller language in a customer's mouth is the failure that collapses the two.

@@ -63,6 +63,9 @@ avoid_with:
   - playful
 confusable_with:
   - devotional-entry
+  - condolence-note
+  - obituary
+  - toast
 when_to_use:
   - Honoring someone at a funeral, memorial, or celebration of life
   - Delivering a tribute where the speaker has direct personal knowledge of the person
@@ -159,3 +162,9 @@ Biographical summaries or obituaries where factual completeness outweighs emotio
 ### Often confused with
 
 **devotional-entry**: A devotional entry centers universal spiritual themes - scripture, meditation, and reflection directed toward the reader's own faith or growth. A eulogy centers the specific person being remembered; spiritual content may appear at the edges but the core is always that particular life, not universal truth.
+
+**condolence-note**: A eulogy is spoken aloud to a gathered room and makes the person present one more time through concrete memory. A condolence note is written privately to one mourner and attends to them rather than to the deceased. One addresses the room; the other addresses a person in it.
+
+**obituary**: A eulogy honours through specific memory and does not attempt to summarise a life. An obituary is a factual public record: dates, survivors, service details, the shape of a biography. The obituary informs strangers; the eulogy moves people who already knew them.
+
+**toast**: A eulogy is delivered for someone who has died, permits grief and retrospective mourning, and runs long enough to hold a life. A toast celebrates a living person or a happy occasion, stays short, and ends by inviting the room to raise a glass. The emotional permissions are opposite.

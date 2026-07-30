@@ -78,6 +78,9 @@ confusable_with:
   - diataxis-explanation
   - procedural
   - user-manual
+  - faq
+  - runbook
+  - whitepaper
 when_to_use:
   - Documenting an API, library, CLI, or configuration schema that practitioners will consult repeatedly
   - Providing an authoritative specification for a component's inputs, outputs, and constraints
@@ -188,3 +191,11 @@ Reference format is wrong for introducing someone to a concept for the first tim
 **procedural**: A how-to guide walks a practitioner through a specific task with sequential steps toward a defined goal. A technical reference document is a stable specification that a practitioner consults while doing a task - it does not guide; it answers.
 
 **user-manual**: A technical reference is a precise specification of inputs, outputs, and syntax for a developer artifact (API, library, CLI, config schema), organized by signature, parameters, and returns. A user manual is whole-product, end-user task and feature coverage with numbered procedural steps. The discriminator: if the unit of organization is a function, endpoint, or field, it is a technical reference; if it is a user-facing feature or task with steps, it is a user manual.
+
+**faq**: Both serve a reader doing a lookup rather than reading through. A technical reference lists commands, parameters, APIs, and options in a stable structure. An FAQ collects recurring natural-language questions with self-contained answers. The reference is indexed by the system; the FAQ is indexed by what people ask.
+
+**runbook**: A technical reference lists the primitives: commands, parameters, configuration. A runbook sequences those primitives into a specific operation with a start condition, an end state, and a rollback. The reference is consulted from within the runbook.
+
+**whitepaper**: A technical reference is optimised for the returning reader who needs to look something up, and is organised for retrieval. A whitepaper is optimised for the first-time reader who needs to be convinced, and is organised as an argument. Retrieval and persuasion want opposite structures.
+
+**readme**: A technical reference serves the returning reader who already knows what they want and needs to look it up, so it is organised for retrieval. A README serves the first-time visitor who does not yet know what the project does, so it is organised as narrative orientation. Reference structure applied to a README leaves a newcomer with nowhere to start.

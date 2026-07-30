@@ -55,6 +55,7 @@ avoid_with:
   - pastoral
 confusable_with:
   - email
+  - cover-letter
 when_to_use:
   - Reaching out to a potential partner, collaborator, or customer you have never met
   - Initiating a professional relationship where no warm introduction exists
@@ -162,3 +163,5 @@ email channel but differs in every structural decision that matters: it addresse
 stranger, cannot assume goodwill or recognition, opens with the recipient's interest rather than
 the sender's request, and has a single purpose - earning a first reply from someone with no
 prior reason to give one.
+
+**cover-letter**: Cold outreach opens a relationship that does not exist yet and must earn a reply with a specific, researched observation. A cover letter answers a posting, so the relationship is already framed and the reader is already assessing the writer. Cold outreach has no such invitation to lean on.

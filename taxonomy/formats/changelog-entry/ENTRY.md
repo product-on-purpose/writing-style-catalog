@@ -58,6 +58,7 @@ avoid_with:
   - narrative-case-study
 confusable_with:
   - meeting-notes
+  - release-notes
 when_to_use:
   - Software release announcements in a CHANGELOG.md file
   - Version notes published alongside a tagged release
@@ -146,3 +147,5 @@ Do not use this format for marketing-style release announcements (write a long-f
 ### Often confused with
 
 **meeting-notes**: Meeting notes capture discussion that happened in a meeting; they are organized by topic and time. A changelog entry captures what changed in a software release; it is organized by impact class. The two share a "structured short form" feel but serve completely different purposes.
+
+**release-notes**: A changelog is chronological and exhaustive, authored for developers, and records every merged change. Release notes curate from it, selecting what a user would care about and saying why it matters. The changelog does not editorialise; the release notes exist to.
