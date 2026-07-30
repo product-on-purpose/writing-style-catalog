@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+A hard year is the sternest test of both, and neither render pretends otherwise.
+
+**A marks what was real without converting it**, including the specific difficulty of a quiet
+ending: "The wind-down was quiet, which was its own difficulty. No postmortem."
+
+**B names the writer's own contribution to the failure and points forward**: it failed "in part
+because I held the original vision too long when the evidence..."
+
+**The tell:** A honours; B mobilises. On this topic, the celebratory register survives only by
+marking rather than by cheering, which is what makes it the harder of the two to write.
 
 ---
 

@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A stakes a position** and refuses the redemptive frame outright.
+
+**B refuses to state one.** "The record shows what happened; what to make of it remains
+unsettled." Its evidence is documentary, down to quoting the shutdown note verbatim with its
+date: a status note on October 21 that read, in its entirety, "no path to sustainable
+adoption."
+
+**The tell:** A tells you what the year meant. B tells you what the record says and declines the
+meaning, which is the harder discipline on a personal topic.
 
 ---
 

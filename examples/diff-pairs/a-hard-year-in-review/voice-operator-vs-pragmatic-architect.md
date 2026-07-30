@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A reports what happened and who let it.** Scope drift by 60 percent, extensions approved that
+should have been flagged.
+
+**B reconstructs why the signal went unnamed**, which is the design question underneath the
+operational one: both failures happened "for reasons I should have named earlier but didn't -
+not because I lacked data, but because naming the failure mode felt like betting against
+something I didn't want to lose."
+
+**The tell:** A audits execution. B audits judgment. B's sentence explains something A's numbers
+can only record.
 
 ---
 

@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A grounds meaning in objects and hours.** The kitchen table, the toast, a last real
+conversation "in March, in her car in a parking lot."
+
+**B grounds it in shared condition, and reaches for solidarity before detail.** "December feels
+like a room you have been waiting to leave all year," then the reason for candour: "if you are
+sitting in something similar, I do not want you to be alone with it."
+
+**The tell:** A's care is for the situation; B's is for the reader's place in a larger pattern
+of situations. The pastoral voice writes as though others are reading over the shoulder,
+because it assumes they are.
 
 ---
 

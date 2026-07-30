@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A generalises in order to instruct**: hard years do not announce themselves, so name what
+happened rather than what you wish had.
+
+**B generalises in order to accompany**: December as a room you have been waiting to leave, and
+an explicit refusal to let the reader sit in it alone.
+
+**The tell:** A's generalisation is a method; B's is a shared condition. One expects you to use
+it, the other expects you to recognise yourself in it.
 
 ---
 

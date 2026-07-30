@@ -18,11 +18,12 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A makes a judgment about its own past honesty**, which is a claim with something at stake:
+"The post-mortem I wrote was honest in all the ways that do not cost anything."
+
+**B records outcomes and stops.**
+
+**The tell:** A's sharpest line is an evaluation. B contains no evaluations, only events.
 
 ---
 

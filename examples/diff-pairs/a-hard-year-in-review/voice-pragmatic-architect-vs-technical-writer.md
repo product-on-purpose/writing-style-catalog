@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A reasons about causes** and is willing to be the cause.
+
+**B documents.** It opens with headings, `## Year Review: 2025` and `### What happened`, and
+then supplies flat declaratives: the team disbanded, the deliverable was not shipped.
+
+**The tell:** B's structure would let a reader find one fact without reading the rest. A's
+would not, because its value is in the chain of reasoning and the chain does not survive being
+skimmed.
 
 ---
 

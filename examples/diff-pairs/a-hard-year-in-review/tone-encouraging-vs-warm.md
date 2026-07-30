@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A is forward-leaning** even while naming what went wrong.
+
+**B is relational** and stays with the reader rather than the trajectory.
+
+**The tell:** A implies a next attempt. B implies continued company. On a hard year, those are
+genuinely different offers, and choosing wrong is how condolence starts sounding like a pep
+talk.
 
 ---
 

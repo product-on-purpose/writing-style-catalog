@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A stays in the room with the loss.** "The year needs naming, not summarizing," and then the
+domestic particular that summary would erase: sitting at the kitchen table the morning after,
+eating toast. The caregiver's move is to keep the concrete thing present.
+
+**B addresses the reader and hands the work back.** It is in the second person from the first
+line, "This year did not give you a clean ending. That is worth acknowledging before anything
+else," and it describes the reader's own repeated attempts to re-narrate the year rather than
+supplying a narration.
+
+**The tell:** A says *here is what it was like*. B says *here is what you have been doing with
+it*. One accompanies; the other turns the reader toward their own process.
 
 ---
 

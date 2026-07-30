@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A frames the year as bets that did not pay.** Effort staked, outcomes bet on.
+
+**B frames it as a problem mis-specified.** "The problem I was solving last year was not the one
+I named at the start. That gap is where most of the year went."
+
+**The tell:** A's unit of analysis is the decision; B's is the problem definition. B is still
+trying to get the question right; A has moved on to accounting for the answer.
 
 ---
 

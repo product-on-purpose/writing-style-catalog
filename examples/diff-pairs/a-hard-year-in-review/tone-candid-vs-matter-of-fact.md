@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A announces that honesty is the operative virtue** and then pays for it: "The honest picture:
+this year broke things I did not expect to lose."
+
+**B simply reports without colour.** "The year started with two things I believed in. By
+December, both had changed in ways I hadn't planned for."
+
+**The tell:** A frames its own truthfulness as an act; B does not need to, because nothing in
+its account is being resisted. Candour implies something was hard to say.
 
 ---
 

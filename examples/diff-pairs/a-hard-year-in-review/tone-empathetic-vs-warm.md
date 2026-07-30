@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+Rated *clear* by the adherence test, and this topic separates them cleanly.
+
+**A models the reader's loss with precision** and distinguishes it from adjacent losses: work
+that ended without producing what it was for is "a specific kind of loss, different from loss by
+accident."
+
+**B offers closeness** and leans on a shared history rather than an analysis.
+
+**The tell:** A's opening sentence contains no affection at all and still lands, because
+accuracy about someone's situation is its own form of care. B's would not survive losing its
+affection.
 
 ---
 

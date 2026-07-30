@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A treats the year as something owed attention.** "There are years that ask more of you than
+you agreed to give," and a name chosen quickly that the writer "came to take seriously."
+
+**B treats the reader as the thing owed attention.**
+
+**The tell:** A's care is aimed at the events; B's at the person hearing about them. A reverent
+account can be slightly cool toward its reader and still succeed.
 
 ---
 
