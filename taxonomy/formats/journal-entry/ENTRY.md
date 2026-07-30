@@ -52,6 +52,7 @@ avoid_with:
   - instructional
 confusable_with:
   - devotional-entry
+  - gratitude-journal
 when_to_use:
   - Processing a significant experience while it is still close
   - Working through a decision or conflict by writing without a reader in mind
@@ -139,3 +140,5 @@ When the writing has an intended reader, even a private or sympathetic one; when
 ### Often confused with
 
 **devotional-entry**: A devotional entry is written for a human reader, usually anchored to scripture or a spiritual observation, and moves toward personal application. It may include a prayer, but it is not itself direct address to God from start to finish. A journal entry carries none of that frame. It is written for no reader at all, assumes no witness, and has no spiritual anchor. Where a devotional entry organizes reflection around a received text and moves toward shared application, a journal entry simply follows wherever honest self-inquiry leads.
+
+**gratitude-journal**: A journal entry follows wherever honest self-inquiry leads and records what the writer made of the day. A gratitude journal is deliberately constrained to noticing and naming what was good, and that constraint is the practice. Unbounded reflection defeats the form.

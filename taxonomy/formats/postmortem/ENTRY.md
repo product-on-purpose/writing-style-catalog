@@ -76,6 +76,7 @@ confusable_with:
   - adr
   - status-report
   - retrospective
+  - incident-report
 when_to_use:
   - After a production incident, service outage, or significant near-miss
   - When a team needs to convert a failure into shared institutional knowledge
@@ -185,3 +186,5 @@ Routine project retrospectives that have no specific incident to investigate; ce
 **status-report**: A status report gives a periodic snapshot of project health - what is done, what is at risk, and what comes next. A postmortem is bounded to a specific incident: it investigates what broke, why, and what changes will prevent a recurrence. Status reports are recurring and open-ended; postmortems are closed when their action items ship.
 
 **retrospective**: A postmortem is incident-triggered and drives to root cause with a timeline and severity; a retrospective runs on a regular cadence regardless of outcome and examines the whole working process, not one event.
+
+**incident-report**: A postmortem is internal and blameless, asks why the system failed, and is written for the engineering team to improve process. An incident report is written for people outside that team, often customers or regulators, and is accountable to a different standard of disclosure. Audience, not severity, separates them.

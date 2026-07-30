@@ -64,6 +64,7 @@ avoid_with:
 confusable_with:
   - prd
   - project-brief
+  - pitch-deck
 when_to_use:
   - Briefing a decision-maker or executive before a meeting
   - Making a proposal where a full document would not be read
@@ -158,3 +159,5 @@ The one-pager is the wrong format when the reader genuinely needs more detail to
 **prd**: A PRD defines product requirements with enough precision to govern engineering work - it is complete by design and may span many pages. A one-pager makes a single argument or presents a single situation on a single page - it is a decision-support tool, not a requirements document.
 
 **project-brief**: A project brief is identified by its fixed kickoff structure (Goal, Scope, Constraints, Success Criteria, Team) and an alignment purpose; it is not defined by length. A one-pager is defined entirely by the one-page constraint and makes a single argument or presents a single situation toward one decision-forcing ask; it has no required section structure beyond what fits on the page.
+
+**pitch-deck**: A one-pager is prose, read independently by a decision-maker with no presenter in the room, and it must carry its own argument. A pitch deck is a sequence of slides where the speaker carries the thread between them. A deck read cold usually fails; a one-pager is designed for exactly that.

@@ -59,6 +59,7 @@ avoid_with:
   - playful
 confusable_with:
   - faq
+  - review-response
 when_to_use:
   - A customer has contacted support with a specific question, error, or complaint
   - The issue requires a personalized acknowledgment and a resolution or next step tailored to that customer's situation
@@ -160,3 +161,5 @@ Let me know if this does not resolve the issue or if you have any questions.
 ### Often confused with
 
 **faq**: A FAQ is a list of anticipated questions with direct, self-contained answers, ordered by how often they are asked. It is proactive - the author anticipates what many readers will ask and answers each question once, for everyone. A support reply is reactive and individual: it is written to one customer about their specific situation, right now. If the same question is appearing repeatedly across many customers, that is a signal to write a FAQ; if the question belongs to this person and this moment, the right format is a support reply.
+
+**review-response**: A support reply is private and one-to-one, and it succeeds by closing the issue for that customer. A review response is public, and while it is addressed to one reviewer it is written for everyone else reading. What is prudent to say changes completely between the two.

@@ -52,6 +52,8 @@ avoid_with:
   - matter-of-fact
 confusable_with:
   - email
+  - apology
+  - love-letter
 when_to_use:
   - Thanking someone who did something specific and meaningful for you
   - Acknowledging a person who went out of their way, took a risk on your behalf, or spent time they did not have to spend
@@ -140,3 +142,7 @@ When you cannot name anything specific, when the context calls for a formal ackn
 ### Often confused with
 
 **email**: An email is a business message designed for the inbox scan: the subject line summarizes the point, the body leads with purpose or action, and the context is self-contained. A thank-you note has one subject (a specific act), one direction (toward the recipient), and no asks. When a thank-you note gains an agenda or a second purpose, it has become an email, not a note.
+
+**apology**: A thank-you note names something the recipient did and what it made possible, and closes with no ask. An apology names something the writer did, its effect, and what changes. Both are short and specific; they differ in who is accountable.
+
+**love-letter**: A thank-you note stays short, keeps one subject, and draws its power from the particularity of the thing being thanked. A love letter is unbounded in subject and length and is about the relationship rather than an occasion within it. Gratitude is one note in a love letter, not its form.

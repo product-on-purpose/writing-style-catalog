@@ -66,6 +66,8 @@ avoid_with:
   - matter-of-fact
 confusable_with:
   - blog-post-long-form
+  - memoir-excerpt
+  - personal-statement
 when_to_use:
   - Processing a lived experience that carries insight worth sharing beyond your immediate circle
   - Writing for platforms that value first-person reflective prose - literary journals, essay publications, and newsletters built around a distinctive voice
@@ -160,3 +162,7 @@ The primary goal is to inform or instruct rather than to reflect, you need to ar
 ### Often confused with
 
 **blog-post-long-form**: A long-form blog post organizes around a subject, position, or question to deliver information or opinion for a web audience, using headers for navigation and closing with a landing rather than a summary. The personal essay also explores, but it organizes around a question the writer is genuinely working through, uses an associative rather than sectioned structure, and arrives at insight through the texture of lived experience rather than delivering a pre-formed conclusion to the reader.
+
+**memoir-excerpt**: A personal essay uses lived experience as an instrument of inquiry, and the reader follows the thinking in motion toward an insight the writer did not start with. A memoir excerpt is part of a sustained narrative of a life and answers to that larger arc. The essay is complete in itself.
+
+**personal-statement**: A personal essay has nothing at stake beyond the insight and can end unresolved. A personal statement is written to an evaluator with an outcome hanging on it, so it must arrive somewhere that serves an application. Genuine irresolution is a luxury the statement cannot afford.

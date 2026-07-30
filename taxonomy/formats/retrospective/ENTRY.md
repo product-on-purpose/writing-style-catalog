@@ -67,6 +67,7 @@ avoid_with:
   - skeptical
 confusable_with:
   - postmortem
+  - performance-review
 when_to_use:
   - At the end of every sprint, iteration, or regular working period
   - After a project or milestone, to capture what to carry forward and what to leave behind
@@ -163,3 +164,5 @@ When a specific incident or failure needs investigation - use a postmortem that 
 ### Often confused with
 
 **postmortem**: A postmortem is a structured account of a failure, near-miss, or significant service degradation - triggered by a specific incident, not by the passage of time. It uses a precise, time-stamped timeline to reconstruct what happened and when, drives the analysis to the systemic root cause rather than stopping at the proximate trigger, and quantifies blast radius with an impact section. A retrospective, by contrast, runs on a regular cadence and examines the whole working period; no incident needs to have occurred. When a specific failure needs dedicated root-cause investigation and owned remediation commitments, a postmortem is the right format.
+
+**performance-review**: A retrospective looks back at a completed period of work and is collective: the team examines its own process. A performance review evaluates one individual against expectations and carries consequences for that person. Making a retrospective about a person breaks the safety the format depends on.

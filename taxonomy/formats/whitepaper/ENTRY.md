@@ -86,6 +86,7 @@ avoid_with:
 confusable_with:
   - blog-post-long-form
   - technical-reference
+  - press-release
 when_to_use:
   - Setting an organization's public position on a substantive topic
   - Presenting original research or a new framework to a professional audience
@@ -194,3 +195,5 @@ Do not use a whitepaper for internal team communication (use `status-report` or 
 **blog-post-long-form**: A long-form blog post is personal and exploratory; the author is present in the prose and the argument unfolds informally. A whitepaper is institutional and authoritative; the author is largely invisible and the argument is presented as established position. Same length range, opposite stance.
 
 **technical-reference**: A technical reference is optimized for the returning reader who needs to look something up; it is organized for retrieval. A whitepaper is optimized for the first-time reader who needs to be convinced of a position; it is organized as an argument. The two have opposite information architectures.
+
+**press-release**: A whitepaper makes a sustained argument backed by data or technical detail, over many pages, for a sophisticated reader. A press release announces one event in news style and expects to be skimmed. One is written to be studied; the other to be reprinted.

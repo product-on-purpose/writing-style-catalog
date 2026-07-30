@@ -69,6 +69,7 @@ avoid_with:
   - playful
 confusable_with:
   - cover-letter
+  - bio
 when_to_use:
   - Applying for a job posting where a resume is requested or expected by the employer or recruiter
   - Submitting qualifications to a recruiter for initial screening before any conversation
@@ -170,3 +171,5 @@ When a narrative framing of your work is needed - use a cover letter or bio inst
 ### Often confused with
 
 **cover-letter**: A cover letter is a letter accompanying an application that makes the case for one specific person for one specific role. It connects the applicant's experience to the posting's stated needs, in the applicant's own voice, and asks for the interview. Where a resume presents facts in parallel bullets organized for scanning, a cover letter argues from those facts in prose - mapping specific history onto specific job demands and closing with a direct request for the interview. The cover letter makes the case; the resume is the factual record the case draws on. The two documents work together: mixing persuasive argument into resume bullets, or listing credentials in a cover letter as though it were a second resume, weakens both.
+
+**bio**: A resume is a structured, scannable record of experience in reverse-chronological order, built for an assessor working in seconds. A bio is continuous prose that introduces a person for a context such as a talk, a byline, or a profile. One is evaluated; the other is read.

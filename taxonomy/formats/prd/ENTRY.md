@@ -70,6 +70,10 @@ avoid_with:
   - reverent
 confusable_with:
   - adr
+  - design-doc
+  - one-pager
+  - project-brief
+  - rfc
 when_to_use:
   - Defining a new feature
   - Aligning engineering on scope
@@ -159,3 +163,11 @@ Operational documentation, post-launch retrospectives, engineering design decisi
 ### Often confused with
 
 **adr**: An ADR records an architectural decision already made. A PRD defines what should be built before engineering has made the implementation decisions.
+
+**design-doc**: A PRD defines what should be built and why, for product stakeholders. A design doc specifies how engineering will build it: schemas, APIs, component boundaries, data flows. The PRD is an input to the design doc, not a draft of it.
+
+**one-pager**: A PRD is complete by design and may run many pages, because it governs engineering work. A one-pager makes a single argument in a single page and is deliberately incomplete. Compressing a PRD to one page does not produce a one-pager; it produces an unusable PRD.
+
+**project-brief**: A PRD is the contract between product and engineering and specifies requirements precisely enough to build against. A project brief orients a team or a stakeholder to a piece of work at a higher altitude, before that precision exists or is needed.
+
+**rfc**: A PRD specifies what to build for an execution team. An RFC proposes how to approach a design challenge and asks peers whether the approach is right. The PRD assumes the decision to build; the RFC is part of making one.

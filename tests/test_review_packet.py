@@ -102,19 +102,58 @@ def test_a_real_misuse_phrasing_is_still_caught():
 # Catalog-level findings stay out of per-entry packets
 # ---------------------------------------------------------------------------
 
-def test_systematic_findings_are_reported_once_not_per_entry(catalog, stable):
-    """101 one-way confusable_with links are one batch task, not 101 review items."""
-    findings = rp.catalog_level_findings(catalog)
-    assert findings["one_way_confusable"], "expected the known one-way confusable_with links"
+def test_confusable_with_is_symmetric_across_the_catalog(catalog):
+    """All 101 one-way links were closed on 2026-07-30; keep it that way.
 
+    This assertion was originally the inverse: it pinned the gap's existence so
+    the batch task could not be forgotten. The batch is done, so it now guards
+    the fixed state. A new one-way link means an entry gained a `confusable_with`
+    id without the partner gaining one back, and a reader arriving from that
+    partner gets no warning about the confusion.
+    """
+    one_way = rp.catalog_level_findings(catalog)["one_way_confusable"]
+    assert not one_way, (
+        "one-way confusable_with links reappeared. Confusability is mutual, and each "
+        "back-reference also needs an 'Often confused with' block in the entry body:\n"
+        + "\n".join(f"  {e} ({a}) lists {o}, not returned" for e, a, o in one_way[:10])
+    )
+
+
+def test_systematic_findings_stay_out_of_per_entry_packets(catalog, stable):
+    """A finding spanning many entries belongs in one report, not in every packet."""
     in_packets = sum(
         1 for eid, (axis, fm) in stable.items()
         for f in rp.compute_flags(eid, axis, fm, catalog)
         if "confusable_with" in f and "one-way" in f
     )
     assert in_packets == 0, (
-        "one-way confusable_with is back in per-entry packets; it spans ~100 entries and "
-        "belongs in CATALOG-FINDINGS.md so it reads as one task, not a hundred"
+        "one-way confusable_with is back in per-entry packets; it belongs in "
+        "CATALOG-FINDINGS.md so it reads as one task, not a hundred"
+    )
+
+
+def test_every_confusable_id_has_a_prose_block(catalog):
+    """The glossary's rule: each confusable id needs an 'Often confused with' block.
+
+    This is why the back-references were prose work rather than a data edit, and
+    it is the invariant that makes the packets' neighbour comparison useful.
+    """
+    import re
+
+    missing = []
+    for eid, (axis, fm) in catalog.items():
+        ids = fm.get("confusable_with") or []
+        if not ids:
+            continue
+        path = rp.AXES[axis] / eid / "ENTRY.md"
+        body = path.read_text(encoding="utf-8")
+        section = re.search(r"### Often confused with\n(.*?)(?=\n#{2,3} |\Z)", body, re.DOTALL)
+        blocks = set(re.findall(r"\*\*([a-z0-9-]+)\*\*:", section.group(1))) if section else set()
+        for cid in ids:
+            if cid not in blocks:
+                missing.append(f"{eid} ({axis}) lists {cid} with no prose block")
+    assert not missing, (
+        "confusable_with ids without an 'Often confused with' block:\n" + "\n".join(missing[:15])
     )
 
 

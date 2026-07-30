@@ -61,6 +61,14 @@ avoid_with:
   - pastoral
 confusable_with:
   - whitepaper
+  - customer-story
+  - landing-page
+  - listicle
+  - newsletter
+  - op-ed
+  - personal-essay
+  - press-release
+  - release-notes
 when_to_use:
   - Thought leadership
   - Technical explainers
@@ -148,3 +156,19 @@ Quick updates, operational documentation, formal reports, anything requiring str
 ### Often confused with
 
 **whitepaper**: A whitepaper sets a position-of-record in an invisible institutional voice backed by citation; a long-form blog post keeps a present, recognizable authorial voice and explores a topic rather than setting a record.
+
+**customer-story**: A long-form blog post is organised around the writer's argument, and any customer who appears is evidence for it. A customer story is organised around the customer, and the vendor appears only as part of their situation. The tell is whose narrative arc the piece follows.
+
+**landing-page**: A blog post is read; a landing page is scanned on the way to a decision. The blog post can take 2,000 words to arrive somewhere and keeps a recognisable authorial voice. A landing page is built around one conversion and cannot afford a throughline the reader might not finish.
+
+**listicle**: A long-form post develops one argument in flowing prose where the sections are interdependent steps. A listicle is built from items a reader can consume in any order and stop at any point. If removing item four breaks item five, the piece is not really a listicle.
+
+**newsletter**: A blog post is a standalone article a reader finds, usually via search or a share, and reads on its own terms. A newsletter arrives in an inbox on a cadence, addresses a subscriber who already opted in, and can assume continuity with the last issue. The blog post cannot assume any of that.
+
+**op-ed**: Both are argued and both carry a present authorial voice, but the op-ed is short, timely, and written to a publication's readership on a live issue. The long-form blog post sets its own length and can explore rather than argue. An op-ed that stops being timely stops being an op-ed; a blog post does not.
+
+**personal-essay**: A long-form blog post organises around a subject, position, or question and closes on a landing. A personal essay organises around lived experience and follows the thinking in motion toward an insight the writer did not hold at the opening. The blog post knows where it is going.
+
+**press-release**: A blog post invites the reader into sustained thinking and can develop over several sections. A press release reports a time-bound event in inverted-pyramid order and expects most readers to stop after the first paragraph. One rewards reading on; the other assumes you will not.
+
+**release-notes**: A blog post can tell the story of why something was built and where the product is going. Release notes are scannable reference material for someone who wants to know what changed and whether it affects them. Narrative in release notes is friction.

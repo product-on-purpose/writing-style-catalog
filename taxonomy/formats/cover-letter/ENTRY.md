@@ -60,6 +60,8 @@ avoid_with:
   - playful
 confusable_with:
   - cold-outreach
+  - recommendation-letter
+  - resume
 when_to_use:
   - Applying for an advertised job posting that explicitly requests a cover letter
   - Applying for a role where the resume alone cannot convey the relevant fit
@@ -173,3 +175,7 @@ about the recipient, because there is no shared context to draw on yet. A cover 
 every structural decision that matters: it responds to an advertised opportunity, addresses a reader
 who is already evaluating candidates against known needs, and leads with the applicant's direct
 claim to the role rather than an observation about the employer.
+
+**recommendation-letter**: A cover letter is written by the candidate in their own voice, advocating for themselves. A recommendation letter is written by a third party whose credibility is the point of the document. Self-advocacy and vouching are different rhetorical acts, and the second cannot be faked by the first.
+
+**resume**: A cover letter argues, in prose, why this person fits this role, connecting experience to the posting's stated needs. A resume presents credentials in a scannable structure and makes no argument at all. If it is making a case rather than listing evidence, it is the letter.

@@ -76,6 +76,7 @@ avoid_with:
   - urgent
 confusable_with:
   - runbook
+  - user-manual
 when_to_use:
   - Teaching a reader to complete a task they have never done before, when understanding what they are doing matters as much as getting through the steps
   - Onboarding new users to a tool, workflow, or process where capability-building outlasts the first session
@@ -193,3 +194,5 @@ Situations where an experienced operator needs to execute a procedure correctly 
 ### Often confused with
 
 **runbook**: A runbook is an operational document written to be executed, not read for understanding. Its defining design constraint is that an operator who did not build the system must be able to complete the procedure correctly by following the steps sequentially, without needing to understand why each step exists. A runbook is not a teaching document - it is a decision aid that replaces the need to reason in the moment. A how-to guide is written for a learner who is building capability; a runbook is written for an operator who is completing a known procedure under pressure. Where a how-to guide explains, a runbook executes.
+
+**user-manual**: A how-to guide teaches one specific task, with enough context that the reader understands what they are doing. A user manual documents the whole product surface for a reader who will consult it, not read it. The guide has one destination; the manual has a table of contents.

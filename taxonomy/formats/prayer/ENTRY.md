@@ -64,6 +64,8 @@ avoid_with:
   - playful
 confusable_with:
   - devotional-entry
+  - blessing
+  - guided-meditation
 when_to_use:
   - Writing a prayer for a worship service, liturgy, or gathering
   - Crafting a prayer for a specific occasion such as healing, grief, celebration, or a new year
@@ -163,3 +165,7 @@ Content intended to teach, reflect, or explain faith concepts to a reader (use d
 ### Often confused with
 
 **devotional-entry**: A devotional entry reflects about faith for a human reader, teaching or encouraging through scripture, personal reflection, and application takeaways. It speaks about God and about spiritual life toward the reader. A prayer, by contrast, addresses God directly from start to finish; the human reader is an observer, not the audience. The difference is not subject matter but direction of address.
+
+**blessing**: A prayer addresses the divine in second person, with the human reader as witness. A blessing addresses the person, invoking good over them. Both are sacred speech; only one of them is talking to God.
+
+**guided-meditation**: A prayer turns toward God and speaks in second person throughout. A guided meditation turns toward the participant and directs their attention, breath, or awareness. The prayer's addressee is not in the room in the same sense the meditation's is.
