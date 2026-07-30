@@ -101,7 +101,28 @@ This checks frontmatter completeness, schema conformance, no em-dash/en-dash cha
 
 ## Schema Safety
 
-Do not modify any file in `schemas/` without also updating every existing taxonomy entry that references that schema version. Schema changes require a version bump and an ADR entry in `docs/internal/adr/`. If you are unsure whether a schema change is safe, open a draft PR and ask for review rather than committing directly.
+The six contributor-facing schemas (`entry.universal`, `voice`, `tone`, `style`, `format`,
+`example`) are **frozen** as of
+[ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md). `diff-pair.schema.json`
+is not frozen, but the classes below still govern it.
+
+The test: **would this edit change the verdict on any conceivable document, not just the
+files in this repo?** Checking only the current corpus is the trap this policy exists to
+avoid, because `additionalProperties: false` or a narrowed `$ref` can leave every entry here
+passing while rejecting documents the published schema used to accept.
+
+| Class | What it covers | Requires |
+| ------ | --------------- | --------- |
+| **A - Annotation** | An allowlist, nothing else: `title`, `description`, `$comment`, `examples`, plus unobservable reordering | Normal PR. No ADR, no version bump, no entry migration. Say "annotation-only, class A" in the PR body. |
+| **B - Additive optional** | New **optional** property; widened `enum`, `pattern`, or bound | Minor version bump + `CHANGELOG.md` note |
+| **C - Breaking, or unclear** | New required property, removal, rename, narrowing, optional -> required, **and every keyword not listed in A or B** - including `$id`, `$schema`, `$ref`, `$defs`, `additionalProperties`, `unevaluatedProperties`, `format`, and the combinators | ADR + **major** version bump + migrate every affected file in the same change + `validate.py` green before merge |
+
+**The default is C.** Anything not on the class A allowlist or squarely class B is class C;
+unclear resolves to the most expensive class, not to a fourth one. A change to
+`entry.universal` or a shared `$def` is class C for every schema that `$ref`s it.
+
+ADR 0019 is the authority; this table is a summary. If still unsure, open a draft PR and ask
+rather than committing directly.
 
 ---
 

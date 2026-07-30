@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/format.schema.json",
   "title": "Format Entry Schema",
-  "description": "Schema for Axis 3 format entries. Format is the structural container or output type.",
+  "description": "Schema for format entries (axis 4 of 4). Format is the structural container or output type: headings, field ordering, section templates.",
   "allOf": [
     { "$ref": "entry.universal.schema.json" }
   ],

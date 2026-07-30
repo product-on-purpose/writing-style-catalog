@@ -35,7 +35,7 @@
     "axis": {
       "type": "string",
       "enum": ["voice", "tone", "style", "format"],
-      "description": "The taxonomy axis this entry belongs to. voice and tone are both Axis 1 (Voice and Tone); style is Axis 2; format is Axis 3."
+      "description": "The taxonomy axis this entry belongs to. Four peer axes, applied in this precedence order during composition: voice, tone, style, format. Voice and Tone are the most confusable pair (voice is stable across contexts; tone varies per piece) but they are separate axes with separate schemas. See ADR 0018."
     },
     "one_liner": {
       "type": "string",

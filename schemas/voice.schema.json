@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/voice.schema.json",
   "title": "Voice Entry Schema",
-  "description": "Schema for Axis 1 voice entries. Voice is the persistent identity of who is speaking.",
+  "description": "Schema for voice entries (axis 1 of 4). Voice is the persistent identity of who is speaking, stable across contexts. Contrast tone, which varies per piece.",
   "allOf": [
     { "$ref": "entry.universal.schema.json" }
   ],

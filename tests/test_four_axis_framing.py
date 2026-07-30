@@ -148,21 +148,21 @@ def test_all_four_axes_have_a_section_in_the_concepts_page():
         )
 
 
-def test_schema_annotations_are_the_known_gap():
-    """Pins ADR 0018 decision 5. Flip this when the schema-freeze policy lands.
+def test_schema_annotations_use_the_four_axis_framing():
+    """The gap ADR 0018 deferred, now closed under ADR 0019's class A.
 
-    Asserting the gap EXISTS keeps it honest in both directions: if someone fixes
-    the annotations without the governance decision, this fails and points them at
-    the rule; when the policy authorises the edit, this test is deleted alongside
-    it. Either way the gap cannot be silently forgotten.
+    This replaces test_schema_annotations_are_the_known_gap, which asserted the
+    gap still existed so it could not be silently forgotten. ADR 0019 defined
+    annotation-only edits as a class requiring no version bump or entry
+    migration, which is what unblocked the fix.
     """
     stale = []
     for name in ("entry.universal", "voice", "tone", "style", "format"):
         path = REPO_ROOT / "schemas" / f"{name}.schema.json"
-        if re.search(r"Axis [123]", path.read_text(encoding="utf-8")):
-            stale.append(name)
-    assert stale, (
-        "schemas/ no longer carries Axis 1/2/3 wording. If that was intentional and "
-        "the schema-freeze change policy now authorises annotation-only edits, delete "
-        "this test and update ADR 0018 decision 5 plus the backlog S3 note."
+        for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            if re.search(r"Axis [123]\b", line):
+                stale.append(f"{path.name}:{n}: {line.strip()[:100]}")
+    assert not stale, (
+        "schemas/ carries superseded Axis 1/2/3 numbering (ADR 0018 names four peer axes):\n"
+        + "\n".join(stale)
     )

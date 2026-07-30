@@ -200,13 +200,16 @@ server exposes the guaranteed behavior, not the naive concatenation.
   matching the four directories, four schemas, and four composer parameters. Voice and Tone
   are documented as two closely related but separate axes, not halves of one. The concepts
   page moved to `/concepts/four-axis-model/` with a redirect from the old path.
-  **One piece deliberately left open:** the four per-axis schema files
-  (`voice|tone|style|format.schema.json`) and `entry.universal.schema.json` still carry
-  "Axis 1 / Axis 2 / Axis 3" wording in their `description` annotations. Editing them is
-  blocked on a governance question, since `AGENTS.md` requires a version bump plus an ADR for
-  any change to `schemas/`, a rule written for structural changes that cannot break on an
-  annotation. Sequenced into the schema-freeze work, which is where the post-1.0 change
-  policy defines an annotation-only class.
+  The schema annotations that carried "Axis 1 / Axis 2 / Axis 3" wording were briefly left
+  open pending a governance question, and were corrected the same day under
+  [ADR 0019](adr/0019-schema-freeze-and-change-policy.md), which defined annotation-only
+  edits as a class A change. Nothing remains open on this item.
+- **Published schema `$id` points at `main`** (raised by
+  [ADR 0019](adr/0019-schema-freeze-and-change-policy.md), not fixed there). Every schema's
+  `$id` resolves to a raw GitHub URL on `main`, so an external consumer resolving it gets the
+  tip of the branch rather than a released tag. Now that the schemas are frozen this matters
+  more, because the freeze promises stability that a moving URL does not deliver. Repointing
+  it at a tag is itself breaking for anyone resolving it today, so it wants its own decision.
 - **`review_status` governance** - new entries must start at `draft`, not `stable`; the
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.
