@@ -27,14 +27,17 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 SCHEMAS = REPO_ROOT / "schemas"
 
 FROZEN = ["entry.universal", "voice", "tone", "style", "format", "example"]
-UNFROZEN = ["diff-pair"]
+# Not frozen, so it is served from the experimental namespace, not /v1/ (ADR 0020).
+EXPERIMENTAL = ["diff-pair"]
+UNFROZEN = EXPERIMENTAL
 
 # Keywords ADR 0019 puts on the class A allowlist.
 CLASS_A_KEYWORDS = ["title", "description", "$comment", "examples"]
 
 
 def load(name):
-    return json.loads((SCHEMAS / f"{name}.schema.json").read_text(encoding="utf-8"))
+    sub = "experimental" if name in EXPERIMENTAL else ""
+    return json.loads((SCHEMAS / sub / f"{name}.schema.json").read_text(encoding="utf-8"))
 
 
 # A document that is not in the catalog and never will be.
@@ -122,7 +125,8 @@ def test_every_schema_parses_and_is_a_valid_schema(name):
 
 def test_freeze_scope_matches_the_files_on_disk():
     """A new schema file must be classified by ADR 0019, not silently ungoverned."""
-    on_disk = sorted(p.name.replace(".schema.json", "") for p in SCHEMAS.glob("*.schema.json"))
+    on_disk = sorted(p.name.replace(".schema.json", "") for p in SCHEMAS.rglob("*.schema.json")
+                     if "contracts" not in p.parts)
     assert on_disk == sorted(FROZEN + UNFROZEN), (
         "schemas/ contents changed. Add the new schema to the frozen or unfrozen list "
         "in ADR 0019 decision 1, then update this test."
@@ -142,15 +146,161 @@ def test_per_axis_schemas_compose_the_shared_one():
     )
 
 
-def test_schema_ids_still_track_main():
-    """Pins the known gap in ADR 0019 decision 3.
+SCHEMA_BASE = "https://product-on-purpose.github.io/writing-style-catalog/schemas/v1"
 
-    The freeze is an internal discipline, not an external guarantee, precisely
-    because $id resolves to a moving branch. When versioned IDs land, this test
-    fails and its ADR section plus the backlog entry should be updated together.
+
+def test_frozen_schema_ids_are_contract_versioned():
+    """ADR 0020: $id is the version-scoped published URL, not a branch tip.
+
+    Replaces test_schema_ids_still_track_main, which pinned the gap recorded in
+    ADR 0019 decision 3. A $id resolving to a moving branch cannot back a frozen
+    contract, so the freeze was internal-only until this landed.
     """
-    tracking = [n for n in FROZEN if "/main/" in load(n).get("$id", "")]
-    assert tracking, (
-        "no schema $id points at main any more. If versioned schema IDs have landed, "
-        "update ADR 0019 decision 3, the backlog entry, and delete this test."
+    offenders = []
+    for name in FROZEN:
+        sid = load(name).get("$id", "")
+        if sid != f"{SCHEMA_BASE}/{name}.schema.json":
+            offenders.append(f"{name}: {sid or '(no $id)'}")
+    assert not offenders, (
+        "schema $id must be the contract-versioned published URL (ADR 0020):\n"
+        + "\n".join(offenders)
     )
+
+
+def test_no_schema_id_points_at_a_branch():
+    """The specific regression: raw.githubusercontent on main."""
+    bad = [n for n in FROZEN + UNFROZEN if "raw.githubusercontent" in load(n).get("$id", "")]
+    assert not bad, f"$id resolves to a branch tip, so the freeze is not real: {bad}"
+
+
+def test_validate_registry_derives_uris_from_id_not_a_constant():
+    """ADR 0020: the base URL lives in the schemas, not a second copy in validate.py.
+
+    A hardcoded base in the registry builder disagrees with the schemas the moment
+    either moves, and $ref resolution then fails, or half-succeeds, with nothing
+    pointing at the cause.
+    """
+    src = (REPO_ROOT / "tools" / "validate.py").read_text(encoding="utf-8")
+    builder = src[src.index("def _build_schema_registry"):]
+    builder = builder[: builder.index("\ndef ", 1)]
+    assert "raw.githubusercontent" not in builder, (
+        "_build_schema_registry still hardcodes a schema base URL; it must read $id"
+    )
+    assert '"$id"' in builder, (
+        "_build_schema_registry should derive each URI from the schema's own $id"
+    )
+
+
+def test_relative_refs_resolve_within_the_same_contract_version():
+    """Why relative $refs are kept: they inherit the version-scoped base URI.
+
+    An absolute $ref could point at a different contract version than the
+    document containing it, which is the skew ADR 0020 fixed structurally.
+    """
+    import re
+
+    for name in ("voice", "tone", "style", "format"):
+        raw = (SCHEMAS / f"{name}.schema.json").read_text(encoding="utf-8")
+        for ref in re.findall(r'"\$ref":\s*"([^"]+)"', raw):
+            if ref.startswith("#"):
+                continue
+            assert not ref.startswith("http"), (
+                f"{name}.schema.json uses an absolute $ref ({ref}); keep it relative so "
+                "it resolves within the same contract version (ADR 0020)"
+            )
+
+
+def test_every_schema_resolves_through_the_real_registry():
+    """End to end: the registry the validator actually builds resolves every $ref."""
+    import sys
+
+    sys.path.insert(0, str(REPO_ROOT / "tools"))
+    import validate as v
+
+    registry = v._build_schema_registry()
+    for name in FROZEN + UNFROZEN:
+        validator = jsonschema.Draft202012Validator(load(name), registry=registry)
+        # Iterating forces $ref resolution; an unresolvable ref raises here.
+        list(validator.iter_errors({}))
+
+
+def test_published_schema_path_matches_declared_id():
+    """The generator publishes to the exact path each $id claims.
+
+    Guards the pairing gen-site.mjs enforces at build time, so the agreement is
+    also asserted without needing a build.
+    """
+    for name in FROZEN:
+        sid = load(name)["$id"]
+        suffix = f"/schemas/v1/{name}.schema.json"
+        assert sid.endswith(suffix), f"{name}: $id {sid} does not end with {suffix}"
+    for name in EXPERIMENTAL:
+        sid = load(name)["$id"]
+        suffix = f"/schemas/experimental/{name}.schema.json"
+        assert sid.endswith(suffix), f"{name}: $id {sid} does not end with {suffix}"
+
+
+# ---------------------------------------------------------------------------
+# ADR 0020: retention and namespace guarantees, made enforceable
+# ---------------------------------------------------------------------------
+
+GEN_SITE = REPO_ROOT / "scripts" / "gen-site.mjs"
+CONTRACTS_DIR = SCHEMAS / "contracts"
+
+
+def _current_contract_version():
+    import re
+
+    src = GEN_SITE.read_text(encoding="utf-8")
+    m = re.search(r"SCHEMA_CONTRACT_VERSION\s*=\s*'([^']+)'", src)
+    assert m, "SCHEMA_CONTRACT_VERSION not found in gen-site.mjs"
+    return m.group(1)
+
+
+def test_contract_version_bump_requires_a_snapshot():
+    """The retention promise in ADR 0020, enforced instead of trusted.
+
+    The published tree is gitignored and rebuilt every deploy, so a version that
+    is not emitted from a committed source vanishes and every pinned consumer
+    404s. Bumping the constant without snapshotting the outgoing version to
+    schemas/contracts/<version>/ is exactly that failure, and it would only be
+    discovered by the consumers it broke.
+    """
+    current = _current_contract_version()
+    snapshots = (
+        sorted(p.name for p in CONTRACTS_DIR.iterdir() if p.is_dir())
+        if CONTRACTS_DIR.exists() else []
+    )
+    superseded = [v for v in ("v" + str(i) for i in range(1, int(current[1:]))) ]
+    missing = [v for v in superseded if v not in snapshots]
+    assert not missing, (
+        f"SCHEMA_CONTRACT_VERSION is {current}, but these superseded versions have no "
+        f"frozen snapshot under schemas/contracts/: {missing}. Without one, the next "
+        "clean build stops serving them and every consumer pinned to them breaks. "
+        "Snapshot the outgoing version in the same PR that bumps the constant."
+    )
+
+
+def test_unfrozen_schema_is_not_served_from_a_frozen_namespace():
+    """ADR 0020 decision 2: the URL has to carry the guarantee level.
+
+    diff-pair may take a breaking change without a major bump (ADR 0019), so
+    serving it under /v1/ would let a "pinned" document change underneath a
+    consumer with nothing in the URL to distinguish it from the frozen schemas.
+    """
+    for name in EXPERIMENTAL:
+        sid = load(name)["$id"]
+        assert "/schemas/experimental/" in sid, (
+            f"{name} is unfrozen but its $id is {sid}; it must not sit in a versioned "
+            "namespace that implies a compatibility guarantee it does not have"
+        )
+        assert "/schemas/v1/" not in sid
+
+
+def test_experimental_schemas_live_outside_the_frozen_directory():
+    """Directory layout mirrors the guarantee, so the split is visible on disk."""
+    for name in EXPERIMENTAL:
+        assert (SCHEMAS / "experimental" / f"{name}.schema.json").exists()
+        assert not (SCHEMAS / f"{name}.schema.json").exists(), (
+            f"{name}.schema.json is still in the frozen directory root"
+        )

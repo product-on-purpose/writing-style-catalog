@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/diff-pair.schema.json",
+  "$id": "https://product-on-purpose.github.io/writing-style-catalog/schemas/experimental/diff-pair.schema.json",
   "title": "Diff Pair File Schema",
   "description": "Schema for the YAML frontmatter of diff-pair files in examples/diff-pairs/. A diff-pair contrasts two taxonomy entries on the same axis applied to the same topic, with every other axis held constant.",
   "type": "object",
@@ -30,7 +30,12 @@
     },
     "axis_varied": {
       "type": "string",
-      "enum": ["voice", "tone", "style", "format"],
+      "enum": [
+        "voice",
+        "tone",
+        "style",
+        "format"
+      ],
       "description": "The axis whose value differs between entry_a and entry_b. All other axes are held constant."
     },
     "entry_a": {
@@ -49,7 +54,12 @@
     },
     "review_status": {
       "type": "string",
-      "enum": ["draft", "reviewed", "stable", "reference-quality"]
+      "enum": [
+        "draft",
+        "reviewed",
+        "stable",
+        "reference-quality"
+      ]
     },
     "generated_at": {
       "type": "string",
@@ -58,7 +68,11 @@
     },
     "author_type": {
       "type": "string",
-      "enum": ["human", "llm", "hybrid"],
+      "enum": [
+        "human",
+        "llm",
+        "hybrid"
+      ],
       "description": "Who produced the diff-pair body. human = written by a person; llm = fully AI-generated; hybrid = AI-generated and then edited by a human."
     },
     "llm_model": {
@@ -69,5 +83,6 @@
       "type": "string",
       "description": "Optional curator notes about why this pair was chosen or what it teaches."
     }
-  }
+  },
+  "$comment": "NOT covered by the schema freeze. ADR 0019 permits a breaking change to this schema without a major version bump, so it is served from /schemas/experimental/ rather than /schemas/v1/: the URL carries the guarantee level, and a consumer cannot mistake it for a frozen contract. Do not move it under a version path until it can carry the same compatibility promise as the frozen five."
 }

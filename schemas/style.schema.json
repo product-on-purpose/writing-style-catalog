@@ -1,10 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/style.schema.json",
+  "$id": "https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/style.schema.json",
   "title": "Style Entry Schema",
   "description": "Schema for style entries (axis 3 of 4). Style is the kind or mode of writing (rhetorical, narrative, or genre category): how ideas are sequenced and structured.",
   "allOf": [
-    { "$ref": "entry.universal.schema.json" }
+    {
+      "$ref": "entry.universal.schema.json"
+    }
   ],
   "properties": {
     "axis": {
@@ -16,13 +18,17 @@
     },
     "structural_conventions": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "minItems": 1,
       "description": "The typical structure rules for this style"
     },
     "evidence_types": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Types of evidence or support this style typically uses"
     },
     "reader_contract": {
@@ -34,5 +40,7 @@
       "description": "Classical rhetorical mode if applicable (narration, description, exposition, argumentation)"
     }
   },
-  "required": ["structural_conventions"]
+  "required": [
+    "structural_conventions"
+  ]
 }

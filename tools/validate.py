@@ -107,14 +107,27 @@ def _load_schema(schema_path: Path) -> dict:
 def _build_schema_registry() -> Registry:
     """Build a referencing.Registry containing every local schema file.
 
-    Each schema's $id is the canonical https://... URI used in $ref references.
-    The registry maps that URI to the schema content, so Draft202012Validator
-    can resolve cross-schema refs without network calls.
+    Each schema's $id is the canonical https:// URI that $ref references resolve
+    against. The registry maps that URI to the schema content, so
+    Draft202012Validator resolves cross-schema refs locally and never reaches the
+    network.
+
+    The URI is read from each file's own $id rather than rebuilt from a base
+    constant here. A second copy of the base URL in this function would silently
+    disagree with the schemas the moment either moved, and resolution would fail
+    (or worse, half-succeed) with nothing pointing at the cause. See ADR 0020.
     """
     registry = Registry()
-    for f in SCHEMAS_DIR.glob("*.schema.json"):
+    # Includes experimental/ and any frozen contracts/ snapshots, so every
+    # published schema is resolvable regardless of which namespace it sits in.
+    for f in sorted(SCHEMAS_DIR.rglob("*.schema.json")):
         schema_dict = json.loads(f.read_text(encoding="utf-8"))
-        uri = f"https://raw.githubusercontent.com/product-on-purpose/writing-style-catalog/main/schemas/{f.name}"
+        uri = schema_dict.get("$id")
+        if not uri:
+            raise ValueError(
+                f"{f.relative_to(REPO_ROOT)} has no $id; every schema needs one so "
+                "relative $refs have a base URI to resolve against"
+            )
         resource = Resource(contents=schema_dict, specification=DRAFT202012)
         registry = registry.with_resource(uri=uri, resource=resource)
     return registry
@@ -379,9 +392,10 @@ def check_diff_pairs(id_map: dict[str, tuple[str, dict]]) -> list[str]:
     print("[CHECK] Diff-pair file validation...")
     errors = []
 
-    diff_pair_schema_path = SCHEMAS_DIR / "diff-pair.schema.json"
+    # Not frozen, so it lives in the experimental namespace (ADR 0019 + 0020).
+    diff_pair_schema_path = SCHEMAS_DIR / "experimental" / "diff-pair.schema.json"
     if not diff_pair_schema_path.exists():
-        errors.append("[ERROR] schemas/diff-pair.schema.json: schema file not found")
+        errors.append("[ERROR] schemas/experimental/diff-pair.schema.json: schema file not found")
         return errors
 
     diff_pair_schema = _load_schema(diff_pair_schema_path)
