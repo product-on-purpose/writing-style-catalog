@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A records one decision for the future.** `ADR-0014`, a `Status` of `Accepted`, then `Context`
+supplying only what a later reader needs to reconstruct the reasoning: the growth from 6 to 11
+engineers, four timezones.
+
+**B records one meeting for the people who missed it.** Date, time, location, facilitator,
+note-taker, and an attendee list. It is indexed by the event, not by the conclusion.
+
+**The tell:** A has a status; B has a roll call. If the decision matters in a year, it has to be
+lifted out of B into something shaped like A, which is exactly the migration these two formats
+exist to make possible.
 
 ---
 

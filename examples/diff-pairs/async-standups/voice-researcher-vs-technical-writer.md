@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A frames the change as a proposal with a defined structure** and will worry about what the
+evidence supports.
+
+**B frames it as a document with a job**: "This document proposes replacing the daily synchronous
+standup... It summarizes the current state, the proposed change, t[he...]" It tells you what it
+contains before it contains it.
+
+**The tell:** B's second sentence is a table of contents in prose. A has no such sentence,
+because a researcher's obligation is to method, not navigation.
 
 ---
 

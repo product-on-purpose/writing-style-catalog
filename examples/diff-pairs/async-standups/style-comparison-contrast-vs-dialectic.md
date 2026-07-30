@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A holds two options side by side against fixed criteria** and lets the reader decide.
+
+**B stages a disagreement and must resolve it.** Its headings are positions rather than
+dimensions, beginning `## Thesis: Keep the sync standup, because connection matters`, and it
+steelmans that side properly: "A team is not a status report. It is a group of humans who must
+trust each other enough to disagree."
+
+**The tell:** A's sections are criteria; B's are claims. Only one of them owes you a
+synthesis.
 
 ---
 

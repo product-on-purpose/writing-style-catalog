@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+The pair the adherence test rated *subtle*, and the difference is what the shape obliges.
+
+**A owes an outcome and a principle.** Its title frames the whole situation as a problem to be
+resolved, and it names the people it will follow.
+
+**B owes only the clock.** "## Eighteen months ago. The team was six engineers, all in Pacific
+time. The standup was created on a Tuesday afternoon over coffee. Sarah suggested 15 minutes at
+9:30am. Nobody argued."
+
+**The tell:** B's headings are timestamps. A's are stages of a case. B can end whenever the
+timeline reaches now; A cannot end until it has extracted something transferable.
 
 ---
 

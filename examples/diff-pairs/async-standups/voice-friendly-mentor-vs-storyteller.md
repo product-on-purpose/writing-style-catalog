@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A describes the failing standup generically** so any reader can place themselves in it.
+
+**B puts one person in one room at one moment**: "The Slack channel had forty-seven new messages
+when Priya opened her laptop. It was 9:47pm in Bengaluru. The standup had ended without her,
+again."
+
+**The tell:** "again" is doing the work an argument would otherwise have to do, and B never
+supplies the argument. A's version explains; B's version is remembered.
 
 ---
 

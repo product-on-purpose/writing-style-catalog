@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A marks a completed thing** and grounds the marking in evidence: "30 days ago we started the
+async standup trial. Today I want to tell you what we accomplished, because the numbers are real
+and the people behind them are[...]"
+
+**B honours effort that is still ongoing** and points forward: "I have watched you show up to
+that 9am standup for two years, including the people who join at 9:30pm their time."
+
+**The tell:** A is written after; B could be written before. Celebration needs something
+finished, encouragement needs something continuing.
 
 ---
 

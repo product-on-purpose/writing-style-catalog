@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A names what the team has already borne** and works on their belief that a change is
+warranted.
+
+**B clears the path and nothing else**: "# How the async standup works, starting Monday...
+This g[uide]".
+
+**The tell:** B contains no encouragement at all, and does not need any, because a reader who
+knows exactly what to do on Monday does not require conviction to do it.
 
 ---
 

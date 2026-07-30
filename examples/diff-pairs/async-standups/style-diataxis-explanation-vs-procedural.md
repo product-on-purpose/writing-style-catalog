@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A answers "how does this work?"** and is finished when the reader understands the mechanism.
+
+**B answers "how do I do this?"** and is finished when the rollout is done. It says so: "This
+guide walks a team lead through replacing a synchronous daily standup... It is written for a lead
+running an 11-person en[gineering team]."
+
+**The tell:** B names its reader and their task in the first two sentences. A names neither,
+because comprehension does not require knowing who is comprehending.
 
 ---
 

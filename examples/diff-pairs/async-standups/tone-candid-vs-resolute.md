@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A is honest about a problem.**
+
+**B has finished deliberating and is issuing the plan**: "Decision: we are moving to async
+standups. Trial starts Monday and runs thirty days. Here is the rollout."
+
+**The tell:** A could end with the team still discussing; B cannot, because its register is a
+decision already taken. Note B spends its space on logistics rather than on justification.
 
 ---
 

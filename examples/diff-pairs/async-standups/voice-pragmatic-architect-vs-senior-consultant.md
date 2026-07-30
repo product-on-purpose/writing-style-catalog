@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+Rated *subtle*, and this topic is where the two voices are closest.
+
+**A opens with the decision and then names failure modes**: "We should move to async-first
+standups. The synchronous daily standup has two failure modes we are currently experiencing."
+
+**B opens with a reframe and withholds the recommendation**: "Before recommending a structural
+change, it is worth asking what job the current standup is being hired to do. In my experience,
+daily standups perform some combinat[ion of four functions]."
+
+**The tell:** A's first sentence is the call. B's first sentence is a question about the
+question, and its authority comes from having seen many teams rather than from owning this
+one.
 
 ---
 

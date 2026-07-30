@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A records a synchronous event.** A facilitator, a note-taker, and nine people present.
+
+**B is written asynchronously and requires no meeting at all**, organised by period and by what
+the audience needs to decide.
+
+**The tell:** if no meeting occurred, A cannot exist and B is unaffected. That is the whole
+distinction, and it is why a team moving to async communication tends to produce more of B and
+less of A.
 
 ---
 

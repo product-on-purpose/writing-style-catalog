@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Both live in Slack, and only one of them is a format.
+
+**A is the fixed three-part structure**, filled in: shipped, in progress, blocked. It would keep
+its shape pasted into a doc, an email, or a wiki.
+
+**B is a channel message doing something else entirely**, namely proposing the trial: "**Proposal:
+try async standups for 30 days starting May 19**."
+
+**The tell:** the container is not the format. B is Slack-shaped because of where it lives; A is
+standup-shaped because of what it is.
 
 ---
 

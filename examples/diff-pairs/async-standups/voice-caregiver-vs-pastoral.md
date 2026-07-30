@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A stays with the specific bodies involved**: the workday that ends, the child put to bed, the
+9:30pm call after that.
+
+**B places the ritual in a tradition** before evaluating it, reaching back to Acts 2 and a church
+that "gathered daily - not out of obligation, but because they wanted to be known to one
+another."
+
+**The tell:** A's authority comes from attending to what is happening to three people. B's comes
+from what the practice has always been for. Only one of them could have opened with
+scripture.
 
 ---
 

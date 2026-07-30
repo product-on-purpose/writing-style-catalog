@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A commits to one structural move**, and it is in the first line: "**Definition.** An
+async-first standup is a daily team ritual in which each member posts a short, structured status
+update in a shared written channel during their own working hours."
+
+**B may use any structure that produces understanding**, and here it opens by clearing away a
+misconception instead of defining anything.
+
+**The tell:** A's remaining text tests and elaborates the definition it opened with. B has no
+such obligation, which is why it can start by saying what the thing is *not*.
 
 ---
 

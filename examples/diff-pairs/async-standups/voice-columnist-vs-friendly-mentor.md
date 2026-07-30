@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A opens with a thesis sharp enough to argue with**: "The daily standup is the cargo cult of
+distributed engineering. We kept the ritual long after the conditions that made it sensible
+stopped applying."
+
+**B opens with a shared scene and no position at all**: "You have probably been in that standup.
+Twelve people on a Zoom call. Someone shares their screen to demo a bug... Three people are
+clearly doing something el[se]."
+
+**The tell:** A wants agreement; B wants recognition. A columnist who opened with B's sentence
+would have no piece.
 
 ---
 

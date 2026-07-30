@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Both are short and numbered-ish and informal, and the stakes are not remotely the same.
+
+**A is private team communication.** It names the India team's situation directly because
+everyone reading has context and standing.
+
+**B is public broadcast, retrospective, and quotable**: "1/ We killed our daily standup six
+months ago. 11 engineers, 4 timezones. Here is what happened, and what I would tell another EM
+thinking about it."
+
+**The tell:** B has to explain its own team to strangers and is addressed to other EMs rather
+than to colleagues. Post A publicly and it reads as airing something internal.
 
 ---
 

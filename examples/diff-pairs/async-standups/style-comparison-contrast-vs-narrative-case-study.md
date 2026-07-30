@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A is analytical**: dimensions, parallel treatment, no protagonist.
+
+**B is experiential**: "The Platform team at Meridian had a daily standup at 9am Pacific. For
+eight of the eleven engineers, that was a normal morning meeting. For Priya, Arjun, and Devika
+in Bengaluru, it [was not]." It has names and a title that is an image, "The standup that ran at
+9:30pm."
+
+**The tell:** A's evidence is criteria applied evenly; B's is one situation followed through
+time. Both can persuade, and they fail differently: A can be true and unmoving, B moving and
+unrepresentative.
 
 ---
 

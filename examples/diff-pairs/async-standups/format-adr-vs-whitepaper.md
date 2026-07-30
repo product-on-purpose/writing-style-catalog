@@ -18,11 +18,18 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Rated *dramatic* by the adherence test, and the renders show why.
+
+**A is accountable to this team, later.** Scoped to one decision, with a status marking it
+closed.
+
+**B is accountable to strangers, generally.** Its title promises "An Evidence-Based Analysis"
+for "Distributed Engineering Teams" as a class, and it opens on an `Executive summary` arguing
+that synchronous standups are "a near-universal ritual inherited from co-located agile practice"
+imposing "disproportionate costs."
+
+**The tell:** A says *we*; B says *distributed teams*. The same facts appear in both, but only
+one of them is trying to convince people who do not work here.
 
 ---
 

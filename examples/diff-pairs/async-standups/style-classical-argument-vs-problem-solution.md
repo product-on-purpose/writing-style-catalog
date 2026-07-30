@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A argues that a position is correct**, and accepts the burden of the reader's disagreement.
+
+**B diagnoses and prescribes.** Its structure is literally `## The Problem`, and the diagnosis is
+specified before any remedy: 9am Pacific is 9:30pm for three of eleven engineers.
+
+**The tell:** B never anticipates an objection, because it assumes agreement that the problem is
+a problem. A cannot assume that, which is why it has to build a warrant.
 
 ---
 

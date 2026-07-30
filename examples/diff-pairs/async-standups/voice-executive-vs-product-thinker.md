@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A leads with the call** and prices it in organisational terms.
+
+**B refuses to decide before the problem is agreed**, and reaches for jobs-to-be-done: "it is
+worth asking what job our engineers are hiring the standup to do. Listen to how people describe
+it and a few jobs surface."
+
+**The tell:** B quotes the team back to itself before proposing anything. A does not need to,
+because the executive voice already has the standing to decide.
 
 ---
 

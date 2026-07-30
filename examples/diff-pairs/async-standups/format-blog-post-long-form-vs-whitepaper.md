@@ -18,11 +18,17 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+Both argue at length to an outside reader; they differ in what earns belief.
+
+**A earns it by recognition.** It opens in the second person on a scene the reader is meant to
+know already: "Three engineers on your team are joining your 9am standup at 9:30pm their time...
+You have probably ass[umed]" the wrong cause.
+
+**B earns it by apparatus.** A titled thesis, an executive summary, and a claim pitched at the
+category rather than at you.
+
+**The tell:** A's first move is to describe your team back to you. B's is to describe teams like
+yours in aggregate. One wants you nodding; the other wants you citing.
 
 ---
 

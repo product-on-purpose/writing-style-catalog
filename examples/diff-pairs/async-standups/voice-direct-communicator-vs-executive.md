@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A states a recommendation and its reason with no apparatus**: "I think we should try the async
+format for 30 days. Here is why," then the attendance number.
+
+**B reframes the same facts as a cost the organisation would not knowingly accept**: the current
+model "is quietly underwriting a cost we would not accept if it were on a budget line."
+
+**The tell:** A gives you the number. B translates the number into something a budget owner
+already knows how to refuse. Same evidence, different lever.
 
 ---
 

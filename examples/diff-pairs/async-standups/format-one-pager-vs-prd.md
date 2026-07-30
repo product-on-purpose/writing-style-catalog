@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A is one page aimed at one decision, with a clock on it.** The header carries author, reader,
+date, and, decisively, "**Decision needed by:** 2026-05-16."
+
+**B is a requirements document** that specifies a product for an engineering team to build, and
+is complete by design rather than compressed.
+
+**The tell:** A has a decision deadline; B has a problem statement. Compressing B onto one page
+would not produce A, it would produce an unusable PRD, because they are not the same document at
+different lengths.
 
 ---
 

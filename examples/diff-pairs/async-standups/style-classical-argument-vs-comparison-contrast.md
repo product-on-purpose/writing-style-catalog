@@ -18,11 +18,16 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A advances a claim and defends it.** It states the position in its first sentence and then
+supplies the warrant: the synchronous format "was designed for co-located teams and imposes
+costs that distributed teams bear unevenly."
+
+**B refuses to advance one.** It names its criteria up front and evaluates both options against
+each: "across four dimensions: participation equity, information persistence, blocker resolution
+speed, and team cohesion."
+
+**The tell:** a reader can finish B and still choose either option. Finishing A while choosing
+the other option means the argument failed.
 
 ---
 

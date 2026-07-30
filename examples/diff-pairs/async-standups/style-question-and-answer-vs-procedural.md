@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than style. 
-The only deliberate variable is which style the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The style 
-swap is the entire cause of those differences.
+**A assumes many readers arriving at many points**, each needing one answer, and its headings
+are the questions people actually ask: "## What if I forget to post?"
+
+**B assumes one reader following one ordered path** from the beginning.
+
+**The tell:** A's sections can be read in any order and most readers will read exactly one. B's
+step three is meaningless without step two. If the material has a correct order, the FAQ is the
+wrong container.
 
 ---
 

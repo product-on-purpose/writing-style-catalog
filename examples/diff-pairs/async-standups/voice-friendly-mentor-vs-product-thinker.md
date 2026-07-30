@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A explains the situation** so the reader sees it clearly.
+
+**B interrogates what the ritual is for**, and its unit of analysis is the job being hired
+rather than the meeting being held.
+
+**The tell:** A would help someone understand why standups go wrong in general. B is trying to
+establish what *this* team actually needs, which is a narrower and more decision-shaped
+question.
 
 ---
 

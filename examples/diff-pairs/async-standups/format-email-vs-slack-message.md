@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than format. 
-The only deliberate variable is which format the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The format 
-swap is the entire cause of those differences.
+**A carries its summary in the subject line**, and the subject does real work: "Starting Monday:
+30-day async standup trial - post by 10am local, no more 9am Pacific call." A reader who never
+opens it has still received the change.
+
+**B leads with a bolded proposal line** and moves straight into bullets, assuming the reader is
+already in the channel and already in context.
+
+**The tell:** A has a To, a Cc, and a subject that could stand alone. B has none of that
+apparatus because the channel supplies it.
 
 ---
 

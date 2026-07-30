@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A states the proposal as a specification to be evaluated**, down to the field names: three
+fields, "Shipped / In progress / Blocked-or-a[t-risk]".
+
+**B opens on a sourced moment** with a person, a time, and a place.
+
+**The tell:** A is preparing to test something; B is preparing to show you something. Neither
+asserts, and they decline to assert for different reasons.
 
 ---
 

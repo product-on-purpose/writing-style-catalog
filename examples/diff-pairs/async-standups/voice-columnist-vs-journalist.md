@@ -18,11 +18,14 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A judges in its own voice** and coins the frame: cargo cult.
+
+**B reports and lets the scene carry it.** "At 9:32pm on a Tuesday in Bengaluru, Priya logged in
+for standup. Her son was finally asleep." No adjective does any evaluating; the time of day does
+all of it.
+
+**The tell:** A tells you the ritual is irrational. B tells you what time it was and who was
+asleep, and declines to say the rest.
 
 ---
 

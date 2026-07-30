@@ -18,11 +18,13 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than voice. 
-The only deliberate variable is which voice the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The voice 
-swap is the entire cause of those differences.
+**A opens in an ordinary scene the reader recognises** and teaches from it.
+
+**B opens in Acts 2** and treats the daily gathering as something with a history worth honouring
+before it is changed.
+
+**The tell:** A's shared reference is a Zoom call everyone has sat through. B's is a tradition.
+Both create common ground; only one of them assumes the reader is inside that tradition.
 
 ---
 

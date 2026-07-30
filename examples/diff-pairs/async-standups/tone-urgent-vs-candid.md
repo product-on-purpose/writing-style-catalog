@@ -18,11 +18,15 @@ review_status: reviewed
 
 ## What to notice
 
-Both examples address the same topic and (by default) share every axis other than tone. 
-The only deliberate variable is which tone the writing was rendered through. Read both 
-and ask: where does the framing change? Where does the vocabulary change? What does the 
-reader take away from A that they would not take away from B, and vice versa? The tone 
-swap is the entire cause of those differences.
+**A inverts everything to put the clock first**: "We took a Sev-2 last night because our standup
+format is broken. We are changing it this week. Here is what happened. At 10:47pm IST, the
+payments pipelin[e...]"
+
+**B is honest without being hurried.**
+
+**The tell:** A's justification is an incident with a timestamp, and its decision has a deadline
+inside the sentence that announces it. Strip the timestamps from A and the tone disappears;
+strip them from B and nothing changes.
 
 ---
 
