@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`recommend.py --verbose`**, a per-candidate score trace on stderr (audit finding D-7). The
+  JSON payload already reported which tokens matched; what it could not show was what those
+  matches were worth, or which of the two independent gates rejected a candidate. The trace
+  prints every situation token's IDF weight, each candidate's per-field matches with their
+  weighted contribution, and for a rejected candidate the failing comparison by name.
+
+  The distinction earns its keep immediately. A candidate can match a distinctive word, score
+  well over the relevance threshold, and still be rejected for having only one distinct match,
+  which from the JSON alone reads as an inexplicable miss. That is not hypothetical: it is
+  exactly what happened while closing the P-4 vocabulary gaps, where `friendly-mentor` matched
+  "child" for 10.43 against a 3.0 threshold and did not qualify.
+
+  stdout stays clean JSON, since the skill parses it; three tests guard that specifically and
+  fail if the trace is ever routed to the wrong stream.
+
+### Changed
+
+- **Nine entries gained register vocabulary they were missing** (P-4). The recommender was
+  returning an empty axis on whole registers not because the catalog lacked the right entries
+  but because those entries never said the words a user types. Across the three affected eval
+  cases, qualifying entries went from 1 to 12. Every entry enriched already applied to its
+  situation; only the vocabulary was absent.
+
+  Two axes were deliberately left empty rather than filled. No stable voice is
+  marketer-adjacent, which is a catalog gap needing a new entry rather than more words, and no
+  tone is genuinely about pitching to a novice. Filling either would have made the tool look
+  confident rather than be right.
+
+  Recorded in `docs/internal/recommender-scorer-quality-proposal.md`: enrichment has to use the
+  inflection a user types, because the scorer has no stemmer by design, and it has to use words
+  that discriminate rather than words that co-occur. Putting the bare word "announcement" into
+  two entries bought two false positives on a cheerful product-launch situation.
+
 ## [0.10.0] - 2026-07-31
 
 The teaching-surface release. Everything here is catalog quality rather than new
