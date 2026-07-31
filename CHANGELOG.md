@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-07-31
+
+The teaching-surface release. Everything here is catalog quality rather than new
+machinery, and two long-standing gaps are closed completely.
+
+### Added
+
+- **Authored commentary on every diff-pair.** All 134 now name a specific tell the reader can
+  verify in the two renders directly below; none carry the generator's generic prompt, which
+  asked "where does the framing change?" and answered nothing. That prompt left a diff-pair as a
+  side-by-side dump, which is a poor return on the catalog's sharpest teaching device.
+
+  Parity claims are deliberately narrow throughout. Renders were generated independently per
+  entry, so no pair is a controlled single-variable experiment, and each write-up says so where
+  its two sides diverge on substance rather than implying the axis caused it.
+
+  The most useful thing this surfaced was only visible because the topic was held constant:
+  handed the same prompt, `adr` and `prd` did not write about the same object. The ADR decides
+  whether a team adopts async standups; the PRD specifies a bot somebody would build and ship.
+  That is not a defect in either render. A PRD has no way to represent a decision that produces
+  no software, which demonstrates what a format constrains better than any amount of prose about
+  tone.
+
+- **A published evidence page**, `concepts/adherence-evidence/`. The 8/8 blind adherence result
+  had lived in a gitignored local audit file since 2026-05-31, which made the project's
+  "proven, not asserted" claim rest on a document nobody outside the repository could read. It
+  now records both experiments, the same-vendor 8/8 and the cross-vendor 18/18, and leads its
+  credibility on the negative control, because a measurement that can only come back positive is
+  a demonstration rather than an experiment. The limits are stated in the open: attribution was
+  description-assisted, forced choice is easier than open identification, generation was
+  single-tier, n is small, and no human rated anything.
+
+- **`tools/review_packet.py`**, which prepares the per-entry packets for the catalog review. It
+  pre-answers everything `validate.py` already enforces and asks only what needs judgment, so
+  the scarce resource is spent on distinguishability rather than on re-checking schema
+  conformance.
+
+### Changed
+
+- **`confusable_with` is now symmetric across the whole catalog**, 101 one-way links closed.
+  Confusability is mutual, so a one-way declaration left a reader arriving from the other side
+  with no warning. Each back-reference is an authored "Often confused with" block written from
+  the gaining entry's own side, because which entry is explaining changes what the sentence can
+  lead with.
+
+### Fixed
+
+- Two entries declared a `confusable_with` id with nothing written about it, `decision-log`
+  listing `executive-summary` and `technical-reference` listing `readme`. Both links were
+  mutual, so only the prose was missing, which is why the symmetry analysis could never have
+  found them. A test asserting the glossary's own rule caught both.
+
 ## [0.9.0] - 2026-07-30
 
 Makes the schema freeze real for anyone outside this repository.
