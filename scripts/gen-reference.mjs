@@ -16,7 +16,9 @@
 //
 // Usage:
 //   node scripts/gen-reference.mjs            # write into site/src/content/docs/reference
-//   node scripts/gen-reference.mjs --check    # exit 1 if the committed pages are stale
+//
+// The output is gitignored and regenerated on every build, like the catalog
+// pages, so there is no committed copy that can go stale and no --check mode.
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -215,28 +217,8 @@ export function writeReferencePages() {
 }
 
 function main() {
-  const check = process.argv.includes('--check');
-  const pages = referencePages();
-  fs.mkdirSync(OUT_DIR, { recursive: true });
-
-  let stale = [];
-  for (const [name, body] of Object.entries(pages)) {
-    const target = path.join(OUT_DIR, name);
-    const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
-    if (check) {
-      if (current !== body) stale.push(name);
-    } else {
-      fs.writeFileSync(target, body);
-      console.log(`[OK] wrote reference/${name}`);
-    }
-  }
-  if (check) {
-    if (stale.length) {
-      console.error(`[STALE] ${stale.join(', ')} - run: node scripts/gen-reference.mjs`);
-      process.exit(1);
-    }
-    console.log('[OK] generated reference pages are current');
-  }
+  const written = writeReferencePages();
+  console.log(`[OK] wrote ${written} reference pages into site/src/content/docs/reference`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
