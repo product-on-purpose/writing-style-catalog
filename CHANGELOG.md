@@ -7,7 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-07-31
+
+### Security
+
+- **Three CodeQL findings closed; zero alerts now open on `main`.**
+
+  A `js/xss-through-dom` in a UI mockup read a chip label with `textContent` and interpolated
+  it into `innerHTML`, which reinterprets page text as markup. The labels there are hardcoded
+  so it was not exploitable, but the pattern is the bug. It predates this work by two months;
+  adding a new `.mjs` file appears to have widened the JavaScript analysis enough to surface
+  it.
+
+  Two `js/incomplete-sanitization` findings were genuinely introduced here, both in the new
+  reference generator. The schema page puts each field's description into a Markdown table
+  cell and the first version escaped pipes but not backslashes, so a description ending in a
+  backslash before a pipe still broke out of its cell: the backslash escaped the escape. Order
+  is the whole fix, backslashes first. The second was in the test written to prove that,
+  which defined a deliberately incomplete escape to demonstrate the failure. Static analysis
+  cannot tell a sanitiser that exists to be shown failing from a real one, and a standing
+  alert on test code masks the next genuine finding, so the old output is now asserted as a
+  literal instead.
+
 ### Added
+
+- **A `marketer` voice entry**, at `review_status: draft`. This closes a catalog gap the P-4
+  work surfaced: none of the fifteen stable voices was marketer-adjacent, so the recommender
+  returned an honest but empty voice axis for every landing-page, hero-copy, or launch
+  situation, a register squarely inside the stated audience. Being a draft it is invisible to
+  the recommender until reviewed and promoted, and exempt from the twelve-anchor-topic sample
+  requirement until then. Scored directly against the marketing eval situation it would
+  qualify at 26.52 on three distinct matches, so what is outstanding is the review, not the
+  fit.
+
+  Its family is `principal`, chosen against ADR 0010's grounding rather than by resemblance:
+  the families name a communicative action, and this voice speaks on behalf of a product to a
+  market. The distinguishing claim is stated inside the entry so it can be argued with, which
+  is that the voice is specific and falsifiable or it is nothing. Its first failure mode is
+  enthusiasm outrunning the evidence until no sentence is checkable.
 
 - **A generated schema reference and scripts reference** (audit finding F-6, "the expert trail
   dead-ends"). To learn every frontmatter field, a reader was previously sent to raw JSON Schema
