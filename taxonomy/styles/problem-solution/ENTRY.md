@@ -49,6 +49,7 @@ when_to_use:
   - Product requirement documents
   - Pitch decks and executive summaries
   - Blog posts addressing a real pain point
+  - Landing pages and marketing copy that name a customer pain before naming the product
 when_not_to_use:
   - Devotional writing
   - Narrative content

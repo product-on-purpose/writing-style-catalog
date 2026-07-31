@@ -49,6 +49,7 @@ when_to_use:
   - Any context where the reader needs information without friction
   - Internal communications where the relationship does not require ceremony
   - Feedback delivery where the recipient needs clear signal, not softened noise
+  - Telling the whole company hard news, such as laying off staff or cancelling a project, where indirectness reads as evasion
 when_not_to_use:
   - Pastoral or devotional contexts where slowness and ceremony carry meaning
   - Condolence notes or emotionally difficult communications requiring care and space

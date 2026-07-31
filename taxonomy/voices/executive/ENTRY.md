@@ -47,6 +47,7 @@ when_to_use:
   - Stakeholder briefings that need to convey a clear bottom line
   - Board or investor-facing materials where signal clarity is paramount
   - Any context where the reader needs to know what was decided and what happens next
+  - Announcing to the whole company that it is laying off staff, or any restructuring of the workforce
 when_not_to_use:
   - Technical documentation or how-to guides
   - Instructional content where the reader needs step-by-step detail

@@ -53,6 +53,7 @@ when_to_use:
   - FAQs and help content where depth of need varies widely across readers
   - Onboarding content that must serve fast readers and careful readers simultaneously
   - Any context where you cannot predict how much depth the reader wants
+  - Landing pages and marketing pages where a scanning visitor and a careful evaluator read the same copy
 when_not_to_use:
   - The audience is homogeneous and a single depth level is appropriate for everyone
   - The content is a narrative where layering would break the story arc

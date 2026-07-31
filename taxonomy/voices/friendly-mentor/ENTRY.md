@@ -45,6 +45,7 @@ when_to_use:
   - Explainer content for technical concepts
   - Documentation for non-expert audiences
   - Teaching-style messages where asymmetric knowledge is a given
+  - Asked to explain a technical subject to a child, a beginner, or any reader with no background in it
 when_not_to_use:
   - Technical expert audiences who want brevity
   - Formal executive communication

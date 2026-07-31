@@ -45,6 +45,7 @@ when_to_use:
   - Onboarding moments where anxiety or confusion is the real obstacle
   - Any communication at moments of loss, transition, or high emotional stakes
   - Situations where the reader needs to feel understood before they can hear what you are saying
+  - Telling staff the company is laying off part of the workforce, where the reader may be losing their job or a colleague
 when_not_to_use:
   - Routine operational updates with no emotional stakes
   - Technical documentation where emotion is not relevant

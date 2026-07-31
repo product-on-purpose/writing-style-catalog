@@ -246,6 +246,13 @@ server exposes the guaranteed behavior, not the naive concatenation.
   mutability, but not durable. The fix is a project-controlled custom domain for canonical
   schema IDs, which is an infrastructure decision with real cost. **A v1.0 claim of a permanent
   contract should wait for this.**
+- **No marketer-adjacent voice exists** (surfaced by P-4 enrichment, 2026-07-31). None of the
+  15 stable voices fits landing-page or hero copy, so the recommender returns an honest empty
+  voice axis for that whole register. This is a **catalog gap needing a new entry**, not a
+  vocabulary gap: the fix is authoring a voice, and stuffing marketing words into a
+  non-marketing voice would make the tool look confident rather than be right. The register sits
+  squarely inside the stated PMs-and-builders beachhead, which makes it the most defensible
+  candidate for the next new Voice entry.
 - **`review_status` governance** - new entries must start at `draft`, not `stable`; the
   60-entry seed set is the reviewed `stable` baseline (already documented in `CLAUDE.md` /
   `AGENTS.md`). Keep enforcing this on new contributions.
