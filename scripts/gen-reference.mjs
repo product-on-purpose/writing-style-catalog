@@ -126,7 +126,16 @@ function renderSchemaPage() {
     L.push('| --- | --- | --- | --- |');
     for (const name of names) {
       const p = props[name];
-      const desc = (p.description || '').replace(/\s+/g, ' ').replace(/\|/g, '\\|').trim();
+      // Escape for a Markdown table cell. Backslash FIRST, then pipe: doing it
+      // the other way round would re-escape the backslashes this step just
+      // added, turning an escaped pipe back into a cell break (CodeQL
+      // js/incomplete-sanitization). Newlines are already collapsed above,
+      // since a literal newline ends the row.
+      const desc = (p.description || '')
+        .replace(/\s+/g, ' ')
+        .replace(/\\/g, '\\\\')
+        .replace(/\|/g, '\\|')
+        .trim();
       L.push(`| \`${name}\` | ${describeType(p)} | ${required.has(name) ? '**yes**' : 'no'} | ${desc} |`);
     }
     L.push('');
