@@ -127,7 +127,7 @@ mechanical one; flagged here, not assumed.
 > Phase A. Strengthen the proven result and raise the per-entry bar on the existing 60. This
 > is the quality reference the Expansion Program then scales against.
 
-### C1 (P1) - Sharpen the two "subtle" confusable pairs
+### C1 (P1) - Sharpen the two "subtle" confusable pairs - DONE 2026-06-17
 The adherence test rated exactly two pairs only "subtle" (the genuinely-close confusables):
 - `pragmatic-architect` vs `senior-consultant` (voice; within the "expert voice" cluster)
 - `narrative-case-study` vs `chronological-narrative` (style; within the narrative styles)
@@ -145,7 +145,7 @@ their `confusable_with` distinctions from both sides is worth more than ten new 
 - **Effort:** small-medium. After edits run `python tools/validate.py` then
   `python tools/build-indexes.py`.
 
-### C2 (P1) - Diff-pairs for the `service-database-choice` topic
+### C2 (P1) - Diff-pairs for the `service-database-choice` topic - DONE 2026-07-29
 It currently has **zero** diff-pairs, despite being the best-isolated anchor topic; the other
 two topics have several. Diff-pairs are the catalog's sharpest teaching tool because they hold
 the topic constant and vary exactly one axis.
@@ -162,6 +162,40 @@ the topic constant and vary exactly one axis.
   (frontmatter -> "What to notice" -> "A:" render -> "B:" render). New pages are picked up by
   the site generator; rebuild with `cd site && npm run build` and the route/link guards.
 - **Effort:** small per pair (generator + prose).
+
+> **C1 closed 2026-06-17.** A blind gate pilot, confirmed cross-vendor, re-rated the seams:
+> `pragmatic-architect` vs `senior-consultant` came back "clear" and needed no work, while
+> three genuinely subtle pairs were tightened from both sides. Both original "subtle" pairs now
+> also have written-up diff-pairs on `service-database-choice`. Evidence is published at
+> [Does it actually work?](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/).
+
+> **C2 closed 2026-07-29.** Four pairs, one per axis, each with authored "What to notice"
+> commentary rather than the generator's generic prompt. That standard was then applied to the
+> whole corpus: all 134 diff-pairs now carry authored commentary.
+
+### C4 (P2) - Diff-pairs for the seven uncovered anchor topics - DONE 2026-07-31
+
+Diff-pairs exist on 5 of the 12 anchor topics. Seven have none: `roadmap-deprioritization`,
+`onboarding-a-new-hire`, `remote-work-policy`, `product-launch-announcement`,
+`retirement-send-off`, `team-milestone-celebration`, `daily-rest-practice`.
+
+Every axis render already exists for each of them, so this is authoring the comparison and the
+commentary, not generating new samples. Worth noting the distribution is lopsided rather than
+thin: `async-standups` alone carries 60 pairs while seven topics carry zero, so the marginal
+teaching value of a pair on an uncovered topic is much higher than the 61st pair on a covered
+one.
+
+- **Editable surface:** `tools/diff-pair-generator.py` to produce the file, then author the
+  "What to notice" prose. Regeneration preserves authored commentary, so the two steps are safe
+  to separate.
+- **Effort:** small per pair. Suggest 3-4 per topic chosen to suit that topic's material rather
+  than exhaustive coverage.
+
+> **Closed 2026-07-31.** All 12 anchor topics now carry diff-pairs, up from 5. 24 pairs added
+> across the 7 uncovered topics, 3-4 each, chosen to suit the material rather than for uniform
+> coverage. 158 pairs total, every one with authored commentary. The distribution is still
+> lopsided (`async-standups` carries 60) but no topic is now unrepresented, which was the
+> teaching-surface concern.
 
 ### C3 (P2) - Deepen high-weight entries
 Add tells, anti-patterns, failure modes, and before/after micro-examples to the entries that

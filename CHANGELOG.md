@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Diff-pairs on the seven anchor topics that had none.** Coverage goes from 5 of 12 topics to
+  all 12; 158 pairs total, every one carrying authored commentary. Three or four per topic,
+  chosen to suit that topic's material rather than for uniform coverage, since the marginal
+  teaching value of a first pair on an uncovered topic is far higher than that of the 61st pair
+  on `async-standups`.
+
+  Two of them are worth calling out because the render pair itself makes the point. On
+  onboarding, the encouraging and instructional renders are not addressed to the same person:
+  given one prompt, encouragement reached for the new hire who needs heart and instruction
+  reached for the manager who needs a sequence. Neither addressee was specified in the topic, so
+  the tone selected its own reader. On the retirement send-off, the chronological narrative
+  opens in 1998 because that is when things started and the case study opens in 2011 because
+  that is when things went wrong, which is the clearest demonstration in the catalog that
+  chronology chooses the first moment while a case study chooses the load-bearing one.
+
+### Changed
+
+- Backlog status corrected. C1 and C2 were still listed as open P1 items after both had shipped,
+  C1 back in June. Both are now marked done with their closing evidence, and the genuinely
+  remaining gap was written up as C4 and then closed in the same pass.
+
 ## [0.12.0] - 2026-07-31
 
 ### Security
