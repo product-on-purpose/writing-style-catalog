@@ -46,6 +46,7 @@ when_to_use:
   - Status updates when the news is genuinely hard
   - Coaching contexts where the person needs the real picture
   - Situations where organizational pressure is pushing toward softening
+  - Telling staff the company is laying off part of the workforce, or any hard organizational news where softening the facts would insult the reader
 when_not_to_use:
   - Formal diplomatic communication where tact is required
   - Legal writing requiring measured language

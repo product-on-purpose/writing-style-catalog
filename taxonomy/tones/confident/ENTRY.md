@@ -45,6 +45,7 @@ when_to_use:
   - Author voice in opinion essays and analytical writing
   - Architecture decisions and design proposals
   - Any context where excessive hedging would obscure the actual claim
+  - Marketing and landing-page copy, including hero headlines, where hedging would kill the claim
 when_not_to_use:
   - Pastoral or grief-adjacent communication
   - Contexts requiring genuine epistemic humility about contested evidence

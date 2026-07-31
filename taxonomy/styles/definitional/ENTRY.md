@@ -51,6 +51,7 @@ when_to_use:
   - '"What is X" introductory articles'
   - Disambiguation between similar terms
   - Foundational documentation that other docs will build on
+  - Asked to explain what something is to a child, a beginner, or a non-technical reader
 when_not_to_use:
   - Narrative or experiential writing
   - Argumentative pieces where the term is contested

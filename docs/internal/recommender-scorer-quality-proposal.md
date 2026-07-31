@@ -6,6 +6,13 @@
 
 ## Why this exists
 
+> **P-4 SHIPPED 2026-07-31.** The vocabulary-enrichment thread this document routed as "likely
+> the higher-value thread" has been done. Nine stable entries gained one `when_to_use` line each,
+> and the three P-4 eval cases went from 1 qualifying entry across all three to 12. The eval
+> baselines were updated as intentional drift. Two findings from doing it are recorded at the
+> bottom of this document under "What P-4 actually taught"; the rest of this document is the
+> original deferral record and is unchanged.
+
 The probe found five scorer-quality issues (P-2 negation blindness, P-3 the distinct-match gate rejecting gold singletons, P-4 vocabulary gaps, P-5 length dilution, P-6 stopword gaps). It opened with a caveat worth repeating: **"Nothing here is a defect in shipped behavior. The scorer behaves exactly as documented and as adversarially reviewed."** These are refinements, not bugs.
 
 A session set out to fix them, starting with negation (the highest-value finding). The investigation changed the picture enough that the maintainer chose to document and defer rather than build. This doc preserves what was learned so the deferral is informed, not lost.
@@ -87,3 +94,40 @@ Phase A is fully specified above and implementable without re-investigation. Ste
 6. Full gate: `pytest`, `validate.py`, `validate-plugin-manifest.mjs`, `check-no-dashes.mjs`, `markdownlint-cli2`. Branch + PR (main is protected; rebase-merge).
 
 Before starting, re-read finding 1 and 2: they are the reason phase A is modest, and the reason P-4 may be the better use of the same effort.
+
+---
+
+## What P-4 actually taught (added 2026-07-31)
+
+Two things that were not obvious from the probe, and that matter for anyone enriching entries
+in future.
+
+**1. Enrichment has to use the inflection the user types, because the scorer has no stemmer.**
+The first pass added lines saying "Layoffs, restructuring..." and moved nothing at all. The
+situation tokenizes to `laying`, `off`, `staff`, and `_singularize` handles only `-ies` to `-y`,
+deliberately. "Layoffs" and "laying" are simply different tokens. Rewriting the same guidance in
+the register's everyday verb form ("telling staff the company is laying off part of the
+workforce") made four entries qualify on four real content-word matches each. The lesson is not
+"add keywords", it is "write the line the way a user would describe the situation."
+
+**2. A generic token buys coverage by paying a false positive somewhere else.** The first pass
+put the bare word "announcement" into `direct-communicator` and `empathetic`. Both then qualified
+on `conflict-bait`, a cheerful product-launch situation, matching on `announcement` plus `no` -
+which is one of the junk negation tokens this very document identified. Two false positives
+bought with one convenient noun. Removing "announcement" and keeping the specific layoff
+vocabulary kept every intended gain and dropped both false positives.
+
+The generalisable rule: **enrich with the words that discriminate, not the words that co-occur.**
+`laying` and `staff` only appear in situations that are actually about layoffs. `announcement`
+appears in situations about anything.
+
+### What was deliberately not enriched
+
+Two axes remain empty on their eval cases, and both should stay that way until a real decision
+is made, because filling them would make the tool look confident rather than be right.
+
+- **No voice qualifies for `marketing-hero`.** None of the 15 stable voices is marketer-adjacent.
+  That is a **catalog gap** requiring a new entry, not a vocabulary gap, and this register is
+  squarely inside the stated PMs-and-builders beachhead.
+- **No tone qualifies for `audience-vs-topic`** ("explain kubernetes autoscaling to an eight year
+  old"). No tone in the catalog is genuinely about pitching to a novice.
