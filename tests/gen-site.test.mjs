@@ -214,11 +214,21 @@ test('gen-reference: table escaping leaves no live pipe', () => {
 });
 
 test('gen-reference: escaping pipes alone is insufficient (the flagged bug)', () => {
-  const pipeOnly = (s) => s.replace(/\s+/g, ' ').replace(/\|/g, '\\|').trim();
-  // The exact shape CodeQL objected to: a trailing backslash neutralises the
-  // escape the old version added, leaving the pipe live.
-  assert.equal(hasLivePipe(pipeOnly('backslash then pipe \\|')), true);
-  assert.equal(hasLivePipe(escapeCell('backslash then pipe \\|')), false);
+  // The input that broke the first version: a backslash immediately before a
+  // pipe. Escaping only the pipe yields "\\\|" - the added escape is itself
+  // escaped by the original backslash, so the pipe stays live and ends the row.
+  //
+  // The old output is written as a literal rather than produced by a
+  // pipes-only replace(). An incomplete sanitiser, even one that exists purely
+  // to be shown failing, is indistinguishable from a real one to static
+  // analysis, and a permanent high-severity alert on test code would mask the
+  // next genuine finding.
+  const input = 'backslash then pipe \\|';
+  const oldOutput = 'backslash then pipe \\\\|';
+
+  assert.equal(hasLivePipe(oldOutput), true, 'the old output should have a live pipe');
+  assert.equal(hasLivePipe(escapeCell(input)), false, 'the fix should leave none');
+  assert.notEqual(escapeCell(input), oldOutput, 'the fix must change this input');
 });
 
 test('gen-reference: escaping collapses newlines so a cell cannot end its row', () => {
