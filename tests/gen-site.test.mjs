@@ -11,6 +11,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 import {
   relUrl,
@@ -178,4 +179,57 @@ test('generate clears stale generated files before writing', () => {
   assert.equal(fs.existsSync(stale), false, 'stale generated file should be removed');
   assert.equal(fs.existsSync(path.join(tmp, 'reference', 'voices', 'coach.mdx')), true);
   fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+// ---------------------------------------------------------------------------
+// scripts/gen-reference.mjs - Markdown table-cell escaping
+//
+// The generated schema reference puts each field's `description` into a table
+// cell, so an unescaped pipe would break out of the cell. The first draft
+// escaped pipes but not backslashes, which CodeQL flagged
+// (js/incomplete-sanitization) and which is a real defect: a description ending
+// in a backslash before a pipe still produced a cell break, because the
+// backslash escaped the escape.
+//
+// Order is the whole fix. Backslashes first, then pipes; the reverse re-escapes
+// the backslashes just added.
+// ---------------------------------------------------------------------------
+
+const escapeCell = (s) =>
+  s.replace(/\s+/g, ' ').replace(/\\/g, '\\\\').replace(/\|/g, '\\|').trim();
+
+// True when an ODD number of backslashes precedes a pipe, i.e. the pipe is live.
+const hasLivePipe = (s) => /(^|[^\\])(\\\\)*\|/.test(s);
+
+test('gen-reference: table escaping leaves no live pipe', () => {
+  for (const probe of [
+    'plain text',
+    'has | pipe',
+    'ends with backslash \\',
+    'backslash then pipe \\|',
+    'many \\\\| pipes || here',
+  ]) {
+    assert.equal(hasLivePipe(escapeCell(probe)), false, `live pipe survived: ${probe}`);
+  }
+});
+
+test('gen-reference: escaping pipes alone is insufficient (the flagged bug)', () => {
+  const pipeOnly = (s) => s.replace(/\s+/g, ' ').replace(/\|/g, '\\|').trim();
+  // The exact shape CodeQL objected to: a trailing backslash neutralises the
+  // escape the old version added, leaving the pipe live.
+  assert.equal(hasLivePipe(pipeOnly('backslash then pipe \\|')), true);
+  assert.equal(hasLivePipe(escapeCell('backslash then pipe \\|')), false);
+});
+
+test('gen-reference: escaping collapses newlines so a cell cannot end its row', () => {
+  assert.equal(escapeCell('line one\nline two'), 'line one line two');
+});
+
+test('gen-reference: the generated pages are current', () => {
+  const res = spawnSync(
+    process.execPath,
+    [path.resolve(path.dirname(SCRIPT), 'gen-reference.mjs'), '--check'],
+    { encoding: 'utf8' }
+  );
+  assert.equal(res.status, 0, `reference pages are stale:\n${res.stdout}${res.stderr}`);
 });
