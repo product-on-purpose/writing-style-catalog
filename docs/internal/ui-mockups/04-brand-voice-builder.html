@@ -878,7 +878,23 @@
       const name = c.querySelector('span:first-child').textContent;
       const item = document.createElement('div');
       item.className = 'preview-voice-item';
-      item.innerHTML = `<span>${i === 0 ? '<em>'+name+'</em>' : name}</span><span class="preview-voice-pct">${tags[i]} &middot; ${pcts[i] || '-'}%</span>`;
+      // Built with DOM APIs rather than innerHTML: `name` is read from the
+      // document, so interpolating it into an HTML string reinterprets page
+      // text as markup (CodeQL js/xss-through-dom). The chip labels here are
+      // hardcoded, so it was not exploitable, but the pattern is the bug.
+      const nameSpan = document.createElement('span');
+      if (i === 0) {
+        const em = document.createElement('em');
+        em.textContent = name;
+        nameSpan.appendChild(em);
+      } else {
+        nameSpan.textContent = name;
+      }
+      const pctSpan = document.createElement('span');
+      pctSpan.className = 'preview-voice-pct';
+      pctSpan.textContent = `${tags[i]} · ${pcts[i] || '-'}%`;
+      item.appendChild(nameSpan);
+      item.appendChild(pctSpan);
       list.appendChild(item);
     });
   }
