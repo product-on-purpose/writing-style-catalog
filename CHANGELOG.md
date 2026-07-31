@@ -7,6 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **A generated schema reference and scripts reference** (audit finding F-6, "the expert trail
+  dead-ends"). To learn every frontmatter field, a reader was previously sent to raw JSON Schema
+  files, and the two skill scripts' operational flags, including the security-critical
+  `--ephemeral-input-file`, lived only in argparse strings inside a thousand-line script.
+
+  Both pages are generated rather than written, for the same reason the catalog pages are: a
+  hand-maintained field list is wrong the first time a schema changes. The schema page reads
+  `schemas/*.schema.json` and reports each schema's published URL and freeze status; the scripts
+  page shells out to each script's own `--help`, so it cannot describe a flag the script does not
+  have. `--check` fails if the committed pages have gone stale.
+
+- **Error-keyed troubleshooting** in the install and add-entry guides (F-5). Both previously
+  documented only the happy path, or described failure categories in prose while the reader was
+  staring at an actual error string. The new sections are keyed to the exact text the code
+  prints, covering the dependency abort, `python` versus `py -3` on Windows, a slash command that
+  does not appear, the schema and cross-reference failures, the Gate 2 sample-count error that
+  catches people who set `stable` before rendering, and the case where an entry validates
+  cleanly but the recommender still never surfaces it.
+
+  A test asserts every quoted string still exists in the code that prints it, because
+  troubleshooting keyed to a string the code does not emit is worse than none: the reader
+  searches, finds nothing, and concludes the docs do not cover their problem. Writing the first
+  draft produced exactly that failure, quoting a dash-check message from memory that the script
+  does not print.
+
 ## [0.11.0] - 2026-07-31
 
 ### Added

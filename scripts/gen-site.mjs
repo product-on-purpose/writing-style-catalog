@@ -22,6 +22,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { writeReferencePages } from './gen-reference.mjs';
 
 const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
@@ -940,6 +941,8 @@ function main() {
   if (outIdx !== -1 && args[outIdx + 1]) outRoot = path.resolve(args[outIdx + 1]);
   const count = generate(outRoot);
   console.log(`[OK] generated ${count} catalog pages into ${outRoot}`);
+  const refCount = writeReferencePages();
+  console.log(`[OK] generated ${refCount} reference pages (schema + scripts)`);
   const schemas = publishSchemas();
   console.log(
     `[OK] published ${schemas.count} schemas to ${SCHEMAS_PUBLISH_DIR} ` +

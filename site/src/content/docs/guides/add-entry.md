@@ -126,3 +126,83 @@ feat(taxonomy): add <entry-id> <axis> entry
 ```
 
 Open a PR against `main`. See the [Contribution Process](../../governance/contribution-process/) for what happens next.
+
+## When validation fails
+
+`python tools/validate.py` prints one `[ERROR]` line per problem and exits non-zero. The
+common ones, keyed to the text it actually prints.
+
+### `[ERROR] <path>: schema validation failed: <detail>`
+
+The entry does not match its axis schema. The detail names the offending field. The two that
+catch people first:
+
+- **`'tells' is a required property`** and the same for `anti_patterns` and `failure_modes`.
+  These three are required on every entry by [ADR 0009](https://github.com/product-on-purpose/writing-style-catalog/blob/main/docs/internal/adr/0009-pedagogical-entry-bar.md),
+  and `tells` must carry 5 to 7 items. They are the pedagogical bar, not optional polish.
+- **`'domain' is a required property`** on a format, or `family` on a format or voice. These
+  come from [ADR 0010](https://github.com/product-on-purpose/writing-style-catalog/blob/main/docs/internal/adr/0010-domain-and-family-organization.md);
+  the permitted values live in `tools/taxonomy.py`, not in free text.
+
+The full field list, generated from the schemas themselves, is the
+[schema reference](../../reference/schema/).
+
+### `[ERROR] <path>: <field> references unknown entry ID '<id>'`
+
+A `pairs_well_with`, `avoid_with`, or `confusable_with` names an entry that does not exist.
+Usually a typo or a plural: ids are singular and kebab-case. Note the referenced entry must
+exist, but it does **not** have to be `stable`.
+
+If you added a `confusable_with`, add the matching `### Often confused with` block in the body
+too. Every entry in the catalog has one for each id it lists, and a reference with no prose
+leaves a reader with a pointer and no explanation.
+
+### `[ERROR] <path>: could not parse frontmatter (missing --- delimiters?)`
+
+The block must open on line 1 with `---` alone and close with `---` alone. A common cause is a
+value containing a colon left unquoted, which YAML reads as a nested key:
+
+```yaml
+one_liner: A voice that leads with tradeoffs: named, priced, and owned   # breaks
+one_liner: "A voice that leads with tradeoffs: named, priced, and owned" # fine
+```
+
+### `[ERROR] <path> '<id>': Gate 2: missing worked samples on <topics>`
+
+A `stable` entry must render on all 12 anchor topics. **Drafts are exempt**, which is the
+intended path: add the entry as `review_status: draft`, render the samples, then promote with
+`python tools/promote.py`. Flipping the status by hand before the renders exist is what
+produces this error.
+
+### `[ERROR] <path>: axis '<a>' does not match entry's actual axis '<b>'`
+
+The `axis` field disagrees with the directory the file is in. `taxonomy/voices/` holds
+`axis: voice`, singular.
+
+### The dash check fails
+
+```text
+FAIL: 1 file(s) contain an em-dash or en-dash; use a hyphen, " - ", or restructure:
+```
+
+Neither character is permitted anywhere, including inside quoted material. Use ` - `. A
+pre-commit hook enforces this, so the failure usually arrives at commit time rather than from
+the validator.
+
+### Nothing fails, but the recommender never surfaces the entry
+
+Validation passing means the entry is well-formed, not that it is reachable. Two reasons an
+entry stays invisible:
+
+1. **It is still `draft`.** The recommender scores only `stable` and `reference-quality`.
+2. **Its wording does not match how people describe the situation.** The scorer is keyword
+   overlap over `when_to_use`, `tells`, `one_liner`, and facets, with no stemmer, so "Layoffs"
+   does not match a user who typed "laying off". Run the trace to see exactly what matched and
+   which threshold rejected it:
+
+   ```bash
+   python skills/entry-recommender/scripts/recommend.py --situation "your text here" --verbose
+   ```
+
+   It prints each candidate's matched tokens with their weighted contribution, and for a
+   rejected one, whether it failed the score bar, the two-distinct-match gate, or both.
