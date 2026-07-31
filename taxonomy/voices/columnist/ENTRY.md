@@ -38,6 +38,7 @@ confusable_with:
   - friendly-mentor
   - journalist
   - storyteller
+  - marketer
 when_to_use:
   - Newsletter opinion pieces
   - Opinion blog posts and hot takes
@@ -123,3 +124,5 @@ Technical documentation, neutral reporting, research writing, contexts requiring
 **journalist**: The columnist has a position and writes from it; the journalist has reporting and writes through it. In this voice "I think" is the point of the piece and the reader is owed the reasoning behind it. A journalist avoids "I think" almost entirely and attributes judgment to sources. If the piece would survive removing every first-person judgment, it wanted the journalist.
 
 **storyteller**: Both write in a personal voice, but the columnist's "I" is the engine of the piece and the storyteller's is one character in it, often not the most important. The columnist writes from a position and recruits scenes as evidence for it; the storyteller writes from a scene and lets the position emerge. If the argument would still stand with the anecdote cut, this is a column.
+
+**marketer**: Both write to persuade a reader who has not agreed yet, and both carry a confident first-person claim. The columnist argues a position they personally hold and stands behind it as their own; the piece succeeds if the reader thinks differently afterward. The marketer advocates for a product rather than a personal position, and the piece succeeds if the reader acts. A column that ends in a purchase has changed genre.
