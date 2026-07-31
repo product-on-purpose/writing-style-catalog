@@ -335,6 +335,80 @@ def score_entry(situation_tokens: set[str], axis: str, entry: dict, idf_table: d
     return {"score": round(score, 2), "distinct_matches": distinct_matches, "matched_tokens": matched_tokens}
 
 
+_FIELD_WEIGHTS = {
+    "when_to_use": WHEN_TO_USE_WEIGHT,
+    "tells": TELLS_WEIGHT,
+    "one_liner": ONE_LINER_WEIGHT,
+    "facets": FACET_WEIGHT,
+}
+
+
+def emit_score_trace(
+    axis: str,
+    situation_tokens: set[str],
+    ranked: list[dict],
+    idf_table: dict,
+    threshold: float,
+    limit: int = 8,
+    stream=None,
+) -> None:
+    """Print a human-readable per-candidate score trace to stderr.
+
+    The JSON payload already reports WHICH tokens matched. What it cannot show
+    is what those matches were worth, or which of the two independent gates
+    rejected a candidate. Both are the questions that actually come up when a
+    score looks wrong:
+
+    - A candidate can match a distinctive word and still be rejected for having
+      only one distinct match (MIN_DISTINCT_MATCHES), which reads as an
+      inexplicable miss until you see the gate named. This is not
+      hypothetical: teaching `friendly-mentor` the word "child" produced
+      exactly one match and no qualification, and the reason was invisible.
+    - A candidate can qualify on a common word appearing in a rarely-read facet
+      field while a rarer, more meaningful token contributes almost nothing.
+      Only the per-token IDF contribution distinguishes those.
+
+    Writes to stderr on purpose so stdout stays parseable JSON for the skill.
+    """
+    out = stream if stream is not None else sys.stderr
+    idf_sorted = sorted(situation_tokens, key=lambda t: -_idf(t, idf_table))
+
+    print(f"[trace] axis={axis}  threshold={threshold}  "
+          f"min_distinct={MIN_DISTINCT_MATCHES}", file=out)
+    print(f"[trace]   situation tokens ({len(situation_tokens)}), rarest first:", file=out)
+    for token in idf_sorted:
+        df = idf_table["df"].get(token, 0)
+        print(f"[trace]     {token:<24} idf={_idf(token, idf_table):6.2f}  df={df}", file=out)
+
+    shown = [r for r in ranked if r["above_threshold"]]
+    # Include the highest-scoring rejects too: a near-miss is usually the
+    # candidate whose absence prompted the question in the first place.
+    shown += [r for r in ranked if not r["above_threshold"]][: max(0, limit - len(shown))]
+    print(f"[trace]   candidates ({len(shown)} of {len(ranked)} shown):", file=out)
+
+    for row in shown:
+        if row["above_threshold"]:
+            verdict = "QUALIFIES"
+        else:
+            reasons = []
+            if row["score"] < threshold:
+                reasons.append(f"score {row['score']:.2f} < {threshold}")
+            if row["distinct_matches"] < MIN_DISTINCT_MATCHES:
+                reasons.append(
+                    f"distinct {row['distinct_matches']} < {MIN_DISTINCT_MATCHES}")
+            verdict = "REJECTED (" + "; ".join(reasons) + ")"
+        print(f"[trace]     {row['id']:<28} score={row['score']:6.2f} "
+              f"distinct={row['distinct_matches']}  {verdict}", file=out)
+        for field, tokens in row["matched_tokens"].items():
+            if not tokens:
+                continue
+            weight = _FIELD_WEIGHTS.get(field, 1.0)
+            parts = " ".join(
+                f"{t}({weight * _idf(t, idf_table):.2f})" for t in tokens
+            )
+            print(f"[trace]       {field} x{weight}: {parts}", file=out)
+
+
 def build_ranked_list(
     axis: str,
     situation_tokens: set[str],
@@ -411,6 +485,7 @@ def recommend(
     threshold: float = DEFAULT_RELEVANCE_THRESHOLD,
     response_format: str = "concise",
     debug: bool = False,
+    verbose: bool = False,
 ) -> dict:
     """Build the per-axis ranked lists and short lists. `fixed` is a dict of
     axis -> entry_id for any axis the caller already fixed (Phase 4) - a fixed
@@ -462,6 +537,8 @@ def recommend(
             continue
 
         ranked = build_ranked_list(axis, situation_tokens, all_entries, idf_table, threshold)
+        if verbose:
+            emit_score_trace(axis, situation_tokens, ranked, idf_table, threshold)
         all_short_list_entries = _select_short_list(ranked, short_list_size)
 
         if response_format == "detailed":
@@ -892,6 +969,18 @@ def main():
         ),
     )
     parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help=(
+            "Print a per-candidate score trace to STDERR: the IDF weight of every "
+            "situation token, each candidate's per-field matches with their weighted "
+            "contribution, and for a rejected candidate which gate it failed (score "
+            "below threshold, too few distinct matches, or both). stdout stays clean "
+            "JSON. Unlike --debug, which adds the ranked pool to the payload, this "
+            "explains how each score was arrived at."
+        ),
+    )
+    parser.add_argument(
         "--pretty",
         action="store_true",
         help="Pretty-print JSON output with indent=2. Default is compact JSON (no whitespace). The model never needed the whitespace; this flag is for human inspection.",
@@ -1039,6 +1128,7 @@ def main():
         threshold=threshold,
         response_format=response_format,
         debug=args.debug,
+        verbose=args.verbose,
     )
     print(json.dumps(result, indent=indent))
 
