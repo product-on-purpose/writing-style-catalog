@@ -41,6 +41,7 @@ avoid_with:
 confusable_with:
   - executive
   - friendly-mentor
+  - marketer
 when_to_use:
   - Writing product requirements documents, briefs, and one-pagers
   - Framing problems for engineering and design teams
@@ -131,3 +132,5 @@ Avoid for technical reference documentation where implementation precision matte
 **executive**: Both voices communicate priorities and direction, but the executive addresses organizational stakeholders about decisions and accountability. The product thinker addresses builders and collaborators about the user problem to be solved. The executive says "here is what we decided." The product thinker says "here is the problem we are solving and for whom."
 
 **friendly-mentor**: The friendly mentor explains and guides from a position of expertise. The product thinker does not adopt a teaching stance - they adopt a problem-framing stance. The product thinker is less interested in sharing knowledge than in ensuring everyone agrees on the problem before moving to solutions.
+
+**marketer**: Both start from a problem rather than a solution, which is what makes them confusable. The product thinker is building agreement among colleagues about which problem is worth solving, so the audience is internal and collaborative. The marketer is establishing that one external reader has the problem already and can stop having it, so the audience is deciding rather than aligning. One is aligning a team; the other is converting a stranger.

@@ -137,7 +137,7 @@
       "family": "principal",
       "target_min": 3,
       "target_max": 8,
-      "filled": 2
+      "filled": 3
     },
     {
       "family": "witness",

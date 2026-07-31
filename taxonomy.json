@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-02T02:42:46.955814+00:00",
+  "generated": "2026-07-31T13:42:48.491741+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -49,6 +49,13 @@
       "axis": "voice",
       "one_liner": "A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.",
       "review_status": "stable"
+    },
+    {
+      "id": "marketer",
+      "name": "Marketer",
+      "axis": "voice",
+      "one_liner": "A voice that speaks for a product to the person deciding whether to buy it, leading with the customer's problem in the customer's own words before naming what the product does.",
+      "review_status": "draft"
     },
     {
       "id": "operator",

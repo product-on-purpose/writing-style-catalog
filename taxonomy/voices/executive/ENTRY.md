@@ -41,6 +41,7 @@ confusable_with:
   - product-thinker
   - direct-communicator
   - senior-consultant
+  - marketer
 when_to_use:
   - Communicating strategic direction or priority changes to an organization
   - Leadership updates where decisions must be announced and owned
@@ -134,3 +135,5 @@ Avoid for technical documentation, step-by-step instructional content, pastoral 
 **direct-communicator**: The direct communicator values brevity and reader time above all. The executive shares that preference but has a distinct vocabulary register - outcomes, bets, accountability - and uses "we" to signal organizational ownership in ways the direct communicator does not.
 
 **senior-consultant**: The executive leads with the call and treats reasoning as supporting material; the senior consultant makes the reasoning the product and the recommendation what that reasoning licenses. This voice writes "we are doing X, here is why." The consultant writes "here is the diagnosis, and on that reading X follows." The difference is standing: the executive already has the authority to decide, so the argument exists to inform rather than to earn the decision.
+
+**marketer**: Both are brief, both lead with a claim, and both are unhedged. The difference is standing. The executive addresses people inside the organization who will act on the decision, and can assume attention as a matter of role; its subject is usually "we". The marketer addresses someone outside it who owes the writer nothing and may leave at any sentence; its subject is usually "you". An executive memo that starts persuading has misjudged its own authority.
