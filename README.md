@@ -1,12 +1,12 @@
 <a id="readme-top"></a>
 
-<h1 align="center">
+<h1>
   <a href="https://github.com/product-on-purpose/writing-style-catalog">Writing Style Library</a>
 </h1>
 
-<h4 align="center">A composable catalog of writing instructions organized along orthogonal axes - Voice, Tone, Style, and Format - so you can compose precise, reusable writing instructions for any LLM instead of retyping vibes.</h4>
+<h4>A composable catalog of writing instructions organized along orthogonal axes - Voice, Tone, Style, and Format - so you can compose precise, reusable writing instructions for any LLM instead of retyping vibes.</h4>
 
-<p align="center">
+<p>
   <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=bug">Report a Bug</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=enhancement">Request a Feature</a>
@@ -14,7 +14,7 @@
   <a href="https://product-on-purpose.github.io/writing-style-catalog/">Read the Docs</a>
 </p>
 
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/Status-Experimental-orange?style=flat-square" alt="Project Status: Experimental">
   <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
@@ -31,7 +31,7 @@
   </a>
 </p>
 
-<p align="center">
+<p>
   <a href="https://github.com/product-on-purpose/writing-style-catalog/stargazers">
     <img src="https://img.shields.io/github/stars/product-on-purpose/writing-style-catalog?style=flat-square" alt="Stars">
   </a>
@@ -47,7 +47,7 @@
   <img src="https://img.shields.io/github/last-commit/product-on-purpose/writing-style-catalog?style=flat-square" alt="Last Commit">
 </p>
 
-<p align="center">
+<p>
   <a href="#the-big-idea">About</a> •
   <a href="#quick-start">Install</a> •
   <a href="#the-four-axis-model">The Model</a> •
@@ -62,6 +62,8 @@
 
 > [!WARNING]
 > **Early and experimental (v0.12.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+
+---
 
 <details>
 <summary><strong>Table of Contents</strong></summary>
