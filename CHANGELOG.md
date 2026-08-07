@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-08-07
+
+The accuracy release. Diff-pair coverage closes across all twelve anchor topics, and every
+count this project publishes about itself is re-grounded in the files it describes rather
+than in another document that was describing them.
+
 ### Added
 
 - **Diff-pairs on the seven anchor topics that had none.** Coverage goes from 5 of 12 topics to
@@ -50,6 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The counter-update instruction in the runbook and the generation spec no longer hardcodes a
   diff-pair count.** It told a future agent to find the line reading "130 diff-pairs" in a file
   where that string had already changed. It now describes the shape of the line instead.
+
+- `@astrojs/starlight` 0.41.5 to 0.41.6. Documentation site build only; no catalog, schema, or
+  skill surface is affected.
 
 ### Fixed
 
