@@ -172,7 +172,7 @@ Format entries define the visual and structural container: headings, bullet dept
 Plus the assets that make the catalog teachable:
 
 - **1164 worked examples** - every one of the 97 stable entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
-- **130 diff-pairs** that hold a topic constant and vary one axis, so the effect of a single choice is visible side by side.
+- **158 diff-pairs** across all twelve anchor topics, each holding a topic constant and varying one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
 - **52 format templates** giving the canonical structure for each format (plus 20 draft candidate formats under review from the Stream-B breadth program).
 
@@ -231,8 +231,8 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **What exists today:**
 
-- 97 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
-- 1164 worked examples across twelve anchor topics, plus 130 diff-pairs and 14 horizontal-slice recipes
+- 97 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), plus 21 entries under review: 20 draft format candidates (Stream-B breadth, batches 1-10) and 1 draft voice
+- 1164 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
 - Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI

@@ -30,6 +30,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   C1 back in June. Both are now marked done with their closing evidence, and the genuinely
   remaining gap was written up as C4 and then closed in the same pass.
 
+- **Every published counter re-grounded in the actual file count.** README and both manifests
+  advertised 130 diff-pairs against a tree holding 158, and the manifests advertised 1164 worked
+  examples against 1193 (1164 vertical-slice plus 29 horizontal-slice). That second number had
+  regressed silently in v0.6.0: the manifest description was rewritten to introduce the
+  entry-recommender skill and the count was copied across from README, which by its own
+  convention counts vertical slices only. The draft accounting now names what the 21st draft
+  actually is, the `marketer` voice, rather than implying a 21st format.
+
+- **`docs/internal/backlog.md` re-verified against the repo.** The status snapshot still
+  described a 117-entry catalog with 134 diff-pairs on 4 of 12 topics, an `$id` that tracks
+  `main`, 223 tests, and 19 ADRs. The GATE 3 row still said the gate was waiting on a paid
+  second generator tier, a reading retracted on 2026-07-30 once it was clear it came from
+  conflating the marketing plan's GATE 1-6 with the adherence gate's own Gate 1/2/3 measurement
+  properties. The GATE 1 row now carries the number that matters: 0 of 97 ledger rows decided.
+  The marketplace row no longer repeats a version at all, because the copy in this table had
+  drifted five releases behind the registry it was describing.
+
+- **The counter-update instruction in the runbook and the generation spec no longer hardcodes a
+  diff-pair count.** It told a future agent to find the line reading "130 diff-pairs" in a file
+  where that string had already changed. It now describes the shape of the line instead.
+
+### Fixed
+
+- **README header markup.** The `align="center"` attributes on the title, tagline, badge rows,
+  and nav were removed and a rule added below the experimental warning.
+
 ## [0.12.0] - 2026-07-31
 
 ### Security

@@ -164,8 +164,9 @@ rendered content and is worth a dedicated calendar pass every promotion.
   - `README.md`: four lines - the "every one of the N stable entries" worked-examples
     line; the "M format templates (plus K draft...)" line; the "N stable taxonomy
     entries (15 Voice, 15 Tone, 15 Style, X Format)" line (the "15 each" framing breaks
-    once Format > 15); and the "Y worked examples ... 130 diff-pairs and 14 recipes"
-    line. README counts vertical-slice samples only.
+    once Format > 15); and the "Y worked examples ... D diff-pairs and 14 recipes"
+    line. README counts vertical-slice samples only. Match the shape, not a literal
+    count; the numbers move every release.
   - `library.json` + `.claude-plugin/plugin.json`: "Ships N curated entries, T worked
     examples ...". T counts vertical + horizontal; the manifest validator enforces
     `plugin.json` == `library.json`.
