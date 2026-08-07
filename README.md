@@ -61,7 +61,7 @@
 ---
 
 > [!WARNING]
-> **Early and experimental (v0.12.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
+> **Early and experimental (v0.13.0).** This project is in active early development. The catalog, schema, skill interface, and docs may change without notice; entries are still under review; and the Composer and SDK surfaces are deliberately deferred indefinitely (see [ROADMAP.md](ROADMAP.md)). Use it, learn from it, and expect rough edges. Not recommended for production reliance.
 
 ---
 
@@ -227,7 +227,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 ## Project Status
 
-**v0.12.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). The entry schema is now frozen (see [ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md)), so its shape will not change without a major version and a migration. The skill interface, entry wording, and docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+**v0.13.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). The entry schema is now frozen (see [ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md)), so its shape will not change without a major version and a migration. The skill interface, entry wording, and docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
 
 **What exists today:**
 
