@@ -5,8 +5,9 @@
 > that justifies each item, the editable surface to change, and a rough effort. Living doc -
 > update the snapshot date and check items off as they ship.
 
-**Last updated:** 2026-07-29 (v1.0 readiness gates: GATE 2 schema freeze, GATE 4 four-axis
-framing, GATE 5 service-database-choice diff-pairs).
+**Last updated:** 2026-08-06 (accuracy pass on the status snapshot and the gate table after
+v0.8.0 through v0.12.0: catalog size, diff-pair coverage, schema `$id`, test and ADR counts,
+and the GATE 3 row, which still carried a reading retracted on 2026-07-30).
 Originally written 2026-06-03, after the v0.2.0 marketplace launch and the comprehensive-catalog
 vision; the foundation - taxonomy, adherence gate, anchor topics, conflict-aware composition -
 is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md).
@@ -80,30 +81,30 @@ mechanical one; flagged here, not assumed.
 
 ## Status snapshot
 
-| Area | State (verified 2026-07-29) |
+| Area | State (verified 2026-08-06) |
 |---|---|
-| Catalog size | **117 entries**: 15 Voice, 15 Tone, 15 Style, 72 Format. 97 `stable` + 20 `draft` (the Hold-20). |
-| Axis breadth | Uneven and unchanged: Format is 72 while the other three axes are still 15 each. |
+| Catalog size | **118 entries**: 16 Voice, 15 Tone, 15 Style, 72 Format. 97 `stable` + 21 `draft` (the Hold-20 plus the `marketer` voice). |
+| Axis breadth | Uneven: Format is 72 while Tone and Style are 15 each and Voice is 16 (15 stable + the `marketer` draft). |
 | Adherence result | 8/8 blind; 2 "dramatic", 4 "clear", **2 "subtle"**, 0 "identical". The two "subtle" pairs now have written-up diff-pairs on `service-database-choice`. |
 | Composition | **Conflict-aware since v0.3.0** (S1 / ADR 0016): cross-checks `avoid_with`/`pairs_well_with`, applies voice -> tone -> style -> format precedence, warns without hard-blocking. |
-| Diff-pair coverage | **134 pairs across 4 of 12 topics.** `service-database-choice` closed 2026-07-29 (4 pairs, one per axis, the only ones with authored commentary). async-standups 60, a-hard-year 32, thanking-a-mentor 32. The other 8 topics have none. |
+| Diff-pair coverage | **158 pairs across all 12 topics**, every one carrying authored commentary. async-standups 60, a-hard-year 32, thanking-a-mentor 32, morning-routine 6, and 3-4 on each of the remaining eight, which were covered 2026-07-31 on the reasoning that a first pair on an uncovered topic teaches more than the 61st on `async-standups`. |
 | Sample depth | **1,207 worked examples across 12 anchor topics.** Gate 2 requires every `stable` entry to render on all 12. |
 | Skills | Three: `writing-instruction-builder`, `style-profile`, `entry-recommender`. |
 | Adherence gate | Deterministic foundation done; judge architecture validated on free infra (`_agent-context/gate-pilot/CALIBRATION.md`). Not yet a CI gate. |
-| Schema | **Frozen** as of ADR 0019 (6 of 7 schemas; `diff-pair` excluded). Change classes A/B/C defined. Not yet an external guarantee: `$id` still tracks `main`. |
+| Schema | **Frozen** as of ADR 0019 (6 of 7 schemas; `diff-pair` excluded and served from `/schemas/experimental/`). Change classes A/B/C defined. `$id` serves from a versioned contract path as of ADR 0020, so it no longer tracks `main`; the remaining gap is a custom domain, since the URIs are still tied to the org and the Pages path. |
 | Axis framing | **Four-axis, canonical** as of ADR 0018, with a 16-test regression guard. |
-| Marketplace | v0.7.0 live in `product-on-purpose/agent-plugins`; install resolves. |
-| Tests | 223 passing. |
-| ADRs | 19. |
+| Marketplace | Listed in `product-on-purpose/agent-plugins`, pinned to the latest release tag; install resolves. The pin is authoritative there, not here (re-pin is runbook step 15), because a version copied into this table has drifted five releases before. |
+| Tests | 282 passing: 264 Python (`pytest`) + 18 node (`node --test tests/gen-site.test.mjs`). |
+| ADRs | 20. |
 | CI | Node 24; validate + validate-plugin + build-site + CodeQL + release automation. Dependency provenance (`npm audit signatures`) enforced at PR time since 2026-07-29. |
 
 ### v1.0 readiness gates (launch trigger, from the marketing plan)
 
 | Gate | State |
 |---|---|
-| GATE 1 - reviewed catalog (`review_status` honestly promoted) | **OPEN.** Human-bottlenecked; the long pole. |
+| GATE 1 - reviewed catalog (`review_status` honestly promoted) | **OPEN, and untouched.** Human-bottlenecked; the long pole. Packets are generated (`python tools/review_packet.py --ledger`); 0 of the 97 rows in [`review-ledger.md`](review-ledger.md) carry a decision as of 2026-08-06. |
 | GATE 2 - schema frozen | **GREEN** 2026-07-29 (ADR 0019). |
-| GATE 3 - proof captured (citable adherence artifact) | **PARTIAL.** All three gate properties validated on free infra; the remaining item is a paid second generator tier for cross-model robustness. |
+| GATE 3 - proof captured (citable adherence artifact) | **NEARLY DONE, and NOT blocked on spend.** The citable artifact is published at [`concepts/adherence-evidence/`](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/). What remains is the maintainer framing decision R5 assigns to the human. The paid second generator tier buys cross-model robustness, which R5 calls the *ideally*, not the requirement. An earlier "blocked on a paid tier" reading of this row came from conflating these gates with the adherence gate's own Gate 1/2/3 measurement properties in `_agent-context/gate-pilot/CALIBRATION.md`; they are unrelated numbering. |
 | GATE 4 - consistent model story | **GREEN** 2026-07-29 (ADR 0018). |
 | GATE 5 - teaching surface complete | **GREEN** 2026-07-29. |
 | GATE 6 - green pipes | **GREEN**, pending a release dry-run each cycle. |

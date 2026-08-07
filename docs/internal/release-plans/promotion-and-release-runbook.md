@@ -56,8 +56,10 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
    - `README.md` (four lines): bump the stable-entry count and the worked-example
      count ("every one of the N stable entries ... = N x 12"), the "M format
      templates (plus K draft ...)" line, the "N stable taxonomy entries (15 Voice, 15
-     Tone, 15 Style, X Format)" line, and the "Y worked examples ... 130 diff-pairs and
-     14 recipes" line. README worked-examples = vertical-slice samples only.
+     Tone, 15 Style, X Format)" line, and the "Y worked examples ... D diff-pairs and
+     14 recipes" line. README worked-examples = vertical-slice samples only. Match on the
+     shape of the line, not on a literal count: every number here moves, and a hardcoded
+     one in this instruction sends you looking for a string that no longer exists.
    - `library.json` and `.claude-plugin/plugin.json`: "Ships N curated entries, T
      worked examples ...". T = vertical + horizontal (currently vertical + 29). Update
      BOTH identically.
