@@ -11,8 +11,10 @@ related:
 
 # Promotion and Release Runbook
 
-The repeatable steps to promote a wave of draft format entries to stable and to cut
-a release. This is the operational checklist; the design is in the spec. It was
+The repeatable steps to promote a wave of draft format entries to `machine-verified` and to
+cut a release. (Moving an entry on to `stable` is a separate, per-entry maintainer step after
+reading it: `python tools/promote.py --reviewed <id>`; see ADR 0021 (machine-verified
+review_status).) This is the operational checklist; the design is in the spec. It was
 walked end to end for Wave 1 / v0.4.0 and is the template for Wave 2 / v0.5.0.
 
 Everything here runs on free in-session subagents plus deterministic tooling. The
@@ -47,7 +49,7 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
    tools/validate.py` again. Expect roughly a third of dated samples to need a fix.
 
 6. **Flip - guarded.** `python tools/promote.py <id> <id> ...` (or `--all-ready`). It
-   promotes only if every named entry renders on all 12 topics; otherwise it changes
+   flips `draft` to `machine-verified`, and only if every named entry renders on all 12 topics; otherwise it changes
    nothing and tells you what is missing. `--check` first if you want a dry run.
 
 7. **Rebuild the index.** `python tools/build-indexes.py`.
