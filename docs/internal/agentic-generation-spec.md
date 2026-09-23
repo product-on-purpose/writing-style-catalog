@@ -32,8 +32,9 @@ preserve both. Three standing principles:
    admitting unattended outside-contributor PRs, or publishing provenance-pinned
    distinguishability scores.
 3. **Drafts are reversible; stable is earned.** New entries start `review_status:
-   draft`. Promotion to `stable` is a maintainer decision and carries a hard cost
-   (Gate 2: render on all 12 anchor topics). Nothing is advertised as curated until
+   draft`. Leaving `draft` for `machine-verified` carries a hard cost (Gate 2: render on
+   all 12 anchor topics); `stable` is a maintainer decision made after reading the entry
+   (ADR 0021 (machine-verified review_status)). Nothing is advertised as curated until
    it is stable.
 
 ## 2. The stages and their harnesses
@@ -101,8 +102,9 @@ the orchestrator returns a compact summary.
 ### `promote.py` - guarded flip (runnable CLI)
 
 - **Input:** entry ids (or `--all-ready`). `--check` for a dry run.
-- **Invariant (the whole point):** flips to stable ONLY if every named entry already
-  renders on all 12 topics; otherwise it changes nothing and reports what is missing.
+- **Invariant (the whole point):** flips `draft` to `machine-verified` ONLY if every named
+  entry already renders on all 12 topics (`--reviewed` is the separate maintainer rung,
+  `machine-verified` to `stable`, named ids only); otherwise it changes nothing and reports what is missing.
   It is **transactional** - it stages every rewrite in memory and writes the files
   together, rolling back any written file if a later write fails - so a promotion
   either fully applies or leaves the tree unchanged, and never leaves main red on

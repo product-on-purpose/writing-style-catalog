@@ -23,7 +23,8 @@ in-session subagents at zero marginal API cost; no paid CI is required.
 ## Two kinds of artifact here
 
 1. **Runnable tooling** - `../promote.py` is a normal Python CLI (guarded, atomic
-   draft -> stable promotion). Run it directly.
+   draft -> machine-verified promotion; `--reviewed` is the maintainer's machine-verified ->
+   stable rung). Run it directly.
 2. **Workflow templates** - the `*.js` files are **not** standalone scripts. They run
    only through the Claude Code **Workflow tool**: an agent invokes
    `Workflow({ scriptPath: "tools/agentic/<file>.js" })`. They are parameterized
@@ -38,7 +39,7 @@ in-session subagents at zero marginal API cost; no paid CI is required.
 | [`dedup.js`](dedup.js) | Audit | Whole-corpus distinguishability + quality audit, one auditor per **family cluster**. Returns structured flags. |
 | [`remediate.js`](remediate.js) | Remediate | Applies a precise per-file fix-list, one agent per file. General-purpose (de-dup fixes, date fixes, any surgical batch). |
 | [`promote.js`](promote.js) | Render | Renders N formats across all 12 anchor topics (12*N worked samples), each inheriting its topic's shared scenario. |
-| [`../promote.py`](../promote.py) | Promote | Flips fully-rendered drafts to stable, atomically and guarded against the Gate 2 sample-count rule. |
+| [`../promote.py`](../promote.py) | Promote | Flips fully-rendered drafts to `machine-verified`, atomically and guarded against the Gate 2 sample-count rule. `--reviewed <id>` moves an entry the maintainer has read on to `stable`. |
 
 Two gates are **agent prompts, not scripts** (they dispatch a subagent per unit and
 return findings you feed to `remediate.js`). The canonical prompt text is in the spec;
@@ -71,7 +72,7 @@ regenerate dedup.js GROUPS from the current family map
 -> build -> commit -> PR
 ```
 
-### C. Promote a wave (draft -> stable)
+### C. Promote a wave (draft -> machine-verified)
 
 ```
 edit promote.js FORMATS (the approved wave)
@@ -116,7 +117,7 @@ rendered content. Full prompt: the spec.
   MUST be double-quoted JS strings or backtick template literals. YAML-style `''`
   doubling inside a single-quoted JS string is a parse error - the most common
   self-inflicted failure.
-- **Gate 2 is atomic:** a format flipped to stable with fewer than 12 samples reds
+- **Gate 2 is atomic:** a format admitted (`machine-verified` or above) with fewer than 12 samples reds
   `validate.py`. Always render first (drafts are exempt), then flip with `promote.py`.
 - **Don't read `taxonomy.json` for inventories:** it is a slim index that omits
   `confusable_with` and nests `domain`/`family`. Read frontmatter from `ENTRY.md`.
