@@ -280,7 +280,9 @@ server exposes the guaranteed behavior, not the naive concatenation.
   the previous raw.githubusercontent URLs, which carried the same coupling plus branch
   mutability, but not durable. The fix is a project-controlled custom domain for canonical
   schema IDs, which is an infrastructure decision with real cost. **A v1.0 claim of a permanent
-  contract should wait for this.**
+  contract should wait for this.** Reduced to a yes/no in
+  [`schema-custom-domain-brief.md`](schema-custom-domain-brief.md) (2026-09-23): decide before
+  1.0.0, since a `$id` change is class C; default no, with "versioned and pinnable" copy.
 - **No marketer-adjacent voice exists** (surfaced by P-4 enrichment, 2026-07-31). None of the
   15 stable voices fits landing-page or hero copy, so the recommender returns an honest empty
   voice axis for that whole register. This is a **catalog gap needing a new entry**, not a
