@@ -160,8 +160,10 @@ https://product-on-purpose.github.io/writing-style-catalog/schemas/v1/<name>.sch
 
 ### Neutral
 
-- `example.schema.json` and `diff-pair.schema.json` are published under `v1` alongside the
-  frozen five. Publishing is not the same as freezing: `diff-pair` remains unfrozen per ADR
-  0019 decision 1. Serving it at a stable URL costs nothing and keeps the tree uniform.
+- `example.schema.json` is published under `v1` alongside the frozen five. `diff-pair.schema.json`
+  is not: decision 2 serves it from `/schemas/experimental/`, because it remains unfrozen per ADR
+  0019 decision 1 and the URL should carry the guarantee level. (Corrected 2026-09-23: this note
+  originally said both were published under `v1`, which contradicted decision 2. Found while
+  writing ADR 0021.)
 - The schemas are served as static JSON with no `Content-Type: application/schema+json`, since
   GitHub Pages serves `.json` as `application/json`. No consumer requires the former.
