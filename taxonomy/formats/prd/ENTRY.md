@@ -117,7 +117,7 @@ tags:
   - engineering-alignment
   - pm
   - scope
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Product Requirements Document

@@ -119,7 +119,7 @@ tags:
   - accountability
   - persuasion
   - correspondence
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Open Letter

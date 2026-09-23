@@ -85,7 +85,7 @@ tags:
   - commentary
   - voice-forward
   - recurring
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Columnist

@@ -109,10 +109,12 @@ Entries move through these states as they are reviewed:
 
 | Status | Meaning |
 | -------- | ------- |
-| `draft` | Initial submission, not yet reviewed |
-| `reviewed` | At least one maintainer review complete |
-| `stable` | Validated against multiple real examples, no open issues |
-| `reference-quality` | Exemplary entry, included in generated documentation |
+| `draft` | Initial submission, not yet shipped |
+| `machine-verified` | Passes every enforced automated check and renders on all 12 anchor topics; not yet read by the maintainer. Set by tooling |
+| `stable` | Read and approved by the maintainer. Maintainer only |
+| `reference-quality` | Exemplary entry, maintainer-reviewed. Maintainer only |
+
+`reviewed` is unused for taxonomy entries and kept only for compatibility; see [ADR 0021](docs/internal/adr/0021-honest-middle-review-status.md).
 
 ---
 

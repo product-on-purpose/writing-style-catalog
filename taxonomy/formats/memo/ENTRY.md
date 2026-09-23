@@ -105,7 +105,7 @@ tags:
   - formal
   - professional
   - announcement
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Memo

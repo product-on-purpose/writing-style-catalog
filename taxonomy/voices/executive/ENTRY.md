@@ -90,7 +90,7 @@ tags:
   - professional
   - authoritative
   - organizational
-review_status: stable
+review_status: machine-verified
 diction: business-strategic
 sentence_style: Short declaratives for direction; longer constructions for rationale
 default_pov: first-person

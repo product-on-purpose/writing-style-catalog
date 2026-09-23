@@ -1,54 +1,54 @@
 {
-  "generated": "2026-07-31T13:42:48.491741+00:00",
+  "generated": "2026-09-23T15:40:01.595714+00:00",
   "entries": [
     {
       "id": "caregiver",
       "name": "Caregiver",
       "axis": "voice",
       "one_liner": "A voice of practical compassion that names the difficulty before any reassurance and stays close to bodies, routines, and immediate next steps.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "coach",
       "name": "Coach",
       "axis": "voice",
       "one_liner": "A facilitative voice that builds capacity through questions and reflection, acknowledges complexity before offering direction, and creates space without abandoning the reader.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "columnist",
       "name": "Columnist",
       "axis": "voice",
       "one_liner": "An opinionated, recurring perspective - the writer who has a recognizable stance, makes arguments in public, and is willing to be quoted on it.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "direct-communicator",
       "name": "Direct Communicator",
       "axis": "voice",
       "one_liner": "A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "executive",
       "name": "Executive",
       "axis": "voice",
       "one_liner": "A senior business leader's voice that leads with outcomes and decisions, names uncertainty explicitly, and uses \"we\" to signal shared accountability.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "friendly-mentor",
       "name": "Friendly Mentor",
       "axis": "voice",
       "one_liner": "A warm, patient voice that assumes the reader is capable but new, explaining concepts by building from what they already know.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "journalist",
       "name": "Journalist",
       "axis": "voice",
       "one_liner": "A reporting voice that attributes claims to sources and arranges facts in a sequence the reader can follow, resisting editorializing while still making the story work.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "marketer",
@@ -62,266 +62,266 @@
       "name": "Operator",
       "axis": "voice",
       "one_liner": "An accountability-driven, hands-on voice that cares about what actually happens at 2am when something breaks - not the design, but the execution.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "pastoral",
       "name": "Pastoral",
       "axis": "voice",
       "one_liner": "A voice of care, scripture, and application - speaking from a shepherd's heart to a flock navigating real life with faith.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "pragmatic-architect",
       "name": "Pragmatic Architect",
       "axis": "voice",
       "one_liner": "A senior technical voice that leads with tradeoffs, names constraints explicitly, and treats every design decision as a bet with known odds.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "product-thinker",
       "name": "Product Thinker",
       "axis": "voice",
       "one_liner": "A product manager's voice that leads with \"why\" before \"what,\" centers user outcomes over implementation, and asks what job the reader is trying to do.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "researcher",
       "name": "Researcher",
       "axis": "voice",
       "one_liner": "A disciplined voice that treats writing as the presentation of evidence, hedging where the data is thin and committing where it is strong.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "senior-consultant",
       "name": "Senior Consultant",
       "axis": "voice",
       "one_liner": "A polished advisory voice that diagnoses a situation against a named framework before recommending action, comfortable with hedged confidence.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "storyteller",
       "name": "Storyteller",
       "axis": "voice",
       "one_liner": "A voice that carries meaning through character, scene, and concrete moment, trusting the reader to extract the principle from the specifics.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "technical-writer",
       "name": "Technical Writer",
       "axis": "voice",
       "one_liner": "A precise, reader-centered voice optimized for task completion - writes to the reader's goal, not the writer's knowledge, using plain language and imperative mood.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "candid",
       "name": "Candid",
       "axis": "tone",
       "one_liner": "Names the uncomfortable truth directly - not harsh, but unwilling to pretend the hard thing is not there.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "celebratory",
       "name": "Celebratory",
       "axis": "tone",
       "one_liner": "Marks genuine achievement by naming the specific thing, why it mattered, and inviting the reader to feel its weight - not hollow praise, not a list of everything at once.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "confessional",
       "name": "Confessional",
       "axis": "tone",
       "one_liner": "The writer admits something about themselves - a specific failure, doubt, or learning, owned without performance.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "confident",
       "name": "Confident",
       "axis": "tone",
       "one_liner": "The affect of someone who has thought about this and is ready to say so, without hedging or padding the claim.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "diplomatic",
       "name": "Diplomatic",
       "axis": "tone",
       "one_liner": "Careful, face-saving communication that is soft on people and firm on positions, especially across power differentials.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "empathetic",
       "name": "Empathetic",
       "axis": "tone",
       "one_liner": "Acknowledges the reader's specific experience before asking anything of them - earns the right to continue by naming the difficulty accurately.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "encouraging",
       "name": "Encouraging",
       "axis": "tone",
       "one_liner": "Speaks to capability and forward motion - not false praise, but genuine belief that the person can do the hard thing.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "instructional",
       "name": "Instructional",
       "axis": "tone",
       "one_liner": "Patient, structured teaching that measures its own success by whether the reader can do the thing - not by how much it explains.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "matter-of-fact",
       "name": "Matter of Fact",
       "axis": "tone",
       "one_liner": "States what is true without editorial coloring - neither cold nor warm, just accurate.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "playful",
       "name": "Playful",
       "axis": "tone",
       "one_liner": "Light, witty, and inviting - makes the pleasure of reading part of the point without sacrificing substance or becoming a performance.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "resolute",
       "name": "Resolute",
       "axis": "tone",
       "one_liner": "The tone of having stopped deliberating - the decision is made and the writing is now about acting on it.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "reverent",
       "name": "Reverent",
       "axis": "tone",
       "one_liner": "Approaches the subject with deliberate care and weightiness - the tone of someone in the presence of something that matters.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "skeptical",
       "name": "Skeptical",
       "axis": "tone",
       "one_liner": "Measured doubt that refuses to commit ahead of the evidence and asks what would actually change the picture.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "urgent",
       "name": "Urgent",
       "axis": "tone",
       "one_liner": "Clarity under real pressure - the first sentence is the most important thing, and every word after it earns its place by not slowing the reader down.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "warm",
       "name": "Warm",
       "axis": "tone",
       "one_liner": "Communicates genuine care and personal regard for the reader - not flattery, but authentic human warmth.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "chronological-narrative",
       "name": "Chronological Narrative",
       "axis": "style",
       "one_liner": "Time order is the primary organizing principle - first this, then that, then what came after - with no thematic restructuring.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "classical-argument",
       "name": "Classical Argument",
       "axis": "style",
       "one_liner": "The Toulmin structure of claim, grounds, warrant, and rebuttal - making a position defensible through explicit reasoning.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "comparison-contrast",
       "name": "Comparison-Contrast",
       "axis": "style",
       "one_liner": "Places two or more options, ideas, or states side by side to illuminate the differences that matter.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "decision-log",
       "name": "Decision Log",
       "axis": "style",
       "one_liner": "A real-time record of context, options considered, criteria used, and reasoning - capturing how a decision was reached, not justifying it after the fact.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "definitional",
       "name": "Definitional",
       "axis": "style",
       "one_liner": "Leads with a definition and elaborates through its facets, edge cases, and what-it-is-not - the definition is the load-bearing first move.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "devotional-reflection",
       "name": "Devotional Reflection",
       "axis": "style",
       "one_liner": "A slow, inward-turning movement that takes a scriptural or spiritual observation and follows it into personal and communal life.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "dialectic",
       "name": "Dialectic",
       "axis": "style",
       "one_liner": "Thesis, antithesis, synthesis - states the position, states the strongest opposing position, and moves to a synthesis that takes both seriously.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "diataxis-explanation",
       "name": "Diataxis Explanation",
       "axis": "style",
       "one_liner": "The Diataxis \"Explanation\" mode - oriented toward understanding rather than action, building a conceptual model for the reader.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "executive-summary",
       "name": "Executive Summary",
       "axis": "style",
       "one_liner": "Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "layered-disclosure",
       "name": "Layered Disclosure",
       "axis": "style",
       "one_liner": "Progressively reveals depth - the first paragraph serves the casual reader completely, and each subsequent section adds detail for those who want it.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "narrative-case-study",
       "name": "Narrative Case Study",
       "axis": "style",
       "one_liner": "A story with a before, a turning point, and an after - using one specific real situation to make a general principle concrete and trustworthy.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "problem-solution",
       "name": "Problem-Solution",
       "axis": "style",
       "one_liner": "Frames the piece as a diagnosis followed by a remedy - establishes the pain before the cure.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "procedural",
       "name": "Procedural",
       "axis": "style",
       "one_liner": "Task-first writing that takes a reader from \"I don't know how\" to \"I did it\" by organizing every decision around user goals, not system features.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "question-and-answer",
       "name": "Question and Answer",
       "axis": "style",
       "one_liner": "Sections are real reader questions in their natural phrasing, ordered by likelihood of being asked rather than by logical flow.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "socratic-inquiry",
       "name": "Socratic Inquiry",
       "axis": "style",
       "one_liner": "Advances by asking questions the reader answers in their own head - the conclusions are inferences, not assertions.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "acceptance-speech",
@@ -335,21 +335,21 @@
       "name": "Ad Copy",
       "axis": "format",
       "one_liner": "Short promotional text written to grab attention and drive a single action under tight character limits.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "adr",
       "name": "Architecture Decision Record",
       "axis": "format",
       "one_liner": "A short structured document that captures a significant architectural decision, its context, and its consequences.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "announcement",
       "name": "Announcement",
       "axis": "format",
       "one_liner": "A direct message telling an audience about something new or changing, in the organization's own voice.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "apology",
@@ -363,7 +363,7 @@
       "name": "Bio",
       "axis": "format",
       "one_liner": "A short third-person summary introducing who a person is professionally, shaped to fit a context.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "blessing",
@@ -377,21 +377,21 @@
       "name": "Blog Post (Long Form)",
       "axis": "format",
       "one_liner": "A substantial web article of 1,500-3,000 words - long enough to go deep, short enough to respect the reader's time.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "changelog-entry",
       "name": "Changelog Entry",
       "axis": "format",
       "one_liner": "A structured release entry naming what was added, changed, fixed, or removed in a given version - grouped by impact class under a version heading.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "cold-outreach",
       "name": "Cold Outreach",
       "axis": "format",
       "one_liner": "A brief first-contact message to a stranger that earns a reply by leading with their interest, not yours.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "commencement-speech",
@@ -412,49 +412,49 @@
       "name": "Cover Letter",
       "axis": "format",
       "one_liner": "A letter accompanying an application that makes the case for one specific person for one specific role.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "customer-story",
       "name": "Customer Story",
       "axis": "format",
       "one_liner": "A structured marketing narrative showing how a specific customer used a product to get a result.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "daily-standup",
       "name": "Daily Standup",
       "axis": "format",
       "one_liner": "A brief daily status communication with three fixed sections - done, next, blockers. Surfaces information and flags what needs action. Not a progress report; a coordination tool.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "design-doc",
       "name": "Design Document",
       "axis": "format",
       "one_liner": "An engineering document that explores a design space and justifies an approach before implementation.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "devotional-entry",
       "name": "Devotional Entry",
       "axis": "format",
       "one_liner": "A short, spiritually-oriented piece designed for daily reading - typically anchored to a scripture passage and closing with reflection or prayer.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "editorial",
       "name": "Editorial",
       "axis": "format",
       "one_liner": "The unsigned opinion of a publication itself, stating the institution's position on an issue.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "email",
       "name": "Email",
       "axis": "format",
       "one_liner": "A business message designed for the inbox scan - subject line doubles as summary, body leads with action, and the reader never needs to re-read to know what is being asked.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "eulogy",
@@ -468,7 +468,7 @@
       "name": "FAQ",
       "axis": "format",
       "one_liner": "A list of anticipated questions with direct, self-contained answers, ordered by how often they are asked.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "gratitude-journal",
@@ -489,14 +489,14 @@
       "name": "How-To Guide",
       "axis": "format",
       "one_liner": "A task-focused guide that teaches a reader to accomplish something they do not yet know how to do.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "incident-report",
       "name": "Incident Report",
       "axis": "format",
       "one_liner": "A customer-facing account of a service incident: what happened, the impact, and what is being done.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "invitation",
@@ -517,14 +517,14 @@
       "name": "Landing Page",
       "axis": "format",
       "one_liner": "Web copy written to convert a visitor into a single action - sign up, buy, book, or subscribe.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "listicle",
       "name": "Listicle",
       "axis": "format",
       "one_liner": "An article built as a numbered or bulleted list where each item is a self-contained, scannable unit.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "love-letter",
@@ -538,28 +538,28 @@
       "name": "Manifesto",
       "axis": "format",
       "one_liner": "A public declaration of beliefs, principles, and intentions - what a person or movement stands for.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "meeting-agenda",
       "name": "Meeting Agenda",
       "axis": "format",
       "one_liner": "A short pre-meeting document listing what will be discussed, in what order, with time and intended outcomes.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "meeting-notes",
       "name": "Meeting Notes",
       "axis": "format",
       "one_liner": "A structured capture of what was decided and what was assigned - not a transcript. Organized by outcome so someone who missed the meeting can act without asking follow-up questions.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "memo",
       "name": "Memo",
       "axis": "format",
       "one_liner": "A formal internal document that puts a decision or policy on the record for a group, with a TO/FROM/DATE/RE header.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "memoir-excerpt",
@@ -573,7 +573,7 @@
       "name": "Newsletter",
       "axis": "format",
       "one_liner": "A recurring editorial message delivered to subscribers on a cadence, in a consistent opted-in voice.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "obituary",
@@ -587,28 +587,28 @@
       "name": "One-Pager",
       "axis": "format",
       "one_liner": "A single-page document that makes one argument or presents one situation. The page constraint is the discipline - everything that does not fit does not belong.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "op-ed",
       "name": "Op-Ed",
       "axis": "format",
       "one_liner": "A short argued opinion piece for a publication that advances one clear position on a timely issue.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "open-letter",
       "name": "Open Letter",
       "axis": "format",
       "one_liner": "A letter addressed to a specific target but published for a wider public to witness the appeal.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "performance-review",
       "name": "Performance Review",
       "axis": "format",
       "one_liner": "A written evaluation of one person's work over a period, against expectations, with direction for what is next.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "personal-essay",
@@ -629,14 +629,14 @@
       "name": "Pitch Deck",
       "axis": "format",
       "one_liner": "A sequence of presentation slides that tells a persuasive story to win a decision, one idea per slide.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "postmortem",
       "name": "Postmortem",
       "axis": "format",
       "one_liner": "A blameless retrospective of an incident: what happened, why, the impact, and the changes that keep it from happening again.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "prayer",
@@ -650,98 +650,98 @@
       "name": "Product Requirements Document",
       "axis": "format",
       "one_liner": "A structured document that defines what a product or feature should do, for whom, and why - without specifying how to build it.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "press-release",
       "name": "Press Release",
       "axis": "format",
       "one_liner": "A formal external announcement in news style: dateline, headline, a strong lead, a quote, and boilerplate.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "product-description",
       "name": "Product Description",
       "axis": "format",
       "one_liner": "Product-page copy that tells a buyer what a product is, what it does for them, and why to buy.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "project-brief",
       "name": "Project Brief",
       "axis": "format",
       "one_liner": "A short kickoff document that sets an initiative's goal, scope, constraints, and success criteria before detailed work begins.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "proposal",
       "name": "Proposal",
       "axis": "format",
       "one_liner": "A document that pitches a specific piece of work or a deal to a client and asks them to say yes.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "public-statement",
       "name": "Public Statement",
       "axis": "format",
       "one_liner": "An organization's official written position on a matter of public concern, written for a watching audience.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "readme",
       "name": "README",
       "axis": "format",
       "one_liner": "The front-door document for a software project - tells a first-time visitor what it is, why it exists, how to use it, and where to go next.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "recommendation-letter",
       "name": "Recommendation Letter",
       "axis": "format",
       "one_liner": "A letter by someone who knows a candidate, advocating for them to a third-party decision-maker.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "release-notes",
       "name": "Release Notes",
       "axis": "format",
       "one_liner": "A user-facing summary of what changed in a release and why it matters to the reader.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "resume",
       "name": "Resume",
       "axis": "format",
       "one_liner": "A structured, scannable record of a person's professional experience, skills, and qualifications.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "retrospective",
       "name": "Retrospective",
       "axis": "format",
       "one_liner": "A structured look back at a period of work that surfaces what went well, what did not, and what the team will change.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "review-response",
       "name": "Review Response",
       "axis": "format",
       "one_liner": "A public reply from a business to a customer's posted review, written for the reviewer but read by every future prospect.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "rfc",
       "name": "RFC (Request for Comments)",
       "axis": "format",
       "one_liner": "A design proposal circulated to invite critique before a decision is made.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "runbook",
       "name": "Runbook",
       "axis": "format",
       "one_liner": "A step-by-step operational procedure for a recurring task or incident, written to be followed correctly under pressure.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "sermon",
@@ -755,35 +755,35 @@
       "name": "Slack Message",
       "axis": "format",
       "one_liner": "A short, async-first message designed for team channels - direct, scannable, and respectful of the reader's attention in a high-volume feed.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "status-report",
       "name": "Status Report",
       "axis": "format",
       "one_liner": "A periodic async update covering progress since the last report, what is next, and what is blocked - the working unit of distributed-team visibility.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "support-reply",
       "name": "Support Reply",
       "axis": "format",
       "one_liner": "A written response to one customer's specific question or problem that resolves it and leaves them able to act.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "technical-reference",
       "name": "Technical Reference",
       "axis": "format",
       "one_liner": "A stable lookup document designed for repeated return visits. Optimized for scanning over reading. The reader arrives with a specific question; the format serves that question.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "testimonial",
       "name": "Testimonial",
       "axis": "format",
       "one_liner": "A short first-person endorsement in a customer's own voice, used as social proof.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "thank-you-note",
@@ -804,14 +804,14 @@
       "name": "Tweet Thread",
       "axis": "format",
       "one_liner": "A sequence of numbered short posts (1/, 2/, 3/...) each under 280 characters, telling one connected story or making one connected argument across the chain.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "user-manual",
       "name": "User Manual",
       "axis": "format",
       "one_liner": "Comprehensive documentation covering everything a user can do with a product, organized for lookup.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     },
     {
       "id": "wedding-vows",
@@ -825,7 +825,7 @@
       "name": "Whitepaper",
       "axis": "format",
       "one_liner": "A long-form authoritative document presenting a position, framework, or analysis - the format for setting position-of-record on a substantive topic.",
-      "review_status": "stable"
+      "review_status": "machine-verified"
     }
   ]
 }

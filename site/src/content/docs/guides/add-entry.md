@@ -151,7 +151,7 @@ The full field list, generated from the schemas themselves, is the
 
 A `pairs_well_with`, `avoid_with`, or `confusable_with` names an entry that does not exist.
 Usually a typo or a plural: ids are singular and kebab-case. Note the referenced entry must
-exist, but it does **not** have to be `stable`.
+exist, but it does **not** have to be admitted; a `draft` is a valid target.
 
 If you added a `confusable_with`, add the matching `### Often confused with` block in the body
 too. Every entry in the catalog has one for each id it lists, and a reference with no prose
@@ -169,9 +169,9 @@ one_liner: "A voice that leads with tradeoffs: named, priced, and owned" # fine
 
 ### `[ERROR] <path> '<id>': Gate 2: missing worked samples on <topics>`
 
-A `stable` entry must render on all 12 anchor topics. **Drafts are exempt**, which is the
-intended path: add the entry as `review_status: draft`, render the samples, then promote with
-`python tools/promote.py`. Flipping the status by hand before the renders exist is what
+An admitted entry (`machine-verified` or above) must render on all 12 anchor topics. **Drafts
+are exempt**, which is the intended path: add the entry as `review_status: draft`, render the
+samples, then promote with `python tools/promote.py`. Flipping the status by hand before the renders exist is what
 produces this error.
 
 ### `[ERROR] <path>: axis '<a>' does not match entry's actual axis '<b>'`
@@ -194,7 +194,8 @@ the validator.
 Validation passing means the entry is well-formed, not that it is reachable. Two reasons an
 entry stays invisible:
 
-1. **It is still `draft`.** The recommender scores only `stable` and `reference-quality`.
+1. **It is still `draft`.** The recommender scores only admitted entries (`machine-verified`,
+   `stable`, and `reference-quality`).
 2. **Its wording does not match how people describe the situation.** The scorer is keyword
    overlap over `when_to_use`, `tells`, `one_liner`, and facets, with no stemmer, so "Layoffs"
    does not match a user who typed "laying off". Run the trace to see exactly what matched and

@@ -116,7 +116,7 @@ tags:
   - architecture
   - documentation
   - engineering
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Architecture Decision Record

@@ -104,7 +104,7 @@ tags:
   - bluesky
   - threads
   - digital
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Tweet Thread

@@ -105,11 +105,12 @@
       "enum": [
         "draft",
         "reviewed",
+        "machine-verified",
         "stable",
         "reference-quality",
         "deprecated"
       ],
-      "description": "Lifecycle state of this entry. draft = initial content; reviewed = editorially checked; stable = in active use; reference-quality = exemplary; deprecated = superseded."
+      "description": "Lifecycle state of this entry. draft = initial content, not shipped; machine-verified = passes every enforced automated check but has not been read by the maintainer (set by tooling); stable = read and approved by the maintainer; reference-quality = exemplary, maintainer-reviewed; deprecated = superseded. reviewed is unused for taxonomy entries and retained for compatibility (ADR 0021)."
     },
     "deprecated_in_favor_of": {
       "type": "string",

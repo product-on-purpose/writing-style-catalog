@@ -114,9 +114,10 @@ the registry re-pinned.
 
 ### `Entry not found: voice/<id> (run --list to see valid voice ids)`
 
-The id does not exist, or exists but is not `stable`. The recommender and the builder both
-serve only `stable` and `reference-quality` entries, so a `draft` entry is invisible to them
-by design. `--list` shows exactly what is available:
+The id does not exist on that axis: usually a typo, a plural, or the wrong axis. The builder
+composes any entry, drafts included; it is the recommender that serves only admitted entries
+(`machine-verified`, `stable`, and `reference-quality`), so a `draft` never appears in its
+recommendations by design. `--list` shows exactly what is available:
 
 ```bash
 python skills/writing-instruction-builder/scripts/build-instruction.py --list

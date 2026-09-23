@@ -121,7 +121,7 @@ tags:
   - outreach
   - academic
   - endorsement
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Recommendation Letter

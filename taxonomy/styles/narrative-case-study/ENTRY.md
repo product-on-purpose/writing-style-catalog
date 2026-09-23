@@ -95,7 +95,7 @@ tags:
   - evidence-based
   - case-study
   - credibility
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Narrative Case Study

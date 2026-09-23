@@ -76,6 +76,6 @@ Each axis is independent. Mixing across axes weakens composability.
 
 ## Promotion criteria
 
-An entry moves from `draft` to `reviewed` after a maintainer's editorial pass. From `reviewed` to `stable` requires the entry to render across all twelve anchor topics (Gate 2, enforced by `tools/validate.py`) and a maintainer's explicit promotion decision, executed with `tools/promote.py` - never a self-promotion, and never automatic even when Gate 2 passes. From `stable` to `reference-quality` is rare and requires explicit maintainer judgment - reference-quality entries are the ones that get shown in onboarding material.
+An entry moves from `draft` to `machine-verified` once it passes every enforced check, including rendering across all twelve anchor topics (Gate 2, enforced by `tools/validate.py`); `tools/promote.py` performs that flip. From `machine-verified` to `stable` requires the maintainer to read the entry and make an explicit promotion decision (`tools/promote.py --reviewed`) - never a self-promotion, and never automatic even when every check passes. From `stable` to `reference-quality` is rare and requires explicit maintainer judgment - reference-quality entries are the ones that get shown in onboarding material.
 
 See [Contribution Process](../../governance/contribution-process/) for the full review flow.

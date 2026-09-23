@@ -450,6 +450,21 @@ function pedagogySections(entry) {
   return out;
 }
 
+/**
+ * ADR 0021: a machine-verified entry passes every enforced automated check but
+ * has not been read by the maintainer. The notice states what was checked, and
+ * deliberately claims nothing a per-entry check does not enforce (no
+ * distinguishability, no de-duplication: those covered a pilot, not every entry).
+ */
+function machineVerifiedNotice(kind) {
+  const what = kind === 'format' ? 'This format' : 'This entry';
+  return [
+    ':::note[Machine-verified]',
+    `${what} passes the catalog's automated checks: it conforms to the frozen schema, its cross-references resolve, it carries worked examples on all twelve anchor topics, and it meets the pedagogical bar (tells, anti-patterns, and failure modes). It has not yet been read line by line by the maintainer.`,
+    ':::',
+    '',
+  ];
+}
 function renderEntryPage(catalog, pairs, entry) {
   const axis = entry._axis;
   const fromSlug = refSlug(entry);
@@ -466,9 +481,11 @@ function renderEntryPage(catalog, pairs, entry) {
   out.push('');
   if (entry.review_status === 'draft') {
     out.push(':::caution[Draft - under review]');
-    out.push('This entry is a Stream-B breadth candidate under maintainer review. It is not yet part of the stable catalog and may change or be withdrawn before promotion.');
+    out.push('This entry is a Stream-B breadth candidate under maintainer review. It is not yet part of the shipped catalog and may change or be withdrawn before promotion.');
     out.push(':::');
     out.push('');
+  } else if (entry.review_status === 'machine-verified') {
+    out.push(...machineVerifiedNotice('entry'));
   }
   out.push(`> ${entry.one_liner || ''}`);
   out.push('');
@@ -596,8 +613,10 @@ function renderTemplatePage(fmt) {
     GENERATED_BANNER,
     '',
     ...(fmt.review_status === 'draft'
-      ? [':::caution[Draft - under review]', 'This format is a Stream-B breadth candidate under maintainer review and is not yet part of the stable catalog.', ':::', '']
-      : []),
+      ? [':::caution[Draft - under review]', 'This format is a Stream-B breadth candidate under maintainer review and is not yet part of the shipped catalog.', ':::', '']
+      : fmt.review_status === 'machine-verified'
+        ? machineVerifiedNotice('format')
+        : []),
     `Canonical template for the [${fmt.name}](${relUrl(fromSlug, refSlug(fmt))}) format.`,
     '',
     '```markdown',

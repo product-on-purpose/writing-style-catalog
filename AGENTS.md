@@ -44,9 +44,9 @@ This is a hard rule with no exceptions. Do not use U+2014 (em-dash) or U+2013 (e
 
 ### Review Status Progression
 
-New entries must start at `draft`. The progression is: `draft` -> `reviewed` -> `stable` -> `reference-quality`. Do not set a new entry to `stable` or `reference-quality` without maintainer approval.
+New entries must start at `draft`. The progression is: `draft` -> `machine-verified` -> `stable` -> `reference-quality` (ADR 0021). Tooling sets `machine-verified` once an entry passes every enforced check (`python tools/promote.py`); only the maintainer sets `stable` or `reference-quality`, after reading the entry (`python tools/promote.py --reviewed <id>`, recorded in `docs/internal/review-ledger.md`). `reviewed` is unused for taxonomy entries. Do not set an entry to `stable` or `reference-quality` without maintainer approval.
 
-The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were reviewed and set to `stable` as the initial baseline. This rule governs every contribution since - the catalog currently carries 20 `draft` Format entries (the Hold-20, staged for a future audience-expansion release) alongside 97 `stable` entries, and any new entry starts at `draft` the same way.
+The 60 entries shipped in v0.1.0 were set to `stable` as the initial baseline, and later Format entries followed through the agentic factory. None of those 97 had been read one by one by the maintainer, so ADR 0021 moved all of them to `machine-verified`; each returns to `stable` as it is read. The catalog currently carries 97 `machine-verified` entries and 21 `draft` entries (the Hold-20 Formats, staged for a future audience-expansion release, plus the `marketer` voice), and any new entry starts at `draft`.
 
 ---
 
@@ -66,15 +66,16 @@ The 60 entries shipped in v0.1.0 are the maintainer-curated seed set: they were 
 
 The steps above add ONE entry by hand. To generate or promote content at scale - new
 candidate entries, whole-corpus de-duplication, or rendering and promoting drafts to
-stable - use the **agentic generation factory** in `tools/agentic/`. It is the
+`machine-verified` - use the **agentic generation factory** in `tools/agentic/`. It is the
 catalog's production engine: isolated subagents do the writing, layered gates do the
 checking, and it all runs free in-session (no paid CI).
 
 Key rules when operating it:
 
-- **New entries always start `review_status: draft`.** Promotion to `stable` is a
-  maintainer decision (and earns a hard cost: rendering on all 12 anchor topics).
-- **Gate 2 is atomic.** A stable entry must render on all 12 anchor topics
+- **New entries always start `review_status: draft`.** Leaving `draft` for
+  `machine-verified` earns a hard cost (rendering on all 12 anchor topics); `stable`
+  is a maintainer decision made after reading the entry (ADR 0021).
+- **Gate 2 is atomic.** An admitted entry (`machine-verified` or above) must render on all 12 anchor topics
   (`tools/anchor_topics.py`). Render while still draft (drafts are exempt), then flip
   with `python tools/promote.py` - it is guarded and will refuse to leave the build red.
 - **Gate every batch.** New entries get a cross-vendor distinguishability gate; the
@@ -152,7 +153,7 @@ This is a project-private convention - it is not part of the Claude Code skills 
 | `skills/entry-recommender/` | Recommend a combination for a described situation |
 | `tools/validate.py` | Validation script |
 | `tools/agentic/` | The agentic generation factory (generate, audit, remediate, render harnesses) |
-| `tools/promote.py` | Guarded, atomic draft -> stable promotion |
+| `tools/promote.py` | Guarded, atomic promotion: draft -> machine-verified; `--reviewed`: machine-verified -> stable |
 | `site/` | The Astro Starlight documentation site (authored pages in `src/content/docs/`; catalog pages generated at build time) |
 | `docs/` | Internal governance only (see the two rows below) - not built by Astro; the site lives in `site/` |
 | `docs/internal/` | Living planning docs - ADRs, release-plan trackers, specs, the backlog - maintained under direct maintainer direction as work proceeds. Demonstrated by this repo's own history: `agentic-generation-spec.md`, the promotion-and-release runbook, and every `stream-b-*` tracker were all produced and merged here. |

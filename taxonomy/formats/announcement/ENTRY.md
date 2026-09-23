@@ -102,7 +102,7 @@ tags:
   - public-communications
   - product-launch
   - change-communication
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Announcement

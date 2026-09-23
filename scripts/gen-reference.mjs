@@ -40,7 +40,7 @@ const SCRIPTS = [
     label: 'recommend.py',
     rel: 'skills/entry-recommender/scripts/recommend.py',
     blurb:
-      'Scores the stable catalog against a described situation, per axis. This is a ' +
+      'Scores the admitted (non-draft) catalog against a described situation, per axis. This is a ' +
       'deterministic pre-filter, not the recommendation itself: the pick-and-justify ' +
       'judgment happens in the skill reasoning, using this output as candidate data.',
   },

@@ -123,7 +123,7 @@ tags:
   - reliability
   - engineering
   - accountability
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Postmortem

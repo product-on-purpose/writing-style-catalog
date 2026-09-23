@@ -6,7 +6,8 @@ rendered on all 12 seed-pool anchor topics ("12 samples per entry"). Once
 deferred ("samples are not in ENTRY.md, so this rides the model-calling gate
 build"), it is now a static, deterministic invariant because the matrix is
 rendered into examples/vertical-slices/. check_sample_count enforces it for
-stable / reference-quality entries; draft / reviewed / deprecated are exempt.
+machine-verified / stable / reference-quality entries; draft / reviewed /
+deprecated are exempt.
 
 id_map maps entry ID -> (axis, frontmatter_dict).
 """
@@ -64,6 +65,13 @@ def test_admitted_entry_missing_a_sample_errors(tmp_path):
 def test_reference_quality_is_also_admitted(tmp_path):
     _make_slices(tmp_path, "tone", "candid", TOPICS[:-1])
     id_map = {"candid": ("tone", {"review_status": "reference-quality"})}
+    assert len(validate.check_sample_count(id_map, vslices_dir=tmp_path)) == 1
+
+
+def test_machine_verified_is_admitted_and_bound_by_the_depth_bar(tmp_path):
+    # ADR 0021: an entry does not shed Gate 2 by being honest about its review state.
+    _make_slices(tmp_path, "style", "decision-log", TOPICS[:-1])
+    id_map = {"decision-log": ("style", {"review_status": "machine-verified"})}
     assert len(validate.check_sample_count(id_map, vslices_dir=tmp_path)) == 1
 
 

@@ -128,7 +128,7 @@ tags:
   - instructional
   - technical
   - onboarding
-review_status: stable
+review_status: machine-verified
 ---
 
 ## How-To Guide

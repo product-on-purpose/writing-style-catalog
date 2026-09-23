@@ -88,7 +88,7 @@ tags:
   - measured
   - negotiation
   - cross-boundary
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Diplomatic

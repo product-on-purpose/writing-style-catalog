@@ -3,7 +3,9 @@
 
 GATE 1 of the v1.0 readiness gates requires that `review_status` be honestly
 promoted. The repo rule forbids setting `stable` without maintainer review, so
-the review itself cannot be delegated. What CAN be delegated is the preparation:
+the review itself cannot be delegated. Since ADR 0021 the entries awaiting that
+reading carry `machine-verified`, and a read entry moves to `stable` with
+`python tools/promote.py --reviewed <id>`. What CAN be delegated is the preparation:
 the marketing plan's R1 effort names "prepare a per-entry review packet (the
 entry, its examples, its cross-refs, a checklist) so each decision is a fast
 yes/edit."
@@ -23,7 +25,7 @@ Output goes to _local/review-packets/ (gitignored working artifacts). The
 decisions belong in a tracked ledger; see --ledger.
 
 Usage:
-    python tools/review_packet.py                  # every stable entry
+    python tools/review_packet.py                  # every entry awaiting review
     python tools/review_packet.py --axis voice     # one axis
     python tools/review_packet.py --entry candid   # one entry
     python tools/review_packet.py --ledger         # (re)write the decision ledger
@@ -39,6 +41,11 @@ sys.path.insert(0, str(Path(__file__).parent))
 from validate import _extract_frontmatter, AXES, REPO_ROOT  # noqa: E402
 
 OUT_DIR = REPO_ROOT / "_local" / "review-packets"
+
+# ADR 0021: entries awaiting a maintainer reading carry machine-verified;
+# everything admitted to the shipped catalog is in ADMITTED.
+AWAITING = "machine-verified"
+ADMITTED = ("machine-verified", "stable", "reference-quality")
 EXAMPLES_DIR = REPO_ROOT / "examples" / "vertical-slices"
 LEDGER = REPO_ROOT / "docs" / "internal" / "review-ledger.md"
 
@@ -170,7 +177,7 @@ def catalog_level_findings(catalog):
 
     no_neighbour = sorted(
         entry_id for entry_id, (_, fm) in catalog.items()
-        if fm.get("review_status") == "stable" and not (fm.get("confusable_with") or [])
+        if fm.get("review_status") in ADMITTED and not (fm.get("confusable_with") or [])
     )
     return {"one_way_confusable": one_way, "no_confusable": no_neighbour}
 
@@ -197,7 +204,7 @@ def render_catalog_report(catalog, findings):
     for entry_id, axis, other in ow:
         L.append(f"| `{entry_id}` | {axis} | `{other}` | yes |")
     L += ["",
-          f"## Stable entries with no declared near-neighbour ({len(nn)})", "",
+          f"## Admitted entries with no declared near-neighbour ({len(nn)})", "",
           "At 117 entries an entry with no `confusable_with` is either genuinely distinctive "
           "or under-cross-referenced. Worth a sweep, low priority.", ""]
     L += [", ".join(f"`{e}`" for e in nn) or "None.", ""]
@@ -340,8 +347,8 @@ def render_packet(entry_id, axis, fm, catalog):
     L.append("4. **Do the tells describe what the renders actually do?** Spot-check one render.")
     L.append(f"5. **Is `{axis}` the right axis?** Voice is what does not change; tone is what "
              "changes per piece.")
-    L.append("6. **Would you defend `stable` on this publicly?** If not, `draft` is the honest "
-             "answer and costs nothing.")
+    L.append("6. **Would you defend `stable` on this publicly?** If not, leave it "
+             "`machine-verified`, or return it to `draft` if it should not ship.")
     L.append("")
     L.append("```")
     L.append(f"entry:    {entry_id}")
@@ -363,13 +370,17 @@ def write_ledger(catalog, results):
     L.append(">")
     L.append("> Regenerate packets with `python tools/review_packet.py`.")
     L.append("")
-    L.append("**Rule:** an entry may only be `stable` after a maintainer has reviewed it. "
-             "`draft` is always the honest fallback and costs nothing. Per the marketing "
-             "plan, if the review cannot be completed in a reasonable window the launch "
-             "slips; entries are not relabelled to make a gate go green.")
+    L.append("**Rule:** an entry may only be `stable` after a maintainer has read it. "
+             "Until then it carries `machine-verified`: it passes every enforced check and "
+             "has not been read (ADR 0021). Promote a read entry with "
+             "`python tools/promote.py --reviewed <id>` and record the decision here; "
+             "`draft` is always the honest fallback for one that should not ship. Entries "
+             "are never relabelled upward to make a gate go green: if a reading is required "
+             "before a milestone and cannot be finished, the milestone slips.")
     L.append("")
     flagged = sum(1 for _, f in results.items() if f)
-    L.append(f"**Scope:** {len(results)} entries carrying `review_status: stable`. "
+    L.append(f"**Scope:** {len(results)} entries awaiting a maintainer reading "
+             f"(`review_status: {AWAITING}`). "
              f"{flagged} carry at least one flag.")
     L.append("")
     L.append("## Decisions")
@@ -388,8 +399,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.strip().split("\n")[0])
     ap.add_argument("--axis", choices=sorted(AXES), help="Only this axis")
     ap.add_argument("--entry", help="Only this entry id")
-    ap.add_argument("--status", default="stable",
-                    help="Only entries at this review_status (default: stable; 'any' for all)")
+    ap.add_argument("--status", default=AWAITING,
+                    help=f"Only entries at this review_status (default: {AWAITING}; 'any' for all)")
     ap.add_argument("--ledger", action="store_true", help="Also (re)write the tracked ledger")
     args = ap.parse_args()
 
@@ -436,7 +447,7 @@ def main():
         "",
         f"Handled once rather than re-decided in every packet: "
         f"{len(findings['one_way_confusable'])} one-way `confusable_with` links, and "
-        f"{len(findings['no_confusable'])} stable entries with no declared near-neighbour. "
+        f"{len(findings['no_confusable'])} admitted entries with no declared near-neighbour. "
         f"See [CATALOG-FINDINGS.md](CATALOG-FINDINGS.md).",
     ]
     OUT_DIR.mkdir(parents=True, exist_ok=True)

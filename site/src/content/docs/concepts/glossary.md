@@ -63,7 +63,7 @@ Definitions for terms used throughout the Writing Style Library. Terms are group
 
 **Frontmatter** - The YAML block at the top of every `ENTRY.md` file, delimited by `---` lines. Contains the entry's metadata and is validated against an axis-specific JSON Schema.
 
-**Review status** - The lifecycle state of an entry. Progression: `draft` -> `reviewed` -> `stable` -> `reference-quality`. New entries start at `draft`. Promotion requires maintainer review. A separate `deprecated` state marks superseded entries. See [Contribution Process](../../governance/contribution-process/).
+**Review status** - The lifecycle state of an entry. Progression: `draft` -> `machine-verified` -> `stable` -> `reference-quality`. New entries start at `draft`. `machine-verified` means the entry passes every automated check but has not yet been read by the maintainer; `stable` and `reference-quality` require maintainer review. A separate `deprecated` state marks superseded entries. See [Contribution Process](../../governance/contribution-process/).
 
 ---
 

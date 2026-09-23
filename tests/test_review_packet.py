@@ -34,32 +34,35 @@ def catalog():
 
 
 @pytest.fixture(scope="module")
-def stable(catalog):
-    return {k: v for k, v in catalog.items() if v[1].get("review_status") == "stable"}
+def awaiting(catalog):
+    found = {k: v for k, v in catalog.items() if v[1].get("review_status") == rp.AWAITING}
+    # Guard against vacuous passes: the tests below iterate this set.
+    assert found, "no entries awaiting review; these tests would pass vacuously"
+    return found
 
 
 # ---------------------------------------------------------------------------
 # Precision: the tool must not flag everything
 # ---------------------------------------------------------------------------
 
-def test_most_stable_entries_carry_no_flags(catalog, stable):
+def test_most_awaiting_entries_carry_no_flags(catalog, awaiting):
     """A triage tool that flags the whole corpus has ranked nothing."""
-    flagged = sum(1 for eid, (axis, fm) in stable.items()
+    flagged = sum(1 for eid, (axis, fm) in awaiting.items()
                   if rp.compute_flags(eid, axis, fm, catalog))
-    ratio = flagged / len(stable)
+    ratio = flagged / len(awaiting)
     assert ratio < 0.20, (
-        f"{flagged}/{len(stable)} stable entries flagged ({ratio:.0%}). Above ~20% the "
+        f"{flagged}/{len(awaiting)} awaiting entries flagged ({ratio:.0%}). Above ~20% the "
         "flags stop being triage and start being noise; tighten the heuristics."
     )
 
 
-def test_one_way_avoid_with_is_never_flagged(catalog, stable):
+def test_one_way_avoid_with_is_never_flagged(catalog, awaiting):
     """ADR 0016 B1: avoid_with is symmetric at composition time, so one-way data is fine.
 
     Regression guard for the 253-false-positive version.
     """
     offenders = []
-    for eid, (axis, fm) in stable.items():
+    for eid, (axis, fm) in awaiting.items():
         for flag in rp.compute_flags(eid, axis, fm, catalog):
             if "avoid_with" in flag:
                 offenders.append(f"{eid}: {flag[:80]}")
@@ -119,10 +122,10 @@ def test_confusable_with_is_symmetric_across_the_catalog(catalog):
     )
 
 
-def test_systematic_findings_stay_out_of_per_entry_packets(catalog, stable):
+def test_systematic_findings_stay_out_of_per_entry_packets(catalog, awaiting):
     """A finding spanning many entries belongs in one report, not in every packet."""
     in_packets = sum(
-        1 for eid, (axis, fm) in stable.items()
+        1 for eid, (axis, fm) in awaiting.items()
         for f in rp.compute_flags(eid, axis, fm, catalog)
         if "confusable_with" in f and "one-way" in f
     )
@@ -192,17 +195,17 @@ def test_packet_includes_confusable_neighbours_for_the_distinguishability_call(c
         assert f"`{n}`" in body, f"neighbour {n} missing from the packet"
 
 
-def test_every_stable_entry_renders_a_packet_without_error(stable, catalog):
-    for eid, (axis, fm) in stable.items():
+def test_every_awaiting_entry_renders_a_packet_without_error(awaiting, catalog):
+    for eid, (axis, fm) in awaiting.items():
         body, _ = rp.render_packet(eid, axis, fm, catalog)
         assert body.startswith(f"# Review packet: `{eid}`")
         assert len(body) > 500, f"{eid}: packet suspiciously short"
 
 
-def test_ledger_lists_every_stable_entry(stable, catalog):
-    results = {eid: [] for eid in stable}
+def test_ledger_lists_every_awaiting_entry(awaiting, catalog):
+    results = {eid: [] for eid in awaiting}
     ledger = rp.write_ledger(catalog, results)
-    for eid in stable:
+    for eid in awaiting:
         assert f"`{eid}`" in ledger, f"{eid} missing from the ledger"
     assert "draft" in ledger and "slips" in ledger, (
         "the ledger should state the honest-fallback rule and that the launch slips "

@@ -1,6 +1,6 @@
 ---
 name: entry-recommender
-description: Recommend a voice, tone, style, and format combination from the catalog's stable entries for a described writing situation, then compose the prompt in the same step. Accepts optional pre-fixed axis values; never recommends draft entries; reports low confidence rather than force-picking when nothing fits.
+description: Recommend a voice, tone, style, and format combination from the catalog's shipped (non-draft) entries for a described writing situation, then compose the prompt in the same step. Accepts optional pre-fixed axis values; never recommends draft entries; reports low confidence rather than force-picking when nothing fits.
 when_to_use: Use when a user has a writing situation but does not yet know which catalog entries fit it - they describe what they need to write, not which entry ids to use. If the user already knows the exact ids, use writing-instruction-builder directly; if they want a durable personal default rather than a one-situation answer, use style-profile.
 metadata:
   version: "0.2.0"
@@ -8,7 +8,7 @@ metadata:
 
 # Entry Recommender
 
-Take a described writing situation and recommend a voice/tone/style/format combination from the catalog's stable entries, with a defensible reason per axis quoting the entry's own language, then compose the final prompt in the same step. This is the fast interactive path for a user who does not yet know which of the 97 stable entries (52 of them Format) fits their situation - `writing-instruction-builder` composes from axis values you already know you want; this skill finds them first.
+Take a described writing situation and recommend a voice/tone/style/format combination from the catalog's shipped (non-draft) entries, with a defensible reason per axis quoting the entry's own language, then compose the final prompt in the same step. This is the fast interactive path for a user who does not yet know which of the 97 shipped entries (52 of them Format) fits their situation - `writing-instruction-builder` composes from axis values you already know you want; this skill finds them first.
 
 Full spec: `docs/internal/entry-recommender-spec.md`. Implementation plan (this file implements Phases 3-6; Phases 1-2 are `scripts/recommend.py`): `docs/internal/release-plans/entry-recommender-implementation-plan.md`.
 
@@ -132,7 +132,7 @@ If `--recommend-only` was passed, skip the compose call entirely and return the 
 
 Non-negotiable.
 
-- **Never recommend a draft entry (AC-6).** `recommend.py` already filters to `stable`/`reference-quality` before scoring - do not work around this with a manual override, and do not recommend an entry by name from memory instead of from the script's output.
+- **Never recommend a draft entry (AC-6).** `recommend.py` already filters to the admitted statuses (`machine-verified`, `stable`, `reference-quality`) before scoring, and each candidate row carries its `review_status` so you can answer truthfully if asked whether a pick has been maintainer-read - do not work around this with a manual override, and do not recommend an entry by name from memory instead of from the script's output.
 - **Every justification cites the entry's own field language (AC-3).** Quote or closely paraphrase `when_to_use`, `tells`, or `one_liner` - never invent a reason disconnected from what the entry's own fields say, including for a candidate picked during conflict resolution.
 - **Report low confidence honestly, on either trigger (AC-7).** A score clearing the threshold is not sufficient on its own if your own read of the field language does not support it. Do not force-pick the least-bad option to avoid an empty axis.
 - **Reuse the composer and its conflict check; never reimplement them.** Both live in `skills/writing-instruction-builder/scripts/build-instruction.py` and are called via subprocess with `--json`, the same cross-skill pattern `style-profile` already uses. Do not hand-roll the `avoid_with`/`pairs_well_with` symmetric-conflict rule or the voice-tone-style-format compose precedence a second time.

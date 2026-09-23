@@ -134,7 +134,7 @@ tags:
   - policy
   - pdf
   - both
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Whitepaper

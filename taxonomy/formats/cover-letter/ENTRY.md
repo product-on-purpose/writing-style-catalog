@@ -112,7 +112,7 @@ tags:
   - application
   - outreach
   - job-search
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Cover Letter

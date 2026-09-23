@@ -91,7 +91,7 @@ tags:
   - execution
   - closed-loop
   - leadership
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Resolute

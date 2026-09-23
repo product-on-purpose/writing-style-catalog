@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Score the stable catalog against a described writing situation, per axis.
+Score the admitted catalog against a described writing situation, per axis.
 
 Implements Phases 1-2 of docs/internal/release-plans/entry-recommender-implementation-plan.md:
-loads every stable/reference-quality candidate per axis (never draft, per AC-6),
-then scores the ENTIRE pool in one pass (not just a short list) using each axis's
+loads every admitted (machine-verified/stable/reference-quality) candidate per
+axis (never draft, per AC-6), then scores the ENTIRE pool in one pass (not just a
+short list) using each axis's
 schema-guaranteed facet field plus when_to_use/tells keyword overlap. Optional
-facets fold in as bonus signal only - most stable entries omit them.
+facets fold in as bonus signal only - most admitted entries omit them.
 
 This is a deterministic pre-filter, not the recommendation itself. The actual
 pick-and-justify judgment (Phase 3) happens in the skill's own reasoning per
@@ -71,7 +72,10 @@ AXES = {
     "format": TAXONOMY_ROOT / "formats",
 }
 
-STABLE_STATUSES = {"stable", "reference-quality"}
+# Every review_status that ships (ADR 0021). machine-verified entries pass every
+# enforced check but have not been read by the maintainer; they are admitted, and
+# each recommendation carries its review_status so a consumer can say so.
+ADMITTED_STATUSES = {"machine-verified", "stable", "reference-quality"}
 
 # The one field each axis's own schema actually guarantees beyond the universal
 # set (id/name/axis/one_liner/description/pairs_well_with/avoid_with/
@@ -142,9 +146,9 @@ _TOKEN_RE = re.compile(r"[a-z0-9]{2,}")
 
 
 def load_stable_ids(axis: str) -> list[str]:
-    """Return every id for `axis` whose review_status is stable or
-    reference-quality, scanned directly from taxonomy/<axis>s/ - not from the
-    root taxonomy.json index.
+    """Return every id for `axis` whose review_status is in ADMITTED_STATUSES
+    (the name predates ADR 0021's machine-verified rung), scanned directly
+    from taxonomy/<axis>s/ - not from the root taxonomy.json index.
 
     An earlier version of this function used taxonomy.json for speed. That
     was a real bug: taxonomy.json is a generated build artifact, and the
@@ -160,7 +164,7 @@ def load_stable_ids(axis: str) -> list[str]:
     return sorted(
         entry_id
         for entry_id, entry in _iter_all_entries(axis)
-        if entry.get("review_status") in STABLE_STATUSES
+        if entry.get("review_status") in ADMITTED_STATUSES
     )
 
 
@@ -234,7 +238,7 @@ def _facet_text(axis: str, entry: dict) -> str:
 
 
 def load_all_stable_entries() -> dict[str, dict[str, dict]]:
-    """Load every stable/reference-quality entry's full frontmatter, across
+    """Load every admitted entry's full frontmatter, across
     all axes, once. Returns {axis: {entry_id: frontmatter}}. Reused both to
     build the corpus-wide IDF table below and to score each axis's pool, so
     each entry (stable or draft) is read exactly once per invocation, not
@@ -245,7 +249,7 @@ def load_all_stable_entries() -> dict[str, dict[str, dict]]:
         cache[axis] = {
             entry_id: entry
             for entry_id, entry in _iter_all_entries(axis)
-            if entry.get("review_status") in STABLE_STATUSES
+            if entry.get("review_status") in ADMITTED_STATUSES
         }
     return cache
 
@@ -434,6 +438,9 @@ def build_ranked_list(
                 "distinct_matches": scored["distinct_matches"],
                 "above_threshold": above,
                 "one_liner": entry.get("one_liner", ""),
+                # Passed through so a consuming skill can say when a pick has
+                # not yet been read by the maintainer (ADR 0021 decision 6).
+                "review_status": entry.get("review_status", ""),
                 # Which situation words actually matched, per field - lets a
                 # caller (or a human) see AT A GLANCE whether a score is
                 # driven by a genuine when_to_use/tells match or by a single
@@ -529,7 +536,7 @@ def recommend(
             stable_ids = list(all_entries.get(axis, {}).keys())
             if fixed_id not in stable_ids:
                 errors.append(
-                    f"Fixed {axis}={fixed_id!r} is not in the stable/reference-quality catalog."
+                    f"Fixed {axis}={fixed_id!r} is not in the admitted (non-draft) catalog."
                 )
                 axes_out[axis] = {"fixed": fixed_id, "valid": False}
             else:
@@ -642,6 +649,7 @@ def recommend(
                         "distinct_matches": r["distinct_matches"],
                         "above_threshold": r["above_threshold"],
                         "one_liner": r["one_liner"],
+                        "review_status": r["review_status"],
                         "matched_tokens": r["matched_tokens"],
                         "fields": "fetch",
                     }
@@ -658,6 +666,7 @@ def recommend(
                         "distinct_matches": r["distinct_matches"],
                         "above_threshold": r["above_threshold"],
                         "one_liner": r["one_liner"],
+                        "review_status": r["review_status"],
                         "matched_tokens": r["matched_tokens"],
                         "fields": "fetch",
                     }
@@ -702,7 +711,7 @@ def fetch_one(axis: str, entry_id: str, _stable_ids=None) -> dict:
     when_to_use/tells for a real Phase 3 Step 2 justification, without paying
     the cost of returning full fields for the whole pool up front.
 
-    Enforces the same stable/reference-quality boundary as scoring and
+    Enforces the same admitted-status boundary as scoring and
     listing (AC-6) by checking membership in load_stable_ids(axis) BEFORE any
     filesystem access, not after loading. An earlier version of this
     function checked review_status only after loading - which was itself a
@@ -733,7 +742,7 @@ def fetch_one(axis: str, entry_id: str, _stable_ids=None) -> dict:
             "found": False,
             "id": entry_id,
             "axis": axis,
-            "error": f"{entry_id!r} is not a stable/reference-quality {axis} entry",
+            "error": f"{entry_id!r} is not an admitted (non-draft) {axis} entry",
         }
     entry = load_full_entry(axis, entry_id)
     if entry is None:
@@ -767,7 +776,7 @@ def fetch_many(axis: str, ids: list[str]) -> list[dict]:
     """Full field content for multiple candidates in one call, returned as a
     list in the same order as `ids`. Each id passes through the exact same
     stable-membership gate as fetch_one: a list-derived whitelist check that
-    the id is a real stable/reference-quality catalog entry, with no path
+    the id is a real admitted catalog entry, with no path
     construction from caller strings.
 
     Implemented as a loop over fetch_one (not a reimplementation of its gate)
@@ -855,7 +864,7 @@ def _require_ephemeral_path_is_safe(path: Path) -> Path:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Score the stable catalog against a described writing situation, per axis."
+        description="Score the admitted catalog against a described writing situation, per axis."
     )
     parser.add_argument(
         "--ephemeral-input-file",
@@ -942,7 +951,7 @@ def main():
             "suggest a candidate may be competitive with the read tier."
         ),
     )
-    parser.add_argument("--list", action="store_true", help="List all stable/reference-quality ids per axis")
+    parser.add_argument("--list", action="store_true", help="List all admitted (non-draft) ids per axis")
     parser.add_argument(
         "--response-format",
         choices=["concise", "detailed"],

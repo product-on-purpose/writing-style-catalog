@@ -84,7 +84,7 @@ tags:
   - investigative
   - source-driven
   - observational
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Journalist

@@ -132,7 +132,7 @@ tags:
   - broadcast
   - media
   - announcement
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Press Release

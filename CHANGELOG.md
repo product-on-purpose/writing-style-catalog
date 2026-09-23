@@ -7,7 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **A `machine-verified` review status** ([ADR 0021](docs/internal/adr/0021-honest-middle-review-status.md)).
+  It means an entry passes every enforced automated check (schema, cross-references, taxonomy
+  membership, the pedagogical bar, and worked examples on all twelve anchor topics) and has not
+  yet been read line by line by the maintainer. Entry pages at this status carry a notice saying
+  exactly that. Schema change class B: the `review_status` enum in
+  `entry.universal.schema.json` only grows, so every document valid before is still valid, and
+  the published `v1` schema contract does not move.
+- **A maintainer rung in `tools/promote.py`.** By default it still promotes a fully rendered
+  draft, now to `machine-verified`. `--reviewed <id>` moves an entry the maintainer has read from
+  `machine-verified` to `stable`; it takes named entries only and refuses `--all-ready`, because a
+  bulk flip would claim a reading that did not happen.
+- **Recommendation rows carry `review_status`,** so the entry-recommender skill can say whether
+  a pick has been maintainer-read.
+
 ### Changed
+
+- **The 97 shipped entries move from `stable` to `machine-verified`.** The repository's rule is
+  that `stable` means the maintainer read the entry, and that reading had not happened, so the
+  label overstated. Nothing about what ships changes: the same 97 entries are admitted, the
+  recommender scores them identically, and each one still has to render on all twelve anchor
+  topics. Each moves back to `stable` as it is read.
+- **`stable` now means maintainer-reviewed in the schema too.** The enum's description said
+  "in active use", which disagreed with the governance rule.
+- **"97 curated entries" becomes "97 entries"** in the README, the plugin manifests, and the site
+  landing page, since "curated" implied a reading still in progress.
 
 - **Dependency bumps:** `astro` 7.1.6 to 7.2.2, `@astrojs/starlight` 0.41.6 to 0.41.7, and the
   `pre-commit` dev requirement to >=4.6.2. Recorded individually because they ride in the tag,

@@ -621,7 +621,9 @@ def check_sample_count(id_map: dict[str, tuple[str, dict]], vslices_dir: Path | 
 
     The pool is single-sourced in anchor_topics.seed_pool(); each render lives at
     examples/vertical-slices/<topic>/<axis>-<entry_id>.md. Admitted means
-    review_status stable or reference-quality (in active use / exemplary); draft,
+    review_status machine-verified, stable, or reference-quality (shipped, per
+    ADR 0021: an entry does not shed the depth bar by being honest that the
+    maintainer has not read it yet); draft,
     reviewed, and deprecated entries are exempt, because a candidate is not held
     to the depth bar until it is admitted (a new Stream-B entry starts at draft
     and has not been rendered yet).
@@ -642,7 +644,7 @@ def check_sample_count(id_map: dict[str, tuple[str, dict]], vslices_dir: Path | 
     if vslices_dir is None:
         vslices_dir = EXAMPLES_DIR / "vertical-slices"
     topics = anchor_topics.seed_pool()
-    admitted = ("stable", "reference-quality")
+    admitted = ("machine-verified", "stable", "reference-quality")
     errors: list[str] = []
 
     for entry_id, (axis, fm) in id_map.items():

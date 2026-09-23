@@ -118,7 +118,7 @@ tags:
   - github
   - landing-page
   - digital
-review_status: stable
+review_status: machine-verified
 ---
 
 ## README

@@ -91,7 +91,7 @@ tags:
   - conceptual
   - precise
   - foundational
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Definitional

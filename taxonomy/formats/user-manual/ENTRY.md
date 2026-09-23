@@ -140,7 +140,7 @@ tags:
   - technical
   - product
   - instruction
-review_status: stable
+review_status: machine-verified
 ---
 
 ## User Manual

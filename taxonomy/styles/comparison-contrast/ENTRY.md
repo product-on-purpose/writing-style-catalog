@@ -88,7 +88,7 @@ tags:
   - structured
   - comparative
   - professional
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Comparison-Contrast

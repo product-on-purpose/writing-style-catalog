@@ -91,7 +91,7 @@ tags:
   - relational
   - capacity-building
   - coaching
-review_status: stable
+review_status: machine-verified
 diction: reflective, accessible
 sentence_style: Questions and tentative offers; second-person orientation
 default_pov: second-person

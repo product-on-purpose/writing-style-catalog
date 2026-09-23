@@ -171,7 +171,7 @@ Format entries define the visual and structural container: headings, bullet dept
 
 Plus the assets that make the catalog teachable:
 
-- **1164 worked examples** - every one of the 97 stable entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
+- **1164 worked examples** - every one of the 97 shipped entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
 - **158 diff-pairs** across all twelve anchor topics, each holding a topic constant and varying one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
 - **52 format templates** giving the canonical structure for each format (plus 20 draft candidate formats under review from the Stream-B breadth program).
@@ -227,11 +227,11 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 ## Project Status
 
-**v0.13.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). The entry schema is now frozen (see [ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md)), so its shape will not change without a major version and a migration. The skill interface, entry wording, and docs are all still settling. Entries currently carry an optimistic review status and have not all been through formal maintainer review.
+**v0.13.0 (early / experimental).** The plugin is listed in the Product on Purpose marketplace and installable with the two commands in [Quick Start](#quick-start). The entry schema is now frozen (see [ADR 0019](docs/internal/adr/0019-schema-freeze-and-change-policy.md)), so its shape will not change without a major version and a migration. The skill interface, entry wording, and docs are all still settling. Shipped entries carry `machine-verified`: they pass every automated check, and the maintainer's line-by-line reading is in progress (see [ADR 0021](docs/internal/adr/0021-honest-middle-review-status.md)).
 
 **What exists today:**
 
-- 97 stable taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), plus 21 entries under review: 20 draft format candidates (Stream-B breadth, batches 1-10) and 1 draft voice
+- 97 shipped taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 21 entries under review: 20 draft format candidates (Stream-B breadth, batches 1-10) and 1 draft voice
 - 1164 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
 - Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)

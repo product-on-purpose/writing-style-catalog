@@ -103,7 +103,7 @@ tags:
   - speaker-profile
   - about-page
   - third-person
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Bio

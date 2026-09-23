@@ -86,7 +86,7 @@ tags:
   - trusted-advisor
   - feedback
   - truth-telling
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Candid

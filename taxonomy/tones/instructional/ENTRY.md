@@ -83,7 +83,7 @@ tags:
   - procedural
   - capability-transfer
   - how-to
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Instructional

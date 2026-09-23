@@ -33,7 +33,7 @@ cd site && npm run build
 
 - **No em-dashes (U+2014) or en-dashes (U+2013)** anywhere - not in prose, code comments, commit messages, or doc files. Use " - " (space-hyphen-space). This is enforced by a pre-commit hook.
 - **`docs/internal/` is a living planning area** (ADRs, release-plan trackers, specs, the backlog) - maintained under direct maintainer direction as work proceeds, not read-only. `docs/internal/_working/` and `_LOCAL/` are frozen historical/research snapshots - read-only, do not modify.
-- **Never set `review_status` to `stable` or `reference-quality`** without maintainer review. New entries start at `draft`. (The 60-entry v0.1.0 seed catalog was reviewed and set to `stable` as the baseline; this rule governs new entries.)
+- **Never set `review_status` to `stable` or `reference-quality`** without maintainer review. New entries start at `draft`; tooling promotes them to `machine-verified` once every enforced check passes (`python tools/promote.py`), and only the maintainer moves an entry to `stable`, after reading it (`python tools/promote.py --reviewed <id>`). The ladder and its reasons are in ADR 0021.
 - **Conventional Commits** format for all commits: `feat(taxonomy): add <entry-id> <axis> entry`.
 
 ## When adding an entry
