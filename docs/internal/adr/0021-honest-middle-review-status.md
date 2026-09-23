@@ -2,7 +2,7 @@
 adr_id: "0021"
 title: "Add a machine-verified review_status so every entry carries a claim it has earned"
 date: 2026-08-21
-status: Proposed
+status: Accepted
 supersedes_context: >
   Does not supersede an existing ADR. Proposes the second of three written paths past GATE 1
   (reviewed catalog) of the v1.0 readiness gates, which sits at 0 of 97 ledger rows decided.
@@ -20,11 +20,22 @@ related:
 
 ## Status
 
-**Proposed (2026-08-21).** Not accepted. This is a product claim about how the catalog
-describes itself, so it is drafted for maintainer ratification rather than adopted by an agent.
-ADR 0019 set the precedent: it was drafted as Proposed, put as a decision with alternatives, and
-ratified explicitly before any schema file moved. Nothing in this document is applied until it is
-accepted.
+**Accepted (2026-09-23)**, ratified by the maintainer. Proposed 2026-08-21.
+
+Resolved at acceptance:
+
+- **Name:** `machine-verified`, as recommended.
+- **Launch copy:** "97 curated entries" becomes "97 entries" on every surface that carried it
+  (README, both manifests, the site landing page), the safe version named under "On the word
+  curated" below. The registry listing follows at the next re-pin.
+- **Decision 6 is kept:** recommendation rows carry `review_status`.
+- **`tools/agentic/promote.js` needs no change.** It emits `review_status: reviewed` into worked
+  example files, which decision 1 leaves on their own enum on purpose.
+
+This is a product claim about how the catalog describes itself, so it was drafted for maintainer
+ratification rather than adopted by an agent, following the ADR 0019 precedent: drafted as
+Proposed, put as a decision with alternatives, and ratified explicitly before any schema file
+moved.
 
 **Why a class B change carries an ADR at all.** ADR 0019 requires one for class B "only if it
 introduces a new concept rather than a field". A new lifecycle state, with its own admission
