@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.0] - 2026-09-23
+
+The honest-status release. Every shipped entry now carries a review status that says what has
+actually happened to it: `machine-verified` means it passes every automated check and has not
+yet been read line by line by the maintainer. What ships does not change; what the catalog
+claims about it does.
+
 ### Added
 
 - **A `machine-verified` review status** ([ADR 0021](docs/internal/adr/0021-honest-middle-review-status.md)).
@@ -21,7 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `machine-verified` to `stable`; it takes named entries only and refuses `--all-ready`, because a
   bulk flip would claim a reading that did not happen.
 - **Recommendation rows carry `review_status`,** so the entry-recommender skill can say whether
-  a pick has been maintainer-read.
+  a pick has been maintainer-read. `entry-recommender` goes to 0.3.0 for the added field and the
+  widened admitted set.
 
 ### Changed
 
