@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
-"""Promote draft catalog entries to stable, with a transactional, guarded flip.
+"""Promote catalog entries up the review ladder, with a transactional, guarded flip.
 
 WHAT
-    Flips one or more entries from `review_status: draft` to `review_status: stable`,
-    but ONLY when every entry being promoted already renders on all 12 anchor topics.
-    If any requested entry is missing samples (or fails any preflight check), it writes
-    NOTHING and reports exactly what is wrong.
+    The ladder has two rungs (ADR 0021), and this script owns both flips:
+
+    - Tooling rung (default): `review_status: draft` -> `machine-verified`, ONLY when
+      every entry being promoted already renders on all 12 anchor topics.
+    - Maintainer rung (`--reviewed`): `machine-verified` -> `stable`, for an entry the
+      maintainer has actually read. It takes named ids only and refuses --all-ready:
+      a bulk flip to `stable` would claim a reading that did not happen. Record each
+      one in docs/internal/review-ledger.md.
+
+    If any requested entry fails a preflight check, it writes NOTHING and reports
+    exactly what is wrong.
 
 WHY IT MATTERS
-    A stable entry must render on all 12 anchor topics - the Gate 2 sample-count rule
-    enforced by tools/validate.py. Flip an entry to stable with fewer than 12 samples
-    and `validate.py` fails (a red main). Promoting by hand is therefore error-prone:
+    An admitted entry (machine-verified, stable, reference-quality) must render on all
+    12 anchor topics - the Gate 2 sample-count rule enforced by tools/validate.py.
+    Admit an entry with fewer than 12 samples and `validate.py` fails (a red main). Promoting by hand is therefore error-prone:
     you must render first, then flip, and never half-promote. This script makes that
     safe: it validates everything first, stages every rewrite in memory, then writes
     all files - and if any write fails, it rolls the already-written files back. So a
@@ -19,10 +26,10 @@ WHY IT MATTERS
 HOW IT WORKS
     Preflight, for each id: find the unique taxonomy/<axis>/<id>/ENTRY.md (a duplicate
     id across axes is an error, not a silent first-match); read `axis` and
-    `review_status` from frontmatter (parsed with pyyaml, ADR 0012); confirm it is a
-    draft; confirm examples/vertical-slices/<topic>/<axis>-<id>.md exists for all 12
+    `review_status` from frontmatter (parsed with pyyaml, ADR 0012); confirm it is at
+    the rung being promoted from; confirm examples/vertical-slices/<topic>/<axis>-<id>.md exists for all 12
     topics in tools/anchor_topics.seed_pool(); and confirm the frontmatter contains
-    exactly one column-0 `review_status: draft` line (so the flip cannot hit a lookalike
+    exactly one column-0 `review_status: <from>` line (so the flip cannot hit a lookalike
     inside a block scalar). Only if ALL entries pass does it write - staged content,
     newlines preserved, with rollback on any failure.
 
@@ -35,12 +42,14 @@ USAGE
     python tools/promote.py --check rfc postmortem         # dry run: report readiness, write nothing
     python tools/promote.py --all-ready                    # promote every draft that is fully rendered
     python tools/promote.py --all-ready --check            # report which drafts are promotion-ready
+    python tools/promote.py --reviewed candid coach        # maintainer read these: -> stable
 
 EXIT CODES
     0  the write succeeded; OR --check ran and every named/ready entry is promotable
        (including the benign --all-ready case where nothing is ready yet)
-    1  a requested entry was missing samples, not a draft, not found, a duplicate id, or
-       had an ambiguous frontmatter; OR a write failed and was rolled back. Nothing was
+    1  a requested entry was missing samples, not at the expected rung, not found, a
+       duplicate id, or had an ambiguous frontmatter; OR --reviewed was combined with
+       --all-ready; OR a write failed and was rolled back. Nothing was
        left changed.
 """
 from __future__ import annotations
@@ -64,9 +73,15 @@ VSLICES = ROOT / "examples" / "vertical-slices"
 # scalar - notably review_status, the last field - are read correctly. Parsed with
 # pyyaml to match the validator (ADR 0012).
 _FRONTMATTER = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
-# A column-0 `review_status: draft` line (the real field; not an indented lookalike).
-# The trailing group preserves a CR so CRLF files are not reflowed to LF.
-_DRAFT_LINE = re.compile(r"(?m)^review_status: draft[ \t]*(\r?)$")
+# The two rungs of the ladder (ADR 0021), as (from, to).
+TOOLING_RUNG = ("draft", "machine-verified")
+MAINTAINER_RUNG = ("machine-verified", "stable")
+
+
+def _status_line(status: str) -> re.Pattern:
+    """A column-0 `review_status: <status>` line (the real field; not an indented
+    lookalike). The trailing group preserves a CR so CRLF files are not reflowed."""
+    return re.compile(rf"(?m)^review_status: {re.escape(status)}[ \t]*(\r?)$")
 
 
 def find_paths(entry_id: str) -> list[Path]:
@@ -92,30 +107,33 @@ def missing_samples(axis: str, entry_id: str) -> list[str]:
     ]
 
 
-def flip_text(text: str) -> str:
-    """Return `text` with the frontmatter's review_status flipped draft -> stable.
+def flip_text(text: str, rung: tuple[str, str] = TOOLING_RUNG) -> str:
+    """Return `text` with the frontmatter's review_status flipped along `rung`
+    (default draft -> machine-verified).
 
     Raises ValueError unless the frontmatter contains exactly one column-0
-    `review_status: draft` line. Newlines (including CRLF) are preserved.
+    `review_status: <from>` line. Newlines (including CRLF) are preserved.
     """
+    src, dst = rung
+    line = _status_line(src)
     match = _FRONTMATTER.match(text)
     if not match:
         raise ValueError("no frontmatter block")
     fm_start, fm_end = match.start(1), match.end(1)
     frontmatter = text[fm_start:fm_end]
-    hits = _DRAFT_LINE.findall(frontmatter)
+    hits = line.findall(frontmatter)
     if len(hits) != 1:
         raise ValueError(
-            f"expected exactly one column-0 'review_status: draft' line in the "
+            f"expected exactly one column-0 'review_status: {src}' line in the "
             f"frontmatter, found {len(hits)}"
         )
-    new_fm = _DRAFT_LINE.sub(lambda m: "review_status: stable" + m.group(1), frontmatter)
+    new_fm = line.sub(lambda m: f"review_status: {dst}" + m.group(1), frontmatter)
     return text[:fm_start] + new_fm + text[fm_end:]
 
 
-def preflight(entry_id: str) -> tuple[str, str | None]:
+def preflight(entry_id: str, rung: tuple[str, str] = TOOLING_RUNG) -> tuple[str, str | None]:
     """(status, detail) for one id. status is one of:
-    not_found | duplicate | not_draft | incomplete | ambiguous | ready.
+    not_found | duplicate | wrong_rung | incomplete | ambiguous | ready.
     detail carries the human-readable reason for the non-ready statuses."""
     paths = find_paths(entry_id)
     if not paths:
@@ -126,15 +144,16 @@ def preflight(entry_id: str) -> tuple[str, str | None]:
     path = paths[0]
     fm = parse_frontmatter(path)
     axis = fm.get("axis")
-    if fm.get("review_status") != "draft":
-        return ("not_draft", "review_status is not 'draft'")
+    if fm.get("review_status") != rung[0]:
+        return ("wrong_rung",
+                f"review_status is {fm.get('review_status')!r}, not {rung[0]!r}")
     if not axis:
         return ("ambiguous", "frontmatter has no 'axis'")
     missing = missing_samples(axis, entry_id)
     if missing:
         return ("incomplete", f"missing {len(missing)}/12 sample(s): {', '.join(missing)}")
     try:
-        flip_text(path.read_text(encoding="utf-8"))
+        flip_text(path.read_text(encoding="utf-8"), rung)
     except ValueError as exc:
         return ("ambiguous", str(exc))
     return ("ready", axis)
@@ -152,14 +171,23 @@ def all_draft_ids() -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Promote fully-rendered draft entries to stable, transactionally."
+        description="Promote entries up the review ladder, transactionally."
     )
     parser.add_argument("ids", nargs="*", help="entry ids to promote")
     parser.add_argument("--all-ready", action="store_true",
                         help="promote every draft entry that already renders on all 12 anchor topics")
     parser.add_argument("--check", action="store_true",
                         help="dry run: report readiness and write nothing")
+    parser.add_argument("--reviewed", action="store_true",
+                        help="maintainer rung: machine-verified -> stable, for entries the "
+                             "maintainer has read (named ids only)")
     args = parser.parse_args()
+
+    rung = MAINTAINER_RUNG if args.reviewed else TOOLING_RUNG
+    if args.reviewed and args.all_ready:
+        print("--reviewed takes named ids only: a bulk flip to stable would claim a "
+              "maintainer reading that did not happen. Nothing was changed.")
+        return 1
 
     if args.all_ready:
         results = {i: preflight(i) for i in all_draft_ids()}
@@ -178,7 +206,7 @@ def main() -> int:
     blockers = []
     plan = []  # (entry_id, axis, path)
     for entry_id in ids:
-        status, detail = preflight(entry_id)
+        status, detail = preflight(entry_id, rung)
         if status == "ready":
             plan.append((entry_id, detail, find_paths(entry_id)[0]))
         else:
@@ -187,7 +215,8 @@ def main() -> int:
     if blockers:
         print("Cannot promote - nothing was changed:")
         print("\n".join(blockers))
-        print("\nRender the missing samples first (tools/agentic/promote.js), then re-run.")
+        if not args.reviewed:
+            print("\nRender the missing samples first (tools/agentic/promote.js), then re-run.")
         return 1
 
     if args.check:
@@ -199,7 +228,7 @@ def main() -> int:
     staged = []  # (path, original_text, new_text, entry_id, axis)
     for entry_id, axis, path in plan:
         original = path.read_text(encoding="utf-8")
-        staged.append((path, original, flip_text(original), entry_id, axis))
+        staged.append((path, original, flip_text(original, rung), entry_id, axis))
 
     # Write all; roll back every written file if any write fails.
     written = []  # (path, original_text)
@@ -208,7 +237,7 @@ def main() -> int:
             with open(path, "w", encoding="utf-8", newline="") as handle:
                 handle.write(new_text)
             written.append((path, original))
-            print(f"[promoted] {axis} '{entry_id}' -> stable")
+            print(f"[promoted] {axis} '{entry_id}' -> {rung[1]}")
     except OSError as exc:
         for path, original in reversed(written):
             with open(path, "w", encoding="utf-8", newline="") as handle:
@@ -217,8 +246,10 @@ def main() -> int:
               f"Nothing was promoted.")
         return 1
 
-    print(f"\nPromoted {len(plan)}. Now: rebuild indexes, bump counters + manifests, "
-          f"run validate.py (Gate 2 active), build the site, and open a PR.")
+    next_steps = ("record each in docs/internal/review-ledger.md, rebuild indexes"
+                  if args.reviewed else "rebuild indexes, bump counters + manifests")
+    print(f"\nPromoted {len(plan)}. Now: {next_steps}, run validate.py (Gate 2 active), "
+          f"build the site, and open a PR.")
     return 0
 
 

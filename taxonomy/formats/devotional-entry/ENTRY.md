@@ -100,7 +100,7 @@ tags:
   - faith
   - short-form
   - daily
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Devotional Entry

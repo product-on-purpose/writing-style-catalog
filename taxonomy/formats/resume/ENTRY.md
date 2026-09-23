@@ -120,7 +120,7 @@ tags:
   - credentials
   - job-search
   - structured-document
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Resume

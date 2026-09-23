@@ -92,7 +92,7 @@ tags:
   - business
   - cross-domain
   - communication
-review_status: stable
+review_status: machine-verified
 diction: plain, register-neutral
 sentence_style: Short by default; purpose-first structure
 default_pov: variable

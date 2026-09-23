@@ -91,14 +91,16 @@ Entries move through four states:
 
 | State | Meaning | Promotion criteria |
 | ------- | --------- | ------------------ |
-| `draft` | Initial submission, in the catalog but unproven | One maintainer review |
-| `reviewed` | Editorially checked, ready for use | Schema valid, examples present, no open issues |
-| `stable` | Validated and curated | Gate 2: the entry renders across all twelve anchor topics (enforced by `tools/validate.py`), plus an explicit maintainer promotion decision |
+| `draft` | Initial submission, in the catalog but not shipped | - |
+| `machine-verified` | Shipped: passes every enforced automated check, not yet read by the maintainer | Gate 2: the entry renders across all twelve anchor topics (enforced by `tools/validate.py`), and every other check passes. Set by tooling |
+| `stable` | Read and approved by the maintainer | The maintainer reads the entry and promotes it explicitly |
 | `reference-quality` | Exemplary - included in onboarding material | Maintainer judgment, rare |
+
+`reviewed` is unused for taxonomy entries and kept only for compatibility. Why the middle rung exists is recorded in ADR 0021 in the repository.
 
 A `deprecated` state exists separately for superseded entries. Deprecated entries remain in the catalog but should set `deprecated_in_favor_of` to point to the replacement.
 
-Promotion to `stable` or `reference-quality` is a maintainer action, never a self-promotion, and never automatic even once Gate 2 passes - `tools/promote.py` performs the actual flip, guarded so it refuses to promote an entry that has not cleared Gate 2. If you believe one of your entries deserves promotion, open an issue with the case.
+Promotion to `stable` or `reference-quality` is a maintainer action, never a self-promotion, and never automatic even once every check passes. `tools/promote.py` performs both flips: by default `draft` to `machine-verified`, guarded so it refuses an entry that has not cleared Gate 2, and with `--reviewed` `machine-verified` to `stable`, which takes named entries only and refuses a bulk flip. If you believe one of your entries deserves promotion, open an issue with the case.
 
 ### Deprecating an entry
 

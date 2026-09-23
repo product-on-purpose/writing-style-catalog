@@ -102,7 +102,7 @@ mechanical one; flagged here, not assumed.
 
 | Gate | State |
 |---|---|
-| GATE 1 - reviewed catalog (`review_status` honestly promoted) | **OPEN, and untouched.** Human-bottlenecked; the long pole. Packets are generated (`python tools/review_packet.py --ledger`); 0 of the 97 rows in [`review-ledger.md`](review-ledger.md) carry a decision as of 2026-08-06. |
+| GATE 1 - reviewed catalog (`review_status` honestly promoted) | **REFRAMED 2026-09-23 by [ADR 0021](adr/0021-honest-middle-review-status.md).** The launch condition is now "every entry carries a status that is true", which holds: 97 entries are `machine-verified` (every enforced check passes, not yet maintainer-read) and 21 are `draft`. The reading itself continues as background work and is NOT done: 0 of the 97 rows in [`review-ledger.md`](review-ledger.md) carry a decision. Each read entry moves to `stable` via `python tools/promote.py --reviewed <id>`. |
 | GATE 2 - schema frozen | **GREEN** 2026-07-29 (ADR 0019). |
 | GATE 3 - proof captured (citable adherence artifact) | **NEARLY DONE, and NOT blocked on spend.** The citable artifact is published at [`concepts/adherence-evidence/`](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/). What remains is the maintainer framing decision R5 assigns to the human. The paid second generator tier buys cross-model robustness, which R5 calls the *ideally*, not the requirement. An earlier "blocked on a paid tier" reading of this row came from conflating these gates with the adherence gate's own Gate 1/2/3 measurement properties in `_agent-context/gate-pilot/CALIBRATION.md`; they are unrelated numbering. |
 | GATE 4 - consistent model story | **GREEN** 2026-07-29 (ADR 0018). |

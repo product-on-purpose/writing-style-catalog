@@ -131,7 +131,7 @@ tags:
   - management
   - feedback
   - evaluation
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Performance Review

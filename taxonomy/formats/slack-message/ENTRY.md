@@ -95,7 +95,7 @@ tags:
   - slack
   - internal
   - digital
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Slack Message

@@ -91,7 +91,7 @@ tags:
   - concise
   - executive
   - persuasive
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Executive Summary

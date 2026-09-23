@@ -86,7 +86,7 @@ tags:
   - slow
   - inward
   - faith
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Devotional Reflection

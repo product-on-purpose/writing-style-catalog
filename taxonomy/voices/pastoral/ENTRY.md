@@ -88,7 +88,7 @@ tags:
   - devotional
   - care
   - application
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Pastoral

@@ -43,8 +43,8 @@ def load_entry(axis: str, entry_id: str) -> dict | None:
     promotion). entry-recommender's own AC-6 ("never recommend a draft")
     holds only because entry-recommender never hands this function a draft
     id in the first place (its fixed-axis values are validated against the
-    stable catalog, and its own recommendations only ever come from a
-    stable-only short list) - confirmed by an adversarial review, which
+    admitted catalog, and its own recommendations only ever come from an
+    admitted-only short list) - confirmed by an adversarial review, which
     noted this coupling is worth stating explicitly rather than assuming a
     future reader infers it: `--format acceptance-speech` (a real Hold-20
     draft) composes here with no error, by design."""

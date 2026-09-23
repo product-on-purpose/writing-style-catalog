@@ -120,7 +120,7 @@ tags:
   - slides
   - persuasion
   - storytelling
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Pitch Deck

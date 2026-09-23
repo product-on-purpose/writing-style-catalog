@@ -123,6 +123,14 @@ test('generate emits the expected page set with relative links and no base liter
   assert.match(coach, /import \{ Tabs, TabItem \} from '@astrojs\/starlight\/components';/);
   // xref links are relative (no base, no leading slash on the target)
   assert.match(coach, /\]\(\.\.\/\.\.\/tones\/warm\/\)/);
+  // ADR 0021: a machine-verified entry carries a visible notice, and only then.
+  // Read the live status so promoting coach to stable does not break this test.
+  const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const coachSrc = fs.readFileSync(path.join(repoRoot, 'taxonomy/voices/coach/ENTRY.md'), 'utf8');
+  const coachStatus = /^review_status: (\S+)/m.exec(coachSrc)[1];
+  const notice = /:::note\[Machine-verified\][\s\S]*not yet been read line by line/;
+  if (coachStatus === 'machine-verified') assert.match(coach, notice);
+  else assert.doesNotMatch(coach, notice);
 
   // A diff-pair page imports DiffPair at the site/src/content/docs depth.
   const dpDir = path.join(tmp, 'examples/diff-pairs');

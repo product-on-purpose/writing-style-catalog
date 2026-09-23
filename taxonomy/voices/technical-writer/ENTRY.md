@@ -94,7 +94,7 @@ tags:
   - reader-centered
   - precise
   - plain-language
-review_status: stable
+review_status: machine-verified
 diction: plain language, technical precision
 sentence_style: Short, active, imperative for instructions; declarative for explanation
 default_pov: second-person

@@ -4,11 +4,11 @@ Recommendation skill for the writing-style-catalog plugin.
 
 ## Skills
 
-- `entry-recommender` - Recommend a voice/tone/style/format combination from the stable catalog for a described writing situation, and compose the prompt in the same step.
+- `entry-recommender` - Recommend a voice/tone/style/format combination from the shipped (non-draft) catalog for a described writing situation, and compose the prompt in the same step.
 
 ## How it Works
 
-`scripts/recommend.py` loads every `stable`/`reference-quality` entry per axis (draft entries, including Hold-20, are never even read - see AC-6 in `docs/internal/entry-recommender-spec.md`) and scores the entire pool against the described situation, weighted by field (`when_to_use` counts most) and by each matching word's rarity across the stable corpus (an IDF-style weighting - a word common to most entries contributes little; a word distinctive to a few is a real signal). It returns a short list with full field content - including `when_not_to_use`, which is never scored (a negative-overlap penalty would risk the same false-match class already found on the positive fields) but is surfaced so `SKILL.md`'s Step 2 read can catch a candidate that scores well on positive language while its own field explicitly disqualifies the situation - plus the rest of the ranked pool for conflict-resolution fallback.
+`scripts/recommend.py` loads every admitted (`machine-verified`/`stable`/`reference-quality`) entry per axis (draft entries, including Hold-20, are never even read - see AC-6 in `docs/internal/entry-recommender-spec.md`) and scores the entire pool against the described situation, weighted by field (`when_to_use` counts most) and by each matching word's rarity across the stable corpus (an IDF-style weighting - a word common to most entries contributes little; a word distinctive to a few is a real signal). It returns a short list with full field content - including `when_not_to_use`, which is never scored (a negative-overlap penalty would risk the same false-match class already found on the positive fields) but is surfaced so `SKILL.md`'s Step 2 read can catch a candidate that scores well on positive language while its own field explicitly disqualifies the situation - plus the rest of the ranked pool for conflict-resolution fallback.
 
 The actual pick, justification, conflict resolution, and composition (Phases 3-6 of the implementation plan) run in the skill's own reasoning per `SKILL.md`, reusing `skills/writing-instruction-builder/scripts/build-instruction.py` (via subprocess, its `--json` flag) for conflict detection and composition rather than reimplementing either.
 
@@ -18,8 +18,8 @@ The actual pick, justification, conflict resolution, and composition (Phases 3-6
 - `scripts/recommend.py --input-file PATH --json` - same payload, but the file is NOT deleted. For a deliberately-kept test fixture reused across runs, not real situation text.
 - `scripts/recommend.py --stdin --json` - same payload, from stdin. Not recommended for untrusted situation text via a shell heredoc (see above).
 - `scripts/recommend.py --situation TEXT [--voice ID] [--tone ID] [--style ID] [--format ID] [--json]` - the same, for direct manual/terminal use where the caller controls their own shell escaping.
-- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one stable candidate (used when conflict resolution selects a candidate beyond the initial short list; rejects any non-stable id or id outside the requested axis).
-- `scripts/recommend.py --list` - list all stable/reference-quality ids per axis.
+- `scripts/recommend.py --fetch AXIS ID --json` - full field content for one admitted candidate (used when conflict resolution selects a candidate beyond the initial short list; rejects any draft or unknown id or id outside the requested axis).
+- `scripts/recommend.py --list` - list all admitted (non-draft) ids per axis.
 
 ## See Also
 

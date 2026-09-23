@@ -87,7 +87,7 @@ tags:
   - structured
   - polished
   - diagnostic
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Senior Consultant

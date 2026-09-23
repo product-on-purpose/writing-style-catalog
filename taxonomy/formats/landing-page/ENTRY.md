@@ -117,7 +117,7 @@ tags:
   - marketing
   - digital
   - persuasion
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Landing Page

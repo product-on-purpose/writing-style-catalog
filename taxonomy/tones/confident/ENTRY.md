@@ -89,7 +89,7 @@ tags:
   - unhedged
   - executive
   - clear-position
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Confident

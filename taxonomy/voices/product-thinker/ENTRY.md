@@ -89,7 +89,7 @@ tags:
   - professional
   - outcome-driven
   - discovery
-review_status: stable
+review_status: machine-verified
 diction: customer-language, outcome-oriented
 sentence_style: Why-before-what; problem before solution
 default_pov: second-person

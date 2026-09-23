@@ -85,7 +85,7 @@ tags:
   - teaching
   - coaching
   - forward-moving
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Encouraging

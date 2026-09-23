@@ -111,7 +111,7 @@ tags:
   - stakeholder-communication
   - weekly
   - digital
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Status Report

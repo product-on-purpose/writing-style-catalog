@@ -94,7 +94,7 @@ tags:
   - structured
   - decision-making
   - audit
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Decision Log

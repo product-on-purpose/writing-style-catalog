@@ -115,7 +115,7 @@ tags:
   - cadence
   - accountability
   - sprint
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Retrospective

@@ -492,7 +492,7 @@ def test_fetch_many_returns_full_fields_for_stable_entries():
     assert len(results) == 2
     for r in results:
         assert r["found"] is True
-        assert r["review_status"] in rec.STABLE_STATUSES
+        assert r["review_status"] in rec.ADMITTED_STATUSES
         assert r["when_to_use"]
         assert "when_not_to_use" in r
     assert results[0]["id"] == "pragmatic-architect"
@@ -505,7 +505,7 @@ def test_fetch_many_rejects_path_traversal_per_id():
     results = rec.fetch_many("format", ["../voices/pragmatic-architect"])
     assert len(results) == 1
     assert results[0]["found"] is False
-    assert "not a stable" in results[0]["error"]
+    assert "not an admitted" in results[0]["error"]
 
 
 def test_fetch_many_rejects_draft_entries_per_id():
@@ -518,7 +518,7 @@ def test_fetch_many_rejects_draft_entries_per_id():
     results = rec.fetch_many("format", [draft_ids[0]])
     assert len(results) == 1
     assert results[0]["found"] is False
-    assert "not a stable" in results[0]["error"]
+    assert "not an admitted" in results[0]["error"]
 
 
 def test_fetch_many_unknown_axis_per_result():
@@ -546,7 +546,7 @@ def test_fetch_many_mixed_valid_and_invalid_ids():
 def test_fetch_one_returns_full_fields_for_a_stable_entry():
     out = rec.fetch_one("voice", "pragmatic-architect")
     assert out["found"] is True
-    assert out["review_status"] in rec.STABLE_STATUSES
+    assert out["review_status"] in rec.ADMITTED_STATUSES
     assert out["when_to_use"]
     assert "when_not_to_use" in out
 
@@ -554,7 +554,7 @@ def test_fetch_one_returns_full_fields_for_a_stable_entry():
 def test_fetch_one_rejects_path_traversal():
     out = rec.fetch_one("format", "../voices/pragmatic-architect")
     assert out["found"] is False
-    assert "not a stable" in out["error"]
+    assert "not an admitted" in out["error"]
 
 
 def test_fetch_one_rejects_unknown_axis():
@@ -571,7 +571,7 @@ def test_fetch_one_refuses_draft_entries():
         pytest.skip("no draft entries in the catalog to test against")
     out = rec.fetch_one("format", draft_ids[0])
     assert out["found"] is False
-    assert "not a stable" in out["error"]
+    assert "not an admitted" in out["error"]
 
 
 # --- --ephemeral-input-file safety conditions ------------------------------

@@ -84,7 +84,7 @@ tags:
   - evidence-based
   - research
   - falsification
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Skeptical

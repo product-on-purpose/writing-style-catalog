@@ -94,7 +94,7 @@ tags:
   - subscription
   - editorial
   - recurring
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Newsletter

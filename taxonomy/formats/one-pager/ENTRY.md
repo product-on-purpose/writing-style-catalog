@@ -111,7 +111,7 @@ tags:
   - single-page
   - decision-support
   - print
-review_status: stable
+review_status: machine-verified
 ---
 
 ## One-Pager

@@ -85,7 +85,7 @@ tags:
   - design
   - authoritative
   - experienced
-review_status: stable
+review_status: machine-verified
 ---
 
 ## Pragmatic Architect
