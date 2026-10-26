@@ -12,6 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Dependency bumps:** `astro` 7.2.2 to 7.3.3 in `/site`, and the pinned
   `softprops/action-gh-release` action 3.0.2 to 3.0.3 in the release workflows. Recorded
   individually because they ride in the next tag.
+- **Standard edition 0.11 to 0.17:** `library.json` now pins edition 0.17 of the Advanced
+  Skill Library Standard, the edition every plugin in the product-on-purpose marketplace is
+  moving to. Graded with `agent-skills-toolkit` 1.21.0, the catalog stays Universal (Bronze)
+  with 0 errors. The three remaining warnings are `U5` (description score) advice on the
+  three skill descriptions, not blockers.
 
 ## [0.14.0] - 2026-09-23
 
