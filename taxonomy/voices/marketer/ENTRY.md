@@ -93,7 +93,7 @@ tags:
   - persuasive
   - customer-facing
   - conversion
-review_status: draft
+review_status: machine-verified
 diction: plain-commercial
 sentence_style: Short declaratives built for scanning; fragments permitted in headlines
 default_pov: second-person

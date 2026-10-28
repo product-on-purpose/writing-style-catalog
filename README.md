@@ -21,7 +21,7 @@
   </a>
   <img src="https://img.shields.io/badge/version-0.12.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-four-axis-model">
-    <img src="https://img.shields.io/badge/entries-97-brightgreen.svg?style=flat-square" alt="Catalog entries">
+    <img src="https://img.shields.io/badge/entries-98-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
   <a href="https://agentskills.io/specification">
     <img src="https://img.shields.io/badge/spec-agentskills.io-orange.svg?style=flat-square" alt="Agent Skills Spec">
@@ -171,7 +171,7 @@ Format entries define the visual and structural container: headings, bullet dept
 
 Plus the assets that make the catalog teachable:
 
-- **1164 worked examples** - every one of the 97 shipped entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
+- **1176 worked examples** - every one of the 98 shipped entries rendered across all twelve anchor topics (async standups, morning routine, a Postgres-vs-DynamoDB decision, a roadmap deprioritization, onboarding a new hire, thanking a mentor, keeping a day of rest, a retirement send-off, a team milestone, a return-to-office position, a product launch, and a hard year in review), so you can see each entry rendered on real content.
 - **158 diff-pairs** across all twelve anchor topics, each holding a topic constant and varying one axis, so the effect of a single choice is visible side by side.
 - **14 horizontal-slice recipes** - named, ready-to-use four-axis combinations for common writing tasks.
 - **52 format templates** giving the canonical structure for each format (plus 20 draft candidate formats under review from the Stream-B breadth program).
@@ -231,8 +231,8 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **What exists today:**
 
-- 97 shipped taxonomy entries (15 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 21 entries under review: 20 draft format candidates (Stream-B breadth, batches 1-10) and 1 draft voice
-- 1164 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
+- 98 shipped taxonomy entries (16 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
+- 1176 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
 - Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
 - Validation and freshness checks wired into CI
