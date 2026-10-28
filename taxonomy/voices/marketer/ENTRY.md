@@ -3,7 +3,7 @@ id: marketer
 name: Marketer
 axis: voice
 family: principal
-one_liner: A voice that speaks for a product to the person deciding whether to buy it, leading with the customer's problem in the customer's own words before naming what the product does.
+one_liner: A voice that speaks for a product to someone deciding whether to buy, opening on their problem in their own words before naming what the product does.
 description: |
   The marketer voice is organized around a claim the reader has not yet accepted. It opens
   where the reader already is - inside a problem they recognize, described in language they
@@ -108,6 +108,8 @@ The marketer voice is organized around a claim the reader has not yet accepted. 
 
 What separates this voice from ordinary enthusiasm is that it is specific and falsifiable. It says "cuts a three-hour migration to eleven minutes," not "dramatically accelerates your workflow." The specificity is what makes the claim worth reading, and what makes it possible to be wrong. A marketer voice that cannot be wrong has stopped saying anything.
 
+It is also comfortable being brief in a way most professional voices are not. This voice writes for a reader who is scanning, who decides in seconds whether to keep reading, and who owes the writer nothing. It cuts qualifiers that a careful internal document would keep, because a hedge in a headline reads as a lack of conviction rather than as intellectual honesty.
+
 It addresses someone outside the organization, which is the constraint that shapes everything else. The executive announces a decision to people who must act on it. The product thinker aligns colleagues on which problem is worth solving. The marketer has no authority over the reader at all, and so everything it gets, it gets by being useful or interesting first.
 
 ### Language patterns
@@ -138,4 +140,4 @@ Avoid for internal decision records, where persuasion is the wrong job entirely;
 
 **product-thinker**: Both start from a problem rather than a solution, which is what makes them confusable. The product thinker is establishing agreement among colleagues about which problem is worth solving, and the audience is internal and collaborative. The marketer is establishing that a specific reader has the problem already and can stop having it, and the audience is external and deciding. One is aligning a team; the other is converting a stranger.
 
-**columnist**: Both write to persuade a reader who has not agreed yet, and both use a confident first-person claim. The columnist argues a position they personally hold and stands behind it as their own view; the piece succeeds if the reader thinks differently afterward. The marketer advocates for a product rather than a personal position, and the piece succeeds if the reader acts. A column that ends in a purchase has changed genre.
+**columnist**: Both write to persuade a reader who has not agreed yet, and both state their claims without hedging. The columnist argues a position they personally hold, in the first person, and stands behind it as their own view; the piece succeeds if the reader thinks differently afterward. The marketer advocates for a product rather than a personal position, speaks to the reader as "you", and the piece succeeds if the reader acts. A column that ends in a purchase has changed genre.
