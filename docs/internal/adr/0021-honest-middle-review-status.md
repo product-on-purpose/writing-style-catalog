@@ -392,6 +392,11 @@ and gitignored packets back it; a user reading the site or installing the plugin
   misread it.
 - The `reviewed` value stays in the entry enum, unused. Removing it is class C and is not worth a
   separate migration on its own; it belongs in the cleanup named above.
+  **Update 2026-10-28:** the maintainer declined that cleanup before 1.0.0. Narrowing the enum
+  breaks the contract, which under ADR 0020 bumps `SCHEMA_CONTRACT_VERSION` to `v2` and serves
+  `v1` alongside it, so the cleanup is not cheap even pre-1.0. Both vestigial values wait for the
+  next contract break that happens for a real reason. Recorded in
+  [`schema-custom-domain-brief.md`](../schema-custom-domain-brief.md).
 - ADR 0020 contains a stale sentence: its decision 2 moves `diff-pair.schema.json` to
   `schemas/experimental/`, while its Consequences note still says diff-pair is "published under
   `v1` alongside the frozen five". The file is at `schemas/experimental/` and decision 2 is
