@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-10-28
+
+The marketer release. The catalog gains its first voice for writing that sells: landing pages,
+launch copy, and outreach to a reader deciding whether to buy or try something. The adherence
+evidence page now leads with all three of its results, including the size of the negative
+control.
+
 ### Added
 
 - **The `marketer` voice ships.** It moves from `draft` to `machine-verified`, rendered on all
@@ -23,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and `noisy-rambling` now qualify `marketer`. `headline-feature-cut` gains `executive` and
   `proposal` and loses `operator`, because the scorer's corpus-wide IDF weights shift whenever
   an entry is added. Round-trip stays 10 of 10.
-
 - **The adherence evidence page opens with an at-a-glance summary.** "Does it actually work?"
   now leads with all three results side by side: 8 of 8 blind attributions, 18 of 18 under a
   different vendor's judge, and 3 of 3 deliberate caricatures rejected. The negative-control
