@@ -5,9 +5,11 @@
 > that justifies each item, the editable surface to change, and a rough effort. Living doc -
 > update the snapshot date and check items off as they ship.
 
-**Last updated:** 2026-08-06 (accuracy pass on the status snapshot and the gate table after
-v0.8.0 through v0.12.0: catalog size, diff-pair coverage, schema `$id`, test and ADR counts,
-and the GATE 3 row, which still carried a reading retracted on 2026-07-30).
+**Last updated:** 2026-10-28 (maintainer decisions: GATE 3 framed with an at-a-glance summary
+and closed; schema custom domain declined and the unused `reviewed` enum value kept; the
+status snapshot's `stable` count corrected to `machine-verified` after ADR 0021). Previous
+pass 2026-08-06: accuracy pass on the status snapshot and the gate table after v0.8.0 through
+v0.12.0.
 Originally written 2026-06-03, after the v0.2.0 marketplace launch and the comprehensive-catalog
 vision; the foundation - taxonomy, adherence gate, anchor topics, conflict-aware composition -
 is now designed in [`release-plans/plan_v0.3.0/`](release-plans/plan_v0.3.0/release-plan.md).
@@ -83,15 +85,15 @@ mechanical one; flagged here, not assumed.
 
 | Area | State (verified 2026-08-06) |
 |---|---|
-| Catalog size | **118 entries**: 16 Voice, 15 Tone, 15 Style, 72 Format. 97 `stable` + 21 `draft` (the Hold-20 plus the `marketer` voice). |
-| Axis breadth | Uneven: Format is 72 while Tone and Style are 15 each and Voice is 16 (15 stable + the `marketer` draft). |
+| Catalog size | **118 entries**: 16 Voice, 15 Tone, 15 Style, 72 Format. 97 `machine-verified` + 21 `draft` (the Hold-20 plus the `marketer` voice), 0 `stable` ([ADR 0021](adr/0021-honest-middle-review-status.md)). |
+| Axis breadth | Uneven: Format is 72 while Tone and Style are 15 each and Voice is 16 (15 machine-verified + the `marketer` draft). |
 | Adherence result | 8/8 blind; 2 "dramatic", 4 "clear", **2 "subtle"**, 0 "identical". The two "subtle" pairs now have written-up diff-pairs on `service-database-choice`. |
 | Composition | **Conflict-aware since v0.3.0** (S1 / ADR 0016): cross-checks `avoid_with`/`pairs_well_with`, applies voice -> tone -> style -> format precedence, warns without hard-blocking. |
 | Diff-pair coverage | **158 pairs across all 12 topics**, every one carrying authored commentary. async-standups 60, a-hard-year 32, thanking-a-mentor 32, morning-routine 6, and 3-4 on each of the remaining eight, which were covered 2026-07-31 on the reasoning that a first pair on an uncovered topic teaches more than the 61st on `async-standups`. |
 | Sample depth | **1,207 worked examples across 12 anchor topics.** Gate 2 requires every `stable` entry to render on all 12. |
 | Skills | Three: `writing-instruction-builder`, `style-profile`, `entry-recommender`. |
 | Adherence gate | Deterministic foundation done; judge architecture validated on free infra (`_agent-context/gate-pilot/CALIBRATION.md`). Not yet a CI gate. |
-| Schema | **Frozen** as of ADR 0019 (6 of 7 schemas; `diff-pair` excluded and served from `/schemas/experimental/`). Change classes A/B/C defined. `$id` serves from a versioned contract path as of ADR 0020, so it no longer tracks `main`; the remaining gap is a custom domain, since the URIs are still tied to the org and the Pages path. |
+| Schema | **Frozen** as of ADR 0019 (6 of 7 schemas; `diff-pair` excluded and served from `/schemas/experimental/`). Change classes A/B/C defined. `$id` serves from a versioned contract path as of ADR 0020, so it no longer tracks `main`. The URIs stay tied to the org and the Pages path: a custom domain was **declined** on 2026-10-28 (see [`schema-custom-domain-brief.md`](schema-custom-domain-brief.md)), so copy says "versioned and pinnable", never "permanent". |
 | Axis framing | **Four-axis, canonical** as of ADR 0018, with a 16-test regression guard. |
 | Marketplace | Listed in `product-on-purpose/agent-plugins`, pinned to the latest release tag; install resolves. The pin is authoritative there, not here (re-pin is runbook step 15), because a version copied into this table has drifted five releases before. |
 | Tests | 282 passing: 264 Python (`pytest`) + 18 node (`node --test tests/gen-site.test.mjs`). |
@@ -104,7 +106,7 @@ mechanical one; flagged here, not assumed.
 |---|---|
 | GATE 1 - reviewed catalog (`review_status` honestly promoted) | **REFRAMED 2026-09-23 by [ADR 0021](adr/0021-honest-middle-review-status.md).** The launch condition is now "every entry carries a status that is true", which holds: 97 entries are `machine-verified` (every enforced check passes, not yet maintainer-read) and 21 are `draft`. The reading itself continues as background work and is NOT done: 0 of the 97 rows in [`review-ledger.md`](review-ledger.md) carry a decision. Each read entry moves to `stable` via `python tools/promote.py --reviewed <id>`. |
 | GATE 2 - schema frozen | **GREEN** 2026-07-29 (ADR 0019). |
-| GATE 3 - proof captured (citable adherence artifact) | **NEARLY DONE, and NOT blocked on spend.** The citable artifact is published at [`concepts/adherence-evidence/`](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/). What remains is the maintainer framing decision R5 assigns to the human. The paid second generator tier buys cross-model robustness, which R5 calls the *ideally*, not the requirement. An earlier "blocked on a paid tier" reading of this row came from conflating these gates with the adherence gate's own Gate 1/2/3 measurement properties in `_agent-context/gate-pilot/CALIBRATION.md`; they are unrelated numbering. |
+| GATE 3 - proof captured (citable adherence artifact) | **GREEN** 2026-10-28. The citable artifact is published at [`concepts/adherence-evidence/`](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/). The maintainer framing decision R5 assigns to the human was made on 2026-10-28: the page keeps its chronological body and opens with an at-a-glance summary of all three results (8 of 8, 18 of 18, and 3 of 3 caricatures rejected), so the negative control and its sample size sit above the fold without the page leading on a sample of three. The paid second generator tier buys cross-model robustness, which R5 calls the *ideally*, not the requirement. An earlier "blocked on a paid tier" reading of this row came from conflating these gates with the adherence gate's own Gate 1/2/3 measurement properties in `_agent-context/gate-pilot/CALIBRATION.md`; they are unrelated numbering. |
 | GATE 4 - consistent model story | **GREEN** 2026-07-29 (ADR 0018). |
 | GATE 5 - teaching surface complete | **GREEN** 2026-07-29. |
 | GATE 6 - green pipes | **GREEN**, pending a release dry-run each cycle. |
@@ -281,8 +283,11 @@ server exposes the guaranteed behavior, not the naive concatenation.
   mutability, but not durable. The fix is a project-controlled custom domain for canonical
   schema IDs, which is an infrastructure decision with real cost. **A v1.0 claim of a permanent
   contract should wait for this.** Reduced to a yes/no in
-  [`schema-custom-domain-brief.md`](schema-custom-domain-brief.md) (2026-09-23): decide before
-  1.0.0, since a `$id` change is class C; default no, with "versioned and pinnable" copy.
+  [`schema-custom-domain-brief.md`](schema-custom-domain-brief.md) (2026-09-23). **DECIDED
+  2026-10-28: no custom domain.** The exposure stays open and accepted: copy says "versioned
+  and pinnable", never "permanent", and a future rename or transfer would need its own class C
+  migration. The unused `reviewed` entry-enum value is also kept, because removing it narrows
+  the enum and would force a v2 schema contract under ADR 0020.
 - **No marketer-adjacent voice exists** (surfaced by P-4 enrichment, 2026-07-31). None of the
   15 stable voices fits landing-page or hero copy, so the recommender returns an honest empty
   voice axis for that whole register. This is a **catalog gap needing a new entry**, not a

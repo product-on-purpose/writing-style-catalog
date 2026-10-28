@@ -9,9 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Dependency bumps:** `astro` 7.2.2 to 7.3.3 in `/site`, and the pinned
-  `softprops/action-gh-release` action 3.0.2 to 3.0.3 in the release workflows. Recorded
-  individually because they ride in the next tag.
+- **The adherence evidence page opens with an at-a-glance summary.** "Does it actually work?"
+  now leads with all three results side by side: 8 of 8 blind attributions, 18 of 18 under a
+  different vendor's judge, and 3 of 3 deliberate caricatures rejected. The negative-control
+  section now states its sample size, which it previously omitted.
+- **Dependency bumps:** `astro` 7.2.2 to 7.3.3 and then 7.3.5, `@astrojs/markdown-remark`
+  7.2.2 to 7.3.1, and `sharp` 0.35.4 to 0.35.5, all in `/site`; the pinned
+  `softprops/action-gh-release` action 3.0.2 to 3.0.3 in the release workflows; and the
+  `pre-commit` dev requirement to `>=4.7.0`. Recorded individually because they ride in the
+  next tag.
 - **Standard edition 0.11 to 0.17:** `library.json` now pins edition 0.17 of the Advanced
   Skill Library Standard, the edition every plugin in the product-on-purpose marketplace is
   moving to. Graded with `agent-skills-toolkit` 1.21.0, the catalog stays Universal (Bronze)

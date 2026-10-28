@@ -1,6 +1,15 @@
 # Schema custom domain - decision brief
 
-Status: for maintainer decision (drafted 2026-09-23)
+Status: **decided 2026-10-28 - option (c), no custom domain** (drafted 2026-09-23)
+
+The maintainer chose (c): no domain, and honest copy. The copy pass in option (c) needed no
+edits, because README, the site landing page, `schemas/README.md`, and the launch plan already
+avoid "permanent". The bundled question, removing the unused `reviewed` value from the entry
+enum, was also answered no. Removing an enum value narrows the enum, which is class C, and under
+[ADR 0020 (versioned schema IDs)](adr/0020-versioned-schema-ids.md) a contract break bumps
+`SCHEMA_CONTRACT_VERSION` from `v1` to `v2` and keeps both served. A second contract version is
+too high a price for removing a value already labelled unused. It can ride along with the next
+real contract break instead. The analysis below is kept as written.
 
 ## 1. The decision
 

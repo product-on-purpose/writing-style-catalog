@@ -7,6 +7,15 @@ Most prompt libraries assert that their named styles produce different writing. 
 measured it, twice, with a negative control. This page is the record: what was run, what came
 back, and what it does not prove.
 
+:::note[At a glance]
+- **8 of 8** near-neighbour pairs attributed correctly by a blind judge from the same model family.
+- **18 of 18** samples attributed correctly by a blind judge from a different vendor.
+- **3 of 3** deliberate caricatures rejected, each for the failure mode its own entry documents.
+
+The third number is the smallest, and it is the one that makes the first two worth trusting:
+it shows the judge says no when it should.
+:::
+
 ## The claim, stated precisely
 
 **Given two near-neighbour entries from the same axis, the catalog's per-entry instruction
@@ -73,9 +82,11 @@ when the entries got more specific.
 A measurement that can only come back positive is a demonstration, not an experiment. So the
 judge was also given work it *should* reject.
 
-Deliberately caricatured renders were produced, each one over-hitting its own entry's register
-past the point of usefulness. The judge flipped those from pass to **fail**, and named the
-specific failure mode the entry itself documents.
+Three deliberately caricatured renders were produced, one each for `pragmatic-architect`,
+`senior-consultant`, and `operator`, each one over-hitting its own entry's register past the
+point of usefulness. The judge flipped **all three** from pass to **fail**, and each time named
+the specific failure mode the entry itself documents. The faithful renders judged beside them
+stayed at pass.
 
 This is the single most important result on this page. It establishes that the judge is
 discriminating rather than agreeable, which is what licenses reading the positive results as
@@ -100,8 +111,9 @@ not.
 3. **Generation was single-tier.** Both tests generated with capable models. Nothing here
    shows a smaller model renders these distinctions as crisply. **This is the one measurement
    property still open**, and confirming it needs a second, cheaper generator tier.
-4. **These are smoke tests, not a published eval.** Eight pairs and eighteen slots. Enough to
-   retire the question of whether the premise holds; not enough to publish.
+4. **These are smoke tests, not a published eval.** Eight pairs, eighteen slots, and three
+   caricatures. Enough to retire the question of whether the premise holds; not enough to
+   publish.
 5. **No human raters.** Every judge was a model. Nothing here shows a non-expert human
    perceives the same differences.
 
