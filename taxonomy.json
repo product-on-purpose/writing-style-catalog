@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-23T15:40:01.595714+00:00",
+  "generated": "2026-10-28T16:07:36.681397+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -54,8 +54,8 @@
       "id": "marketer",
       "name": "Marketer",
       "axis": "voice",
-      "one_liner": "A voice that speaks for a product to the person deciding whether to buy it, leading with the customer's problem in the customer's own words before naming what the product does.",
-      "review_status": "draft"
+      "one_liner": "A voice that speaks for a product to someone deciding whether to buy, opening on their problem in their own words before naming what the product does.",
+      "review_status": "machine-verified"
     },
     {
       "id": "operator",

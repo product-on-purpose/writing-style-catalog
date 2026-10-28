@@ -85,8 +85,8 @@ mechanical one; flagged here, not assumed.
 
 | Area | State (verified 2026-08-06) |
 |---|---|
-| Catalog size | **118 entries**: 16 Voice, 15 Tone, 15 Style, 72 Format. 97 `machine-verified` + 21 `draft` (the Hold-20 plus the `marketer` voice), 0 `stable` ([ADR 0021](adr/0021-honest-middle-review-status.md)). |
-| Axis breadth | Uneven: Format is 72 while Tone and Style are 15 each and Voice is 16 (15 machine-verified + the `marketer` draft). |
+| Catalog size | **118 entries**: 16 Voice, 15 Tone, 15 Style, 72 Format. 98 `machine-verified` + 20 `draft` (the Hold-20 formats), 0 `stable` ([ADR 0021](adr/0021-honest-middle-review-status.md)). |
+| Axis breadth | Uneven: Format is 72 while Tone and Style are 15 each and Voice is 16, all machine-verified since the `marketer` promotion on 2026-10-28. |
 | Adherence result | 8/8 blind; 2 "dramatic", 4 "clear", **2 "subtle"**, 0 "identical". The two "subtle" pairs now have written-up diff-pairs on `service-database-choice`. |
 | Composition | **Conflict-aware since v0.3.0** (S1 / ADR 0016): cross-checks `avoid_with`/`pairs_well_with`, applies voice -> tone -> style -> format precedence, warns without hard-blocking. |
 | Diff-pair coverage | **158 pairs across all 12 topics**, every one carrying authored commentary. async-standups 60, a-hard-year 32, thanking-a-mentor 32, morning-routine 6, and 3-4 on each of the remaining eight, which were covered 2026-07-31 on the reasoning that a first pair on an uncovered topic teaches more than the 61st on `async-standups`. |
@@ -288,6 +288,9 @@ server exposes the guaranteed behavior, not the naive concatenation.
   and pinnable", never "permanent", and a future rename or transfer would need its own class C
   migration. The unused `reviewed` entry-enum value is also kept, because removing it narrows
   the enum and would force a v2 schema contract under ADR 0020.
+- **CLOSED 2026-10-28: the `marketer` voice is shipped** (`machine-verified`, rendered on all 12
+  anchor topics). The eval's `marketing-hero` case now qualifies `marketer` on the voice axis,
+  where it previously returned nothing. The original gap note follows.
 - **No marketer-adjacent voice exists** (surfaced by P-4 enrichment, 2026-07-31). None of the
   15 stable voices fits landing-page or hero copy, so the recommender returns an honest empty
   voice axis for that whole register. This is a **catalog gap needing a new entry**, not a

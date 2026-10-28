@@ -7,7 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **The `marketer` voice ships.** It moves from `draft` to `machine-verified`, rendered on all
+  twelve anchor topics, so the catalog now has 98 shipped entries (16 Voice) and 1176
+  vertical-slice worked examples. It fills the one register no voice covered: landing pages,
+  launch copy, and other writing for a reader deciding whether to buy or try something.
+  Before promotion its wording was tightened. The `columnist` confusable note on both entries
+  no longer says both voices use a first-person claim, the body gained the paragraph on
+  brevity that its description already carried, and the one-liner was trimmed.
+
 ### Changed
+
+- **Recommender eval baselines re-recorded for four cases.** `marketing-hero`, `conflict-bait`,
+  and `noisy-rambling` now qualify `marketer`. `headline-feature-cut` gains `executive` and
+  `proposal` and loses `operator`, because the scorer's corpus-wide IDF weights shift whenever
+  an entry is added. Round-trip stays 10 of 10.
 
 - **The adherence evidence page opens with an at-a-glance summary.** "Does it actually work?"
   now leads with all three results side by side: 8 of 8 blind attributions, 18 of 18 under a

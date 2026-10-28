@@ -8,7 +8,7 @@
 
 **Rule:** an entry may only be `stable` after a maintainer has read it. Until then it carries `machine-verified`: it passes every enforced check and has not been read (ADR 0021). Promote a read entry with `python tools/promote.py --reviewed <id>` and record the decision here; `draft` is always the honest fallback for one that should not ship. Entries are never relabelled upward to make a gate go green: if a reading is required before a milestone and cannot be finished, the milestone slips.
 
-**Scope:** 97 entries awaiting a maintainer reading (`review_status: machine-verified`). 3 carry at least one flag.
+**Scope:** 98 entries awaiting a maintainer reading (`review_status: machine-verified`). 3 carry at least one flag.
 
 ## Decisions
 
@@ -59,6 +59,7 @@
 | `layered-disclosure` | style | - | | | |
 | `listicle` | format | - | | | |
 | `manifesto` | format | - | | | |
+| `marketer` | voice | - | | | |
 | `matter-of-fact` | tone | - | | | |
 | `meeting-agenda` | format | - | | | |
 | `meeting-notes` | format | - | | | |

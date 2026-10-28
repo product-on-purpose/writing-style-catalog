@@ -54,7 +54,7 @@ your own style once, for reuse across sessions.
 
 ## Browse the catalog
 
-- 97 entries (15 Voice, 15 Tone, 15 Style, 52 Format), each with language patterns, when-to-use
+- 98 entries (16 Voice, 15 Tone, 15 Style, 52 Format), each with language patterns, when-to-use
   guidance, and worked examples: the [documentation site](https://product-on-purpose.github.io/writing-style-catalog/).
 - Side-by-side [diff-pairs](https://product-on-purpose.github.io/writing-style-catalog/examples/diff-pairs/)
   that vary one axis on a fixed topic.
