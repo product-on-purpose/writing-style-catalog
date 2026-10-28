@@ -8,6 +8,7 @@ measured it, twice, with a negative control. This page is the record: what was r
 back, and what it does not prove.
 
 :::note[At a glance]
+
 - **8 of 8** near-neighbour pairs attributed correctly by a blind judge from the same model family.
 - **18 of 18** samples attributed correctly by a blind judge from a different vendor.
 - **3 of 3** deliberate caricatures rejected, each for the failure mode its own entry documents.
