@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Dependency bumps:** `@astrojs/starlight` 0.41.7 to 0.42.10, `@astrojs/mdx` 7.0.5 to 8.1.3,
+  `astro` 7.3.5 to 7.4.4, `@astrojs/markdown-remark` 7.3.1 to 7.3.6, and `astro-mermaid` 2.1.0
+  to 2.2.0, all in `/site`; and the `pytest` dev requirement to `>=9.2.0`. Starlight 0.42
+  requires mdx 8, so the two moved together. The only visible change on the docs site is a
+  "Menu" label on the mobile navigation button.
+- **The docs site needs Node.js 22.23.4 or later to build.** `site/package.json` now declares
+  the same floor as `astro` 7.4.4, replacing the stale `>=22.12.0`. CI already builds on
+  Node.js 24, the version `.nvmrc` pins, so only local builds on an older Node.js are affected.
+
 ## [0.15.0] - 2026-10-28
 
 The marketer release. The catalog gains its first voice for writing that sells: landing pages,
