@@ -16,6 +16,17 @@ related:
 > `stable`; release-prep for **v0.5.0** is next. **Hold-20** (personal, ceremonial, contemplative)
 > stays deferred to a future audience-expansion release. The original recommendation is preserved
 > below as the decision record.
+>
+> **Update (2026-11-14): the review ladder changed after this proposal.** [ADR 0021](../adr/0021-honest-middle-review-status.md)
+> (accepted 2026-09-23) added a `machine-verified` rung between `draft` and `stable`. Where this
+> record says an entry is promoted or flipped to `stable`, read `machine-verified` for any
+> promotion made today: `tools/promote.py <ids>` now sets `machine-verified`, and only the
+> maintainer moves an entry to `stable`, with `promote.py --reviewed <id>` after reading it. The
+> Hold-20 are still `draft` as of 2026-11-14, and each still lacks all 12 anchor-topic samples.
+> Promoting them would also raise a question this record does not answer: most anchor topics are
+> work topics (such as `service-database-choice`), so a eulogy or wedding vows rendered on them
+> would be forced. The audience-expansion release should decide whether the 12-topic rule fits
+> these formats.
 
 57 draft format candidates were staged for a `draft -> stable` decision. They had each cleared
 a per-entry distinguishability gate AND a whole-corpus de-dup audit, so quality and
