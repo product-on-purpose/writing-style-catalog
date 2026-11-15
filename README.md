@@ -19,7 +19,7 @@
   <a href="https://github.com/product-on-purpose/writing-style-catalog/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/License-Apache%202.0%20%2F%20CC--BY--4.0-blue.svg?style=flat-square" alt="License: Apache-2.0 (code) / CC-BY-4.0 (content)">
   </a>
-  <img src="https://img.shields.io/badge/version-0.12.0-blue.svg?style=flat-square" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.15.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-four-axis-model">
     <img src="https://img.shields.io/badge/entries-98-brightgreen.svg?style=flat-square" alt="Catalog entries">
   </a>
