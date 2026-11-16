@@ -163,6 +163,29 @@ if (plugin) {
   }
 }
 
+// --- README.md version strings must equal library.json's version ---
+// The README carries the version by hand in three places. The badge went stale
+// from v0.13.0 to v0.15.0 because nothing checked it. A pattern that no longer
+// matches fails too, so a reworded README forces this check to be updated
+// rather than silently passing.
+const readmePath = join(ROOT, "README.md");
+if (library && typeof library.version === "string" && existsSync(readmePath)) {
+  const readme = readFileSync(readmePath, "utf8");
+  const readmeVersions = [
+    ["version badge", /img\.shields\.io\/badge\/version-(\d+\.\d+\.\d+)-/],
+    ["\"Early and experimental\" callout", /Early and experimental \(v(\d+\.\d+\.\d+)\)/],
+    ["Project status line", /\*\*v(\d+\.\d+\.\d+) \(early \/ experimental\)\.\*\*/],
+  ];
+  for (const [label, re] of readmeVersions) {
+    const found = readme.match(re)?.[1];
+    if (!found) {
+      fail(`README.md: ${label} not found; if the wording changed, update this check in scripts/validate-plugin-manifest.mjs`);
+    } else if (found !== library.version) {
+      fail(`README.md: ${label} says ${found} but library.json says ${library.version}`);
+    }
+  }
+}
+
 // --- no embedded self-listing marketplace (Standard Section 12 anti-pattern) ---
 if (existsSync(join(ROOT, ".claude-plugin/marketplace.json"))) {
   fail(

@@ -106,7 +106,8 @@ only outward-facing, maintainer-reserved step is cutting the release tag (step 1
 13. **Release-prep PR.** Branch `release/vX.Y.0`. Bump `"version"` in `library.json`
     and `.claude-plugin/plugin.json` (line 3) to the new version. Bump the three version
     strings in `README.md` too: the version badge, the "Early and experimental" callout,
-    and the Project status line. (The badge was missed from v0.13.0 to v0.15.0.) Roll the CHANGELOG
+    and the Project status line. (The badge was missed from v0.13.0 to v0.15.0, so the
+    manifest validator now fails when any of the three differs from `library.json`.) Roll the CHANGELOG
     `[Unreleased]` block into a `## [X.Y.0] - <date>` section with a summary line and
     Added / Changed / Fixed entries describing the wave. Leave a fresh empty
     `[Unreleased]`. Validate (`validate.py` + the manifest validator), PR, green, merge.
