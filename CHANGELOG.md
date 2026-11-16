@@ -19,6 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the same floor as `astro` 7.4.4 and 7.4.7, replacing the stale `>=22.12.0`. CI already builds on
   Node.js 24, the version `.nvmrc` pins, so only local builds on an older Node.js are affected.
 
+### Fixed
+
+- **The README version badge said 0.12.0.** It now says 0.15.0. It had been missed in three
+  release-prep commits. `scripts/validate-plugin-manifest.mjs` now fails when the badge, the
+  "Early and experimental" callout, or the Project status line differs from the version in
+  `library.json`, so the required `validate` CI job catches the next miss.
+
 ## [0.15.0] - 2026-10-28
 
 The marketer release. The catalog gains its first voice for writing that sells: landing pages,
