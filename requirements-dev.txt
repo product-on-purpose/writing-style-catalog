@@ -1,4 +1,4 @@
-pyyaml>=6.0.3
+pyyaml>=6.0.4
 jsonschema>=4.26.0
 referencing>=0.37.0
 pytest>=9.2.0
