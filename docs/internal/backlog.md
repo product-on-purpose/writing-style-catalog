@@ -111,7 +111,14 @@ mechanical one; flagged here, not assumed.
 | GATE 5 - teaching surface complete | **GREEN** 2026-07-29. |
 | GATE 6 - green pipes | **GREEN**, pending a release dry-run each cycle. |
 
----|---|
+### Earlier snapshot, superseded (the v0.2.0 era)
+
+The rows below describe the repository before the v0.3.0 work, when the catalog held 60 entries.
+They are kept so that the distance travelled stays visible. Every current figure is in the status
+snapshot above, and nothing here should be read as the present state.
+
+| Area | State (v0.2.0 era, superseded) |
+|---|---|
 | Catalog size | 60 entries, 15 per axis (Voice, Tone, Style, Format) |
 | Adherence result | 8/8 blind; 2 "dramatic", 4 "clear", **2 "subtle"**, 0 "identical" |
 | Composition | **Not conflict-aware** - `compose_instruction` concatenates phrasings; never reads `avoid_with`/`pairs_well_with` |
