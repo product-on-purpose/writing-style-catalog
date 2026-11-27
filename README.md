@@ -4,12 +4,14 @@
   <a href="https://github.com/product-on-purpose/writing-style-catalog">Writing Style Library</a>
 </h1>
 
-<h4>A composable catalog of writing instructions organized along orthogonal axes - Voice, Tone, Style, and Format - so you can compose precise, reusable writing instructions for any LLM instead of retyping vibes.</h4>
+<h4>Instruct an LLM on writing as precisely as you already instruct it on code. Pick one named entry on each of four axes - Voice, Tone, Style, and Format - and compose them into a reusable instruction, instead of retyping vibes.</h4>
 
 <p>
   <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=bug">Report a Bug</a>
   &nbsp;·&nbsp;
   <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?labels=enhancement">Request a Feature</a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/product-on-purpose/writing-style-catalog/issues/new?template=entry_proposal.yml">Propose an Entry</a>
   &nbsp;·&nbsp;
   <a href="https://product-on-purpose.github.io/writing-style-catalog/">Read the Docs</a>
 </p>
@@ -21,7 +23,7 @@
   </a>
   <img src="https://img.shields.io/badge/version-0.15.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-four-axis-model">
-    <img src="https://img.shields.io/badge/entries-98-brightgreen.svg?style=flat-square" alt="Catalog entries">
+    <img src="https://img.shields.io/badge/entries-118-brightgreen.svg?style=flat-square" alt="Catalog entries: 118 (98 machine-verified, 20 draft)">
   </a>
   <a href="https://agentskills.io/specification">
     <img src="https://img.shields.io/badge/spec-agentskills.io-orange.svg?style=flat-square" alt="Agent Skills Spec">
@@ -50,6 +52,7 @@
 <p>
   <a href="#the-big-idea">About</a> •
   <a href="#quick-start">Install</a> •
+  <a href="#does-it-work">Evidence</a> •
   <a href="#the-four-axis-model">The Model</a> •
   <a href="#whats-in-the-catalog">Catalog</a> •
   <a href="#documentation-site">Docs Site</a> •
@@ -70,6 +73,7 @@
 
 - [Quick Start](#quick-start)
 - [The Big Idea](#the-big-idea)
+- [Does It Work?](#does-it-work)
 - [The Four-Axis Model](#the-four-axis-model)
   - [Axis 1 - Voice](#axis-1---voice)
   - [Axis 2 - Tone](#axis-2---tone)
@@ -128,7 +132,23 @@ LLM-generated writing is uneven because the instructions are uneven. "Write a pr
 
 The Writing Style Library is that vocabulary. It decomposes the overloaded idea of "style" into orthogonal, composable parts, ships worked examples that show what each named value actually produces, and packages the whole thing as a Claude Code plugin so any combination assembles into a ready-to-use instruction.
 
-**Who is this for:** PMs, engineers, technical writers, marketers, pastors, and anyone who wants AI writing to land in a specific voice, register, and shape - and who would rather select named building blocks than re-explain the same tone every time.
+**Who is this for:** product managers and builders who write PRDs, ADRs, updates, and standups with an LLM every day, and anyone else who wants AI writing to land in a specific voice, register, and shape. That includes marketers, technical writers, and pastors. It suits anyone who would rather select named building blocks than re-explain the same tone every time.
+
+**How it differs from a prompt library:** a prompt library is a pile of finished prompts, one per task. This catalog is a coordinate system: four independent axes, a named value on each, and a builder that warns you when two choices clash. See [How It Compares](https://product-on-purpose.github.io/writing-style-catalog/concepts/how-it-compares/) for the side-by-side, including where a style guide or a prompt library is the better tool.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+## Does It Work?
+
+A named instruction is only worth having if it changes what the model writes. That was measured, blind, with a negative control:
+
+- **8 of 8** near-neighbour pairs, such as `candid` versus `confident`, were attributed correctly by a blind judge from the same model family. Chance is about 0.4 percent.
+- **18 of 18** samples were attributed correctly by a blind judge from a different vendor.
+- **3 of 3** deliberate caricatures were rejected, each for the failure mode its own entry documents. This shows the judge says no when it should.
+
+These are small tests. Each one covered between nine and sixteen entries, the judges were models rather than people, and the judges saw short descriptions of the options. The [evidence page](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/) records the method, the results, and every limit. Skeptical questions, including whether the examples are LLM-written (they are), are answered in the [FAQ](https://product-on-purpose.github.io/writing-style-catalog/concepts/faq/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,12 +182,14 @@ Format entries define the visual and structural container: headings, bullet dept
 
 ## What's in the Catalog
 
+The catalog holds **118 entries**. 98 of them ship in the plugin and carry `machine-verified`: each passes every automated check and has not yet been read line by line by the maintainer. The other 20 are draft format candidates, still under review and not shipped.
+
 | Axis | Entries | What it controls | Example entries |
 | ------ | --------: | ---------------- | --------------- |
-| **Voice** | 15 | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
+| **Voice** | 16 | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
 | **Tone** | 15 | Situational register layered on top of voice | `candid`, `warm`, `reverent`, `urgent` |
 | **Style** | 15 | Cognitive and rhetorical pattern: how ideas are sequenced | `problem-solution`, `layered-disclosure`, `socratic-inquiry`, `dialectic` |
-| **Format** | 52 | Visual and structural container: headings, sections, layout | `adr`, `daily-standup`, `slack-message`, `devotional-entry` |
+| **Format** | 72 (52 shipped, 20 draft) | Visual and structural container: headings, sections, layout | `adr`, `daily-standup`, `slack-message`, `devotional-entry` |
 
 Plus the assets that make the catalog teachable:
 
@@ -191,6 +213,9 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 | Start from a ready-made combination | [Recipes](https://product-on-purpose.github.io/writing-style-catalog/recipes/) |
 | Grab a canonical format structure | [Templates](https://product-on-purpose.github.io/writing-style-catalog/templates/) |
 | Understand the design | [Concepts](https://product-on-purpose.github.io/writing-style-catalog/concepts/four-axis-model/) |
+| Check the evidence that it works | [Does it actually work?](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/) |
+| Compare it with prompt libraries and style guides | [How It Compares](https://product-on-purpose.github.io/writing-style-catalog/concepts/how-it-compares/) |
+| Read the skeptical questions, answered | [FAQ](https://product-on-purpose.github.io/writing-style-catalog/concepts/faq/) |
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -231,7 +256,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **What exists today:**
 
-- 98 shipped taxonomy entries (16 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
+- 118 taxonomy entries in all: 98 shipped (16 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
 - 1176 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
 - Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)
@@ -247,7 +272,11 @@ Distributed through the Product on Purpose marketplace (`product-on-purpose/agen
 
 ## Contributing
 
-Contributions are welcome. To add a taxonomy entry, submit an example, or improve the docs:
+Writing has more voices than one maintainer knows. If the catalog is missing a voice, tone, style, or format you use, that gap is the most valuable thing you can contribute.
+
+The easiest start is to [propose an entry](https://github.com/product-on-purpose/writing-style-catalog/issues/new?template=entry_proposal.yml). A proposal needs no code: name the entry, say which axis it belongs on, and say which existing entry it is most easily confused with. If it holds up, you or the maintainer can build it.
+
+To build an entry, an example, or a docs fix yourself:
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feat/amazing-entry`)
@@ -255,7 +284,7 @@ Contributions are welcome. To add a taxonomy entry, submit an example, or improv
 4. Run validation locally: `python tools/validate.py`
 5. Open a Pull Request
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full entry-authoring checklist, schema conventions, and the house writing rules.
+New entries start as `draft`. Tooling promotes an entry to `machine-verified` once it passes every check, and only the maintainer moves an entry to `stable`, after reading it. See [CONTRIBUTING.md](CONTRIBUTING.md) for the entry bar, the review ladder, and the full checklist.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

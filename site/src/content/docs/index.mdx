@@ -5,9 +5,13 @@ description: Composable writing instructions on four orthogonal axes - Voice, To
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-A composable catalog of writing instructions. Pick one value from each axis - Voice, Tone, Style, Format - and the `writing-instruction-builder` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Mix and match to get exactly the writing you need.
+Instruct an LLM on writing as precisely as you already instruct it on code. Pick one value from each axis - Voice, Tone, Style, Format - and the `writing-instruction-builder` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Swap one value and only that dimension of the writing changes.
 
-The catalog ships 98 entries (16 Voice, 15 Tone, 15 Style, 52 Format), each with worked examples across twelve anchor topics, side-by-side diff-pairs that isolate a single axis, recipes that bundle common combinations, and copyable format templates.
+The catalog holds 118 entries. The 98 that ship in the plugin (16 Voice, 15 Tone, 15 Style, 52 Format) carry `machine-verified`: each passes every automated check and has not yet been read line by line by the maintainer. The other 20 are draft formats, still under review. Every shipped entry has worked examples across twelve anchor topics, and the catalog adds side-by-side diff-pairs that isolate a single axis, recipes that bundle common combinations, and copyable format templates.
+
+:::note[Does it actually work?]
+Blind judges attributed near-neighbour samples to the right entry 8 of 8 times with a same-family judge and 18 of 18 times with a judge from another vendor. They also rejected 3 of 3 deliberate caricatures. These are small tests, and the [evidence page](concepts/adherence-evidence/) states every limit.
+:::
 
 ## The four axes
 
@@ -62,10 +66,12 @@ Not sure which combination fits? Describe the situation instead and let [entry-r
 
 - [Install the plugin](guides/install/) - marketplace and ZIP paths
 - [Does it actually work?](concepts/adherence-evidence/) - the blind, cross-vendor evidence, and what it does not show
+- [How It Compares](concepts/how-it-compares/) - versus prompt libraries, style guides, and tone presets
+- [Questions and Objections](concepts/faq/) - including "isn't this just prompts?" and "are the examples LLM-written?"
 - [Four-Axis Model](concepts/four-axis-model/) - the design behind the catalog
 - [Composition](concepts/composition/) - how axis values combine
 - [Compose an Instruction](guides/compose-instruction/) - step-by-step guide
 - [Recommend Entries for a Situation](guides/recommend-entries/) - describe a situation, get a combination
-- [Add an Entry](guides/add-entry/) - contribute to the catalog
+- [Add an Entry](guides/add-entry/) - contribute to the catalog, or [propose one](https://github.com/product-on-purpose/writing-style-catalog/issues/new?template=entry_proposal.yml) without writing any code
 
 > This project is early and experimental. The catalog, schema, and skill interface may change. See the repository README for current status.

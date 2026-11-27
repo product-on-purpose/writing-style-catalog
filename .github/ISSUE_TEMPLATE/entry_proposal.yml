@@ -1,0 +1,70 @@
+name: Propose an entry
+description: Suggest a voice, tone, style, or format the catalog is missing. No code needed.
+title: "Entry proposal: <name>"
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing an entry. The hardest question about a new entry is whether it is distinct from the ones that already exist, so most of this form is about that. You do not need to write YAML or code. The entry bar is explained in [CONTRIBUTING.md](https://github.com/product-on-purpose/writing-style-catalog/blob/main/CONTRIBUTING.md#the-entry-bar), and the full catalog is on the [docs site](https://product-on-purpose.github.io/writing-style-catalog/reference/).
+  - type: input
+    id: name
+    attributes:
+      label: Proposed name
+      description: A short, descriptive name. It will become a kebab-case ID, such as `pragmatic-architect` or `decision-log`.
+    validations:
+      required: true
+  - type: dropdown
+    id: axis
+    attributes:
+      label: Which axis?
+      description: Voice is who is speaking. Tone is the register for this piece. Style is how the ideas are sequenced. Format is the container. If it seems to fit two axes, it is probably two entries.
+      options:
+        - Voice (who is speaking, a persistent identity)
+        - Tone (the register for this piece)
+        - Style (how the ideas are sequenced)
+        - Format (the container the writing arrives in)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: one_liner
+    attributes:
+      label: One sentence describing it
+      description: What does writing in this entry sound like or look like? Keep it under 200 characters if you can.
+    validations:
+      required: true
+  - type: textarea
+    id: situations
+    attributes:
+      label: When would someone use it?
+      description: Two or three real writing situations. Concrete beats general, for example "telling the team a committed feature is cut" rather than "hard news".
+    validations:
+      required: true
+  - type: textarea
+    id: confusable
+    attributes:
+      label: Which existing entry is it most easily confused with, and how is it different?
+      description: Name the nearest existing entry and write one sentence a reader could check against a sample. For example, "candid names the hard truth and gives a path forward; matter-of-fact states it with no frame at all." If nothing in the catalog is close, say so.
+    validations:
+      required: true
+  - type: textarea
+    id: failure
+    attributes:
+      label: How does it go wrong when it is overdone? (optional)
+      description: Every entry documents how it breaks when pushed too far, such as candour sliding into contempt. A guess is fine.
+  - type: textarea
+    id: sample
+    attributes:
+      label: A short sample (optional)
+      description: A paragraph written in this entry, by you or by a model. If a model wrote it, please say which one.
+  - type: dropdown
+    id: build
+    attributes:
+      label: Would you like to build it?
+      options:
+        - Yes, I would like to open the PR myself
+        - Maybe, with some guidance
+        - No, I am only proposing it
+    validations:
+      required: true
