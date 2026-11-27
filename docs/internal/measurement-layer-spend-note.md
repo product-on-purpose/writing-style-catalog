@@ -15,8 +15,9 @@ related:
 # What the paid half of the measurement layer would cost at 118 entries
 
 **The answer, first: money is not the constraint.** A full-catalog distinguishability sweep costs
-between **8 cents and $3.26** depending on the judge, and running all three ideas continuously for
-a year lands between **$10 and about $200**. The strategy document's cost table reads in the
+between **8 cents and $3.26** depending on the judge, or up to about **$14** on the pessimistic
+reasoning-token assumption in section 2, and running all three ideas continuously for a year lands
+between **$10 and a few hundred dollars**. The strategy document's cost table reads in the
 thousands because it was written for a 6,000-entry endpoint with 72,000 samples; at 118 entries
 and 1,176 samples the arithmetic is two orders of magnitude smaller, and this note derives it from
 measurement rather than reusing those figures.
@@ -53,18 +54,28 @@ single fact, not cost, is what makes these three ideas paid.
 |---|---|---|
 | Judge prompt, per comparison | 5,002 to 14,818 characters, mean 8,542 | **Measured**, over the 10 real prompts of the 2026-11-26 run |
 | Judge prompt in tokens | about 1,250 to 3,700, mean about 2,100 | Estimated from the characters at 4 characters per token; not a tokenizer count |
-| Judge output | the four-field JSON, 150 to 300 tokens | **Measured** (character count of the returned JSON), converted at the same ratio |
+| Judge output, visible | the four-field JSON, 700 to 1,200 characters, so about 170 to 300 tokens | **Measured** character count, converted at the same ratio. **A floor, not the billed output** - see the reasoning-token note below |
 | Render body, one passage | mean 2,997 characters, p90 5,297 | **Measured**, over all 1,176 committed renders |
 | Render body in tokens | mean about 750, p90 about 1,320 | Estimated at the same ratio |
 | Render prompt (`llm_instruction_phrasing` plus the task) | mean 696 characters of phrasing, so about 250 tokens in | **Measured** phrasing length; the task framing is estimated |
 
 **For costing, one judged comparison is 2,200 input tokens and 250 output tokens.** The long tail
-is real: the format pair (`adr` vs `design-doc`) is nearly twice the mean, because both passages are
-full structured documents. Budget the mean and expect format-axis sweeps to run about 1.7x.
+is real: a format pair, where both passages are full structured documents, runs nearly twice the
+mean, so expect format-axis sweeps at about 1.7x.
 
-One figure deserves naming so nobody reuses it wrongly: a single Codex call in the run reported
-**36,946 tokens used** for a 2,100-token prompt. That gap is the Codex CLI's own system prompt and
-hooks, not the judge payload. A direct API judge pays the payload. Prices below are on the payload.
+**The output figure is the weakest number here, and it is a floor.** The judge ran at Codex's
+`high` reasoning effort, and frontier APIs bill reasoning tokens as output. Reasoning does not
+appear in the transcript, so it was not measured. The Codex CLI reported **1,757 to 36,810 total
+tokens** across the twelve calls - a range too wide and too contaminated by the CLI's own system
+prompt and hooks to decompose, which is why it is quoted rather than used.
+
+So treat every output-side figure below as a floor and read it with a sensitivity range: at 10x
+the visible output, 2,500 reasoning-plus-output tokens per comparison, a frontier judged
+comparison costs about **$0.059** rather than $0.0138, and a 236-comparison field sweep costs
+about **$14** rather than $3.26. That is the pessimistic end, and it does not change the
+conclusion: a full sweep is still tens of dollars at worst. A `count_tokens` pass plus one real
+API call with usage reporting would replace this range with a number, and that is the first
+thing to do if a budget ever turns on it.
 
 ### Prices used
 
@@ -104,7 +115,11 @@ table because they are the right column once generation moves to another vendor.
 
 Sweep sizes come from the real `confusable_with` graph, not from 118 times one:
 
-- **118** entries, every one of which declares at least one same-axis confusable neighbor.
+- **118** entries, every one of which declares at least one same-axis confusable neighbor. Only
+  **89** of them, though, have an anchor topic on which that pair can be judged blind from the
+  committed renders: 972 of the 1,416 (pair, topic) cells survive the leak check, and the 29
+  entries with no usable cell are mostly formats whose prose names the format. A sweep priced
+  below at 118 is therefore an upper bound on what today's renders can actually produce.
 - **132** undirected confusable pairs; **264** directed edges.
 - Mean degree **2.24**, median 2, max 9.
 - The wider Gate 1 adversary set (tree siblings plus confusables) averages **6.95** and peaks at 14.
@@ -171,10 +186,15 @@ instrument costs credibility, which is the asset this whole layer exists to prot
 document understates. A leaderboard claims "model M can be steered into this catalog's styles",
 which requires **M to write the passages**. In-session subagents can only be Claude-family, so
 cross-vendor renders are paid generation - the one remaining paid item the gate-pilot calibration
-note already identified. It also needs `llm_instruction_phrasing` split into a per-family map,
-which is a schema change and a class C one under ADR 0019 (it narrows a string to a map), so it
-costs an ADR, a migration of all 118 entries, and a `schemas/v2` contract path under ADR 0020.
-**That schema change, not the tokens, is the expensive part of idea 3.**
+note already identified. It also needs per-model phrasings, and the shape of that
+change decides its cost. **Literally as the strategy document writes it** - turning
+`llm_instruction_phrasing` from a string into a map - it narrows an existing type, which is
+class C: an ADR, a migration of all 118 entries, and a `schemas/v2` contract path under ADR
+0020. **An additive variant field instead** - keeping `llm_instruction_phrasing` as the
+default string and adding an optional `llm_instruction_variants` object beside it - is class B
+by the same reasoning ADR 0022 uses, needs no migration, and leaves every existing consumer
+working. The additive shape is the one to pick, and it removes most of what made idea 3 look
+structurally expensive. What remains expensive is the public commitment, not the schema.
 
 **What a run costs.** Per model family: render 118 entries on one anchor topic, then judge each
 against its neighbor at two trials.
@@ -258,14 +278,17 @@ is unmeasured. The study:
    three by a wide margin, because it protects the asset rather than advertising it.
 3. **Treat idea 6 as a small addition to the ratchet**, not a project: once CI can judge, a
    release-triggered sweep is another workflow trigger and **$33 to $50 a year**.
-4. **Hold idea 3 until there is an audience for it.** Its tokens are cheap, but it carries a class
-   C schema change, a `schemas/v2` contract, a migration of 118 entries, and a public commitment to
-   keep re-running. That is a launch project, and it should follow a usage signal rather than
-   precede one - the same reasoning the roadmap used to defer the 120-entry expansion.
+4. **Hold idea 3 until there is an audience for it, and if it is built, build it additively.**
+   Its tokens are cheap, and the class C schema change is avoidable: an optional
+   `llm_instruction_variants` field beside the existing string is class B and needs no
+   migration. What is not avoidable is the public commitment to keep re-running a leaderboard,
+   and a stale leaderboard dates the project in the one place it claims to be current. That is a
+   launch project, and it should follow a usage signal rather than precede one - the same
+   reasoning the roadmap used to defer the 120-entry expansion.
 
 **The number worth carrying out of this note:** every judged comparison in this catalog costs
-between two hundredths of a cent and 1.4 cents, and the whole catalog sweeps for less than the
-price of a coffee. So the decision was never a budget decision. It is a decision about whether to
+between two hundredths of a cent and about six cents, and the whole catalog sweeps for less than
+the price of a lunch even on the pessimistic assumption. So the decision was never a budget decision. It is a decision about whether to
 accept CI that calls a vendor API, and about whether the instrument is steady enough to block a
 merge on. The first is a preference. The second is a question with a free experiment attached, and
 that experiment should run before any card is added to any secret store.
@@ -274,7 +297,8 @@ that experiment should run before any card is added to any secret store.
 
 **Measured in this repository, on 2026-11-26:** the catalog size (118 entries), the confusable
 graph (132 undirected pairs, 264 directed edges, mean degree 2.24, max 9), the Gate 1 adversary set
-size (mean 6.95, max 14), judge prompt lengths over 10 real prompts (5,002 to 14,818 characters),
+size (mean 6.95, max 14), judge prompt lengths over 10 real prompts (5,002 to 14,818 characters), the leak-check coverage
+(89 of 118 entries, 972 of 1,416 cells),
 render body lengths over all 1,176 committed renders (mean 2,997 characters, p90 5,297),
 `llm_instruction_phrasing` lengths (mean 696 characters), the 10-of-10 attribution result, and the
 band's instability under presentation order.
@@ -285,7 +309,9 @@ here and worth re-checking before anyone commits a budget.
 
 **Estimated, and load-bearing:** the 4-characters-per-token conversion, which is an approximation
 and not a tokenizer count - a `count_tokens` pass over the real prompts would tighten every dollar
-figure by some tens of percent, in either direction. Also estimated: the 20 percent escalation rate
+figure by some tens of percent, in either direction. **Output tokens are the weakest input**: the
+measured figure is visible JSON only, reasoning tokens are billed as output and were not measured,
+and section 2 carries a 10x sensitivity range for that reason. Also estimated: the 20 percent escalation rate
 in the tiered judge, the 100-PRs-per-year and 10-releases-per-year cadences, and the number of
 trials a stable band needs, which is **unknown** and is the one estimate section 6 exists to
 replace.

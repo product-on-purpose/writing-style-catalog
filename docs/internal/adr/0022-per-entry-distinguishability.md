@@ -130,16 +130,23 @@ Class B is "a new optional property", which this is. The classification was none
 against ADR 0019's own text in the three places it could fail, because a wrong answer here is
 expensive: a class C change to a frozen schema does not merely cost an ADR and a version bump, it
 breaks the `v1` contract and forces a `schemas/v2` path plus a retained snapshot under ADR 0020.
-That is the cost that got the vestigial-enum cleanup declined in October 2026.
+That is the cost that got the vestigial-enum cleanup declined: ADR 0021's Neutral section
+records that on 2026-10-28 the maintainer declined removing the unused `reviewed` value before
+1.0.0, precisely because narrowing the enum would bump `SCHEMA_CONTRACT_VERSION` to `v2` and
+serve `v1` alongside it.
 
-**Check 1 - the `entry.universal` sentence.** Class C says "A change to a shared `$def` or to
-`entry.universal` is class C for *every* schema that composes it". Read as "any change to
-`entry.universal` is class C", that sentence would make class B unreachable on the shared schema.
-It cannot mean that: the sentence sits inside a list of **keywords** routed to class C and ends
-"scope the migration accordingly", which is a statement about blast radius, and decision 3 of ADR
-0019 names "`family` on styles and tones" - a new optional property - as "a class B change
-followed later by a class C tightening". Reading: the sentence widens the migration scope of a
-class C change to `entry.universal`; it does not reclassify class B edits to it.
+**Check 1 - the `entry.universal` sentence. Already settled, by ADR 0021.** Class C says "A
+change to a shared `$def` or to `entry.universal` is class C for *every* schema that composes
+it". Read as "any change to `entry.universal` is class C", that sentence would make class B
+unreachable on the shared schema. ADR 0021 answered this directly when it classified the
+`machine-verified` enum widening, in its section "Correction to the inherited framing": the
+sentence "sits inside the class C keyword list and does two jobs: it names `$defs` and shared
+definitions as class C keywords, and it scopes migration blast radius for a change that is
+already class C. It does not promote an explicitly allowlisted class B edit to class C because
+of which file it lives in." This ADR follows that reading rather than re-deriving it, and the
+same corroboration applies: decision 3 of ADR 0019 names "`family` on styles and tones" - a new
+optional property on a per-axis schema - as "a class B change followed later by a class C
+tightening".
 
 **Check 2 - keywords used inside the new object.** The sub-schema uses `type`, `enum`, `minimum`,
 `maximum`, `required`, `properties` and `pattern`, all introducing assertions on a property that
@@ -223,12 +230,20 @@ ratchet exists and the variance is known.
   editing a YAML field".
 - **One generator for both passages.** `generator_model` is a single string, so a measurement whose
   two passages came from different generators may not be recorded. This is a live constraint, not
-  a hypothetical: of the four pairs in the first harness run, two drew one passage from a
-  `claude-opus-4-7` render and the other from a `claude-sonnet-4-6` render, because the committed
-  renders were made in different waves. Those two pairs cannot populate the field until one side
-  is re-rendered. The alternative - letting `generator_model` be an array - is cheaper now and
+  a hypothetical: in the first harness run one pair, `adr` against `design-doc` on
+  `service-database-choice`, drew one passage from a `claude-opus-4-7` render and the other from
+  a `claude-sonnet-4-6` render, because the committed renders were made in different waves. That
+  pair could not populate the field until one side were re-rendered. The other four pairs were
+  single-generator. The alternative - letting `generator_model` be an array - is cheaper now and
   makes every cross-model comparison in frontier idea 3 ambiguous later, so the single string is
   recommended.
+- **One topic per measurement, and a trial is one presentation.** A pairwise forced choice is
+  right or wrong as a whole, so one trial scores 0 or 1, and the two presentation orders of one
+  passage pair are not independent samples: they test order sensitivity on the same prose. A
+  measurement that spans several topics is therefore several measurements, not one with a larger
+  N. Where a pair has been judged on more than one topic, the field records the topic whose
+  trials produced the recorded floor band, and the other topics live in the run records. Letting
+  `topic` be a list would average over conditions the measurement never pooled.
 - **The measurement must be blind, and blindness is checked, not promised.** Many committed renders
   open with a heading naming the entry; the harness strips it and then refuses to emit a packet
   whose passages still name either entry.
@@ -318,8 +333,15 @@ change forward.
   first run. Recording the floor is a mitigation, not a fix; characterising that variance is
   genuinely unfinished work.
 - **Measuring from committed renders measures the phrasing as it stood when the render was made.**
-  Two of the four pairs in the first run drew their passages from different generator waves months
-  apart. `measured_on` and `generator_model` make the staleness visible; they do not remove it.
+  One pair in the first run drew its passages from generator waves months apart, and every render
+  used predates the run by months. `measured_on` and `generator_model` make the staleness
+  visible; they do not remove it.
+- **The field cannot be produced for every entry from the renders in the repository.** Under the
+  leak check as corrected by PR #198, 89 of the 118 entries have at least one anchor topic on
+  which their declared pair can be judged blind; the other 29 are almost all ceremonial,
+  contemplative and document formats whose prose names the format, `eulogy` and `adr` among them.
+  For those, the field waits on renders that do not name themselves, or on a protocol that masks
+  the term instead of refusing the packet.
 - **Nothing invalidates a stale field in v1.** An entry whose `llm_instruction_phrasing` is edited
   after `measured_on` keeps a number that no longer describes it. That is exactly the hole the
   ratchet fills, and until it is funded the date is the only defence.
