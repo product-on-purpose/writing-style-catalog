@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`tools/distinguishability.py`, a band harness for one entry against its declared neighbor.**
+  `prepare` builds blind, leak-checked judge packets from the renders already committed under
+  `examples/vertical-slices/`, and `record` scores the returned verdicts into an inspectable run
+  record. It generates nothing and calls no API: both passages come from the repository and the
+  judge is a free cross-vendor in-session subagent, so a band costs one subagent call. It reports
+  the four bands the 2026-05-31 smoke test produced (`dramatic`, `clear`, `subtle`, `identical`)
+  and refuses to emit a packet whose passages name either entry, because a blind test that states
+  its own answer measures nothing. `tools/gate_pilot.py` is unchanged: it stays the calibrated
+  three-band instrument for admission against several neighbors at once.
+
 ### Changed
 
 - **Dependency bumps:** `@astrojs/starlight` 0.41.7 to 0.43.1, `@astrojs/mdx` 7.0.5 to 8.1.6,
