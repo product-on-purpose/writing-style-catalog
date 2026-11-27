@@ -88,9 +88,21 @@ def test_find_leaks_returns_empty_on_clean_prose():
     assert D.find_leaks("January: the project was in its seventh month.", ["coach"]) == []
 
 
-def test_terms_for_drops_fragments_too_short_to_be_evidence():
-    terms = D._terms_for("adr", {"name": "ADR"})
-    assert "adr" not in terms and "ADR" not in terms
+def test_terms_for_keeps_a_three_letter_id():
+    """No length floor: `adr`, `bio`, `faq`, `prd` and `rfc` are real ids.
+
+    The first version of this check dropped terms under four characters, which
+    exempted every three-letter id in the catalog and let a leaking packet
+    through. A false positive costs a refused topic; a false negative costs the
+    measurement.
+    """
+    assert "adr" in D._terms_for("adr", {"name": "Architecture Decision Record"})
+
+
+def test_find_leaks_catches_a_three_letter_id_used_as_a_heading():
+    """The real leak: the `adr` render opens `# ADR-0023: ...`."""
+    body = "# ADR-0023: Use Postgres for the Notification Service\n\n## Context\n"
+    assert D.find_leaks(body, D._terms_for("adr", {"name": "Architecture Decision Record"})) == ["adr"]
 
 
 # ---------------------------------------------------------------------------
@@ -321,6 +333,21 @@ def test_the_required_subtle_style_pair_builds_a_clean_blind_trial():
     )
     assert set(trial.mapping.values()) == {"narrative-case-study", "chronological-narrative"}
     assert all(len(s.body) > 500 for s in trial.slots)
+
+
+def test_the_adr_render_is_refused_rather_than_judged():
+    """A regression pin on the leak that got through the first run.
+
+    `examples/vertical-slices/service-database-choice/format-adr.md` opens
+    `# ADR-0023: Use Postgres for the Notification Service`. The heading names
+    the format, the strip rule does not remove it (the entry's name is
+    "Architecture Decision Record", which the heading does not contain), and
+    the first version of the leak check exempted three-letter ids. The packet
+    was built and judged. It must now raise instead.
+    """
+    id_map = D.load_catalog()
+    with pytest.raises(ValueError, match="name its own answer"):
+        D.build_trial("adr", "design-doc", "service-database-choice", id_map, order_seed=0)
 
 
 def test_prepare_emits_machine_readable_packets(capsys):
