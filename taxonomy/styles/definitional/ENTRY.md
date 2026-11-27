@@ -46,6 +46,7 @@ avoid_with:
   - pastoral
 confusable_with:
   - diataxis-explanation
+  - first-principles-derivation
 when_to_use:
   - Glossary and concept reference pages
   - '"What is X" introductory articles'
@@ -125,3 +126,5 @@ Narrative or experiential writing, argumentative pieces where the term is contes
 ### Often confused with
 
 **diataxis-explanation**: Diataxis explanation can use any structure - narrative, comparison, analogy, model-building - to convey understanding of a concept. Definitional commits to a specific structural move: lead with a precise definition, then test and elaborate it. A diataxis explanation might include a definition; a definitional piece is built around one.
+
+**first-principles-derivation**: Both put something precise at the very front and build the rest of the piece on it, which is what makes them look alike. Definitional writing leads with a definition exact enough to discriminate cases, elaborates it through facets and edge cases and a section on what the term is not, and ends on a stress-tested version of that same opening definition. A first-principles derivation leads with premises rather than a definition, and where a definition does appear it is one premise among several, offered to be granted rather than tested. The two also finish in different places: a definitional piece ends where it started, sharper, while a derivation ends somewhere its opening did not state.

@@ -151,7 +151,7 @@ existing entry the candidate will declare in `confusable_with` and be gated agai
 
 | Candidate | Rationale | Neighbor | Risk |
 |---|---|---|---|
-| `historian` | Writes about what has settled, with hindsight as the instrument, where the `journalist` writes about what is still moving and must attribute every claim. | `journalist` | low |
+| `historian` | Writes about what has settled, with hindsight as the instrument, where the `journalist` writes about what is still moving and must attribute every claim. It also needs separating from the authored `elder`: the historian's subject is events and institutions, and the elder's is the writer's own life and the reader's situation. | `journalist` | medium |
 | `naturalist` | Records close observation with no narrative arc, so attention itself is the content. The `storyteller` needs a scene that turns. One of the few voices that reads naturally on the contemplative topics. | `storyteller` | low |
 | `profiler` | Renders one person through the accounts of others, which is a different instrument from the `storyteller`, whose subject is an event. Strong on `retirement-send-off` and `thanking-a-mentor`. | `storyteller` | medium |
 
@@ -213,7 +213,7 @@ the Tone one. One already exists as a Style, `comparison-contrast`. Two would co
 existing **Format** ids, `manifesto` and `postmortem`, and entry ids are global across all
 four axes, because `tools/validate.py:check_frontmatter_parseable` builds one flat
 `id_map` keyed by id alone. Four more duplicate an existing Style or Format closely enough
-to reject. Seven survive. Eight slots are filled with cognitive and rhetorical patterns the
+to reject, and one more, `field-notes`, is held in reserve in section 6.3. Seven survive. Eight slots are filled with cognitive and rhetorical patterns the
 catalog lacks, each named with the move that makes it distinct.
 
 The cluster column reuses the existing `frame` values.
@@ -226,10 +226,10 @@ The cluster column reuses the existing `frame` values.
 | `inversion` | argumentative | Asks what would have to be true for the opposite, or how one would guarantee failure, and reasons from the answer. This is a distinct cognitive move, not a distinct subject. | `dialectic` | low |
 | `analogy-driven` | expository-conceptual | Carries the whole explanation on one sustained analogy, and names where that analogy breaks. `diataxis-explanation` builds a direct conceptual model instead. | `diataxis-explanation` | low |
 | `cause-effect` | expository | Traces a mechanism from cause to consequence and stops there. `problem-solution` must prescribe a remedy, and this style is under no obligation to. | `problem-solution` | low |
-| `prediction-and-rationale` | argumentative | Commits to a falsifiable claim about the future and states what would disconfirm it. No existing Style puts its own falsifier on the page. | `classical-argument` | low |
+| `prediction-and-rationale` | argumentative | Commits to a falsifiable claim about the future and states what would disconfirm it. Its falsifier is an event, where the authored `first-principles-derivation` names a premise instead. | `classical-argument` | low |
 | `hypothesis-and-test` | expository-analytical | Reports a hypothesis, the test run against it, and the result, including a result that went the other way. It is backward-looking where `prediction-and-rationale` is forward-looking. | `prediction-and-rationale` | medium |
 | `constraint-first` | expository | States the binding constraints before any option, so the constraints do the deciding and options are filtered rather than argued. `decision-log` records how a choice was reached, criteria included. | `decision-log` | medium |
-| `inductive-build` | argumentative | Builds from particulars and withholds the claim until the end, which is the exact inverse of `executive-summary` and its claim-first contract. | `executive-summary` | low |
+| `inductive-build` | argumentative | Builds from particulars, so the claim is reached by accumulation rather than by entailment, and is withheld until the end. | `first-principles-derivation` | **high** |
 | `quantitative-narrative` | expository-analytical | Builds the argument out of a few numbers, each carrying its source and its uncertainty, with the prose in service of the figures. | `executive-summary` | medium |
 | `objection-handling` | argumentative | Organized by the reader's anticipated resistance, conceding before answering. `question-and-answer` is organized by curiosity and concedes nothing. | `question-and-answer` | medium |
 | `parable` | reflective-personal | A short illustrative story whose lesson is deliberately withheld for the reader to supply. `narrative-case-study` tells a real story and states the principle. | `narrative-case-study` | medium |
@@ -364,15 +364,17 @@ The recommended batch order puts the highest confidence first.
    authored, so the batch is `taxonomy`, `debunking`, `inversion`, `analogy-driven`,
    `cause-effect`, and `prediction-and-rationale`. All six are low-risk, and all six
    render across the topic span.
-2. **Voice, the six remaining low-risk entries.** `elder` is already authored, so the batch
-   is `ethicist`, `artisan`, `advocate`, `spokesperson`, `historian`, and `naturalist`.
+2. **Voice, the five remaining low-risk entries.** `elder` is already authored and `historian`
+   moved to medium once `elder` existed, so the batch is `ethicist`, `artisan`, `advocate`,
+   `spokesperson`, and `naturalist`.
 3. **Tone, the seven remaining low-risk entries.** `grateful` is already authored, so the
    batch is `weary`, `defiant`, `vigilant`, `restrained`, `apologetic`, `curious`, and
    `stern`.
 4. **The `dissident` three as one batch**, gated against each other before anything else.
 5. **The medium-risk remainder**, in axis batches.
-6. **The three high-risk entries last**: `polemicist`, `bemused`, and `aphoristic`. Each
-   should be withdrawn rather than defended if its gate fails.
+6. **The four high-risk entries last**: `polemicist`, `bemused`, `aphoristic`, and
+   `inductive-build`, which became high-risk once `first-principles-derivation` was authored.
+   Each should be withdrawn rather than defended if its gate fails.
 
 ## 9. What this slate does not decide
 
@@ -381,8 +383,12 @@ The recommended batch order puts the highest confidence first.
 - **No promotion is proposed.** All 44 are draft work. The Gate 1 blind attribution for
   the three exemplars was not run as part of this slate, so the empirical distinguishability
   claim for them is argued but unverified.
-- **No counter updates are proposed.** `README.md`, `library.json`, and
-  `.claude-plugin/plugin.json` carry curated counts that move only on promotion, and the
-  exemplars stay at `draft`.
+- **No counter updates are proposed, and this was checked rather than assumed.** The
+  `README.md` worked-example line reads "1176 worked examples - every one of the 98 shipped
+  entries rendered across all twelve anchor topics", and 98 times 12 is 1176, so that figure
+  counts shipped entries only. The three exemplars stay at `draft`, so 98 and 1176 both remain
+  correct, as do the curated counts in `library.json` and `.claude-plugin/plugin.json`. The
+  total number of vertical-slice sample files on disk is now 1212, which is a different number
+  from the published one by design.
 - **The reserve list is not ranked.** If a gate fails, which reserve candidate replaces the
   failed one is a maintainer call.

@@ -39,6 +39,7 @@ confusable_with:
   - columnist
   - product-thinker
   - storyteller
+  - elder
 when_to_use:
   - Onboarding documentation
   - Tutorial blog posts and step-by-step guides
@@ -128,3 +129,5 @@ Avoid with technical expert audiences who want brevity, formal executive communi
 **product-thinker**: The friendly mentor adopts a teaching stance; the product thinker adopts a problem-framing one. This voice is trying to get knowledge across to a reader who lacks it. The product thinker is trying to get a group to agree on the problem before anyone proposes a solution, which is a different job even when the tone sounds similar.
 
 **storyteller**: The friendly mentor names the lesson and walks the reader through it; the storyteller shows the situation that contains the lesson and trusts the reader to extract it. This voice's contract is "let me explain." The storyteller's is "let me show you." The mentor is the safer choice when the reader has to get it right rather than merely feel it.
+
+**elder**: Both can be patient and warm, and both speak from a position the reader has yet to reach. The difference is what each one leaves the reader with. The friendly mentor is aiming at competence: it scaffolds a concept, paces the explanation, and names where people get stuck, and it has failed if the reader finishes without a working mental model. The elder voice draws its standing from elapsed time rather than from expertise, and it is not teaching a concept at all. It reports how a situation turned out and sets it on a longer scale, and it is allowed to end with no advice and nothing new the reader can do.
