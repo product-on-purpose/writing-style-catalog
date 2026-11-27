@@ -35,11 +35,37 @@ in-session subagents at zero marginal API cost; no paid CI is required.
 
 | Harness | Stage | What it does |
 | --- | --- | --- |
-| [`generate.js`](generate.js) | Generate | Writes N new draft format `ENTRY.md` files, one read-its-neighbor agent per candidate, mirroring the `adr` template. |
-| [`dedup.js`](dedup.js) | Audit | Whole-corpus distinguishability + quality audit, one auditor per **family cluster**. Returns structured flags. |
+| [`generate.js`](generate.js) | Generate | Writes N new draft `ENTRY.md` files on one axis, one read-its-neighbor agent per candidate, mirroring that axis's template entry. |
+| [`dedup.js`](dedup.js) | Audit | Whole-corpus distinguishability + quality audit on one axis, one auditor per **cluster**. Returns structured flags. |
 | [`remediate.js`](remediate.js) | Remediate | Applies a precise per-file fix-list, one agent per file. General-purpose (de-dup fixes, date fixes, any surgical batch). |
-| [`promote.js`](promote.js) | Render | Renders N formats across all 12 anchor topics (12*N worked samples), each inheriting its topic's shared scenario. |
+| [`promote.js`](promote.js) | Render | Renders N entries on one axis across all 12 anchor topics (12*N worked samples), each inheriting its topic's shared scenario. |
 | [`../promote.py`](../promote.py) | Promote | Flips fully-rendered drafts to `machine-verified`, atomically and guarded against the Gate 2 sample-count rule. `--reviewed <id>` moves an entry the maintainer has read on to `stable`. |
+
+### All three take an axis
+
+`generate.js`, `dedup.js`, and `promote.js` each carry an `AXIS` constant and an
+`AXES` table. Set `AXIS` to `format`, `voice`, `tone`, or `style`, or pass the axis
+as the Workflow tool's `args.axis` and leave the file alone. The axis selects the
+taxonomy directory, the template entry the output mirrors, the axis schema, the
+axis-specific frontmatter the prompt asks for, and the sample filename prefix
+(`<axis>-<id>.md`, which is what `tools/promote.py` already reads).
+
+Per-axis template entries, chosen as the fullest field set on each axis:
+
+| Axis | Directory | Template entry | Axis-only frontmatter the prompt asks for |
+| --- | --- | --- | --- |
+| `format` | `taxonomy/formats` | `adr` | `domain`, `family`, `canonical_template`, `digital_or_print`, `typical_voices`, `typical_tones` |
+| `voice` | `taxonomy/voices` | `marketer` | `family`, `language_patterns`, `diction`, `sentence_style`, `default_pov`, `typical_tones` |
+| `tone` | `taxonomy/tones` | `empathetic` | `markers`, `spectrum`, `spectrum_position`, `nn_g_profile` |
+| `style` | `taxonomy/styles` | `comparison-contrast` | `structural_conventions`, `frame`, `classical_mode`, `evidence_types`, `reader_contract` |
+
+Tones and styles carry **no `domain` and no `family`** (ADR 0010 section 2), and the
+prompts do not ask for either. A `dedup.js` group key on those two axes is a
+**planning cluster** (group tones by `spectrum`, styles by `frame`), not a field.
+
+The Format path is byte-for-byte what it was before the axis parameterization, and
+`tests/agentic-harness.test.mjs` pins it against goldens in
+`tests/golden-outputs/agentic/` captured from the pre-change harnesses.
 
 Two gates are **agent prompts, not scripts** (they dispatch a subagent per unit and
 return findings you feed to `remediate.js`). The canonical prompt text is in the spec;
@@ -50,7 +76,7 @@ short forms below.
 ### A. Add new entries (breadth)
 
 ```
-edit generate.js CANDIDATES (pre-validate every cross-ref id; pick neighbor-fitting pairs)
+set generate.js AXIS + CANDIDATES (pre-validate every cross-ref id; pick neighbor-fitting pairs)
 -> Workflow(generate.js)
 -> python tools/validate.py && python tools/build-indexes.py
 -> dispatch the DISTINGUISHABILITY GATE (one codex:codex-rescue agent per batch; prompt below)
@@ -75,8 +101,8 @@ regenerate dedup.js GROUPS from the current family map
 ### C. Promote a wave (draft -> machine-verified)
 
 ```
-edit promote.js FORMATS (the approved wave)
--> Workflow(promote.js)                                  # render 12 samples per format
+set promote.js AXIS + ENTRIES (the approved wave) + LLM_MODEL (the model that will render)
+-> Workflow(promote.js)                                  # render 12 samples per entry
 -> python tools/validate.py                              # green: drafts are Gate-2-exempt
 -> DATE GATE the dated formats (incident-report, release-notes, postmortem, retrospective,
    and any with timelines): one date-checker agent per format (prompt below)
@@ -125,6 +151,16 @@ rendered content. Full prompt: the spec.
   CRLF-converts the whole file. `promote.py` and the agents preserve line endings.
 - **Anchor topics** are defined once in `tools/anchor_topics.py`. The 12 in
   `promote.js` mirror it; keep them in sync.
+- **`promote.js` stamps `llm_model`** into every sample it writes. The default is the
+  value the Stream-B Format renders carried, so set it to the model actually rendering
+  before you run (the October `marketer` renders carry `claude-sonnet-5-5`).
+- **A confusable neighbor may be on another axis.** The `procedural` style declares
+  the `technical-reference` format and that format declares it back. Write such a
+  neighbor in `generate.js` as `{ id, axis }` rather than a bare string, so the
+  prompt points at the right directory.
+- **Entry ids are global across all four axes.** `validate.py` keys one flat `id_map`
+  by id alone, so a new id must not collide with any existing id on any axis. This is
+  why a `manifesto` or `postmortem` style is not mintable: both ids are formats.
 - **No paid CI:** the whole factory runs on in-session subagents + the cross-vendor
   judge, for free. The paid-automation decision is fenced to three triggers (a batch
   too large to hand-drive, unattended contributor-PR admission, or published

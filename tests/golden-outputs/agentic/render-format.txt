@@ -1,0 +1,347 @@
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "service-database-choice" (Choosing Postgres vs DynamoDB for a new service). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/service-database-choice/format-adr.md
+  examples/vertical-slices/service-database-choice/format-readme.md
+  examples/vertical-slices/service-database-choice/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/service-database-choice/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: service-database-choice
+topic_label: Choosing Postgres vs DynamoDB for a new service
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@service-database-choice OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "async-standups" (Whether the team should move to async-first standups). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/async-standups/format-adr.md
+  examples/vertical-slices/async-standups/format-readme.md
+  examples/vertical-slices/async-standups/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/async-standups/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: async-standups
+topic_label: Whether the team should move to async-first standups
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@async-standups OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "roadmap-deprioritization" (Telling stakeholders a committed feature is being cut this quarter). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/roadmap-deprioritization/format-adr.md
+  examples/vertical-slices/roadmap-deprioritization/format-readme.md
+  examples/vertical-slices/roadmap-deprioritization/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/roadmap-deprioritization/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: roadmap-deprioritization
+topic_label: Telling stakeholders a committed feature is being cut this quarter
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@roadmap-deprioritization OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "onboarding-a-new-hire" (Getting a new engineer productive in their first two weeks). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/onboarding-a-new-hire/format-adr.md
+  examples/vertical-slices/onboarding-a-new-hire/format-readme.md
+  examples/vertical-slices/onboarding-a-new-hire/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/onboarding-a-new-hire/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: onboarding-a-new-hire
+topic_label: Getting a new engineer productive in their first two weeks
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@onboarding-a-new-hire OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "remote-work-policy" (Arguing a public position on return-to-office). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/remote-work-policy/format-adr.md
+  examples/vertical-slices/remote-work-policy/format-readme.md
+  examples/vertical-slices/remote-work-policy/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/remote-work-policy/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: remote-work-policy
+topic_label: Arguing a public position on return-to-office
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@remote-work-policy OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "product-launch-announcement" (Announcing a new product to an outside audience). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/product-launch-announcement/format-adr.md
+  examples/vertical-slices/product-launch-announcement/format-readme.md
+  examples/vertical-slices/product-launch-announcement/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/product-launch-announcement/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: product-launch-announcement
+topic_label: Announcing a new product to an outside audience
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@product-launch-announcement OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "morning-routine" (Designing a sustainable morning routine). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/morning-routine/format-adr.md
+  examples/vertical-slices/morning-routine/format-readme.md
+  examples/vertical-slices/morning-routine/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/morning-routine/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: morning-routine
+topic_label: Designing a sustainable morning routine
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@morning-routine OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "thanking-a-mentor" (Writing to thank a mentor who shaped your career). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/thanking-a-mentor/format-adr.md
+  examples/vertical-slices/thanking-a-mentor/format-readme.md
+  examples/vertical-slices/thanking-a-mentor/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/thanking-a-mentor/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: thanking-a-mentor
+topic_label: Writing to thank a mentor who shaped your career
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@thanking-a-mentor OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "retirement-send-off" (Marking a long-serving colleague's departure). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/retirement-send-off/format-adr.md
+  examples/vertical-slices/retirement-send-off/format-readme.md
+  examples/vertical-slices/retirement-send-off/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/retirement-send-off/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: retirement-send-off
+topic_label: Marking a long-serving colleague's departure
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@retirement-send-off OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "team-milestone-celebration" (Marking the team shipping a hard, long project). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/team-milestone-celebration/format-adr.md
+  examples/vertical-slices/team-milestone-celebration/format-readme.md
+  examples/vertical-slices/team-milestone-celebration/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/team-milestone-celebration/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: team-milestone-celebration
+topic_label: Marking the team shipping a hard, long project
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@team-milestone-celebration OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "daily-rest-practice" (Reflecting on keeping a discipline of rest). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/daily-rest-practice/format-adr.md
+  examples/vertical-slices/daily-rest-practice/format-readme.md
+  examples/vertical-slices/daily-rest-practice/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/daily-rest-practice/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: daily-rest-practice
+topic_label: Reflecting on keeping a discipline of rest
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@daily-rest-practice OK". Do not return the file content.
+===PROMPT===
+You are rendering ONE worked example for the writing-style-catalog: the FORMAT "example-format-id" applied to the anchor topic "a-hard-year-in-review" (A personal year-end reckoning with a difficult year). Working directory: __ROOT__ (use repo-relative paths).
+
+Step 1: Read taxonomy/formats/example-format-id/ENTRY.md - its structure, tells, canonical_template, and llm_instruction_phrasing.
+
+Step 2: Read these EXISTING samples on this topic to learn the SHARED SCENARIO (the specific situation, named people, concrete details, and dates that every sample on this topic reuses) and the house style:
+  examples/vertical-slices/a-hard-year-in-review/format-adr.md
+  examples/vertical-slices/a-hard-year-in-review/format-readme.md
+  examples/vertical-slices/a-hard-year-in-review/format-status-report.md
+Your sample MUST use the SAME scenario - same people, same situation, same specifics and dates - so it is directly comparable to the other samples on this topic. Do NOT invent a different situation.
+
+Step 3: Write the file examples/vertical-slices/a-hard-year-in-review/format-example-format-id.md. Apply the "example-format-id" format faithfully to the shared scenario of this topic, even when the pairing is unusual (an ADR applied to a personal decision still uses Status / Context / Decision / Consequences; render the real structure of the format on whatever situation this topic carries). Frontmatter, exactly these fields:
+---
+entry_id: example-format-id
+axis: format
+topic_slug: a-hard-year-in-review
+topic_label: A personal year-end reckoning with a difficult year
+author_type: llm
+llm_model: claude-sonnet-4-6
+review_status: reviewed
+---
+Then a blank line and the worked sample body.
+
+REQUIREMENTS:
+- Reuse the people, situation, and specifics from the existing scenario; stay consistent with any dates/weekdays the existing samples use (do not introduce contradictory dates).
+- HARD RULE: no em-dashes (U+2014) or en-dashes (U+2013); use " - " (space hyphen space). The write is REJECTED if they appear.
+- No fabricated statistics and no real-company / real-person claims; keep details internal and first-person/low-fabrication, matching the existing samples.
+- Match the length and density typical of this format (per its ENTRY.md).
+- After writing the file, return ONLY "example-format-id@a-hard-year-in-review OK". Do not return the file content.

@@ -26,6 +26,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and refuses to emit a packet whose passages name either entry, because a blind test that states
   its own answer measures nothing. `tools/gate_pilot.py` is unchanged: it stays the calibrated
   three-band instrument for admission against several neighbors at once.
+- **The three generation harnesses now take an axis.** `tools/agentic/generate.js`,
+  `promote.js`, and `dedup.js` each carry an `AXIS` setting covering `format`, `voice`,
+  `tone`, and `style`, so the breadth loop that grew the Format axis from 15 to 72 runs
+  unchanged on the other three. Each axis selects its own taxonomy directory, template
+  entry, schema, and axis-specific frontmatter, and `promote.js` writes samples under the
+  `<axis>-<id>.md` key `tools/promote.py` already reads. `generate.js` also resolves a
+  cross-axis confusable neighbor, written as `{ id, axis }`, to the right directory. The
+  Format path is byte-for-byte what it was, pinned by a new `tests/agentic-harness.test.mjs`
+  against goldens captured from the pre-change harnesses.
+- **A candidate slate for the three thin axes.**
+  `docs/internal/release-plans/stream-c-axis-rebalance-slate.md` proposes the 44 entries that
+  would take Voice, Tone, and Style from 16, 15, and 15 to the Phase 2 target of 30 each,
+  each with its ADR 0010 placement, a rationale, and the existing entry it will be gated
+  against. It also records 15 candidates rejected as too close to an existing entry to pass a
+  distinguishability gate, and 9 rejected on the ADR 0010 scope boundary, so neither ruling
+  has to be made twice.
 
 ### Changed
 

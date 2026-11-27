@@ -61,15 +61,23 @@ the orchestrator returns a compact summary.
 
 ### `generate.js` - new draft entries
 
-- **Input:** `CANDIDATES[]`, each `{ id, name, domain, family, dp, one_liner, concept,
-  pairs_well_with, avoid_with, confusable_with, typical_voices, typical_tones }`.
+- **Input:** `AXIS` (`format` | `voice` | `tone` | `style`, or `args.axis`) plus
+  `CANDIDATES[]`. Every candidate carries `{ id, name, one_liner, concept,
+  pairs_well_with, avoid_with, confusable_with }`; the rest is axis-specific, because
+  the axis schemas differ. `format` adds `{ domain, family, dp, typical_voices,
+  typical_tones }`; `voice` adds `{ family, diction, sentence_style, default_pov,
+  typical_tones }`; `tone` adds `{ spectrum, spectrum_position, nn_g_profile }`;
+  `style` adds `{ frame, classical_mode }`.
 - **Invariant:** every cross-reference id MUST already exist (the deterministic gate
-  rejects dangling refs). `pairs_well_with` must fit the format's nature - never an id
-  the format's own anti-patterns will forbid (the author supplies the fixed list, so a
-  conflict is an authoring error, not the agent's).
-- **Output:** one `taxonomy/formats/<id>/ENTRY.md` per candidate, `review_status:
-  draft`, mirroring the `adr` template. The agent reads each confusable neighbor's
-  ENTRY.md before describing it.
+  rejects dangling refs). `pairs_well_with` must fit the entry's nature - never an id
+  the entry's own anti-patterns will forbid (the author supplies the fixed list, so a
+  conflict is an authoring error, not the agent's). Ids are global across all four
+  axes, so a new id must not collide with an existing id on any axis.
+- **Output:** one `<axis dir>/<id>/ENTRY.md` per candidate, `review_status: draft`,
+  mirroring that axis's template entry (`adr`, `marketer`, `empathetic`, or
+  `comparison-contrast`). The agent reads each confusable neighbor's ENTRY.md before
+  describing it. A cross-axis neighbor is written `{ id, axis }` so the prompt
+  resolves its directory correctly.
 - **Post:** `validate.py` + `build-indexes.py`, then the distinguishability gate.
 
 ### `dedup.js` - whole-corpus audit
@@ -77,9 +85,15 @@ the orchestrator returns a compact summary.
 - **Input:** `GROUPS[]`, one or more family clusters with members tagged (S)/(D).
   Regenerate from the live family map (read ENTRY.md frontmatter, not taxonomy.json).
 - **Output:** `{ flagged_pairs, quality_notes }` (structured, severity-sorted).
-- **Why by family:** the per-entry gate only compares an entry to its one declared
-  neighbor; same-family collisions between entries are invisible to it. The family
-  cluster is the slot competitors share, so it is the right audit granularity.
+- **Why by cluster:** the per-entry gate only compares an entry to its one declared
+  neighbor; same-cluster collisions between entries are invisible to it. The cluster is
+  the slot competitors share, so it is the right audit granularity. On `format` and
+  `voice` the cluster is the real `family` field (domain-scoped for formats). On `tone`
+  and `style` there is no family by ADR 0010 section 2, so the cluster is a planning
+  grouping only: group tones by `spectrum` and styles by `frame`, or audit the whole
+  axis at once while it stays near 30 entries. A cluster whose members are ALL drafts,
+  which is the case for the previously empty `dissident` voice family, has had no
+  pairwise check at all before this audit.
 
 ### `remediate.js` - precise fix-applier
 
@@ -90,13 +104,18 @@ the orchestrator returns a compact summary.
 
 ### `promote.js` - render across anchor topics
 
-- **Input:** `FORMATS[]`, the draft format ids to render. `TOPICS` is the fixed 12
+- **Input:** `AXIS`, `ENTRIES[]` (the draft ids to render), and `LLM_MODEL` (the model
+  that will actually render, stamped into each sample). `TOPICS` is the fixed 12
   (mirrors `anchor_topics.py`).
-- **Output:** `examples/vertical-slices/<topic>/format-<fmt>.md` for all 12 topics per
-  format. Each cell inherits the topic's shared scenario by reading three existing
-  samples on that topic. Forced combos (eng format on a contemplative topic) apply the
-  format's structure to the topic's situation.
-- **Invariant:** run while the formats are still `draft` (Gate 2 exemption keeps
+- **Output:** `examples/vertical-slices/<topic>/<axis>-<id>.md` for all 12 topics per
+  entry, which is the key `promote.py` already reads. Each cell inherits the topic's
+  shared scenario by reading the three `format-adr` / `format-readme` /
+  `format-status-report` samples on that topic, which exist for all 12 and hold the
+  scenario of record. On the non-format axes the cell also reads one sibling sample on
+  the same axis, for sample shape only. Forced combos (an eng format on a
+  contemplative topic, a commercial voice on a devotional one) apply the entry's own
+  structure or register to the topic's situation.
+- **Invariant:** run while the entries are still `draft` (Gate 2 exemption keeps
   validate green during the render).
 
 ### `promote.py` - guarded flip (runnable CLI)
@@ -186,11 +205,15 @@ rendered content and is worth a dedicated calendar pass every promotion.
   could flag weekday-vs-date mismatches in samples it can parse, reducing reliance on
   the date-gate agent. Natural-language date extraction makes a perfect deterministic
   check hard; treat it as a lint, not a gate.
-- **Other axes:** `promote.py` is already axis-general - it reads each entry's `axis`
-  from frontmatter and keys samples as `<axis>-<id>.md`, so it promotes Voice/Tone/Style
-  entries too. `promote.js` as committed is **format-oriented** (it hardcodes
-  `taxonomy/formats`, `format-<id>.md`, and `axis: format`); extend it to another axis
-  by parameterizing the axis in its paths and the sample frontmatter.
+- **Other axes (done 2026-11-26):** `promote.py` was already axis-general - it reads
+  each entry's `axis` from frontmatter and keys samples as `<axis>-<id>.md`. The three
+  JS harnesses (`generate.js`, `dedup.js`, `promote.js`) are now axis-parameterized to
+  match: each carries an `AXIS` constant and an `AXES` table covering all four axes,
+  and each also accepts the axis as the Workflow tool's `args.axis`. The Format path is
+  byte-for-byte unchanged and is pinned by `tests/agentic-harness.test.mjs` against
+  goldens captured from the pre-change harnesses. The Stream-C slate at
+  `docs/internal/release-plans/stream-c-axis-rebalance-slate.md` is the first program
+  to use them.
 
 ## 7. Status (2026-06-28)
 
