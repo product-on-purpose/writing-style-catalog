@@ -114,6 +114,56 @@ def test_promoting_optional_to_required_is_a_real_break():
 
 
 # ---------------------------------------------------------------------------
+# The premise class B rests on, and the edge where it is arguable (ADR 0022)
+# ---------------------------------------------------------------------------
+
+def test_declaring_a_new_optional_property_keeps_conforming_documents_valid():
+    """The class B rationale's first clause: nothing that validates today stops."""
+    widened = copy.deepcopy(SYNTHETIC)
+    widened["properties"]["measured"] = {"type": "object"}
+    assert validates(SYNTHETIC, DOC)
+    assert validates(widened, DOC), (
+        "declaring a new OPTIONAL property rejected a document that did not use it; "
+        "class B in ADR 0019 assumes it cannot"
+    )
+
+
+def test_declaring_a_new_optional_property_rejects_a_document_that_squatted_the_key():
+    """The class B rationale's second clause does NOT hold on an open schema.
+
+    No schema in this repository restricts additional properties, so a document
+    carrying an undeclared key of any shape validates today. Declaring that key
+    with a type therefore removes documents from the accepted set, which is the
+    direction ADR 0019's compatibility test calls an event in either direction.
+
+    ADR 0022 rules this class B anyway, on the ground that the only documents
+    affected squatted a key the contract never defined. This test pins the
+    premise of that ruling, so the reasoning stays auditable: if a future change
+    closes the schemas with `additionalProperties`, the first assertion fails and
+    the ruling has to be revisited rather than remembered.
+    """
+    squatter = {**DOC, "measured": "an undeclared shape"}
+    assert validates(SYNTHETIC, squatter), (
+        "the synthetic schema is no longer open; ADR 0022's class B ruling was "
+        "argued on open schemas and needs rereading"
+    )
+    typed = copy.deepcopy(SYNTHETIC)
+    typed["properties"]["measured"] = {"type": "object"}
+    assert not validates(typed, squatter)
+
+
+@pytest.mark.parametrize("name", FROZEN)
+def test_no_frozen_schema_restricts_additional_properties(name):
+    """ADR 0022's check 3 verified this by grep; pin it so it stays true."""
+    schema = load(name)
+    for keyword in ("additionalProperties", "unevaluatedProperties"):
+        assert keyword not in schema, (
+            f"{name}.schema.json now sets {keyword}; ADR 0022 classified the "
+            "additive `distinguishability` field against open schemas"
+        )
+
+
+# ---------------------------------------------------------------------------
 # Freeze scope, as decided in ADR 0019 decision 1
 # ---------------------------------------------------------------------------
 
