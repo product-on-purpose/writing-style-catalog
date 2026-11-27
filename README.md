@@ -148,7 +148,7 @@ A named instruction is only worth having if it changes what the model writes. Th
 - **18 of 18** samples were attributed correctly by a blind judge from a different vendor.
 - **3 of 3** deliberate caricatures were rejected, each for the failure mode its own entry documents. This shows the judge says no when it should.
 
-These are small tests. Each one covered between nine and sixteen entries, the judges were models rather than people, and the judges saw short descriptions of the options. The [evidence page](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/) records the method, the results, and every limit. Skeptical questions, including whether the examples are LLM-written (they are), are answered in the [FAQ](https://product-on-purpose.github.io/writing-style-catalog/concepts/faq/).
+These are small tests. They covered sixteen, nine, and three entries respectively, the judges were models rather than people, and the judges saw short descriptions of the options. The [evidence page](https://product-on-purpose.github.io/writing-style-catalog/concepts/adherence-evidence/) records the method, the results, and every limit. Skeptical questions, including whether the examples are LLM-written (they are), are answered in the [FAQ](https://product-on-purpose.github.io/writing-style-catalog/concepts/faq/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

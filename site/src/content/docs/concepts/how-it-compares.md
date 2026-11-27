@@ -14,7 +14,7 @@ The short version: a prompt library is a pile of finished prompts, and a style g
 | **Unit you pick** | A whole prompt for a whole task | A rule ("use sentence case") | One adjective from a dropdown | Whatever you type that day | One named value on each of four axes |
 | **How the parts combine** | They do not. You pick one prompt. | You apply every rule at once | One preset at a time | You merge them yourself, in prose | Any Voice with any Tone, Style, and Format |
 | **Clashing choices** | Not applicable | Left to the editor | Not applicable | You notice, or you do not | The builder flags pairs an entry lists in `avoid_with` and orders the blocks |
-| **Shows what each choice produces** | Sometimes one sample output | Sometimes a do and don't pair | Rarely | No | Worked samples on twelve shared topics, plus diff-pairs that change one axis |
+| **Shows what each choice produces** | Sometimes one sample output | Sometimes a do and don't pair | Rarely | No | Worked samples on twelve shared topics, plus diff-pairs that compare two entries on one axis |
 | **Evidence the instruction steers output** | Usually none | Not the question it answers | Usually none | None | A blind test with a negative control ([details](../adherence-evidence/)) |
 | **Tied to one model or tool** | Often | No | Yes | No | No. The output is a plain prompt prefix |
 | **Covers your organization's terms and rules** | No | Yes | No | If you type them | No |
@@ -37,7 +37,7 @@ The short version: a prompt library is a pile of finished prompts, and a style g
 
 **Composition that checks itself.** When either of two selected entries lists the other in `avoid_with`, the builder warns you and applies a fixed precedence of voice, then tone, then style, then format. It never blocks a combination. The design is recorded in [ADR 0016](https://github.com/product-on-purpose/writing-style-catalog/blob/main/docs/internal/adr/0016-conflict-aware-composition.md).
 
-**A measurement, not only a description.** Blind judges attributed near-neighbour samples to the right entry in two small tests, and rejected deliberate caricatures in a third. Each test covered between nine and sixteen entries, not the whole catalog. The [evidence page](../adherence-evidence/) states the scope and the limits.
+**A measurement, not only a description.** Blind judges attributed near-neighbour samples to the right entry in two small tests, and rejected deliberate caricatures in a third. The three tests covered sixteen, nine, and three entries, not the whole catalog. The [evidence page](../adherence-evidence/) states the scope and the limits.
 
 **Status that says what it means.** Each entry shows its review status. `machine-verified` means the entry passes every automated check and has not yet been read by the maintainer. `stable` means the maintainer read it. The ladder is described in the [contribution process](../../governance/contribution-process/).
 

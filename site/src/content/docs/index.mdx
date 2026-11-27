@@ -5,7 +5,7 @@ description: Composable writing instructions on four orthogonal axes - Voice, To
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-Instruct an LLM on writing as precisely as you already instruct it on code. Pick one value from each axis - Voice, Tone, Style, Format - and the `writing-instruction-builder` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Swap one value and only that dimension of the writing changes.
+Instruct an LLM on writing as precisely as you already instruct it on code. Pick one value from each axis - Voice, Tone, Style, Format - and the `writing-instruction-builder` skill assembles a prompt prefix that steers any LLM toward a precise register, reasoning pattern, and layout. Swap one value and the writing changes in a way you can point at.
 
 The catalog holds 118 entries. The 98 that ship in the plugin (16 Voice, 15 Tone, 15 Style, 52 Format) carry `machine-verified`: each passes every automated check and has not yet been read line by line by the maintainer. The other 20 are draft formats, still under review. Every shipped entry has worked examples across twelve anchor topics, and the catalog adds side-by-side diff-pairs that isolate a single axis, recipes that bundle common combinations, and copyable format templates.
 
