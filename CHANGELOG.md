@@ -7,21 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- **The band harness's leak check exempted every three-letter entry id.** `_terms_for` dropped
-  terms shorter than four characters to avoid false positives, which silently excused `adr`,
-  `bio`, `faq`, `prd` and `rfc` from the check that refuses a blind packet naming its own answer.
-  That was not theoretical: the `adr` render on `service-database-choice` opens
-  `# ADR-0023: Use Postgres for the Notification Service`, and the entry's name ("Architecture
-  Decision Record") does not appear in that heading, so neither the strip rule nor the leak check
-  caught it. The floor is gone, because the two errors are not symmetric: a false positive refuses
-  a packet and is visible, while a false negative produces a number that looks like evidence and
-  is not. The check is now stricter, and honestly so - across the catalog, 89 of the 118 entries
-  have at least one anchor topic on which their declared pair can be judged blind, and 972 of the
-  1,416 (pair, topic) cells are usable. The 29 that have none are mostly ceremonial and
-  contemplative formats, which name themselves in their own prose.
-
 ### Added
 
 - **Diff-pair pages flip the varied axis.** A diff-pair holds the topic constant and varies one
@@ -55,6 +40,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Node.js 24, the version `.nvmrc` pins, so only local builds on an older Node.js are affected.
 
 ### Fixed
+
+- **The band harness's leak check exempted every three-letter entry id.** `_terms_for` dropped
+  terms shorter than four characters to avoid false positives, which silently excused `adr`,
+  `bio`, `faq`, `prd` and `rfc` from the check that refuses a blind packet naming its own answer.
+  That was not theoretical: the `adr` render on `service-database-choice` opens
+  `# ADR-0023: Use Postgres for the Notification Service`, and the entry's name ("Architecture
+  Decision Record") does not appear in that heading, so neither the strip rule nor the leak check
+  caught it. The floor is gone, because the two errors are not symmetric: a false positive refuses
+  a packet and is visible, while a false negative produces a number that looks like evidence and
+  is not. The check is now stricter, and honestly so - across the catalog, 89 of the 118 entries
+  have at least one anchor topic on which their declared pair can be judged blind, and 972 of the
+  1,416 (pair, topic) cells are usable. The 29 that have none are mostly ceremonial and
+  contemplative formats, which name themselves in their own prose.
+
 
 - **The README version badge said 0.12.0.** It now says 0.15.0. It had been missed in three
   release-prep commits. `scripts/validate-plugin-manifest.mjs` now fails when the badge, the
