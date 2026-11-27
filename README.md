@@ -23,7 +23,7 @@
   </a>
   <img src="https://img.shields.io/badge/version-0.15.0-blue.svg?style=flat-square" alt="Version">
   <a href="#the-four-axis-model">
-    <img src="https://img.shields.io/badge/entries-118-brightgreen.svg?style=flat-square" alt="Catalog entries: 118 (98 machine-verified, 20 draft)">
+    <img src="https://img.shields.io/badge/entries-121-brightgreen.svg?style=flat-square" alt="Catalog entries: 121 (98 machine-verified, 23 draft)">
   </a>
   <a href="https://agentskills.io/specification">
     <img src="https://img.shields.io/badge/spec-agentskills.io-orange.svg?style=flat-square" alt="Agent Skills Spec">
@@ -182,13 +182,13 @@ Format entries define the visual and structural container: headings, bullet dept
 
 ## What's in the Catalog
 
-The catalog holds **118 entries**. 98 of them ship in the plugin and carry `machine-verified`: each passes every automated check and has not yet been read line by line by the maintainer. The other 20 are draft format candidates, still under review and not shipped.
+The catalog holds **121 entries**. 98 of them ship in the plugin and carry `machine-verified`: each passes every automated check and has not yet been read line by line by the maintainer. The other 23 are drafts, still under review and not shipped: 20 format candidates, and one new entry each on Voice, Tone, and Style.
 
 | Axis | Entries | What it controls | Example entries |
 | ------ | --------: | ---------------- | --------------- |
-| **Voice** | 16 | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
-| **Tone** | 15 | Situational register layered on top of voice | `candid`, `warm`, `reverent`, `urgent` |
-| **Style** | 15 | Cognitive and rhetorical pattern: how ideas are sequenced | `problem-solution`, `layered-disclosure`, `socratic-inquiry`, `dialectic` |
+| **Voice** | 17 (16 shipped, 1 draft) | Persistent writer identity: worldview, archetype, concerns | `pragmatic-architect`, `pastoral`, `journalist`, `coach` |
+| **Tone** | 16 (15 shipped, 1 draft) | Situational register layered on top of voice | `candid`, `warm`, `reverent`, `urgent` |
+| **Style** | 16 (15 shipped, 1 draft) | Cognitive and rhetorical pattern: how ideas are sequenced | `problem-solution`, `layered-disclosure`, `socratic-inquiry`, `dialectic` |
 | **Format** | 72 (52 shipped, 20 draft) | Visual and structural container: headings, sections, layout | `adr`, `daily-standup`, `slack-message`, `devotional-entry` |
 
 Plus the assets that make the catalog teachable:
@@ -256,7 +256,7 @@ The full catalog is browsable as an [Astro Starlight site](https://product-on-pu
 
 **What exists today:**
 
-- 118 taxonomy entries in all: 98 shipped (16 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 20 draft format candidates under review (Stream-B breadth, batches 1-10)
+- 121 taxonomy entries in all: 98 shipped (16 Voice, 15 Tone, 15 Style, 52 Format), all `machine-verified`, plus 23 drafts under review: 20 format candidates (Stream-B breadth, batches 1-10) and three exemplars opening the Voice, Tone, and Style rebalance (`elder`, `grateful`, `first-principles-derivation`)
 - 1176 worked examples across twelve anchor topics, plus 158 diff-pairs and 14 horizontal-slice recipes
 - Three working skills: `writing-instruction-builder` (compose from known axis values), `style-profile` (capture a personal default), `entry-recommender` (recommend a combination for a described situation)
 - An Astro Starlight documentation site, generated from the catalog and deployed to [GitHub Pages](https://product-on-purpose.github.io/writing-style-catalog/)

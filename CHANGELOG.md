@@ -74,7 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the same floor as `astro` 7.4.4 through 7.4.12, replacing the stale `>=22.12.0`. CI already builds on
   Node.js 24, the version `.nvmrc` pins, so only local builds on an older Node.js are affected.
 - **The README and the docs home lead with the positioning and the evidence.** Both now say the
-  catalog holds 118 entries, 98 of them shipped as `machine-verified` and 20 still draft, and both
+  catalog holds 121 entries, 98 of them shipped as `machine-verified` and 23 still draft, and both
   summarise the three blind-test results with a link to their limits.
 - **CONTRIBUTING.md explains the entry bar and the review ladder.** It now covers the ADR 0009
   fields every entry needs, the distinctness test against `confusable_with`, and who may set each
@@ -104,8 +104,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **CONTRIBUTING.md showed frontmatter the schema rejects.** Its example used `version`,
   `created`, `author`, and plural axis values, and omitted `tells`, `anti_patterns`, and
   `failure_modes`. It now matches `schemas/entry.universal.schema.json`.
-- **The README catalog table said 15 Voice and 52 Format entries.** The tree holds 16 Voice and
-  72 Format entries, of which 52 formats ship.
+- **The README catalog table said 15 Voice and 52 Format entries.** Each row now gives the total
+  with its shipped and draft split: 17 Voice (16 shipped), 16 Tone (15), 16 Style (15), and
+  72 Format (52).
 - **The Add an Entry guide said promotion goes from `draft` to `stable`.** Tooling promotes a
   draft to `machine-verified`; only the maintainer moves an entry to `stable`.
 
