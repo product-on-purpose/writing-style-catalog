@@ -35,12 +35,12 @@ The judge architecture runs at zero marginal cost today and is validated:
   caricature, and bent its band scale correctly on a near-duplicate probe
   (`_agent-context/gate-pilot/CALIBRATION.md`).
 - `tools/distinguishability.py` computes a per-entry band against a declared neighbor from the
-  renders already committed under `examples/vertical-slices/`. Its first run judged 10 trials
-  across four pairs, 10 of 10 attributed correctly, **for nothing**.
+  renders already committed under `examples/vertical-slices/`. Its first run judged 8 surviving
+  trials across four independent passage pairs, 8 of 8 attributed correctly, **for nothing**.
 
 **So the baseline is not "no measurement". The baseline is a hand-driven sweep at $0.** Populating
-the `distinguishability` field on all 118 entries once, at two trials each, is 236 in-session
-subagent judge calls. That is large for one sitting and it is the same kind of work the breadth
+the field on the 89 entries that have a judgeable anchor topic, at two presentations each, is
+178 in-session subagent judge calls. That is large for one sitting and it is the same kind of work the breadth
 waves already did free, in batches. Every priced option below has to beat $0-plus-attention, not
 beat nothing.
 
@@ -78,6 +78,12 @@ API call with usage reporting would replace this range with a number, and that i
 thing to do if a budget ever turns on it.
 
 ### Prices used
+
+The judge actually validated here was **`gpt-6.2-sol`**, read from each run's own header. The
+published pricing page lists the gpt-5.6 family and below, so no price for that model was
+retrievable and none is invented. `gpt-5.6-sol` is used as its stand-in on the assumption that
+a current frontier tier prices near the previous one; if it prices higher, every frontier row
+below moves with it, and the conclusion survives a large multiple.
 
 | Tier | Model | Input $/MTok | Output $/MTok | Source |
 |---|---|---|---|---|

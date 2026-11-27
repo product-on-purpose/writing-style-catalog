@@ -59,8 +59,9 @@ Four pieces of the measurement are built and in the tree:
   near-duplicate probe. The calibration record is `_agent-context/gate-pilot/CALIBRATION.md`.
 - **A producer in the field's own shape.** `tools/distinguishability.py` computes a band for one
   entry against one declared neighbor on a named topic, from the renders already committed under
-  `examples/vertical-slices/`. Its first run attributed 10 of 10 trials correctly across four
-  pairs on all four axes.
+  `examples/vertical-slices/`. Its first run attributed 8 of 8 trials correctly across four
+  independent passage pairs on three axes. Both format-axis attempts were withdrawn for leaking
+  the answer in a title, which is itself a finding and is in decision 2 below.
 
 What is missing is the one piece that turns a run into a property of an entry: **somewhere to put
 the answer.** A measurement that lives in a gitignored working file is an audit. A measurement
@@ -107,6 +108,17 @@ Three choices inside that table are the substance, not formatting:
 - **`trials` is required, not optional.** A pairwise forced choice over two slots is right or
   wrong as a whole, so one trial scores 0 or 1 and a score of 1.0 at N=1 is a coin flip that
   landed. A score without its N is not a measurement.
+- **`score` is coarse by construction, and the maintainer should know why before ratifying it.**
+  The repository holds exactly one render per (entry, topic), so one (entry, neighbor, topic)
+  cell yields one passage pair. Re-presenting it in the other order tests order sensitivity; it
+  does not add evidence. So a score produced from committed renders can only be 0, 0.5 or 1,
+  and 1.0 means "correct in both orders on one pair of passages", which is about 1 in 4 by
+  chance. A genuinely graded score - the "94 percent of the time" the strategy document
+  imagines - needs several independently rendered passage pairs per cell, which means
+  generating renders. **At that point the producer stops being free**, since in-session
+  subagents can generate but CI cannot, and the generator tier becomes a spend decision. The
+  recommendation is to ratify the coarse score now, because `trials` makes its coarseness
+  legible, and treat a graded score as a later change that arrives with its own budget.
 - **`band` is a floor, not a mean.** The first harness run found the band moves with presentation
   order: `pragmatic-architect` vs `senior-consultant` rated `dramatic` in one order and `clear`
   in the other, on the same two passages, with attribution correct both times. A mean would hide
@@ -118,11 +130,25 @@ Three choices inside that table are the substance, not formatting:
 
 ### 2. The field is absent until measured, and absence is not a failure
 
-No entry gets a placeholder, an empty object, or a `null`. 118 entries carry nothing today and
-most will carry nothing for a long time; the field appears on an entry when a run has produced a
-number for it. `validate.py` gains no check that requires the field. This follows the review-ledger
-precedent from ADR 0021: 97 entries sat at `machine-verified` with 0 read, and the honest record of
-that was an empty ledger, not a fabricated one.
+No entry gets a placeholder, an empty object, or a `null`.
+
+118 entries carry nothing today and most will carry nothing for a long time; the field appears
+on an entry when a run has produced a number for it.
+
+**Absence is also the honest state for 29 entries that cannot be measured at all from the
+renders in the repository.** The blind test needs two passages that do not name their own
+entry, and format renders name their format in their title: `# ADR-0023: ...`,
+`# Standup - Ana, ...`. Under the leak checks as corrected by PR #198, 89 of the 118 entries
+have at least one anchor topic on which their declared pair is judgeable, and 937 of the 1,416
+(pair, topic) cells survive. The 29 with none are almost all ceremonial, contemplative and
+document formats. For those the field waits on renders that do not name themselves, or on a
+protocol that masks the term instead of refusing the packet - and masking alters the prose
+under measurement, so it is a decision the maintainer should make rather than a fix an agent
+should apply.
+
+`validate.py` gains no check that requires the field. This follows the review-ledger precedent
+from ADR 0021: 97 entries sat at `machine-verified` with 0 read, and the honest record of that
+was an empty ledger, not a fabricated one.
 
 ### 3. ADR 0019 class: **class B**, and here is the part that is arguable
 
@@ -257,9 +283,10 @@ trigger's subject, so it has to answer it rather than inherit it.
 The answer splits the thing the trigger names:
 
 - **Producing a band, by hand, per entry, stays free.** The harness generates nothing and the judge
-  is an in-session subagent. The first run cost zero. Populating all 118 entries once is on the
-  order of 118 to 236 subagent judge calls, hand-driven in batches - large, but the same kind of
-  work the breadth waves already did for free.
+  is an in-session subagent. The first run cost zero. Populating the **89** entries that have a
+  judgeable topic is on the order of 89 to 178 subagent judge calls, hand-driven in batches -
+  large, but the same kind of work the breadth waves already did for free. The other 29 cannot
+  be populated from today's renders at any price; see decision 2.
 - **Keeping every band current does not stay free.** Recomputing on edit, on a neighbor's edit, and
   on a model release is CI work, and CI cannot call an in-session subagent. That is the ratchet,
   and it fires the trigger.
