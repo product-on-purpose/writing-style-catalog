@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Diff-pair pages flip the varied axis.** A diff-pair holds the topic constant and varies one
+  axis, so the page now offers a Flip mode that swaps the two passages in place, in the same
+  position, under a toggle labelled with the axis and the two entry ids - the one reading the
+  static two-column layout cannot give. Side by side stays the default, arrow keys step through the
+  pair while the toggle has focus, and both passages are still rendered at build time, so with no
+  JavaScript the page is exactly the two columns it was before and no dead buttons appear. Each
+  page also links the same contrast on the other anchor topics, which is how a reader varies the
+  second variable; 35 of the 92 distinct pair identities exist on more than one topic.
+
 ### Changed
 
 - **Dependency bumps:** `@astrojs/starlight` 0.41.7 to 0.43.1, `@astrojs/mdx` 7.0.5 to 8.1.6,
