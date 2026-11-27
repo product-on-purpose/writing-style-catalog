@@ -148,12 +148,27 @@ def load_render(topic_slug: str, axis: str, entry_id: str, entry_name: str) -> R
 # ---------------------------------------------------------------------------
 
 def _terms_for(entry_id: str, fm: dict) -> list[str]:
-    """Strings whose presence in a sample body would name the entry."""
+    """Strings whose presence in a sample body would name the entry.
+
+    No length floor. An earlier version dropped terms shorter than four
+    characters to avoid false positives, which silently exempted every
+    three-letter id in the catalog - `adr`, `bio`, `faq`, `prd`, `rfc` - from
+    the leak check. The `adr` render on `service-database-choice` opens
+    `# ADR-0023: Use Postgres for the Notification Service`, so the exemption
+    was not theoretical: it let a packet reach a judge with the answer in its
+    first line.
+
+    The two errors are not symmetric. A false positive refuses a packet, which
+    costs a topic and is visible. A false negative produces a number that looks
+    like evidence and is not. So the check errs toward refusing: `warm` is a
+    real tone id and an ordinary English word, and a passage that contains it
+    is refused rather than judged.
+    """
     terms = {entry_id, entry_id.replace("-", " ")}
     name = (fm.get("name") or "").strip()
     if name:
         terms.add(name)
-    return sorted(t for t in terms if len(t) >= 4)
+    return sorted(t for t in terms if t)
 
 
 def find_leaks(text: str, terms: list[str]) -> list[str]:
@@ -165,6 +180,38 @@ def find_leaks(text: str, terms: list[str]) -> list[str]:
         if re.search(pattern, low):
             hits.append(term)
     return hits
+
+
+# Tokens shorter than this are too common to treat as evidence in a heading
+# ("a", "to", "log"); longer ones are the distinctive half of a compound id.
+_HEADING_TOKEN_MIN = 5
+
+
+def _heading_tokens(entry_id: str, fm: dict) -> list[str]:
+    """Distinctive single words of an entry's id and name."""
+    source = f"{entry_id} {fm.get('name') or ''}".lower().replace("-", " ")
+    return sorted({w for w in re.findall(r"[a-z]+", source) if len(w) >= _HEADING_TOKEN_MIN})
+
+
+def find_heading_leaks(body: str, tokens: list[str]) -> list[str]:
+    """Distinctive id words appearing in the passage's FIRST heading.
+
+    A second failure shape, separate from `find_leaks`. The whole-id check sees
+    `daily-standup` and `daily standup`; the `daily-standup` render opens
+    `# Standup - Ana, 2026-05-14`, which is neither, and which names the format
+    as plainly as the id would. Self-naming lives in the title, so this looks
+    only at the first heading rather than the whole body: `notes` and `letter`
+    occur everywhere in ordinary prose, and scanning for them throughout would
+    refuse most of the catalog for no gain.
+    """
+    for line in body.split("\n"):
+        if not line.strip():
+            continue
+        m = _HEADING_RE.match(line)
+        if not m:
+            return []
+        return find_leaks(m.group("text"), tokens)
+    return []
 
 
 # ---------------------------------------------------------------------------
@@ -240,10 +287,13 @@ def build_trial(entry_a, entry_b, topic_slug, id_map, order_seed=0) -> Trial:
         entry_b: load_render(topic_slug, axis_b, entry_b, fm_b.get("name") or ""),
     }
     terms = _terms_for(entry_a, fm_a) + _terms_for(entry_b, fm_b)
+    tokens = _heading_tokens(entry_a, fm_a) + _heading_tokens(entry_b, fm_b)
     leaks = []
     for eid, r in renders.items():
         for hit in find_leaks(r.body, terms):
             leaks.append(f"{r.path.name}: '{hit}'")
+        for hit in find_heading_leaks(r.body, tokens):
+            leaks.append(f"{r.path.name}: '{hit}' in its first heading")
     if leaks:
         raise ValueError(
             "blind packet would name its own answer; fix the render or widen the "

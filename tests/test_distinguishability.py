@@ -84,13 +84,50 @@ def test_find_leaks_requires_a_word_boundary():
     assert D.find_leaks("The approach was reasonable.", ["coach"]) == []
 
 
+def test_find_heading_leaks_catches_a_single_id_word_in_the_title():
+    """The second leak shape: `daily-standup` renders open `# Standup - Ana`."""
+    body = "# Standup - Ana, 2026-05-14\n\n**Done** - wrote the benchmark.\n"
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks(body, tokens) == ["standup"]
+
+
+def test_find_heading_leaks_ignores_the_same_word_in_the_body():
+    """Only the title is scanned; `notes` and `letter` are everywhere in prose."""
+    body = "# Tuesday\n\nWe keep standup short because the notes do the work.\n"
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks(body, tokens) == []
+
+
+def test_find_heading_leaks_is_empty_when_the_passage_has_no_heading():
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks("In January, I was running two things.\n", tokens) == []
+
+
+def test_heading_tokens_drops_words_too_common_to_be_evidence():
+    """`log` and `the` carry no signal; `decision` does."""
+    tokens = D._heading_tokens("decision-log", {"name": "Decision Log"})
+    assert "decision" in tokens and "log" not in tokens
+
+
 def test_find_leaks_returns_empty_on_clean_prose():
     assert D.find_leaks("January: the project was in its seventh month.", ["coach"]) == []
 
 
-def test_terms_for_drops_fragments_too_short_to_be_evidence():
-    terms = D._terms_for("adr", {"name": "ADR"})
-    assert "adr" not in terms and "ADR" not in terms
+def test_terms_for_keeps_a_three_letter_id():
+    """No length floor: `adr`, `bio`, `faq`, `prd` and `rfc` are real ids.
+
+    The first version of this check dropped terms under four characters, which
+    exempted every three-letter id in the catalog and let a leaking packet
+    through. A false positive costs a refused topic; a false negative costs the
+    measurement.
+    """
+    assert "adr" in D._terms_for("adr", {"name": "Architecture Decision Record"})
+
+
+def test_find_leaks_catches_a_three_letter_id_used_as_a_heading():
+    """The real leak: the `adr` render opens `# ADR-0023: ...`."""
+    body = "# ADR-0023: Use Postgres for the Notification Service\n\n## Context\n"
+    assert D.find_leaks(body, D._terms_for("adr", {"name": "Architecture Decision Record"})) == ["adr"]
 
 
 # ---------------------------------------------------------------------------
@@ -321,6 +358,37 @@ def test_the_required_subtle_style_pair_builds_a_clean_blind_trial():
     )
     assert set(trial.mapping.values()) == {"narrative-case-study", "chronological-narrative"}
     assert all(len(s.body) > 500 for s in trial.slots)
+
+
+def test_the_adr_render_is_refused_rather_than_judged():
+    """A regression pin on the leak that got through the first run.
+
+    `examples/vertical-slices/service-database-choice/format-adr.md` opens
+    `# ADR-0023: Use Postgres for the Notification Service`. The heading names
+    the format, the strip rule does not remove it (the entry's name is
+    "Architecture Decision Record", which the heading does not contain), and
+    the first version of the leak check exempted three-letter ids. The packet
+    was built and judged. It must now raise instead.
+    """
+    id_map = D.load_catalog()
+    with pytest.raises(ValueError, match="name its own answer"):
+        D.build_trial("adr", "design-doc", "service-database-choice", id_map, order_seed=0)
+
+
+def test_the_daily_standup_render_is_refused_rather_than_judged():
+    """The second regression pin: a title naming one word of a compound id.
+
+    `examples/vertical-slices/service-database-choice/format-daily-standup.md`
+    opens `# Standup - Ana, 2026-05-14`. The whole-id check sees
+    `daily-standup` and `daily standup`, neither of which is in that line, so
+    this pair was judged once before the heading check existed and its result
+    was withdrawn.
+    """
+    id_map = D.load_catalog()
+    with pytest.raises(ValueError, match="first heading"):
+        D.build_trial(
+            "daily-standup", "meeting-notes", "service-database-choice", id_map, order_seed=0
+        )
 
 
 def test_prepare_emits_machine_readable_packets(capsys):
