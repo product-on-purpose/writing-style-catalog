@@ -54,7 +54,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   1,416 (pair, topic) cells are usable. The 29 that have none are mostly ceremonial and
   contemplative formats, which name themselves in their own prose.
 
-
 - **The README version badge said 0.12.0.** It now says 0.15.0. It had been missed in three
   release-prep commits. `scripts/validate-plugin-manifest.mjs` now fails when the badge, the
   "Early and experimental" callout, or the Project status line differs from the version in
