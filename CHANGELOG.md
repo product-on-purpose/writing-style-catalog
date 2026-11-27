@@ -54,6 +54,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Per ADR 0021, `python tools/promote.py` moves a fully rendered draft to `machine-verified`, and
   only the maintainer moves an entry on to `stable`, after reading it. Their six confusable
   neighbours gained the reciprocal edge and a disambiguation paragraph.
+- **Two docs pages for first-time readers.** "How It Compares" sets the catalog beside prompt
+  libraries, house style guides, and tone presets, including where each of those is the better
+  tool. "Questions and Objections" answers the skeptical questions directly, including that every
+  worked example is LLM-written and what the blind tests do and do not show.
+- **An entry-proposal issue form.** Anyone can suggest a missing voice, tone, style, or format
+  without writing code. The form asks which axis it belongs on and which existing entry it is most
+  easily confused with.
 
 ### Changed
 
@@ -66,6 +73,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **The docs site needs Node.js 22.23.4 or later to build.** `site/package.json` now declares
   the same floor as `astro` 7.4.4 through 7.4.12, replacing the stale `>=22.12.0`. CI already builds on
   Node.js 24, the version `.nvmrc` pins, so only local builds on an older Node.js are affected.
+- **The README and the docs home lead with the positioning and the evidence.** Both now say the
+  catalog holds 121 entries, 98 of them shipped as `machine-verified` and 23 still draft, and both
+  summarise the three blind-test results with a link to their limits.
+- **CONTRIBUTING.md explains the entry bar and the review ladder.** It now covers the ADR 0009
+  fields every entry needs, the distinctness test against `confusable_with`, and who may set each
+  `review_status`. The PR template checks the same things.
 
 ### Fixed
 
@@ -88,6 +101,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   118 entries have at least one anchor topic on which their declared pair can be judged blind,
   and 937 of the 1,416 (pair, topic) cells are usable. The 29 entries that have none are mostly
   ceremonial, contemplative and document formats, which name themselves in their own titles.
+- **CONTRIBUTING.md showed frontmatter the schema rejects.** Its example used `version`,
+  `created`, `author`, and plural axis values, and omitted `tells`, `anti_patterns`, and
+  `failure_modes`. It now matches `schemas/entry.universal.schema.json`.
+- **The README catalog table said 15 Voice and 52 Format entries.** Each row now gives the total
+  with its shipped and draft split: 17 Voice (16 shipped), 16 Tone (15), 16 Style (15), and
+  72 Format (52).
+- **The Add an Entry guide said promotion goes from `draft` to `stable`.** Tooling promotes a
+  draft to `machine-verified`; only the maintainer moves an entry to `stable`.
 
 - **The README version badge said 0.12.0.** It now says 0.15.0. It had been missed in three
   release-prep commits. `scripts/validate-plugin-manifest.mjs` now fails when the badge, the

@@ -57,6 +57,11 @@ Required fields for every entry (universal schema):
 - `llm_instruction_phrasing` (use `|` block scalar)
 - `tags` (list)
 - `review_status` (start at `draft`)
+- `tells` (5 to 7 spottable markers)
+- `anti_patterns` (2 to 4 objects, each with `pattern` and `why`)
+- `failure_modes` (2 to 3 objects, each with `mode` and `mitigation`)
+
+The last three are the pedagogical bar from [ADR 0009](https://github.com/product-on-purpose/writing-style-catalog/blob/main/docs/internal/adr/0009-pedagogical-entry-bar.md). A failure mode describes the entry over-hitting its own register, such as candour sliding into contempt. Using the wrong entry is an anti-pattern, not a failure mode.
 
 Each axis has additional required fields - see `schemas/voice.schema.json`, `tone.schema.json`, `style.schema.json`, `format.schema.json`.
 
@@ -111,7 +116,7 @@ This regenerates the machine-readable indexes (`taxonomy.json` and `coverage.jso
 
 ## Step 7 - Add at least one example
 
-Every new entry should ship with at least one worked example when it is created as a draft. For new entries, vertical-slice examples are preferred: pick one of the twelve existing anchor topics (for example `async-standups`) and write a new example file showing the new entry rendering that topic. Promotion from `draft` to `stable` is a separate, later step that requires the entry to render across all twelve anchor topics (see [Contribution Process](../../governance/contribution-process/)) - one example is enough to start, not enough to promote.
+Every new entry should ship with at least one worked example when it is created as a draft. For new entries, vertical-slice examples are preferred: pick one of the twelve existing anchor topics (for example `async-standups`) and write a new example file showing the new entry rendering that topic. Promotion from `draft` to `machine-verified` is a separate, later step that requires the entry to render across all twelve anchor topics. Tooling performs it with `python tools/promote.py <id>`. Only the maintainer moves an entry on to `stable`, after reading it (see [Contribution Process](../../governance/contribution-process/)). One example is enough to start, not enough to promote.
 
 The file goes in `examples/vertical-slices/<topic-slug>/<axis>-<entry-id>.md`. See `examples/vertical-slices/async-standups/voice-pragmatic-architect.md` for the format.
 

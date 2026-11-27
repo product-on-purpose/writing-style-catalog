@@ -19,6 +19,10 @@ The repo accepts three kinds of contributions, each with a different review bar:
 2. **New example.** A new example file for an existing entry. Requires the example to demonstrate the entry recognizably and to use the shared anchor topic scenario (if vertical-slice).
 3. **Tooling, schema, or documentation change.** Includes changes to `tools/`, `schemas/`, `docs/`, and the build pipeline. Requires a corresponding ADR if the change affects how entries are authored or validated.
 
+### Propose a new entry first
+
+For a new taxonomy entry, open an [entry proposal](https://github.com/product-on-purpose/writing-style-catalog/issues/new?template=entry_proposal.yml) before writing any YAML. The form asks which axis the entry belongs on and which existing entry it is most easily confused with. Settling distinctness first saves a PR that cannot merge. A proposal needs no code, so it is also the right path if you only want to suggest an entry.
+
 ### Run the local checks
 
 Before pushing, run both:
