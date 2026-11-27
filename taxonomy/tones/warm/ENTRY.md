@@ -40,6 +40,7 @@ confusable_with:
   - empathetic
   - diplomatic
   - reverent
+  - grateful
 when_to_use:
   - Onboarding documentation
   - Care notes and pastoral writing
@@ -127,3 +128,5 @@ Legal writing, technical documentation for expert audiences, formal executive co
 **diplomatic**: Warm conveys personal regard for the reader, genuine care for them as a person. Diplomatic preserves the reader's face and standing without necessarily feeling anything toward them. A diplomatic letter to a hostile counterparty can be perfectly courteous and contain no warmth whatever, which is precisely what makes it usable there.
 
 **reverent**: Warm is oriented toward the reader and cares about the person receiving the writing. Reverent is oriented toward the subject and cares about what is being described, refusing to treat it casually. A reverent piece can land cold on its reader without failing at being reverent. If the care in the prose is aimed at a person rather than a subject, it is warm.
+
+**grateful**: Both are specific rather than effusive, and both communicate genuine regard without flattery. Warm tone is a steady orientation toward the reader that can carry ordinary content without ever naming a particular situation. Grateful tone cannot operate without a named act, because the act is what the writer is in debt for. Warmth says "I am glad you are here"; gratitude says "you did this, and here is what it made possible." Without the named act, any genuine personal regard that remains is warmth.

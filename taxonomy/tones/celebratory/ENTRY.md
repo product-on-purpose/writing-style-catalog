@@ -39,6 +39,7 @@ avoid_with:
 confusable_with:
   - playful
   - encouraging
+  - grateful
 when_to_use:
   - Product launch announcements naming what shipped and what it took to get there
   - Team retrospectives marking genuine milestones
@@ -122,3 +123,5 @@ Routine updates where nothing significant happened, feedback conversations requi
 **playful**: Playful tone creates delight and surprise - its goal is the pleasure of reading. Celebratory tone creates recognition - its goal is for the reader to feel that their achievement was seen. Playful can undercut celebratory by introducing ironic distance at a moment that requires sincerity. A celebratory piece can include moments of playfulness, but the celebration must be the load-bearing element, not the wit.
 
 **encouraging**: Encouraging tone activates forward motion - it names capability and points toward what comes next. Celebratory tone does not point forward; it pauses to mark what already happened. A well-timed celebration does not ask the reader to do anything. It asks them to receive something.
+
+**grateful**: Both are sincere and both work by naming one specific thing rather than a category, so they are easy to swap. The difference is who receives. Celebratory tone names an achievement, says why it was hard, and hands recognition to the people who accomplished it. Grateful tone names something another person did for the writer and says what the writer got from it, leaving a debt standing. Celebration recognizes what the engineer achieved. Gratitude identifies what their help made possible for the writer.

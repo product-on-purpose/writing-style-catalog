@@ -42,6 +42,7 @@ confusable_with:
   - devotional-reflection
   - comparison-contrast
   - problem-solution
+  - first-principles-derivation
 avoid_with:
   - reverent
   - pastoral
@@ -126,3 +127,5 @@ Instructional content, neutral reporting, devotional writing, documentation.
 **comparison-contrast**: Comparison-contrast measures options relative to each other. Classical argument defends a single position as correct against the strongest available objection.
 
 **problem-solution**: Classical argument builds a defensible claim, complete with warrant and rebuttal, so the reader can check the reasoning. Problem-solution is prescriptive rather than argumentative: it diagnoses and then fixes. If the piece never anticipates an objection, it is problem-solution.
+
+**first-principles-derivation**: Both are argumentative and both make their reasoning explicit instead of asserting, so a reader can locate the step they reject. They differ in order and in what counts as support. Classical argument states its claim early and earns it with grounds, an explicit warrant, and a rebuttal, and cited authority is one of its legitimate evidence types. A first-principles derivation withholds the conclusion until the end so the reader arrives at it, and it refuses cited authority at every step, because a borrowed step cannot be audited from the premises. This style defends a position against the strongest objection; that one hands the reader a chain and names the link to pull.

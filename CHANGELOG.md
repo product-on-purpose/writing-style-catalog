@@ -42,6 +42,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   against. It also records 15 candidates rejected as too close to an existing entry to pass a
   distinguishability gate, and 9 rejected on the ADR 0010 scope boundary, so neither ruling
   has to be made twice.
+- **Three exemplar entries open the Voice, Tone, and Style rebalance.** The `elder` voice, the
+  `grateful` tone, and the `first-principles-derivation` style each ship at the full ADR 0009
+  pedagogical bar and each renders on all twelve anchor topics, which adds 36 worked examples.
+  The elder voice draws its standing from elapsed time rather than expertise, so it can decline
+  to advise where a mentor cannot. The grateful tone names what one person did for another and
+  what it made possible, where the celebratory tone marks an achievement. The
+  first-principles-derivation style withholds its conclusion and refuses to support any step with
+  a cited authority, where classical argument states its claim first and may cite one. All three
+  start at `review_status: draft`, so they are invisible to the recommender and exempt from Gate 2.
+  Per ADR 0021, `python tools/promote.py` moves a fully rendered draft to `machine-verified`, and
+  only the maintainer moves an entry on to `stable`, after reading it. Their six confusable
+  neighbours gained the reciprocal edge and a disambiguation paragraph.
 
 ### Changed
 

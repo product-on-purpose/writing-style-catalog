@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-28T16:07:36.681397+00:00",
+  "generated": "2026-11-27T00:27:48.657342+00:00",
   "entries": [
     {
       "id": "caregiver",
@@ -28,6 +28,13 @@
       "axis": "voice",
       "one_liner": "A plain, no-ceremony voice that states its purpose in the first sentence, does not build up to the point, and treats reader time as the primary resource to protect.",
       "review_status": "machine-verified"
+    },
+    {
+      "id": "elder",
+      "name": "Elder",
+      "axis": "voice",
+      "one_liner": "A voice whose authority is elapsed time rather than expertise, placing the reader's situation on a longer scale and willing to offer no advice at all.",
+      "review_status": "draft"
     },
     {
       "id": "executive",
@@ -163,6 +170,13 @@
       "review_status": "machine-verified"
     },
     {
+      "id": "grateful",
+      "name": "Grateful",
+      "axis": "tone",
+      "one_liner": "Names a specific thing the writer received from someone else and what it made possible - the debt is acknowledged rather than repaid.",
+      "review_status": "draft"
+    },
+    {
       "id": "instructional",
       "name": "Instructional",
       "axis": "tone",
@@ -280,6 +294,13 @@
       "axis": "style",
       "one_liner": "Inverted-pyramid writing for decision-makers - recommendation first, supporting analysis second, structured so that stopping after paragraph one still leaves the reader equipped to act.",
       "review_status": "machine-verified"
+    },
+    {
+      "id": "first-principles-derivation",
+      "name": "First-Principles Derivation",
+      "axis": "style",
+      "one_liner": "Opens on premises the reader already grants and derives the conclusion from them step by step, refusing to borrow any step from authority or precedent.",
+      "review_status": "draft"
     },
     {
       "id": "layered-disclosure",
