@@ -19,6 +19,7 @@ import {
   loadMarkdown,
   mdxEscapeProse,
   parseDiffPair,
+  sameContrastOtherTopics,
   assertSafeOutRoot,
   generate,
 } from '../scripts/gen-site.mjs';
@@ -148,6 +149,75 @@ test('generate emits the expected page set with relative links and no base liter
     assert.equal(fs.readFileSync(f, 'utf8').includes('/writing-style-catalog'), false, `base literal leaked into ${f}`);
   }
   fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('sameContrastOtherTopics matches the pair identity and never the page itself', () => {
+  const mk = (id, axis, a, b, label) => ({
+    diff_pair_id: id, axis_varied: axis, entry_a: a, entry_b: b, topic_label: label,
+  });
+  const here = mk('voice-x-vs-y-topic-one', 'voice', 'x', 'y', 'Topic one');
+  const pairs = [
+    here,
+    mk('voice-x-vs-y-topic-two', 'voice', 'x', 'y', 'Topic two'),
+    // Same entries, different axis: not the same contrast.
+    mk('tone-x-vs-y-topic-two', 'tone', 'x', 'y', 'Topic two'),
+    // Reversed order is a different pair file, so not treated as the same.
+    mk('voice-y-vs-x-topic-two', 'voice', 'y', 'x', 'Topic two'),
+    mk('voice-x-vs-z-topic-two', 'voice', 'x', 'z', 'Topic two'),
+  ];
+  assert.deepEqual(
+    sameContrastOtherTopics(pairs, here).map((p) => p.diff_pair_id),
+    ['voice-x-vs-y-topic-two']
+  );
+});
+
+test('sameContrastOtherTopics returns nothing for a one-topic pair', () => {
+  const only = {
+    diff_pair_id: 'voice-x-vs-y-topic-one', axis_varied: 'voice',
+    entry_a: 'x', entry_b: 'y', topic_label: 'Topic one',
+  };
+  assert.deepEqual(sameContrastOtherTopics([only], only), []);
+});
+
+test('a generated diff-pair page wires the toggle and links its sibling topics', () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'gen-site-dp-'));
+  generate(tmp);
+  const dpDir = path.join(tmp, 'examples/diff-pairs');
+  const files = fs.readdirSync(dpDir).filter((f) => f.endsWith('.mdx'));
+
+  // Every diff-pair page passes the axis and both ids, so the component can
+  // label the toggle with the variable it flips.
+  for (const f of files) {
+    const page = fs.readFileSync(path.join(dpDir, f), 'utf8');
+    assert.match(page, /<DiffPair labelA="A: [^"]+" labelB="B: [^"]+" axis="[^"]+" idA="[^"]+" idB="[^"]+">/,
+      `${f} does not pass axis/idA/idB to DiffPair`);
+  }
+
+  // At least one pair exists on several topics, and its page links the others
+  // relatively (a sibling page is one directory up).
+  const withSiblings = files
+    .map((f) => [f, fs.readFileSync(path.join(dpDir, f), 'utf8')])
+    .filter(([, page]) => page.includes('contrast on other topics'));
+  assert.ok(withSiblings.length > 0, 'no diff-pair page offered the same contrast on another topic');
+  const [, page] = withSiblings[0];
+  assert.match(page, /\n- \[[^\]]+\]\(\.\.\/[a-z0-9-]+\/\)/);
+
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('the DiffPair component degrades without JavaScript and labels its toggle', () => {
+  const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const src = fs.readFileSync(path.join(repoRoot, 'site/src/components/DiffPair.astro'), 'utf8');
+  // Both passages are rendered at build time, in slots, so the page is
+  // readable with no script at all.
+  assert.match(src, /<slot name="a" \/>/);
+  assert.match(src, /<slot name="b" \/>/);
+  // The controls ship hidden and the script reveals them, so a no-JS reader
+  // never sees a dead button.
+  assert.match(src, /data-dpv-controls hidden/);
+  assert.match(src, /controls\.hidden = false/);
+  // Toggle state is exposed to assistive technology rather than by colour alone.
+  assert.match(src, /aria-pressed/);
 });
 
 test('the generator source contains no hardcoded base literal', () => {

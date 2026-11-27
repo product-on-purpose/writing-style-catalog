@@ -558,12 +558,26 @@ function renderEntryPage(catalog, pairs, entry) {
   return joinPage(out);
 }
 
-function renderDiffPairPage(catalog, dp) {
+// The same contrast on the other anchor topics. A diff-pair holds the topic
+// constant, so the sibling pages are how a reader varies the second variable;
+// 35 of the 92 distinct pair identities exist on more than one topic.
+function sameContrastOtherTopics(pairs, dp) {
+  return pairs.filter(
+    (p) =>
+      p.diff_pair_id !== dp.diff_pair_id &&
+      p.axis_varied === dp.axis_varied &&
+      p.entry_a === dp.entry_a &&
+      p.entry_b === dp.entry_b
+  );
+}
+
+function renderDiffPairPage(catalog, dp, pairs = []) {
   const fromSlug = `examples/diff-pairs/${dp.diff_pair_id}`;
   const aLink = entryLink(catalog, fromSlug, dp.entry_a);
   const bLink = entryLink(catalog, fromSlug, dp.entry_b);
   const ea = dp.entry_a;
   const eb = dp.entry_b;
+  const siblings = sameContrastOtherTopics(pairs, dp);
   const out = [
     '---',
     `title: ${yamlTitle(`${ea} vs ${eb}`)}`,
@@ -583,7 +597,7 @@ function renderDiffPairPage(catalog, dp) {
     '',
     mdxEscapeProse(dp.what_to_notice),
     '',
-    `<DiffPair labelA="A: ${ea}" labelB="B: ${eb}">`,
+    `<DiffPair labelA="A: ${ea}" labelB="B: ${eb}" axis="${dp.axis_varied}" idA="${ea}" idB="${eb}">`,
     '<div slot="a">',
     '',
     mdxEscapeProse(dp.passage_a),
@@ -597,6 +611,20 @@ function renderDiffPairPage(catalog, dp) {
     '</DiffPair>',
     '',
   ];
+  if (siblings.length) {
+    out.push(
+      `## The same ${dp.axis_varied} contrast on other topics`,
+      '',
+      `\`${ea}\` against \`${eb}\` on a different situation, with everything else held constant.`,
+      ''
+    );
+    for (const p of siblings) {
+      out.push(
+        `- [${p.topic_label}](${relUrl(fromSlug, `examples/diff-pairs/${p.diff_pair_id}`)})`
+      );
+    }
+    out.push('');
+  }
   return joinPage(out);
 }
 
@@ -899,7 +927,11 @@ function generate(outRoot) {
 
   // Diff-pair pages (.mdx, import DiffPair).
   for (const dp of pairs) {
-    write(outRoot, `examples/diff-pairs/${dp.diff_pair_id}.mdx`, renderDiffPairPage(catalog, dp));
+    write(
+      outRoot,
+      `examples/diff-pairs/${dp.diff_pair_id}.mdx`,
+      renderDiffPairPage(catalog, dp, pairs)
+    );
     n += 1;
   }
   write(outRoot, 'examples/diff-pairs/index.md', renderDiffPairIndex(pairs));
@@ -977,6 +1009,7 @@ export {
   loadMarkdown,
   mdxEscapeProse,
   parseDiffPair,
+  sameContrastOtherTopics,
   loadCatalog,
   loadDiffPairs,
   assertSafeOutRoot,
