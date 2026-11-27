@@ -42,6 +42,9 @@ jobs:
       - name: Run site generator tests
         run: node --test tests/gen-site.test.mjs
 
+      - name: Run agentic harness tests
+        run: node --test tests/agentic-harness.test.mjs
+
       - name: Install markdownlint-cli2
         # Pinned: an unpinned global install re-resolves latest on every run,
         # so a breaking release changes CI behavior with no repo change.
