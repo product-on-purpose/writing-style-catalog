@@ -49,10 +49,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Decision Record") does not appear in that heading, so neither the strip rule nor the leak check
   caught it. The floor is gone, because the two errors are not symmetric: a false positive refuses
   a packet and is visible, while a false negative produces a number that looks like evidence and
-  is not. The check is now stricter, and honestly so - across the catalog, 89 of the 118 entries
-  have at least one anchor topic on which their declared pair can be judged blind, and 972 of the
-  1,416 (pair, topic) cells are usable. The 29 that have none are mostly ceremonial and
-  contemplative formats, which name themselves in their own prose.
+  is not.
+- **The leak check matched only whole ids, so a title naming half of one got through.** The
+  `daily-standup` render opens `# Standup - Ana, 2026-05-14`, which is neither `daily-standup`
+  nor `daily standup`. A second check now scans a passage's first heading for the distinctive
+  single words of either entry's id and name, five characters or longer. It looks at the title
+  only: self-naming lives there, while `notes` and `letter` occur throughout ordinary prose and
+  scanning for them everywhere would refuse most of the catalog for no gain.
+  Together the two fixes make the check stricter, and honestly so: across the catalog, 89 of the
+  118 entries have at least one anchor topic on which their declared pair can be judged blind,
+  and 937 of the 1,416 (pair, topic) cells are usable. The 29 entries that have none are mostly
+  ceremonial, contemplative and document formats, which name themselves in their own titles.
 
 - **The README version badge said 0.12.0.** It now says 0.15.0. It had been missed in three
   release-prep commits. `scripts/validate-plugin-manifest.mjs` now fails when the badge, the

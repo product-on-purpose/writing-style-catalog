@@ -84,6 +84,31 @@ def test_find_leaks_requires_a_word_boundary():
     assert D.find_leaks("The approach was reasonable.", ["coach"]) == []
 
 
+def test_find_heading_leaks_catches_a_single_id_word_in_the_title():
+    """The second leak shape: `daily-standup` renders open `# Standup - Ana`."""
+    body = "# Standup - Ana, 2026-05-14\n\n**Done** - wrote the benchmark.\n"
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks(body, tokens) == ["standup"]
+
+
+def test_find_heading_leaks_ignores_the_same_word_in_the_body():
+    """Only the title is scanned; `notes` and `letter` are everywhere in prose."""
+    body = "# Tuesday\n\nWe keep standup short because the notes do the work.\n"
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks(body, tokens) == []
+
+
+def test_find_heading_leaks_is_empty_when_the_passage_has_no_heading():
+    tokens = D._heading_tokens("daily-standup", {"name": "Daily Standup"})
+    assert D.find_heading_leaks("In January, I was running two things.\n", tokens) == []
+
+
+def test_heading_tokens_drops_words_too_common_to_be_evidence():
+    """`log` and `the` carry no signal; `decision` does."""
+    tokens = D._heading_tokens("decision-log", {"name": "Decision Log"})
+    assert "decision" in tokens and "log" not in tokens
+
+
 def test_find_leaks_returns_empty_on_clean_prose():
     assert D.find_leaks("January: the project was in its seventh month.", ["coach"]) == []
 
@@ -348,6 +373,22 @@ def test_the_adr_render_is_refused_rather_than_judged():
     id_map = D.load_catalog()
     with pytest.raises(ValueError, match="name its own answer"):
         D.build_trial("adr", "design-doc", "service-database-choice", id_map, order_seed=0)
+
+
+def test_the_daily_standup_render_is_refused_rather_than_judged():
+    """The second regression pin: a title naming one word of a compound id.
+
+    `examples/vertical-slices/service-database-choice/format-daily-standup.md`
+    opens `# Standup - Ana, 2026-05-14`. The whole-id check sees
+    `daily-standup` and `daily standup`, neither of which is in that line, so
+    this pair was judged once before the heading check existed and its result
+    was withdrawn.
+    """
+    id_map = D.load_catalog()
+    with pytest.raises(ValueError, match="first heading"):
+        D.build_trial(
+            "daily-standup", "meeting-notes", "service-database-choice", id_map, order_seed=0
+        )
 
 
 def test_prepare_emits_machine_readable_packets(capsys):
