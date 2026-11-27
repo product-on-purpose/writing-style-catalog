@@ -17,6 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   JavaScript the page is exactly the two columns it was before and no dead buttons appear. Each
   page also links the same contrast on the other anchor topics, which is how a reader varies the
   second variable; 35 of the 92 distinct pair identities exist on more than one topic.
+- **`tools/distinguishability.py`, a band harness for one entry against its declared neighbor.**
+  `prepare` builds blind, leak-checked judge packets from the renders already committed under
+  `examples/vertical-slices/`, and `record` scores the returned verdicts into an inspectable run
+  record. It generates nothing and calls no API: both passages come from the repository and the
+  judge is a free cross-vendor in-session subagent, so a band costs one subagent call. It reports
+  the four bands the 2026-05-31 smoke test produced (`dramatic`, `clear`, `subtle`, `identical`)
+  and refuses to emit a packet whose passages name either entry, because a blind test that states
+  its own answer measures nothing. `tools/gate_pilot.py` is unchanged: it stays the calibrated
+  three-band instrument for admission against several neighbors at once.
 
 ### Changed
 
